@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_move_line_tree_swrent" model="ir.ui.view">
+            <field name="name">stock.move.line.tree.swrent</field>
+            <field name="model">stock.move.line</field>
+            <field name="inherit_id" ref="stock.view_move_line_tree"/>
+            <field name="arch" type="xml">
+                <field name="product_id" position="after">
+                    <field name="equipment_id"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_move_line_form_swrent" model="ir.ui.view">
+            <field name="name">stock.move.line.form.swrent</field>
+            <field name="model">stock.move.line</field>
+            <field name="inherit_id" ref="stock.view_move_line_form"/>
+            <field name="arch" type="xml">
+                <field name="product_id" position="after">
+                    <field name="equipment_id"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>
