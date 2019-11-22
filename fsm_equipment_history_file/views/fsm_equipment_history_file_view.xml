@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <!-- Views -->
+
+        <record model="ir.ui.view" id="tree_fsm_equipment_history_file">
+            <field name="name">tree.fsm.equipment.history.file</field>
+            <field name="model">fsm.equipment.history.file</field>
+            <field name="arch" type="xml">
+                <tree string="Product History File">
+                    <field name="name"/>
+                    <field name="current_owner"/>
+                    <field name="product_id"/>
+                    <field name="equipment_id"/>
+                    <field name="lot_id"/>
+                    <field name="bom_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="form_fsm_equipment_history_file">
+            <field name="name">form.fsm.equipment.history.file</field>
+            <field name="model">fsm.equipment.history.file</field>
+            <field name="arch" type="xml">
+                <form name="Product History File">
+                    <header>
+                        <button name="view_bom_structure" type="object" string="Show BoM Structure"/>
+                        <button name="create_equipment_history_file_bom" type="object" string="Create BoM"
+                                groups="fsm_equipment_history_file.group_edit_history_file"/>
+                    </header>
+                    <sheet>
+                        <group name="header">
+                            <group>
+                                <field name="name"/>
+                                <field name="parent_history_file"/>
+                                <field name="product_id"/>
+                                <field name="equipment_id"
+                                       context="{'default_product_id': product_id, 'default_lot_id': lot_id, 'default_name': name}"
+                                       domain="[('product_id','=',product_id), ('lot_id', '=', lot_id)]"/>
+                                <field name="bom_id" options="{'no_create': True}"/>
+                                <field name="lot_id"
+                                       domain="[('product_id','=',product_id)]"
+                                       context="{'default_product_id': product_id}"/>
+                                <field name="company_id" widget="selection"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Parts list">
+                                <field name="bom_history"
+                                       context="{'tree_view_ref': 'fsm_equipment_history_file.view_fsm_equipment_history_file_bom_tree'}"/>
+                            </page>
+                            <page string="Owners">
+                                <field name="owner_ids"/>
+                            </page>
+                            <page string="Note">
+                                <field name="note"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Search View of Partner -->
+        <record id="search_fsm_equipment_history_file" model="ir.ui.view">
+            <field name="name">fsm.equipment.history.file.search</field>
+            <field name="model">fsm.equipment.history.file</field>
+            <field name="arch" type="xml">
+                <search string="Search Histroy Files">
+                    <field name="name"/>
+                    <field name="product_id"/>
+                    <field name="equipment_id"/>
+                    <field name="lot_id"/>
+                    <field name="current_owner"/>
+                    <field name="owner_names"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_fsm_equipment_history_file_bom_tree" model="ir.ui.view">
+            <field name="name">res.fsm.equipment.history.file.bom.tree</field>
+            <field name="model">fsm.equipment.history.file.bom</field>
+            <field name="arch" type="xml">
+                <tree string="BoM" colors="red:date_removed">
+                    <field name="product_id"/>
+                    <field name="equipment_id"/>
+                    <field name="child_history_file_id"/>
+                    <field name="date_added"/>
+                    <field name="date_removed"/>
+                    <field name="note"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_fsm_equipment_history_file_bom_structure_tree" model="ir.ui.view">
+            <field name="name">res.fsm.equipment.history.file.bom.structure.tree</field>
+            <field name="model">fsm.equipment.history.file.bom</field>
+            <field name="field_parent">child_ids</field>
+            <field name="arch" type="xml">
+                <tree string="BoM" colors="red:date_removed">
+                    <field name="product_id"/>
+                    <field name="equipment_id"/>
+                    <field name="child_history_file_id"/>
+                    <field name="date_added"/>
+                    <field name="date_removed"/>
+                    <field name="note"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_fsm_equipment_history_file_bom_form" model="ir.ui.view">
+            <field name="name">res.fsm.equipment.history.file.bom.form</field>
+            <field name="model">fsm.equipment.history.file.bom</field>
+            <field name="arch" type="xml">
+                <form string="BoM">
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="product_id"/>
+                            <field name="equipment_id"
+                                   context="{'default_product_id': product_id, 'default_lot_id': lot_id, 'default_name': name}"
+                                   domain="[('product_id','=',product_id), ('lot_id', '=', lot_id)]"/>
+                            <field name="bom_id" options="{'no_create': True}"/>
+                            <field name="lot_id"
+                                   domain="[('product_id','=',product_id)]"/>
+                            <field name="child_history_file_id"/>
+                        </group>
+                        <group>
+                            <field name="date_added"/>
+                            <field name="date_removed"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Parts list">
+                            <field name="child_ids" readonly="1"/>
+                        </page>
+                        <page string="note">
+                            <field name="note"/>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_fsm_equipment_history_file_owner_tree" model="ir.ui.view">
+            <field name="name">res.fsm.equipment.history.file.owner.tree</field>
+            <field name="model">fsm.equipment.history.file.owner</field>
+            <field name="arch" type="xml">
+                <tree string="Owner">
+                    <field name="partner_id"/>
+                    <field name="date_from"/>
+                    <field name="date_until"/>
+                    <field name="note"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_fsm_equipment_history_file_owner_form" model="ir.ui.view">
+            <field name="name">res.fsm.equipment.history.file.owner.form</field>
+            <field name="model">fsm.equipment.history.file.owner</field>
+            <field name="arch" type="xml">
+                <form string="Owner">
+                    <group>
+                        <group col="2">
+                            <field name="partner_id"/>
+                        </group>
+                        <group col="4">
+                            <field name="date_from"/>
+                            <field name="date_until"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="note"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <!-- Actions -->
+
+        <record model="ir.actions.act_window" id="action_fsm_equipment_history_file">
+            <field name="name">History File</field>
+            <field name="res_model">fsm.equipment.history.file</field>
+            <field name="domain"></field>
+            <field name="context"></field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="search_fsm_equipment_history_file"/>
+        </record>
+
+        <!-- Menus -->
+
+        <menuitem name="Equitment History File" id="fsm_equipment_history_file_menu" parent="fieldservice.data"
+                  action="action_fsm_equipment_history_file" groups="fsm_equipment_history_file.group_read_history_file"/>
+
+    </data>
+</openerp>
