@@ -6,4 +6,4 @@ from . import account_invoice
 from . import stock_move
 from . import repair_order
 from . import purchase_order
-from . import fsm_equipment
+# from . import fsm_equipment
