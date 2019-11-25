@@ -10,8 +10,20 @@ class StockMoveLine(models.Model):
     equipment_id = fields.Many2one('fsm.equipment', string='Equipment',
                                    domain="[('product_id','=', product_id)]")
 
+    @api.onchange('product_id', 'product_uom_id')
+    def onchange_product_id(self):
+        res = super().onchange_product_id()
+        self.equipment_id = False
+        return res
+
+class StockMove(models.Model):
+    _inherit = "stock.move"
+
+    equipment_id = fields.Many2one('fsm.equipment', string='Equipment')
+
     @api.onchange('product_id')
-    def _onchange_product_id(self):
-        res = super()._onchange_product_id()
+    def onchange_product_id(self):
+        res = super().onchange_product_id()
+        # clear old selected value
         self.equipment_id = False
         return res

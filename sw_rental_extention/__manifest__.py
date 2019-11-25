@@ -20,6 +20,7 @@
         'views/stock_move_view.xml',
         'views/repair_order_view.xml',
         'views/purchase_order_view.xml',
+        'views/fsm_equipment_view.xml',
     ],
     'qweb': [],
     "installable": True,
