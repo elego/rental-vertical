@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Customer Invoice -->
+        <record id="invoice_form_swrent" model="ir.ui.view">
+            <field name="name">account.invoice.form.swrent</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoice_line_ids']//tree//field[@name='product_id']" position="after">
+                    <field name="equipment_id"
+                           domain="[('product_id', '=', product_id)]"
+                           context="{'default_product_id': product_id}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Vendor Bill -->
+        <record id="invoice_supplier_form_swrent" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.form.swrent</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoice_line_ids']//tree//field[@name='product_id']" position="after">
+                    <field name="equipment_id"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
