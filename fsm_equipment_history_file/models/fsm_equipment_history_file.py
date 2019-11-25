@@ -6,7 +6,7 @@ from openerp import models, fields, api, exceptions, _
 
 class FSMEquipmentHistoryFile(models.Model):
     _name = 'fsm.equipment.history.file'
-    _description = 'Equitment history file'
+    _description = 'Equipment history file'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     name = fields.Char(string='Name', size=64)
@@ -16,7 +16,7 @@ class FSMEquipmentHistoryFile(models.Model):
         domain=[('history_file_obligatory', '=', True)])
     equipment_id = fields.Many2one(
         comodel_name='fsm.equipment',
-        string='Equitment', ondelete='restrict', index=True)
+        string='Equipment', ondelete='restrict', index=True)
     lot_id = fields.Many2one(
         comodel_name='stock.production.lot',
         string='Serial #', required=False)
@@ -255,7 +255,7 @@ class FSMEquipmentHistoryFileBom(models.Model):
     equipment_id = fields.Many2one(
         comodel_name='fsm.equipment',
         related="child_history_file_id.equipment_id", readonly=False,
-        string='Equitment', ondelete='restrict', index=True)
+        string='Equipment', ondelete='restrict', index=True)
     name = fields.Char(
         string='Name',
         size=128, related="product_id.display_name",
