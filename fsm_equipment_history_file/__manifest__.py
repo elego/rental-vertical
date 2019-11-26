@@ -11,6 +11,7 @@
     'depends': [
         'mrp',
         'fieldservice_stock',
+        'sw_rental_extention',
     ],
     'data': [
         'security/res_groups.xml',

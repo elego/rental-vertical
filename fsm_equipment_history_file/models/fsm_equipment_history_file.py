@@ -246,6 +246,7 @@ class FSMEquipmentHistoryFile(models.Model):
 
 class FSMEquipmentHistoryFileBom(models.Model):
     _name = 'fsm.equipment.history.file.bom'
+    _description = 'FSM Equipment History File BoM'
     _order = 'name'
 
     product_id = fields.Many2one(
@@ -304,6 +305,7 @@ class FSMEquipmentHistoryFileBom(models.Model):
 
 class FSMEquipmentHistoryFileOwner(models.Model):
     _name = 'fsm.equipment.history.file.owner'
+    _description = 'FSM Equipment History File Owner'
 
     history_file_id = fields.Many2one(
         comodel_name='fsm.equipment.history.file',
