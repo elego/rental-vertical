@@ -29,14 +29,20 @@ class AccountInvoiceLine(models.Model):
     def create(self, vals_list):
         # update vals_list
         for vals in vals_list:
-            inv_type = self.env.context.get('inv_type', 'out_invoice')
-            if vals.get('product_id') and not vals.get('equipment_id'):
-                product = self.env['product.product'].browse(
-                    vals.get('product_id'))
-                domain = [('product_id', '=', product.id)]
-                equipment = self.env['fsm.equipment'].search(domain, limit=1)
-                vals['equipment_id'] = equipment.id or False
+            if vals.get('product_id') and vals.get('equipment_id'):
+                equipment = self.env['fsm.equipment'].browse(vals.get('equipment_id'))
                 if equipment :
                     ana_account = equipment.analytic_account_id
                     vals['account_analytic_id'] = ana_account.id
         return super().create(vals_list)
+
+
+class AccountInvoice(models.Model):
+    _inherit = 'account.invoice'
+
+    def _prepare_invoice_line_from_po_line(self, line):
+        data = super(AccountInvoice, self)._prepare_invoice_line_from_po_line(line)
+        # set equipment_id from purchase order line to invoice line
+        if line.equipment_id:
+            data.update({'equipment_id': line.equipment_id.id })
+        return data

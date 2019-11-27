@@ -21,7 +21,8 @@ class SaleOrderLine(models.Model):
     def _prepare_procurement_values(self, group_id=False):
         res = super(SaleOrderLine, self)._prepare_procurement_values(group_id)
         # update field from sale.orde.line to stock.move
-        res.update({'equipment_id': self.equipment_id.id})
+        if self.equipment_id:
+            res.update({'equipment_id': self.equipment_id.id})
         return res
 
 class StockRule(models.Model):

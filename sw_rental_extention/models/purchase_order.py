@@ -24,3 +24,12 @@ class PurchaseOrderLine(models.Model):
         if self.equipment_id:
             domain = { 'account_analytic_id': [ ('id', '=', self.equipment_id.analytic_account_id.id) ] } 
             return { 'domain': domain }
+
+    @api.multi
+    def _prepare_stock_moves(self, picking):
+        res = super(PurchaseOrderLine, self)._prepare_stock_moves(picking)
+        # set equipment_id from purchase.orde.line to stock.move
+        if self.equipment_id:
+            vals_dic = res[0]
+            vals_dic.update({'equipment_id': self.equipment_id.id})
+        return res
