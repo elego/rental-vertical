@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_brand,access_product_brand,model_product_brand,base.group_user,1,1,1,1
+access_product_brand_type,access_product_brand_type,model_product_brand_type,base.group_user,1,1,1,1
+access_fleet_type,access_fleet_type,model_fleet_type,base.group_user,1,1,1,1
+access_product_timeline,access_product_timeline,model_product_timeline,base.group_user,1,1,1,1

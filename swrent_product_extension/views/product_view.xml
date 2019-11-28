@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- ProductTemplate -->
+        <record id="view_template_property_form" model="ir.ui.view">
+            <field name="name">product.template.stock.property.form.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="stock.view_template_property_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='tracking']" position="after">
+                    <field name="product_instance"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- ProductProduct -->
+        <record id="product_normal_form_view" model="ir.ui.view">
+            <field name="name">view.product.product.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <button name="toggle_active" position="before">
+                    <button class="oe_stat_button" name="action_view_all_sale_order"
+                        type="object" icon="fa-shopping-cart" attrs="{'invisible': [('sale_ok', '=', False)]}">
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_text">Sale Orders</span>
+                        </div>
+                    </button>
+                    <button class="oe_stat_button" name="action_view_all_purchase_order"
+                        type="object" icon="fa-shopping-cart" attrs="{'invisible': [('purchase_ok', '=', False)]}">
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_text">Purchase Orders</span>
+                        </div>
+                    </button>
+                    <button class="oe_stat_button" name="action_view_all_invoice"
+                        type="object" icon="fa-shopping-cart">
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_text">Invoices</span>
+                        </div>
+                    </button>
+                </button>
+                <xpath expr="//field[@name='barcode']" position="after">
+                    <field name="qr_code"/>
+                    <field name="manu_year"/>
+                    <field name="brand"/>
+                    <field name="brand_type" domain="[('brand_id','=',brand)]"/>
+                    <field name="fleet_type"/>
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <page name="timeline" string="Timeline">
+                        <field name="product_timeline_ids">
+                            <tree editable="top" default_order="date_start">
+                                <field name="name"/>
+                                <field name="type"/>
+                                <field name="partner_id"/>
+                                <field name="date_start"/>
+                                <field name="date_end"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Repair" name="repair">
+                        <field name="repair_order_ids" readonly="1">
+                            <tree default_order="guarantee_limit">
+                                <field name="name"/>
+                                <field name="lot_id" />
+                                <field name="partner_id"/>
+                                <field name="address_id"/>
+                                <field name="location_id" />
+                                <field name="guarantee_limit"/>
+                                <field name="state"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Moves" name="stock">
+                        <field name="stock_move_ids" readonly="1">
+                            <tree default_order="date">
+                                <field name="location_id" />
+                                <field name="location_dest_id" />
+                                <field name="product_uom_qty"/>
+                                <field name="quantity_done"/>
+                                <field name="reserved_availability" string="Reserved"/>
+                                <field name="date_expected" />
+                                <field name="date" />
+                                <field name="state"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+
+        <!-- ProductBrand -->
+        <record id="view_product_brand_form" model="ir.ui.view">
+            <field name="name">product.brand.form</field>
+            <field name="model">product.brand</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group col="4">
+                            <field name="name"/>
+                        </group>
+                        <field name="brand_type_ids"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_product_brand_tree" model="ir.ui.view">
+            <field name="name">product.brand.tree</field>
+            <field name="model">product.brand</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_product_brand_filter" model="ir.ui.view">
+            <field name="name">product.brand.search</field>
+            <field name="model">product.brand</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                </search>
+             </field>
+        </record>
+
+        <record id="action_product_brand" model="ir.actions.act_window">
+            <field name="name">Brand</field>
+            <field name="res_model">product.brand</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- ProductBrandType -->
+        <record id="view_product_brand_type_form" model="ir.ui.view">
+            <field name="name">product.brand.type.form</field>
+            <field name="model">product.brand.type</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group col="4">
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_product_brand_type_tree" model="ir.ui.view">
+            <field name="name">product.brand.type.tree</field>
+            <field name="model">product.brand.type</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_product_brand_type_filter" model="ir.ui.view">
+            <field name="name">product.brand.type.search</field>
+            <field name="model">product.brand.type</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                </search>
+             </field>
+        </record>
+
+        <record id="action_product_brand_type" model="ir.actions.act_window">
+            <field name="name">Brand Type</field>
+            <field name="res_model">product.brand.type</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- FleetType -->
+        <record id="view_fleet_type_form" model="ir.ui.view">
+            <field name="name">fleet.type.form</field>
+            <field name="model">fleet.type</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group col="4">
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_fleet_type_tree" model="ir.ui.view">
+            <field name="name">fleet.type.tree</field>
+            <field name="model">fleet.type</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_fleet_type_filter" model="ir.ui.view">
+            <field name="name">fleet.type.search</field>
+            <field name="model">fleet.type</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                </search>
+             </field>
+        </record>
+
+        <record id="action_fleet_type" model="ir.actions.act_window">
+            <field name="name">Fleet Type</field>
+            <field name="res_model">fleet.type</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem action="action_product_brand"
+            id="menu_product_brand" parent="stock.menu_stock_inventory_control"
+            sequence="13"/>
+        <menuitem action="action_product_brand_type"
+            id="menu_product_brand_type" parent="stock.menu_stock_inventory_control"
+            sequence="13"/>
+        <menuitem action="action_fleet_type"
+            id="menu_fleet_type" parent="stock.menu_stock_inventory_control"
+            sequence="13"/>
+
+    </data>
+</odoo>
