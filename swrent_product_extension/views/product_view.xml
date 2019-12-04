@@ -8,8 +8,11 @@
             <field name="model">product.template</field>
             <field name="inherit_id" ref="stock.view_template_property_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='tracking']" position="after">
-                    <field name="product_instance"/>
+                <xpath expr="//field[@name='sale_ok']/.." position="before">
+                    <div>
+                        <field name="product_instance"/>
+                        <label for="product_instance"/>
+                    </div>
                 </xpath>
             </field>
         </record>
@@ -42,13 +45,19 @@
                 </button>
                 <xpath expr="//field[@name='barcode']" position="after">
                     <field name="qr_code"/>
+                    <field name="instance_serial_number_id"
+                           attrs="{'invisible': [('product_instance', '=', False)]}"/>
                     <field name="manu_year"/>
                     <field name="brand"/>
                     <field name="brand_type" domain="[('brand_id','=',brand)]"/>
                     <field name="fleet_type"/>
                 </xpath>
+                <xpath expr="//button[@name='action_open_product_lot']" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|', ('product_instance', '=', True), ('tracking', '!=', 'serial')]}</attribute>
+                </xpath>
                 <xpath expr="//notebook" position="inside">
-                    <page name="timeline" string="Timeline">
+                    <page name="timeline" string="Timeline"
+                          attrs="{'invisible': [('product_instance', '=', False)]}">
                         <field name="product_timeline_ids">
                             <tree editable="top" default_order="date_start">
                                 <field name="name"/>
@@ -59,9 +68,24 @@
                             </tree>
                         </field>
                     </page>
-                    <page string="Repair" name="repair">
+                    <page string="Rental" name="rental"
+                          attrs="{'invisible': [('product_instance', '=', False)]}">
+                        <field name="rental_order_ids" readonly="1">
+                            <tree default_order="start_date">
+                                <field name="start_order_id"/>
+                                <field name="partner_id"/>
+                                <field name="start_date"/>
+                                <field name="out_state" string="Delivery"/>
+                                <field name="end_date" string="End Date"/>
+                                <field name="in_state" string="Return"/>
+                                <field name="state" />
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Repair" name="repair"
+                          attrs="{'invisible': [('product_instance', '=', False)]}">
                         <field name="repair_order_ids" readonly="1">
-                            <tree default_order="guarantee_limit">
+                            <tree default_order="guarantee_limit desc">
                                 <field name="name"/>
                                 <field name="lot_id" />
                                 <field name="partner_id"/>
@@ -72,9 +96,10 @@
                             </tree>
                         </field>
                     </page>
-                    <page string="Moves" name="stock">
+                    <page string="Moves" name="stock"
+                          attrs="{'invisible': [('product_instance', '=', False)]}">
                         <field name="stock_move_ids" readonly="1">
-                            <tree default_order="date">
+                            <tree default_order="date desc">
                                 <field name="location_id" />
                                 <field name="location_dest_id" />
                                 <field name="product_uom_qty"/>

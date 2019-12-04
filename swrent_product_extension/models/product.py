@@ -29,13 +29,16 @@ class ProductProduct(models.Model):
     qr_code = fields.Char('QR-Code')
     manu_year = fields.Char('Year of Manufacture')
 
+    instance_serial_number_id = fields.Many2one('stock.production.lot', 'Serial Number', ondelete='set null', domain="[('product_id', '=', id)]")
+
     brand = fields.Many2one('product.brand', ' Brand') #Marke
-    brand_type = fields.Many2one('product.brand.type', 'Branch Type') #Marke Typ
-    fleet_type = fields.Many2one('fleet.type', 'Fleet Type') #Flottentyp
+    brand_type = fields.Many2one('product.brand.type', 'Branch Type', ondelete='set null') #Marke Typ
+    fleet_type = fields.Many2one('fleet.type', 'Fleet Type', ondelete='set null') #Flottentyp
 
     #sol_ids = fields.One2many('sale.order.line', 'product_id', string='Sale Order Lines')
     #inv_line_ids = fields.One2many('account.invoice.line', 'product_id', string='Invoice Lines')
     #po_line_ids = fields.One2many('purchase.order.line', 'product_id', string='Purchase Order Lines')
+    rental_order_ids = fields.One2many('sale.rental', 'rented_product_id', string='Rental Orders')
     repair_order_ids = fields.One2many('repair.order', 'product_id', string='Repair Orders')
     stock_move_ids = fields.One2many('stock.move', 'product_id', string='Stock Moves')
 
