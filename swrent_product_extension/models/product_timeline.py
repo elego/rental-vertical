@@ -9,6 +9,9 @@ class ProductTimeline(models.Model):
     _description = 'Product Timeline'
 
     name = fields.Char('Name')
+    termin = fields.Boolean('Termin')
+    maintenance = fields.Boolean('Maintenance')
+    redline = fields.Boolean('Redline')
     product_id = fields.Many2one('product.product', 'Equipment')
     partner_id = fields.Many2one('res.partner', 'Partner')
     type = fields.Selection(string='Type', selection=[

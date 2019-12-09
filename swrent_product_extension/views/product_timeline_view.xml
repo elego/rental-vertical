@@ -7,14 +7,29 @@
             <field name="type">timeline</field>
             <field name="arch" type="xml">
                 <timeline date_start="date_start" date_stop="date_end" default_group_by="product_id"
-                    colors="#f0ff00:type == 'rental';#ffce00:type=='maintenance';#ff5a00:type == 'repair';#ff0000:type=='delivery';"/>
-                <!--
+                    colors="#f0ff00:type == 'rental';#ffce00:type=='maintenance';#ff5a00:type == 'repair';#ff0000:type=='delivery';">
+                    <field name="termin"/>
+                    <field name="maintenance"/>
+                    <field name="redline"/>
                     <templates>
                         <div t-name="timeline-item">
-                            <span t-esc="record.name"/>
+                            <t t-if="record.redline">
+                                <hr color="#ff0000"/>
+                            </t>
+                            <t t-if="record.termin">
+                                <img src="swrent_product_extension/static/description/termin.png" style="position:relative;max-height:15px;"/>
+                            </t>
+                            <t t-if="record.maintenance">
+                                <img src="swrent_product_extension/static/description/maintenance.png" style="position:relative;max-height:15px;"/>
+                            </t>
+                            <t t-if="record.maintenance or record.termin">
+                                <br />
+                            </t>
+                            Name: <span t-esc="record.display_name"/>
                         </div>
                     </templates>
                 </timeline>
+                <!--
                 -->
             </field>
         </record>
@@ -56,6 +71,9 @@
                 <form string="Timeline">
                     <group>
                         <field name="name"/>
+                        <field name="termin"/>
+                        <field name="maintenance"/>
+                        <field name="redline"/>
                         <field name="product_id"/>
                         <field name="type"/>
                         <field name="partner_id"/>
