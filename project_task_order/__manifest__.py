@@ -9,6 +9,7 @@
     'author': 'Open Source Integrators, Odoo Community Association (OCA)',
     'depends': [
         'project',
+        'product_analytic',
         'swrent_product_extension',
     ],
     'data': [
