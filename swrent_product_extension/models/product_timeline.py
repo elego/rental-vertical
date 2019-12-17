@@ -4,6 +4,9 @@
 from odoo import fields, models, api, exceptions, _
 
 
+RENTAL_TIMELINE_TYPES = ['rental', 'reserved']
+
+
 class ProductTimeline(models.Model):
     _name = 'product.timeline'
     _description = 'Product Timeline'
@@ -12,16 +15,17 @@ class ProductTimeline(models.Model):
     termin = fields.Boolean('Termin')
     maintenance = fields.Boolean('Maintenance')
     redline = fields.Boolean('Redline')
-    product_id = fields.Many2one('product.product', 'Equipment')
-    partner_id = fields.Many2one('res.partner', 'Partner')
+    product_id = fields.Many2one('product.product', 'Equipment', required=True, ondelete="cascade")
+    partner_id = fields.Many2one('res.partner', 'Partner', ondelete="set null")
     type = fields.Selection(string='Type', selection=[
         ('rental', 'Rental'),
+        ('reserved', 'Reserved'),
         ('maintenance', 'Maintenance'),
         ('repair', 'Repair'),
         ('delivery', 'Delivery'),
     ])
-    date_start = fields.Datetime('Date Start')
-    date_end = fields.Datetime('Date End')
+    date_start = fields.Datetime('Date Start', required=True)
+    date_end = fields.Datetime('Date End', required=True)
 
     _sql_constraints = [
         ('date_check', "CHECK ((date_start <= date_end))", "The start date must be anterior to the end date."),
@@ -41,3 +45,10 @@ class ProductTimeline(models.Model):
             if lines:
                 raise exceptions.ValidationError(
                     _('You can not have 2 timelines that overlaps on the same day.'))
+
+#    @api.multi
+#    def action_view_record(self):
+#        """
+#        Override this method to show the form view of the referenced record.
+#        """
+#        raise exceptions.ValidationError(_('No found implementation.'))

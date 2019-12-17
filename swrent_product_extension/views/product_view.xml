@@ -47,6 +47,8 @@
                     <field name="qr_code"/>
                     <field name="instance_serial_number_id"
                            attrs="{'invisible': [('product_instance', '=', False)]}"/>
+                    <field name="current_location_id"
+                           attrs="{'invisible': [('product_instance', '=', False)]}"/>
                     <field name="manu_year"/>
                     <field name="brand"/>
                     <field name="brand_type" domain="[('brand_id','=',brand)]"/>
@@ -100,6 +102,8 @@
                           attrs="{'invisible': [('product_instance', '=', False)]}">
                         <field name="stock_move_ids" readonly="1">
                             <tree default_order="date desc">
+                                <field name="picking_id" />
+                                <field name="origin" />
                                 <field name="location_id" />
                                 <field name="location_dest_id" />
                                 <field name="product_uom_qty"/>

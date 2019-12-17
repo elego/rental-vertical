@@ -20,3 +20,14 @@ class StockProductionLot(models.Model):
                 if res:
                     raise exceptions.ValidationError(
                         _('You can not have 2 serial numbers for a product instance.'))
+
+class StockMove(models.Model):
+    _inherit = 'stock.move'
+
+    @api.multi
+    def write(self, vals):
+        res = super(StockMove, self).write(vals)
+        if vals.get('state', False) == 'done':
+            for m in self:
+                if m.product_id.product_instance:
+                    m.product_id.current_location_id = m.location_dest_id

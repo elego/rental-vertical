@@ -3,7 +3,10 @@
 
 {
     'name': 'SWRent Product Extension',
-    'summary': 'SWRent Product Extension',
+    'summary':
+'''Model Product is extended as an Instance, that can be traced by serial number.
+   An Instance can only has one serial number, so that it is unique in the system.
+   It can be used in Rental Order, Repair Order and Maintenance Order''',
     'version': '12.0.1.0.0',
     'category': 'product',
     'author': 'Open Source Integrators, Odoo Community Association (OCA)',
