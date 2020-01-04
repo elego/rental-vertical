@@ -195,7 +195,7 @@
 
         <!-- Menus -->
 
-        <menuitem name="Equitment History File" id="fsm_equipment_history_file_menu" parent="fieldservice.data"
+        <menuitem name="Equipment History File" id="fsm_equipment_history_file_menu" parent="fieldservice.data"
                   action="action_fsm_equipment_history_file" groups="fsm_equipment_history_file.group_read_history_file"/>
 
     </data>

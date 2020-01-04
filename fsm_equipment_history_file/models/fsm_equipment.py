@@ -29,6 +29,7 @@ class FSMEquipment(models.Model):
                     equipment.history_file_id.equipment_id = equipment.id
         return res
 
+
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
