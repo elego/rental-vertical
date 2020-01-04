@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_product_timeline_timeline" model="ir.ui.view">
+            <field name="name">product.timeline.timeline</field>
+            <field name="model">product.timeline</field>
+            <field name="type">timeline</field>
+            <field name="arch" type="xml">
+                <timeline date_start="date_start" date_stop="date_end" default_group_by="product_id"
+                    colors="#f0ff00:type == 'reserved';#33ffec:type == 'rental';#ffce00:type=='maintenance';#ff5a00:type == 'repair';#ff0000:type=='delivery';">
+                    <field name="termin"/>
+                    <field name="maintenance"/>
+                    <field name="redline"/>
+                    <templates>
+                        <div t-name="timeline-item">
+                            <t t-if="record.redline">
+                                <hr color="#ff0000"/>
+                            </t>
+                            <t t-if="record.termin">
+                                <img src="swrent_product_extension/static/description/termin.png" style="position:relative;max-height:15px;"/>
+                            </t>
+                            <t t-if="record.maintenance">
+                                <img src="swrent_product_extension/static/description/maintenance.png" style="position:relative;max-height:15px;"/>
+                            </t>
+                            <t t-if="record.maintenance or record.termin">
+                                <br />
+                            </t>
+                            Name: <span t-esc="record.display_name"/>
+                        </div>
+                    </templates>
+                </timeline>
+                <!--
+                -->
+            </field>
+        </record>
+    
+        <record id="view_product_timeline_search" model="ir.ui.view">
+            <field name="name">product.timeline.search</field>
+            <field name="model">product.timeline</field>
+            <field name="arch" type="xml">
+               <search string="Timeline">
+                    <field name="name"/>
+                    <field name="product_id"/>
+                    <field name="type"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Equipment" name="equipment" context="{'group_by':'product_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+    
+        <record id="view_product_timeline_tree" model="ir.ui.view">
+            <field name="name">product.timeline.tree</field>
+            <field name="model">product.timeline</field>
+            <field name="arch" type="xml">
+                <tree string="Timeline">
+                    <field name="name"/>
+                    <field name="product_id"/>
+                    <field name="type"/>
+                    <field name="partner_id"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                </tree>
+            </field>
+        </record>
+    
+        <record id="view_product_timeline_form" model="ir.ui.view">
+            <field name="name">product.timeline.form</field>
+            <field name="model">product.timeline</field>
+            <field name="arch" type="xml">
+                <form string="Timeline">
+                    <group>
+                        <field name="name"/>
+                        <field name="termin"/>
+                        <field name="maintenance"/>
+                        <field name="redline"/>
+                        <field name="product_id"/>
+                        <field name="type"/>
+                        <field name="partner_id"/>
+                        <field name="date_start"/>
+                        <field name="date_end"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+    
+        <record id="action_product_timeline" model="ir.actions.act_window">
+            <field name="name">Timeline</field>
+            <field name="res_model">product.timeline</field>
+            <field name="view_type">tree</field>
+            <field name="view_mode">timeline,tree,form</field>
+            <field name="search_view_id" ref="view_product_timeline_search"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create a timeline for equipment first.
+                </p>
+            </field>
+        </record>
+
+        <menuitem action="action_product_timeline"
+            id="menu_product_timeline" parent="stock.menu_stock_inventory_control"
+            sequence="12"/>
+
+    </data>
+</odoo>
+
+

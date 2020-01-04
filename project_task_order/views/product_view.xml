@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- ProductProduct -->
+        <record id="product_normal_form_view" model="ir.ui.view">
+            <field name="name">view.product.product.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <button name="toggle_active" position="before">
+                    <button name="action_view_maintenance"
+                        attrs="{'invisible': [('product_instance', '=', False)]}"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-ticket">
+                        <field string="Maintenance" name="maintenance_count" widget="statinfo"/>
+                    </button>
+                    <button name="action_view_project_task"
+                        attrs="{'invisible': [('product_instance', '=', False)]}"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-ticket">
+                        <field string="Tasks" name="task_count" widget="statinfo"/>
+                    </button>
+                    <!--
+                    <button name="maintenance.hr_equipment_request_action_from_equipment"
+                        context="{'default_equipment_id': maintenance_equipment_id}"
+                        attrs="{'invisible': [('product_instance', '=', False)]}"
+                        type="action"
+                        class="oe_stat_button"
+                        icon="fa-ticket">
+                        <field string="Maintenance" name="maintenance_count" widget="statinfo"/>
+                    </button>
+                    -->
+                </button>
+                <xpath expr="//field[@name='barcode']" position="after">
+                    <field name="maintenance_equipment_id"
+                           attrs="{'invisible': [('product_instance', '=', False)]}"/>
+                    <field name="serial_no" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

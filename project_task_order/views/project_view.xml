@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_project_task_tree" model="ir.ui.view">
+            <field name="name">project.task.tree</field>
+            <field name="model">project.task</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="user_id"/>
+                    <field name="date_deadline"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_task_form2" model="ir.ui.view">
+            <field name="name">view.project.task.form</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="product_instance_id"/>
+                    <field name="maintenance_equipment_id"/>
+                    <field name="lot_id"/>
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <page name="maintenance" string="Maintenance Orders">
+                        <field name="maintenance_ids"
+                               context="{'default_equipment_id': maintenance_equipment_id}"/>
+                    </page>
+                    <page name="repair" string="Repair Orders">
+                        <field name="repair_ids"
+                               context="{'default_product_id': product_instance_id,
+                                         'default_lot_id': lot_id}"/>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
