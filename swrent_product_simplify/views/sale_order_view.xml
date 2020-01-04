@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_order_form_sw_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form.swrent</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']//form//field[@name='product_id']" position="before">
+                    <field name="rent_ok" attrs="{'invisible': [('sell_rent', '=', True)]}"/>
+                    <field name="sell_rent" attrs="{'invisible': [('rent_ok', '=', True)]}"/>
+                </xpath>
+                <label for="product_uom_qty" position="before">
+                    <field name="rental_uom_id" attrs="{'invisible': [('rent_ok', '=', False)], 'required': [('rent_ok', '=', True)]}"/>
+                </label>
+            </field>
+        </record>
+
+        <record id="view_order_form_rental" model="ir.ui.view">
+            <field name="name">sale.order.view.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_rental.view_order_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/form//field[@name='sell_rental_id']" position="attributes">
+                    <attribute name="domain">[('rental_product_id', '=', product_id), ('state', '=', 'out')]</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- <record id="view_order_form_date" model="ir.ui.view">
+            <field name="name">sale.order.view.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_start_end_dates.view_order_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/form//field[@name='start_date']" position="attributes">
+                    <attribute name="invisible">[('rental', '=', False)]</attribute>
+                    <attribute name="required">[('rental', '=', True)]</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/form//field[@name='end_date']" position="attributes">
+                    <attribute name="invisible">['&amp;', ('sell_rent', '=', True), ('rent_ok', '=', False)]</attribute>
+                    <attribute name="required">['&amp;', ('sell_rent', '=', False), ('rent_ok', '=', True)]</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/form//field[@name='number_of_days']" position="attributes">
+                    <attribute name="invisible">['&amp;', ('sell_rent', '=', True), ('rent_ok', '=', False)]</attribute>
+                    <attribute name="required">['&amp;', ('sell_rent', '=', False), ('rent_ok', '=', True)]</attribute>
+                </xpath>
+            </field>
+        </record> -->
+    </data>
+</odoo>
