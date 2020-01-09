@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2019- Elego Software Solutions GmbH (http://www.elegosoft.de/)
+  @author: Yurdik Cervantes <yurdik@elegosoft.de>
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+
+<odoo>
+
+<record id="dms_document_upload_form" model="ir.ui.view">
+    <field name="name">dms.document.upload.form</field>
+    <field name="model">ir.attachment</field>
+    <field name="arch"  type="xml">
+        <form string="Document Details">
+            <header>
+                <button name="import_button" string="Import Now" type="object"/>
+            </header>
+            <group name="main">
+                <field name="name"/>
+                <field name="id"/>
+                <field name="partner_id"/>
+            </group>
+        </form>
+    </field>
+</record>
+
+<record id="dms_document_upload_tree" model="ir.ui.view">
+    <field name="name">dms.document.upload.tree</field>
+    <field name="model">ir.attachment</field>
+    <field name="arch"  type="xml">
+        <tree string="Document Uploads" create="false">
+            <field name="name"/>
+            <field name="file_type"/>
+            <field name="partner_id"/>
+        </tree>
+    </field>
+</record>
+
+<!-- <record id="dms_document_upload_search" model="ir.ui.view">
+    <field name="name">dms.document.upload.search</field>
+    <field name="model">ir.attachment</field>
+    <field name="inherit_id" ref="base.view_attachment_search"/>
+    <field name="arch"  type="xml">
+        <search string="Search Documents">
+            <field name="name"/>
+            <separator/>
+            <filter string="Imported" name="imported" domain="[('res_id', '!=', False)]"/>
+            <filter string="To Import" name="to_import" domain="[('res_id', '=', False)]"/>
+            <filter string="Bills" name="supplier" domain="[('file_type','=','in_invoice')]"/>
+            <filter string="Refunds"  name="refund" domain="[('file_type','=','in_refund')]"/>
+            <separator/>
+            <group string="Group By" name="groupby">
+                <filter string="Partner" name="partner_id" context="{'group_by': 'partner_id'}"/>
+            </group>
+        </search>
+    </field>
+</record> -->
+
+<record id="dms_document_upload_action" model="ir.actions.act_window">
+    <field name="name">Documents</field>
+    <field name="res_model">ir.attachment</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+<menuitem id="dms_document_upload_menu"
+    action="dms_document_upload_action" sequence="200"/>
+
+</odoo>
