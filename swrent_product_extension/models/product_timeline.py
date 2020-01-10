@@ -26,6 +26,7 @@ class ProductTimeline(models.Model):
     ])
     date_start = fields.Datetime('Date Start', required=True)
     date_end = fields.Datetime('Date End', required=True)
+    title = fields.Char(compute='_compute_title')
 
     _sql_constraints = [
         ('date_check', "CHECK ((date_start <= date_end))", "The start date must be anterior to the end date."),
@@ -52,3 +53,9 @@ class ProductTimeline(models.Model):
 #        Override this method to show the form view of the referenced record.
 #        """
 #        raise exceptions.ValidationError(_('No found implementation.'))
+
+    @api.multi
+    @api.depends('name')
+    def _compute_title(self):
+        for rec in self:
+            rec.title = rec.name

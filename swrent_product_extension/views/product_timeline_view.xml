@@ -6,11 +6,16 @@
             <field name="model">product.timeline</field>
             <field name="type">timeline</field>
             <field name="arch" type="xml">
-                <timeline date_start="date_start" date_stop="date_end" default_group_by="product_id"
-                    colors="#f0ff00:type == 'reserved';#33ffec:type == 'rental';#ffce00:type=='maintenance';#ff5a00:type == 'repair';#ff0000:type=='delivery';">
+                <timeline date_start="date_start"
+                          date_stop="date_end"
+                          default_group_by="product_id"
+                          zoomKey="ctrlKey"
+                          tooltip='{"followMouse": true}'
+                          colors="#f0ff00:type == 'reserved';#33ffec:type == 'rental';#ffce00:type=='maintenance';#ff5a00:type == 'repair';#ff0000:type=='delivery';">
                     <field name="termin"/>
                     <field name="maintenance"/>
                     <field name="redline"/>
+                    <field name="title"/>
                     <templates>
                         <div t-name="timeline-item">
                             <t t-if="record.redline">
