@@ -30,7 +30,6 @@
                             <t t-if="record.maintenance or record.termin">
                                 <br />
                             </t>
-                            Name: <span t-esc="record.display_name"/>
                         </div>
                     </templates>
                 </timeline>
