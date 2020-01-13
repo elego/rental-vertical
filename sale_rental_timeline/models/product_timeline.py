@@ -10,6 +10,8 @@ class ProductTimeline(models.Model):
 
     sale_order_line_id = fields.Many2one('sale.order.line', string="Sale Order Line", ondelete="cascade")
 
+    sale_order_id = fields.Many2one(related="sale_order_line_id.order_id")
+
 #    @api.multi
 #    def action_view_record(self):
 #        self.ensure_one()
