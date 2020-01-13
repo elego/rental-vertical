@@ -15,9 +15,27 @@
                     <field name="termin"/>
                     <field name="maintenance"/>
                     <field name="redline"/>
-                    <field name="title"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                    <field name="partner_id"/>
                     <templates>
                         <div t-name="timeline-item">
+                            <div t-attf-class="tooltip_content" style="display: none">
+                                <table border="1">
+                                    <tr>
+                                        <td>date_start:</td><td><span t-esc="record.date_start"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>date_end:</td><td><span t-esc="record.date_end"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>customer:</td><td><span t-esc="record.partner_id[1]"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>type:</td><td><span t-esc="record.type"/></td>
+                                    </tr>
+                                </table>
+                            </div>
                             <t t-if="record.redline">
                                 <hr color="#ff0000"/>
                             </t>
