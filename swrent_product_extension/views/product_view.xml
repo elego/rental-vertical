@@ -2,6 +2,22 @@
 <odoo>
     <data>
 
+        <!-- ProductCategory -->
+        <record id="product_category_form_view" model="ir.ui.view">
+            <field name="name">product.category.form</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="product.product_category_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="inside">
+                    <group string="Product Attribute Extension">
+                        <field name="show_vehicle_number"/>
+                        <field name="show_license_plate"/>
+                        <field name="show_init_regist"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
         <!-- ProductTemplate -->
         <record id="view_template_property_form" model="ir.ui.view">
             <field name="name">product.template.stock.property.form.inherit</field>
@@ -43,21 +59,40 @@
                         </div>
                     </button>
                 </button>
-                <xpath expr="//field[@name='barcode']" position="after">
-                    <field name="qr_code"/>
+                <xpath expr="//field[@name='categ_id']" position="replace"/>
+                <xpath expr="//field[@name='type']" position="after">
+                    <field name="fleet_type_id"/>
+                    <field name="categ_id"/>
+                </xpath>
+                <xpath expr="//field[@name='default_code']" position="after">
+                    <field name="further_ref"/>
+                    <field name="manu_id"/>
+                    <field name="manu_type_id" domain="[('manufacturer_id','=',manu_id)]"/>
                     <field name="instance_serial_number_id"
                            attrs="{'invisible': [('product_instance', '=', False)]}"/>
                     <field name="current_location_id"
                            attrs="{'invisible': [('product_instance', '=', False)]}"/>
+                    <field name="show_vehicle_number" invisible="1"/>
+                    <field name="show_license_plate" invisible="1"/>
+                    <field name="show_init_regist" invisible="1"/>
+                    <field name="vehicle_number" attrs="{'invisible': [('show_vehicle_number', '=', False)]}"/>
+                    <field name="license_plate" attrs="{'invisible': [('show_license_plate', '=', False)]}"/>
                     <field name="manu_year"/>
-                    <field name="manufacturer"/>
-                    <field name="manufacturer_type" domain="[('manufacturer_id','=',manufacturer)]"/>
-                    <field name="fleet_type"/>
+                    <field name="init_regist" attrs="{'invisible': [('show_init_regist', '=', False)]}"/>
                 </xpath>
+                <xpath expr="//field[@name='barcode']" position="after">
+                    <field name="qr_code"/>
+                </xpath>
+                <xpath expr="//field[@name='description']/.." position="replace"/>
                 <xpath expr="//button[@name='action_open_product_lot']" position="attributes">
                     <attribute name="attrs">{'invisible': ['|', ('product_instance', '=', True), ('tracking', '!=', 'serial')]}</attribute>
                 </xpath>
                 <xpath expr="//notebook" position="inside">
+                    <page name="description" string="Internal Notes">
+                        <group string="Internal Notes">
+                            <field name="description" nolabel="1" placeholder="This note is only for internal purposes."/>
+                        </group>
+                    </page>
                     <page name="timeline" string="Timeline"
                           attrs="{'invisible': [('product_instance', '=', False)]}">
                         <field name="product_timeline_ids">
@@ -127,10 +162,10 @@
             <field name="arch" type="xml">
                 <form>
                     <sheet>
-                        <group col="4">
+                        <group>
                             <field name="name"/>
+                            <field name="manufacturer_type_ids"/>
                         </group>
-                        <field name="manufacturer_type_ids"/>
                     </sheet>
                 </form>
             </field>

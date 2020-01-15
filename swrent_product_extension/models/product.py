@@ -4,6 +4,14 @@
 from odoo import api, fields, models, _
 
 
+class ProductCategory(models.Model):
+    _inherit = 'product.category'
+
+    show_vehicle_number = fields.Boolean("Show Vehicle Identification Number")
+    show_license_plate = fields.Boolean("Show License Plate")
+    show_init_regist = fields.Boolean('Show Initial Registration')
+
+
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
@@ -26,14 +34,24 @@ class ProductTemplate(models.Model):
 class ProductProduct(models.Model):
     _inherit = 'product.product'
 
+    further_ref = fields.Char("Further Reference")
+
     qr_code = fields.Char('QR-Code')
     manu_year = fields.Char('Year of Manufacture')
 
     instance_serial_number_id = fields.Many2one('stock.production.lot', 'Serial Number', ondelete='set null', domain="[('product_id', '=', id)]")
 
-    manufacturer = fields.Many2one('product.manufacturer', ' Manufacturer') #Marke
-    manufacturer_type = fields.Many2one('product.manufacturer.type', 'Branch Type', ondelete='set null') #Marke Typ
-    fleet_type = fields.Many2one('fleet.type', 'Fleet Type', ondelete='set null') #Flottentyp
+    manu_id = fields.Many2one('product.manufacturer', ' Manufacturer') #Marke
+    manu_type_id = fields.Many2one('product.manufacturer.type', 'Type', ondelete='set null') #Marke Typ
+    fleet_type_id = fields.Many2one('fleet.type', 'Fleet Type', ondelete='set null') #Flottentyp
+
+    #Category special fields
+    vehicle_number = fields.Char("Vehicle Identification Number")
+    license_plate = fields.Char("License Plate")
+    init_regist = fields.Char('Initial Registration')
+    show_vehicle_number = fields.Boolean("Show Vehicle Identification Number", related="categ_id.show_vehicle_number")
+    show_license_plate = fields.Boolean("Show License Plate", related="categ_id.show_license_plate")
+    show_init_regist = fields.Boolean('Show Initial Registration', related="categ_id.show_init_regist")
 
     #sol_ids = fields.One2many('sale.order.line', 'product_id', string='Sale Order Lines')
     #inv_line_ids = fields.One2many('account.invoice.line', 'product_id', string='Invoice Lines')
