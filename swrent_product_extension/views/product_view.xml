@@ -50,8 +50,8 @@
                     <field name="current_location_id"
                            attrs="{'invisible': [('product_instance', '=', False)]}"/>
                     <field name="manu_year"/>
-                    <field name="brand"/>
-                    <field name="brand_type" domain="[('brand_id','=',brand)]"/>
+                    <field name="manufacturer"/>
+                    <field name="manufacturer_type" domain="[('manufacturer_id','=',manufacturer)]"/>
                     <field name="fleet_type"/>
                 </xpath>
                 <xpath expr="//button[@name='action_open_product_lot']" position="attributes">
@@ -120,25 +120,25 @@
         </record>
 
 
-        <!-- ProductBrand -->
-        <record id="view_product_brand_form" model="ir.ui.view">
-            <field name="name">product.brand.form</field>
-            <field name="model">product.brand</field>
+        <!-- ProductManufacturer -->
+        <record id="view_product_manufacturer_form" model="ir.ui.view">
+            <field name="name">product.manufacturer.form</field>
+            <field name="model">product.manufacturer</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
                         <group col="4">
                             <field name="name"/>
                         </group>
-                        <field name="brand_type_ids"/>
+                        <field name="manufacturer_type_ids"/>
                     </sheet>
                 </form>
             </field>
         </record>
 
-        <record id="view_product_brand_tree" model="ir.ui.view">
-            <field name="name">product.brand.tree</field>
-            <field name="model">product.brand</field>
+        <record id="view_product_manufacturer_tree" model="ir.ui.view">
+            <field name="name">product.manufacturer.tree</field>
+            <field name="model">product.manufacturer</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
@@ -146,9 +146,9 @@
             </field>
         </record>
 
-        <record id="view_product_brand_filter" model="ir.ui.view">
-            <field name="name">product.brand.search</field>
-            <field name="model">product.brand</field>
+        <record id="view_product_manufacturer_filter" model="ir.ui.view">
+            <field name="name">product.manufacturer.search</field>
+            <field name="model">product.manufacturer</field>
             <field name="arch" type="xml">
                 <search>
                     <field name="name"/>
@@ -156,17 +156,17 @@
              </field>
         </record>
 
-        <record id="action_product_brand" model="ir.actions.act_window">
-            <field name="name">Brand</field>
-            <field name="res_model">product.brand</field>
+        <record id="action_product_manufacturer" model="ir.actions.act_window">
+            <field name="name">Manufacturer</field>
+            <field name="res_model">product.manufacturer</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
 
-        <!-- ProductBrandType -->
-        <record id="view_product_brand_type_form" model="ir.ui.view">
-            <field name="name">product.brand.type.form</field>
-            <field name="model">product.brand.type</field>
+        <!-- ProductManufacturerType -->
+        <record id="view_product_manufacturer_type_form" model="ir.ui.view">
+            <field name="name">product.manufacturer.type.form</field>
+            <field name="model">product.manufacturer.type</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -178,9 +178,9 @@
             </field>
         </record>
 
-        <record id="view_product_brand_type_tree" model="ir.ui.view">
-            <field name="name">product.brand.type.tree</field>
-            <field name="model">product.brand.type</field>
+        <record id="view_product_manufacturer_type_tree" model="ir.ui.view">
+            <field name="name">product.manufacturer.type.tree</field>
+            <field name="model">product.manufacturer.type</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
@@ -188,9 +188,9 @@
             </field>
         </record>
 
-        <record id="view_product_brand_type_filter" model="ir.ui.view">
-            <field name="name">product.brand.type.search</field>
-            <field name="model">product.brand.type</field>
+        <record id="view_product_manufacturer_type_filter" model="ir.ui.view">
+            <field name="name">product.manufacturer.type.search</field>
+            <field name="model">product.manufacturer.type</field>
             <field name="arch" type="xml">
                 <search>
                     <field name="name"/>
@@ -198,9 +198,9 @@
              </field>
         </record>
 
-        <record id="action_product_brand_type" model="ir.actions.act_window">
-            <field name="name">Brand Type</field>
-            <field name="res_model">product.brand.type</field>
+        <record id="action_product_manufacturer_type" model="ir.actions.act_window">
+            <field name="name">Manufacturer Type</field>
+            <field name="res_model">product.manufacturer.type</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
@@ -247,11 +247,11 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <menuitem action="action_product_brand"
-            id="menu_product_brand" parent="stock.menu_stock_inventory_control"
+        <menuitem action="action_product_manufacturer"
+            id="menu_product_manufacturer" parent="stock.menu_stock_inventory_control"
             sequence="13"/>
-        <menuitem action="action_product_brand_type"
-            id="menu_product_brand_type" parent="stock.menu_stock_inventory_control"
+        <menuitem action="action_product_manufacturer_type"
+            id="menu_product_manufacturer_type" parent="stock.menu_stock_inventory_control"
             sequence="13"/>
         <menuitem action="action_fleet_type"
             id="menu_fleet_type" parent="stock.menu_stock_inventory_control"

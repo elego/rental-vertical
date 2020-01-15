@@ -31,8 +31,8 @@ class ProductProduct(models.Model):
 
     instance_serial_number_id = fields.Many2one('stock.production.lot', 'Serial Number', ondelete='set null', domain="[('product_id', '=', id)]")
 
-    brand = fields.Many2one('product.brand', ' Brand') #Marke
-    brand_type = fields.Many2one('product.brand.type', 'Branch Type', ondelete='set null') #Marke Typ
+    manufacturer = fields.Many2one('product.manufacturer', ' Manufacturer') #Marke
+    manufacturer_type = fields.Many2one('product.manufacturer.type', 'Branch Type', ondelete='set null') #Marke Typ
     fleet_type = fields.Many2one('fleet.type', 'Fleet Type', ondelete='set null') #Flottentyp
 
     #sol_ids = fields.One2many('sale.order.line', 'product_id', string='Sale Order Lines')
@@ -113,20 +113,20 @@ class ProductProduct(models.Model):
             }
 
 
-class ProductBrand(models.Model):
-    _name = 'product.brand'
-    _description = 'Product Brand'
+class ProductManufacturer(models.Model):
+    _name = 'product.manufacturer'
+    _description = 'Product Manufacturer'
 
     name = fields.Char('Name')
-    brand_type_ids = fields.One2many('product.brand.type', 'brand_id')
+    manufacturer_type_ids = fields.One2many('product.manufacturer.type', 'manufacturer_id')
 
 
-class ProductBrandType(models.Model):
-    _name = 'product.brand.type'
-    _description = 'Product Brand Type'
+class ProductManufacturerType(models.Model):
+    _name = 'product.manufacturer.type'
+    _description = 'Product Manufacturer Type'
 
     name = fields.Char('Name')
-    brand_id = fields.Many2one('product.brand', 'Brand')
+    manufacturer_id = fields.Many2one('product.manufacturer', 'Manufacturer')
 
 
 class FleetType(models.Model):
