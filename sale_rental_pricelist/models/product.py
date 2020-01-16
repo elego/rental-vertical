@@ -41,9 +41,9 @@ class ProductProduct(models.Model):
         store=True,
         readonly=False,
         related="product_rental_hour_id.list_price")
-    day_scale_pricelist_item_ids = fields.One2many('product.pricelist.item', 'rented_product_id', string='Day Scale Pricelist Items')
-    month_scale_pricelist_item_ids = fields.One2many('product.pricelist.item', 'rented_product_id', string='Month Scale Pricelist Items')
-    hour_scale_pricelist_item_ids = fields.One2many('product.pricelist.item', 'rented_product_id', string='Hour Scale Pricelist Items')
+    day_scale_pricelist_item_ids = fields.One2many('product.pricelist.item', 'day_item_id', string='Day Scale Pricelist Items')
+    month_scale_pricelist_item_ids = fields.One2many('product.pricelist.item', 'month_item_id', string='Month Scale Pricelist Items')
+    hour_scale_pricelist_item_ids = fields.One2many('product.pricelist.item', 'hour_item_id', string='Hour Scale Pricelist Items')
     def_pricelist_id = fields.Many2one('product.pricelist', 'Default Pricelist', default=lambda self: self._default_pricelist())
 
     @api.multi
