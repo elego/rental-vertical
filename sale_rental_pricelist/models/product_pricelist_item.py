@@ -8,6 +8,4 @@ class ProductPricelistItem(models.Model):
 
     _inherit = "product.pricelist.item"
 
-    day_item_id = fields.Many2one('product.product', string='Rental Service (Day)')
-    month_item_id = fields.Many2one('product.product', string='Rental Service (Month)')
-    hour_item_id = fields.Many2one('product.product', string='Rental Service (Hour)')
+    rented_product_id = fields.Many2one('product.product', string='Rental Service')
