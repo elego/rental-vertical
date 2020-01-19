@@ -13,6 +13,7 @@ timeline object for the rented product instance automatically.''',
     ],
     'data': [
         #'views/product_view.xml',
+        'views/product_timeline_view.xml',
     ],
     'demo': [
     ],

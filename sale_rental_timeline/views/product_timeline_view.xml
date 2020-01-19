@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_product_timeline_timeline_sol" model="ir.ui.view">
+            <field name="name">product.timeline.timeline.sol</field>
+            <field name="model">product.timeline</field>
+            <field name="inherit_id" ref="swrent_product_extension.view_product_timeline_timeline"/>
+            <field name="type">timeline</field>
+            <field name="arch" type="xml">
+                <xpath expr="//timeline[1]" position="inside">
+                    <field name="sale_order_id" />
+                </xpath>
+                <div t-name="timeline-item" position="inside">
+                    <a
+                        t-attf-href="#id=#{record.sale_order_id[0]}&amp;model=sale.order&amp;view_type=form"
+                        t-raw="record.display_name"/>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>
