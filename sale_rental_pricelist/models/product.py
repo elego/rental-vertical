@@ -16,6 +16,10 @@ class ProductProduct(models.Model):
 
     _inherit = "product.product"
 
+    def _default_pricelist(self):
+        # TODO change default pricelist if country group exist
+        return self.env.ref('product.list0').id
+
     rental_of_month = fields.Boolean('Rented in Month')
     rental_of_day = fields.Boolean('Rented in day')
     rental_of_hour = fields.Boolean('Rented in hour')
@@ -37,6 +41,10 @@ class ProductProduct(models.Model):
         store=True,
         readonly=False,
         related="product_rental_hour_id.list_price")
+    day_scale_pricelist_item_ids = fields.One2many('product.pricelist.item', 'day_item_id', string='Day Scale Pricelist Items')
+    month_scale_pricelist_item_ids = fields.One2many('product.pricelist.item', 'month_item_id', string='Month Scale Pricelist Items')
+    hour_scale_pricelist_item_ids = fields.One2many('product.pricelist.item', 'hour_item_id', string='Hour Scale Pricelist Items')
+    def_pricelist_id = fields.Many2one('product.pricelist', 'Default Pricelist', default=lambda self: self._default_pricelist())
 
     @api.multi
     def _get_rental_service(self, rental_type):
