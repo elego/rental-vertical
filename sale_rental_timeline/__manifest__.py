@@ -4,15 +4,18 @@
 {
     'name': 'Sale Rental Timeline',
     'summary': '''This module extends the sale_rental module to create/change the
-timeline object for the rented product instance automatically.''',
+timeline object for the rented product instance automatically.
+A Timeline View will be generated for all the related products.''',
     'version': '12.0.1.0.0',
     'category': 'sale',
     'author': 'Open Source Integrators, Odoo Community Association (OCA)',
     'depends': [
-        'swrent_product_extension',
+        'web_timeline',
+        'sale_rental',
     ],
     'data': [
-        #'views/product_view.xml',
+        'security/ir.model.access.csv',
+        'views/product_view.xml',
         'views/product_timeline_view.xml',
     ],
     'demo': [

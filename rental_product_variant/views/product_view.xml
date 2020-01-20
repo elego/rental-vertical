@@ -18,21 +18,6 @@
             </field>
         </record>
 
-        <!-- ProductTemplate -->
-        <record id="view_template_property_form" model="ir.ui.view">
-            <field name="name">product.template.stock.property.form.inherit</field>
-            <field name="model">product.template</field>
-            <field name="inherit_id" ref="stock.view_template_property_form"/>
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='sale_ok']/.." position="before">
-                    <div>
-                        <field name="product_instance"/>
-                        <label for="product_instance"/>
-                    </div>
-                </xpath>
-            </field>
-        </record>
-
         <!-- ProductProduct -->
         <record id="product_normal_form_view" model="ir.ui.view">
             <field name="name">view.product.product.form</field>
@@ -68,10 +53,6 @@
                     <field name="further_ref"/>
                     <field name="manu_id"/>
                     <field name="manu_type_id" domain="[('manufacturer_id','=',manu_id)]"/>
-                    <field name="instance_serial_number_id"
-                           attrs="{'invisible': [('product_instance', '=', False)]}"/>
-                    <field name="current_location_id"
-                           attrs="{'invisible': [('product_instance', '=', False)]}"/>
                     <field name="show_vehicle_number" invisible="1"/>
                     <field name="show_license_plate" invisible="1"/>
                     <field name="show_init_regist" invisible="1"/>
@@ -84,29 +65,13 @@
                     <field name="qr_code"/>
                 </xpath>
                 <xpath expr="//field[@name='description']/.." position="replace"/>
-                <xpath expr="//button[@name='action_open_product_lot']" position="attributes">
-                    <attribute name="attrs">{'invisible': ['|', ('product_instance', '=', True), ('tracking', '!=', 'serial')]}</attribute>
-                </xpath>
                 <xpath expr="//notebook" position="inside">
                     <page name="description" string="Internal Notes">
                         <group string="Internal Notes">
                             <field name="description" nolabel="1" placeholder="This note is only for internal purposes."/>
                         </group>
                     </page>
-                    <page name="timeline" string="Timeline"
-                          attrs="{'invisible': [('product_instance', '=', False)]}">
-                        <field name="product_timeline_ids">
-                            <tree editable="top" default_order="date_start">
-                                <field name="name"/>
-                                <field name="type"/>
-                                <field name="partner_id"/>
-                                <field name="date_start"/>
-                                <field name="date_end"/>
-                            </tree>
-                        </field>
-                    </page>
-                    <page string="Rental" name="rental"
-                          attrs="{'invisible': [('product_instance', '=', False)]}">
+                    <page string="Rental" name="rental">
                         <field name="rental_order_ids" readonly="1">
                             <tree default_order="start_date">
                                 <field name="start_order_id"/>
@@ -119,33 +84,32 @@
                             </tree>
                         </field>
                     </page>
-                    <page string="Repair" name="repair"
-                          attrs="{'invisible': [('product_instance', '=', False)]}">
+                    <page string="Repair" name="repair">
                         <field name="repair_order_ids" readonly="1">
                             <tree default_order="guarantee_limit desc">
                                 <field name="name"/>
-                                <field name="lot_id" />
+                                <field name="lot_id"/>
                                 <field name="partner_id"/>
                                 <field name="address_id"/>
-                                <field name="location_id" />
+                                <field name="location_id"/>
                                 <field name="guarantee_limit"/>
                                 <field name="state"/>
                             </tree>
                         </field>
                     </page>
-                    <page string="Moves" name="stock"
-                          attrs="{'invisible': [('product_instance', '=', False)]}">
+
+                    <page string="Moves" name="stock">
                         <field name="stock_move_ids" readonly="1">
                             <tree default_order="date desc">
-                                <field name="picking_id" />
-                                <field name="origin" />
-                                <field name="location_id" />
-                                <field name="location_dest_id" />
+                                <field name="picking_id"/>
+                                <field name="origin"/>
+                                <field name="location_id"/>
+                                <field name="location_dest_id"/>
                                 <field name="product_uom_qty"/>
                                 <field name="quantity_done"/>
                                 <field name="reserved_availability" string="Reserved"/>
-                                <field name="date_expected" />
-                                <field name="date" />
+                                <field name="date_expected"/>
+                                <field name="date"/>
                                 <field name="state"/>
                             </tree>
                         </field>

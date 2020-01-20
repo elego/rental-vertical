@@ -30,4 +30,4 @@ class StockMove(models.Model):
         if vals.get('state', False) == 'done':
             for m in self:
                 if m.product_id.product_instance:
-                    m.product_id.current_location_id = m.location_dest_id
+                    m.product_id.instance_current_location_id = m.location_dest_id

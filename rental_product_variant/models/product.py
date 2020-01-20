@@ -12,35 +12,12 @@ class ProductCategory(models.Model):
     show_init_regist = fields.Boolean('Show Initial Registration')
 
 
-class ProductTemplate(models.Model):
-    _inherit = 'product.template'
-
-    product_instance = fields.Boolean(string='Product Instance', default=False,
-        help='This product is a product instance, which can only have one unit in stock.')
-
-    @api.onchange('product_instance')
-    def onchange_product_instance(self):
-        if self.product_instance:
-            self.tracking = 'serial'
-
-    @api.onchange('tracking')
-    def onchange_tracking(self):
-        res = super(ProductTemplate, self).onchange_tracking()
-        if self.tracking != 'serial':
-            self.product_instance = False
-        return res
-
-
 class ProductProduct(models.Model):
     _inherit = 'product.product'
 
     further_ref = fields.Char("Further Reference")
-
     qr_code = fields.Char('QR-Code')
     manu_year = fields.Char('Year of Manufacture')
-
-    instance_serial_number_id = fields.Many2one('stock.production.lot', 'Serial Number', ondelete='set null', domain="[('product_id', '=', id)]")
-
     manu_id = fields.Many2one('product.manufacturer', ' Manufacturer') #Marke
     manu_type_id = fields.Many2one('product.manufacturer.type', 'Type', ondelete='set null') #Marke Typ
     fleet_type_id = fields.Many2one('fleet.type', 'Fleet Type', ondelete='set null') #Flottentyp
@@ -59,20 +36,6 @@ class ProductProduct(models.Model):
     rental_order_ids = fields.One2many('sale.rental', 'rented_product_id', string='Rental Orders')
     repair_order_ids = fields.One2many('repair.order', 'product_id', string='Repair Orders')
     stock_move_ids = fields.One2many('stock.move', 'product_id', string='Stock Moves')
-    current_location_id = fields.Many2one('stock.location', string="Current Location")
-    product_timeline_ids = fields.One2many('product.timeline', 'product_id', 'Time Lines')
-
-    @api.onchange('product_instance')
-    def onchange_product_instance(self):
-        if self.product_instance:
-            self.tracking = 'serial'
-
-    @api.onchange('tracking')
-    def onchange_tracking(self):
-        res = super(ProductProduct, self).onchange_tracking()
-        if self.tracking != 'serial':
-            self.product_instance = False
-        return res
 
     @api.multi
     def _get_all_sale_order_ids(self):

@@ -8,12 +8,7 @@
     'category': 'sale',
     'author': 'Open Source Integrators, Odoo Community Association (OCA)',
     'depends': [
-        'account',
-        'purchase',
-        'maintenance',
-        'stock',
-        'swrent_product_extension',
-        'sale_rental',
+        'rental_product_variant',
         'sale_order_type'
     ],
     'data': [

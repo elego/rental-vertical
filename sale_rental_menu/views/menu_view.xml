@@ -80,7 +80,7 @@
         <menuitem name="Timeline"
             id="menu_timeline"
             parent="menu_overview"
-            action="swrent_product_extension.action_product_timeline"
+            action="sale_rental_timeline.action_product_timeline"
             sequence="0"/>
 
         <!-- Sub Menu of Master Data -->
@@ -105,15 +105,15 @@
             parent="menu_master_data"
             action="base.action_partner_supplier_form"
             sequence="3"/>
-        <menuitem action="swrent_product_extension.action_product_manufacturer"
+        <menuitem action="rental_product_variant.action_product_manufacturer"
             id="menu_product_manufacturer"
             parent="menu_master_data"
             sequence="13"/>
-        <menuitem action="swrent_product_extension.action_product_manufacturer_type"
+        <menuitem action="rental_product_variant.action_product_manufacturer_type"
             id="menu_product_manufacturer_type"
             parent="menu_master_data"
             sequence="13"/>
-        <menuitem action="swrent_product_extension.action_fleet_type"
+        <menuitem action="rental_product_variant.action_fleet_type"
             id="menu_fleet_type"
             parent="menu_master_data"
             sequence="13"/>
