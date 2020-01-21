@@ -41,14 +41,17 @@
         <!-- Main Menu -->
 
         <menuitem name="Rentals" 
-            id="menu_rental_root"/>
+            id="menu_rental_root"
+            action="action_rental_orders"
+            sequence="5"
+            web_icon="sale_rental_menu,static/description/icon.png"/>
 
         <!-- Top Menu -->
 
         <menuitem name="Overview"
             id="menu_overview"
             parent="menu_rental_root"
-            sequence="0"/>
+            sequence="1"/>
 
         <menuitem name="Master Data"
             id="menu_master_data"
@@ -58,7 +61,7 @@
         <menuitem name="Orders"
             id="menu_orders"
             parent="menu_rental_root"
-            sequence="4"/>
+            sequence="0"/>
 
         <menuitem name="Invoicing"
             id="menu_invoicing"
@@ -81,7 +84,7 @@
             id="menu_timeline"
             parent="menu_overview"
             action="sale_rental_timeline.action_product_timeline"
-            sequence="0"/>
+            sequence="1"/>
 
         <!-- Sub Menu of Master Data -->
 
