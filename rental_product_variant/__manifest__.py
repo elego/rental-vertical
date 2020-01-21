@@ -2,23 +2,14 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    'name': 'SWRent Product Extension',
+    'name': 'Rental Product Variant',
     'summary':
-'''Model Product is extended as an Instance, that can be traced by serial number.
-   An Instance can only has one serial number, so that it is unique in the system.
-   It can be used in Rental Order, Repair Order and Maintenance Order''',
+'''Model Product is extended with rental special fields.''',
     'version': '12.0.1.0.0',
     'category': 'product',
     'author': 'Open Source Integrators, Odoo Community Association (OCA)',
     'depends': [
-        'account',
-        'maintenance',
-        'purchase',
-        'repair',
-        'sale',
-        'sale_rental',
-        'sale_rental_timeline',
-        'stock',
+        'rental_base',
     ],
     'data': [
         'security/ir.model.access.csv',

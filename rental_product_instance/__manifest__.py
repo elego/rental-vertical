@@ -9,9 +9,10 @@
    It can be used in Rental Order, Repair Order and Maintenance Order''',
     'version': '12.0.1.0.0',
     'category': 'product',
-    'author': 'Open Source Integrators, Odoo Community Association (OCA)',
+    'author': 'Elego Software Solutions Gmbh',
     'depends': [
         'rental_product_variant',
+        'sale_rental_timeline',
     ],
     'data': [
         'views/product_view.xml',

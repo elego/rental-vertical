@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="action_normal_orders" model="ir.actions.act_window">
+            <field name="name">Normal Orders</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
+            <field name="search_view_id" ref="sale.sale_order_view_search_inherit_sale"/>
+            <field name="context">{}</field>
+            <field name="domain" eval="[('type_id','=', ref('sale_order_type.normal_sale_type'))]"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new quotation, the first step of a new sale!
+                </p><p>
+                    Once the quotation is confirmed, it becomes a sales order.<br/> You will be able to create an invoice and collect the payment.
+                </p>
+            </field>
+        </record>
+
+        <record id="action_rental_orders" model="ir.actions.act_window">
+            <field name="name">Rental Orders</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
+            <field name="search_view_id" ref="sale.sale_order_view_search_inherit_sale"/>
+            <field name="context">{}</field>
+            <field name="domain" eval="[('type_id','=', ref('rental_sale_type'))]"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new quotation, the first step of a new sale!
+                </p><p>
+                    Once the quotation is confirmed, it becomes a sales order.<br/> You will be able to create an invoice and collect the payment.
+                </p>
+            </field>
+        </record>
+
+
+        <!-- Main Menu -->
+
+        <menuitem name="Rentals" 
+            id="menu_rental_root"
+            action="action_rental_orders"
+            sequence="5"
+            web_icon="rental_base,static/description/icon.png"/>
+
+        <!-- Top Menu -->
+
+        <menuitem name="Orders"
+            id="menu_orders"
+            parent="menu_rental_root"
+            sequence="0"/>
+
+        <menuitem name="Overview"
+            id="menu_overview"
+            parent="rental_base.menu_rental_root"
+            sequence="5"/>
+
+        <menuitem name="Master Data"
+            id="menu_master_data"
+            parent="menu_rental_root"
+            sequence="10"/>
+
+        <menuitem name="Invoicing"
+            id="menu_invoicing"
+            parent="menu_rental_root"
+            sequence="15"/>
+
+        <menuitem name="Reporting"
+            id="menu_reporting"
+            parent="menu_rental_root"
+            sequence="20"/>
+
+        <menuitem name="Service"
+            id="menu_service"
+            parent="menu_rental_root"
+            sequence="25"/>
+
+        <menuitem name="Configuration"
+            id="menu_config"
+            parent="menu_rental_root"
+            sequence="30"/>
+
+        <!-- Sub Menu of Orders -->
+
+        <menuitem name="Rental Orders"
+            id="menu_rental_orders"
+            parent="menu_orders"
+            action="action_rental_orders"
+            sequence="0"/>
+        <menuitem name="Rental Positions"
+            id="menu_rental_positions"
+            parent="menu_orders"
+            action="sale_rental.sale_rental_action"
+            sequence="1"/>
+        <menuitem name="Sale Orders"
+            id="menu_sale_orders"
+            parent="menu_orders"
+            action="action_normal_orders"
+            sequence="2"/>
+        <menuitem name="Purchase Orders"
+            id="menu_purchase_orders"
+            parent="menu_orders"
+            action="purchase.purchase_form_action"
+            sequence="3"/>
+
+        <!-- Sub Menu of Master Data -->
+
+        <menuitem name="Products"
+            id="menu_products"
+            parent="menu_master_data"
+            action="stock.stock_product_normal_action"
+            sequence="0"/>
+        <menuitem name="Customers"
+            id="menu_customers"
+            parent="menu_master_data"
+            action="base.action_partner_form"
+            sequence="2"/>
+        <menuitem name="Vendors"
+            id="menu_vendors"
+            parent="menu_master_data"
+            action="base.action_partner_supplier_form"
+            sequence="3"/>
+
+        <!-- Sub Menu of Invoicing -->
+
+        <menuitem name="Customer Invoices"
+            id="menu_customer_invoices"
+            parent="menu_invoicing"
+            action="account.action_invoice_tree1"
+            sequence="0"/>
+        <menuitem name="Vendor Invoices"
+            id="menu_vendor_invoices"
+            parent="menu_invoicing"
+            action="account.action_vendor_bill_template"
+            sequence="1"/>
+        <!--
+        <menuitem name="Contracts Invoicing"
+            id="menu_"
+            parent="menu_invoicing"
+            action=""
+            sequence="0"/>-->
+
+        <!-- Sub Menu of Reporting -->
+        <!--TODO add new action -->
+        <menuitem name="Product TCO"
+            id="menu_product_tco"
+            parent="menu_reporting"
+            action="account.action_vendor_bill_template"
+            sequence="0"/>
+
+        <!-- Sub Menu of Service -->
+
+        <menuitem name="Repair Orders"
+            id="menu_repair_orders"
+            parent="menu_service"
+            action="repair.action_repair_order_tree"
+            sequence="0"/>
+
+        <!-- Sub Menu of Configuration -->
+
+        <menuitem name="Settings"
+            id="menu_settings"
+            parent="menu_config"
+            action="action_rental_configuration"
+            sequence="0"
+            web_icon="rental_base,static/description/icon.png"/>
+
+        <!--
+        <record id="form_view_action_rental_order" model="ir.actions.act_window.view">
+            <field name="sequence" eval="4"/>
+            <field name="view_mode">Rental Order</field>
+            <field name="view_id" ref=""/>
+            <field name="act_window_id" ref="action_rental_orders"/>
+        </record>
+
+        <record id="view_rental_order_form" model="ir.ui.view">
+            <field name="name">sale.order.rental.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']" position="attributes">
+                    <attribute name="context"></attribute>
+                </xpath>
+            </field>
+        </record>
+        -->
+    </data>
+</odoo>

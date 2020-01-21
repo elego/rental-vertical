@@ -12,9 +12,9 @@
         'sale_order_type'
     ],
     'data': [
-        'data/ir_sequence_data.xml',
-        'data/order_type_data.xml',
-        'views/menu_view.xml',
+        #'data/ir_sequence_data.xml',
+        #'data/order_type_data.xml',
+        #'views/menu_view.xml',
     ],
     'demo': [
     ],

@@ -11,7 +11,7 @@ A Timeline View will be generated for all the related products.''',
     'author': 'Open Source Integrators, Odoo Community Association (OCA)',
     'depends': [
         'web_timeline',
-        'sale_rental',
+        'rental_base',
     ],
     'data': [
         'security/ir.model.access.csv',
