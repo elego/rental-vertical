@@ -2,17 +2,17 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    'name': 'Sale Rental Pricelist',
-    'summary': '''This module enable the user to define different rental price with time uom ("Month", "Day" and "Hour").''',
+    'name': 'Rental Product Variant',
+    'summary':
+'''Model Product is extended with rental special fields.''',
     'version': '12.0.1.0.0',
-    'category': 'sale',
+    'category': 'product',
     'author': 'Open Source Integrators, Odoo Community Association (OCA)',
     'depends': [
         'rental_base',
     ],
     'data': [
-        'data/product_uom_data.xml',
-        'views/sale_view.xml',
+        'security/ir.model.access.csv',
         'views/product_view.xml',
     ],
     'demo': [

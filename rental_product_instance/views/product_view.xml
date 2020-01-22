@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- ProductTemplate -->
+        <record id="view_template_property_form" model="ir.ui.view">
+            <field name="name">product.template.stock.property.form.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="stock.view_template_property_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='sale_ok']/.." position="before">
+                    <div>
+                        <field name="product_instance"/>
+                        <label for="product_instance"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- ProductProduct -->
+        <record id="product_normal_form_view" model="ir.ui.view">
+            <field name="name">view.product.product.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_open_product_lot']" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|', ('product_instance', '=', True), ('tracking', '!=', 'serial')]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='manu_type_id']" position="after">
+                    <field name="instance_serial_number_id"
+                           attrs="{'invisible': [('product_instance', '=', False)]}"/>
+                    <field name="instance_current_location_id"
+                           attrs="{'invisible': [('product_instance', '=', False)]}"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

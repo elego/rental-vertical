@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+
         <record id="action_normal_orders" model="ir.actions.act_window">
             <field name="name">Normal Orders</field>
             <field name="type">ir.actions.act_window</field>
@@ -44,88 +45,44 @@
             id="menu_rental_root"
             action="action_rental_orders"
             sequence="5"
-            web_icon="sale_rental_menu,static/description/icon.png"/>
+            web_icon="rental_base,static/description/icon.png"/>
 
         <!-- Top Menu -->
-
-        <menuitem name="Overview"
-            id="menu_overview"
-            parent="menu_rental_root"
-            sequence="1"/>
-
-        <menuitem name="Master Data"
-            id="menu_master_data"
-            parent="menu_rental_root"
-            sequence="2"/>
 
         <menuitem name="Orders"
             id="menu_orders"
             parent="menu_rental_root"
             sequence="0"/>
 
+        <menuitem name="Overview"
+            id="menu_overview"
+            parent="rental_base.menu_rental_root"
+            sequence="5"/>
+
+        <menuitem name="Master Data"
+            id="menu_master_data"
+            parent="menu_rental_root"
+            sequence="10"/>
+
         <menuitem name="Invoicing"
             id="menu_invoicing"
             parent="menu_rental_root"
-            sequence="6"/>
+            sequence="15"/>
 
         <menuitem name="Reporting"
             id="menu_reporting"
             parent="menu_rental_root"
-            sequence="8"/>
+            sequence="20"/>
 
         <menuitem name="Service"
             id="menu_service"
             parent="menu_rental_root"
-            sequence="10"/>
+            sequence="25"/>
 
-        <!-- Sub Menu of Overview -->
-
-        <menuitem name="Timeline"
-            id="menu_timeline"
-            parent="menu_overview"
-            action="sale_rental_timeline.action_product_timeline"
-            sequence="1"/>
-
-        <!-- Sub Menu of Master Data -->
-
-        <menuitem name="Products"
-            id="menu_products"
-            parent="menu_master_data"
-            action="stock.stock_product_normal_action"
-            sequence="0"/>
-        <menuitem name="Equipment"
-            id="menu_equipments"
-            parent="menu_master_data"
-            action="maintenance.hr_equipment_action"
-            sequence="1"/>
-        <menuitem name="Customers"
-            id="menu_customers"
-            parent="menu_master_data"
-            action="base.action_partner_form"
-            sequence="2"/>
-        <menuitem name="Vendors"
-            id="menu_vendors"
-            parent="menu_master_data"
-            action="base.action_partner_supplier_form"
-            sequence="3"/>
-        <menuitem action="rental_product_variant.action_product_manufacturer"
-            id="menu_product_manufacturer"
-            parent="menu_master_data"
-            sequence="13"/>
-        <menuitem action="rental_product_variant.action_product_manufacturer_type"
-            id="menu_product_manufacturer_type"
-            parent="menu_master_data"
-            sequence="13"/>
-        <menuitem action="rental_product_variant.action_fleet_type"
-            id="menu_fleet_type"
-            parent="menu_master_data"
-            sequence="13"/>
-        <!--
-        <menuitem name="Brands"
-            id="menu_brands"
-            parent="menu_master_data"
-            action=""
-            sequence="4"/>-->
+        <menuitem name="Configuration"
+            id="menu_config"
+            parent="menu_rental_root"
+            sequence="30"/>
 
         <!-- Sub Menu of Orders -->
 
@@ -148,6 +105,24 @@
             id="menu_purchase_orders"
             parent="menu_orders"
             action="purchase.purchase_form_action"
+            sequence="3"/>
+
+        <!-- Sub Menu of Master Data -->
+
+        <menuitem name="Products"
+            id="menu_products"
+            parent="menu_master_data"
+            action="stock.stock_product_normal_action"
+            sequence="0"/>
+        <menuitem name="Customers"
+            id="menu_customers"
+            parent="menu_master_data"
+            action="base.action_partner_form"
+            sequence="2"/>
+        <menuitem name="Vendors"
+            id="menu_vendors"
+            parent="menu_master_data"
+            action="base.action_partner_supplier_form"
             sequence="3"/>
 
         <!-- Sub Menu of Invoicing -->
@@ -174,7 +149,7 @@
         <menuitem name="Product TCO"
             id="menu_product_tco"
             parent="menu_reporting"
-            action="repair.action_repair_order_tree"
+            action="account.action_vendor_bill_template"
             sequence="0"/>
 
         <!-- Sub Menu of Service -->
@@ -184,6 +159,15 @@
             parent="menu_service"
             action="repair.action_repair_order_tree"
             sequence="0"/>
+
+        <!-- Sub Menu of Configuration -->
+
+        <menuitem name="Settings"
+            id="menu_settings"
+            parent="menu_config"
+            action="action_rental_configuration"
+            sequence="0"
+            web_icon="rental_base,static/description/icon.png"/>
 
         <!--
         <record id="form_view_action_rental_order" model="ir.actions.act_window.view">

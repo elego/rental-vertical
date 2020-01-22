@@ -10,7 +10,7 @@
     'depends': [
         'project',
         'product_analytic',
-        'swrent_product_extension',
+        'rental_product_instance',
     ],
     'data': [
         'views/project_view.xml',

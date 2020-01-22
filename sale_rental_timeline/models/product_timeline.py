@@ -3,14 +3,42 @@
 
 from odoo import fields, models, api, exceptions, _
 
-#from odoo.addons.swrent_product_extension.models.product_timeline import RENTAL_TIMELINE_TYPES
+
+RENTAL_TIMELINE_TYPES = [
+    'rental',
+    'reserved',
+    'repair',
+    'delivery',
+]
 
 class ProductTimeline(models.Model):
-    _inherit = 'product.timeline'
+    _name = 'product.timeline'
+    _description = 'Product Timeline'
 
+    name = fields.Char('Name')
+    termin = fields.Boolean('Termin')
+    maintenance = fields.Boolean('Maintenance')
+    redline = fields.Boolean('Redline')
+    product_id = fields.Many2one('product.product', 'Equipment', required=True, ondelete="cascade")
+    partner_id = fields.Many2one('res.partner', 'Partner', ondelete="set null")
+    type = fields.Selection(string='Type', selection=[
+        ('rental', 'Rental'),
+        ('reserved', 'Reserved'),
+        ('maintenance', 'Maintenance'),
+        ('repair', 'Repair'),
+        ('delivery', 'Delivery'),
+    ])
     sale_order_line_id = fields.Many2one('sale.order.line', string="Sale Order Line", ondelete="cascade")
-
     sale_order_id = fields.Many2one(related="sale_order_line_id.order_id")
+
+    date_start = fields.Datetime('Date Start', required=True)
+    date_end = fields.Datetime('Date End', required=True)
+
+
+    _sql_constraints = [
+        ('date_check', "CHECK ((date_start <= date_end))", "The start date must be anterior to the end date."),
+    ]
+
 
 #    @api.multi
 #    def action_view_record(self):
