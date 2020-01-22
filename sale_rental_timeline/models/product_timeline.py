@@ -34,6 +34,8 @@ class ProductTimeline(models.Model):
     date_start = fields.Datetime('Date Start', required=True)
     date_end = fields.Datetime('Date End', required=True)
 
+    currency_id = fields.Many2one(related="sale_order_line_id.currency_id")
+    price_subtotal = fields.Monetary(related="sale_order_line_id.price_subtotal", currency_field='currency_id', field_digits= True)
 
     _sql_constraints = [
         ('date_check', "CHECK ((date_start <= date_end))", "The start date must be anterior to the end date."),
