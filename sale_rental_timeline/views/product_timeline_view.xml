@@ -25,26 +25,26 @@
                     <templates>
                         <div t-name="timeline-item">
                             <div t-attf-class="tooltip_content" style="display: none">
-		                <table border="1">
-		                    <tr>
-		                        <td>retal so</td><td><span t-esc="record.sale_order_id[1]"/></td>
-		                    </tr>
-		                    <tr>
-		                        <td>start date</td><td><span t-esc="record.date_start"/></td>
-		                    </tr>
-		                    <tr>
-		                        <td>end date</td><td><span t-esc="record.date_end"/></td>
-		                    </tr>
-		                    <tr>
-		                        <td>customer</td><td><span t-esc="record.partner_id[1]"/></td>
-		                    </tr>
-		                    <tr>
-		                        <td>type:</td><td><span t-esc="record.type"/></td>
-		                    </tr>
-		                    <tr>
-		                        <td>price:</td><td><span t-esc="record.price_subtotal" /></td>
-		                    </tr>
-		                </table>
+                                <table border="1">
+                                    <tr>
+                                        <td>retal so</td><td><span t-esc="record.sale_order_id[1]"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>start date</td><td><span t-esc="record.date_start"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>end date</td><td><span t-esc="record.date_end"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>customer</td><td><span t-esc="record.partner_id[1]"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>type:</td><td><span t-esc="record.type"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>price:</td><td><span t-esc="record.price_subtotal" /></td>
+                                    </tr>
+                                </table>
                             </div>
                             <t t-if="record.redline">
                                 <hr color="#ff0000"/>
