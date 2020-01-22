@@ -1,0 +1,83 @@
+# Copyright (C) 2018 - TODAY, Open Source Integrators
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+from odoo import models, fields, api, _
+import odoo.addons.decimal_precision as dp
+from odoo.exceptions import ValidationError
+
+import math
+
+class ProductSetAdd(models.TransientModel):
+    _inherit = 'product.set.add'
+
+    rental_ok = fields.Boolean('Can be Rented', default=False)
+    start_date = fields.Date(string='Start Date')
+    end_date = fields.Date(string='End Date')
+    uom_id = fields.Many2one('uom.uom', sting="Unit Of Measure")
+
+    @api.model
+    def _get_time_uom(self):
+        time_uom = []
+        uom_month = self.env.ref('sale_rental_pricelist.product_uom_month')
+        uom_day = self.env.ref('uom.product_uom_day')
+        uom_hour = self.env.ref('uom.product_uom_hour')
+        time_uom.extend([uom_month.id, uom_hour.id, uom_day.id])
+        return time_uom
+
+    @api.constrains('start_date', 'end_date')
+    def _check_date(self):
+        for rec in self:
+            if rec.start_date and rec.end_date and rec.end_date < rec.start_date:
+                raise ValidationError(
+                    _('The ending date cannot be earlier than the starting date.'))
+
+    @api.multi
+    def add_set(self):
+        if self.rental_ok:
+            uom_list = self._get_time_uom()
+            sale_order_line = False
+            so_id = self._context['active_id']
+            if not so_id:
+                return
+            so = self.env['sale.order'].browse(so_id)
+            max_sequence = 0
+            if so.order_line:
+                max_sequence = max([line.sequence for line in so.order_line])
+            sale_order_line_env = self.env['sale.order.line']
+            sale_order_line = self.env['sale.order.line']
+            for set_line in self.product_set_id.set_line_ids:
+                if set_line.product_id.rental_service_ids and set_line.product_id.rental_ok:
+                    for rent_product in set_line.product_id.rental_service_ids:
+                        if self.uom_id.id in uom_list:
+                            if self.uom_id.id == rent_product.uom_id.id:
+                                sale_order_line |= sale_order_line_env.create(
+                                self.prepare_rental_so_line(
+                                    so_id, set_line, rent_product, rent_product.uom_id,
+                                    max_sequence=max_sequence))
+                        else:
+                            raise ValidationError(_(
+                            "Select only Time Measure Unit (Days, Month, or Hour)"))
+                else:
+                    raise ValidationError(_(
+                        "From Product Set : %s must be 'Can be Rented' OR its service products are not avaialble")
+                        % set_line.product_id.name)
+        else:
+            sale_order_line = super(ProductSetAdd, self).add_set()
+        return sale_order_line
+
+    @api.multi
+    def prepare_rental_so_line(self, sale_order_id, set_line, product, uom_id, max_sequence):
+        line_data = self.env['sale.order.line'].new({
+                'order_id': sale_order_id,
+                'product_id': product.id,
+                'display_product_id': product.id,
+                'product_uom_qty': set_line.quantity * self.quantity,
+                'product_uom': uom_id.id,
+                'sequence': max_sequence + set_line.sequence,
+                'discount': set_line.discount,
+                'start_date': self.start_date,
+                'end_date': self.end_date,
+            })
+        line_data.product_id_change()
+        line_data.onchange_start_end_date()
+        line_values = line_data._convert_to_write(line_data._cache)
+        return line_values
