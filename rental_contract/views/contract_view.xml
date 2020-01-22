@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Sub Menu of Invoicing -->
+
+        <menuitem name="Customer Contracts"
+            id="menu_customer_contracts"
+            parent="rental_base.menu_invoicing"
+            action="contract.action_customer_contract"
+            sequence="3"/>
+
+        <menuitem name="Supplier Contracts"
+            id="menu_supplier_contracts"
+            parent="rental_base.menu_invoicing"
+            action="contract.action_supplier_contract"
+            sequence="4"/>
+
+    </data>
+</odoo>

@@ -46,6 +46,15 @@
                                         Configure Product Pack in Product Form View
                                     </div>
                                 </div>
+                                <div class="o_setting_left_pane">
+                                    <field name="module_rental_product_set"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_rental_product_set"/>
+                                    <div class="text-muted">
+                                        Add rented products as a Product Set
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="col-12 col-lg-6 o_setting_box">
@@ -58,9 +67,6 @@
                                         Configure rented products with extended fields
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="col-12 col-lg-6 o_setting_box">
                                 <div class="o_setting_left_pane">
                                     <field name="module_rental_product_instance"/>
                                 </div>
@@ -74,12 +80,12 @@
 
                             <div class="col-12 col-lg-6 o_setting_box">
                                 <div class="o_setting_left_pane">
-                                    <field name="module_rental_product_set"/>
+                                    <field name="module_rental_contract"/>
                                 </div>
                                 <div class="o_setting_right_pane">
-                                    <label for="module_rental_product_set"/>
+                                    <label for="module_rental_contract"/>
                                     <div class="text-muted">
-                                        Add rented products as a Product Set
+                                        Use Contract to create invoice periodically
                                     </div>
                                 </div>
                             </div>
