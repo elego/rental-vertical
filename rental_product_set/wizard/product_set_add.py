@@ -52,13 +52,6 @@ class ProductSetAdd(models.TransientModel):
                                 self.prepare_rental_so_line(
                                     so_id, set_line, rent_product, rent_product.uom_id,
                                     max_sequence=max_sequence))
-                        else:
-                            raise ValidationError(_(
-                            "Select only Time Measure Unit (Days, Month, or Hour)"))
-                else:
-                    raise ValidationError(_(
-                        "From Product Set : %s must be 'Can be Rented' OR its service products are not avaialble")
-                        % set_line.product_id.name)
         else:
             sale_order_line = super(ProductSetAdd, self).add_set()
         return sale_order_line
@@ -80,3 +73,22 @@ class ProductSetAdd(models.TransientModel):
         line_data.onchange_start_end_date()
         line_values = line_data._convert_to_write(line_data._cache)
         return line_values
+
+    @api.onchange('product_set_id')
+    def _onchange_product_set_id(self):
+        if self.product_set_id and self.rental_ok:
+            time_uom = []
+            uom_list = self._get_time_uom()
+            for set_line in self.product_set_id.set_line_ids:
+                if set_line.product_id.rental_service_ids and set_line.product_id.rental_ok:
+                    for rent_product in set_line.product_id.rental_service_ids:
+                        if rent_product.uom_id.id in uom_list:
+                            time_uom.append(rent_product.uom_id.id)
+                else:
+                    raise ValidationError(_(
+                        "From Product Set %s : %s must be 'Can be Rented' OR/AND its service products are not avaialble")
+                        % (self.product_set_id.name,set_line.product_id.name))
+            if time_uom:
+                time_uom = list(set(time_uom))
+                self.uom_id = time_uom[0]
+                return {'domain': {'uom_id': [('id', 'in', time_uom)]}}

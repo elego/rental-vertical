@@ -9,9 +9,11 @@
     'depends': [
         'sale_rental_pricelist',
         'sale_product_set',
+        'rental_base',
     ],
     'data': [
         'wizard/product_set_add.xml',
+        'views/menu_view.xml',
     ],
     'demo': [
     ],
