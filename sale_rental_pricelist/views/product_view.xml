@@ -111,5 +111,35 @@
             </field>
         </record>
 
+        <record id="rental_product_search_view" model="ir.ui.view">
+            <field name="name">product.product.search.stock.form</field>
+            <field name="model">product.product</field>
+            <field name="mode">primary</field>
+            <field name="inherit_id" ref="product.product_search_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='inactive']" position="after">
+                    <separator/>
+                    <filter name="rental_ok" string="Can be rented"
+                            domain="[('rental_ok','=',True), ('type','=','product')]"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_rental_product_action" model="ir.actions.act_window">
+            <field name="name">Rental Product Variants</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.product</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="context">{'search_default_rental_ok': 1}</field>
+            <field name="view_type">form</field>
+            <field name="search_view_id" ref="rental_product_search_view"/>
+        </record>
+
+        <menuitem name="Products"
+            id="menu_products"
+            parent="rental_base.menu_master_data"
+            action="view_rental_product_action"
+            sequence="0"/>
+
     </data>
 </odoo>
