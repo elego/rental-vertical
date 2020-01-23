@@ -10,9 +10,20 @@ class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     number_of_time_unit = fields.Float('Number of TU')
-    display_product_id = fields.Many2one('product.product', string='Product')
+    display_product_id = fields.Many2one(
+        'product.product', string='Product',
+        domain=lambda self: self._get_product_domain())
     rental_ok = fields.Boolean('Can be Rented', related="display_product_id.rental_ok")
     #must_have_dates = fields.Boolean(string="Must Have Dates", related=False)
+
+    @api.model
+    def _get_product_domain(self):
+        domain = [('sale_ok','=',True)]
+        rental_type_id = self.env.ref('rental_base.rental_sale_type').id
+        if self.env.context.get('default_type_id', False) == rental_type_id:
+            domain.append(('rental_ok','=',True))
+            domain.append(('type','=','product'))
+        return domain
 
     @api.model
     def _get_time_uom(self):
@@ -41,7 +52,6 @@ class SaleOrderLine(models.Model):
                 self.product_id = self.display_product_id.product_rental_hour_id
             else:
                 raise exceptions.UserError(_('No Found Service Product for Rental.'))
-           
 
     @api.multi
     @api.onchange('display_product_id')
