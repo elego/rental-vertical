@@ -1,5 +1,4 @@
-# Copyright (C) 2019 - TODAY, Open Source Integrators
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
 {
     'name': 'Document Extension',
@@ -15,7 +14,7 @@ This module enable the user to use following actions of the documents
 ''',
     'version': '12.0.1.0.0',
     'category': 'document',
-    'author': 'Open Source Integrators, Odoo Community Association (OCA)',
+    'author': 'Elego Software Solutions Gmbh',
     'depends': [
         'stock',
         'sale',
@@ -37,5 +36,5 @@ This module enable the user to use following actions of the documents
     'qweb': [
     ],
     'application': True,
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
 }

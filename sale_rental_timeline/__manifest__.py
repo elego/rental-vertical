@@ -1,5 +1,4 @@
-# Copyright (C) 2019 - TODAY, Open Source Integrators
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
 {
     'name': 'Sale Rental Timeline',
@@ -8,7 +7,7 @@ timeline object for the rented product instance automatically.
 A Timeline View will be generated for all the related products.''',
     'version': '12.0.1.0.0',
     'category': 'sale',
-    'author': 'Open Source Integrators, Odoo Community Association (OCA)',
+    'author': 'Elego Software Solutions Gmbh',
     'depends': [
         'web_timeline',
         'rental_base',
@@ -23,5 +22,5 @@ A Timeline View will be generated for all the related products.''',
     'qweb': [
     ],
     'application': True,
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
 }
