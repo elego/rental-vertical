@@ -58,8 +58,13 @@ class SaleOrderLine(models.Model):
     def onchange_display_product_id(self):
         if self.display_product_id:
             self.product_id = self.display_product_id
+            if self.display_product_id.rental_ok:
+                self.rental = True
             self.rental = False
             self.can_sell_rental = False
+        rental_type_id = self.env.ref('rental_base.rental_sale_type').id
+        if self.env.context.get('type_id', False) == rental_type_id:
+            self.rental = True
 
     @api.multi
     @api.onchange('rental')
@@ -67,6 +72,9 @@ class SaleOrderLine(models.Model):
         if self.rental:
             self.can_sell_rental = False
             self.sell_rental_id = False
+            rental_type_id = self.env.ref('rental_base.rental_sale_type').id
+            if self.env.context.get('type_id', False) == rental_type_id:
+                self.rental_qty = 1
         else:
             self.rental_type = False
             self.rental_qty = 0
