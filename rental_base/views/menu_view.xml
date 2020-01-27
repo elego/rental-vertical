@@ -42,7 +42,6 @@
 
         <menuitem name="Rentals" 
             id="menu_rental_root"
-            action="action_rental_orders"
             sequence="5"
             web_icon="rental_base,static/description/icon.png"/>
 
