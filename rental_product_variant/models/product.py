@@ -1,5 +1,4 @@
-# Copyright (C) 2018 - TODAY, Open Source Integrators
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
 from odoo import api, fields, models, _
 
@@ -25,7 +24,7 @@ class ProductProduct(models.Model):
     #Category special fields
     vehicle_number = fields.Char("Vehicle Identification Number")
     license_plate = fields.Char("License Plate")
-    init_regist = fields.Char('Initial Registration')
+    init_regist = fields.Date('Initial Registration')
     show_vehicle_number = fields.Boolean("Show Vehicle Identification Number", related="categ_id.show_vehicle_number")
     show_license_plate = fields.Boolean("Show License Plate", related="categ_id.show_license_plate")
     show_init_regist = fields.Boolean('Show Initial Registration', related="categ_id.show_init_regist")

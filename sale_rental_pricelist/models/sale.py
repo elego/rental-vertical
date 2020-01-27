@@ -1,5 +1,4 @@
-# Copyright (C) 2018 - TODAY, Open Source Integrators
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
 from odoo import api, fields, models, exceptions, _
 from odoo.tools import float_compare
@@ -11,9 +10,20 @@ class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     number_of_time_unit = fields.Float('Number of TU')
-    display_product_id = fields.Many2one('product.product', string='Product')
+    display_product_id = fields.Many2one(
+        'product.product', string='Product',
+        domain=lambda self: self._get_product_domain())
     rental_ok = fields.Boolean('Can be Rented', related="display_product_id.rental_ok")
     #must_have_dates = fields.Boolean(string="Must Have Dates", related=False)
+
+    @api.model
+    def _get_product_domain(self):
+        domain = [('sale_ok','=',True)]
+        rental_type_id = self.env.ref('rental_base.rental_sale_type').id
+        if self.env.context.get('default_type_id', False) == rental_type_id:
+            domain.append(('rental_ok','=',True))
+            domain.append(('type','=','product'))
+        return domain
 
     @api.model
     def _get_time_uom(self):
@@ -42,15 +52,19 @@ class SaleOrderLine(models.Model):
                 self.product_id = self.display_product_id.product_rental_hour_id
             else:
                 raise exceptions.UserError(_('No Found Service Product for Rental.'))
-           
 
     @api.multi
     @api.onchange('display_product_id')
     def onchange_display_product_id(self):
         if self.display_product_id:
             self.product_id = self.display_product_id
+            if self.display_product_id.rental_ok:
+                self.rental = True
             self.rental = False
             self.can_sell_rental = False
+        rental_type_id = self.env.ref('rental_base.rental_sale_type').id
+        if self.env.context.get('type_id', False) == rental_type_id:
+            self.rental = True
 
     @api.multi
     @api.onchange('rental')
@@ -58,6 +72,9 @@ class SaleOrderLine(models.Model):
         if self.rental:
             self.can_sell_rental = False
             self.sell_rental_id = False
+            rental_type_id = self.env.ref('rental_base.rental_sale_type').id
+            if self.env.context.get('type_id', False) == rental_type_id:
+                self.rental_qty = 1
         else:
             self.rental_type = False
             self.rental_qty = 0

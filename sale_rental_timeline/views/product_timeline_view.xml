@@ -139,11 +139,12 @@
             id="menu_product_timeline" parent="stock.menu_stock_inventory_control"
             sequence="12"/>
 
-        <menuitem name="Timeline"
-            id="menu_timeline"
-            parent="rental_base.menu_overview"
+        <menuitem name="Schedule"
+            id="menu_overview"
+            parent="rental_base.menu_rental_root"
             action="action_product_timeline"
-            sequence="1"/>
+            sequence="0"/>
+
 
     </data>
 </odoo>

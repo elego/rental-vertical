@@ -1,5 +1,4 @@
-# Copyright (C) 2019 - TODAY, Open Source Integrators
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
 {
     'name': 'Rental Product Instance',
@@ -22,5 +21,5 @@
     'qweb': [
     ],
     'application': True,
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
 }

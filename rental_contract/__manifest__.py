@@ -1,23 +1,27 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
 {
-    'name': 'Rental Product Variant',
+    'name': 'Rental Contract',
     'summary':
-'''Model Product is extended with rental special fields.''',
+'''Extension of module contract.
+1. set analytic account automatically
+2. set date_start and date_end of invoice line automatically
+''',
     'version': '12.0.1.0.0',
-    'category': 'product',
+    'category': 'rental',
     'author': 'Elego Software Solutions Gmbh',
     'depends': [
+        'contract',
+        'sale_rental',
         'rental_base',
     ],
     'data': [
-        'security/ir.model.access.csv',
-        'views/product_view.xml',
+        'views/contract_view.xml',
     ],
     'demo': [
     ],
     'qweb': [
     ],
-    'application': True,
+    'auto_install': True,
     'license': 'LGPL-3',
 }

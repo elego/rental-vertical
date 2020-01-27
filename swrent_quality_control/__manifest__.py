@@ -5,7 +5,7 @@
     'summary': '''Data files of inspection question in quality control for SW Rent.''',
     'version': '12.0.1.0.0',
     'category': 'sale',
-    'author': 'Elegosoft',
+    'author': 'Elego Software Solutions Gmbh',
     'website': 'https://gitlab.elegosoft.com/swrent/rental-vertical',
     'depends': [
         'sale_rental',
