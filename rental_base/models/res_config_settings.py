@@ -13,6 +13,7 @@ class ResConfigSettings(models.TransientModel):
     module_rental_product_instance = fields.Boolean("Product Instance")
     module_rental_product_set = fields.Boolean("Product Set")
     module_rental_contract = fields.Boolean("Contract")
+    module_rental_repair = fields.Boolean("Repair Order")
 
 
     #def set_values(self):

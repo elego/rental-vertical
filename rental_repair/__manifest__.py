@@ -1,25 +1,25 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
 {
-    'name': 'Project Task Order',
-    'summary': 'Project Task Order',
+    'name': 'Rental Repair',
+    'summary': 'Rental Repair',
     'version': '12.0.1.0.0',
     'category': 'project',
     'author': 'Elego Software Solutions Gmbh',
     'depends': [
-        #'project',
-        #'product_analytic',
-        #'rental_product_instance',
+        'project',
+        'rental_base',
+        'repair',
     ],
     'data': [
-        #'views/project_view.xml',
-        #'views/product_view.xml',
+        'views/project_view.xml',
+        'views/product_view.xml',
+        'views/repair_view.xml',
     ],
     'demo': [
     ],
     'qweb': [
     ],
     'application': False,
-    'installable': False,
     'license': 'LGPL-3',
 }
