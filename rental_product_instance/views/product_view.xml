@@ -31,6 +31,12 @@
                            attrs="{'invisible': [('product_instance', '=', False)]}"/>
                     <field name="instance_current_location_id"
                            attrs="{'invisible': [('product_instance', '=', False)]}"/>
+                    <field name="instance_state"
+                           attrs="{'invisible': [('product_instance', '=', False)]}"/>
+                    <field name="instance_current_condition"
+                           attrs="{'invisible': [('product_instance', '=', False)]}"/>
+                    <field name="instance_next_service_date"
+                           attrs="{'invisible': [('product_instance', '=', False)]}"/>
                 </xpath>
             </field>
         </record>
