@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_open_product_qc_inspection" model="ir.actions.act_window">
+            <field name="context">{'search_default_product_id': [active_id], 'default_product_id': active_id}</field>
+            <field name="name">Inspections</field>
+            <field name="res_model">qc.inspection</field>
+        </record>
+
+        <record id="product_normal_form_view_rental" model="ir.ui.view">
+            <field name="name">product.product.form.rental</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <button name="toggle_active" position="before">
+                   <button class="oe_stat_button"
+                        attrs="{'invisible':[('type', '!=', 'product')]}"
+                        type="action"
+                        name="%(rental_quality_control.action_open_product_qc_inspection)d"
+                        groups="quality_control.group_quality_control_user"
+                        icon="fa-list" title="Inspections">
+                        <field string="Inspections"
+                               name="inspections_count"
+                               widget="statinfo"/>
+                    </button>
+                </button>
+            </field>
+        </record>
+    </data>
+</odoo>

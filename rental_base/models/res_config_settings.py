@@ -13,6 +13,9 @@ class ResConfigSettings(models.TransientModel):
     module_rental_product_instance = fields.Boolean("Product Instance")
     module_rental_product_set = fields.Boolean("Product Set")
     module_rental_contract = fields.Boolean("Contract")
+    module_rental_quality_control = fields.Boolean("Quality Control")
+    module_rental_report_base = fields.Boolean("Report Base")
+    module_rental_invoice_report = fields.Boolean("Invoice Report")
 
 
     #def set_values(self):
