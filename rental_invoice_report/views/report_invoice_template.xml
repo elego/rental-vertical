@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Invoice Template -->
+    <template id="report_invoice_document">
+        <t t-call="web.external_layout">
+            <t t-set="lang" t-value="doc.partner_id.lang"/>
+            <t t-set="doc" t-value="doc.with_context(lang=lang)"/>
+            <div class="page">
+                <div class="partner_address" id="partner_address">
+                    <t t-if="doc.partner_id">
+                        <t t-if="doc.partner_id.parent_id">
+                            <span t-field="doc.partner_id.parent_id.name"/>
+                            <br/>
+                        </t>
+                        <span t-field="doc.partner_id.name"/>
+                        <br/>
+                        <span t-field="doc.partner_id.street"/>
+                        <br/>
+                        <t t-if="doc.partner_id.street2">
+                            <span t-field="doc.partner_id.street2"/>
+                            <br/>
+                        </t>
+                        <span t-field="doc.partner_id.zip"/>
+                        <span t-esc="doc.partner_id.city and doc.partner_id.city.capitalize()"/>
+                        <t t-if="lang != 'de_DE' and doc.partner_id.country_id">
+                           <br/>
+                           <t t-esc="doc.partner_id.country_id and doc.partner_id.country_id.name.capitalize()"/>
+                        </t>
+                    </t>
+                </div>
+                <div class="invoice_details">
+                    <table>
+                        <tr>
+                            <td><span class="inv">RECHNUNGSDATUM</span></td>
+                            <td><span t-if="doc.date_invoice" t-field="doc.date_due" t-options="{'widget': 'date'}"/></td>
+                        </tr>
+                        <tr>
+                            <td><span class="inv">LEISTUNGSZEITRAUM</span></td>
+                            <td><span>01.01.2020 – 31.12.2020</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="inv">REFERENZ</span></td>
+                            <!-- <td><span> 004 / 76001138</span></td> -->
+                            <td><span t-if="doc.reference" t-field="doc.reference"/></td>
+                        </tr>
+                        <tr>
+                            <td><span class="inv">ANSPRECHPARTNER/IN</span></td>
+                            <!-- <td><span>Ilona Luppertz</span></td> -->
+                            <td><span t-if="doc.user_id" t-field="doc.user_id.name"/></td>
+                        </tr>
+                        <tr>
+                            <td><span class="inv">TELEFON</span></td>
+                            <!-- <td><span>+49-7032-309020</span></td> -->
+                            <td><span t-if="doc.user_id" t-field="doc.user_id.partner_id.phone"/></td>
+                        </tr>
+                        <tr>
+                            <td><span class="inv">EMAIL</span></td>
+                            <!-- <td><span>accounting@rockbird.eu</span></td> -->
+                            <td><span t-if="doc.user_id" t-field="doc.user_id.partner_id.email"/></td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- TODO manage Refund, Draft state -->
+                <div class="content">
+                    <div id="products" class="products">
+                        <t t-set="display_discount" t-value="any([l.discount for l in doc.invoice_line_ids])"/>
+                        <!-- product table -->
+                        <table id="product_table" class="product_table">
+                            <thead>
+                                <th>BESCHREIBUNG</th>
+                                <th>MENGE, ME</th>
+                                <th>EINZELPREIS</th>
+                                <th t-if="display_discount">RABATT</th>
+                                <th>GESAMTPREIS</th>
+                            </thead>
+                            <tbody>
+                                <t t-set="section" t-value="False"/>
+                                <t t-set="has_section" t-value="False"/>
+                                <t t-set="current_subtotal" t-value="0"/>
+                                <t t-foreach="doc.invoice_line_ids" t-as="line">
+                                    <t t-if="line['display_type'] == 'line_section'">
+                                        <t t-set="has_section" t-value="True"/>
+                                    </t>
+                                </t>
+                                <t t-foreach="doc.invoice_line_ids" t-as="line">
+                                    <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
+                                    <t t-set="current_subtotal" t-value="current_subtotal + line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
+                                    <t t-if="line['display_type'] == 'line_section'">
+                                        <t t-if="section or not section and line.sequence > 1">
+                                            <tr>
+                                                <td colspan="5"><![CDATA[&nbsp;]]></td>
+                                            </tr>
+                                        </t>
+                                        <t t-set="section" t-value="True"/>
+                                        <t t-set="current_subtotal" t-value="0"/>
+                                        <tr class="line_section">
+                                            <td colspan="5">
+                                                <span t-field="line.name"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                    <t t-else="">
+                                        <t t-if="line['display_type'] == 'line_note'">
+                                            <tr class="line_note">
+                                                <td colspan="5">
+                                                    <span t-field="line.name"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                        <t t-else="">
+                                            <tr>
+                                                <td class="text-left">
+                                                    <t t-if="line.product_id.description_sale">
+                                                        <b>[ <span t-if="line.product_id.default_code" t-field="line.product_id.default_code"/> ] <span t-field="line.product_id.name"/></b><br/>
+                                                        <span t-field="line.product_id.description_sale"/>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <span t-field="line.name"/>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <span t-field="line.quantity"/>
+                                                    <span t-field="line.uom_id"  groups="uom.group_uom"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="line.price_unit"
+                                                          t-options='{
+                                                            "widget": "monetary",
+                                                            "display_currency": doc.currency_id,
+                                                          }'/>
+                                                </td>
+                                                <td t-if="display_discount">
+                                                    <span t-field="line.discount"/>
+                                                </td>
+                                                <td><span t-field="line.price_subtotal"
+                                                          t-options='{
+                                                            "widget": "monetary",
+                                                            "display_currency": doc.currency_id,
+                                                          }'/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </t>
+                                </t>
+                            </tbody>
+                        </table>
+                        <!-- subtotal -->
+                        <table class="total_net" id="total_net">
+                            <tr>
+                                <td></td>
+                                <td>SUMME NETTO</td>
+                                <td><span t-field="doc.amount_untaxed"
+                                          t-options='{
+                                            "widget": "monetary",
+                                            "display_currency": doc.currency_id,
+                                          }'/></td>
+                            </tr>
+                            <t t-foreach="doc.amount_by_group" t-as="amount_by_group">
+                                <tr>
+                                    <td></td>
+                                    <t t-if="len(doc.tax_line_ids) == 1 and doc.amount_untaxed == amount_by_group[2]">
+                                        <td><span t-esc="amount_by_group[0].upper()"/></td>
+                                        <td class="text-right o_price_total"><span t-esc="amount_by_group[3]" /></td>
+                                    </t>
+                                    <t t-else="">
+                                        <td>
+                                            <span t-esc="amount_by_group[0].upper()"/>
+                                            <span>&amp;nbsp;<span>on</span>
+                                                <t t-esc="amount_by_group[4]"/>
+                                            </span>
+                                        </td>
+                                        <td class="text-right o_price_total"><span t-esc="amount_by_group[3]"/></td>
+                                    </t>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>ZU ZAHLEN</td>
+                                    <td><b><span t-field="doc.amount_total"
+                                                 t-options='{
+                                                    "widget": "monetary",
+                                                    "display_currency": doc.currency_id,
+                                                  }'/></b></td>
+                                </tr>
+                                <tr></tr>
+                            </t>
+                        </table>
+                        <!-- Payment note -->
+                        <div class="payment_info">
+                            <p t-if="doc.state not in ['draft','sent']">
+                                Wir bitten Sie, den ausstehenden Rechnungsbetrag unter Angabe der Rechnungsnummer 
+                                <span t-field="doc.number"/> mit Fälligkeit zum <span t-if="doc.date_due" t-field="doc.date_due"/>
+                                zu überweisen: <span t-if="doc.partner_bank_id.bank_id" t-field="doc.partner_bank_id.bank_id.name"/> | IBAN: <span t-field="doc.partner_bank_id.acc_number" /> | BIC: <span t-if="doc.partner_bank_id.bank_id" t-field="doc.partner_bank_id.bank_id.bic"/>
+                            </p>
+                            <p class="thank_msg">
+                                Danke für die gute Zusammenarbeit, bei Fragen sind wir jederzeit und gerne für Sie da. Ihr ROCKBIRD Team - <span>ROCKBIRD.EU</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- Call template for invoice -->
+    <template id="report_invoice">
+        <t t-call="web.html_container">
+            <t t-set="is_invoice" t-value="True"/>
+            <t t-foreach="docs" t-as="doc">
+                <t t-set="lang" t-value="doc.user_id.sudo().lang if doc.type in ('in_invoice', 'in_refund') else doc.partner_id.lang"/>
+                <t t-call="rental_invoice_report.report_invoice_document" t-lang="lang"/>
+            </t>
+        </t>
+    </template>
+
+</odoo>
