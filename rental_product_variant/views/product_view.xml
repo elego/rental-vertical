@@ -64,6 +64,12 @@
                 <xpath expr="//field[@name='barcode']" position="after">
                     <field name="qr_code"/>
                 </xpath>
+                <xpath expr="//div[field[@name='weight']]" position="after">
+                    <label for="dimension"/>
+                    <div class="o_row">
+                        <field name="dimension" placeholder="e.g. 10mx10mx10m"/>
+                    </div>
+                </xpath>
                 <xpath expr="//field[@name='description']/.." position="replace"/>
                 <xpath expr="//notebook" position="inside">
                     <page name="description" string="Internal Notes">
@@ -72,7 +78,7 @@
                         </group>
                     </page>
                     <page string="Rental" name="rental">
-                        <field name="rental_order_ids" readonly="1">
+                        <field name="rental_order_ids" readonly="1" groups="base.group_no_one">
                             <tree default_order="start_date">
                                 <field name="start_order_id"/>
                                 <field name="partner_id"/>
@@ -97,7 +103,11 @@
                             </tree>
                         </field>
                     </page>
+                    <page string="Add. Info" name="add_info">
+                        <field name="additional_info" no_label="1"/>
+                    </page>
 
+                    <!--
                     <page string="Moves" name="stock">
                         <field name="stock_move_ids" readonly="1">
                             <tree default_order="date desc">
@@ -114,6 +124,7 @@
                             </tree>
                         </field>
                     </page>
+                    -->
                 </xpath>
             </field>
         </record>
