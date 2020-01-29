@@ -7,9 +7,9 @@
     'category': 'project',
     'author': 'Elego Software Solutions Gmbh',
     'depends': [
-        #'project',
-        #'product_analytic',
-        #'rental_product_instance',
+        'project',
+        'product_analytic',
+        'rental_product_instance',
     ],
     'data': [
         #'views/project_view.xml',
@@ -20,6 +20,6 @@
     'qweb': [
     ],
     'application': False,
-    'installable': False,
+    'installable': True,
     'license': 'LGPL-3',
 }
