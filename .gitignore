@@ -40,6 +40,9 @@ coverage.xml
 # Pycharm
 .idea
 
+# VSCODE
+.vscode
+
 # Mr Developer
 .mr.developer.cfg
 .project
