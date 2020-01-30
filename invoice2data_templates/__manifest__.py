@@ -9,7 +9,7 @@
     "summary": "Manage invoice2data templates for invoice import",
     "author": "OCA, Elego Software Solutions GmbH",
     "website": "http://www.akretion.com",
-    "depends": ["account_invoice_import"],
+    "depends": ["account_invoice_import_invoice2data"],
     "external_dependencies": {"python": ["invoice2data"]},
     "data": [
         "security/ir.model.access.csv",
