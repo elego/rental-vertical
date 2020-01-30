@@ -35,6 +35,8 @@ class ProductProduct(models.Model):
     rental_order_ids = fields.One2many('sale.rental', 'rented_product_id', string='Rental Orders')
     repair_order_ids = fields.One2many('repair.order', 'product_id', string='Repair Orders')
     stock_move_ids = fields.One2many('stock.move', 'product_id', string='Stock Moves')
+    additional_info = fields.Html('Additional Infomation')
+    dimension = fields.Char('Dimension')
 
     @api.multi
     def _get_all_sale_order_ids(self):

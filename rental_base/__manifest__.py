@@ -9,6 +9,7 @@
     'category': 'product',
     'author': 'Elego Software Solutions Gmbh',
     'depends': [
+        'product_analytic',
         'purchase',
         'sale_order_type',
         'sale_rental',

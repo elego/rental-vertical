@@ -88,6 +88,7 @@
             id="menu_rental_positions"
             parent="menu_orders"
             action="sale_rental.sale_rental_action"
+            groups="base.group_no_one"
             sequence="1"/>
         <menuitem name="Sale Orders"
             id="menu_sale_orders"
