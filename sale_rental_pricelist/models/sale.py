@@ -237,7 +237,7 @@ class SaleOrderLine(models.Model):
     @api.onchange('product_uom', 'product_uom_qty')
     def product_uom_change(self):
         if self.display_product_id and self.product_uom and self.rental:
-            if self.product_uom.id != self.product_id.uom_id:
+            if self.product_uom.id != self.product_id.uom_id.id:
                 time_uoms = self._get_time_uom()
                 for key in time_uoms:
                     if self.product_uom.id == time_uoms[key].id:
