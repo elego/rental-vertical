@@ -7,6 +7,7 @@ class ResConfigSettings(models.TransientModel):
     _inherit = 'res.config.settings'
 
     module_sale_rental_pricelist = fields.Boolean("Price Extension", help="Set Rental Price with different Unit of Measure.")
+    module_rental_sale_offday = fields.Boolean("Off Days", help="Calculate the Off Days.")
     module_sale_rental_timeline = fields.Boolean("Timelines")
     module_rental_product_pack = fields.Boolean("Product Pack")
     module_rental_product_variant = fields.Boolean("Product Variant")
