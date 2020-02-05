@@ -12,48 +12,54 @@
                           default_group_by="product_id"
                           zoomKey="ctrlKey"
                           tooltip='{"followMouse": true}'
-                          colors="#f0ff00:type == 'reserved';#33ffec:type == 'rental';#ffce00:type=='maintenance';#ff5a00:type == 'repair';#ff0000:type=='delivery';">
+                          colors="#f0ff00:type == 'reserved'; #33ffec:type == 'rental'; #ffce00:type=='maintenance'; #ff5a00:type == 'repair'; #ff0000:type=='delivery';">
                     <field name="sale_order_id" />
-                    <field name="termin"/>
-                    <field name="maintenance"/>
-                    <field name="redline"/>
-                    <field name="date_start" readonly="1"/>
-                    <field name="date_end" readonly="1"/>
-                    <field name="partner_id"/>
-                    <field name="currency_id"/>
-                    <field name="price_subtotal"/>
+                    <field name="termin" />
+                    <field name="maintenance" />
+                    <field name="redline" />
+                    <field name="date_start" readonly="1" />
+                    <field name="date_end" readonly="1" />
+                    <field name="partner_id" />
+                    <field name="currency_id" />
+                    <field name="price_subtotal" />
                     <templates>
                         <div t-name="timeline-item">
                             <div t-attf-class="tooltip_content" style="display: none">
                                 <table border="1">
                                     <tr>
-                                        <td>retal so</td><td><span t-esc="record.sale_order_id[1]"/></td>
+                                        <td>rental so:</td>
+                                        <td t-esc="record.sale_order_id[1]" />
                                     </tr>
                                     <tr>
-                                        <td>start date</td><td><span t-esc="record.date_start"/></td>
+                                        <td>start date:</td>
+                                        <td t-esc="record.date_start" />
                                     </tr>
                                     <tr>
-                                        <td>end date</td><td><span t-esc="record.date_end"/></td>
+                                        <td>end date:</td>
+                                        <td t-esc="record.date_end" />
                                     </tr>
                                     <tr>
-                                        <td>customer</td><td><span t-esc="record.partner_id[1]"/></td>
+                                        <td>customer:</td>
+                                        <td t-esc="record.partner_id[1]" />
                                     </tr>
                                     <tr>
-                                        <td>type:</td><td><span t-esc="record.type"/></td>
+                                        <td>type:</td>
+                                        <td t-esc="record.type" />
                                     </tr>
                                     <tr>
-                                        <td>price:</td><td><span t-esc="record.price_subtotal" /></td>
+                                        <td>price:</td>
+                                        <td t-esc="record.price_subtotal" />
                                     </tr>
                                 </table>
                             </div>
                             <t t-if="record.redline">
-                                <hr color="#ff0000"/>
+                                <hr color="#ff0000" />
                             </t>
                             <t t-if="record.termin">
-                                <img src="sale_rental_timeline/static/description/termin.png" style="position:relative;max-height:15px;"/>
+                                <img src="sale_rental_timeline/static/description/termin.png" style="position:relative;max-height:15px;" />
                             </t>
                             <t t-if="record.maintenance">
-                                <img src="sale_rental_timeline/static/description/maintenance.png" style="position:relative;max-height:15px;"/>
+                                <img src="sale_rental_timeline/static/description/maintenance.png" style="position:relative;max-height:15px;" />
                             </t>
                             <!--
                             <t t-if="record.maintenance or record.termin">
@@ -61,73 +67,71 @@
                             </t>
                             -->
                             <a t-attf-href="#id=#{record.sale_order_id[0]}&amp;model=sale.order&amp;view_type=form"
-                               t-raw="record.display_name"/>
+                               t-raw="record.display_name" />
                         </div>
                     </templates>
                 </timeline>
-                <!--
-                -->
             </field>
         </record>
-    
+
         <record id="view_product_timeline_search" model="ir.ui.view">
             <field name="name">product.timeline.search</field>
             <field name="model">product.timeline</field>
             <field name="arch" type="xml">
                <search string="Timeline">
-                    <field name="name"/>
-                    <field name="product_id"/>
-                    <field name="type"/>
+                    <field name="name" />
+                    <field name="product_id" />
+                    <field name="type" />
                     <group expand="0" string="Group By">
-                        <filter string="Product" name="product" context="{'group_by':'product_id'}"/>
+                        <filter string="Product" name="product" context="{'group_by':'product_id'}" />
                     </group>
                 </search>
             </field>
         </record>
-    
+
         <record id="view_product_timeline_tree" model="ir.ui.view">
             <field name="name">product.timeline.tree</field>
             <field name="model">product.timeline</field>
             <field name="arch" type="xml">
                 <tree string="Timeline">
-                    <field name="name"/>
-                    <field name="product_id"/>
-                    <field name="type"/>
-                    <field name="partner_id"/>
-                    <field name="date_start"/>
-                    <field name="date_end"/>
+                    <field name="name" />
+                    <field name="product_id" />
+                    <field name="type" />
+                    <field name="partner_id" />
+                    <field name="date_start" />
+                    <field name="date_end" />
                 </tree>
             </field>
         </record>
-    
+
         <record id="view_product_timeline_form" model="ir.ui.view">
             <field name="name">product.timeline.form</field>
             <field name="model">product.timeline</field>
             <field name="arch" type="xml">
                 <form string="Timeline">
                     <group>
-                        <field name="name"/>
-                        <field name="termin"/>
-                        <field name="maintenance"/>
-                        <field name="redline"/>
-                        <field name="product_id" readonly="1"/>
-                        <field name="type"/>
-                        <field name="sale_order_line_id" readonly="1"/>
-                        <field name="sale_order_id" readonly="1"/>
-                        <field name="partner_id" readonly="1"/>
-                        <field name="date_start" readonly="1"/>
-                        <field name="date_end" readonly="1"/>
+                        <field name="name" />
+                        <field name="termin" />
+                        <field name="maintenance" />
+                        <field name="redline" />
+                        <field name="product_id" readonly="1" />
+                        <field name="type" />
+                        <field name="sale_order_line_id" readonly="1" />
+                        <field name="sale_order_id" readonly="1" />
+                        <field name="partner_id" readonly="1" />
+                        <field name="date_start" readonly="1" />
+                        <field name="date_end" readonly="1" />
                     </group>
                 </form>
             </field>
         </record>
-    
+
         <record id="action_product_timeline" model="ir.actions.act_window">
             <field name="name">Timeline</field>
             <field name="res_model">product.timeline</field>
             <field name="view_type">tree</field>
             <field name="view_mode">timeline,tree,form</field>
-            <field name="search_view_id" ref="view_product_timeline_search"/>
+            <field name="search_view_id" ref="view_product_timeline_search" />
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
                     Create a timeline for equipment first.
@@ -137,14 +141,13 @@
 
         <menuitem action="action_product_timeline"
             id="menu_product_timeline" parent="stock.menu_stock_inventory_control"
-            sequence="12"/>
+            sequence="12" />
 
         <menuitem name="Schedule"
             id="menu_overview"
             parent="rental_base.menu_rental_root"
             action="action_product_timeline"
-            sequence="0"/>
-
+            sequence="0" />
 
     </data>
 </odoo>
