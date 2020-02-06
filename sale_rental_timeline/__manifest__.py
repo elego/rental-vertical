@@ -14,7 +14,8 @@ A Timeline View will be generated for all the related products.''',
     ],
     'data': [
         'security/ir.model.access.csv',
-        'views/product_view.xml',
+        'views/assets.xml',
+        'views/product_timeline_view.xml',
         'views/product_timeline_view.xml',
     ],
     'demo': [
