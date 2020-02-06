@@ -32,11 +32,11 @@
                     <table>
                         <tr>
                             <td><span class="inv">RECHNUNGSDATUM</span></td>
-                            <td><span t-if="doc.date_invoice" t-field="doc.date_due" t-options="{'widget': 'date'}"/></td>
+                            <td><span t-if="doc.date_invoice" t-field="doc.date_due" t-options='{"format": "dd.MM.yyyy"}'/></td>
                         </tr>
                         <tr>
                             <td><span class="inv">LEISTUNGSZEITRAUM</span></td>
-                            <td><span>01.01.2020 – 31.12.2020</span></td>
+                            <td><span t-if="doc.date_start" t-field="doc.date_start" t-options='{"format": "dd.MM.yyyy"}'/> - <span t-if="doc.date_end" t-field="doc.date_end" t-options='{"format": "dd.MM.yyyy"}'/></td>
                         </tr>
                         <tr>
                             <td><span class="inv">REFERENZ</span></td>
@@ -188,7 +188,7 @@
                         <div class="payment_info">
                             <p t-if="doc.state not in ['draft','sent']">
                                 Wir bitten Sie, den ausstehenden Rechnungsbetrag unter Angabe der Rechnungsnummer 
-                                <span t-field="doc.number"/> mit Fälligkeit zum <span t-if="doc.date_due" t-field="doc.date_due"/>
+                                <span t-field="doc.number"/> mit Fälligkeit zum <span t-if="doc.date_due" t-field="doc.date_due" t-options='{"format": "dd.MM.yyyy"}'/>
                                 zu überweisen: <span t-if="doc.partner_bank_id.bank_id" t-field="doc.partner_bank_id.bank_id.name"/> | IBAN: <span t-field="doc.partner_bank_id.acc_number" /> | BIC: <span t-if="doc.partner_bank_id.bank_id" t-field="doc.partner_bank_id.bank_id.bic"/>
                             </p>
                             <p class="thank_msg">

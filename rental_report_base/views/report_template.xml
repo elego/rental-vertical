@@ -53,7 +53,10 @@
                     <span t-esc="company.partner_id.city.capitalize()"/>
                      | <span t-if="o.env.context.get('lang') != 'de_DE'"
                           t-esc="company.partner_id.country_id.name.capitalize()"/>
-                    <span>Niederlassung Enkenbach - Alsenborn</span>
+                    <span t-if="not doc.branch_name"></span>
+                    <t t-if="doc.branch_name">
+                        <span> Niederlassung <t t-esc="doc.branch_name"/></span>
+                    </t>
                 </div>
                 <t t-raw="0"/>
             </div>
@@ -81,8 +84,7 @@
                         | UST-ID <span t-esc="company.partner_id.vat"/>
                     </div><br/>
                     <div class="company_ceo">
-                        HANDELSREGISTER AG <span t-if="company.company_registry" t-esc="company.company_registry.split(',')[1]"/>
-                        <span t-if="company.company_registry" t-esc="company.company_registry.split(',')[0]"/>
+                        HANDELSREGISTER AG <span t-if="company.company_registry" t-esc="company.company_registry"/>
                         GESCHÄFTSFÜHRUNG <span>Christian Kleiner, Andreas Lampprecht</span>
                     </div>
                     <div class="page_number">
