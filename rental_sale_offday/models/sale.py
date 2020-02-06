@@ -29,7 +29,8 @@ class SaleOrderLine(models.Model):
 
     @api.depends('fixed_offday_ids', 'add_offday_ids')
     def _compute_offday_number(self):
-        self.offday_number = len(self.fixed_offday_ids) + len(self.add_offday_ids)
+        for line in self:
+            line.offday_number = len(line.fixed_offday_ids) + len(line.add_offday_ids)
 
     @api.model
     def is_weekend(self, date):
@@ -86,7 +87,7 @@ class SaleOrderLine(models.Model):
             for day in self.add_offday_ids:
                 if day.date < self.start_date or day.date > self.end_date:
                     raise exceptions.UserError(_('You can not add the off day "%s" between %s and %s') % (day.date, self.start_date, self.end_date))
-                
+
 
     #Override function in sale_rental
     #replace number_of_days with number_of_time_unit
@@ -94,7 +95,7 @@ class SaleOrderLine(models.Model):
     def rental_qty_number_of_days_change(self):
         if self.product_id.rented_product_id:
             qty = self.rental_qty * self.number_of_time_unit
-            if self.show_offday:             
+            if self.show_offday:
                 qty = self.rental_qty * (self.number_of_time_unit - self.offday_number)
             self.product_uom_qty = qty
 

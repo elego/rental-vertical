@@ -2,6 +2,8 @@
     border-radius: 5px;
     table, td, tr, tr:first-child {
         border: none;
+        font-family: Roboto, Noto;
+        font-size: 13px;
     }
     tr {
         border-top: 1px solid #dee2e6;
@@ -17,5 +19,9 @@
         height: 100%;
         width: 100%;
         display: block;
+        i {
+            width: auto;
+            padding-right: 3px;
+        }
     }
 }

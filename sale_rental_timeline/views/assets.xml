@@ -2,7 +2,7 @@
 <odoo>
     <template id="assets_backend" name="sale rental timeline assets" inherit_id="web.assets_backend">
         <xpath expr="." position="inside">
-            <link rel="stylesheet" type="text/scss" href="/sale_rental_timeline/static/src/scss//sale_rental_timeline.scss"/>
+            <link rel="stylesheet" type="text/scss" href="/sale_rental_timeline/static/src/scss/sale_rental_timeline.scss" />
         </xpath>
     </template>
 </odoo>

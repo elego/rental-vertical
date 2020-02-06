@@ -8,16 +8,22 @@ class SaleOrderLine(models.Model):
 
     timeline_ids = fields.One2many('product.timeline', 'sale_order_line_id', 'Timelines')
 
-    @api.model
-    def _prepare_timeline_vals(self, line):
+    @api.multi
+    def _prepare_timeline_vals(self):
+        self.ensure_one()
         return {
-            'name': _('Rental: %s') %self.order_id.partner_id.name,
+            'name': _('Rental: %s') % self.order_id.partner_id.name,
             'product_id': self.product_id.rented_product_id.id,
-            'sale_order_line_id': line.id,
+            'sale_order_line_id': self.id,
             'type': 'reserved',
             'date_start': self.start_date,
             'date_end': self.end_date,
             'partner_id': self.order_id.partner_id.id,
+            'partner_shipping_address': self.order_id.partner_shipping_id._display_address(),
+            'action_id': self.env.ref('rental_base.action_rental_orders').id,
+            'menu_id': self.env.ref('rental_base.menu_rental_root').id,
+            'warehouse_id': self.order_id.warehouse_id.id,
+            'currency_id': self.currency_id.id,
         }
 
     @api.multi
@@ -25,9 +31,9 @@ class SaleOrderLine(models.Model):
         self.ensure_one()
         if self.product_id.rented_product_id and self.product_id.rented_product_id.product_instance:
             if self.rental_type in ['new_rental', 'rental_extension']:
-                vals = self._prepare_timeline_vals(self)
+                vals = self._prepare_timeline_vals()
                 self.write({'timeline_ids': [(0, 0, vals)]})
-            
+
     @api.multi
     def _reset_timeline(self, vals):
         for line in self:
