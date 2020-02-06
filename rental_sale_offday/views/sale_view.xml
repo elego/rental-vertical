@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_rental.view_order_form"/>
+            <field name="arch" type="xml">
+                <!--
+                <xpath expr="//field[@name='order_line']//field[@name='price_unit']" position="before">
+                    <field name="fixed_offday_type" attrs="{'invisible': [('show_offday', '=', False)]}"/>
+                </xpath>
+                -->
+                <xpath expr="//field[@name='order_line']//form" position="inside">
+                    <notebook>
+                        <page name="offdays" string="Off Days" attrs="{'invisible': [('show_offday', '=', False)]}">
+                            <group>
+                                <field name="show_offday" invisible="1"/>
+                                <field name="fixed_offday_type"/>
+                                <field name="offday_number"/>
+                            </group>
+                            <group>
+                                <group string="Fixed Off Days">
+                                    <field name="fixed_offday_ids" nolabel="1">
+                                        <tree>
+                                            <field name="date"/>
+                                            <field name="name"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                                <group string="Additional Off Days">
+                                    <field name="add_offday_ids" nolabel="1">
+                                        <tree editable="bottom">
+                                            <field name="date"/>
+                                            <field name="name"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

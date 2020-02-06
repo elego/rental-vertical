@@ -22,6 +22,15 @@
                                         Configure rented products with price of diferent Unit of Measure
                                     </div>
                                 </div>
+                                <div class="o_setting_left_pane">
+                                    <field name="module_rental_sale_offday"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_rental_sale_offday"/>
+                                    <div class="text-muted">
+                                        Calculate the Off Days
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="col-12 col-lg-6 o_setting_box">
