@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="product_contract.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']//field[@name='date_start']/.." position="attributes">
+                    <attribute name="attrs">{'invisible': ['|', ('is_contract', '=', False), ('rental', '=', True)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']//field[@name='date_end']/.." position="attributes">
+                    <attribute name="attrs">{'invisible': ['|', ('is_contract', '=', False), ('rental', '=', True)]}</attribute>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
