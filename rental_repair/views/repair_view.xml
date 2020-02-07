@@ -11,6 +11,23 @@
                     <field name="income_analytic_account_id"/>
                     <field name="expense_analytic_account_id"/>
                 </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="date_start"/>
+                    <field name="date_deadline"/>
+                    <field name="date_end"/>
+                </xpath>
+                <xpath expr="//field[@name='operations']//tree//field[@name='product_uom_qty']" position="before">
+                    <field name="expense_analytic_tag_ids" groups="analytic.group_analytic_tags" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                </xpath>
+                <xpath expr="//field[@name='operations']//tree//field[@name='tax_id']" position="before">
+                    <field name="analytic_cost"/>
+                </xpath>
+                <xpath expr="//field[@name='fees_lines']//tree//field[@name='product_uom_qty']" position="before">
+                    <field name="expense_analytic_tag_ids" groups="analytic.group_analytic_tags" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                </xpath>
+                <xpath expr="//field[@name='fees_lines']//tree//field[@name='tax_id']" position="before">
+                    <field name="analytic_cost"/>
+                </xpath>
             </field>
         </record>
 
