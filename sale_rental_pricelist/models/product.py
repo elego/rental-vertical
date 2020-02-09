@@ -73,7 +73,7 @@ class ProductProduct(models.Model):
         else:
             raise exceptions.ValidationError(_('No found expected Rental Type.'))
         values = {
-            'wh_product_id': product.id,
+            'hw_product_id': product.id,
             'name': _('Rental of %s (%s)') %(product.name, uom.name),
             'categ_id': product.categ_id.id,
             'copy_image': True,
