@@ -17,3 +17,8 @@ class ProjectTask(models.Model):
     repair_ids = fields.One2many(
         'repair.order', 'project_task_id',
         string="Repair Orders")
+
+    @api.onchange('product_id')
+    def onchange_product_id(self):
+        if self.product_id:
+            self.lot_id = self.product_id.instance_serial_number_id

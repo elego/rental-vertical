@@ -82,13 +82,25 @@ class ProductProduct(models.Model):
             'uom_id': uom.id,
             'uom_po_id': uom.id,
             'rental_ok': True,
+            'income_analytic_account_id': product.income_analytic_account_id.id,
+            'expense_analytic_account_id': product.expense_analytic_account_id.id,
             'list_price': price})
         return rental_service
+
+    @api.multi
+    def _update_rental_service_analytic_account(self, vals):
+        self.ensure_one()
+        income_analytic_account_id = vals.get('income_analytic_account_id', False)
+        expense_analytic_account_id = vals.get('expense_analytic_account_id', False)
+        self.rental_service_ids.write({
+            'income_analytic_account_id': income_analytic_account_id,
+            'expense_analytic_account_id': expense_analytic_account_id})
 
     @api.multi
     def write(self, vals):
         res = super(ProductProduct, self).write(vals)
         for p in self:
+            # Create service product automatically
             if vals.get('rental_of_month', False):
                 if not p.product_rental_month_id:
                     service_product = self._create_rental_service('month', p, p.rental_price_month)
@@ -101,6 +113,8 @@ class ProductProduct(models.Model):
                 if not p.product_rental_hour_id:
                     service_product = self._create_rental_service('hour', p, p.rental_price_hour)
                     p.product_rental_hour_id = service_product
+            # update analytic account for service product
+            p._update_rental_service_analytic_account(vals)
 
     @api.model
     def create(self, vals):
