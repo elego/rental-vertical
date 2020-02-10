@@ -6,17 +6,17 @@
         <record id="product_timeline_form_view" model="ir.ui.view">
             <field name="name">view.product.product.timeline.form</field>
             <field name="model">product.product</field>
-            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="inherit_id" ref="product.product_normal_form_view" />
             <field name="arch" type="xml">
                 <xpath expr="//notebook" position="inside">
                     <page name="timeline" string="Timeline">
                         <field name="product_timeline_ids">
                             <tree editable="top" default_order="date_start">
-                                <field name="name"/>
-                                <field name="type"/>
-                                <field name="partner_id"/>
-                                <field name="date_start"/>
-                                <field name="date_end"/>
+                                <field name="name" />
+                                <field name="type" />
+                                <field name="partner_id" />
+                                <field name="date_start" />
+                                <field name="date_end" />
                             </tree>
                         </field>
                     </page>
