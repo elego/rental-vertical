@@ -15,6 +15,7 @@
     'data': [
         'views/contract_view.xml',
         'views/sale_view.xml',
+        'views/product_view.xml',
     ],
     'demo': [
     ],
