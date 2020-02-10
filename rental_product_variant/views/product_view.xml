@@ -77,8 +77,8 @@
                             <field name="description" nolabel="1" placeholder="This note is only for internal purposes."/>
                         </group>
                     </page>
-                    <page string="Rental" name="rental">
-                        <field name="rental_order_ids" readonly="1" groups="base.group_no_one">
+                    <page string="Rental" name="rental" groups="base.group_no_one">
+                        <field name="rental_order_ids" readonly="1">
                             <tree default_order="start_date">
                                 <field name="start_order_id"/>
                                 <field name="partner_id"/>

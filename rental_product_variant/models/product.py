@@ -51,13 +51,14 @@ class ProductProduct(models.Model):
         for rental_service in self.rental_service_ids: 
             record_ids += rental_service._get_all_sale_order_ids()
         record_ids = list(set(record_ids))
-        view_id = self.env.ref("sale.view_order_tree").id
+        tree_view_id = self.env.ref("sale.view_order_tree").id
+        form_view_id = self.env.ref("sale.view_order_form").id
         return {
             'type': 'ir.actions.act_window',
             'name': _('All Sale Orders'),
             'target': 'current',
-            'view_mode': "tree",
-            'view_id': view_id,
+            'view_mode': "tree,form",
+            'view_ids': [tree_view_id, form_view_id],
             'res_model': 'sale.order',
             'domain': "[('id','in',[" + ','.join(map(str, record_ids)) + "])]",
             }

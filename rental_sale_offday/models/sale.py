@@ -114,3 +114,13 @@ class SaleOrderLine(models.Model):
                     dates.append(day.date)
                 else:
                     raise exceptions.UserError(_('You have already created the off day %s') % day.date)
+
+    @api.onchange('product_uom', 'product_uom_qty')
+    def product_uom_change(self):
+        if self.product_uom:
+            time_uoms = self._get_time_uom()
+            if self.product_uom.id != time_uoms['day'].id:
+                self.fixed_offday_type = 'none'
+        return super(SaleOrderLine, self).product_uom_change()
+
+

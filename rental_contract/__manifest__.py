@@ -2,21 +2,20 @@
 
 {
     'name': 'Rental Contract',
-    'summary':
-'''Extension of module contract.
-1. set analytic account automatically
-2. set date_start and date_end of invoice line automatically
-''',
+    'summary': 'Extension of module contract.',
     'version': '12.0.1.0.0',
     'category': 'rental',
     'author': 'Elego Software Solutions Gmbh',
     'depends': [
         'contract',
+        'product_contract',
         'sale_rental',
         'rental_base',
     ],
     'data': [
         'views/contract_view.xml',
+        'views/sale_view.xml',
+        'views/product_view.xml',
     ],
     'demo': [
     ],

@@ -19,30 +19,33 @@ class ProductProduct(models.Model):
         # TODO change default pricelist if country group exist
         return self.env.ref('product.list0').id
 
-    rental_of_month = fields.Boolean('Rented in Month')
-    rental_of_day = fields.Boolean('Rented in day')
-    rental_of_hour = fields.Boolean('Rented in hour')
-    product_rental_month_id = fields.Many2one('product.product', 'Rental Service (Month)', ondelete="set null")
-    product_rental_day_id = fields.Many2one('product.product', 'Rental Service (Day)', ondelete="set null")
-    product_rental_hour_id = fields.Many2one('product.product', 'Rental Service (Hour)', ondelete="set null")
+    rental_of_month = fields.Boolean('Rented in Month', copy=False)
+    rental_of_day = fields.Boolean('Rented in day', copy=False)
+    rental_of_hour = fields.Boolean('Rented in hour', copy=False)
+    product_rental_month_id = fields.Many2one('product.product', 'Rental Service (Month)', ondelete="set null", copy=False)
+    product_rental_day_id = fields.Many2one('product.product', 'Rental Service (Day)', ondelete="set null", copy=False)
+    product_rental_hour_id = fields.Many2one('product.product', 'Rental Service (Hour)', ondelete="set null", copy=False)
     rental_price_month = fields.Float(
         string='Price / Month',
         store=True,
+        copy=False,
         readonly=False,
         related="product_rental_month_id.list_price")
     rental_price_day = fields.Float(
         string='Price / Day',
         store=True,
+        copy=False,
         readonly=False,
         related="product_rental_day_id.list_price")
     rental_price_hour = fields.Float(
         string='Price / Hour',
         store=True,
+        copy=False,
         readonly=False,
         related="product_rental_hour_id.list_price")
-    day_scale_pricelist_item_ids = fields.One2many('product.pricelist.item', 'day_item_id', string='Day Scale Pricelist Items')
-    month_scale_pricelist_item_ids = fields.One2many('product.pricelist.item', 'month_item_id', string='Month Scale Pricelist Items')
-    hour_scale_pricelist_item_ids = fields.One2many('product.pricelist.item', 'hour_item_id', string='Hour Scale Pricelist Items')
+    day_scale_pricelist_item_ids = fields.One2many('product.pricelist.item', 'day_item_id', string='Day Scale Pricelist Items', copy=False)
+    month_scale_pricelist_item_ids = fields.One2many('product.pricelist.item', 'month_item_id', string='Month Scale Pricelist Items', copy=False)
+    hour_scale_pricelist_item_ids = fields.One2many('product.pricelist.item', 'hour_item_id', string='Hour Scale Pricelist Items', copy=False)
     def_pricelist_id = fields.Many2one('product.pricelist', 'Default Pricelist', default=lambda self: self._default_pricelist())
 
     @api.multi
@@ -70,7 +73,7 @@ class ProductProduct(models.Model):
         else:
             raise exceptions.ValidationError(_('No found expected Rental Type.'))
         values = {
-            'wh_product_id': product.id,
+            'hw_product_id': product.id,
             'name': _('Rental of %s (%s)') %(product.name, uom.name),
             'categ_id': product.categ_id.id,
             'copy_image': True,
@@ -123,17 +126,20 @@ class ProductProduct(models.Model):
             ext_vals['rental_of_month'] = True
             ext_vals['rental_price_month'] = vals.get('rental_price_month')
             del(vals['rental_of_month'])
-            del(vals['rental_price_month'])
+            if 'rental_price_month' in vals:
+                del(vals['rental_price_month'])
         if vals.get('rental_of_day', False):
             ext_vals['rental_of_day'] = True
             ext_vals['rental_price_day'] = vals.get('rental_price_day')
             del(vals['rental_of_day'])
-            del(vals['rental_price_day'])
+            if 'rental_price_day' in vals:
+                del(vals['rental_price_day'])
         if vals.get('rental_of_hour', False):
             ext_vals['rental_of_hour'] = True
             ext_vals['rental_price_hour'] = vals.get('rental_price_hour')
             del(vals['rental_of_hour'])
-            del(vals['rental_price_hour'])
+            if 'rental_price_hour' in vals:
+                del(vals['rental_price_hour'])
         res = super().create(vals)
         res.write(ext_vals)
         return res
