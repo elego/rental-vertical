@@ -1,0 +1,240 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* rental_base
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-10 15:21+0000\n"
+"PO-Revision-Date: 2020-02-10 15:21+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: rental_base
+#: model_terms:ir.ui.view,arch_db:rental_base.res_config_settings_view_form
+msgid "Add rented products as a Product Set"
+msgstr "Vermietbare Produkte in Produktsets verwenden"
+
+#. module: rental_base
+#: model_terms:ir.ui.view,arch_db:rental_base.res_config_settings_view_form
+msgid "Calculate the Off Days"
+msgstr "Standtage verwenden"
+
+#. module: rental_base
+#: model:ir.model.fields,help:rental_base.field_res_config_settings__module_rental_sale_offday
+msgid "Calculate the Off Days."
+msgstr "Wenn der Haken gesetzt ist, können Standtage bei der Vermietung angegeben werden."
+
+#. module: rental_base
+#: model:ir.model,name:rental_base.model_res_config_settings
+msgid "Config Settings"
+msgstr "Konfiguration "
+
+#. module: rental_base
+#: model:ir.ui.menu,name:rental_base.menu_config
+msgid "Configuration"
+msgstr "Konfiguration"
+
+#. module: rental_base
+#: model_terms:ir.ui.view,arch_db:rental_base.res_config_settings_view_form
+msgid "Configure Product Pack in Product Form View"
+msgstr "Verbund von Produkten verwenden"
+
+#. module: rental_base
+#: model_terms:ir.ui.view,arch_db:rental_base.res_config_settings_view_form
+msgid "Configure rented product as a Product Instance"
+msgstr "Vermietbare Produkte als eindeutige Produktinstanzen verwenden"
+
+#. module: rental_base
+#: model_terms:ir.ui.view,arch_db:rental_base.res_config_settings_view_form
+msgid "Configure rented products with extended fields"
+msgstr "Vermietbare Produkte mit weiteren Attributen und Smartbuttons verwenden"
+
+#. module: rental_base
+#: model_terms:ir.ui.view,arch_db:rental_base.res_config_settings_view_form
+msgid "Configure rented products with price of diferent Unit of Measure"
+msgstr "Produkte in verschiedenen Zeit-Mengeneinheiten vermieten"
+
+#. module: rental_base
+#: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_rental_contract
+msgid "Contract"
+msgstr "Vertrag"
+
+#. module: rental_base
+#: model_terms:ir.actions.act_window,help:rental_base.action_normal_orders
+#: model_terms:ir.actions.act_window,help:rental_base.action_rental_orders
+msgid "Create a new quotation, the first step of a new sale!"
+msgstr "Erstellen Sie ein neues Angebot, den ersten Schritt eines neuen Verkaufs!"
+
+#. module: rental_base
+#: model:ir.ui.menu,name:rental_base.menu_customer_invoices
+msgid "Customer Invoices"
+msgstr "Ausgangsrechnungen"
+
+#. module: rental_base
+#: model:ir.ui.menu,name:rental_base.menu_customers
+msgid "Customers"
+msgstr "Kunden"
+
+#. module: rental_base
+#: model:ir.ui.menu,name:rental_base.menu_invoicing
+msgid "Invoicing"
+msgstr "Abrechnung"
+
+#. module: rental_base
+#: model_terms:ir.ui.view,arch_db:rental_base.res_config_settings_view_form
+msgid "Manage Repair Order"
+msgstr "Reparaturaufträge für Produktinstanzen verwenden"
+
+#. module: rental_base
+#: model:ir.ui.menu,name:rental_base.menu_master_data
+msgid "Master Data"
+msgstr "Stammdaten"
+
+#. module: rental_base
+#: model:ir.actions.act_window,name:rental_base.action_normal_orders
+msgid "Normal Orders"
+msgstr "Verkaufsauftrag"
+
+#. module: rental_base
+#: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_rental_sale_offday
+msgid "Off Days"
+msgstr "Standtage"
+
+#. module: rental_base
+#: model_terms:ir.actions.act_window,help:rental_base.action_normal_orders
+#: model_terms:ir.actions.act_window,help:rental_base.action_rental_orders
+msgid "Once the quotation is confirmed, it becomes a sales order.<br> You will be able to create an invoice and collect the payment."
+msgstr "Sobald das Angebot bestätigt ist, wird es zu einem Kundenauftrag.<br> Sie können eine Rechnung erstellen und die Zahlung einziehen."
+
+#. module: rental_base
+#: model:ir.ui.menu,name:rental_base.menu_orders
+msgid "Orders"
+msgstr "Aufträge"
+
+#. module: rental_base
+#: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_sale_rental_pricelist
+msgid "Price Extension"
+msgstr "Mietpreise"
+
+#. module: rental_base
+#: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_rental_product_instance
+msgid "Product Instance"
+msgstr "Produktinstanz"
+
+#. module: rental_base
+#: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_rental_product_pack
+msgid "Product Pack"
+msgstr "Produktverbund"
+
+#. module: rental_base
+#: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_rental_product_set
+msgid "Product Set"
+msgstr "Produktset"
+
+#. module: rental_base
+#: model:ir.ui.menu,name:rental_base.menu_product_tco
+msgid "Product TCO"
+msgstr "Total Costs of Ownership"
+
+#. module: rental_base
+#: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_rental_product_variant
+msgid "Product Variant"
+msgstr "Produktvarianten"
+
+#. module: rental_base
+#: model:ir.ui.menu,name:rental_base.menu_purchase_orders
+msgid "Purchase Orders"
+msgstr "Bestellungen"
+
+#. module: rental_base
+#: model_terms:ir.ui.view,arch_db:rental_base.res_config_settings_view_form
+msgid "Rental"
+msgstr "Vermietung"
+
+#. module: rental_base
+#: model:sale.order.type,name:rental_base.rental_sale_type
+msgid "Rental Order"
+msgstr "Mietauftrag"
+
+#. module: rental_base
+#: model:ir.actions.act_window,name:rental_base.action_rental_orders
+#: model:ir.ui.menu,name:rental_base.menu_rental_orders
+msgid "Rental Orders"
+msgstr "Mietaufträge"
+
+#. module: rental_base
+#: model:ir.ui.menu,name:rental_base.menu_rental_positions
+msgid "Rental Positions"
+msgstr "Mietpositionen"
+
+#. module: rental_base
+#: model:ir.ui.menu,name:rental_base.menu_rental_root
+msgid "Rentals"
+msgstr "Vermietungen"
+
+#. module: rental_base
+#: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_rental_repair
+msgid "Repair Order"
+msgstr "Reparaturauftrag"
+
+#. module: rental_base
+#: model:ir.ui.menu,name:rental_base.menu_repair_orders
+msgid "Repair Orders"
+msgstr "Reparaturaufträge"
+
+#. module: rental_base
+#: model:ir.ui.menu,name:rental_base.menu_reporting
+msgid "Reporting"
+msgstr "Berichtswesen"
+
+#. module: rental_base
+#: model:ir.ui.menu,name:rental_base.menu_sale_orders
+msgid "Sale Orders"
+msgstr "Verkaufsaufträge"
+
+#. module: rental_base
+#: model:ir.ui.menu,name:rental_base.menu_service
+msgid "Service"
+msgstr ""
+
+#. module: rental_base
+#: model:ir.model.fields,help:rental_base.field_res_config_settings__module_sale_rental_pricelist
+msgid "Set Rental Price with different Unit of Measure."
+msgstr "Wenn der Haken gesetzt ist, können Produkte in Stunden, Tagen oder Monaten vermietet werden."
+
+#. module: rental_base
+#: model:ir.actions.act_window,name:rental_base.action_rental_configuration
+#: model:ir.ui.menu,name:rental_base.menu_settings
+msgid "Settings"
+msgstr "Einstellungen"
+
+#. module: rental_base
+#: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_sale_rental_timeline
+msgid "Timelines"
+msgstr "Zeitachse"
+
+#. module: rental_base
+#: model_terms:ir.ui.view,arch_db:rental_base.res_config_settings_view_form
+msgid "Use Contract to create invoice periodically"
+msgstr "Verträge für periodische Abrechnung verwenden"
+
+#. module: rental_base
+#: model:ir.ui.menu,name:rental_base.menu_vendor_invoices
+msgid "Vendor Invoices"
+msgstr "Eingangsrechnungen"
+
+#. module: rental_base
+#: model:ir.ui.menu,name:rental_base.menu_vendors
+msgid "Vendors"
+msgstr "Lieferanten"
+
+#. module: rental_base
+#: model_terms:ir.ui.view,arch_db:rental_base.res_config_settings_view_form
+msgid "View Timeline of products"
+msgstr "Zeitachse für Disposition von Produkten verwenden"
