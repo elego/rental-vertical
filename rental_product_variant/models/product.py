@@ -17,7 +17,7 @@ class ProductProduct(models.Model):
     further_ref = fields.Char("Further Reference")
     qr_code = fields.Char('QR-Code')
     manu_year = fields.Char('Year of Manufacture')
-    manu_id = fields.Many2one('product.manufacturer', ' Manufacturer') #Marke
+    manu_id = fields.Many2one('product.manufacturer', 'Manufacturer') #Marke
     manu_type_id = fields.Many2one('product.manufacturer.type', 'Type', ondelete='set null') #Marke Typ
     fleet_type_id = fields.Many2one('fleet.type', 'Fleet Type', ondelete='set null') #Flottentyp
 
