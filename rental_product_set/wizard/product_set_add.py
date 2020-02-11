@@ -27,7 +27,7 @@ class ProductSetAdd(models.TransientModel):
         for rec in self:
             if rec.start_date and rec.end_date and rec.end_date < rec.start_date:
                 raise ValidationError(
-                    _('The ending date cannot be earlier than the starting date.'))
+                    _('The end date cannot be earlier than the start date.'))
 
     @api.multi
     def add_set(self):
@@ -85,9 +85,10 @@ class ProductSetAdd(models.TransientModel):
                         if rent_product.uom_id.id in uom_list:
                             time_uom.append(rent_product.uom_id.id)
                 else:
-                    raise ValidationError(_(
-                        "From Product Set %s : %s must be 'Can be Rented' OR/AND its service products are not avaialble")
-                        % (self.product_set_id.name,set_line.product_id.name))
+                    raise ValidationError(
+                        _("From Product set %s : %s must be marked 'Can be Rented' and "
+                          "its service products must be available.")
+                        % (self.product_set_id.name, set_line.product_id.name))
             if time_uom:
                 time_uom = list(set(time_uom))
                 self.uom_id = time_uom[0]
