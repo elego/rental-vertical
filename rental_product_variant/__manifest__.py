@@ -6,7 +6,7 @@
 '''Model Product is extended with rental special fields.''',
     'version': '12.0.1.0.0',
     'category': 'product',
-    'author': 'Elego Software Solutions Gmbh',
+    'author': 'Elego Software Solutions GmbH',
     'depends': [
         'rental_base',
     ],

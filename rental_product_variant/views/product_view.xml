@@ -67,7 +67,7 @@
                 <xpath expr="//div[field[@name='weight']]" position="after">
                     <label for="dimension"/>
                     <div class="o_row">
-                        <field name="dimension" placeholder="e.g. 10mx10mx10m"/>
+                        <field name="dimension" placeholder="e.g. 10m x 10 m x 10 m"/>
                     </div>
                 </xpath>
                 <xpath expr="//field[@name='description']/.." position="replace"/>
