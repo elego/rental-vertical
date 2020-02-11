@@ -1,0 +1,48 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* rental_quality_control
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-11 12:39+0000\n"
+"PO-Revision-Date: 2020-02-11 12:39+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: rental_quality_control
+#: model:ir.actions.act_window,name:rental_quality_control.action_open_product_qc_inspection
+#: model_terms:ir.ui.view,arch_db:rental_quality_control.product_normal_form_view_rental
+msgid "Inspections"
+msgstr "Inspektionen"
+
+#. module: rental_quality_control
+#: model:ir.model.fields,field_description:rental_quality_control.field_product_product__inspections_count
+msgid "Inspections Count"
+msgstr "Anzahl der Inspektionen"
+
+#. module: rental_quality_control
+#: model:ir.model.fields,help:rental_quality_control.field_qc_inspection_line__reason
+msgid "Please enter here the reason why it is treated as failure."
+msgstr "In dieses Feld kann der Grund für das Fehlschlagen eingetragen werden."
+
+#. module: rental_quality_control
+#: model:ir.model,name:rental_quality_control.model_product_product
+msgid "Product"
+msgstr "Produkt"
+
+#. module: rental_quality_control
+#: model:ir.model,name:rental_quality_control.model_qc_inspection_line
+msgid "Quality control inspection line"
+msgstr "Qualitätskontroll-Prüfposition"
+
+#. module: rental_quality_control
+#: model:ir.model.fields,field_description:rental_quality_control.field_qc_inspection_line__reason
+msgid "Reason for failure"
+msgstr "Begründung"
+
