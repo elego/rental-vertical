@@ -19,7 +19,7 @@
                         type="object"
                         class="oe_stat_button"
                         icon="fa-ticket">
-                        <field string="Tasks" name="task_count" widget="statinfo"/>
+                        <field string="Tickets" name="task_count" widget="statinfo"/>
                     </button>
                     <button class="oe_stat_button" name="action_view_repair_history"
                         type="object" icon="fa-wrench">

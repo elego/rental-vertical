@@ -19,11 +19,15 @@ class ProductProduct(models.Model):
     def action_view_project_task(self):
         self.ensure_one()
         res_model = "project.task"
-        record_ids = self.env[res_model].search([('product_id', '=', self.id)]).ids
+        helpdesk = self.env.ref('rental_repair.project_project_helpdesk')
+        record_ids = self.env[res_model].search([
+            ('product_id', '=', self.id),
+            ('project_id', '=', helpdesk.id)]).ids
         tree_view_id = self.env.ref("rental_repair.view_project_task_tree").id
         form_view_id = self.env.ref("project.view_task_form2").id
         action_context = {
             'default_product_id': self.id,
+            'default_project_id': helpdesk.id,
         }
         return {
             'type': 'ir.actions.act_window',
@@ -54,5 +58,3 @@ class ProductProduct(models.Model):
             'res_model': 'repair.line',
             'domain': "[('id','in',[" + ','.join(map(str, record_ids)) + "])]",
             }
-
-
