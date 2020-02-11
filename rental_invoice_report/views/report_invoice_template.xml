@@ -31,31 +31,35 @@
                 <div class="invoice_details">
                     <table>
                         <tr>
-                            <td><span class="inv">RECHNUNGSDATUM</span></td>
-                            <td><span t-if="doc.date_invoice" t-field="doc.date_due" t-options='{"format": "dd.MM.yyyy"}'/></td>
+                            <td><span class="inv">INVOICE DATE</span></td>
+                            <td>
+                                <span t-if="doc.date_invoice"
+                                      t-field="doc.date_due" t-options='{"format": "dd.MM.yyyy"}'/>
+                            </td>
                         </tr>
                         <tr>
-                            <td><span class="inv">LEISTUNGSZEITRAUM</span></td>
-                            <td><span t-if="doc.date_start" t-field="doc.date_start" t-options='{"format": "dd.MM.yyyy"}'/> - <span t-if="doc.date_end" t-field="doc.date_end" t-options='{"format": "dd.MM.yyyy"}'/></td>
+                            <td><span class="inv">SERVICE PERIOD</span></td>
+                            <td>
+                                <span t-if="doc.date_start"
+                                      t-field="doc.date_start" t-options='{"format": "dd.MM.yyyy"}'/> -
+                                <span t-if="doc.date_end"
+                                      t-field="doc.date_end" t-options='{"format": "dd.MM.yyyy"}'/>
+                            </td>
                         </tr>
                         <tr>
-                            <td><span class="inv">REFERENZ</span></td>
-                            <!-- <td><span> 004 / 76001138</span></td> -->
+                            <td><span class="inv">REFERENCE</span></td>
                             <td><span t-if="doc.reference" t-field="doc.reference"/></td>
                         </tr>
                         <tr>
-                            <td><span class="inv">ANSPRECHPARTNER/IN</span></td>
-                            <!-- <td><span>Ilona Luppertz</span></td> -->
+                            <td><span class="inv">CONTACT PERSON</span></td>
                             <td><span t-if="doc.user_id" t-field="doc.user_id.name"/></td>
                         </tr>
                         <tr>
-                            <td><span class="inv">TELEFON</span></td>
-                            <!-- <td><span>+49-7032-309020</span></td> -->
+                            <td><span class="inv">TELEPHONE</span></td>
                             <td><span t-if="doc.user_id" t-field="doc.user_id.partner_id.phone"/></td>
                         </tr>
                         <tr>
                             <td><span class="inv">EMAIL</span></td>
-                            <!-- <td><span>accounting@rockbird.eu</span></td> -->
                             <td><span t-if="doc.user_id" t-field="doc.user_id.partner_id.email"/></td>
                         </tr>
                     </table>
@@ -67,11 +71,11 @@
                         <!-- product table -->
                         <table id="product_table" class="product_table">
                             <thead>
-                                <th>BESCHREIBUNG</th>
-                                <th>MENGE, ME</th>
-                                <th>EINZELPREIS</th>
-                                <th t-if="display_discount">RABATT</th>
-                                <th>GESAMTPREIS</th>
+                                <th>DESCRIPTION</th>
+                                <th>QUANTITY, UOM</th>
+                                <th>UNIT PRICE</th>
+                                <th t-if="display_discount">DISCOUNT</th>
+                                <th>TOTAL</th>
                             </thead>
                             <tbody>
                                 <t t-set="section" t-value="False"/>
@@ -83,8 +87,10 @@
                                     </t>
                                 </t>
                                 <t t-foreach="doc.invoice_line_ids" t-as="line">
-                                    <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
-                                    <t t-set="current_subtotal" t-value="current_subtotal + line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
+                                    <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal"
+                                       groups="account.group_show_line_subtotals_tax_excluded"/>
+                                    <t t-set="current_subtotal" t-value="current_subtotal + line.price_total"
+                                       groups="account.group_show_line_subtotals_tax_included"/>
                                     <t t-if="line['display_type'] == 'line_section'">
                                         <t t-if="section or not section and line.sequence > 1">
                                             <tr>
@@ -111,7 +117,9 @@
                                             <tr>
                                                 <td class="text-left">
                                                     <t t-if="line.product_id.description_sale">
-                                                        <b>[ <span t-if="line.product_id.default_code" t-field="line.product_id.default_code"/> ] <span t-field="line.product_id.name"/></b><br/>
+                                                        <b>[ <span t-if="line.product_id.default_code"
+                                                                   t-field="line.product_id.default_code"/> ]
+                                                            <span t-field="line.product_id.name"/></b><br/>
                                                         <span t-field="line.product_id.description_sale"/>
                                                     </t>
                                                     <t t-else="">
@@ -148,7 +156,7 @@
                         <table class="total_net" id="total_net">
                             <tr>
                                 <td></td>
-                                <td>SUMME NETTO</td>
+                                <td>NET TOTAL</td>
                                 <td><span t-field="doc.amount_untaxed"
                                           t-options='{
                                             "widget": "monetary",
@@ -174,7 +182,7 @@
                                 </tr>
                                 <tr>
                                     <td></td>
-                                    <td>ZU ZAHLEN</td>
+                                    <td>TO PAY</td>
                                     <td><b><span t-field="doc.amount_total"
                                                  t-options='{
                                                     "widget": "monetary",
@@ -187,12 +195,16 @@
                         <!-- Payment note -->
                         <div class="payment_info">
                             <p t-if="doc.state not in ['draft','sent']">
-                                Wir bitten Sie, den ausstehenden Rechnungsbetrag unter Angabe der Rechnungsnummer 
-                                <span t-field="doc.number"/> mit Fälligkeit zum <span t-if="doc.date_due" t-field="doc.date_due" t-options='{"format": "dd.MM.yyyy"}'/>
-                                zu überweisen: <span t-if="doc.partner_bank_id.bank_id" t-field="doc.partner_bank_id.bank_id.name"/> | IBAN: <span t-field="doc.partner_bank_id.acc_number" /> | BIC: <span t-if="doc.partner_bank_id.bank_id" t-field="doc.partner_bank_id.bank_id.bic"/>
+                                Please pay the outstanding invoice total by referencing the invoice number
+                                <span t-field="doc.number"/> due to
+                                <span t-if="doc.date_due" t-field="doc.date_due" t-options='{"format": "dd.MM.yyyy"}'/>:
+                                <span t-if="doc.partner_bank_id.bank_id"
+                                      t-field="doc.partner_bank_id.bank_id.name"/> | IBAN:
+                                <span t-field="doc.partner_bank_id.acc_number" /> | BIC:
+                                <span t-if="doc.partner_bank_id.bank_id" t-field="doc.partner_bank_id.bank_id.bic"/>
                             </p>
                             <p class="thank_msg">
-                                Danke für die gute Zusammenarbeit, bei Fragen sind wir jederzeit und gerne für Sie da. Ihr ROCKBIRD Team - <span>ROCKBIRD.EU</span>
+                                Thank you for your great cooperation. If you have any questions, we will be happy to help. Your ROCKBIRD TEAM - <span>ROCKBIRD.EU</span>
                             </p>
                         </div>
                     </div>
@@ -206,7 +218,8 @@
         <t t-call="web.html_container">
             <t t-set="is_invoice" t-value="True"/>
             <t t-foreach="docs" t-as="doc">
-                <t t-set="lang" t-value="doc.user_id.sudo().lang if doc.type in ('in_invoice', 'in_refund') else doc.partner_id.lang"/>
+                <t t-set="lang"
+                   t-value="doc.user_id.sudo().lang if doc.type in ('in_invoice', 'in_refund') else doc.partner_id.lang"/>
                 <t t-call="rental_invoice_report.report_invoice_document" t-lang="lang"/>
             </t>
         </t>

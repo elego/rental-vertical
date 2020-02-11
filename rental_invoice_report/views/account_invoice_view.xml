@@ -7,8 +7,11 @@
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='payment_term_id']" position="after">
-                    <field name="date_start"/>
-                    <field name="date_end" />
+                    <label for="" string="Service Period"/>
+                    <div name="service_period">
+                        <field class="oe_inline" name="date_start" nolabel="1"/> to
+                        <field class="oe_inline" name="date_end" nolabel="1"/>
+                    </div>
                 </xpath>
                 <xpath expr="//field[@name='user_id']" position="after">
                     <field name="branch_name"/>
