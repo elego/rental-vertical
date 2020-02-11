@@ -2,6 +2,12 @@
 <odoo>
     <data>
 
+        <record id="action_view_repair_order" model="ir.actions.act_window">
+            <field name="context">{'search_default_product_id': [active_id], 'default_product_id': active_id}</field>
+            <field name="name">Repairs</field>
+            <field name="res_model">repair.order</field>
+        </record>
+
         <!-- ProductProduct -->
         <record id="product_normal_form_view" model="ir.ui.view">
             <field name="name">view.product.product.form</field>
@@ -14,6 +20,19 @@
                         class="oe_stat_button"
                         icon="fa-ticket">
                         <field string="Tasks" name="task_count" widget="statinfo"/>
+                    </button>
+                    <button class="oe_stat_button" name="action_view_repair_history"
+                        type="object" icon="fa-wrench">
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_text">Components</span>
+                        </div>
+                    </button>
+                    <button class="oe_stat_button"
+                        name="%(rental_repair.action_view_repair_order)d"
+                        type="action" icon="fa-gavel">
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_text">Repairs</span>
+                        </div>
                     </button>
                 </button>
             </field>
