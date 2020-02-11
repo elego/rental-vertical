@@ -5,8 +5,7 @@
     'summary': '''New text field to define the reason for quality failure.''',
     'version': '12.0.1.0.0',
     'category': 'sale',
-    'author': 'Elego Software Solutions Gmbh',
-    'website': 'https://gitlab.elegosoft.com/swrent/rental-vertical',
+    'author': 'Elego Software Solutions GmbH',
     'depends': [
         'sale_rental',
         'quality_control_stock',
