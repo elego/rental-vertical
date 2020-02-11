@@ -5,7 +5,7 @@
     'summary': 'Extension of module contract.',
     'version': '12.0.1.0.0',
     'category': 'rental',
-    'author': 'Elego Software Solutions Gmbh',
+    'author': 'Elego Software Solutions GmbH',
     'depends': [
         'contract',
         'product_contract',
