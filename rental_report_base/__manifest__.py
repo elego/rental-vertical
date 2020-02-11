@@ -6,6 +6,9 @@
     'summary': 'Rental Report Base',
     'author': 'Elego Software Solutions Gmbh',
     'category': 'Reporting',
+    'description': """
+        This module provides a customized external layout.
+        """,
     'depends': [
         'web',
         'account',

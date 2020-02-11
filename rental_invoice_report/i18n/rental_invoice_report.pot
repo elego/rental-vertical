@@ -1,0 +1,168 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* rental_invoice_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-11 08:59+0000\n"
+"PO-Revision-Date: 2020-02-11 08:59+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: rental_invoice_report
+#: model_terms:ir.ui.view,arch_db:rental_invoice_report.report_invoice_document
+msgid "&amp;nbsp;"
+msgstr ""
+
+#. module: rental_invoice_report
+#: model_terms:ir.ui.view,arch_db:rental_invoice_report.report_invoice_document
+msgid "&amp;nbsp;<span>on</span>"
+msgstr ""
+
+#. module: rental_invoice_report
+#: model_terms:ir.ui.view,arch_db:rental_invoice_report.report_invoice_document
+msgid "<span class=\"inv\">CONTACT PERSON</span>"
+msgstr ""
+
+#. module: rental_invoice_report
+#: model_terms:ir.ui.view,arch_db:rental_invoice_report.report_invoice_document
+msgid "<span class=\"inv\">EMAIL</span>"
+msgstr ""
+
+#. module: rental_invoice_report
+#: model_terms:ir.ui.view,arch_db:rental_invoice_report.report_invoice_document
+msgid "<span class=\"inv\">INVOICE DATE</span>"
+msgstr ""
+
+#. module: rental_invoice_report
+#: model_terms:ir.ui.view,arch_db:rental_invoice_report.report_invoice_document
+msgid "<span class=\"inv\">REFERENCE</span>"
+msgstr ""
+
+#. module: rental_invoice_report
+#: model_terms:ir.ui.view,arch_db:rental_invoice_report.report_invoice_document
+msgid "<span class=\"inv\">SERVICE PERIOD</span>"
+msgstr ""
+
+#. module: rental_invoice_report
+#: model_terms:ir.ui.view,arch_db:rental_invoice_report.report_invoice_document
+msgid "<span class=\"inv\">TELEPHONE</span>"
+msgstr ""
+
+#. module: rental_invoice_report
+#: model_terms:ir.ui.view,arch_db:rental_invoice_report.report_invoice_document
+msgid "DESCRIPTION"
+msgstr ""
+
+#. module: rental_invoice_report
+#: model_terms:ir.ui.view,arch_db:rental_invoice_report.report_invoice_document
+msgid "DISCOUNT"
+msgstr ""
+
+#. module: rental_invoice_report
+#: model:ir.model.fields,field_description:rental_invoice_report.field_account_invoice__date_end
+msgid "Date End"
+msgstr ""
+
+#. module: rental_invoice_report
+#: model:ir.model.fields,field_description:rental_invoice_report.field_account_invoice__date_start
+msgid "Date Start"
+msgstr ""
+
+#. module: rental_invoice_report
+#: model:ir.model,name:rental_invoice_report.model_account_invoice
+msgid "Invoice"
+msgstr ""
+
+#. module: rental_invoice_report
+#: model_terms:ir.ui.view,arch_db:rental_invoice_report.report_invoice_document
+msgid "NET TOTAL"
+msgstr ""
+
+#. module: rental_invoice_report
+#: model:ir.model.fields,field_description:rental_invoice_report.field_account_invoice__branch_name
+#: model:ir.model.fields,field_description:rental_invoice_report.field_sale_order__branch_name
+msgid "Name of Branch"
+msgstr ""
+
+#. module: rental_invoice_report
+#: model:ir.model.fields,help:rental_invoice_report.field_account_invoice__branch_name
+#: model:ir.model.fields,help:rental_invoice_report.field_sale_order__branch_name
+msgid "Please enter here the name of the company branch. It will be printed on report."
+msgstr ""
+
+#. module: rental_invoice_report
+#: model_terms:ir.ui.view,arch_db:rental_invoice_report.report_invoice_document
+msgid "Please pay the outstanding invoice total by referencing the invoice number"
+msgstr ""
+
+#. module: rental_invoice_report
+#: model:ir.model.fields,help:rental_invoice_report.field_account_invoice__date_end
+msgid "Please set here the end date of the service or delivery period. It will be printed on report, together with the given start date."
+msgstr ""
+
+#. module: rental_invoice_report
+#: model:ir.model.fields,help:rental_invoice_report.field_account_invoice__date_start
+msgid "Please set here the start date of the service or delivery period. It will be printed on report, together with the given end date."
+msgstr ""
+
+#. module: rental_invoice_report
+#: model_terms:ir.ui.view,arch_db:rental_invoice_report.report_invoice_document
+msgid "QUANTITY, UOM"
+msgstr ""
+
+#. module: rental_invoice_report
+#: model:ir.model,name:rental_invoice_report.model_sale_order
+msgid "Sale Order"
+msgstr ""
+
+#. module: rental_invoice_report
+#: model_terms:ir.ui.view,arch_db:rental_invoice_report.invoice_form_rent
+msgid "Service Period"
+msgstr ""
+
+#. module: rental_invoice_report
+#: model_terms:ir.ui.view,arch_db:rental_invoice_report.report_invoice_document
+msgid "TO PAY"
+msgstr ""
+
+#. module: rental_invoice_report
+#: model_terms:ir.ui.view,arch_db:rental_invoice_report.report_invoice_document
+msgid "TOTAL"
+msgstr ""
+
+#. module: rental_invoice_report
+#: model_terms:ir.ui.view,arch_db:rental_invoice_report.report_invoice_document
+msgid "Thank you for your great cooperation. If you have any questions, we will be happy to help. Your ROCKBIRD TEAM - <span>ROCKBIRD.EU</span>"
+msgstr ""
+
+#. module: rental_invoice_report
+#: model_terms:ir.ui.view,arch_db:rental_invoice_report.report_invoice_document
+msgid "UNIT PRICE"
+msgstr ""
+
+#. module: rental_invoice_report
+#: model_terms:ir.ui.view,arch_db:rental_invoice_report.report_invoice_document
+msgid "due to"
+msgstr ""
+
+#. module: rental_invoice_report
+#: model_terms:ir.ui.view,arch_db:rental_invoice_report.invoice_form_rent
+msgid "to"
+msgstr ""
+
+#. module: rental_invoice_report
+#: model_terms:ir.ui.view,arch_db:rental_invoice_report.report_invoice_document
+msgid "| BIC:"
+msgstr ""
+
+#. module: rental_invoice_report
+#: model_terms:ir.ui.view,arch_db:rental_invoice_report.report_invoice_document
+msgid "| IBAN:"
+msgstr ""

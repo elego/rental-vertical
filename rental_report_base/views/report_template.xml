@@ -32,10 +32,10 @@
                         />
                 </div>
                 <t t-if="is_invoice">
-                    <!-- TODO mamange Draft and Refund if Invoice -->
+                    <!-- TODO manage Draft and Refund if Invoice -->
                     <div class="contactdata" id="contactdata">
                         <div class="contactdata_mail">
-                            <span>MIETRECHNUNG</span>
+                            <span>RENTAL INVOICE</span>
                             <span t-field="doc.number"/>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                           t-esc="company.partner_id.country_id.name.capitalize()"/>
                     <span t-if="not doc.branch_name"></span>
                     <t t-if="doc.branch_name">
-                        <span> Niederlassung <t t-esc="doc.branch_name"/></span>
+                        <span> Branch <t t-esc="doc.branch_name"/></span>
                     </t>
                 </div>
                 <t t-raw="0"/>
@@ -67,28 +67,27 @@
                     <div class="company_address">
                         <span t-esc="company.partner_id.name[:20]"/>
                         <span t-esc="company.partner_id.name[20:]"/>
-                        <span> | SITZ </span>
+                        <span> | COMPANY DOMICILE </span>
                         <span t-esc="company.partner_id.street"/>,
                         <span t-esc="company.partner_id.zip"/>
                         <span t-esc="company.partner_id.city"/>
-                        <span> | NIEDERLASSUNG </span>
+                        <span> | BRANCH </span>
                         <span> Haselheckerstraße 9, 67667 Enkenbach-Alsenborn | </span>
-                        <t t-if="o.env.context.get('lang') != 'de_DE'">
-                           <span t-esc="company.partner_id.country_id.name.upper()"/>
-                        </t>
+                        <span t-esc="company.partner_id.country_id.name.upper()"/>
+
                     </div><br/>
                     <div class="company_contact">
-                        TELEFON <span t-esc="company.partner_id.phone"/>
+                        TELEPHONE <span t-esc="company.partner_id.phone"/>
                         | EMAIL <span t-esc="company.partner_id.email"/>
                         | WEB <span t-esc="company.partner_id.website.split('://')[1]"/>
-                        | UST-ID <span t-esc="company.partner_id.vat"/>
+                        | VAT <span t-esc="company.partner_id.vat"/>
                     </div><br/>
                     <div class="company_ceo">
-                        HANDELSREGISTER AG <span t-if="company.company_registry" t-esc="company.company_registry"/>
-                        GESCHÄFTSFÜHRUNG <span>Christian Kleiner, Andreas Lampprecht</span>
+                        COMMERCIAL REGISTRY <span t-if="company.company_registry" t-esc="company.company_registry"/>
+                        | CEO <span>Christian Kleiner, Andreas Lampprecht</span>
                     </div>
                     <div class="page_number">
-                        <p>SEITE <span class="page"/> / <span class="topage"/></p>
+                        <p>PAGE <span class="page"/> / <span class="topage"/></p>
                     </div>
                 </div>
             </div>

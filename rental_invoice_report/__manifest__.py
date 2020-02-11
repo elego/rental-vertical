@@ -4,8 +4,12 @@
     'name': 'Rental Report Invoice',
     'version': '12.0.1.0.0',
     'summary': 'Rental Report Invoice',
-    'author': 'Elego Software Solutions Gmbh',
+    'author': 'Elego Software Solutions GmbH',
     'category': 'Reporting',
+    'description': """
+        This module provides a customized invoice report.
+        It also includes the possibility to set a service / delivery period and the company's branch name.
+        """,
     'depends': [
         'account',
         'sale',
