@@ -1,0 +1,121 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* rental_product_instance
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-11 11:53+0000\n"
+"PO-Revision-Date: 2020-02-11 11:53+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: rental_product_instance
+#: selection:product.product,instance_state:0
+msgid "Available"
+msgstr ""
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_current_condition
+msgid "Current Hours / Kilometers"
+msgstr ""
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_current_location_id
+msgid "Current Location"
+msgstr ""
+
+#. module: rental_product_instance
+#: selection:product.product,instance_state:0
+msgid "Delivery"
+msgstr ""
+
+#. module: rental_product_instance
+#: model:ir.model,name:rental_product_instance.model_stock_production_lot
+msgid "Lot/Serial"
+msgstr ""
+
+#. module: rental_product_instance
+#: selection:product.product,instance_state:0
+msgid "Maintenance"
+msgstr ""
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_next_service_date
+msgid "Next Service"
+msgstr ""
+
+#. module: rental_product_instance
+#: model:ir.model,name:rental_product_instance.model_product_product
+msgid "Product"
+msgstr ""
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_template__product_instance
+msgid "Product Instance"
+msgstr ""
+
+#. module: rental_product_instance
+#: model:ir.model,name:rental_product_instance.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: rental_product_instance
+#: model:ir.model,name:rental_product_instance.model_product_timeline
+msgid "Product Timeline"
+msgstr ""
+
+#. module: rental_product_instance
+#: selection:product.product,instance_state:0
+msgid "Rental"
+msgstr ""
+
+#. module: rental_product_instance
+#: selection:product.product,instance_state:0
+msgid "Repair"
+msgstr ""
+
+#. module: rental_product_instance
+#: selection:product.product,instance_state:0
+msgid "Reserved"
+msgstr ""
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_serial_number_id
+msgid "Serial Number"
+msgstr ""
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_state
+msgid "State"
+msgstr ""
+
+#. module: rental_product_instance
+#: model:ir.model,name:rental_product_instance.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: rental_product_instance
+#: model:ir.model.fields,help:rental_product_instance.field_product_product__product_instance
+#: model:ir.model.fields,help:rental_product_instance.field_product_template__product_instance
+msgid "This product is a product instance, which can only have one unit in stock."
+msgstr ""
+
+#. module: rental_product_instance
+#: code:addons/rental_product_instance/models/stock.py:21
+#, python-format
+msgid "You can not have 2 serial numbers for a product instance."
+msgstr ""
+
+#. module: rental_product_instance
+#: code:addons/rental_product_instance/models/product_timeline.py:23
+#, python-format
+msgid "You can not have 2 timelines that overlaps on the same day."
+msgstr ""
+
