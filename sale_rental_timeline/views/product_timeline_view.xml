@@ -13,6 +13,7 @@
                           zoomKey="ctrlKey"
                           tooltip='{"followMouse": true}'
                           stack="False"
+                          event_open_popup="True"
                           colors="#f0ff00:type == 'reserved'; #33ffec:type == 'rental'; #ffce00:type=='maintenance'; #ff5a00:type == 'repair'; #ff0000:type=='delivery';">
                     <field name="sale_order_id" />
                     <field name="termin" />
@@ -30,7 +31,21 @@
                     <field name="warehouse_id" />
                     <field name="action_id" />
                     <field name="menu_id" />
+                    <field name="res_model" />
+                    <field name="res_id" />
                     <templates>
+                        <div t-name="tooltip-item-group">
+                            <table border="1">
+                                <tr t-if="record.product_id">
+                                    <td>Product:</td>
+                                    <td t-esc="record.product_id" />
+                                </tr>
+                                <tr t-if="record.product_id">
+                                    <td>Product category:</td>
+                                    <td t-esc="record.product_categ_id" />
+                                </tr>
+                            </table>
+                        </div>
                         <div t-name="timeline-item">
                             <div t-attf-class="tooltip_content" style="display: none">
                                 <table border="1">
@@ -57,7 +72,7 @@
                                         <td>Total days:</td>
                                         <td t-esc="record.number_of_days" />
                                     </tr>
-                                    <tr t-if="record.rental_period">
+                                    <tr t-if="record.rental_period and (record.type == 'reserved' or record.type == 'rental')">
                                         <td>Rental period:</td>
                                         <td t-esc="record.rental_period" />
                                     </tr>
@@ -86,11 +101,9 @@
                             <t t-if="record.redline">
                                 <hr color="#ff0000" />
                             </t>
-                            <a t-attf-href="#id=#{record.sale_order_id[0]}&amp;action=#{record.action_id}&amp;model=sale.order&amp;view_type=form&amp;menu_id=#{record.menu_id}">
-                                <i t-if="record.termin" class="fa fa-fw o_button_icon fa-bell" />
-                                <i t-if="record.maintenance" class="fa fa-fw o_button_icon fa-wrench" />
-                                <t t-raw="record.display_name" />
-                            </a>
+                            <i t-if="record.termin" class="fa fa-fw o_button_icon fa-bell" />
+                            <i t-if="record.maintenance" class="fa fa-fw o_button_icon fa-wrench" />
+                            <t t-raw="record.display_name" />
                         </div>
                     </templates>
                 </timeline>
@@ -155,8 +168,8 @@
         <record id="action_product_timeline" model="ir.actions.act_window">
             <field name="name">Timeline</field>
             <field name="res_model">product.timeline</field>
-            <field name="view_type">tree</field>
-            <field name="view_mode">timeline,tree,form</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">timeline,form</field>
             <field name="search_view_id" ref="view_product_timeline_search" />
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">

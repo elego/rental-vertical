@@ -3,6 +3,10 @@
     <template id="assets_backend" name="sale rental timeline assets" inherit_id="web.assets_backend">
         <xpath expr="." position="inside">
             <link rel="stylesheet" type="text/scss" href="/sale_rental_timeline/static/src/scss/sale_rental_timeline.scss" />
+
+            <script type="text/javascript" src="/sale_rental_timeline/static/src/js/Popup.js" />
+            <script type="text/javascript" src="/sale_rental_timeline/static/src/js/timeline_renderer.js" />
+            <script type="text/javascript" src="/sale_rental_timeline/static/src/js/timeline_controller.js" />
         </xpath>
     </template>
 </odoo>

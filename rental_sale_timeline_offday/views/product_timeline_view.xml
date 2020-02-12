@@ -8,7 +8,7 @@
             <field name="rental_period" position="after">
                 <field name="offday_number" />
             </field>
-            <tr t-if="record.rental_period" position="after">
+            <tr t-if="record.partner_id[1]" position="before">
                 <tr t-if="record.offday_number">
                     <td>Off days:</td>
                     <td t-esc="record.offday_number" />

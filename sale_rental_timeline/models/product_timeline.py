@@ -41,30 +41,32 @@ class ProductTimeline(models.Model):
     price_subtotal = fields.Monetary(related="sale_order_line_id.price_subtotal", currency_field='currency_id', field_digits= True)
 
     number_of_days = fields.Integer('Total days', related="sale_order_line_id.number_of_days")
-    product_uom_qty = fields.Float('Rental days', related="sale_order_line_id.product_uom_qty")
-    product_uom = fields.Many2one(related="sale_order_line_id.product_uom")
-    rental_period = fields.Char(compute="_compute_rental_period_and_amount")
-    amount = fields.Char(compute="_compute_rental_period_and_amount")
+    rental_period = fields.Char(compute="_compute_fields")
+    amount = fields.Char(compute="_compute_fields")
     warehouse_id = fields.Many2one('stock.warehouse', string='Warehouse')
 
     action_id = fields.Integer('Action')
     menu_id = fields.Integer('Menu')
+    res_model = fields.Char(compute="_compute_fields")
+    res_id = fields.Integer(compute="_compute_fields")
 
     _sql_constraints = [
         ('date_check', "CHECK ((date_start <= date_end))", "The start date must be anterior to the end date."),
     ]
 
     @api.multi
-    def _compute_rental_period_and_amount(self):
+    def _compute_fields(self):
         for line in self:
             line.rental_period = "{product_uom_qty} {product_uom}".format(
-                product_uom_qty=int(line.product_uom_qty),
-                product_uom=line.product_uom.name,
+                product_uom_qty=int(line.sale_order_line_id.product_uom_qty),
+                product_uom=line.sale_order_line_id.product_uom.name,
             )
             line.amount = "{price_subtotal} {currency}".format(
                 price_subtotal=line.price_subtotal,
                 currency=line.currency_id.name,
             )
+            line.res_model = line.sale_order_id._name
+            line.res_id = line.sale_order_id.id
 
 
 #    @api.multi
