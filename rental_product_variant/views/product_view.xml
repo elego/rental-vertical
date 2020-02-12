@@ -9,7 +9,7 @@
             <field name="inherit_id" ref="product.product_category_form_view"/>
             <field name="arch" type="xml">
                 <xpath expr="//sheet" position="inside">
-                    <group string="Product Attribute Extension">
+                    <group name="show_attrs" string="Product Attribute Extension">
                         <field name="show_vehicle_number"/>
                         <field name="show_license_plate"/>
                         <field name="show_init_regist"/>

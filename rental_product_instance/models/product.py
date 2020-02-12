@@ -3,6 +3,16 @@
 from odoo import api, fields, models, _
 
 
+class ProductCategory(models.Model):
+    _inherit = 'product.category'
+
+    show_instance_condition_type = fields.Selection(
+        string="Show Instance Condition Type",
+        selection=[
+            ('hour', 'Hours'),
+            ('km', 'Kilometers')])
+
+
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
@@ -38,7 +48,15 @@ class ProductProduct(models.Model):
             ('repair', 'Repair'),
             ('delivery', 'Delivery'),
         ], compute="_compute_instance_state")
-    instance_current_condition = fields.Char("Current Hours / Kilometers")
+    show_instance_condition_type = fields.Selection(
+        string="Show Instance Condition Type",
+        selection=[
+            ('hour', 'Hours'),
+            ('km', 'Kilometers')],
+        related="categ_id.show_instance_condition_type")
+    instance_condition_hour = fields.Char("Current Hours")
+    instance_condition_km = fields.Char("Current Kilometers")
+    instance_condition_date = fields.Date("Condition Date")
     instance_next_service_date = fields.Date("Next Service")
 
     def _compute_instance_state(self):
