@@ -12,8 +12,8 @@ odoo.define('sale_rental_timeline.TimelineController', function (require) {
             this.renderer = event.data.renderer;
             var item = event.data.item;
             var title = item.evt.__name;
-            var res_model = item.evt.res_model;
-            var res_id = item.evt.res_id;
+            var res_model = item.evt.order_res_model;
+            var res_id = item.evt.order_res_id;
             new dialogs.FormViewDialog(this, {
                 res_model: res_model,
                 res_id: parseInt(res_id, 10).toString() === res_id ? parseInt(res_id, 10) : res_id,

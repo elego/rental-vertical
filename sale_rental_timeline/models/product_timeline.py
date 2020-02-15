@@ -1,6 +1,6 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
-from odoo import fields, models, api, exceptions, _
+from odoo import api, fields, models, exceptions, _
 from odoo.addons import decimal_precision as dp
 
 
@@ -15,40 +15,101 @@ class ProductTimeline(models.Model):
     _name = 'product.timeline'
     _description = 'Product Timeline'
 
-    name = fields.Char('Name')
-    termin = fields.Boolean('Termin')
-    maintenance = fields.Boolean('Maintenance')
-    redline = fields.Boolean('Redline')
-    product_id = fields.Many2one('product.product', 'Product', required=True, ondelete="cascade")
-    product_tmpl_id = fields.Many2one(related="product_id.product_tmpl_id")
-    categ_id = fields.Many2one(related="product_tmpl_id.categ_id")
-    partner_id = fields.Many2one('res.partner', 'Partner', ondelete="set null")
-    partner_shipping_address = fields.Char("Shipping address")
-    type = fields.Selection(string='Type', selection=[
-        ('rental', 'Rental'),
-        ('reserved', 'Reserved'),
-        ('maintenance', 'Maintenance'),
-        ('repair', 'Repair'),
-        ('delivery', 'Delivery'),
-    ])
-    sale_order_line_id = fields.Many2one('sale.order.line', string="Sale Order Line", ondelete="cascade")
-    sale_order_id = fields.Many2one(related="sale_order_line_id.order_id")
+    res_model = fields.Char()
+    res_id = fields.Integer(oldname='sale_order_line_id')
+    order_res_model = fields.Char()
+    order_res_id = fields.Integer()
 
-    date_start = fields.Date('Date Start', required=True)
-    date_end = fields.Date('Date End', required=True)
+    date_start = fields.Date(
+        'Date Start',
+        require=True,
+    )
+    date_end = fields.Date(
+        'Date End',
+        require=True,
+    )
+    product_id = fields.Many2one(
+        'product.product',
+        'Product',
+        ondelete="cascade",
+        required=True,
+    )
 
-    currency_id = fields.Many2one(related="sale_order_line_id.currency_id")
-    price_subtotal = fields.Monetary(related="sale_order_line_id.price_subtotal", currency_field='currency_id', field_digits= True)
+    type = fields.Selection(
+        string='Type',
+        selection=[
+            ('rental', 'Rental'),
+            ('reserved', 'Reserved'),
+            ('maintenance', 'Maintenance'),
+            ('repair', 'Repair'),
+            ('delivery', 'Delivery'),
+        ],
+    )
+    termin = fields.Boolean(
+        'Termin',
+    )
+    maintenance = fields.Boolean(
+        'Maintenance',
+    )
+    redline = fields.Boolean(
+        'Redline',
+    )
 
-    number_of_days = fields.Integer('Total days', related="sale_order_line_id.number_of_days")
-    rental_period = fields.Char(compute="_compute_fields")
-    amount = fields.Char(compute="_compute_fields")
-    warehouse_id = fields.Many2one('stock.warehouse', string='Warehouse')
+    product_tmpl_id = fields.Many2one(
+        related="product_id.product_tmpl_id"
+    )
 
-    action_id = fields.Integer('Action')
-    menu_id = fields.Integer('Menu')
-    res_model = fields.Char(compute="_compute_fields")
-    res_id = fields.Integer(compute="_compute_fields")
+    product_categ_id = fields.Many2one(
+        related="product_id.categ_id",
+    )
+    name = fields.Char(
+        'Name',
+        compute="_compute_fields",
+    )
+    order_name = fields.Char(
+        'Order',
+        compute="_compute_fields",
+    )
+    partner_id = fields.Many2one(
+        'res.partner',
+        'Partner', ondelete="set null",
+        compute="_compute_fields",
+    )
+    partner_shipping_address = fields.Char(
+        "Shipping address",
+        compute="_compute_fields",
+    )
+    currency_id = fields.Many2one(
+        'res.currency',
+        compute="_compute_fields",
+    )
+    price_subtotal = fields.Monetary(
+        currency_field='currency_id',
+        field_digits=True,
+        compute="_compute_fields",
+    )
+    number_of_days = fields.Integer(
+        'Total days',
+        compute="_compute_fields",
+    )
+    rental_period = fields.Char(
+        compute="_compute_fields",
+    )
+    amount = fields.Char(
+        compute="_compute_fields",
+    )
+    warehouse_id = fields.Many2one(
+        'stock.warehouse',
+        string='Warehouse',
+        compute="_compute_fields",
+    )
+
+    action_id = fields.Integer(
+        compute="_compute_fields",
+    )
+    menu_id = fields.Integer(
+        compute="_compute_fields",
+    )
 
     _sql_constraints = [
         ('date_check', "CHECK ((date_start <= date_end))", "The start date must be anterior to the end date."),
@@ -57,16 +118,30 @@ class ProductTimeline(models.Model):
     @api.multi
     def _compute_fields(self):
         for line in self:
+            obj = self.env[line.res_model].browse(line.res_id)
+            order_obj = self.env[line.order_res_model].browse(line.order_res_id)
+
+            line.name = _('Rental: %s') % order_obj.partner_id.name
+            line.order_name = order_obj.name
+            line.partner_id = order_obj.partner_id.id
+            line.partner_shipping_address = order_obj.partner_shipping_id._display_address()
+
+            line.warehouse_id = order_obj.warehouse_id.id
+            line.currency_id = obj.currency_id.id
+            line.price_subtotal = obj.price_subtotal
+            line.number_of_days = obj.number_of_days
             line.rental_period = "{product_uom_qty} {product_uom}".format(
-                product_uom_qty=int(line.sale_order_line_id.product_uom_qty),
-                product_uom=line.sale_order_line_id.product_uom.name,
+                product_uom_qty=int(obj.product_uom_qty),
+                product_uom=obj.product_uom.name,
             )
             line.amount = "{price_subtotal} {currency}".format(
                 price_subtotal=line.price_subtotal,
                 currency=line.currency_id.name,
             )
-            line.res_model = line.sale_order_id._name
-            line.res_id = line.sale_order_id.id
+
+            line.action_id = self.env.ref('rental_base.action_rental_orders').id
+            line.menu_id = self.env.ref('rental_base.menu_rental_root').id
+
 
 
 #    @api.multi

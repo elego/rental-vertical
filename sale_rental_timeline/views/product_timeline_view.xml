@@ -15,7 +15,6 @@
                           stack="False"
                           event_open_popup="True"
                           colors="#f0ff00:type == 'reserved'; #33ffec:type == 'rental'; #ffce00:type=='maintenance'; #ff5a00:type == 'repair'; #ff0000:type=='delivery';">
-                    <field name="sale_order_id" />
                     <field name="termin" />
                     <field name="maintenance" />
                     <field name="redline" />
@@ -29,10 +28,15 @@
                     <field name="number_of_days" />
                     <field name="rental_period" />
                     <field name="warehouse_id" />
+                    <field name="product_id" />
+                    <field name="product_categ_id" />
                     <field name="action_id" />
                     <field name="menu_id" />
                     <field name="res_model" />
                     <field name="res_id" />
+                    <field name="order_res_model" />
+                    <field name="order_res_id" />
+                    <field name="order_name" />
                     <templates>
                         <div t-name="tooltip-item-group">
                             <table border="1">
@@ -40,8 +44,8 @@
                                     <td>Product:</td>
                                     <td t-esc="record.product_id" />
                                 </tr>
-                                <tr t-if="record.product_id">
-                                    <td>Product category:</td>
+                                <tr t-if="record.product_categ_id">
+                                    <td>Category:</td>
                                     <td t-esc="record.product_categ_id" />
                                 </tr>
                             </table>
@@ -56,9 +60,9 @@
                                             <i t-if="record.maintenance" class="fa fa-fw o_button_icon fa-wrench" />
                                         </td>
                                     </tr>
-                                    <tr t-if="record.sale_order_id[1]">
+                                    <tr t-if="record.order_name">
                                         <td>Order:</td>
-                                        <td t-esc="record.sale_order_id[1]" />
+                                        <td t-esc="record.order_name" />
                                     </tr>
                                     <tr t-if="record.date_start">
                                         <td>Start date:</td>
@@ -116,10 +120,10 @@
             <field name="arch" type="xml">
                <search string="Timeline">
                     <field name="name" />
-                    <field name="sale_order_id" />
+                    <field name="order_res_id" />
                     <field name="partner_id" />
                     <field name="product_id" />
-                    <field name="categ_id" />
+                    <field name="product_categ_id" />
                     <field name="type" />
                     <group expand="0" string="Group By">
                         <filter string="Product" name="product" context="{'group_by':'product_id'}" />
@@ -155,8 +159,8 @@
                         <field name="redline" />
                         <field name="product_id" readonly="1" />
                         <field name="type" />
-                        <field name="sale_order_line_id" readonly="1" />
-                        <field name="sale_order_id" readonly="1" />
+                        <field name="res_id" readonly="1" />
+                        <field name="order_res_id" readonly="1" />
                         <field name="partner_id" readonly="1" />
                         <field name="date_start" readonly="1" />
                         <field name="date_end" readonly="1" />
