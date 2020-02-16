@@ -5,12 +5,13 @@
     'summary': '''This module extends the sale_rental module to create/change the
 timeline object for the rented product instance automatically.
 A Timeline View will be generated for all the related products.''',
-    'version': '12.0.1.0.0',
+    'version': '12.0.2.0.0',
     'category': 'sale',
     'author': 'Elego Software Solutions Gmbh',
     'depends': [
         'web_timeline',
         'rental_base',
+        'rental_product_variant',
     ],
     'data': [
         'security/ir.model.access.csv',

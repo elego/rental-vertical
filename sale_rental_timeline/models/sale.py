@@ -6,24 +6,21 @@ from odoo import api, fields, models, exceptions, _
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-    timeline_ids = fields.One2many('product.timeline', 'sale_order_line_id', 'Timelines')
+    timeline_ids = fields.One2many('product.timeline', 'res_id', 'Timelines')
 
     @api.multi
     def _prepare_timeline_vals(self):
         self.ensure_one()
         return {
-            'name': _('Rental: %s') % self.order_id.partner_id.name,
-            'product_id': self.product_id.rented_product_id.id,
-            'sale_order_line_id': self.id,
             'type': 'reserved',
             'date_start': self.start_date,
             'date_end': self.end_date,
-            'partner_id': self.order_id.partner_id.id,
-            'partner_shipping_address': self.order_id.partner_shipping_id._display_address(),
-            'action_id': self.env.ref('rental_base.action_rental_orders').id,
-            'menu_id': self.env.ref('rental_base.menu_rental_root').id,
-            'warehouse_id': self.order_id.warehouse_id.id,
-            'currency_id': self.currency_id.id,
+            'product_id': self.product_id.rented_product_id.id,
+
+            'res_model': self._name,
+            'res_id': self.id,
+            'order_res_model': self.order_id._name,
+            'order_res_id': self.order_id.id,
         }
 
     @api.multi
@@ -46,6 +43,10 @@ class SaleOrderLine(models.Model):
                 if vals.get('end_date', False):
                     timelines = sorted(line.timeline_ids, key=lambda l: l.date_end, reverse=True)
                     timelines[0].date_end = vals['end_date']
+                if vals.get('product_id', False):
+                    timelines = sorted(line.timeline_ids, key=lambda l: l.product_id)
+                    product = self.env['product.product'].browse(vals['product_id'])
+                    timelines[0].product_id = product.rented_product_id.id
             else:
                 raise exceptions.UserError(_('No found rented product.'))
 
@@ -58,14 +59,19 @@ class SaleOrderLine(models.Model):
     @api.multi
     def write(self, vals):
         res = super(SaleOrderLine, self).write(vals)
-        if 'start_date' in vals or 'end_date' in vals:
+        if 'start_date' in vals or 'end_date' in vals or 'product_id' in vals:
             reset_lines = self.browse([])
             start_date = vals.get('start_date', False)
             end_Date = vals.get('end_date', False)
+            product_id = vals.get('product_id', False)
             for line in self:
                 if start_date and line.start_date != start_date:
                     reset_lines |= line
                 if end_Date and line.end_date != end_Date:
+                    reset_lines |= line
+                if start_date and line.start_date != start_date:
+                    reset_lines |= line
+                if product_id and line.product_id != product_id:
                     reset_lines |= line
             reset_lines._reset_timeline(vals)
         return res

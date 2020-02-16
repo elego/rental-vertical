@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-10 19:18+0000\n"
-"PO-Revision-Date: 2020-02-10 19:18+0000\n"
+"POT-Creation-Date: 2020-02-16 12:02+0000\n"
+"PO-Revision-Date: 2020-02-16 12:02+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,6 +23,11 @@ msgstr ""
 #. module: sale_rental_timeline
 #: model:ir.model.fields,field_description:sale_rental_timeline.field_product_timeline__amount
 msgid "Amount"
+msgstr ""
+
+#. module: sale_rental_timeline
+#: model_terms:ir.ui.view,arch_db:sale_rental_timeline.view_product_timeline_timeline
+msgid "Category:"
 msgstr ""
 
 #. module: sale_rental_timeline
@@ -122,20 +127,30 @@ msgid "Name"
 msgstr ""
 
 #. module: sale_rental_timeline
-#: code:addons/sale_rental_timeline/models/sale.py:50
+#: code:addons/sale_rental_timeline/models/sale.py:51
 #, python-format
 msgid "No found rented product."
 msgstr ""
 
 #. module: sale_rental_timeline
-#: code:addons/sale_rental_timeline/models/sale.py:42
+#: code:addons/sale_rental_timeline/models/sale.py:39
 #, python-format
 msgid "No found timelines."
 msgstr ""
 
 #. module: sale_rental_timeline
-#: model:ir.model.fields,field_description:sale_rental_timeline.field_product_timeline__sale_order_id
-msgid "Order Reference"
+#: model:ir.model.fields,field_description:sale_rental_timeline.field_product_timeline__order_name
+msgid "Order"
+msgstr ""
+
+#. module: sale_rental_timeline
+#: model:ir.model.fields,field_description:sale_rental_timeline.field_product_timeline__order_res_id
+msgid "Order Res"
+msgstr ""
+
+#. module: sale_rental_timeline
+#: model:ir.model.fields,field_description:sale_rental_timeline.field_product_timeline__order_res_model
+msgid "Order Res Model"
 msgstr ""
 
 #. module: sale_rental_timeline
@@ -146,6 +161,11 @@ msgstr ""
 #. module: sale_rental_timeline
 #: model:ir.model.fields,field_description:sale_rental_timeline.field_product_timeline__partner_id
 msgid "Partner"
+msgstr ""
+
+#. module: sale_rental_timeline
+#: model:ir.model.fields,field_description:sale_rental_timeline.field_product_timeline__price_subtotal
+msgid "Price Subtotal"
 msgstr ""
 
 #. module: sale_rental_timeline
@@ -161,7 +181,7 @@ msgid "Product"
 msgstr ""
 
 #. module: sale_rental_timeline
-#: model:ir.model.fields,field_description:sale_rental_timeline.field_product_timeline__categ_id
+#: model:ir.model.fields,field_description:sale_rental_timeline.field_product_timeline__product_categ_id
 msgid "Product Category"
 msgstr ""
 
@@ -173,6 +193,11 @@ msgstr ""
 #. module: sale_rental_timeline
 #: model:ir.model,name:sale_rental_timeline.model_product_timeline
 msgid "Product Timeline"
+msgstr ""
+
+#. module: sale_rental_timeline
+#: model_terms:ir.ui.view,arch_db:sale_rental_timeline.view_product_timeline_timeline
+msgid "Product:"
 msgstr ""
 
 #. module: sale_rental_timeline
@@ -191,17 +216,12 @@ msgid "Rental Period"
 msgstr ""
 
 #. module: sale_rental_timeline
-#: model:ir.model.fields,field_description:sale_rental_timeline.field_product_timeline__product_uom_qty
-msgid "Rental days"
-msgstr ""
-
-#. module: sale_rental_timeline
 #: model_terms:ir.ui.view,arch_db:sale_rental_timeline.view_product_timeline_timeline
 msgid "Rental period:"
 msgstr ""
 
 #. module: sale_rental_timeline
-#: code:addons/sale_rental_timeline/models/sale.py:15
+#: code:addons/sale_rental_timeline/models/product_timeline.py:124
 #, python-format
 msgid "Rental: %s"
 msgstr ""
@@ -209,6 +229,16 @@ msgstr ""
 #. module: sale_rental_timeline
 #: selection:product.timeline,type:0
 msgid "Repair"
+msgstr ""
+
+#. module: sale_rental_timeline
+#: model:ir.model.fields,field_description:sale_rental_timeline.field_product_timeline__res_id
+msgid "Res"
+msgstr ""
+
+#. module: sale_rental_timeline
+#: model:ir.model.fields,field_description:sale_rental_timeline.field_product_timeline__res_model
+msgid "Res Model"
 msgstr ""
 
 #. module: sale_rental_timeline
@@ -222,11 +252,6 @@ msgid "Sale Order"
 msgstr ""
 
 #. module: sale_rental_timeline
-#: model:ir.model.fields,field_description:sale_rental_timeline.field_product_timeline__sale_order_line_id
-msgid "Sale Order Line"
-msgstr ""
-
-#. module: sale_rental_timeline
 #: model:ir.model,name:sale_rental_timeline.model_sale_order_line
 msgid "Sales Order Line"
 msgstr ""
@@ -237,7 +262,7 @@ msgid "Schedule"
 msgstr ""
 
 #. module: sale_rental_timeline
-#: model:ir.model.fields,help:sale_rental_timeline.field_product_timeline__categ_id
+#: model:ir.model.fields,help:sale_rental_timeline.field_product_timeline__product_categ_id
 msgid "Select category for the current product"
 msgstr ""
 
@@ -254,11 +279,6 @@ msgstr ""
 #. module: sale_rental_timeline
 #: model_terms:ir.ui.view,arch_db:sale_rental_timeline.view_product_timeline_timeline
 msgid "Start date:"
-msgstr ""
-
-#. module: sale_rental_timeline
-#: model:ir.model.fields,field_description:sale_rental_timeline.field_product_timeline__price_subtotal
-msgid "Subtotal"
 msgstr ""
 
 #. module: sale_rental_timeline
@@ -279,6 +299,7 @@ msgstr ""
 #. module: sale_rental_timeline
 #: model:ir.actions.act_window,name:sale_rental_timeline.action_product_timeline
 #: model:ir.ui.menu,name:sale_rental_timeline.menu_product_timeline
+#: model_terms:ir.ui.view,arch_db:sale_rental_timeline.product_timeline_form_view
 #: model_terms:ir.ui.view,arch_db:sale_rental_timeline.view_product_timeline_form
 #: model_terms:ir.ui.view,arch_db:sale_rental_timeline.view_product_timeline_search
 #: model_terms:ir.ui.view,arch_db:sale_rental_timeline.view_product_timeline_tree
@@ -308,11 +329,6 @@ msgstr ""
 #. module: sale_rental_timeline
 #: model_terms:ir.ui.view,arch_db:sale_rental_timeline.view_product_timeline_timeline
 msgid "Type:"
-msgstr ""
-
-#. module: sale_rental_timeline
-#: model:ir.model.fields,field_description:sale_rental_timeline.field_product_timeline__product_uom
-msgid "Unit of Measure"
 msgstr ""
 
 #. module: sale_rental_timeline
