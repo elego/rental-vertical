@@ -33,35 +33,40 @@ class ProductProduct(models.Model):
     #inv_line_ids = fields.One2many('account.invoice.line', 'product_id', string='Invoice Lines')
     #po_line_ids = fields.One2many('purchase.order.line', 'product_id', string='Purchase Order Lines')
     rental_order_ids = fields.One2many('sale.rental', 'rented_product_id', string='Rental Orders')
-    repair_order_ids = fields.One2many('repair.order', 'product_id', string='Repair Orders')
     stock_move_ids = fields.One2many('stock.move', 'product_id', string='Stock Moves')
     additional_info = fields.Html('Additional Infomation')
     dimension = fields.Char('Dimension')
 
     @api.multi
-    def _get_all_sale_order_ids(self):
+    def _get_sale_order_ids(self, type_id):
         self.ensure_one()
-        sols = self.env['sale.order.line'].search([('product_id','=',self.id)])
-        return list(set([l.order_id.id for l in sols]))
+        sols = self.env['sale.order.line'].search([
+            ('product_id','=',self.id)])
+        return list(set([l.order_id.id for l in sols if l.order_id.type_id == type_id]))
 
     @api.multi
-    def action_view_all_sale_order(self):
+    def action_view_sale_order(self):
         self.ensure_one()
-        record_ids = self._get_all_sale_order_ids()
-        for rental_service in self.rental_service_ids: 
-            record_ids += rental_service._get_all_sale_order_ids()
+        type_id = self.env.ref('sale_order_type.normal_sale_type')
+        record_ids = self._get_sale_order_ids(type_id)
+        for rental_service in self.rental_service_ids:
+            record_ids += rental_service._get_sale_order_ids(type_id)
         record_ids = list(set(record_ids))
-        tree_view_id = self.env.ref("sale.view_order_tree").id
-        form_view_id = self.env.ref("sale.view_order_form").id
-        return {
-            'type': 'ir.actions.act_window',
-            'name': _('All Sale Orders'),
-            'target': 'current',
-            'view_mode': "tree,form",
-            'view_ids': [tree_view_id, form_view_id],
-            'res_model': 'sale.order',
-            'domain': "[('id','in',[" + ','.join(map(str, record_ids)) + "])]",
-            }
+        action = self.env.ref('rental_base.action_normal_orders').read([])[0]
+        action['domain'] = [('id','in', record_ids)]
+        return action
+
+    @api.multi
+    def action_view_rental_order(self):
+        self.ensure_one()
+        type_id = self.env.ref('rental_base.rental_sale_type')
+        record_ids = self._get_sale_order_ids(type_id)
+        for rental_service in self.rental_service_ids: 
+            record_ids += rental_service._get_sale_order_ids(type_id)
+        record_ids = list(set(record_ids))
+        action = self.env.ref('rental_base.action_rental_orders').read([])[0]
+        action['domain'] = [('id','in', record_ids)]
+        return action
 
     @api.multi
     def action_view_all_purchase_order(self):

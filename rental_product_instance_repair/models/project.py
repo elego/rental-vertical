@@ -9,3 +9,8 @@ class ProjectTask(models.Model):
     product_instance = fields.Boolean(
         'Product Instance',
         related="product_id.product_instance")
+
+    @api.onchange('product_id')
+    def onchange_product_id(self):
+        if self.product_id:
+            self.lot_id = self.product_id.instance_serial_number_id

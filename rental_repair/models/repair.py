@@ -11,6 +11,7 @@ class RepairLine(models.Model):
         string='Expense Analytic Tags',
         domain=[('active_analytic_distribution', '=', False)])
     analytic_cost = fields.Float('Cost')
+    date_end = fields.Date("Date Finished", related="repair_id.date_end")
 
     @api.onchange('repair_id', 'product_id', 'product_uom_qty')
     def onchange_product_id(self):

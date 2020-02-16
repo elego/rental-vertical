@@ -4,17 +4,17 @@
 
         <!-- Sub Menu of Invoicing -->
 
-        <menuitem name="Customer Contracts"
+        <menuitem name="Contracts"
             id="menu_customer_contracts"
-            parent="rental_base.menu_invoicing"
+            parent="rental_base.menu_top_customer"
             action="contract.action_customer_contract"
-            sequence="3"/>
+            sequence="11"/>
 
-        <menuitem name="Supplier Contracts"
+        <menuitem name="Contracts"
             id="menu_supplier_contracts"
-            parent="rental_base.menu_invoicing"
+            parent="rental_base.menu_top_vendor"
             action="contract.action_supplier_contract"
-            sequence="4"/>
+            sequence="11"/>
 
     </data>
 </odoo>

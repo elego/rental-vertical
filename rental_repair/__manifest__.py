@@ -12,6 +12,7 @@
         'repair',
     ],
     'data': [
+        'data/project_data.xml',
         'views/project_view.xml',
         'views/product_view.xml',
         'views/repair_view.xml',
