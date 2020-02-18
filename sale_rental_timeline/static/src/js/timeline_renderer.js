@@ -10,7 +10,7 @@ odoo.define('sale_rental_timeline.TimelineRenderer', function(require){
             }
             var groups = [];
             var self = this;
-            groups.push({id: -1, content: _t('-')});
+            //groups.push({id: -1, content: _t('-')});
             _.each(events, function(event){
                 var group_name = event[_.first(group_bys)];
                 if(group_name){
