@@ -56,7 +56,7 @@
                             <t t-if="env.ref('rental_base.rental_sale_type').id == doc.type_id.id">
                                 <t t-if="not (env.context.get('proforma', False) or is_pro_forma)">
                                     <span t-if="doc.state not in ['draft','sent']">RENTAL ORDER</span>
-                                    <span t-if="doc.state in ['draft','sent']">RENTAL QUATATION</span>
+                                    <span t-if="doc.state in ['draft','sent']">RENTAL QUOTATION</span>
                                 </t>
                                 <t t-if="env.context.get('proforma', False) or is_pro_forma">
                                     <span>RENATL PRO FORMA INVOICE</span>
@@ -65,7 +65,7 @@
                             <t t-else="">
                                 <t t-if="not (env.context.get('proforma', False) or is_pro_forma)">
                                     <span t-if="doc.state not in ['draft','sent']">ORDER</span>
-                                    <span t-if="doc.state in ['draft','sent']">QUATATION</span>
+                                    <span t-if="doc.state in ['draft','sent']">QUOTATION</span>
                                 </t>
                                 <t t-if="env.context.get('proforma', False) or is_pro_forma">
                                     <span>PRO FORMA INVOICE</span>

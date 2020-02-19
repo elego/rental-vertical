@@ -20,7 +20,7 @@
     <report
         id="account.account_invoices_without_payment"
         model="account.invoice"
-        string="Rental Invoice"
+        string="Invoices"
         report_type="qweb-pdf"
         name="rental_invoice_report.report_invoice"
         file="rental_invoice_report.report_invoice"

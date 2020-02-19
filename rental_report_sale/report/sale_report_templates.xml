@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <odoo>
-
-    <template id="report_saleorder">
-        <t t-call="web.html_container">
-            <t t-set="is_so" t-value="True"/>
-            <t t-foreach="docs" t-as="doc">
-                <t t-call="rental_report_sale.report_saleorder_document" t-lang="doc.partner_id.lang"/>
-            </t>
-        </t>
-    </template>
-
-    <!-- Sale order report -->
+    <!-- Sale order report template -->
     <template id="report_saleorder_document">
         <t t-call="web.external_layout">
             <t t-set="lang" t-value="doc.partner_id.lang"/>
@@ -255,4 +245,22 @@
         </t>
     </template>
 
+    <template id="report_saleorder">
+        <t t-call="web.html_container">
+            <t t-set="is_so" t-value="True"/>
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="rental_report_sale.report_saleorder_document" t-lang="doc.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_saleorder_pro_forma">
+        <t t-call="web.html_container">
+            <t t-set="is_pro_forma" t-value="True"/>
+            <t t-set="is_so" t-value="True"/>
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="rental_report_sale.report_saleorder_document" t-lang="doc.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
 </odoo>

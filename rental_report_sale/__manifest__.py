@@ -10,12 +10,12 @@
         This module provides a customized sale report.
         """,
     'depends': [
-        'rental_report_base',
         'sale',
+        'rental_report_base',
     ],
     'data': [
-        'report/sale_report_templates.xml',
         'report/sale_report.xml',
+        'report/sale_report_templates.xml',
     ],
     'demo': [
     ],
