@@ -13,6 +13,7 @@
     'data': [
         'views/inspection_line_view.xml',
         'views/product_view.xml',
+        'views/menu_view.xml',
     ],
     'demo': [
     ],

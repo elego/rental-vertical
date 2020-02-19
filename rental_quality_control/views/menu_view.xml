@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem name="Quality Control"
+        id="menu_vendor_quality_control"
+        parent="rental_base.menu_customer_delivery"
+        action="quality_control.action_qc_inspection"
+        sequence="15" />
+
+    <menuitem name="Quality Control"
+        id="menu_vendor_quality_control"
+        parent="rental_base.menu_vendor_delivery"
+        action="quality_control.action_qc_inspection"
+        sequence="15" />
+</odoo>
