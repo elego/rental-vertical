@@ -49,6 +49,18 @@ class RepairOrder(models.Model):
     date_deadline = fields.Date("Deadline")
     date_end = fields.Date("Date Finished")
 
+    operations = fields.One2many(states={
+        'draft': [('readonly', False)],
+        'confirmed': [('readonly', False)],
+        'under_repair': [('readonly', False)]})
+    fees_lines = fields.One2many(states={
+        'draft': [('readonly', False)],
+        'confirmed': [('readonly', False)],
+        'under_repair': [('readonly', False)]})
+    invoice_method = fields.Selection(states={
+        'draft': [('readonly', False)],
+        'confirmed': [('readonly', False)],
+        'under_repair': [('readonly', False)]})
 
     @api.onchange('product_id')
     def onchange_product_id(self):
