@@ -1,0 +1,189 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* rental_repair
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-23 19:52+0000\n"
+"PO-Revision-Date: 2020-02-23 19:52+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: rental_repair
+#: model_terms:ir.ui.view,arch_db:rental_repair.product_normal_form_view
+msgid "<span class=\"o_stat_text\">Components</span>"
+msgstr ""
+
+#. module: rental_repair
+#: model_terms:ir.ui.view,arch_db:rental_repair.product_normal_form_view
+msgid "<span class=\"o_stat_text\">Repairs</span>"
+msgstr ""
+
+#. module: rental_repair
+#: code:addons/rental_repair/models/product.py:34
+#, python-format
+msgid "All Maintenance Orders"
+msgstr ""
+
+#. module: rental_repair
+#: model_terms:ir.actions.act_window,help:rental_repair.action_project_helpdesk_tasks
+msgid "Click <i>Create</i> to start a new ticket."
+msgstr ""
+
+#. module: rental_repair
+#: code:addons/rental_repair/models/product.py:54
+#, python-format
+msgid "Components"
+msgstr ""
+
+#. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_repair_fee__analytic_cost
+#: model:ir.model.fields,field_description:rental_repair.field_repair_line__analytic_cost
+msgid "Cost"
+msgstr ""
+
+#. module: rental_repair
+#: model_terms:ir.actions.act_window,help:rental_repair.action_repair_quotation_tree
+msgid "Create a new reparation order"
+msgstr ""
+
+#. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_repair_line__date_end
+#: model:ir.model.fields,field_description:rental_repair.field_repair_order__date_end
+msgid "Date Finished"
+msgstr ""
+
+#. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_repair_order__date_deadline
+msgid "Deadline"
+msgstr ""
+
+#. module: rental_repair
+#: model:ir.model.fields,help:rental_repair.field_project_task__tracking
+msgid "Ensure the traceability of a storable product in your warehouse."
+msgstr ""
+
+#. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_repair_order__expense_analytic_account_id
+msgid "Expense Analytic Account"
+msgstr ""
+
+#. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_repair_fee__expense_analytic_tag_ids
+#: model:ir.model.fields,field_description:rental_repair.field_repair_line__expense_analytic_tag_ids
+msgid "Expense Analytic Tags"
+msgstr ""
+
+#. module: rental_repair
+#: model:ir.actions.act_window,name:rental_repair.action_project_helpdesk_tasks
+msgid "Helpdesk Tickets"
+msgstr ""
+
+#. module: rental_repair
+#: model_terms:ir.actions.act_window,help:rental_repair.action_repair_quotation_tree
+msgid "In a repair order, you can detail the components you remove,\n"
+"                add or replace and record the time you spent on the different\n"
+"                operations."
+msgstr ""
+
+#. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_repair_order__income_analytic_account_id
+msgid "Income Analytic Account"
+msgstr ""
+
+#. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_repair_order__date_start
+msgid "Planned Date Start"
+msgstr ""
+
+#. module: rental_repair
+#: model:ir.model,name:rental_repair.model_product_product
+msgid "Product"
+msgstr ""
+
+#. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_project_task__product_id
+msgid "Product Instance"
+msgstr ""
+
+#. module: rental_repair
+#: model:ir.model,name:rental_repair.model_repair_fee
+msgid "Repair Fees"
+msgstr ""
+
+#. module: rental_repair
+#: model:ir.model,name:rental_repair.model_repair_line
+msgid "Repair Line (parts)"
+msgstr ""
+
+#. module: rental_repair
+#: model:ir.model,name:rental_repair.model_repair_order
+msgid "Repair Order"
+msgstr ""
+
+#. module: rental_repair
+#: model:ir.actions.act_window,name:rental_repair.action_repair_quotation_tree
+#: model:ir.model.fields,field_description:rental_repair.field_product_product__repair_order_ids
+#: model:ir.model.fields,field_description:rental_repair.field_project_task__repair_ids
+#: model:ir.ui.menu,name:rental_repair.menu_repair_orders
+#: model_terms:ir.ui.view,arch_db:rental_repair.view_task_form2
+msgid "Repair Orders"
+msgstr ""
+
+#. module: rental_repair
+#: model:ir.actions.act_window,name:rental_repair.action_view_repair_order
+msgid "Repairs"
+msgstr ""
+
+#. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_project_task__lot_id
+msgid "Serial Number"
+msgstr ""
+
+#. module: rental_repair
+#: model:ir.model,name:rental_repair.model_project_task
+#: model:ir.model.fields,field_description:rental_repair.field_repair_order__project_task_id
+msgid "Task"
+msgstr ""
+
+#. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_product_product__task_count
+msgid "Task Count"
+msgstr ""
+
+#. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_product_product__task_ids
+msgid "Tasks"
+msgstr ""
+
+#. module: rental_repair
+#: model_terms:ir.actions.act_window,help:rental_repair.action_repair_quotation_tree
+msgid "The repair order uses the warranty date on the Serial Number in\n"
+"                order to know if whether the repair should be invoiced to the\n"
+"                customer or not."
+msgstr ""
+
+#. module: rental_repair
+#: model:ir.ui.menu,name:rental_repair.menu_tickets
+#: model_terms:ir.ui.view,arch_db:rental_repair.product_normal_form_view
+#: model:project.project,label_tasks:rental_repair.project_project_helpdesk
+msgid "Tickets"
+msgstr ""
+
+#. module: rental_repair
+#: model_terms:ir.actions.act_window,help:rental_repair.action_project_helpdesk_tasks
+msgid "To get things done, use activities and status on tasks.<br>\n"
+"                    Chat in real time or by email to collaborate efficiently."
+msgstr ""
+
+#. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_project_task__tracking
+msgid "Tracking"
+msgstr ""
+

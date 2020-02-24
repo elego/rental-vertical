@@ -1,24 +1,23 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
 {
-    'name': 'Rental Quality Control',
-    'summary': '''New text field to define the reason for quality failure.''',
+    'name': 'Rental Purchase Order Type',
+    'summary': '''Additional purchase order types for rental''',
     'version': '12.0.1.0.0',
-    'category': 'sale',
+    'category': 'Purchase Management',
     'author': 'Elego Software Solutions GmbH',
     'depends': [
-        'sale_rental',
-        'quality_control_stock',
+        'purchase_order_type',
+        'rental_base',
     ],
     'data': [
-        'views/inspection_line_view.xml',
-        'views/product_view.xml',
+        'data/purchase_order_type.xml',
         'views/menu_view.xml',
     ],
     'demo': [
     ],
     'qweb': [
     ],
-    'application': True,
+    'application': False,
     'license': 'AGPL-3',
 }

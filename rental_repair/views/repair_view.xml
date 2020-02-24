@@ -5,28 +5,28 @@
         <record id="view_repair_order_form" model="ir.ui.view">
             <field name="name">view.repair.order.form</field>
             <field name="model">repair.order</field>
-            <field name="inherit_id" ref="repair.view_repair_order_form"/>
+            <field name="inherit_id" ref="repair.view_repair_order_form" />
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='pricelist_id']" position="after">
-                    <field name="income_analytic_account_id"/>
-                    <field name="expense_analytic_account_id"/>
+                    <field name="income_analytic_account_id" />
+                    <field name="expense_analytic_account_id" />
                 </xpath>
                 <xpath expr="//field[@name='partner_id']" position="after">
-                    <field name="date_start"/>
-                    <field name="date_deadline"/>
-                    <field name="date_end"/>
+                    <field name="date_start" />
+                    <field name="date_deadline" />
+                    <field name="date_end" />
                 </xpath>
                 <xpath expr="//field[@name='operations']//tree//field[@name='product_uom_qty']" position="before">
-                    <field name="expense_analytic_tag_ids" groups="analytic.group_analytic_tags" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                    <field name="expense_analytic_tag_ids" groups="analytic.group_analytic_tags" widget="many2many_tags" options="{'color_field': 'color'}" />
                 </xpath>
                 <xpath expr="//field[@name='operations']//tree//field[@name='tax_id']" position="before">
-                    <field name="analytic_cost"/>
+                    <field name="analytic_cost" />
                 </xpath>
                 <xpath expr="//field[@name='fees_lines']//tree//field[@name='product_uom_qty']" position="before">
-                    <field name="expense_analytic_tag_ids" groups="analytic.group_analytic_tags" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                    <field name="expense_analytic_tag_ids" groups="analytic.group_analytic_tags" widget="many2many_tags" options="{'color_field': 'color'}" />
                 </xpath>
                 <xpath expr="//field[@name='fees_lines']//tree//field[@name='tax_id']" position="before">
-                    <field name="analytic_cost"/>
+                    <field name="analytic_cost" />
                 </xpath>
             </field>
         </record>
@@ -36,16 +36,45 @@
             <field name="model">repair.line</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="type"/>
-                    <field name="product_id"/>
-                    <field name="lot_id"/>
-                    <field name="name"/>
-                    <field name="date_end"/>
-                    <field name="repair_id"/>
+                    <field name="type" />
+                    <field name="product_id" />
+                    <field name="lot_id" />
+                    <field name="name" />
+                    <field name="date_end" />
+                    <field name="repair_id" />
                 </tree>
             </field>
         </record>
 
+         <record id="action_repair_quotation_tree" model="ir.actions.act_window">
+            <field name="name">Repair Orders</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">repair.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="search_view_id" ref="repair.view_repair_order_form_filter" />
+            <field name="inherit_id" ref="repair.action_repair_order_tree" />
+            <field name="domain">[('state', 'not in', ('draft', 'cancel'))]</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a new reparation order
+              </p><p>
+                In a repair order, you can detail the components you remove,
+                add or replace and record the time you spent on the different
+                operations.
+              </p><p>
+                The repair order uses the warranty date on the Serial Number in
+                order to know if whether the repair should be invoiced to the
+                customer or not.
+              </p>
+            </field>
+        </record>
+
+        <menuitem name="Repair Orders"
+            id="menu_repair_orders"
+            parent="rental_base.menu_customer_orders"
+            action="rental_repair.action_repair_quotation_tree"
+            sequence="11" />
 
     </data>
 </odoo>

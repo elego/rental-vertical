@@ -4,14 +4,14 @@
 
         <record id="sale.action_orders" model="ir.actions.act_window">
             <field name="name">Sales Orders</field>
-            <field name="context" eval="{'default_type_id': ref('sale_order_type.normal_sale_type')}"/>
-            <field name="domain" eval="[('type_id','=', ref('sale_order_type.normal_sale_type')), ('state', 'not in', ('draft', 'sent', 'cancel'))]"/>
+            <field name="context" eval="{'default_type_id': ref('sale_order_type.normal_sale_type')}" />
+            <field name="domain" eval="[('type_id','=', ref('sale_order_type.normal_sale_type')), ('state', 'not in', ('draft', 'sent', 'cancel'))]" />
         </record>
 
         <record id="sale.action_quotations" model="ir.actions.act_window">
             <field name="name">Sales Quotations</field>
-            <field name="context" eval="{'search_default_my_quotation': 1, 'default_type_id': ref('sale_order_type.normal_sale_type')}"/>
-            <field name="domain" eval="[('type_id','=', ref('sale_order_type.normal_sale_type'))]"/>
+            <field name="context" eval="{'search_default_my_quotation': 1, 'default_type_id': ref('sale_order_type.normal_sale_type')}" />
+            <field name="domain" eval="[('type_id','=', ref('sale_order_type.normal_sale_type'))]" />
         </record>
 
         <record id="action_rental_orders" model="ir.actions.act_window">
@@ -20,9 +20,9 @@
             <field name="res_model">sale.order</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
-            <field name="search_view_id" ref="sale.sale_order_view_search_inherit_sale"/>
-            <field name="context" eval="{'default_type_id': ref('rental_sale_type')}"/>
-            <field name="domain" eval="[('type_id','=', ref('rental_sale_type')), ('state', 'not in', ('draft', 'sent', 'cancel'))]"/>
+            <field name="search_view_id" ref="sale.sale_order_view_search_inherit_sale" />
+            <field name="context" eval="{'default_type_id': ref('rental_sale_type')}" />
+            <field name="domain" eval="[('type_id','=', ref('rental_sale_type')), ('state', 'not in', ('draft', 'sent', 'cancel'))]" />
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Create a new quotation, the first step of a new sale!
@@ -38,9 +38,9 @@
             <field name="res_model">sale.order</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
-            <field name="search_view_id" ref="sale.sale_order_view_search_inherit_sale"/>
-            <field name="context" eval="{'default_type_id': ref('rental_sale_type')}"/>
-            <field name="domain" eval="[('type_id','=', ref('rental_sale_type')), ('state', '=', 'draft')]"/>
+            <field name="search_view_id" ref="sale.sale_order_view_search_inherit_sale" />
+            <field name="context" eval="{'default_type_id': ref('rental_sale_type')}" />
+            <field name="domain" eval="[('type_id','=', ref('rental_sale_type')), ('state', '=', 'draft')]" />
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Create a new quotation, the first step of a new sale!
@@ -52,10 +52,10 @@
 
         <!-- Main Menu -->
 
-        <menuitem name="Rentals" 
+        <menuitem name="Rentals"
             id="menu_rental_root"
             sequence="5"
-            web_icon="rental_base,static/description/icon.png"/>
+            web_icon="rental_base,static/description/icon.png" />
 
         <!-- Top Menu -->
 
@@ -63,32 +63,32 @@
             id="menu_opportunities"
             parent="menu_rental_root"
             action="crm.action_your_pipeline"
-            sequence="5"/>
+            sequence="5" />
 
         <menuitem name="Customers"
             id="menu_top_customer"
             parent="menu_rental_root"
-            sequence="10"/>
+            sequence="10" />
 
         <menuitem name="Vendors"
             id="menu_top_vendor"
             parent="menu_rental_root"
-            sequence="15"/>
+            sequence="15" />
 
         <menuitem name="Products"
             id="menu_master_data"
             parent="menu_rental_root"
-            sequence="20"/>
+            sequence="20" />
 
         <menuitem name="Reporting"
             id="menu_reporting"
             parent="menu_rental_root"
-            sequence="25"/>
+            sequence="25" />
 
         <menuitem name="Configuration"
             id="menu_config"
             parent="menu_rental_root"
-            sequence="30"/>
+            sequence="30" />
 
         <!-- Sub Menu of Customers -->
 
@@ -96,59 +96,70 @@
             id="menu_customers"
             parent="menu_top_customer"
             action="base.action_partner_form"
-            sequence="0"/>
+            sequence="0" />
 
         <menuitem name="Quotations"
             id="menu_customer_quotations"
             parent="menu_top_customer"
-            sequence="5"/>
+            sequence="5" />
             <menuitem name="Rental Quotations"
                 id="menu_rental_quotationss"
                 parent="menu_customer_quotations"
                 action="action_rental_quotations"
-                sequence="5"/>
+                sequence="5" />
             <menuitem name="Sales Quotations"
                 id="menu_sales_quotations"
                 parent="menu_customer_quotations"
                 action="sale.action_quotations"
-                sequence="5"/>
+                sequence="10" />
+
+            <menuitem name="Repair Orders"
+                id="menu_customer_repair_orders"
+                parent="menu_customer_quotations"
+                action="repair.action_repair_order_tree"
+                sequence="15" />
 
         <menuitem name="Orders"
             id="menu_customer_orders"
             parent="menu_top_customer"
-            sequence="10"/>
+            sequence="10" />
             <menuitem name="Rental Orders"
                 id="menu_rental_orders"
                 parent="menu_customer_orders"
                 action="action_rental_orders"
-                sequence="5"/>
+                sequence="5" />
             <menuitem name="Sales Orders"
                 id="menu_sales_orders"
                 parent="menu_customer_orders"
                 action="sale.action_orders"
-                sequence="5"/>
-
-        <menuitem name="Repair Orders"
-            id="menu_customer_repair_orders"
-            parent="menu_top_customer"
-            action="repair.action_repair_order_tree"
-            sequence="11"/>
+                sequence="10" />
 
         <menuitem name="Delivery"
             id="menu_customer_delivery"
             parent="menu_top_customer"
-            sequence="15"/>
+            sequence="15" />
+            <menuitem name="Outgoing Deliveries"
+                id="menu_customer_delivery_outgoing"
+                parent="menu_customer_delivery"
+                action="rental_base.stock_picking_action_picking_type_out"
+                sequence="5" />
+            <menuitem name="Incoming Deliveries"
+                id="menu_customer_delivery_incoming"
+                parent="menu_customer_delivery"
+                action="rental_base.stock_picking_action_picking_type_in"
+                sequence="10" />
 
         <menuitem name="Invoices"
             id="menu_customer_invoices"
             parent="menu_top_customer"
             action="account.action_invoice_tree1"
-            sequence="20"/>
+            sequence="20" />
 
         <menuitem name="Credit Notes"
             id="menu_customer_credit_notes"
             parent="menu_top_customer"
-            sequence="25"/>
+            action="account.action_invoice_out_refund"
+            sequence="25" />
 
         <!-- Sub Menu of Vendors -->
 
@@ -156,41 +167,51 @@
             id="menu_vendors"
             parent="menu_top_vendor"
             action="base.action_partner_supplier_form"
-            sequence="0"/>
+            sequence="0" />
 
         <menuitem name="Request for Quotations"
-            id="menu_vendors_quotationss"
+            id="menu_vendors_quotations"
             parent="menu_top_vendor"
             action="purchase.purchase_rfq"
-            sequence="5"/>
+            sequence="5" />
 
         <menuitem name="Orders"
             id="menu_vendor_orders"
             parent="menu_top_vendor"
             action="purchase.purchase_form_action"
-            sequence="10"/>
-
-        <menuitem name="Repair Orders"
-            id="menu_vendor_repair_orders"
-            parent="menu_top_vendor"
-            action="repair.action_repair_order_tree"
-            sequence="11"/>
+            sequence="10" />
+            <menuitem name="Purchase Orders"
+                id="menu_vendor_orders_purchase_form_action"
+                parent="menu_vendor_orders"
+                action="purchase.purchase_form_action"
+                sequence="5" />
 
         <menuitem name="Delivery"
             id="menu_vendor_delivery"
             parent="menu_top_vendor"
-            sequence="15"/>
+            sequence="15" />
+            <menuitem name="Incoming Deliveries"
+                id="menu_vendor_delivery_incoming"
+                parent="menu_vendor_delivery"
+                action="rental_base.stock_picking_action_picking_type_in"
+                sequence="5" />
+            <menuitem name="Outgoing Deliveries"
+                id="menu_vendor_delivery_outgoing"
+                parent="menu_vendor_delivery"
+                action="rental_base.stock_picking_action_picking_type_out"
+                sequence="10" />
 
-        <menuitem name="Invoices"
+        <menuitem name="Vendor Bills"
             id="menu_vendor_invoices"
             parent="menu_top_vendor"
             action="account.action_vendor_bill_template"
-            sequence="20"/>
+            sequence="20" />
 
         <menuitem name="Credit Notes"
             id="menu_vendor_credit_notes"
             parent="menu_top_vendor"
-            sequence="25"/>
+            action="account.action_invoice_in_refund"
+            sequence="25" />
 
         <!-- Sub Menu of Reporting -->
         <!--TODO add new action -->
@@ -198,7 +219,7 @@
             id="menu_product_tco"
             parent="menu_reporting"
             action="account.action_vendor_bill_template"
-            sequence="0"/>
+            sequence="0" />
 
         <!-- Sub Menu of Configuration -->
 
@@ -207,14 +228,14 @@
             parent="menu_config"
             action="action_rental_configuration"
             sequence="0"
-            web_icon="rental_base,static/description/icon.png"/>
+            web_icon="rental_base,static/description/icon.png" />
 
         <menuitem name="Rental Positions"
             id="menu_rental_positions"
             parent="menu_config"
             action="sale_rental.sale_rental_action"
             groups="base.group_no_one"
-            sequence="100"/>
+            sequence="100" />
 
     </data>
 </odoo>

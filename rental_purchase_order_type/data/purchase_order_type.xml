@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="po_type_transport_order" model="purchase.order.type">
+        <field name="name">Transport Order</field>
+    </record>
+    <record id="po_type_repair_order" model="purchase.order.type">
+        <field name="name">Repair Order</field>
+    </record>
+</odoo>

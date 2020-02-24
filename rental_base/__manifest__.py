@@ -20,6 +20,7 @@
         'data/ir_sequence_data.xml',
         'data/order_type_data.xml',
         'views/res_config_settings_view.xml',
+        'views/stock_picking_views.xml',
         'views/menu_view.xml',
     ],
     'demo': [

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-10 15:20+0000\n"
-"PO-Revision-Date: 2020-02-10 15:20+0000\n"
+"POT-Creation-Date: 2020-02-23 19:50+0000\n"
+"PO-Revision-Date: 2020-02-23 19:50+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -66,24 +66,49 @@ msgid "Contract"
 msgstr ""
 
 #. module: rental_base
-#: model_terms:ir.actions.act_window,help:rental_base.action_normal_orders
 #: model_terms:ir.actions.act_window,help:rental_base.action_rental_orders
+#: model_terms:ir.actions.act_window,help:rental_base.action_rental_quotations
 msgid "Create a new quotation, the first step of a new sale!"
 msgstr ""
 
 #. module: rental_base
-#: model:ir.ui.menu,name:rental_base.menu_customer_invoices
-msgid "Customer Invoices"
+#: model:ir.ui.menu,name:rental_base.menu_customer_credit_notes
+#: model:ir.ui.menu,name:rental_base.menu_vendor_credit_notes
+msgid "Credit Notes"
 msgstr ""
 
 #. module: rental_base
 #: model:ir.ui.menu,name:rental_base.menu_customers
+#: model:ir.ui.menu,name:rental_base.menu_top_customer
 msgid "Customers"
 msgstr ""
 
 #. module: rental_base
-#: model:ir.ui.menu,name:rental_base.menu_invoicing
-msgid "Invoicing"
+#: model_terms:ir.actions.act_window,help:rental_base.stock_picking_action_picking_type_in
+#: model_terms:ir.actions.act_window,help:rental_base.stock_picking_action_picking_type_out
+msgid "Define a new transfer"
+msgstr ""
+
+#. module: rental_base
+#: model:ir.ui.menu,name:rental_base.menu_customer_delivery
+#: model:ir.ui.menu,name:rental_base.menu_vendor_delivery
+msgid "Delivery"
+msgstr ""
+
+#. module: rental_base
+#: model:ir.ui.menu,name:rental_base.menu_customer_delivery_incoming
+#: model:ir.ui.menu,name:rental_base.menu_vendor_delivery_incoming
+msgid "Incoming Deliveries"
+msgstr ""
+
+#. module: rental_base
+#: model:ir.actions.act_window,name:rental_base.stock_picking_action_picking_type_in
+msgid "Incoming Transfers"
+msgstr ""
+
+#. module: rental_base
+#: model:ir.ui.menu,name:rental_base.menu_customer_invoices
+msgid "Invoices"
 msgstr ""
 
 #. module: rental_base
@@ -92,29 +117,36 @@ msgid "Manage Repair Order"
 msgstr ""
 
 #. module: rental_base
-#: model:ir.ui.menu,name:rental_base.menu_master_data
-msgid "Master Data"
-msgstr ""
-
-#. module: rental_base
-#: model:ir.actions.act_window,name:rental_base.action_normal_orders
-msgid "Normal Orders"
-msgstr ""
-
-#. module: rental_base
 #: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_rental_sale_offday
 msgid "Off Days"
 msgstr ""
 
 #. module: rental_base
-#: model_terms:ir.actions.act_window,help:rental_base.action_normal_orders
 #: model_terms:ir.actions.act_window,help:rental_base.action_rental_orders
+#: model_terms:ir.actions.act_window,help:rental_base.action_rental_quotations
 msgid "Once the quotation is confirmed, it becomes a sales order.<br> You will be able to create an invoice and collect the payment."
 msgstr ""
 
 #. module: rental_base
-#: model:ir.ui.menu,name:rental_base.menu_orders
+#: model:ir.ui.menu,name:rental_base.menu_opportunities
+msgid "Opportunities"
+msgstr ""
+
+#. module: rental_base
+#: model:ir.ui.menu,name:rental_base.menu_customer_orders
+#: model:ir.ui.menu,name:rental_base.menu_vendor_orders
 msgid "Orders"
+msgstr ""
+
+#. module: rental_base
+#: model:ir.ui.menu,name:rental_base.menu_customer_delivery_outgoing
+#: model:ir.ui.menu,name:rental_base.menu_vendor_delivery_outgoing
+msgid "Outgoing Deliveries"
+msgstr ""
+
+#. module: rental_base
+#: model:ir.actions.act_window,name:rental_base.stock_picking_action_picking_type_out
+msgid "Outgoing Transfers"
 msgstr ""
 
 #. module: rental_base
@@ -148,8 +180,18 @@ msgid "Product Variant"
 msgstr ""
 
 #. module: rental_base
-#: model:ir.ui.menu,name:rental_base.menu_purchase_orders
+#: model:ir.ui.menu,name:rental_base.menu_master_data
+msgid "Products"
+msgstr ""
+
+#. module: rental_base
+#: model:ir.ui.menu,name:rental_base.menu_vendor_orders_purchase_form_action
 msgid "Purchase Orders"
+msgstr ""
+
+#. module: rental_base
+#: model:ir.ui.menu,name:rental_base.menu_customer_quotations
+msgid "Quotations"
 msgstr ""
 
 #. module: rental_base
@@ -174,6 +216,12 @@ msgid "Rental Positions"
 msgstr ""
 
 #. module: rental_base
+#: model:ir.actions.act_window,name:rental_base.action_rental_quotations
+#: model:ir.ui.menu,name:rental_base.menu_rental_quotationss
+msgid "Rental Quotations"
+msgstr ""
+
+#. module: rental_base
 #: model:ir.ui.menu,name:rental_base.menu_rental_root
 msgid "Rentals"
 msgstr ""
@@ -184,7 +232,7 @@ msgid "Repair Order"
 msgstr ""
 
 #. module: rental_base
-#: model:ir.ui.menu,name:rental_base.menu_repair_orders
+#: model:ir.ui.menu,name:rental_base.menu_customer_repair_orders
 msgid "Repair Orders"
 msgstr ""
 
@@ -194,13 +242,23 @@ msgid "Reporting"
 msgstr ""
 
 #. module: rental_base
-#: model:ir.ui.menu,name:rental_base.menu_sale_orders
-msgid "Sale Orders"
+#: model:ir.ui.menu,name:rental_base.menu_vendors_quotations
+msgid "Request for Quotations"
 msgstr ""
 
 #. module: rental_base
-#: model:ir.ui.menu,name:rental_base.menu_service
-msgid "Service"
+#: model:ir.model,name:rental_base.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: rental_base
+#: model:ir.ui.menu,name:rental_base.menu_sales_orders
+msgid "Sales Orders"
+msgstr ""
+
+#. module: rental_base
+#: model:ir.ui.menu,name:rental_base.menu_sales_quotations
+msgid "Sales Quotations"
 msgstr ""
 
 #. module: rental_base
@@ -226,10 +284,11 @@ msgstr ""
 
 #. module: rental_base
 #: model:ir.ui.menu,name:rental_base.menu_vendor_invoices
-msgid "Vendor Invoices"
+msgid "Vendor Bills"
 msgstr ""
 
 #. module: rental_base
+#: model:ir.ui.menu,name:rental_base.menu_top_vendor
 #: model:ir.ui.menu,name:rental_base.menu_vendors
 msgid "Vendors"
 msgstr ""
@@ -238,3 +297,4 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:rental_base.res_config_settings_view_form
 msgid "View Timeline of products"
 msgstr ""
+

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-11 12:39+0000\n"
-"PO-Revision-Date: 2020-02-11 12:39+0000\n"
+"POT-Creation-Date: 2020-02-23 19:52+0000\n"
+"PO-Revision-Date: 2020-02-23 19:52+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -34,6 +34,11 @@ msgstr ""
 #. module: rental_quality_control
 #: model:ir.model,name:rental_quality_control.model_product_product
 msgid "Product"
+msgstr ""
+
+#. module: rental_quality_control
+#: model:ir.ui.menu,name:rental_quality_control.menu_vendor_quality_control
+msgid "Quality Control"
 msgstr ""
 
 #. module: rental_quality_control

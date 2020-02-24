@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_transport_orders" model="ir.actions.act_window">
+        <field name="name">Transport Orders</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.order</field>
+        <field name="view_mode">tree,kanban,form,pivot,graph,calendar,activity</field>
+        <field name="domain" eval="[('order_type','=', ref('rental_purchase_order_type.po_type_transport_order'))]" />
+        <field name="context">{}</field>
+        <field name="search_view_id" ref="purchase.view_purchase_order_filter" />
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            Create a quotation
+            </p><p>
+            It will be converted into a purchase order.
+            </p>
+        </field>
+    </record>
+    <record id="action_repair_orders" model="ir.actions.act_window">
+        <field name="name">Repair Orders</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.order</field>
+        <field name="view_mode">tree,kanban,form,pivot,graph,calendar,activity</field>
+        <field name="domain" eval="[('order_type','=', ref('rental_purchase_order_type.po_type_repair_order'))]" />
+        <field name="context">{}</field>
+        <field name="search_view_id" ref="purchase.view_purchase_order_filter" />
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            Create a quotation
+            </p><p>
+            It will be converted into a purchase order.
+            </p>
+        </field>
+    </record>
+
+    <menuitem name="Transport Orders"
+        id="menu_vendor_transport_order"
+        parent="rental_base.menu_vendor_orders"
+        action="action_transport_orders"
+        sequence="10" />
+
+    <menuitem name="Repair Orders"
+        id="menu_vendor_repair_order"
+        parent="rental_base.menu_vendor_orders"
+        action="action_repair_orders"
+        sequence="15" />
+</odoo>
