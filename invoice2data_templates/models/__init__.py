@@ -1,1 +1,0 @@
-from . import invoice2data_template
