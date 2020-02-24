@@ -5,6 +5,7 @@
     <!-- Load CSS -->
     <template id="assets_common" name="rental_fonts" inherit_id="web.report_assets_common">
         <xpath expr="." position="inside">
+            <link href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap" rel="stylesheet"/>
             <link href="/rental_report_base/static/src/scss/report_styles.scss"
                   rel="stylesheet"
                   type="text/scss"
@@ -31,15 +32,48 @@
                     <img src="/rental_report_base/static/src/img/rockbird_black_claim.png"
                         />
                 </div>
-                <t t-if="is_invoice">
-                    <!-- TODO manage Draft and Refund if Invoice -->
-                    <div class="contactdata" id="contactdata">
-                        <div class="contactdata_mail">
-                            <span>RENTAL INVOICE</span>
-                            <span t-field="doc.number"/>
-                        </div>
+                <div class="data">
+                    <div class="data_header">
+                        <t t-if="is_invoice">
+                            <t t-if="env.ref('rental_base.rental_sale_type').id == doc.sale_type_id.id">
+                                <span t-if="doc.type == 'out_invoice' and doc.state in ('open', 'in_payment', 'paid')">RENTAL INVOICE</span>
+                                <span t-if="doc.type == 'out_invoice' and doc.state == 'draft'">RENTAL DRAFT INVOICE</span>
+                                <span t-if="doc.type == 'out_invoice' and doc.state == 'cancel'">RENTAL CANCELLED INVOICE</span>
+                                <span t-if="doc.type == 'out_refund'">RENTAL CREDIT NOTE</span>
+                                <span t-if="doc.type == 'in_refund'">RENTAL VENDOR CREDIT NOTE</span>
+                                <span t-if="doc.type == 'in_invoice'">RENTAL VENDOR BILL</span>
+                            </t>
+                            <t t-else="">
+                                <span t-if="doc.type == 'out_invoice' and doc.state in ('open', 'in_payment', 'paid')">INVOICE</span>
+                                <span t-if="doc.type == 'out_invoice' and doc.state == 'draft'">DRAFT INVOICE</span>
+                                <span t-if="doc.type == 'out_invoice' and doc.state == 'cancel'">CANCELLED INVOICE</span>
+                                <span t-if="doc.type == 'out_refund'">CREDIT NOTE</span>
+                                <span t-if="doc.type == 'in_refund'">VENDOR CREDIT NOTE</span>
+                                <span t-if="doc.type == 'in_invoice'">VENDOR BILL</span>
+                            </t><span t-field="doc.number"/>
+                        </t>
+                        <t t-if="is_so">
+                            <t t-if="env.ref('rental_base.rental_sale_type').id == doc.type_id.id">
+                                <t t-if="not (env.context.get('proforma', False) or is_pro_forma)">
+                                    <span t-if="doc.state not in ['draft','sent']">RENTAL ORDER</span>
+                                    <span t-if="doc.state in ['draft','sent']">RENTAL QUOTATION</span>
+                                </t>
+                                <t t-if="env.context.get('proforma', False) or is_pro_forma">
+                                    <span>RENATL PRO FORMA INVOICE</span>
+                                </t>
+                            </t>
+                            <t t-else="">
+                                <t t-if="not (env.context.get('proforma', False) or is_pro_forma)">
+                                    <span t-if="doc.state not in ['draft','sent']">ORDER</span>
+                                    <span t-if="doc.state in ['draft','sent']">QUOTATION</span>
+                                </t>
+                                <t t-if="env.context.get('proforma', False) or is_pro_forma">
+                                    <span>PRO FORMA INVOICE</span>
+                                </t>
+                            </t><span t-field="doc.name"/>
+                        </t>
                     </div>
-                </t>
+                </div>
             </div>
 
             <div class="article rockbird"
@@ -53,9 +87,11 @@
                     <span t-esc="company.partner_id.city.capitalize()"/>
                      | <span t-if="o.env.context.get('lang') != 'de_DE'"
                           t-esc="company.partner_id.country_id.name.capitalize()"/>
-                    <span t-if="not doc.branch_name"></span>
                     <t t-if="doc.branch_name">
                         <span> Branch <t t-esc="doc.branch_name"/></span>
+                    </t>
+                    <t t-else="">
+                        <span></span>
                     </t>
                 </div>
                 <t t-raw="0"/>
@@ -84,7 +120,7 @@
                     </div><br/>
                     <div class="company_ceo">
                         COMMERCIAL REGISTRY <span t-if="company.company_registry" t-esc="company.company_registry"/>
-                        | CEO <span>Christian Kleiner, Andreas Lampprecht</span>
+                        | CEO <span t-if="company.ceo_name" t-esc="company.ceo_name"/>
                     </div>
                     <div class="page_number">
                         <p>PAGE <span class="page"/> / <span class="topage"/></p>

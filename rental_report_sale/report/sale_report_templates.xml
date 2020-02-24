@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <odoo>
-    <!-- Invoice Template -->
-    <template id="report_invoice_document">
+    <!-- Sale order report template -->
+    <template id="report_saleorder_document">
         <t t-call="web.external_layout">
             <t t-set="lang" t-value="doc.partner_id.lang"/>
             <t t-set="doc" t-value="doc.with_context(lang=lang)"/>
             <div class="page">
+                <!-- Partner address -->
                 <div class="partner_address" id="partner_address">
                     <t t-if="doc.partner_id">
                         <t t-if="doc.partner_id.parent_id">
@@ -28,28 +30,40 @@
                         </t>
                     </t>
                 </div>
-                <t t-set="rental_order" t-value="env.ref('rental_base.rental_sale_type').id == doc.sale_type_id.id"/>
+                <t t-set="rental_order" t-value="env.ref('rental_base.rental_sale_type').id == doc.type_id.id"/>
+
                 <div class="details">
                     <table>
-                        <tr>
-                            <td><span class="inv">INVOICE DATE</span></td>
+                        <tr t-if="doc.date_order and doc.state in ['draft','sent']">
                             <td>
-                                <span t-if="doc.date_invoice"
-                                      t-field="doc.date_due" t-options='{"format": "dd.MM.yyyy"}'/>
+                                <span class="inv">QUOTATION DATE</span>
+                            </td>
+                            <td>
+                                <span t-if="doc.date_order"
+                                      t-field="doc.date_order" t-options='{"format": "dd.MM.yyyy"}'/>
+                            </td>
+                        </tr>
+                        <tr t-if="doc.date_order and doc.state not in ['draft','sent']">
+                            <td>
+                                <span class="inv">ORDERED DATE</span>
+                            </td>
+                            <td>
+                                <span t-if="doc.confirmation_date"
+                                      t-field="doc.confirmation_date" t-options='{"format": "dd.MM.yyyy"}'/>
                             </td>
                         </tr>
                         <tr>
                             <td><span class="inv">SERVICE PERIOD</span></td>
                             <td>
-                                <span t-if="doc.date_start"
-                                      t-field="doc.date_start" t-options='{"format": "dd.MM.yyyy"}'/> -
-                                <span t-if="doc.date_end"
-                                      t-field="doc.date_end" t-options='{"format": "dd.MM.yyyy"}'/>
+                                <span t-if="doc.default_start_date"
+                                      t-field="doc.default_start_date" t-options='{"format": "dd.MM.yyyy"}'/> -
+                                <span t-if="doc.default_end_date"
+                                      t-field="doc.default_end_date" t-options='{"format": "dd.MM.yyyy"}'/>
                             </td>
                         </tr>
                         <tr>
                             <td><span class="inv">REFERENCE</span></td>
-                            <td><span t-if="doc.reference" t-field="doc.reference"/></td>
+                            <td><span t-if="doc.client_order_ref" t-field="doc.client_order_ref"/></td>
                         </tr>
                         <tr>
                             <td><span class="inv">CONTACT PERSON</span></td>
@@ -65,9 +79,10 @@
                         </tr>
                     </table>
                 </div>
+
                 <div class="content">
                     <div id="products" class="products">
-                        <t t-set="display_discount" t-value="any([l.discount for l in doc.invoice_line_ids])"/>
+                        <t t-set="display_discount" t-value="any([l.discount for l in doc.order_line])"/>
                         <!-- product table -->
                         <table id="product_table" class="product_table">
                             <thead>
@@ -81,12 +96,12 @@
                                 <t t-set="section" t-value="False"/>
                                 <t t-set="has_section" t-value="False"/>
                                 <t t-set="current_subtotal" t-value="0"/>
-                                <t t-foreach="doc.invoice_line_ids" t-as="line">
+                                <t t-foreach="doc.order_line" t-as="line">
                                     <t t-if="line['display_type'] == 'line_section'">
                                         <t t-set="has_section" t-value="True"/>
                                     </t>
                                 </t>
-                                <t t-foreach="doc.invoice_line_ids" t-as="line">
+                                <t t-foreach="doc.order_line" t-as="line">
                                     <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal"
                                        groups="account.group_show_line_subtotals_tax_excluded"/>
                                     <t t-set="current_subtotal" t-value="current_subtotal + line.price_total"
@@ -122,21 +137,20 @@
                                                         <span t-field="line.product_id.name"/>
                                                         </b>
                                                         <br/>
-                                                        <span class="description" 
-                                                              t-if="line.product_id.description_sale" t-field="line.product_id.description_sale"/>
+                                                        <span class="description" t-if="line.product_id.description_sale" t-field="line.product_id.description_sale"/>
                                                     </t>
                                                     <t t-if="rental_order">
-                                                        <b>[ <span t-if="line.product_id.default_code"
-                                                        t-field="line.product_id.default_code"/> ]
-                                                        <span t-field="line.product_id.name"/>
+                                                        <b>[ <span t-if="line.display_product_id.default_code"
+                                                        t-field="line.display_product_id.default_code"/> ]
+                                                        <span t-field="line.display_product_id.name"/>
                                                         </b>
                                                         <br/>
                                                         <span class="description" t-field="line.name"/>
                                                     </t>
                                                 </td>
                                                 <td>
-                                                    <span t-field="line.quantity"/>
-                                                    <span t-field="line.uom_id"  groups="uom.group_uom"/>
+                                                    <span t-field="line.product_uom_qty"/>
+                                                    <span t-field="line.product_uom" groups="uom.group_uom"/>
                                                 </td>
                                                 <td>
                                                     <span t-field="line.price_unit"
@@ -174,28 +188,37 @@
                             <t t-foreach="doc.amount_by_group" t-as="amount_by_group">
                                 <tr>
                                     <td></td>
-                                    <t t-if="len(doc.tax_line_ids) == 1 and doc.amount_untaxed == amount_by_group[2]">
-                                        <td><span t-esc="amount_by_group[0].upper()"/></td>
-                                        <td class="text-right o_price_total"><span t-esc="amount_by_group[3]" /></td>
-                                    </t>
-                                    <t t-else="">
+                                    <t t-if="amount_by_group[5] == 1 and doc.amount_untaxed == amount_by_group[2]">
                                         <td>
                                             <span t-esc="amount_by_group[0].upper()"/>
-                                            <span>&amp;nbsp;<span>on</span>
-                                                <t t-esc="amount_by_group[4]"/>
-                                            </span>
+                                            <!-- <span>&amp;nbsp;<span>on</span>
+                                                <t t-esc="amount_by_group[2]"/>
+                                            </span> -->
                                         </td>
-                                        <td class="text-right o_price_total"><span t-esc="amount_by_group[3]"/></td>
+                                        <td class="text-right o_price_total">
+                                            <span t-esc="amount_by_group[1]"
+                                                  t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
+                                        </td>
+                                    </t>
+                                    <t t-else="">
+                                        <td><span t-esc="amount_by_group[0].upper()"/></td>
+                                        <td class="text-right o_price_total">
+                                            <span t-esc="amount_by_group[1]" 
+                                                  t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
+                                        </td>
                                     </t>
                                 </tr>
                                 <tr>
                                     <td></td>
                                     <td>TO PAY</td>
-                                    <td><b><span t-field="doc.amount_total"
+                                    <td>
+                                        <b><span t-field="doc.amount_total"
                                                  t-options='{
                                                     "widget": "monetary",
                                                     "display_currency": doc.currency_id,
-                                                  }'/></b></td>
+                                                  }'/>
+                                        </b>
+                                    </td>
                                 </tr>
                                 <tr></tr>
                             </t>
@@ -203,34 +226,41 @@
                         <!-- Payment note -->
                         <div class="payment_info">
                             <p t-if="doc.state not in ['draft','sent']">
-                                Please pay the outstanding invoice total by referencing the invoice number
-                                <span t-field="doc.number"/> due to
-                                <span t-if="doc.date_due" t-field="doc.date_due" t-options='{"format": "dd.MM.yyyy"}'/> : 
-                                <span t-if="doc.partner_bank_id.bank_id"
+                                Please refer the <t t-if="rental_order">Rental</t>
+                                <t t-else="">Sale</t> order number
+                                <span t-field="doc.name"/> which order/confirm on
+                                <span t-if="doc.confirmation_date" t-field="doc.confirmation_date" t-options='{"format": "dd.MM.yyyy"}'/>:
+                                <!-- <span t-if="doc.partner_bank_id.bank_id"
                                       t-field="doc.partner_bank_id.bank_id.name"/> | IBAN:
                                 <span t-field="doc.partner_bank_id.acc_number" /> | BIC:
-                                <span t-if="doc.partner_bank_id.bank_id" t-field="doc.partner_bank_id.bank_id.bic"/>
+                                <span t-if="doc.partner_bank_id.bank_id" t-field="doc.partner_bank_id.bank_id.bic"/> -->
                             </p>
                             <p class="thank_msg">
                                 Thank you for your great cooperation. If you have any questions, we will be happy to help. Your ROCKBIRD TEAM - <span>ROCKBIRD.EU</span>
                             </p>
                         </div>
-                    </div>
+                    </div>                    
                 </div>
             </div>
         </t>
     </template>
 
-    <!-- Call template for invoice -->
-    <template id="report_invoice">
+    <template id="report_saleorder">
         <t t-call="web.html_container">
-            <t t-set="is_invoice" t-value="True"/>
+            <t t-set="is_so" t-value="True"/>
             <t t-foreach="docs" t-as="doc">
-                <t t-set="lang"
-                   t-value="doc.user_id.sudo().lang if doc.type in ('in_invoice', 'in_refund') else doc.partner_id.lang"/>
-                <t t-call="rental_invoice_report.report_invoice_document" t-lang="lang"/>
+                <t t-call="rental_report_sale.report_saleorder_document" t-lang="doc.partner_id.lang"/>
             </t>
         </t>
     </template>
 
+    <template id="report_saleorder_pro_forma">
+        <t t-call="web.html_container">
+            <t t-set="is_pro_forma" t-value="True"/>
+            <t t-set="is_so" t-value="True"/>
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="rental_report_sale.report_saleorder_document" t-lang="doc.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
 </odoo>

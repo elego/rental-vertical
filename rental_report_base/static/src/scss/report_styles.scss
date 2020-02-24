@@ -86,7 +86,7 @@
 
 .rockbird {
     &.header {
-        font-family: 'Roboto';
+        font-family: 'Roboto', sans-serif;
         position: absolute;
         top: 9mm;
         left: 20.3mm;
@@ -101,14 +101,15 @@
             }
         }
 
-        .contactdata {
-            font-family: 'Roboto';
+        .data {
+            font-family: 'Roboto', sans-serif;
             font-size: 9.5pt;
             white-space: nowrap;
+            width: 208mm;
 
-            .contactdata_mail {
-                position: absolute;
-                left: 163mm;
+            .data_header {
+                position: relative;
+                left: 0mm;
                 top: 12.7mm;
                 text-align: right;
                 span:first-child {
@@ -130,11 +131,11 @@
 
     &.article {
         .consignor {
-            font-family: 'Roboto';
+            font-family: 'Roboto Condensed', sans-serif;
             position: absolute;
             top: 2mm;
             left: 23.2mm;
-            font-size: 8pt;
+            font-size: 8.5pt;
             color: rgb(111, 111, 111);
             width: 205mm;
             span:first-child {
@@ -151,7 +152,7 @@
         }
 
         .page {
-            font-family: 'Roboto';
+            font-family: 'Roboto', sans-serif;
             font-size: 9.5pt;
             color: rgb(0, 0, 0);
             position: absolute;
@@ -161,13 +162,15 @@
 
             .partner_address {
                 display: inline-block;
+                font-weight: 100;
             }
 
-            .invoice_details {
+            .details {
                 float: right;
                 text-align: right;
+                font-weight: 100;
                 .inv {
-                    font-size: 8pt;
+                    font-size: 8.5pt;
                     color: rgb(111, 111, 111);
                     font-weight: bold;
                     margin-right: 4mm;
@@ -204,7 +207,7 @@
 
                         thead {
                             border-top: 1pt solid #6f6f6f;
-                            font-size: 8pt;
+                            font-size: 8.5pt;
                             color: rgb(111, 111, 111);
                             th:first-child {
                                 width: 60%;
@@ -243,6 +246,7 @@
                                 vertical-align: top;
                                 padding-top: 1mm;
                                 padding-bottom: 1mm;
+                                font-weight: 100;
                             }
                             .line_section {
                                 font-weight: bold;
@@ -259,6 +263,7 @@
 
                         tbody {
                             border-bottom: 1pt solid #6f6f6f;
+                            font-weight: 100;
 
                             td:first-child {
                                 width: 60%;
@@ -287,6 +292,7 @@
                     }
                     .payment_info {
                         margin-top: 8mm;
+                        font-weight: 100;
                         p{
                             span:first-child{
                                 font-weight: bold;
@@ -308,13 +314,13 @@
     }
 
     &.footer {
-        font-family: 'Roboto';
+        font-family: 'Roboto', sans-serif;
 
         .page_number {
             position: absolute;
             right: 1mm;
             float: right;
-            font-size: 8pt;
+            font-size: 8.5pt;
             color: rgb(111, 111, 111);
             text-align: right;
             top: 9.8mm;
@@ -323,7 +329,7 @@
        .company_info {
             position: absolute;
             top: 7mm;
-            font-size: 8pt;
+            font-size: 8.5pt;
             color: rgb(111, 111, 111);
             line-height: 6pt;
             white-space: nowrap;
