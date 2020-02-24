@@ -10,7 +10,7 @@ odoo.define('sale_rental_timeline.TimelineRenderer', function(require){
             }
             var groups = [];
             var self = this;
-            groups.push({id: -1, content: _t('-')});
+            //groups.push({id: -1, content: _t('-')});
             _.each(events, function(event){
                 var group_name = event[_.first(group_bys)];
                 if(group_name){
@@ -49,9 +49,24 @@ odoo.define('sale_rental_timeline.TimelineRenderer', function(require){
                 updateGroup: false,
                 remove: false
             };
-            this.options.orientation = 'top';
+            this.options.orientation = {
+                item: 'top',
+                axis: 'top'
+            };
             this.options.verticalScroll = true;
             this.timeline.setOptions(this.options);
+
+            this.timeline.off('changed').on('changed', function() {
+                this.options.orientation = {
+                    item: 'top',
+                    axis: 'top'
+                };
+                self.draw_canvas();
+                self.canvas.$el.attr(
+                    'style',
+                    self.$el.find('.vis-content').attr('style') + self.$el.find('.vis-itemset').attr('style')
+                );
+            });
 
             (function(_create, setData){
                 vis.timeline.components.Group.prototype.setData = function(data){
