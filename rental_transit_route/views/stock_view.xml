@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_warehouse" model="ir.ui.view">
+            <field name="name">rental.stock.warehouse.form</field>
+            <field name="model">stock.warehouse</field>
+            <field name="inherit_id" ref="sale_rental.view_warehouse" />
+            <field name="arch" type="xml">
+                <field name="rental_out_location_id" position="after">
+                    <field name="transit_in_location_id"
+                        attrs="{'invisible': [('rental_allowed', '=', False)]}"/>
+                    <field name="transit_out_location_id"
+                        attrs="{'invisible': [('rental_allowed', '=', False)]}"/>
+                </field>
+                <field name="rental_allowed" position="after">
+                    <button name="reset_rental_location_and_push_pull_rules"
+                            type="object" string="Reset Rental Locations and Rules"
+                            attrs="{'invisible': [('rental_allowed', '=', False)]}"/>
+                    <field name="rental_transit_route_id"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>

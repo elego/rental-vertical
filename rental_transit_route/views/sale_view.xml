@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_rental.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']//field[@name='customer_lead']/.." position="after">
+                    <field name="planned_in_location_id" groups="base.group_no_one"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
