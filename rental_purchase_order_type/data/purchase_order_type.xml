@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <data noupdate="1">
+        <record id="seq_po_type_transport_order" model="ir.sequence">
+            <field name="name">Transport Order</field>
+            <field name="code">purchase.order</field>
+            <field name="prefix">TO</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_po_type_repair_order" model="ir.sequence">
+            <field name="name">Repair Order</field>
+            <field name="code">purchase.order</field>
+            <field name="prefix">RO</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+
     <record id="po_type_transport_order" model="purchase.order.type">
         <field name="name">Transport Order</field>
+        <field name="sequence_id" ref="seq_po_type_transport_order"/>
     </record>
+
     <record id="po_type_repair_order" model="purchase.order.type">
         <field name="name">Repair Order</field>
+        <field name="sequence_id" ref="seq_po_type_repair_order"/>
     </record>
 </odoo>
