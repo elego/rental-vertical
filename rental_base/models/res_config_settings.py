@@ -15,7 +15,7 @@ class ResConfigSettings(models.TransientModel):
     module_rental_product_set = fields.Boolean("Product Set")
     module_rental_contract = fields.Boolean("Contract")
     module_rental_repair = fields.Boolean("Repair Order")
-
+    module_rockbird_dms_extension =fields.Boolean("DMS Extention")
 
     #def set_values(self):
     #super(ResConfigSettings, self).set_values()
