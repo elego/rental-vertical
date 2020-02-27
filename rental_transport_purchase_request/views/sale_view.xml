@@ -14,10 +14,10 @@
                             attrs="{'invisible': ['|', ('trans_pr_needed', '=', False), ('trans_cost_created', '=', True)]}"/>
                 </button>
                 <button name="action_confirm" id="action_confirm" position="attributes">
-                    <attribute name="attrs">{'invisible': ['|', ('state', 'not in', ['sent']), ('trans_cost_created', '=', False)]}</attribute>
+                    <attribute name="attrs">{'invisible': ['|', ('state', 'not in', ['sent']), '&amp;', ('trans_pr_needed', '=', True), ('trans_cost_created', '=', False)]}</attribute>
                 </button>
                 <button name="action_confirm" attrs="{'invisible': [('state', 'not in', ['draft'])]}" position="attributes">
-                    <attribute name="attrs">{'invisible': ['|', ('state', 'not in', ['draft']), ('trans_cost_created', '=', False)]}</attribute>
+                    <attribute name="attrs">{'invisible': ['|', ('state', 'not in', ['draft']), '&amp;', ('trans_pr_needed', '=', True), ('trans_cost_created', '=', False)]}</attribute>
                 </button>
                 <xpath expr="//field[@name='order_line']//field[@name='customer_lead']/.." position="after">
                     <field name="planned_source_address_id"/>

@@ -28,10 +28,13 @@ class SaleOrderLine(models.Model):
 #                    move._assign_picking()
 
     def _run_rental_procurement(self, line, vals):
+        location = line.order_id.warehouse_id.rental_out_location_id
+        if line.route_id and line.route_id == line.order_id.warehouse_id.rental_transit_route_id:
+            location = line.order_id.warehouse_id.transit_out_location_id
         self.env['procurement.group'].run(
             line.product_id.rented_product_id, line.rental_qty,
             line.product_id.rented_product_id.uom_id,
-            line.order_id.warehouse_id.transit_out_location_id,
+            location,
             line.name, line.order_id.name, vals)
         #line._set_planned_rental_in_location()
 
@@ -39,6 +42,6 @@ class SaleOrderLine(models.Model):
         res = super(SaleOrderLine, self)._prepare_new_rental_procurement_values(group=group)
         if self.planned_in_location_id:
             res['planned_in_location_id'] = self.planned_in_location_id.id
-        #res['route_ids'] = self.env.ref('rental_transit_route.route_warehouse0_rental_transit')
-        #res['route_ids'] = self.env.ref('sale_rental.route_warehouse0_rental')
+        if self.route_id and self.route_id == self.order_id.warehouse_id.rental_transit_route_id:
+            res['route_ids'] = self.order_id.warehouse_id.rental_transit_route_id
         return res
