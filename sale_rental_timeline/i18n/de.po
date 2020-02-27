@@ -6,14 +6,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-16 12:03+0000\n"
-"PO-Revision-Date: 2020-02-16 12:03+0000\n"
+"POT-Creation-Date: 2020-02-27 21:50+0000\n"
+"PO-Revision-Date: 2020-02-27 21:50+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: sale_rental_timeline
+#: model:ir.model.fields,field_description:sale_rental_timeline.field_product_timeline___maintenance
+msgid " Maintenance"
+msgstr " Wartung"
+
+#. module: sale_rental_timeline
+#: model_terms:ir.ui.view,arch_db:sale_rental_timeline.product_timeline_form_view
+msgid "<span class=\"o_stat_text\">Timelines</span>"
+msgstr ""
 
 #. module: sale_rental_timeline
 #: model:ir.model.fields,field_description:sale_rental_timeline.field_product_timeline__action_id
@@ -127,16 +137,23 @@ msgid "Name"
 msgstr ""
 
 #. module: sale_rental_timeline
-#: code:addons/sale_rental_timeline/models/sale.py:51
+#: code:addons/sale_rental_timeline/models/sale.py:50
 #, python-format
 msgid "No found rented product."
-msgstr ""
+msgstr "Konnte kein Vermietprodukt finden"
 
 #. module: sale_rental_timeline
-#: code:addons/sale_rental_timeline/models/sale.py:39
+#: code:addons/sale_rental_timeline/models/repair.py:49
+#, python-format
+msgid "No found repaired product."
+msgstr "Konnte kein Produkt zum reparieren finden"
+
+#. module: sale_rental_timeline
+#: code:addons/sale_rental_timeline/models/repair.py:37
+#: code:addons/sale_rental_timeline/models/sale.py:38
 #, python-format
 msgid "No found timelines."
-msgstr ""
+msgstr "Keine Zeiteinträge gefunden"
 
 #. module: sale_rental_timeline
 #: model:ir.model.fields,field_description:sale_rental_timeline.field_product_timeline__order_name
@@ -221,7 +238,7 @@ msgid "Rental period:"
 msgstr "Mietdauer:"
 
 #. module: sale_rental_timeline
-#: code:addons/sale_rental_timeline/models/product_timeline.py:124
+#: code:addons/sale_rental_timeline/models/product_timeline.py:129
 #, python-format
 msgid "Rental: %s"
 msgstr "Vermietung: %s"
@@ -230,6 +247,17 @@ msgstr "Vermietung: %s"
 #: selection:product.timeline,type:0
 msgid "Repair"
 msgstr "Reparieren"
+
+#. module: sale_rental_timeline
+#: model:ir.model,name:sale_rental_timeline.model_repair_order
+msgid "Repair Order"
+msgstr "Reparaturauftrag"
+
+#. module: sale_rental_timeline
+#: code:addons/sale_rental_timeline/models/product_timeline.py:148
+#, python-format
+msgid "Repair: %s"
+msgstr "Raparatur: %s"
 
 #. module: sale_rental_timeline
 #: model:ir.model.fields,field_description:sale_rental_timeline.field_product_timeline__res_id
@@ -289,7 +317,7 @@ msgstr ""
 #. module: sale_rental_timeline
 #: sql_constraint:product.timeline:0
 msgid "The start date must be anterior to the end date."
-msgstr ""
+msgstr "Das Startdatum muss vor dem Enddatum liegen."
 
 #. module: sale_rental_timeline
 #: model:ir.model.fields,field_description:sale_rental_timeline.field_product_product__product_timeline_ids
@@ -299,7 +327,6 @@ msgstr ""
 #. module: sale_rental_timeline
 #: model:ir.actions.act_window,name:sale_rental_timeline.action_product_timeline
 #: model:ir.ui.menu,name:sale_rental_timeline.menu_product_timeline
-#: model_terms:ir.ui.view,arch_db:sale_rental_timeline.product_timeline_form_view
 #: model_terms:ir.ui.view,arch_db:sale_rental_timeline.view_product_timeline_form
 #: model_terms:ir.ui.view,arch_db:sale_rental_timeline.view_product_timeline_search
 #: model_terms:ir.ui.view,arch_db:sale_rental_timeline.view_product_timeline_tree
@@ -307,9 +334,9 @@ msgid "Timeline"
 msgstr "Zeitleiste"
 
 #. module: sale_rental_timeline
-#: model:ir.model.fields,field_description:sale_rental_timeline.field_sale_order_line__timeline_ids
+#: model:ir.actions.act_window,name:sale_rental_timeline.action_view_all_timeline
 msgid "Timelines"
-msgstr "Zeitachse"
+msgstr ""
 
 #. module: sale_rental_timeline
 #: model:ir.model.fields,field_description:sale_rental_timeline.field_product_timeline__number_of_days

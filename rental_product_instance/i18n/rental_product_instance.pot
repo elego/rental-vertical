@@ -21,8 +21,18 @@ msgid "Available"
 msgstr ""
 
 #. module: rental_product_instance
-#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_current_condition
-msgid "Current Hours / Kilometers"
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_condition_date
+msgid "Condition Date"
+msgstr ""
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_condition_hour
+msgid "Current Hours"
+msgstr ""
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_condition_km
+msgid "Current Kilometers"
 msgstr ""
 
 #. module: rental_product_instance
@@ -33,6 +43,16 @@ msgstr ""
 #. module: rental_product_instance
 #: selection:product.product,instance_state:0
 msgid "Delivery"
+msgstr ""
+
+#. module: rental_product_instance
+#: selection:product.category,show_instance_condition_type:0
+msgid "Hours"
+msgstr ""
+
+#. module: rental_product_instance
+#: selection:product.category,show_instance_condition_type:0
+msgid "Kilometers"
 msgstr ""
 
 #. module: rental_product_instance
@@ -53,6 +73,11 @@ msgstr ""
 #. module: rental_product_instance
 #: model:ir.model,name:rental_product_instance.model_product_product
 msgid "Product"
+msgstr ""
+
+#. module: rental_product_instance
+#: model:ir.model,name:rental_product_instance.model_product_category
+msgid "Product Category"
 msgstr ""
 
 #. module: rental_product_instance
@@ -92,6 +117,12 @@ msgid "Serial Number"
 msgstr ""
 
 #. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_category__show_instance_condition_type
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__show_instance_condition_type
+msgid "Show Instance Condition Type"
+msgstr ""
+
+#. module: rental_product_instance
 #: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_state
 msgid "State"
 msgstr ""
@@ -114,7 +145,7 @@ msgid "You can not have 2 serial numbers for a product instance."
 msgstr ""
 
 #. module: rental_product_instance
-#: code:addons/rental_product_instance/models/product_timeline.py:23
+#: code:addons/rental_product_instance/models/product_timeline.py:25
 #, python-format
 msgid "You can not have 2 timelines that overlaps on the same day."
 msgstr ""
