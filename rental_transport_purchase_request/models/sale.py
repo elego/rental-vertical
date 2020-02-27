@@ -1,5 +1,6 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
+from datetime import timedelta
 from odoo import api, fields, models, exceptions, _
 import logging
 
@@ -74,7 +75,7 @@ class SaleOrder(models.Model):
         "Transport PR Created",
         compute="_compute_trans_pr_created")
     trans_cost_created = fields.Boolean(
-        "Transport Cost Created")
+        "Transport Cost Created", copy=False)
 
     @api.multi
     def _compute_trans_pr_needed(self):
@@ -109,6 +110,7 @@ class SaleOrder(models.Model):
                         'product_qty': 1,
                         'product_uom_id': self.env.ref('uom.product_uom_unit').id,
                         'trans_origin_sale_line_id': line.id,
+                        'schedule_date': line.start_date - timedelta(days=line.customer_lead),
                     }))
                 requisition = self.env['purchase.requisition'].create({
                     'name': _("Transport for %s") %(order.name),

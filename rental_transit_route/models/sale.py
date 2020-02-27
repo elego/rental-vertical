@@ -1,5 +1,5 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
-
+from datetime import timedelta
 from odoo import api, fields, models, exceptions, _
 from odoo.exceptions import UserError
 import logging
@@ -44,4 +44,6 @@ class SaleOrderLine(models.Model):
             res['planned_in_location_id'] = self.planned_in_location_id.id
         if self.route_id and self.route_id == self.order_id.warehouse_id.rental_transit_route_id:
             res['route_ids'] = self.order_id.warehouse_id.rental_transit_route_id
+            # set value of 1st. stock move
+            res['date_planned'] -= timedelta(days=self.customer_lead)
         return res
