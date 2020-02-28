@@ -13,5 +13,11 @@
             </field>
         </record>
 
+        <menuitem name="Transport Requisition"
+            id="menu_trans_requisition"
+            parent="rental_base.menu_top_vendor"
+            action="purchase_requisition.action_purchase_requisition"
+            sequence="2" />
+
     </data>
 </odoo>

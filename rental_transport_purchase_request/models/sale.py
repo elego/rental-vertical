@@ -78,6 +78,8 @@ class SaleOrder(models.Model):
         "Transport Cost Created", copy=False)
     trans_pr_ids = fields.One2many('purchase.requisition', compute="_compute_trans_pos_prs")
     trans_po_ids = fields.One2many('purchase.order', compute="_compute_trans_pos_prs")
+    trans_pr_count = fields.Integer(compute="_compute_trans_pos_prs")
+    trans_po_count = fields.Integer(compute="_compute_trans_pos_prs")
 
     @api.multi
     def _compute_trans_pos_prs(self):
@@ -95,6 +97,8 @@ class SaleOrder(models.Model):
                     trans_pos |= po_line.order_id
             self.trans_pr_ids = trans_prs
             self.trans_po_ids = trans_pos
+            self.trans_pr_count = len(trans_prs.ids)
+            self.trans_po_count = len(trans_pos.ids)
 
     @api.multi
     def _compute_trans_pr_needed(self):
@@ -187,3 +191,17 @@ class SaleOrder(models.Model):
         self.action_cancel_trans_order()
         self.action_cancel_trans_requisition()
         return super(SaleOrder, self).action_cancel()
+
+    @api.multi
+    def action_view_trans_prs(self):
+        self.ensure_one()
+        action = self.env.ref('purchase_requisition.action_purchase_requisition').read([])[0]
+        action['domain'] = [('id','in', self.trans_pr_ids.ids)]
+        return action
+
+    @api.multi
+    def action_view_trans_pos(self):
+        self.ensure_one()
+        action = self.env.ref('purchase.purchase_form_action').read([])[0]
+        action['domain'] = [('id','in', self.trans_po_ids.ids)]
+        return action
