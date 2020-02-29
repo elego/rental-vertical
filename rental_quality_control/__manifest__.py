@@ -2,10 +2,10 @@
 
 {
     'name': 'Rental Quality Control',
-    'summary': '''New text field to define the reason for quality failure.''',
+    'summary': 'New text field to define the reason for quality failure.',
     'version': '12.0.1.0.0',
     'category': 'sale',
-    'author': 'Elego Software Solutions GmbH',
+    'author': 'OCA/Elego Software Solutions GmbH',
     'depends': [
         'sale_rental',
         'quality_control_stock',
@@ -20,5 +20,5 @@
     'qweb': [
     ],
     'application': True,
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
 }

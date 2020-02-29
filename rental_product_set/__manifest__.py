@@ -2,10 +2,10 @@
 
 {
     'name': 'Rental Product Set',
-    'summary': '''This module extends the sale_product_set to add rented product set on sale order line.''',
+    'summary': '''This module extends the sale_product_set to add rented product set on sale order lines.''',
     'version': '12.0.1.0.0',
     'category': 'sale',
-    'author': 'Elego Software Solutions Gmbh',
+    'author': 'OCA/Elego Software Solutions GmbH',
     'depends': [
         'sale_rental_pricelist',
         'sale_product_set',
@@ -20,5 +20,5 @@
     'qweb': [
     ],
     'application': True,
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
 }

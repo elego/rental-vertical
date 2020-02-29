@@ -4,7 +4,7 @@
     'name': 'Rental Report Invoice',
     'version': '12.0.1.0.0',
     'summary': 'Rental Report Invoice',
-    'author': 'Elego Software Solutions GmbH',
+    'author': 'OCA/Elego Software Solutions GmbH',
     'category': 'Reporting',
     'description': """
         This module provides a customized invoice report.
@@ -26,5 +26,5 @@
     'qweb': [
     ],
     'application': True,
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
 }

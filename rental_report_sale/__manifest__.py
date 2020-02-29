@@ -4,7 +4,7 @@
     'name': 'Rental Report Sale',
     'version': '12.0.1.0.0',
     'summary': 'Rental Report Sale',
-    'author': 'Elego Software Solutions Gmbh',
+    'author': 'OCA/Elego Software Solutions GmbH',
     'category': 'Reporting',
     'description': """
         This module provides a customized sale report.
@@ -22,5 +22,5 @@
     'qweb': [
     ],
     'application': True,
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
 }

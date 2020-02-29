@@ -2,10 +2,10 @@
 
 {
     'name': 'Rental Purchase Order Type',
-    'summary': '''Additional purchase order types for rental''',
+    'summary': 'Additional purchase order types for rental use cases',
     'version': '12.0.1.0.0',
     'category': 'Purchase Management',
-    'author': 'Elego Software Solutions GmbH',
+    'author': 'OCA/Elego Software Solutions GmbH',
     'depends': [
         'purchase_order_type',
         'rental_base',
@@ -19,5 +19,5 @@
     'qweb': [
     ],
     'application': False,
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
 }

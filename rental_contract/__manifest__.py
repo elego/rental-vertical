@@ -2,10 +2,10 @@
 
 {
     'name': 'Rental Contract',
-    'summary': 'Extension of module contract.',
+    'summary': 'Extension of module contract for rental use cases',
     'version': '12.0.1.0.0',
     'category': 'rental',
-    'author': 'Elego Software Solutions GmbH',
+    'author': 'OCA/Elego Software Solutions GmbH',
     'depends': [
         'contract',
         'product_contract',

@@ -2,10 +2,12 @@
 
 {
     'name': 'Rental Repair',
-    'summary': 'Rental Repair',
+    'summary': 'Support repair orders during rental periods',
+    'description': '''
+''',
     'version': '12.0.1.0.0',
     'category': 'project',
-    'author': 'Elego Software Solutions Gmbh',
+    'author': 'OCA/Elego Software Solutions GmbH',
     'depends': [
         'project',
         'rental_base',
