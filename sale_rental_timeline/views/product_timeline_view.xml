@@ -14,9 +14,10 @@
                           tooltip='{"followMouse": true}'
                           stack="False"
                           event_open_popup="True"
-                          colors="#f0ff00:type == 'reserved'; #33ffec:type == 'rental'; #ffce00:type=='maintenance'; #ff5a00:type == 'repair'; #ff0000:type=='delivery';">
+                          colors="#f0ff00:type == 'reserved'; #33ffec:type == 'rental'; #ffce00:type=='maintenance'; #ff5a00:type == 'repair'; #FFA500:type=='delivery';">
                     <field name="termin" />
                     <field name="maintenance" />
+                    <field name="_maintenance" />
                     <field name="redline" />
                     <field name="date_start" readonly="1" widget="date" />
                     <field name="date_end" readonly="1" widget="date" />
@@ -107,6 +108,7 @@
                             </t>
                             <i t-if="record.termin" class="fa fa-fw o_button_icon fa-bell" />
                             <i t-if="record.maintenance" class="fa fa-fw o_button_icon fa-wrench" />
+                            <i t-if="record._maintenance" class="fa fa-fw o_button_icon fa-wrench" style="color: #ff5a00;" />
                             <t t-raw="record.display_name" />
                         </div>
                     </templates>
@@ -186,7 +188,7 @@
             id="menu_product_timeline" parent="stock.menu_stock_inventory_control"
             sequence="12" />
 
-        <menuitem name="Schedule"
+        <menuitem name="Overview"
             id="menu_overview"
             parent="rental_base.menu_rental_root"
             action="action_product_timeline"

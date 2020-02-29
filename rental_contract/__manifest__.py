@@ -3,6 +3,11 @@
 {
     'name': 'Rental Contract',
     'summary': 'Extension of module contract for rental use cases',
+    'description': '''
+During longtime rentals, it is often required to write invoices in regular intervals.
+This is possible with the contract module, which is here extended to support rental
+use cases in extension to purchase and sale use cases.
+''',
     'version': '12.0.1.0.0',
     'category': 'rental',
     'author': 'OCA/Elego Software Solutions GmbH',

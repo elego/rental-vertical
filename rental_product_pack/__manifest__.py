@@ -3,6 +3,9 @@
 {
     'name': 'Rental Product Pack',
     'summary': 'Allow use of product packs as in rental use cases',
+    'description': '''
+With this module, product packs can be rented as one compound product.
+''',
     'version': '12.0.1.0.0',
     'category': 'product',
     'author': 'OCA/Elego Software Solutions GmbH',

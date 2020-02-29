@@ -48,6 +48,9 @@ class ProductTimeline(models.Model):
     termin = fields.Boolean(
         'Termin',
     )
+    _maintenance = fields.Boolean(
+        compute="_compute_fields",
+    )
     maintenance = fields.Boolean(
         'Maintenance',
     )
@@ -72,7 +75,8 @@ class ProductTimeline(models.Model):
     )
     partner_id = fields.Many2one(
         'res.partner',
-        'Partner', ondelete="set null",
+        'Partner',
+        ondelete="set null",
         compute="_compute_fields",
     )
     partner_shipping_address = fields.Char(
@@ -121,24 +125,42 @@ class ProductTimeline(models.Model):
             obj = self.env[line.res_model].browse(line.res_id)
             order_obj = self.env[line.order_res_model].browse(line.order_res_id)
 
-            line.name = _('Rental: %s') % order_obj.partner_id.name
-            line.order_name = order_obj.name
-            line.partner_id = order_obj.partner_id.id
-            line.partner_shipping_address = order_obj.partner_shipping_id._display_address()
+            if line.res_model == 'sale.order.line':
+                line.name = _('Rental: %s') % order_obj.partner_id.name
+                line.order_name = order_obj.name
+                line.partner_id = order_obj.partner_id.id
+                line.partner_shipping_address = order_obj.partner_shipping_id._display_address()
 
-            line.warehouse_id = order_obj.warehouse_id.id
-            line.currency_id = obj.currency_id.id
-            line.price_subtotal = obj.price_subtotal
-            line.number_of_days = obj.number_of_days
-            line.rental_period = "{product_uom_qty} {product_uom}".format(
-                product_uom_qty=int(obj.product_uom_qty),
-                product_uom=obj.product_uom.name,
-            )
-            line.amount = "{price_subtotal} {currency}".format(
-                price_subtotal=line.price_subtotal,
-                currency=line.currency_id.name,
-            )
+                line.warehouse_id = order_obj.warehouse_id.id
+                line.currency_id = obj.currency_id.id
+                line.price_subtotal = obj.price_subtotal
+                line.number_of_days = obj.number_of_days
+                line.rental_period = "{product_uom_qty} {product_uom}".format(
+                    product_uom_qty=int(obj.product_uom_qty),
+                    product_uom=obj.product_uom.name,
+                )
+                line.amount = "{price_subtotal} {currency}".format(
+                    price_subtotal=line.price_subtotal,
+                    currency=line.currency_id.name,
+                )
 
+            elif line.res_model == 'repair.order':
+                line.name = _('R: %s') % obj.partner_id.name
+                line.order_name = obj.name
+                line.partner_id = obj.partner_id.id
+                line.partner_shipping_address = obj.address_id._display_address()
+                line.amount = "{total} {currency}".format(
+                    total=obj.amount_untaxed,
+                    currency=self.env.user.company_id.currency_id.name,
+                )
+
+            _maintenance_domain = [
+                ('type', '=', 'repair'),
+                ('product_id', '=', line.product_id.id),
+                ('date_start', '>=', line.date_start),
+                ('date_end', '<=', line.date_end),
+            ]
+            line._maintenance = False if line.type == 'repair' and not line.maintenance else bool(self.search(_maintenance_domain))
             line.action_id = self.env.ref('rental_base.action_rental_orders').id
             line.menu_id = self.env.ref('rental_base.menu_rental_root').id
 

@@ -15,7 +15,8 @@ class ProductTimeline(models.Model):
     def _compute_fields(self):
         super(ProductTimeline, self)._compute_fields()
         for line in self:
-            obj = self.env[line.res_model].browse(line.res_id)
-            order_obj = self.env[line.order_res_model].browse(line.order_res_id)
+            if line.res_model == 'sale.order.line':
+                obj = self.env[line.res_model].browse(line.res_id)
+                order_obj = self.env[line.order_res_model].browse(line.order_res_id)
 
-            line.offday_number = obj.offday_number
+                line.offday_number = obj.offday_number
