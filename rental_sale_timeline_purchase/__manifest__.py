@@ -2,7 +2,7 @@
 
 {
     'name': 'Rental Sale Timeline Purchase',
-    'summary': '''This module extends the sale_rental_timeline module to show the transport order fields in the timeline popup.''',
+    'summary': 'extends the sale_rental_timeline module to show the transport order fields in the timeline popup.',
     'version': '12.0.1.0.0',
     'category': 'sale',
     'author': 'Elego Software Solutions Gmbh',

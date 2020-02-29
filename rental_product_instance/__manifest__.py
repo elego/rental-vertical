@@ -2,11 +2,11 @@
 
 {
     'name': 'Rental Product Instance',
-    'summary': 'Add product instances identified by serial number as unique rented objects'
+    'summary': 'Add product instances identified by serial number as unique rented objects',
     'description':
 '''Model product is extended as an instance that can be traced by serial number.
 An instance can only have one serial number, so that it is unique in the system.
-It can be used in Rental Order, Repair Order and Maintenance Order.''',
+It can be used in rental orders, repair orders and maintenance orders.''',
     'version': '12.0.1.0.0',
     'category': 'product',
     'author': 'OCA/Elego Software Solutions GmbH',
