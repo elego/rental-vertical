@@ -176,6 +176,11 @@ msgid "Order:"
 msgstr ""
 
 #. module: sale_rental_timeline
+#: model:ir.ui.menu,name:sale_rental_timeline.menu_overview
+msgid "Overview"
+msgstr ""
+
+#. module: sale_rental_timeline
 #: model:ir.model.fields,field_description:sale_rental_timeline.field_product_timeline__partner_id
 msgid "Partner"
 msgstr ""
@@ -282,11 +287,6 @@ msgstr ""
 #. module: sale_rental_timeline
 #: model:ir.model,name:sale_rental_timeline.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
-
-#. module: sale_rental_timeline
-#: model:ir.ui.menu,name:sale_rental_timeline.menu_overview
-msgid "Schedule"
 msgstr ""
 
 #. module: sale_rental_timeline

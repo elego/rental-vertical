@@ -188,7 +188,7 @@
             id="menu_product_timeline" parent="stock.menu_stock_inventory_control"
             sequence="12" />
 
-        <menuitem name="Schedule"
+        <menuitem name="Overview"
             id="menu_overview"
             parent="rental_base.menu_rental_root"
             action="action_product_timeline"
