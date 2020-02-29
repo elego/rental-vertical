@@ -145,7 +145,7 @@ class ProductTimeline(models.Model):
                 )
 
             elif line.res_model == 'repair.order':
-                line.name = _('Repair: %s') % obj.partner_id.name
+                line.name = _('R: %s') % obj.partner_id.name
                 line.order_name = obj.name
                 line.partner_id = obj.partner_id.id
                 line.partner_shipping_address = obj.address_id._display_address()

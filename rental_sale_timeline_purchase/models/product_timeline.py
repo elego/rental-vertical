@@ -29,7 +29,7 @@ class ProductTimeline(models.Model):
                 obj = self.env[line.res_model].browse(line.res_id)
                 order_obj = self.env[line.order_res_model].browse(line.order_res_id)
 
-                line.name = _('Delivery: %s') % order_obj.partner_id.name
+                line.name = _('T: %s') % order_obj.partner_id.name
                 line.order_name = order_obj.name
                 line.freight_forwarder_id = order_obj.partner_id.id
                 line.source_address = obj.trans_origin_sale_line_id.planned_source_address_id._display_address()

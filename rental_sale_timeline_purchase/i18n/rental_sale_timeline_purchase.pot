@@ -16,12 +16,6 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: rental_sale_timeline_purchase
-#: code:addons/rental_sale_timeline_purchase/models/product_timeline.py:32
-#, python-format
-msgid "Delivery: %s"
-msgstr ""
-
-#. module: rental_sale_timeline_purchase
 #: model_terms:ir.ui.view,arch_db:rental_sale_timeline_purchase.view_product_timeline_timeline
 msgid "Destination:"
 msgstr ""
@@ -72,5 +66,11 @@ msgstr ""
 #. module: rental_sale_timeline_purchase
 #: model_terms:ir.ui.view,arch_db:rental_sale_timeline_purchase.view_product_timeline_timeline
 msgid "Source:"
+msgstr ""
+
+#. module: rental_sale_timeline_purchase
+#: code:addons/rental_sale_timeline_purchase/models/product_timeline.py:32
+#, python-format
+msgid "T: %s"
 msgstr ""
 

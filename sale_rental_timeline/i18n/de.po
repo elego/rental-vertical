@@ -223,6 +223,12 @@ msgid "Product:"
 msgstr "Produkt:"
 
 #. module: sale_rental_timeline
+#: code:addons/sale_rental_timeline/models/product_timeline.py:148
+#, python-format
+msgid "R: %s"
+msgstr "R: %s"
+
+#. module: sale_rental_timeline
 #: model:ir.model.fields,field_description:sale_rental_timeline.field_product_timeline__redline
 msgid "Redline"
 msgstr ""
@@ -246,7 +252,7 @@ msgstr "Mietdauer:"
 #: code:addons/sale_rental_timeline/models/product_timeline.py:129
 #, python-format
 msgid "Rental: %s"
-msgstr "Vermietung: %s"
+msgstr "V: %s"
 
 #. module: sale_rental_timeline
 #: selection:product.timeline,type:0
@@ -257,12 +263,6 @@ msgstr "Reparieren"
 #: model:ir.model,name:sale_rental_timeline.model_repair_order
 msgid "Repair Order"
 msgstr "Reparaturauftrag"
-
-#. module: sale_rental_timeline
-#: code:addons/sale_rental_timeline/models/product_timeline.py:148
-#, python-format
-msgid "Repair: %s"
-msgstr "Raparatur: %s"
 
 #. module: sale_rental_timeline
 #: model:ir.model.fields,field_description:sale_rental_timeline.field_product_timeline__res_id
