@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils 0.16: http://docutils.sourceforge.net/" />
-<title>Sale Rental</title>
+<title>Rental Product Variant</title>
 <style type="text/css">
 
 /*
@@ -360,17 +360,40 @@ ul.auto-toc {
 </style>
 </head>
 <body>
-<div class="document" id="sale-rental">
-<h1 class="title">Sale Rental</h1>
+<div class="document" id="rental-product-variant">
+<h1 class="title">Rental Product Variant</h1>
 
 <p><em>This file has been generated on 2020-03-01-15-49-34. Changes to it will be overwritten.</em></p>
 <div class="section" id="summary">
 <h1>Summary</h1>
-<p>Manage Rental of Products</p>
+<p>Extends model product with several fields for rental use cases.</p>
 </div>
 <div class="section" id="description">
 <h1>Description</h1>
-<p>TODO</p>
+<dl class="docutils">
+<dt>Configuration options:</dt>
+<dd><ul class="first last simple">
+<li>Show Vehicle Identification Number</li>
+<li>Show License Plate</li>
+<li>Show Initial Registration</li>
+</ul>
+</dd>
+<dt>Additional fields:</dt>
+<dd><p class="first">further_ref [Char]: additional reference
+qr_code [Char]: QR code
+manu_year [Char]: year of manufacture
+manu_id [Many2one]: product.manufacturer -- manufacturer
+manu_type_id [Many2one]: product.manufacturer.type -- type
+fleet_type_id [Many2one]: fleet.type -- fleet type</p>
+<p>vehicle_number [Char]: vehicle identification number
+license_plate [Char]: license plate
+init_regist [Date]: date of initial registration</p>
+<p class="last">rental_order_ids [One2many]: sale.rental -- rented_product_id -- Rental Orders
+stock_move_ids [One2many]: stock.move -- product_id -- Stock Moves
+additional_info [Html]: arbitrary additional infomation
+dimension [Char]: dimension</p>
+</dd>
+</dl>
 </div>
 </div>
 </body>
