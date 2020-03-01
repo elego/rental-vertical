@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- ProductProduct -->
+        <record id="product_normal_form_view" model="ir.ui.view">
+            <field name="name">view.product.product.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="Appointment" name="appointment"
+                          attrs="{'invisible': [('product_instance','=',False)]}">
+                        <field name="appointment_ids">
+                            <tree default_order="date_next_appointment" editable="top">
+                                <field name="name"/>
+                                <field name="date_next_appointment"/>
+                                <field name="leads_of_notification"/>
+                                <field name="time_interval"/>
+                                <field name="time_uom"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

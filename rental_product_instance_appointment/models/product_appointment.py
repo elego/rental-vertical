@@ -1,0 +1,78 @@
+# Part of rental-vertical See LICENSE file for full copyright and licensing details.
+
+from dateutil.relativedelta import relativedelta
+from odoo import api, fields, models, _
+
+
+class ProductAppointment(models.Model):
+    _name = 'product.appointment'
+    _description = 'Appointment'
+
+    @api.model
+    def _get_time_uom_domain(self):
+        uom_month = self.env.ref('sale_rental_pricelist.product_uom_month')
+        uom_day = self.env.ref('uom.product_uom_day')
+        return [('id', 'in', [uom_month.id, uom_day.id])]
+
+    name = fields.Char('Name', required=True)
+    date_next_appointment = fields.Date('Datum', required=True)
+    leads_of_notification = fields.Integer('Leads of Notification', required=True)
+    time_interval = fields.Integer('Time Inteval', required=True)
+    time_uom = fields.Selection(
+        selection=[('day', 'Day(s)'), ('month', 'Month(s)')],
+        string='Time UoM', required=True, default="day")
+    product_id = fields.Many2one(
+        'product.product',
+        string="Instance",
+        domain=[('product_instance', '=', True)])
+    create_task = fields.Boolean('Create Task', compute="_compute_create_task")
+
+    @api.multi
+    def _compute_create_task(self):
+        today = fields.Date.from_string(fields.Date.today())
+        for record in self:
+            record.create_task = False
+            if record.date_next_appointment - relativedelta(days=self.leads_of_notification) == today:
+                record.create_task = True
+
+    def _prepare_task_vals(self):
+        self.ensure_one()
+        helpdesk = self.env.ref('rental_repair.project_project_helpdesk')
+        res = {
+            'product_id': self.product_id.id,
+            'lot_id': self.product_id.instance_serial_number_id.id,
+            'date_deadline': self.date_next_appointment,
+            'project_id': helpdesk.id,
+            'name': "%s: %s" %(self.name, self.product_id.name),
+        }
+        return res
+
+    def _update_next_appointment(self):
+        self.ensure_one()
+        today = fields.Date.from_string(fields.Date.today())
+        if self.time_uom == 'day':
+            self.date_next_appointment = today + relativedelta(days=self.time_interval)
+        if self.time_uom == 'month':
+            self.date_next_appointment = today + relativedelta(months=self.time_interval)
+
+    @api.multi
+    def action_create_project_tasks(self):
+        task_obj = self.env['project.task']
+        today = fields.Date.from_string(fields.Date.today())
+        for record in self:
+            if record.create_task:
+                vals = record._prepare_task_vals()
+                task_obj.create(vals)
+            if record.date_next_appointment == today:
+                record._update_next_appointment()
+
+    @api.model
+    def _cron_gen_update_appointment(self):
+        all_appointments = self.search([])
+        all_appointments.action_create_project_tasks()
+
+
+class ProductProduct(models.Model):
+    _inherit = 'product.product'
+
+    appointment_ids = fields.One2many('product.appointment', 'product_id', string="Appointments")
