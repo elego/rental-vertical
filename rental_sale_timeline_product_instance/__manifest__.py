@@ -2,10 +2,10 @@
 
 {
     'name': 'Rental Sale Timeline Product Instance',
-    'summary': '''This module extends the sale_rental_timeline module to show the product instance fields in the timeline product popup.''',
+    'summary': 'Extends the sale_rental_timeline module to show the product instance fields in the timeline product popup.',
     'version': '12.0.1.0.0',
     'category': 'sale',
-    'author': 'Elego Software Solutions Gmbh',
+    'author': 'OCA/Elego Software Solutions GmbH',
     'depends': [
         'sale_rental_timeline',
         'rental_product_instance',

@@ -28,5 +28,5 @@ msgstr "Standtage:"
 #. module: rental_sale_timeline_offday
 #: model:ir.model,name:rental_sale_timeline_offday.model_product_timeline
 msgid "Product Timeline"
-msgstr ""
+msgstr "Produkt-Zeitachse"
 

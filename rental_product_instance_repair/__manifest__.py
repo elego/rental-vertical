@@ -5,7 +5,7 @@
     'summary': 'Extension of module rental_product_instance and rental_repair',
     'version': '12.0.1.0.0',
     'category': 'rental',
-    'author': 'Elego Software Solutions Gmbh',
+    'author': 'OCA/Elego Software Solutions GmbH',
     'depends': [
         'rental_repair',
         'rental_product_instance',

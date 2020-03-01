@@ -2,10 +2,16 @@
 
 {
     'name': 'Rental Product Set',
-    'summary': '''This module extends the sale_product_set to add rented product set on sale order line.''',
+    'summary': 'Extends the sale_product_set to add rented product set on sale order lines.',
+    'description': '''
+Product sets define a number of products that are frequently sold together and are added
+as different sale order lines. This modules extends this use case to renting of product
+sets. As in the original workflows, independent rental order lines are created for all
+the products in the set. There is no further relation between those products.
+''',
     'version': '12.0.1.0.0',
     'category': 'sale',
-    'author': 'Elego Software Solutions Gmbh',
+    'author': 'OCA/Elego Software Solutions GmbH',
     'depends': [
         'sale_rental_pricelist',
         'sale_product_set',
@@ -20,5 +26,5 @@
     'qweb': [
     ],
     'application': True,
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
 }

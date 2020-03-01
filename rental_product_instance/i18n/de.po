@@ -21,9 +21,19 @@ msgid "Available"
 msgstr "Verfügbar"
 
 #. module: rental_product_instance
-#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_current_condition
-msgid "Current Hours / Kilometers"
-msgstr "Betriebsstunden / Kilometer"
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_condition_date
+msgid "Condition Date"
+msgstr ""
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_condition_hour
+msgid "Current Hours"
+msgstr "Aktuelle Stunden"
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_condition_km
+msgid "Current Kilometers"
+msgstr "Aktuelle Kilometer"
 
 #. module: rental_product_instance
 #: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_current_location_id
@@ -34,6 +44,16 @@ msgstr "Aktueller Lagerort"
 #: selection:product.product,instance_state:0
 msgid "Delivery"
 msgstr "Lieferung"
+
+#. module: rental_product_instance
+#: selection:product.category,show_instance_condition_type:0
+msgid "Hours"
+msgstr "Stunden"
+
+#. module: rental_product_instance
+#: selection:product.category,show_instance_condition_type:0
+msgid "Kilometers"
+msgstr "Kilometer"
 
 #. module: rental_product_instance
 #: model:ir.model,name:rental_product_instance.model_stock_production_lot
@@ -54,6 +74,11 @@ msgstr "Nächster Service"
 #: model:ir.model,name:rental_product_instance.model_product_product
 msgid "Product"
 msgstr "Produkt"
+
+#. module: rental_product_instance
+#: model:ir.model,name:rental_product_instance.model_product_category
+msgid "Product Category"
+msgstr "Produktkategorie"
 
 #. module: rental_product_instance
 #: model:ir.model.fields,field_description:rental_product_instance.field_product_product__product_instance
@@ -92,6 +117,12 @@ msgid "Serial Number"
 msgstr "Seriennummer"
 
 #. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_category__show_instance_condition_type
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__show_instance_condition_type
+msgid "Show Instance Condition Type"
+msgstr ""
+
+#. module: rental_product_instance
 #: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_state
 msgid "State"
 msgstr "Status"
@@ -114,7 +145,7 @@ msgid "You can not have 2 serial numbers for a product instance."
 msgstr "Für eine Produktinstanz dürfen nicht zwei Seriennummern existieren."
 
 #. module: rental_product_instance
-#: code:addons/rental_product_instance/models/product_timeline.py:23
+#: code:addons/rental_product_instance/models/product_timeline.py:25
 #, python-format
 msgid "You can not have 2 timelines that overlaps on the same day."
 msgstr "Aufträge dürfen in der Zeitachse zeitlich nicht überlappen."

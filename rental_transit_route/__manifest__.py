@@ -5,7 +5,7 @@
     'summary': 'Rental Transit Route',
     'version': '12.0.1.0.0',
     'category': 'stock',
-    'author': 'Elego Software Solutions Gmbh',
+    'author': 'OCA/Elego Software Solutions GmbH',
     'depends': [
         'rental_base',
     ],
