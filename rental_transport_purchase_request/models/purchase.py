@@ -18,6 +18,7 @@ class PurchaseRequisitionLine(models.Model):
             name=name, product_qty=product_qty, price_unit=price_unit, taxes_ids=taxes_ids)
         res['trans_origin_sale_line_id'] = self.trans_origin_sale_line_id.id
         res['name'] = self.name
+        res['date_planned'] = fields.Datetime.to_datetime(self.schedule_date)
         return res
 
 

@@ -1,5 +1,6 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
+from datetime import timedelta
 from odoo import api, fields, models, exceptions, _
 import logging
 
@@ -74,7 +75,30 @@ class SaleOrder(models.Model):
         "Transport PR Created",
         compute="_compute_trans_pr_created")
     trans_cost_created = fields.Boolean(
-        "Transport Cost Created")
+        "Transport Cost Created", copy=False)
+    trans_pr_ids = fields.One2many('purchase.requisition', compute="_compute_trans_pos_prs")
+    trans_po_ids = fields.One2many('purchase.order', compute="_compute_trans_pos_prs")
+    trans_pr_count = fields.Integer(compute="_compute_trans_pos_prs")
+    trans_po_count = fields.Integer(compute="_compute_trans_pos_prs")
+
+    @api.multi
+    def _compute_trans_pos_prs(self):
+        for order in self:
+            trans_prs = self.env['purchase.requisition'].browse()
+            trans_pos = self.env['purchase.order'].browse()
+            for line in order.order_line:
+                trans_pr_lines = self.env['purchase.requisition.line'].search([
+                    ('trans_origin_sale_line_id', '=', line.id)])
+                for pr_line in trans_pr_lines:
+                    trans_prs |= pr_line.requisition_id
+                trans_po_lines = self.env['purchase.order.line'].search([
+                    ('trans_origin_sale_line_id', '=', line.id)])
+                for po_line in trans_po_lines:
+                    trans_pos |= po_line.order_id
+            self.trans_pr_ids = trans_prs
+            self.trans_po_ids = trans_pos
+            self.trans_pr_count = len(trans_prs.ids)
+            self.trans_po_count = len(trans_pos.ids)
 
     @api.multi
     def _compute_trans_pr_needed(self):
@@ -109,6 +133,7 @@ class SaleOrder(models.Model):
                         'product_qty': 1,
                         'product_uom_id': self.env.ref('uom.product_uom_unit').id,
                         'trans_origin_sale_line_id': line.id,
+                        'schedule_date': line.start_date - timedelta(days=line.customer_lead),
                     }))
                 requisition = self.env['purchase.requisition'].create({
                     'name': _("Transport for %s") %(order.name),
@@ -141,3 +166,42 @@ class SaleOrder(models.Model):
                 if not line.trans_pr_created:
                     raise exceptions.UserError(
                         _('You have to buy the transport service for %s') %line.product_id.name)
+
+    @api.multi
+    def action_cancel_trans_order(self):
+        for order in self:
+            for line in order.order_line:
+                trans_purchase = line.trans_purchase_id
+                if line.trans_pr_needed and trans_purchase:
+                    if trans_purchase.state == 'draft':
+                        trans_purchase.button_cancel()
+                    elif trans_purchase.state == 'cancel':
+                        continue
+                    else:
+                        raise exceptions.UserError(
+                            _('You have to cancel the transport server "%s" at first.') %trans_purchase.name)
+
+    @api.multi
+    def action_cancel_trans_requisition(self):
+        for order in self:
+            order.trans_pr_ids.action_cancel()
+
+    @api.multi
+    def action_cancel(self):
+        self.action_cancel_trans_order()
+        self.action_cancel_trans_requisition()
+        return super(SaleOrder, self).action_cancel()
+
+    @api.multi
+    def action_view_trans_prs(self):
+        self.ensure_one()
+        action = self.env.ref('purchase_requisition.action_purchase_requisition').read([])[0]
+        action['domain'] = [('id','in', self.trans_pr_ids.ids)]
+        return action
+
+    @api.multi
+    def action_view_trans_pos(self):
+        self.ensure_one()
+        action = self.env.ref('purchase.purchase_form_action').read([])[0]
+        action['domain'] = [('id','in', self.trans_po_ids.ids)]
+        return action

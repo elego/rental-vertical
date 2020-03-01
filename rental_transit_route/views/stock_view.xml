@@ -14,9 +14,11 @@
                         attrs="{'invisible': [('rental_allowed', '=', False)]}"/>
                 </field>
                 <field name="rental_allowed" position="after">
+                    <!--
                     <button name="reset_rental_location_and_push_pull_rules"
                             type="object" string="Reset Rental Locations and Rules"
                             attrs="{'invisible': [('rental_allowed', '=', False)]}"/>
+                    -->
                     <field name="rental_transit_route_id"/>
                 </field>
             </field>

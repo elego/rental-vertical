@@ -1,5 +1,6 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
+from datetime import timedelta
 from odoo import api, fields, models, exceptions, _
 from odoo.exceptions import UserError
 import logging
@@ -15,6 +16,31 @@ class StockRule(models.Model):
             location_id=location_id, name=name, origin=origin, values=values, group_id=group_id)
         if values.get('planned_in_location_id', False):
             res['location_id'] = values.get('planned_in_location_id')
+        return res
+
+    def _push_prepare_move_copy_values(self, move_to_copy, new_date):
+        """Inherit to write the date of the rental on move"""
+        # get value of 3rd. move
+        res = super(StockRule, self)._push_prepare_move_copy_values(
+            move_to_copy, new_date)
+        location_id = res.get('location_id', False)
+        # get value of 2nd. stock.move
+        if location_id and\
+            location_id ==\
+            move_to_copy.warehouse_id.transit_out_location_id.id and\
+                move_to_copy.sale_line_id and\
+                move_to_copy.sale_line_id.rental_type == 'new_rental':
+            rental_start_date = move_to_copy.sale_line_id.start_date
+            res['date_expected'] = fields.Datetime.to_datetime(rental_start_date)
+        # get value of 4th stock.move
+        if location_id and\
+            location_id ==\
+            move_to_copy.warehouse_id.transit_in_location_id.id and\
+                move_to_copy.sale_line_id and\
+                move_to_copy.sale_line_id.rental_type == 'new_rental':
+            rental_end_date = move_to_copy.sale_line_id.end_date + timedelta(days=move_to_copy.sale_line_id.customer_lead)
+            res['date_expected'] = fields.Datetime.to_datetime(rental_end_date)
+
         return res
 
 class StockWarehouse(models.Model):
