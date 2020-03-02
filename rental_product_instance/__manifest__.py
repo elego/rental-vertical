@@ -9,7 +9,7 @@ An instance can only have one serial number, so that it is unique in the system.
 It can be used in rental orders, repair orders and maintenance orders.''',
     'version': '12.0.1.0.0',
     'category': 'product',
-    'author': 'OCA/Elego Software Solutions GmbH',
+    'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
         'rental_product_variant',
         'sale_rental_timeline',
