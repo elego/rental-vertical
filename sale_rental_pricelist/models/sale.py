@@ -1,9 +1,7 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
 from odoo import api, fields, models, exceptions, _
-from odoo.tools import float_compare
-
-import math
+from odoo.tools import float_compare, float_round
 
 
 class SaleOrderLine(models.Model):
@@ -256,5 +254,5 @@ class SaleOrderLine(models.Model):
                 number = ((self.end_date - self.start_date).days + 1) * 8
             elif self.product_uom.id == time_uoms['month'].id:
                 number = ((self.end_date - self.start_date).days + 1) / 30
-                number = math.ceil(number)
+                number = float_round(number, precision_rounding=1)
             self.number_of_time_unit = number
