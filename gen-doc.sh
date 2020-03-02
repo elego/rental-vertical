@@ -38,17 +38,17 @@ for p in rental_* sale_rental*; do
     description='TODO'
   fi
   if grep -q "'usage'" ${m}; then
-    usage=$(${TOOLS}/get_openerp_info.py -f ${m} -a description -p '' | sed -e 's/^\.$//' -e 's/|//g')
+    usage=$(${TOOLS}/get_openerp_info.py -f ${m} -a usage -p '' | sed -e 's/^\.$//' -e 's/|//g')
   else
     usage=''
   fi
   if grep -q "'contributors'" ${m}; then
-    contributors=$(${TOOLS}/get_openerp_info.py -f ${m} -a description -p '' | sed -e 's/^\.$//' -e 's/|//g')
+    contributors=$(${TOOLS}/get_openerp_info.py -f ${m} -a contributors -p '' | sed -e 's/^\.$//' -e 's/|//g')
   else
     contributors=''
   fi
   if grep -q "'author'" ${m}; then
-    author=$(${TOOLS}/get_openerp_info.py -f ${m} -a description -p '' | sed -e 's/^\.$//' -e 's/|//g')
+    author=$(${TOOLS}/get_openerp_info.py -f ${m} -a author -p '' | sed -e 's/^\.$//' -e 's/|//g')
   else
     author=''
   fi
