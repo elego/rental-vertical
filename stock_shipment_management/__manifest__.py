@@ -7,11 +7,11 @@
     'category': 'Transportation',
     'author': 'Elego Software Solutions Gmbh',
     'depends': [
-        'delivery',
         'rental_transit_route',
     ],
     'data': [
-        'views/stock_view.xml',
+        'security/ir.model.access.csv',
+        'views/shipment_plan.xml',
     ],
     'demo': [
     ],

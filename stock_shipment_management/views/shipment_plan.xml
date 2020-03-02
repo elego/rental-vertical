@@ -8,6 +8,7 @@
       <field name="arch" type="xml">
         <form string="Shipment Plan">
           <header>
+            <!--
             <button name="shipment_confirm"
                 string="Confirm"
                 states="draft"
@@ -24,6 +25,7 @@
                 states="cancel"
                 string="Set to Draft"
                 type="object"/>
+            -->
             <field name="state" select="1" readonly="1"
                 widget="statusbar"
                 statusbar_visible="draft,confirmed,done" />
@@ -31,10 +33,10 @@
           <sheet string="Shipment Plan">
             <div class="oe_title">
               <h1>
-                <label string="Shipment Plan" />
                 <field name="name" class="oe_inline" attrs="{'invisible': [('state', '=', 'draft')]}"/>
               </h1>
             </div>
+            <!--
             <div class="oe_right oe_button_box" name="buttons">
               <button class="oe_inline oe_stat_button" type="object" name="action_view_departure_picking"
                   icon="fa-upload">
@@ -45,6 +47,7 @@
                   <field string="Pickings" name="arrival_picking_count" widget="statinfo"/>
               </button>
             </div>
+            -->
             <group>
               <group>
                 <field name="user_id"/>
@@ -52,33 +55,23 @@
                 <label for="to_address_id"/>
                 <div>
                   <field name="to_address_id" class="oe_inline"/>
-                  <button name="%(action_view_change_shipment_to_address)d" string="⇒ Update"
-                      type="action"
-                      class="oe_link"/>
                 </div>
                 <label for="consignee_id"/>
                 <div>
                   <field name="consignee_id" class="oe_inline"/>
-                  <button name="%(action_view_change_shipment_consignee)d" string="⇒ Update"
-                      type="action"
-                      class="oe_link"/>
                 </div>
               </group>
               <group>
+                <!--
                 <field name="transport_mode_id" widget="selection"/>
                 <label for="carrier_id"/>
                 <div>
                   <field name="carrier_id" class="oe_inline"/>
-                  <button name="%(action_view_change_shipment_carrier)d" string="⇒ Update"
-                      type="action"
-                      class="oe_link"/>
                 </div>
+                -->
                 <label for="carrier_tracking_ref"/>
                 <div>
                   <field name="carrier_tracking_ref" class="oe_inline"/>
-                  <button name="%(action_view_change_shipment_carrier_tracking_ref)d" string="⇒ Update"
-                      type="action"
-                      class="oe_link"/>
                 </div>
               </group>
             </group>
@@ -101,19 +94,14 @@
                     <label for="etd"/>
                     <div>
                       <field name="etd" class="oe_inline"/>
-                      <button name="%(action_view_change_shipment_etd)d" string="⇒ Update"
-                          type="action"
-                          class="oe_link"/>
                     </div>
                     <label for="eta"/>
                     <div>
                       <field name="eta" class="oe_inline"/>
-                      <button name="%(action_view_change_shipment_eta)d" string="⇒ Update"
-                          type="action"
-                          class="oe_link"/>
                     </div>
                   </group>
                 </group>
+                <!--
                 <group>
                   <group>
                     <field name="volume"/>
@@ -123,11 +111,13 @@
                     <field name="weight_net"/>
                   </group>
                 </group>
+                -->
                 <div class="oe_clear">
                   <label for="note"/>
                 </div>
                 <field name="note" colspan="4" class="oe_inline" placeholder="Additional notes..."/>
               </page>
+              <!--
               <page string="Departure moves">
                 <field name="departure_move_ids" colspan="4" nolabel="1" options="{'reload_on_button': true}">
                   <tree>
@@ -149,6 +139,7 @@
               <page string="Arrival moves">
                 <field name="arrival_move_ids" colspan="4" nolabel="1"/>
               </page>
+              -->
             </notebook>
           </sheet>
           <div class="oe_chatter">
@@ -167,13 +158,17 @@
           <field name="name"/>
           <field name="from_address_id"/>
           <field name="to_address_id"/>
+          <!--
           <field name="carrier_id"/>
+          -->
           <field name="purchase_id" />
           <field name="carrier_tracking_ref"/>
           <field name="eta"/>
           <field name="etd"/>
+          <!--
           <field name="weight"/>
           <field name="volume"/>
+          -->
           <field name="state"/>
         </tree>
       </field>
@@ -187,12 +182,15 @@
           <field name="name"/>
           <field name="from_address_id" />
           <field name="to_address_id" />
+          <!--
           <field name="carrier_id" />
+          -->
           <field name="purchase_id" />
           <field name="carrier_tracking_ref"/>
           <filter name="draft" string="Draft" domain="[('state', '=', 'draft')]"/>
           <filter name="confirmed" string="Confirmed" domain="[('state', '=', 'confirmed')]"/>
           <filter name="in_transit" string="In transit" domain="[('state', '=', 'in_transit')]"/>
+          <!--
           <newline/>
           <group expand="0" string="Group By...">
             <filter string="Carrier" domain="[]" context="{'group_by':'carrier_id'}"/>
@@ -204,6 +202,7 @@
             <filter string="Transport Mode" domain="[]" context="{'group_by':'transport_mode_id'}"/>
             <filter string="Status" domain="[]" context="{'group_by':'state'}"/>
           </group>
+          -->
         </search>
       </field>
     </record>
@@ -227,7 +226,7 @@
     <menuitem
       id="menu_action_shipment"
       action="action_shipment_plan"
-      parent="menu_shipment"
+      parent="rental_base.menu_top_vendor"
       sequence="1"/>
 
   </data>
