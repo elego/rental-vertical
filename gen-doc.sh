@@ -9,6 +9,9 @@ for p in rental_* sale_rental*; do
   shtmldir=${p}/static/description
   shtmlfn=${shtmldir}/index.html
   descfn=${docdir}/DESCRIPTION.rst
+  historyfn=${docdir}/HISTORY.rst
+  usagefn=${docdir}/USAGE.rst
+  contribfn=${docdir}/CONTRIBUTORS.rst
   mkdir -p ${docdir} || {
     echo "error: cannot create ${docdir}, continuing with next package..."
     continue
@@ -34,6 +37,29 @@ for p in rental_* sale_rental*; do
   else
     description='TODO'
   fi
+  if grep -q "'usage'" ${m}; then
+    usage=$(${TOOLS}/get_openerp_info.py -f ${m} -a description -p '' | sed -e 's/^\.$//' -e 's/|//g')
+  else
+    usage=''
+  fi
+  if grep -q "'contributors'" ${m}; then
+    contributors=$(${TOOLS}/get_openerp_info.py -f ${m} -a description -p '' | sed -e 's/^\.$//' -e 's/|//g')
+  else
+    contributors=''
+  fi
+  if grep -q "'author'" ${m}; then
+    author=$(${TOOLS}/get_openerp_info.py -f ${m} -a description -p '' | sed -e 's/^\.$//' -e 's/|//g')
+  else
+    author=''
+  fi
+  {
+    echo ""
+    echo "Changelog"
+    echo "---------"
+    echo ""
+    git log --oneline -- ${p}
+    echo ""
+  } > ${historyfn}
   {
     echo "${name}"
     echo "==========================================="
@@ -51,7 +77,31 @@ for p in rental_* sale_rental*; do
     echo "${description}"
     echo ""
   } > ${descfn}
-  rst2html.py ${descfn} ${shtmlfn}
+  if [[ -n "${usage}" ]]; then
+    {
+      echo ""
+      echo "Usage"
+      echo "-----"
+      echo ""
+      echo "${usage}"
+      echo ""
+    } > ${usagefn}
+  fi
+  if [[ -n "${author}" || -n "${contributors}" ]]; then
+    {
+      echo ""
+      echo "Contributors"
+      echo "------------"
+      echo ""
+      echo "${author}"
+      echo "${contributors}"
+      echo ""
+    } > ${contribfn}
+  fi
+  allfn=all$$.txt
+  cat ${descfn} ${usagefn} ${historyfn} > ${allfn}
+  rst2html.py ${allfn} ${shtmlfn}
+  rm -f ${allfn}
   git add ${docdir}
   git add ${shtmldir}
 done
