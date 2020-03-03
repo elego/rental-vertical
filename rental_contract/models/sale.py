@@ -18,6 +18,15 @@ class SaleOrderLine(models.Model):
         if self.start_date:
             self.date_start = self.start_date
 
+    @api.multi
+    def _prepare_contract_line_values(
+        self, contract, predecessor_contract_line_id=False
+    ):
+        res = super(SaleOrderLine, self)._prepare_contract_line_values(
+            contract, predecessor_contract_line_id=predecessor_contract_line_id)
+        if self.product_id.income_analytic_account_id:
+            res['analytic_account_id'] = self.product_id.income_analytic_account_id.id
+        return res
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
