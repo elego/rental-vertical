@@ -17,3 +17,26 @@ class SaleOrderLine(models.Model):
         res = super(SaleOrderLine, self).start_date_change()
         if self.start_date:
             self.date_start = self.start_date
+
+
+class SaleOrder(models.Model):
+    _inherit = 'sale.order'
+
+    @api.multi
+    def _prepare_contract_value(self, contract_template):
+        res = super(SaleOrder, self)._prepare_contract_value(contract_template)
+        so_normal_order = self.env.ref('sale_order_type.normal_sale_type')
+        so_rental_order = self.env.ref('rental_base.rental_sale_type')
+        cn_normal_order = self.env.ref('rental_contract.normal_contract_type')
+        cn_rental_order = self.env.ref('rental_contract.rental_contract_type')
+
+        if res:
+            if self.type_id.id == so_normal_order.id:
+                type_id = cn_normal_order.id
+            if self.type_id.id == so_rental_order.id:
+                type_id = cn_rental_order.id
+            res.update({
+                'type_id': type_id,
+                'sale_type_id': self.type_id.id
+            })
+        return res
