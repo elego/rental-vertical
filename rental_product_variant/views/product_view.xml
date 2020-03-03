@@ -6,13 +6,13 @@
         <record id="product_category_form_view" model="ir.ui.view">
             <field name="name">product.category.form</field>
             <field name="model">product.category</field>
-            <field name="inherit_id" ref="product.product_category_form_view"/>
+            <field name="inherit_id" ref="product.product_category_form_view" />
             <field name="arch" type="xml">
                 <xpath expr="//sheet" position="inside">
                     <group name="show_attrs" string="Product Attribute Extension">
-                        <field name="show_vehicle_number"/>
-                        <field name="show_license_plate"/>
-                        <field name="show_init_regist"/>
+                        <field name="show_vehicle_number" />
+                        <field name="show_license_plate" />
+                        <field name="show_init_regist" />
                     </group>
                 </xpath>
             </field>
@@ -22,7 +22,7 @@
         <record id="product_normal_form_view" model="ir.ui.view">
             <field name="name">view.product.product.form</field>
             <field name="model">product.product</field>
-            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="inherit_id" ref="product.product_normal_form_view" />
             <field name="arch" type="xml">
                 <button name="toggle_active" position="before">
                     <button class="oe_stat_button" name="action_view_sale_order"
@@ -50,57 +50,69 @@
                         </div>
                     </button>
                 </button>
-                <xpath expr="//field[@name='categ_id']" position="replace"/>
+                <xpath expr="//field[@name='categ_id']" position="replace" />
                 <xpath expr="//field[@name='type']" position="after">
-                    <field name="fleet_type_id"/>
-                    <field name="categ_id"/>
+                    <field name="fleet_type_id" />
+                    <field name="categ_id" />
                 </xpath>
                 <xpath expr="//field[@name='default_code']" position="after">
-                    <field name="further_ref"/>
-                    <field name="manu_id"/>
-                    <field name="manu_type_id" domain="[('manufacturer_id','=',manu_id)]"/>
-                    <field name="show_vehicle_number" invisible="1"/>
-                    <field name="show_license_plate" invisible="1"/>
-                    <field name="show_init_regist" invisible="1"/>
-                    <field name="vehicle_number" attrs="{'invisible': [('show_vehicle_number', '=', False)]}"/>
-                    <field name="license_plate" attrs="{'invisible': [('show_license_plate', '=', False)]}"/>
-                    <field name="manu_year"/>
-                    <field name="init_regist" attrs="{'invisible': [('show_init_regist', '=', False)]}"/>
+                    <field name="further_ref" />
+                    <field name="manu_id" />
+                    <field name="manu_type_id" domain="[('manufacturer_id','=',manu_id)]" />
+                    <field name="show_vehicle_number" invisible="1" />
+                    <field name="show_license_plate" invisible="1" />
+                    <field name="show_init_regist" invisible="1" />
+                    <field name="vehicle_number" attrs="{'invisible': [('show_vehicle_number', '=', False)]}" />
+                    <field name="license_plate" attrs="{'invisible': [('show_license_plate', '=', False)]}" />
+                    <field name="manu_year" />
+                    <field name="init_regist" attrs="{'invisible': [('show_init_regist', '=', False)]}" />
                 </xpath>
                 <xpath expr="//field[@name='barcode']" position="after">
-                    <field name="qr_code"/>
+                    <field name="qr_code" />
                 </xpath>
                 <xpath expr="//div[field[@name='weight']]" position="after">
-                    <label for="dimension"/>
+                    <label for="dimension" />
                     <div class="o_row">
-                        <field name="dimension" placeholder="e.g. 10m x 10 m x 10 m"/>
+                        <field name="dimension" placeholder="e.g. 10m x 10 m x 10 m" />
                     </div>
                 </xpath>
-                <xpath expr="//field[@name='description']/.." position="replace"/>
+                <xpath expr="//field[@name='description']/.." position="replace" />
                 <xpath expr="//notebook" position="inside">
                     <page name="description" string="Internal Notes">
                         <group string="Internal Notes">
-                            <field name="description" nolabel="1" placeholder="This note is only for internal purposes."/>
+                            <field name="description" nolabel="1" placeholder="This note is only for internal purposes." />
                         </group>
                     </page>
                     <page string="Rental" name="rental" groups="base.group_no_one">
                         <field name="rental_order_ids" readonly="1">
                             <tree default_order="start_date">
-                                <field name="start_order_id"/>
-                                <field name="partner_id"/>
-                                <field name="start_date"/>
-                                <field name="out_state" string="Delivery"/>
-                                <field name="end_date" string="End Date"/>
-                                <field name="in_state" string="Return"/>
+                                <field name="start_order_id" />
+                                <field name="partner_id" />
+                                <field name="start_date" />
+                                <field name="out_state" string="Delivery" />
+                                <field name="end_date" string="End Date" />
+                                <field name="in_state" string="Return" />
                                 <field name="state" />
                             </tree>
                         </field>
                     </page>
                     <page string="Add. Info" name="add_info">
-                        <field name="additional_info" no_label="1"/>
+                        <field name="additional_info" no_label="1" />
                     </page>
 
                 </xpath>
+            </field>
+        </record>
+
+        <record id="product_search_form_view" model="ir.ui.view">
+            <field name="name">product.product.search</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_search_form_view" />
+            <field name="arch" type="xml">
+                <search position="inside">
+                    <field name="manu_id" />
+                    <field name="manu_type_id" />
+                </search>
             </field>
         </record>
 
@@ -113,8 +125,8 @@
                 <form>
                     <sheet>
                         <group>
-                            <field name="name"/>
-                            <field name="manufacturer_type_ids"/>
+                            <field name="name" />
+                            <field name="manufacturer_type_ids" />
                         </group>
                     </sheet>
                 </form>
@@ -126,7 +138,7 @@
             <field name="model">product.manufacturer</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="name"/>
+                    <field name="name" />
                 </tree>
             </field>
         </record>
@@ -136,7 +148,7 @@
             <field name="model">product.manufacturer</field>
             <field name="arch" type="xml">
                 <search>
-                    <field name="name"/>
+                    <field name="name" />
                 </search>
              </field>
         </record>
@@ -156,7 +168,7 @@
                 <form>
                     <sheet>
                         <group col="4">
-                            <field name="name"/>
+                            <field name="name" />
                         </group>
                     </sheet>
                 </form>
@@ -168,7 +180,7 @@
             <field name="model">product.manufacturer.type</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="name"/>
+                    <field name="name" />
                 </tree>
             </field>
         </record>
@@ -178,7 +190,7 @@
             <field name="model">product.manufacturer.type</field>
             <field name="arch" type="xml">
                 <search>
-                    <field name="name"/>
+                    <field name="name" />
                 </search>
              </field>
         </record>
@@ -198,7 +210,7 @@
                 <form>
                     <sheet>
                         <group col="4">
-                            <field name="name"/>
+                            <field name="name" />
                         </group>
                     </sheet>
                 </form>
@@ -210,7 +222,7 @@
             <field name="model">fleet.type</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="name"/>
+                    <field name="name" />
                 </tree>
             </field>
         </record>
@@ -220,7 +232,7 @@
             <field name="model">fleet.type</field>
             <field name="arch" type="xml">
                 <search>
-                    <field name="name"/>
+                    <field name="name" />
                 </search>
              </field>
         </record>
@@ -234,28 +246,28 @@
 
         <menuitem action="action_product_manufacturer"
             id="menu_product_manufacturer" parent="stock.menu_stock_inventory_control"
-            sequence="13"/>
+            sequence="13" />
         <menuitem action="action_product_manufacturer_type"
             id="menu_product_manufacturer_type" parent="stock.menu_stock_inventory_control"
-            sequence="13"/>
+            sequence="13" />
         <menuitem action="action_fleet_type"
             id="menu_fleet_type" parent="stock.menu_stock_inventory_control"
-            sequence="13"/>
+            sequence="13" />
 
         <!-- Sub Menu of Configuration-->
 
         <menuitem action="action_product_manufacturer"
             id="menu_product_manufacturer"
             parent="rental_base.menu_config"
-            sequence="10"/>
+            sequence="10" />
         <menuitem action="action_product_manufacturer_type"
             id="menu_product_manufacturer_type"
             parent="rental_base.menu_config"
-            sequence="15"/>
+            sequence="15" />
         <menuitem action="action_fleet_type"
             id="menu_fleet_type"
             parent="rental_base.menu_config"
-            sequence="20"/>
+            sequence="20" />
 
     </data>
 </odoo>

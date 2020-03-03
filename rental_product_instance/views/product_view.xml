@@ -6,10 +6,10 @@
         <record id="product_category_form_view" model="ir.ui.view">
             <field name="name">product.category.form</field>
             <field name="model">product.category</field>
-            <field name="inherit_id" ref="rental_product_variant.product_category_form_view"/>
+            <field name="inherit_id" ref="rental_product_variant.product_category_form_view" />
             <field name="arch" type="xml">
                 <group name="show_attrs" position="inside">
-                    <field name="show_instance_condition_type"/>
+                    <field name="show_instance_condition_type" />
                 </group>
             </field>
         </record>
@@ -18,12 +18,12 @@
         <record id="product_template_form_view" model="ir.ui.view">
             <field name="name">product.template.stock.property.form.inherit</field>
             <field name="model">product.template</field>
-            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="inherit_id" ref="product.product_template_form_view" />
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='sale_ok']/.." position="before">
                     <div>
-                        <field name="product_instance"/>
-                        <label for="product_instance"/>
+                        <field name="product_instance" />
+                        <label for="product_instance" />
                     </div>
                 </xpath>
             </field>
@@ -33,7 +33,7 @@
         <record id="product_normal_form_view" model="ir.ui.view">
             <field name="name">view.product.product.form</field>
             <field name="model">product.product</field>
-            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="inherit_id" ref="product.product_normal_form_view" />
             <field name="arch" type="xml">
                 <xpath expr="//button[@name='action_open_product_lot']" position="attributes">
                     <attribute name="attrs">{'invisible': ['|', ('product_instance', '=', True), ('tracking', '!=', 'serial')]}</attribute>
@@ -41,25 +41,37 @@
                 <xpath expr="//group[field[@name='manu_type_id']]" position="after">
                     <group name="instance_attributes"
                         attrs="{'invisible': [('product_instance', '=', False)]}">
-                        <field name="show_instance_condition_type" invisible="1"/>
-                        <field name="instance_state"/>
+                        <field name="show_instance_condition_type" invisible="1" />
+                        <field name="instance_state" />
                         <label for="instance_condition_hour"
-                               attrs="{'invisible': [('show_instance_condition_type', '!=', 'hour')]}"/>
+                               attrs="{'invisible': [('show_instance_condition_type', '!=', 'hour')]}" />
                         <div attrs="{'invisible': [('show_instance_condition_type', '!=', 'hour')]}">
-                            <field name="instance_condition_hour" class="oe_inline"/>   -   
-                            <field name="instance_condition_date" class="oe_inline oe_no_button"/>
+                            <field name="instance_condition_hour" class="oe_inline" />   -
+                            <field name="instance_condition_date" class="oe_inline oe_no_button" />
                         </div>
                         <label for="instance_condition_km"
-                               attrs="{'invisible': [('show_instance_condition_type', '!=', 'km')]}"/>
+                               attrs="{'invisible': [('show_instance_condition_type', '!=', 'km')]}" />
                         <div attrs="{'invisible': [('show_instance_condition_type', '!=', 'km')]}">
-                            <field name="instance_condition_km" class="oe_inline"/>   -   
-                            <field name="instance_condition_date" class="oe_inline oe_no_button"/>
+                            <field name="instance_condition_km" class="oe_inline" />   -
+                            <field name="instance_condition_date" class="oe_inline oe_no_button" />
                         </div>
-                        <field name="instance_next_service_date"/>
-                        <field name="instance_serial_number_id"/>
-                        <field name="instance_current_location_id"/>
+                        <field name="instance_next_service_date" />
+                        <field name="instance_serial_number_id" />
+                        <field name="instance_current_location_id" />
                     </group>
                 </xpath>
+            </field>
+        </record>
+
+        <record id="product_search_form_view" model="ir.ui.view">
+            <field name="name">product.product.search</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_search_form_view" />
+            <field name="arch" type="xml">
+                <search position="inside">
+                    <field name="instance_serial_number_id" />
+                    <field name="instance_current_location_id" />
+                </search>
             </field>
         </record>
 
