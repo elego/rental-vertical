@@ -31,6 +31,12 @@ msgid "Contract Line"
 msgstr ""
 
 #. module: rental_contract
+#: model:ir.ui.menu,name:rental_contract.menu_customer_top_contracts
+#: model:ir.ui.menu,name:rental_contract.menu_supplier_top_contracts
+msgid "Contracts"
+msgstr ""
+
+#. module: rental_contract
 #: model:ir.ui.menu,name:rental_contract.menu_customer_contracts
 msgid "Customer Contracts"
 msgstr ""
