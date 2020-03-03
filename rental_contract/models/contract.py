@@ -22,6 +22,7 @@ class ContractContract(models.Model):
                      self.partner_id.commercial_partner_id.contract_type)
         if contract_type:
             self.type_id = contract_type
+            self.contract_type = contract_type.contract_type
 
     @api.multi
     @api.onchange('type_id')

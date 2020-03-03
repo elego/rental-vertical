@@ -16,7 +16,7 @@
                     </group>
                     <group>
                         <group>
-                            <field name="contract_type"/>
+                            <field name="contract_type" required="1"/>
                             <field name="warehouse_id" />
                             <field name="company_id" attrs="{'invisible': [('warehouse_id', '=', False)]}"/>
                             <field name="sequence_id"/>

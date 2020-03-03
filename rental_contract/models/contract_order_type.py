@@ -43,3 +43,9 @@ class ContractOrderType(models.Model):
     payment_term_id = fields.Many2one('account.payment.term', 'Payment Term')
     pricelist_id = fields.Many2one('product.pricelist', 'Pricelist')
     incoterm_id = fields.Many2one('account.incoterms', 'Incoterm')
+
+    @api.multi
+    @api.onchange('contract_type')
+    def onchange_contract_type(self):
+        if self.contract_type and self.contract_type == 'purchase':
+            self.picking_policy = False
