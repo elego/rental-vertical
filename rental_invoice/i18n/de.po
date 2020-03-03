@@ -1,0 +1,202 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* rental_invoice
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-03 11:48+0000\n"
+"PO-Revision-Date: 2020-03-03 11:48+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: rental_invoice
+#: code:addons/rental_invoice/wizard/create_customer_invoice.py:22
+#, python-format
+msgid "\n"
+"                The customer invoice cannot be created because the following products are not sellable:\n"
+"                {}\n"
+"\n"
+"                Please set the products flag \"can be sold\" to true, if you really want to invoice these products to the customer.\n"
+"                "
+msgstr "\n"
+"                Die Ausgangsrechnung kann nicht erstellt werden, da die folgenden Produkte nicht verkaufbar sind.:\n"
+"                {}\n"
+"\n"
+"                An den Produkten muss der Haken bei \"kann verkauft werden\" gesetzt werden, wenn diese dem Kunden wirklich in Rechnung gestellt werden sollen.\n"
+"                "
+
+#. module: rental_invoice
+#: model_terms:ir.ui.view,arch_db:rental_invoice.invoice_supplier_form
+msgid "Arithmetical check failed"
+msgstr "Rechnerich Prüfung fehlgeschlagen"
+
+#. module: rental_invoice
+#: model_terms:ir.ui.view,arch_db:rental_invoice.invoice_supplier_form
+msgid "Arithmetical check succeeded"
+msgstr "Rechnerich Prüfung erfolgreich"
+
+#. module: rental_invoice
+#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice__arithmetically_correct
+msgid "Arithmetically correct"
+msgstr "Rechnerich richtig"
+
+#. module: rental_invoice
+#: model_terms:ir.ui.view,arch_db:rental_invoice.create_customer_invoice_form
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#. module: rental_invoice
+#: model_terms:ir.ui.view,arch_db:rental_invoice.create_customer_invoice_form
+msgid "Create"
+msgstr "Anlegen"
+
+#. module: rental_invoice
+#: model:ir.actions.act_window,name:rental_invoice.action_create_customer_invoice
+#: model_terms:ir.ui.view,arch_db:rental_invoice.create_customer_invoice_form
+#: model_terms:ir.ui.view,arch_db:rental_invoice.invoice_supplier_form
+msgid "Create Customer Invoice"
+msgstr "Erstelle Kundenrechnung"
+
+#. module: rental_invoice
+#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice_create_customer_invoice__create_uid
+msgid "Created by"
+msgstr "Erstellt von"
+
+#. module: rental_invoice
+#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice_create_customer_invoice__create_date
+msgid "Created on"
+msgstr "Erstellt am"
+
+#. module: rental_invoice
+#: model_terms:ir.ui.view,arch_db:rental_invoice.create_customer_invoice_form
+msgid "Customer"
+msgstr "Kunde"
+
+#. module: rental_invoice
+#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice__customer_invoice_count
+msgid "Customer Invoice Count"
+msgstr "Anzahl der Kundenrechnungen"
+
+#. module: rental_invoice
+#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice__customer_invoice_needed
+msgid "Customer Invoice needed"
+msgstr "Kundenrechnung benötigt"
+
+#. module: rental_invoice
+#: model_terms:ir.ui.view,arch_db:rental_invoice.invoice_supplier_form
+msgid "Customer Invoices"
+msgstr "Kundenrechnungen"
+
+#. module: rental_invoice
+#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice_create_customer_invoice__display_name
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: rental_invoice
+#: model_terms:ir.ui.view,arch_db:rental_invoice.invoice_supplier_form
+msgid "Factual check failed"
+msgstr "Sachliche Prüfung fehlgeschlagen"
+
+#. module: rental_invoice
+#: model_terms:ir.ui.view,arch_db:rental_invoice.invoice_supplier_form
+msgid "Factual check succeeded"
+msgstr "Sachliche Prüfung erfolgreich"
+
+#. module: rental_invoice
+#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice__factually_correct
+msgid "Factually correct"
+msgstr "Sachlich richtig"
+
+#. module: rental_invoice
+#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice__has_non_canceled_customer_invoices
+msgid "Has Non Canceled Customer Invoices"
+msgstr ""
+
+#. module: rental_invoice
+#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice_create_customer_invoice__id
+msgid "ID"
+msgstr ""
+
+#. module: rental_invoice
+#: model:ir.model.fields,help:rental_invoice.field_account_invoice__arithmetically_correct
+msgid "If the vendor bill and its positions have the correct quantity, price, taxes, etc., please set this field to 'yes'."
+msgstr "Wenn die Eingangsrechnungen mit all ihren Positionen die korrekten Mengen, Preise, Steuern, etc. aufweist, muss das Feld auf 'ja' gesetzt werden."
+
+#. module: rental_invoice
+#: model:ir.model.fields,help:rental_invoice.field_account_invoice__customer_invoice_needed
+msgid "If this vendor bill requires to be invoiced to a customer, please activate this checkbox."
+msgstr "Wenn die Eingangsrechnung einem Kunden in Rechnung gestellt werden muss, muss der Haken hier gesetzt werden."
+
+#. module: rental_invoice
+#: model:ir.model.fields,help:rental_invoice.field_account_invoice__factually_correct
+msgid "If you expect the supplier to invoice these positions to you, please set this field to 'yes'."
+msgstr "Wenn es korrekt ist, dass der Lieferant diese Positionen in Rechnung stellt, muss das Feld auf 'ja' gesetzt werden."
+
+#. module: rental_invoice
+#: model:ir.model,name:rental_invoice.model_account_invoice
+msgid "Invoice"
+msgstr "Rechnung"
+
+#. module: rental_invoice
+#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice__customer_invoice_ids
+msgid "Invoices"
+msgstr "Rechnungen"
+
+#. module: rental_invoice
+#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice_create_customer_invoice____last_update
+msgid "Last Modified on"
+msgstr "Zuletzt geändert am"
+
+#. module: rental_invoice
+#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice_create_customer_invoice__write_uid
+msgid "Last Updated by"
+msgstr "Zuletzt aktualisiert durch"
+
+#. module: rental_invoice
+#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice_create_customer_invoice__write_date
+msgid "Last Updated on"
+msgstr "Zuletzt aktualisiert am"
+
+#. module: rental_invoice
+#: selection:account.invoice,arithmetically_correct:0
+#: selection:account.invoice,factually_correct:0
+msgid "No"
+msgstr "Nein"
+
+#. module: rental_invoice
+#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice__origin_invoice
+msgid "Origin Invoice"
+msgstr "Originalrechnung"
+
+#. module: rental_invoice
+#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice_create_customer_invoice__partner_id
+msgid "Partner"
+msgstr ""
+
+#. module: rental_invoice
+#: selection:account.invoice,arithmetically_correct:0
+#: selection:account.invoice,factually_correct:0
+msgid "Yes"
+msgstr "Ja"
+
+#. module: rental_invoice
+#: model_terms:ir.ui.view,arch_db:rental_invoice.view_account_invoice_filter
+msgid "checked failed"
+msgstr "fehlgeschlagene Überprüfungen"
+
+#. module: rental_invoice
+#: model_terms:ir.ui.view,arch_db:rental_invoice.view_account_invoice_filter
+msgid "to be arithmetically checked"
+msgstr "Rechnerich überprüfen"
+
+#. module: rental_invoice
+#: model_terms:ir.ui.view,arch_db:rental_invoice.view_account_invoice_filter
+msgid "to be factually checked"
+msgstr "Sachlich überprüfen"
+

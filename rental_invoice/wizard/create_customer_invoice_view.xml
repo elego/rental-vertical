@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="create_customer_invoice_form" model="ir.ui.view">
+        <field name="model">account.invoice.create_customer_invoice</field>
+        <field name="arch"  type="xml">
+            <form string="Create Customer Invoice">
+                <group name="main">
+                    <field string="Customer"
+                           name="partner_id"
+                           widget="res_partner_many2one"
+                           options='{"always_reload": True, "no_quick_create": True}'
+                    />
+                </group>
+                <footer>
+                    <button name="create_customer_invoice" type="object" class="btn-primary" string="Create" />
+                    <button special="cancel" string="Cancel" class="oe_link" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_create_customer_invoice" model="ir.actions.act_window">
+        <field name="name">Create Customer Invoice</field>
+        <field name="res_model">account.invoice.create_customer_invoice</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
