@@ -7,13 +7,45 @@ class ProjectTask(models.Model):
     _inherit = 'project.task'
 
     product_id = fields.Many2one(
-        'product.product', 'Product Instance',
-        domain="[('product_instance', '=', True)]")
-    tracking = fields.Selection([
-        ('serial', 'By Unique Serial Number'),
-        ('lot', 'By Lots'),
-        ('none', 'No Tracking')], string="Tracking", related="product_id.tracking")
-    lot_id = fields.Many2one('stock.production.lot', 'Serial Number')
+        comodel_name = 'product.product',
+        string = 'Product Instance',
+        domain = "[('product_instance', '=', True)]",
+    )
+
+    tracking = fields.Selection(
+        selection=[
+            ('serial', 'By Unique Serial Number'),
+            ('lot', 'By Lots'),
+            ('none', 'No Tracking'),
+        ],
+        string = "Tracking",
+        related = "product_id.tracking",
+    )
+
+    lot_id = fields.Many2one(
+        comodel_name = 'stock.production.lot',
+        string = 'Serial Number',
+    )
+
     repair_ids = fields.One2many(
-        'repair.order', 'project_task_id',
-        string="Repair Orders")
+        comodel_name = 'repair.order',
+        inverse_name = 'project_task_id',
+        string = "Repair Orders",
+    )
+
+    phone = fields.Char(
+        string = 'Phone',
+        help = "Phone number",
+    )
+
+    mobile = fields.Char(
+        string = 'Mobile',
+        help = "Mobile number",
+    )
+
+
+    @api.onchange('partner_id')
+    def _onchange_partner_id(self):
+        super(ProjectTask, self)._onchange_partner_id()
+        self.phone = self.partner_id.phone
+        self.mobile = self.partner_id.mobile
