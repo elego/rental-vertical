@@ -28,6 +28,7 @@ class SaleOrderLine(models.Model):
             res['analytic_account_id'] = self.product_id.income_analytic_account_id.id
         return res
 
+
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
@@ -48,4 +49,5 @@ class SaleOrder(models.Model):
                 'type_id': type_id,
                 'sale_type_id': self.type_id.id
             })
+            res['code'] = self.name
         return res
