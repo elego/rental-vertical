@@ -17,7 +17,8 @@ class ContractLine(models.Model):
     @api.multi
     def _prepare_invoice_line(self, invoice_id=False, invoice_values=False):
         self.ensure_one()
-        res = super(ContractLine, self)._prepare_invoice_line(invoice_id=invoice_id, invoice_values=invoice_values)
+        res = super(ContractLine, self)._prepare_invoice_line(
+            invoice_id=invoice_id, invoice_values=invoice_values)
         product = self.env['product.product'].browse(res['product_id'])
         if product.must_have_dates:
             res.update({
