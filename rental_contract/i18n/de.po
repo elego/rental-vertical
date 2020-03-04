@@ -31,6 +31,12 @@ msgid "Contract Line"
 msgstr "Vertragsposition"
 
 #. module: rental_contract
+#: model:ir.ui.menu,name:rental_contract.menu_customer_top_contracts
+#: model:ir.ui.menu,name:rental_contract.menu_supplier_top_contracts
+msgid "Contracts"
+msgstr "Verträge"
+
+#. module: rental_contract
 #: model:ir.ui.menu,name:rental_contract.menu_customer_contracts
 msgid "Customer Contracts"
 msgstr "Kundenverträge"
@@ -43,7 +49,7 @@ msgstr "Produkt"
 #. module: rental_contract
 #: model:ir.model,name:rental_contract.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Auftragszeile"
+msgstr "Auftragsposition"
 
 #. module: rental_contract
 #: model:ir.ui.menu,name:rental_contract.menu_supplier_contracts

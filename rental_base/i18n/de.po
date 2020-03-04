@@ -22,6 +22,13 @@ msgstr "Vermietbare Produkte in Produktsets verwenden"
 
 #. module: rental_base
 #: model_terms:ir.ui.view,arch_db:rental_base.res_config_settings_view_form
+msgid "After sucessful invoice import<br/>\n"
+"                                        1. file should be moved from incoming to invoices folder<br/>\n"
+"                                        2. file should get the tag of the partner name of the invoice date – keep the year tag!"
+msgstr ""
+
+#. module: rental_base
+#: model_terms:ir.ui.view,arch_db:rental_base.res_config_settings_view_form
 msgid "Calculate the Off Days"
 msgstr "Standtage verwenden"
 
@@ -33,7 +40,7 @@ msgstr "Wenn der Haken gesetzt ist, können Standtage bei der Vermietung angegeb
 #. module: rental_base
 #: model:ir.model,name:rental_base.model_res_config_settings
 msgid "Config Settings"
-msgstr "Konfiguration "
+msgstr "Konfiguration"
 
 #. module: rental_base
 #: model:ir.ui.menu,name:rental_base.menu_config
@@ -84,6 +91,11 @@ msgid "Customers"
 msgstr "Kunden"
 
 #. module: rental_base
+#: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_rockbird_dms_extension
+msgid "DMS Extention"
+msgstr ""
+
+#. module: rental_base
 #: model_terms:ir.actions.act_window,help:rental_base.stock_picking_action_picking_type_in
 #: model_terms:ir.actions.act_window,help:rental_base.stock_picking_action_picking_type_out
 msgid "Define a new transfer"
@@ -104,6 +116,8 @@ msgstr "Eingehende Lieferungen"
 
 #. module: rental_base
 #: model:ir.ui.menu,name:rental_base.menu_customer_invoices
+#: model:ir.ui.menu,name:rental_base.menu_customer_invoices2
+#: model:ir.ui.menu,name:rental_base.menu_vendor_invoices
 msgid "Invoices"
 msgstr "Rechnungen"
 
@@ -209,7 +223,7 @@ msgstr "Mietpositionen"
 
 #. module: rental_base
 #: model:ir.actions.act_window,name:rental_base.action_rental_quotations
-#: model:ir.ui.menu,name:rental_base.menu_rental_quotationss
+#: model:ir.ui.menu,name:rental_base.menu_rental_quotations
 msgid "Rental Quotations"
 msgstr "Mietangebote"
 
@@ -237,6 +251,11 @@ msgstr "Berichtswesen"
 #: model:ir.ui.menu,name:rental_base.menu_vendors_quotations
 msgid "Request for Quotations"
 msgstr "Angebotsanfragen"
+
+#. module: rental_base
+#: model:ir.ui.menu,name:rental_base.menu_vendor_requests
+msgid "Requests"
+msgstr "Anfragen"
 
 #. module: rental_base
 #: model:ir.model,name:rental_base.model_sale_order_line
@@ -275,7 +294,7 @@ msgid "Use Contract to create invoice periodically"
 msgstr "Verträge für periodische Abrechnung verwenden"
 
 #. module: rental_base
-#: model:ir.ui.menu,name:rental_base.menu_vendor_invoices
+#: model:ir.ui.menu,name:rental_base.menu_vendor_bills
 msgid "Vendor Bills"
 msgstr "Eingangsrechnungen"
 
