@@ -18,9 +18,16 @@ use cases in extension to purchase and sale use cases.
         'rental_base',
     ],
     'data': [
+        'security/ir.model.access.csv',
+        'data/ir_sequence_data.xml',
+        'data/default_type_data.xml',
+        'data/contract_template_data.xml',
         'views/contract_view.xml',
         'views/sale_view.xml',
         'views/product_view.xml',
+        'views/contract_order_type_view.xml',
+        'views/res_partner_view.xml',
+        'views/account_invoice_view.xml',
     ],
     'demo': [
     ],

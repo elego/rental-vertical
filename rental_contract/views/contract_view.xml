@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <record id="contract_contract_form_view" model="ir.ui.view">
+        <field name="name">contract.contract.form</field>
+        <field name="model">contract.contract</field>
+        <field name="inherit_id" ref="contract.contract_contract_form_view"/>
+        <field name="arch" type="xml">
+            <field name="contract_type" position="replace">
+                <field name="contract_type" attrs="{'readonly': [('sale_type_id', '!=', False)]}" required="1"/>
+                <field name="sale_type_id" invisible="1"/>
+                <field name="type_id" required="1" domain="[('contract_type', '=', contract_type)]" attrs="{'readonly': [('sale_type_id', '!=', False)]}"/>
+            </field>
+        </field>
+    </record>
+
     <menuitem name="Contracts"
         id="menu_customer_top_contracts"
         parent="rental_base.menu_top_customer"
