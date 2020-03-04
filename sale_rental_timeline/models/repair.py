@@ -6,6 +6,20 @@ from odoo import api, fields, models, exceptions, _
 class RepairOrder(models.Model):
     _inherit = 'repair.order'
 
+    timeline_ids = fields.One2many(
+        'product.timeline',
+        compute='_compute_timeline_ids',
+    )
+
+    @api.multi
+    def _compute_timeline_ids(self):
+        for order in self:
+            domain = [
+                ('res_model', '=', order._name),
+                ('res_id', '=', order.id),
+            ]
+            order.timeline_ids = self.env['product.timeline'].search(domain)
+
     @api.multi
     def _prepare_timeline_vals(self):
         self.ensure_one()
@@ -32,17 +46,16 @@ class RepairOrder(models.Model):
     def _reset_timeline(self, vals):
         for order in self:
             if order.product_id.product_instance:
-                timeline_ids = self.env['product.timeline'].search([('res_model', '=', order._name), ('res_id', '=', order.id)])
-                if not timeline_ids:
+                if not order.timeline_ids:
                     raise exceptions.UserError(_('No found timelines.'))
                 if vals.get('date_start', False):
-                    timelines = sorted(timeline_ids, key=lambda l: l.date_start)
+                    timelines = sorted(order.timeline_ids, key=lambda l: l.date_start)
                     timelines[0].date_start = vals['date_start']
                 if vals.get('date_deadline', False):
-                    timelines = sorted(timeline_ids, key=lambda l: l.date_end, reverse=True)
+                    timelines = sorted(order.timeline_ids, key=lambda l: l.date_end, reverse=True)
                     timelines[0].date_end = vals['date_deadline']
                 if vals.get('product_id', False):
-                    timelines = sorted(timeline_ids, key=lambda l: l.product_id)
+                    timelines = sorted(order.timeline_ids, key=lambda l: l.product_id)
                     product = self.env['product.product'].browse(vals['product_id'])
                     timelines[0].product_id = product.id
             else:

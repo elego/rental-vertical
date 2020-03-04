@@ -6,6 +6,20 @@ from odoo import api, fields, models, exceptions, _
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
+    timeline_ids = fields.One2many(
+        'product.timeline',
+        compute='_compute_timeline_ids',
+    )
+
+    @api.multi
+    def _compute_timeline_ids(self):
+        for line in self:
+            domain = [
+                ('res_model', '=', line._name),
+                ('res_id', '=', line.id),
+            ]
+            line.timeline_ids = self.env['product.timeline'].search(domain)
+
     @api.multi
     def _prepare_timeline_vals(self):
         self.ensure_one()
@@ -33,17 +47,16 @@ class SaleOrderLine(models.Model):
     def _reset_timeline(self, vals):
         for line in self:
             if line.product_id.rented_product_id and line.product_id.rented_product_id.product_instance:
-                timeline_ids = self.env['product.timeline'].search([('res_model', '=', line._name), ('res_id', '=', line.id)])
-                if not timeline_ids:
+                if not line.timeline_ids:
                     raise exceptions.UserError(_('No found timelines.'))
                 if vals.get('start_date', False):
-                    timelines = sorted(timeline_ids, key=lambda l: l.date_start)
+                    timelines = sorted(line.timeline_ids, key=lambda l: l.date_start)
                     timelines[0].date_start = vals['start_date']
                 if vals.get('end_date', False):
-                    timelines = sorted(timeline_ids, key=lambda l: l.date_end, reverse=True)
+                    timelines = sorted(line.timeline_ids, key=lambda l: l.date_end, reverse=True)
                     timelines[0].date_end = vals['end_date']
                 if vals.get('product_id', False):
-                    timelines = sorted(timeline_ids, key=lambda l: l.product_id)
+                    timelines = sorted(line.timeline_ids, key=lambda l: l.product_id)
                     product = self.env['product.product'].browse(vals['product_id'])
                     timelines[0].product_id = product.rented_product_id.id
             else:

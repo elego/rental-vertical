@@ -31,13 +31,13 @@ msgid "Freight forwarder:"
 msgstr ""
 
 #. module: rental_sale_timeline_purchase
-#: code:addons/rental_sale_timeline_purchase/models/purchase.py:40
+#: code:addons/rental_sale_timeline_purchase/models/purchase.py:53
 #, python-format
 msgid "No found timelines."
 msgstr ""
 
 #. module: rental_sale_timeline_purchase
-#: code:addons/rental_sale_timeline_purchase/models/purchase.py:45
+#: code:addons/rental_sale_timeline_purchase/models/purchase.py:58
 #, python-format
 msgid "No found transport product."
 msgstr ""
@@ -72,5 +72,10 @@ msgstr ""
 #: code:addons/rental_sale_timeline_purchase/models/product_timeline.py:32
 #, python-format
 msgid "T: %s"
+msgstr ""
+
+#. module: rental_sale_timeline_purchase
+#: model:ir.model.fields,field_description:rental_sale_timeline_purchase.field_purchase_order_line__timeline_ids
+msgid "Timeline"
 msgstr ""
 
