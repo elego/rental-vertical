@@ -137,20 +137,20 @@ msgid "Name"
 msgstr ""
 
 #. module: sale_rental_timeline
-#: code:addons/sale_rental_timeline/models/sale.py:50
+#: code:addons/sale_rental_timeline/models/sale.py:63
 #, python-format
 msgid "No found rented product."
 msgstr ""
 
 #. module: sale_rental_timeline
-#: code:addons/sale_rental_timeline/models/repair.py:49
+#: code:addons/sale_rental_timeline/models/repair.py:62
 #, python-format
 msgid "No found repaired product."
 msgstr ""
 
 #. module: sale_rental_timeline
-#: code:addons/sale_rental_timeline/models/repair.py:37
-#: code:addons/sale_rental_timeline/models/sale.py:38
+#: code:addons/sale_rental_timeline/models/repair.py:50
+#: code:addons/sale_rental_timeline/models/sale.py:51
 #, python-format
 msgid "No found timelines."
 msgstr ""
@@ -326,6 +326,8 @@ msgstr ""
 
 #. module: sale_rental_timeline
 #: model:ir.actions.act_window,name:sale_rental_timeline.action_product_timeline
+#: model:ir.model.fields,field_description:sale_rental_timeline.field_repair_order__timeline_ids
+#: model:ir.model.fields,field_description:sale_rental_timeline.field_sale_order_line__timeline_ids
 #: model:ir.ui.menu,name:sale_rental_timeline.menu_product_timeline
 #: model_terms:ir.ui.view,arch_db:sale_rental_timeline.view_product_timeline_form
 #: model_terms:ir.ui.view,arch_db:sale_rental_timeline.view_product_timeline_search

@@ -6,6 +6,20 @@ from odoo import api, fields, models, exceptions, _
 class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
 
+    timeline_ids = fields.One2many(
+        'product.timeline',
+        compute='_compute_timeline_ids',
+    )
+
+    @api.multi
+    def _compute_timeline_ids(self):
+        for line in self:
+            domain = [
+                ('res_model', '=', line._name),
+                ('res_id', '=', line.id),
+            ]
+            line.timeline_ids = self.env['product.timeline'].search(domain)
+
     @api.multi
     def _prepare_timeline_vals(self):
         self.ensure_one()
@@ -35,11 +49,10 @@ class PurchaseOrderLine(models.Model):
     def _reset_timeline(self, vals):
         for line in self:
             if line.product_id and line.product_id.product_instance:
-                timeline_ids = self.env['product.timeline'].search([('res_model', '=', line._name), ('res_id', '=', line.id)])
-                if not timeline_ids:
+                if not line.timeline_ids:
                     raise exceptions.UserError(_('No found timelines.'))
                 if vals.get('date_planned', False):
-                    timelines = sorted(timeline_ids, key=lambda l: l.date_start)
+                    timelines = sorted(line.timeline_ids, key=lambda l: l.date_start)
                     timelines[0].date_start = vals['date_planned']
             else:
                 raise exceptions.UserError(_('No found transport product.'))
@@ -85,9 +98,7 @@ class PurchaseOrder(models.Model):
             delete all time lines
         """
         for order in self:
-            for line in order.order_line.filtered(
-                    lambda l: l.rental_type == 'rental_extension' or
-                    l.rental_type == 'new_rental'):
+            for line in order.order_line:
                 line.timeline_ids.unlink()
         res = super(PurchaseOrder, self).action_cancel()
         return res
