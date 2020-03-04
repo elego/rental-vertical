@@ -6,6 +6,12 @@ from odoo import api, fields, models, _
 class ProductProduct(models.Model):
     _inherit = 'product.product'
 
+    @api.onchange('is_contract', 'rental_ok')
+    def onchange_is_contract_rental_ok(self):
+        template = self.env.ref('rental_contract.rental_contract_template')
+        if self.is_contract and self.rental_ok:
+            self.contract_template_id = template.id
+
     @api.multi
     def _get_contract_ids(self, contract_type="sale"):
         self.ensure_one()
