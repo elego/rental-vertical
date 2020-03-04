@@ -85,6 +85,15 @@
                                         Configure rented product as a Product Instance
                                     </div>
                                 </div>
+                                <div class="o_setting_left_pane">
+                                    <field name="module_rental_product_instance_appointment"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_rental_product_instance_appointment"/>
+                                    <div class="text-muted">
+                                        Configure periodic appointments of Product Instance
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="col-12 col-lg-6 o_setting_box">

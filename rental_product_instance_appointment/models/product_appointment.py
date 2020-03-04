@@ -32,7 +32,7 @@ class ProductAppointment(models.Model):
         today = fields.Date.from_string(fields.Date.today())
         for record in self:
             record.create_task = False
-            if record.date_next_appointment - relativedelta(days=self.leads_of_notification) == today:
+            if record.date_next_appointment - relativedelta(days=record.leads_of_notification) == today:
                 record.create_task = True
 
     def _prepare_task_vals(self):
