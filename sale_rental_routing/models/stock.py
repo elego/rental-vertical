@@ -9,17 +9,6 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-
-class StockRule(models.Model):
-    _inherit = "stock.rule"
-
-    def _get_stock_move_values(self, product_id, product_qty, product_uom, location_id, name, origin, values, group_id):
-        res = super(StockRule, self)._get_stock_move_values(
-            product_id, product_qty, product_uom, location_id, name, origin, values, group_id)
-        if 'onsite_location_id' in values:
-            res['location_dest_id'] = values['onsite_location_id']
-        return res
-
 class StockMove(models.Model):
     _inherit = "stock.move"
 

@@ -59,6 +59,14 @@ class SaleOrder(models.Model):
         return action
 
     @api.multi
+    def action_confirm(self):
+        for sale in self:
+            if sale.partner_shipping_id and not sale.partner_shipping_id.rental_onsite_location_id:
+                self.create_and_set_rental_onsite_location_route()
+        res = super(SaleOrder, self).action_confirm()
+        return res
+
+    @api.multi
     def action_cancel(self):
         for sale in self:
             rental_pickings = self.env["stock.picking"].search(
@@ -113,51 +121,21 @@ class SaleOrder(models.Model):
         new_route = self.warehouse_id.rental_route_id.copy(
             {"name": route_name}
         )
-        new_push_rule = new_route.push_ids[0]
-        new_pull_rule = new_route.pull_ids[0]
-        for push_rule in new_route.push_ids:
-            push_rule.write(
-                {
-                    "location_from_id": new_location.id,
-                    "picking_type_id": self.warehouse_id.int_type_id.id,
-                }
-            )
-        for pull_rule in new_route.pull_ids:
-            pull_rule.write(
-                {
-                    "location_id": new_location.id,
-                    "picking_type_id": self.warehouse_id.int_type_id.id,
-                }
-            )
+        #new_push_rule = new_route.push_ids[0]
+        #new_pull_rule = new_route.pull_ids[0]
+        for rule in new_route.rule_ids:
+            if rule.location_src_id == self.warehouse_id.rental_out_location_id:
+                rule.write(
+                    {
+                        "location_src_id": new_location.id,
+                        #"picking_type_id": self.warehouse_id.int_type_id.id,
+                    }
+                )
+            if rule.location_id == self.warehouse_id.rental_out_location_id:
+                rule.write(
+                    {
+                        "location_id": new_location.id,
+                        #"picking_type_id": self.warehouse_id.int_type_id.id,
+                    }
+                )
         self.partner_shipping_id.rental_onsite_location_route = new_route
-
-        # TODO create route for selling from the new location
-        # Update shippments and moves and procurements
-        for picking in self.picking_ids:
-            if (
-                picking.location_id.id == rental_in_location.id
-                and picking.location_dest_id.id == rental_out_location.id
-            ):
-                picking.location_dest_id = new_location
-                for move in picking.move_lines:
-                    # if move.procurement_id:
-                    #    move.procurement_id.rule_id = new_pull_rule.id
-                    move.write(
-                        {
-                            "location_dest_id": new_location.id,
-                            "rule_id": new_pull_rule.id,
-                        }
-                    )
-            elif (
-                picking.location_dest_id.id == rental_in_location.id
-                and picking.location_id.id == rental_out_location.id
-            ):
-                picking.location_id = new_location
-                for move in picking.move_lines:
-                    move.write(
-                        {
-                            "location_id": new_location.id,
-                            "rule_id": new_pull_rule.id,
-                            "push_rule_id": new_push_rule.id,
-                        }
-                    )
