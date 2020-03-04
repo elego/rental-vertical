@@ -95,10 +95,10 @@ class SaleOrder(models.Model):
                     ('trans_origin_sale_line_id', '=', line.id)])
                 for po_line in trans_po_lines:
                     trans_pos |= po_line.order_id
-            self.trans_pr_ids = trans_prs
-            self.trans_po_ids = trans_pos
-            self.trans_pr_count = len(trans_prs.ids)
-            self.trans_po_count = len(trans_pos.ids)
+            order.trans_pr_ids = trans_prs
+            order.trans_po_ids = trans_pos
+            order.trans_pr_count = len(trans_prs.ids)
+            order.trans_po_count = len(trans_pos.ids)
 
     @api.multi
     def _compute_trans_pr_needed(self):
