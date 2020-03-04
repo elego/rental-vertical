@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="view_sale_order_autoaction_wizard" model="ir.ui.view">
+            <field name="name">sale.order.autoaction.wizard.form</field>
+            <field name="model">sale.order.autoaction.wizard</field>
+            <field name="inherit_id" ref="sale_order_autoaction.view_sale_order_autoaction_wizard"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_id']" position="after">
+                        <field name="show_rental_create_location_and_route" invisible="1"/>
+                        <field name="rental_create_location_and_route"
+                               attrs="{'invisible':
+                                   [('show_rental_create_location_and_route', '=', False)]}"/>
+                </xpath>
+            </field>
+        </record>
+</odoo>

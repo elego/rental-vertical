@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_rental_form" model="ir.ui.view">
+        <field name="name">sale.rental.form</field>
+        <field name="model">sale.rental</field>
+        <field name="inherit_id" ref="sale_rental.sale_rental_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="rental_onsite_location_id" readonly="1"/>
+            </xpath>
+            <xpath expr="//field[@name='out_move_id']" position="after">
+                <field name="out_move_ids" readonly="1">
+                    <tree name="out_moves">
+                        <field name="picking_id"/>
+                        <field name="origin"/>
+                        <field name="rental_in_id"/>
+                        <field name="date_expected"/>
+                        <field name="product_uom_qty"/>
+                        <field name="state"/>
+                        <field name="date"/>
+                    </tree>
+                </field>
+            </xpath>
+            <xpath expr="//field[@name='in_move_id']" position="after">
+                <field name="in_move_ids" readonly="1">
+                    <tree name="in_moves">
+                        <field name="picking_id"/>
+                        <field name="origin"/>
+                        <field name="rental_out_id"/>
+                        <field name="date_expected"/>
+                        <field name="product_uom_qty"/>
+                        <field name="state"/>
+                        <field name="date"/>
+                    </tree>
+                </field>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page name="page_rental" string="Rental">
+                    <group>
+                        <field name="rental_onsite_location_id"/>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+</odoo>
+
+
