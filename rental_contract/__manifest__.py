@@ -10,7 +10,7 @@ use cases in extension to purchase and sale use cases.
 ''',
     'version': '12.0.1.0.0',
     'category': 'rental',
-    'author': 'OCA/Elego Software Solutions GmbH',
+    'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
         'contract',
         'product_contract',

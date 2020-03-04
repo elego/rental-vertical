@@ -5,7 +5,7 @@
     'summary': 'Extends the rental pricelists to calculate the off-days',
     'version': '12.0.1.0.0',
     'category': 'rental',
-    'author': 'OCA/Elego Software Solutions GmbH',
+    'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
         'sale_rental_pricelist',
     ],

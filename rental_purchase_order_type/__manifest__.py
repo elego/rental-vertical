@@ -10,7 +10,7 @@ Additional order types:
 ''',
     'version': '12.0.1.0.0',
     'category': 'Purchase Management',
-    'author': 'OCA/Elego Software Solutions GmbH',
+    'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
         'purchase_order_type',
         'rental_base',

@@ -5,7 +5,7 @@
     'summary': 'Extends the sale_rental_timeline module to show the offday_number in the timeline popup.',
     'version': '12.0.1.0.0',
     'category': 'sale',
-    'author': 'OCA/Elego Software Solutions GmbH',
+    'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
         'sale_rental_timeline',
         'rental_sale_offday',
