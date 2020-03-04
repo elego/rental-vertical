@@ -49,5 +49,4 @@ class SaleOrder(models.Model):
                 'type_id': type_id,
                 'sale_type_id': self.type_id.id
             })
-            res['code'] = self.name
         return res
