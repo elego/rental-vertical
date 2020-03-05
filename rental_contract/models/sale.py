@@ -37,16 +37,16 @@ class SaleOrder(models.Model):
         res = super(SaleOrder, self)._prepare_contract_value(contract_template)
         so_normal_order = self.env.ref('sale_order_type.normal_sale_type')
         so_rental_order = self.env.ref('rental_base.rental_sale_type')
-        cn_normal_order = self.env.ref('rental_contract.normal_contract_type')
-        cn_rental_order = self.env.ref('rental_contract.rental_contract_type')
+        customer_contract = self.env.ref('rental_contract.customer_contract_type')
+        customer_rental_contract = self.env.ref('rental_contract.customer_rental_contract_type')
 
         if res:
             if self.type_id.id == so_normal_order.id:
-                type_id = cn_normal_order.id
+                type_id = customer_contract
             if self.type_id.id == so_rental_order.id:
-                type_id = cn_rental_order.id
+                type_id = customer_rental_contract
             res.update({
-                'type_id': type_id,
+                'type_id': type_id.id,
                 'sale_type_id': self.type_id.id
             })
         return res
