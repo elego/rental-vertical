@@ -20,11 +20,11 @@ class ProductTimeline(models.Model):
     order_res_model = fields.Char()
     order_res_id = fields.Integer()
 
-    date_start = fields.Date(
+    date_start = fields.Datetime(
         'Date Start',
         require=True,
     )
-    date_end = fields.Date(
+    date_end = fields.Datetime(
         'Date End',
         require=True,
     )
