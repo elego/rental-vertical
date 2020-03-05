@@ -19,7 +19,7 @@
                                 <div class="o_setting_right_pane">
                                     <label for="module_sale_rental_pricelist"/>
                                     <div class="text-muted">
-                                        Configure rented products with price of diferent Unit of Measure
+                                        Configure products with prices for hourly, daily or monthly rentals
                                     </div>
                                 </div>
                                 <div class="o_setting_left_pane">
@@ -28,7 +28,7 @@
                                 <div class="o_setting_right_pane">
                                     <label for="module_rental_sale_offday"/>
                                     <div class="text-muted">
-                                        Calculate the Off Days
+                                        Exclude off-days from price calculation in daily rentals
                                     </div>
                                 </div>
                             </div>
@@ -40,7 +40,7 @@
                                 <div class="o_setting_right_pane">
                                     <label for="module_sale_rental_timeline"/>
                                     <div class="text-muted">
-                                        View Timeline of products
+                                        Use timeline for rentable products with related orders
                                     </div>
                                 </div>
                             </div>
@@ -52,7 +52,7 @@
                                 <div class="o_setting_right_pane">
                                     <label for="module_rental_product_pack"/>
                                     <div class="text-muted">
-                                        Configure Product Pack in Product Form View
+                                        Configure rental products as product packs
                                     </div>
                                 </div>
                                 <div class="o_setting_left_pane">
@@ -61,7 +61,7 @@
                                 <div class="o_setting_right_pane">
                                     <label for="module_rental_product_set"/>
                                     <div class="text-muted">
-                                        Add rented products as a Product Set
+                                        Configure product sets for rental orders
                                     </div>
                                 </div>
                             </div>
@@ -73,7 +73,7 @@
                                 <div class="o_setting_right_pane">
                                     <label for="module_rental_product_variant"/>
                                     <div class="text-muted">
-                                        Configure rented products with extended fields
+                                        Configure rental products with extended fields
                                     </div>
                                 </div>
                                 <div class="o_setting_left_pane">
@@ -82,7 +82,7 @@
                                 <div class="o_setting_right_pane">
                                     <label for="module_rental_product_instance"/>
                                     <div class="text-muted">
-                                        Configure rented product as a Product Instance
+                                        Configure rental products as unique product instances
                                     </div>
                                 </div>
                                 <div class="o_setting_left_pane">
@@ -91,7 +91,7 @@
                                 <div class="o_setting_right_pane">
                                     <label for="module_rental_product_instance_appointment"/>
                                     <div class="text-muted">
-                                        Configure periodic appointments of Product Instance
+                                        Create project tasks for periodic appointments of product instances
                                     </div>
                                 </div>
                             </div>
@@ -103,7 +103,7 @@
                                 <div class="o_setting_right_pane">
                                     <label for="module_rental_contract"/>
                                     <div class="text-muted">
-                                        Use Contract to create invoice periodically
+                                        Use contracts for periodic invoicing of monthly rentals
                                     </div>
                                 </div>
                             </div>
@@ -115,7 +115,7 @@
                                 <div class="o_setting_right_pane">
                                     <label for="module_rental_repair"/>
                                     <div class="text-muted">
-                                        Manage Repair Order
+                                        Manage repair orders for product instances
                                     </div>
                                 </div>
                             </div>
