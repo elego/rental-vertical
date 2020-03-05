@@ -85,7 +85,7 @@
                     parent="menu_customer_quotations"
                     action="sale.action_quotations"
                     sequence="10" />
-                <menuitem name="Repair Orders"
+                <menuitem name="Repair Quotations"
                     id="menu_customer_repair_orders"
                     parent="menu_customer_quotations"
                     action="repair.action_repair_order_tree"

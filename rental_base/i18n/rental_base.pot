@@ -276,13 +276,13 @@ msgid "Rentals"
 msgstr ""
 
 #. module: rental_base
-#: model:ir.ui.menu,name:rental_base.menu_customer_repair_orders
-msgid "Repair Orders"
+#: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_rental_repair
+msgid "Repair Orders for Product Instances"
 msgstr ""
 
 #. module: rental_base
-#: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_rental_repair
-msgid "Repair Orders for Product Instances"
+#: model:ir.ui.menu,name:rental_base.menu_customer_repair_orders
+msgid "Repair Quotations"
 msgstr ""
 
 #. module: rental_base
@@ -346,3 +346,4 @@ msgstr ""
 #: model:ir.ui.menu,name:rental_base.menu_vendors
 msgid "Vendors"
 msgstr ""
+

@@ -276,14 +276,14 @@ msgid "Rentals"
 msgstr "Vermietungen"
 
 #. module: rental_base
-#: model:ir.ui.menu,name:rental_base.menu_customer_repair_orders
-msgid "Repair Orders"
-msgstr "Reparaturaufträge"
-
-#. module: rental_base
 #: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_rental_repair
 msgid "Repair Orders for Product Instances"
 msgstr "Reparaturaufträge für Produktinstanzen"
+
+#. module: rental_base
+#: model:ir.ui.menu,name:rental_base.menu_customer_repair_orders
+msgid "Repair Quotations"
+msgstr "Reparaturangebote"
 
 #. module: rental_base
 #: model:ir.ui.menu,name:rental_base.menu_reporting
@@ -346,3 +346,4 @@ msgstr "Eingangsrechnungen"
 #: model:ir.ui.menu,name:rental_base.menu_vendors
 msgid "Vendors"
 msgstr "Lieferanten"
+
