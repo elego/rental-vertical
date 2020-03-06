@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_product_timeline_timeline" model="ir.ui.view">
+        <field name="name">product.timeline.timeline</field>
+        <field name="model">product.timeline</field>
+        <field name="inherit_id" ref="rental_timeline.view_product_timeline_timeline" />
+        <field name="arch" type="xml">
+            <field name="maintenance" position="after">
+                <field name="_maintenance" />
+            </field>
+            <i t-if="record.maintenance" position="after">
+                <i t-if="record._maintenance" class="fa fa-fw o_button_icon fa-wrench" style="color: #ff5a00;" />
+            </i>
+        </field>
+    </record>
+</odoo>

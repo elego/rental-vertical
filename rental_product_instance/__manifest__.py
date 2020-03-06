@@ -12,7 +12,7 @@ It can be used in rental orders, repair orders and maintenance orders.''',
     'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
         'rental_product_variant',
-        'sale_rental_timeline',
+        'rental_timeline',
     ],
     'data': [
         'views/product_view.xml',

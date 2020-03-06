@@ -42,17 +42,17 @@ class ResConfigSettings(models.TransientModel):
              "instances, including the creation of account analytic lines"
              "for the repair costs.",
     )
-    module_rental_sale_offday = fields.Boolean(
+    module_rental_offday = fields.Boolean(
         string="Rental Off-Days",
         help="If activated, off-days can be calculated for daily "
              "rentals which are excluded from price calculation.",
     )
-    module_sale_rental_pricelist = fields.Boolean(
+    module_rental_pricelist = fields.Boolean(
         string="Rental Prices",
         help="If activated, rental prices can be configured for "
              "hourly, daily or monthly rentals.",
     )
-    module_sale_rental_timeline = fields.Boolean(
+    module_rental_timeline = fields.Boolean(
         string="Timeline",
         help="If activated, a timeline for all rental orders (and "
              "others, e.g. repair orders) is shown as overview.",

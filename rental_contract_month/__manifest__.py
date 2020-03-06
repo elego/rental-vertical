@@ -2,7 +2,7 @@
 
 {
     'name': 'Rental Contract Month',
-    'summary': 'Extension of module rental_contract and sale_rental_pricelist',
+    'summary': 'Extension of module rental_contract and rental_pricelist',
     'description': '''
 Simplify the configuration of rental service product (month)
 ''',
@@ -11,7 +11,7 @@ Simplify the configuration of rental service product (month)
     'author': 'OCA/Elego Software Solutions GmbH',
     'depends': [
         'rental_contract',
-        'sale_rental_pricelist',
+        'rental_pricelist',
     ],
     'data': [
     ],

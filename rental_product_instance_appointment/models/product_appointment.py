@@ -10,7 +10,7 @@ class ProductAppointment(models.Model):
 
     @api.model
     def _get_time_uom_domain(self):
-        uom_month = self.env.ref('sale_rental_pricelist.product_uom_month')
+        uom_month = self.env.ref('rental_pricelist.product_uom_month')
         uom_day = self.env.ref('uom.product_uom_day')
         return [('id', 'in', [uom_month.id, uom_day.id])]
 

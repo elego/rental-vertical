@@ -96,12 +96,12 @@ msgid "Exclude off-days from price calculation in daily rentals"
 msgstr "Standtage bei Vermietungen auf Tagesbasis von der Preiskalkulation ausschließen"
 
 #. module: rental_base
-#: model:ir.model.fields,help:rental_base.field_res_config_settings__module_sale_rental_timeline
+#: model:ir.model.fields,help:rental_base.field_res_config_settings__module_rental_timeline
 msgid "If activated, a timeline for all rental orders (and others, e.g. repair orders) is shown as overview."
 msgstr "Wenn das Häkchen gesetzt ist, wird eine Zeitachse für alle Mietaufträge (und andere, z.B. Reparaturaufträge) als Übersicht angezeigt."
 
 #. module: rental_base
-#: model:ir.model.fields,help:rental_base.field_res_config_settings__module_rental_sale_offday
+#: model:ir.model.fields,help:rental_base.field_res_config_settings__module_rental_offday
 msgid "If activated, off-days can be calculated for daily rentals which are excluded from price calculation."
 msgstr "Wenn das Häkchen gesetzt ist, können Standtage bei Mietaufträgen auf Tagesbasis angegeben werden, die von der Preiskalkulation ausgeschlossen werden."
 
@@ -131,7 +131,7 @@ msgid "If activated, rental orders for product packs will also update the stock 
 msgstr "Wenn das Häkchen gesetzt ist, können Produktverbunde vermietet werden, bei denen auch der Lagerbestand aktualisiert wird."
 
 #. module: rental_base
-#: model:ir.model.fields,help:rental_base.field_res_config_settings__module_sale_rental_pricelist
+#: model:ir.model.fields,help:rental_base.field_res_config_settings__module_rental_pricelist
 msgid "If activated, rental prices can be configured for hourly, daily or monthly rentals."
 msgstr "Wenn das Häkchen gesetzt ist, können am Produkt Preise für die Vermietung auf Stunden-, Tages- oder Monatsbasis angegeben werden."
 
@@ -229,7 +229,7 @@ msgid "Rental Contracts"
 msgstr "Mietverträge"
 
 #. module: rental_base
-#: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_rental_sale_offday
+#: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_rental_offday
 msgid "Rental Off-Days"
 msgstr "Standtage in Mietaufträgen"
 
@@ -250,7 +250,7 @@ msgid "Rental Positions"
 msgstr "Mietpositionen"
 
 #. module: rental_base
-#: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_sale_rental_pricelist
+#: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_rental_pricelist
 msgid "Rental Prices"
 msgstr "Mietpreise"
 
@@ -322,7 +322,7 @@ msgid "Settings"
 msgstr "Einstellungen"
 
 #. module: rental_base
-#: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_sale_rental_timeline
+#: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_rental_timeline
 msgid "Timeline"
 msgstr "Zeitleiste"
 
