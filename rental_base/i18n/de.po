@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-23 19:51+0000\n"
-"PO-Revision-Date: 2020-02-23 19:51+0000\n"
+"POT-Creation-Date: 2020-03-05 14:50+0000\n"
+"PO-Revision-Date: 2020-03-05 14:50+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,31 +16,14 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: rental_base
-#: model_terms:ir.ui.view,arch_db:rental_base.res_config_settings_view_form
-msgid "Add rented products as a Product Set"
-msgstr "Vermietbare Produkte in Produktsets verwenden"
-
-#. module: rental_base
-#: model_terms:ir.ui.view,arch_db:rental_base.res_config_settings_view_form
-msgid "After sucessful invoice import<br/>\n"
-"                                        1. file should be moved from incoming to invoices folder<br/>\n"
-"                                        2. file should get the tag of the partner name of the invoice date – keep the year tag!"
-msgstr ""
-
-#. module: rental_base
-#: model_terms:ir.ui.view,arch_db:rental_base.res_config_settings_view_form
-msgid "Calculate the Off Days"
-msgstr "Standtage verwenden"
-
-#. module: rental_base
-#: model:ir.model.fields,help:rental_base.field_res_config_settings__module_rental_sale_offday
-msgid "Calculate the Off Days."
-msgstr "Wenn der Haken gesetzt ist, können Standtage bei der Vermietung angegeben werden."
+#: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_rental_product_instance_appointment
+msgid "Appointments for Product Instances"
+msgstr "Termine für Produktinstanzen"
 
 #. module: rental_base
 #: model:ir.model,name:rental_base.model_res_config_settings
 msgid "Config Settings"
-msgstr "Konfiguration"
+msgstr "Konfigurationseinstellungen"
 
 #. module: rental_base
 #: model:ir.ui.menu,name:rental_base.menu_config
@@ -49,34 +32,39 @@ msgstr "Konfiguration"
 
 #. module: rental_base
 #: model_terms:ir.ui.view,arch_db:rental_base.res_config_settings_view_form
-msgid "Configure Product Pack in Product Form View"
-msgstr "Verbund von Produkten verwenden"
+msgid "Configure product sets for rental orders"
+msgstr "Produktsets für Mietaufträge konfigurieren"
 
 #. module: rental_base
 #: model_terms:ir.ui.view,arch_db:rental_base.res_config_settings_view_form
-msgid "Configure rented product as a Product Instance"
-msgstr "Vermietbare Produkte als eindeutige Produktinstanzen verwenden"
+msgid "Configure products with prices for hourly, daily or monthly rentals"
+msgstr "Produkte mit Mietpreisen auf Stunden-, Tages- oder Monatsbasis konfigurieren"
 
 #. module: rental_base
 #: model_terms:ir.ui.view,arch_db:rental_base.res_config_settings_view_form
-msgid "Configure rented products with extended fields"
-msgstr "Vermietbare Produkte mit weiteren Attributen und Smartbuttons verwenden"
+msgid "Configure rental products as product packs"
+msgstr "Vermietbare Produkte als Produktverbunde konfigurieren"
 
 #. module: rental_base
 #: model_terms:ir.ui.view,arch_db:rental_base.res_config_settings_view_form
-msgid "Configure rented products with price of diferent Unit of Measure"
-msgstr "Produkte in verschiedenen Zeit-Mengeneinheiten vermieten"
+msgid "Configure rental products as unique product instances"
+msgstr "Vermietbare Produkte als eindeutige Produktinstanzen konfigurieren"
 
 #. module: rental_base
-#: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_rental_contract
-msgid "Contract"
-msgstr "Vertrag"
+#: model_terms:ir.ui.view,arch_db:rental_base.res_config_settings_view_form
+msgid "Configure rental products with extended fields"
+msgstr "Vermietbare Produkte mit weiteren Attributen und Smartbuttons konfigurieren"
 
 #. module: rental_base
 #: model_terms:ir.actions.act_window,help:rental_base.action_rental_orders
 #: model_terms:ir.actions.act_window,help:rental_base.action_rental_quotations
 msgid "Create a new quotation, the first step of a new sale!"
 msgstr "Erstellen Sie ein neues Angebot, den ersten Schritt eines neuen Verkaufs!"
+
+#. module: rental_base
+#: model_terms:ir.ui.view,arch_db:rental_base.res_config_settings_view_form
+msgid "Create project tasks for periodic appointments of product instances"
+msgstr "Projektaufgaben für wiederkehrende Termine von Produktinstanzen erstellen"
 
 #. module: rental_base
 #: model:ir.ui.menu,name:rental_base.menu_customer_credit_notes
@@ -91,21 +79,71 @@ msgid "Customers"
 msgstr "Kunden"
 
 #. module: rental_base
-#: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_rockbird_dms_extension
-msgid "DMS Extention"
-msgstr ""
-
-#. module: rental_base
 #: model_terms:ir.actions.act_window,help:rental_base.stock_picking_action_picking_type_in
 #: model_terms:ir.actions.act_window,help:rental_base.stock_picking_action_picking_type_out
 msgid "Define a new transfer"
-msgstr "Neue Bewegung  ertsellen"
+msgstr "Neue Lagerbewegung erstellen"
 
 #. module: rental_base
 #: model:ir.ui.menu,name:rental_base.menu_customer_delivery
 #: model:ir.ui.menu,name:rental_base.menu_vendor_delivery
 msgid "Delivery"
 msgstr "Lieferungen"
+
+#. module: rental_base
+#: model_terms:ir.ui.view,arch_db:rental_base.res_config_settings_view_form
+msgid "Exclude off-days from price calculation in daily rentals"
+msgstr "Standtage bei Vermietungen auf Tagesbasis von der Preiskalkulation ausschließen"
+
+#. module: rental_base
+#: model:ir.model.fields,help:rental_base.field_res_config_settings__module_sale_rental_timeline
+msgid "If activated, a timeline for all rental orders (and others, e.g. repair orders) is shown as overview."
+msgstr "Wenn das Häkchen gesetzt ist, wird eine Zeitachse für alle Mietaufträge (und andere, z.B. Reparaturaufträge) als Übersicht angezeigt."
+
+#. module: rental_base
+#: model:ir.model.fields,help:rental_base.field_res_config_settings__module_rental_sale_offday
+msgid "If activated, off-days can be calculated for daily rentals which are excluded from price calculation."
+msgstr "Wenn das Häkchen gesetzt ist, können Standtage bei Mietaufträgen auf Tagesbasis angegeben werden, die von der Preiskalkulation ausgeschlossen werden."
+
+#. module: rental_base
+#: model:ir.model.fields,help:rental_base.field_res_config_settings__module_rental_product_variant
+msgid "If activated, product variants are used with several new attributes and smartbuttons."
+msgstr "Wenn das Häkchen gesetzt ist, werden Produktvarianten mit mehreren neuen Attributen und Smartbuttons verwendet."
+
+#. module: rental_base
+#: model:ir.model.fields,help:rental_base.field_res_config_settings__module_rental_product_instance
+msgid "If activated, product variants can be used as unique instances."
+msgstr "Wenn das Häkchen gesetzt ist, können Produktvarianten als eindeutigen Instanzen verwendet werden."
+
+#. module: rental_base
+#: model:ir.model.fields,help:rental_base.field_res_config_settings__module_rental_product_instance_appointment
+msgid "If activated, project tasks are automatically created for appointments of product instances."
+msgstr "Wenn das Häkchen gesetzt ist, werden automatisch Projektaufgaben für die wiederkehrenden Termine einer Produktinstanz erstellt."
+
+#. module: rental_base
+#: model:ir.model.fields,help:rental_base.field_res_config_settings__module_rental_contract
+msgid "If activated, rental contracts are automatically created from monthly rentals for periodic invoicing."
+msgstr "Wenn das Häkchen gesetzt ist, werden für Mietaufträge auf Monatsbasis automatisch Mietverträge für die periodische Abrechnung erstellt."
+
+#. module: rental_base
+#: model:ir.model.fields,help:rental_base.field_res_config_settings__module_rental_product_pack
+msgid "If activated, rental orders for product packs will also update the stock of pack components."
+msgstr "Wenn das Häkchen gesetzt ist, können Produktverbunde vermietet werden, bei denen auch der Lagerbestand aktualisiert wird."
+
+#. module: rental_base
+#: model:ir.model.fields,help:rental_base.field_res_config_settings__module_sale_rental_pricelist
+msgid "If activated, rental prices can be configured for hourly, daily or monthly rentals."
+msgstr "Wenn das Häkchen gesetzt ist, können am Produkt Preise für die Vermietung auf Stunden-, Tages- oder Monatsbasis angegeben werden."
+
+#. module: rental_base
+#: model:ir.model.fields,help:rental_base.field_res_config_settings__module_rental_product_set
+msgid "If activated, rental products can be grouped in a set for usage in rental orders."
+msgstr "Wenn das Häkchen gesetzt ist, können Mietprodukte als Set gruppiert werden, um diese in Mietaufträgen zu verwenden."
+
+#. module: rental_base
+#: model:ir.model.fields,help:rental_base.field_res_config_settings__module_rental_repair
+msgid "If activated, repair orders can be managed for product instances, including the creation of account analytic linesfor the repair costs."
+msgstr "Wenn das Häkchen gesetzt ist, können Reparaturaufträge für Produktinstanzen verwaltet werden, inkl. der Erzeugung der Kosten auf eine angegebene Kostenstelle."
 
 #. module: rental_base
 #: model:ir.actions.act_window,name:rental_base.stock_picking_action_picking_type_in
@@ -123,13 +161,8 @@ msgstr "Rechnungen"
 
 #. module: rental_base
 #: model_terms:ir.ui.view,arch_db:rental_base.res_config_settings_view_form
-msgid "Manage Repair Order"
-msgstr "Reparaturaufträge für Produktinstanzen verwenden"
-
-#. module: rental_base
-#: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_rental_sale_offday
-msgid "Off Days"
-msgstr "Standtage"
+msgid "Manage repair orders for product instances"
+msgstr "Reparaturaufträge für Produktinstanzen verwalten"
 
 #. module: rental_base
 #: model_terms:ir.actions.act_window,help:rental_base.action_rental_orders
@@ -156,24 +189,9 @@ msgid "Outgoing Deliveries"
 msgstr "Ausgehende Lieferungen"
 
 #. module: rental_base
-#: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_sale_rental_pricelist
-msgid "Price Extension"
-msgstr "Mietpreise"
-
-#. module: rental_base
 #: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_rental_product_instance
 msgid "Product Instance"
 msgstr "Produktinstanz"
-
-#. module: rental_base
-#: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_rental_product_pack
-msgid "Product Pack"
-msgstr "Produktverbund"
-
-#. module: rental_base
-#: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_rental_product_set
-msgid "Product Set"
-msgstr "Produktset"
 
 #. module: rental_base
 #: model:ir.ui.menu,name:rental_base.menu_product_tco
@@ -206,6 +224,16 @@ msgid "Rental"
 msgstr "Vermietung"
 
 #. module: rental_base
+#: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_rental_contract
+msgid "Rental Contracts"
+msgstr "Mietverträge"
+
+#. module: rental_base
+#: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_rental_sale_offday
+msgid "Rental Off-Days"
+msgstr "Standtage in Mietaufträgen"
+
+#. module: rental_base
 #: model:sale.order.type,name:rental_base.rental_sale_type
 msgid "Rental Order"
 msgstr "Mietauftrag"
@@ -222,6 +250,21 @@ msgid "Rental Positions"
 msgstr "Mietpositionen"
 
 #. module: rental_base
+#: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_sale_rental_pricelist
+msgid "Rental Prices"
+msgstr "Mietpreise"
+
+#. module: rental_base
+#: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_rental_product_pack
+msgid "Rental Product Packs"
+msgstr "Produktverbund in Mietaufträgen"
+
+#. module: rental_base
+#: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_rental_product_set
+msgid "Rental Product Sets"
+msgstr "Produktsets in Mietaufträgen"
+
+#. module: rental_base
 #: model:ir.actions.act_window,name:rental_base.action_rental_quotations
 #: model:ir.ui.menu,name:rental_base.menu_rental_quotations
 msgid "Rental Quotations"
@@ -234,13 +277,13 @@ msgstr "Vermietungen"
 
 #. module: rental_base
 #: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_rental_repair
-msgid "Repair Order"
-msgstr "Reparaturauftrag"
+msgid "Repair Orders for Product Instances"
+msgstr "Reparaturaufträge für Produktinstanzen"
 
 #. module: rental_base
 #: model:ir.ui.menu,name:rental_base.menu_customer_repair_orders
-msgid "Repair Orders"
-msgstr "Reparaturaufträge"
+msgid "Repair Quotations"
+msgstr "Reparaturangebote"
 
 #. module: rental_base
 #: model:ir.ui.menu,name:rental_base.menu_reporting
@@ -273,11 +316,6 @@ msgid "Sales Quotations"
 msgstr "Verkaufsangebote"
 
 #. module: rental_base
-#: model:ir.model.fields,help:rental_base.field_res_config_settings__module_sale_rental_pricelist
-msgid "Set Rental Price with different Unit of Measure."
-msgstr "Wenn der Haken gesetzt ist, können Produkte in Stunden, Tagen oder Monaten vermietet werden."
-
-#. module: rental_base
 #: model:ir.actions.act_window,name:rental_base.action_rental_configuration
 #: model:ir.ui.menu,name:rental_base.menu_settings
 msgid "Settings"
@@ -285,13 +323,18 @@ msgstr "Einstellungen"
 
 #. module: rental_base
 #: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_sale_rental_timeline
-msgid "Timelines"
-msgstr "Zeitachse"
+msgid "Timeline"
+msgstr "Zeitleiste"
 
 #. module: rental_base
 #: model_terms:ir.ui.view,arch_db:rental_base.res_config_settings_view_form
-msgid "Use Contract to create invoice periodically"
-msgstr "Verträge für periodische Abrechnung verwenden"
+msgid "Use contracts for periodic invoicing of monthly rentals"
+msgstr "Verträge für die periodische Abrechnung von Mietaufträgen auf Monatsbasis verwenden"
+
+#. module: rental_base
+#: model_terms:ir.ui.view,arch_db:rental_base.res_config_settings_view_form
+msgid "Use timeline for rentable products with related orders"
+msgstr "Zeitachse für vermietbare Produkte und deren Aufträge verwenden"
 
 #. module: rental_base
 #: model:ir.ui.menu,name:rental_base.menu_vendor_bills
@@ -303,9 +346,4 @@ msgstr "Eingangsrechnungen"
 #: model:ir.ui.menu,name:rental_base.menu_vendors
 msgid "Vendors"
 msgstr "Lieferanten"
-
-#. module: rental_base
-#: model_terms:ir.ui.view,arch_db:rental_base.res_config_settings_view_form
-msgid "View Timeline of products"
-msgstr "Zeitachse für Disposition von Produkten verwenden"
 

@@ -1,7 +1,7 @@
 <odoo>
     <data noupdate="1">
         <record model="ir.cron" id="daily_gen_product_appointment">
-            <field name="name">Daily Generate Product Appointment</field>
+            <field name="name">Update product appointments daily</field>
             <field name="interval_number">1</field>
             <field name="interval_type">days</field>
             <field name="numbercall">-1</field>
