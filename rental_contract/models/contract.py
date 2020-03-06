@@ -6,13 +6,10 @@ from odoo import api, fields, models, _
 class ContractContract(models.Model):
     _inherit = 'contract.contract'
 
-    # def _get_order_type(self):
-    #     res = self.env['contract.order.type'].search(
-    #         [('contract_type', '=', 'sale')], limit=1)
-    #     return res
-
-    type_id = fields.Many2one('contract.order.type', string="Order Type")
+    type_id = fields.Many2one('contract.order.type', string="Contract Subtype")
     sale_type_id = fields.Many2one('sale.order.type', string='Sale Order Type')
+    sub_type = fields.Selection(related='type_id.sub_type',
+        string="Sub Type", store=True, readonly=True)
 
     @api.multi
     @api.onchange('partner_id')
@@ -28,16 +25,12 @@ class ContractContract(models.Model):
     @api.onchange('type_id')
     def onchange_type_id(self):
         for order in self:
-            if order.type_id.warehouse_id:
-                order.warehouse_id = order.type_id.warehouse_id
-            if order.type_id.picking_policy:
-                order.picking_policy = order.type_id.picking_policy
             if order.type_id.payment_term_id:
                 order.payment_term_id = order.type_id.payment_term_id.id
             if order.type_id.pricelist_id:
                 order.pricelist_id = order.type_id.pricelist_id.id
-            if order.type_id.incoterm_id:
-                order.incoterm = order.type_id.incoterm_id.id
+            if order.type_id.journal_id:
+                order.journal_id = order.type_id.journal_id.id
 
     @api.onchange('contract_type')
     def _onchange_contract_type(self):

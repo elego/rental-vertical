@@ -1,29 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo noupdate="1">
-    <!-- Contract Order Type for Customer -->
-    <record id="normal_contract_type" model="contract.order.type">
-        <field name="name">Normal Contract</field>
+    <!-- Contract Order Subtype for Customer -->
+    <record id="customer_contract_type" model="contract.order.type">
+        <field name="name">Customer Contract</field>
         <field name="contract_type">sale</field>
-        <field name="warehouse_id" ref="stock.warehouse0"/>
-        <field name="sequence_id" ref="rental_contract.seq_contract_normal_order"/>
+        <field name="journal_id" search="[('type', '=', 'sale')]"/>
+        <field name="pricelist_id" ref="product.list0"/>
+        <field name="payment_term_id" ref="account.account_payment_term_immediate"/>
+        <field name="sequence_id" ref="rental_contract.seq_customer_contract"/>
     </record>
-    <record id="rental_contract_type" model="contract.order.type">
+    <record id="customer_rental_contract_type" model="contract.order.type">
         <field name="name">Rental Contract</field>
         <field name="contract_type">sale</field>
-        <field name="warehouse_id" ref="stock.warehouse0"/>
-        <field name="sequence_id" ref="rental_contract.seq_contract_rental_order"/>
+        <field name="sub_type">rental</field>
+        <field name="journal_id" search="[('type', '=', 'sale')]"/>
+        <field name="pricelist_id" ref="product.list0"/>
+        <field name="payment_term_id" ref="account.account_payment_term_immediate"/>
+        <field name="sequence_id" ref="rental_contract.seq_customer_contract"/>
     </record>
-    <!-- Contract Order Type for Supplier -->
-    <record id="sup_normal_contract_type" model="contract.order.type">
-        <field name="name">Supplier Normal Contract</field>
+    <!-- Contract Order Subtype for Vendor -->
+    <record id="vendor_contract_type" model="contract.order.type">
+        <field name="name">Vendor Contract</field>
         <field name="contract_type">purchase</field>
-        <field name="warehouse_id" ref="stock.warehouse0"/>
-        <field name="sequence_id" ref="rental_contract.seq_sup_contract_normal_order"/>
+        <field name="journal_id" search="[('type', '=', 'purchase')]"/>
+        <field name="pricelist_id" ref="product.list0"/>
+        <field name="payment_term_id" ref="account.account_payment_term_immediate"/>
+        <field name="sequence_id" ref="rental_contract.seq_vendor_contract"/>
     </record>
-    <record id="sup_rental_contract_type" model="contract.order.type">
-        <field name="name">Supplier Rental Contract</field>
+    <record id="vendor_rental_contract_type" model="contract.order.type">
+        <field name="name">Vendor Rental Contract</field>
         <field name="contract_type">purchase</field>
-        <field name="warehouse_id" ref="stock.warehouse0"/>
-        <field name="sequence_id" ref="rental_contract.seq_sup_contract_rental_order"/>
+        <field name="sub_type">rental</field>
+        <field name="journal_id" search="[('type', '=', 'purchase')]"/>
+        <field name="pricelist_id" ref="product.list0"/>
+        <field name="payment_term_id" ref="account.account_payment_term_immediate"/>
+        <field name="sequence_id" ref="rental_contract.seq_vendor_contract"/>
     </record>
 </odoo>

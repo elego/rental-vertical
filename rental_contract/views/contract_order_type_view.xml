@@ -17,16 +17,13 @@
                     <group>
                         <group>
                             <field name="contract_type" required="1"/>
-                            <field name="warehouse_id" />
-                            <field name="company_id" attrs="{'invisible': [('warehouse_id', '=', False)]}"/>
+                            <field name="company_id"/>
                             <field name="sequence_id"/>
                         </group>
                         <group>
                             <field name="journal_id" />
-                            <field name="picking_policy" attrs="{'invisible': [('contract_type', '!=', 'sale')]}"/>
                             <field name="payment_term_id" />
                             <field name="pricelist_id" />
-                            <field name="incoterm_id" />
                         </group>
                     </group>
                     <group>
@@ -44,10 +41,8 @@
             <tree string="Type">
                 <field name="name"/>
                 <field name="contract_type"/>
-                <field name="warehouse_id"/>
                 <field name="sequence_id"/>
                 <field name="journal_id"/>
-                <field name="picking_policy" />
                 <field name="description" />
             </tree>
         </field>
@@ -59,43 +54,34 @@
         <field name="arch" type="xml">
             <search string="Type">
                 <field name="name"/>
-                <field name="warehouse_id"/>
                 <field name="sequence_id"/>
                 <field name="journal_id"/>
-                <field name="picking_policy" />
                 <field name="payment_term_id" />
                 <field name="pricelist_id" />
-                <field name="incoterm_id" />
                 <field name="contract_type"/>
                 <group expand="0" string="Group By">
                     <filter name="contract_type" string="Contract Type" domain="[]"
                             context="{'group_by':'contract_type'}" />
-                    <filter name="warehouse" string="Warehouse" domain="[]"
-                            context="{'group_by':'warehouse_id'}" />
                     <filter name="entry_sequence" string="Entry Sequence" domain="[]"
                             context="{'group_by':'sequence_id'}" />
                     <filter name="billing_journal" string="Billing Journal" domain="[]"
                             context="{'group_by':'journal_id'}" />
-                    <filter name="shipping_policy" string="Shipping Policy" domain="[]"
-                            context="{'group_by':'picking_policy'}" />
                     <filter name="payment_term" string="Payment Term" domain="[]"
                             context="{'group_by':'payment_term_id'}" />
                     <filter name="price_list" string="Price List" domain="[]"
                             context="{'group_by':'pricelist_id'}" />
-                    <filter name="incoterm" string="Incoterm" domain="[]"
-                            context="{'group_by':'incoterm_id'}" />
                 </group>
             </search>
         </field>
     </record>
 
     <record id="contract_order_type_action" model="ir.actions.act_window">
-        <field name="name">Contract Order Types</field>
+        <field name="name">Contract Subtype</field>
         <field name="res_model">contract.order.type</field>
         <field name="view_mode">form,tree</field>
         <field name="view_id" ref="contract_order_type_tree_view"/>
         <field name="help" type="html">
-            <p class="oe_view_nocontent_create">Click to set a new type for contract order.</p>
+            <p class="oe_view_nocontent_create">Click to set a new Contract Subtype.</p>
         </field>
     </record>
 

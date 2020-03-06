@@ -6,12 +6,12 @@ from odoo import api, fields, models
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
-    def _get_order_type(self):
-        return self.env['contract.order.type'].search([], limit=1)
+    # def _get_order_type(self):
+    #     return self.env['contract.order.type'].search([], limit=1)
 
     contract_type_id = fields.Many2one(
         comodel_name='contract.order.type',
-        string='Contract Type', default=_get_order_type)
+        string='Contract Type')
 
     @api.onchange('partner_id', 'company_id')
     def _onchange_partner_id(self):
