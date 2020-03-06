@@ -121,12 +121,13 @@ class ProductTimeline(models.Model):
 
     @api.multi
     def _compute_fields(self):
+        lang = self.env['res.lang'].search([('code', '=', self.env.user.lang)])
         for line in self:
             obj = self.env[line.res_model].browse(line.res_id)
             order_obj = self.env[line.order_res_model].browse(line.order_res_id)
 
             if line.res_model == 'sale.order.line':
-                line.name = _('Rental: %s') % order_obj.partner_id.name
+                line.name = _('R: %s') % order_obj.partner_id.name
                 line.order_name = order_obj.name
                 line.partner_id = order_obj.partner_id.id
                 line.partner_shipping_address = order_obj.partner_shipping_id._display_address()
@@ -136,22 +137,24 @@ class ProductTimeline(models.Model):
                 line.price_subtotal = obj.price_subtotal
                 line.number_of_days = obj.number_of_days
                 line.rental_period = "{product_uom_qty} {product_uom}".format(
-                    product_uom_qty=int(obj.product_uom_qty),
-                    product_uom=obj.product_uom.name,
+                    product_uom_qty = int(obj.product_uom_qty),
+                    product_uom = obj.product_uom.name,
                 )
+                currency = line.currency_id
                 line.amount = "{price_subtotal} {currency}".format(
-                    price_subtotal=line.price_subtotal,
-                    currency=line.currency_id.name,
+                    price_subtotal = lang.format('%.2f', line.price_subtotal, grouping=True),
+                    currency = currency.symbol,
                 )
 
             elif line.res_model == 'repair.order':
-                line.name = _('R: %s') % obj.partner_id.name
+                line.name = _('r: %s') % obj.partner_id.name if obj.partner_id else obj.name
                 line.order_name = obj.name
                 line.partner_id = obj.partner_id.id
                 line.partner_shipping_address = obj.address_id._display_address()
+                currency = self.env.user.company_id.currency_id
                 line.amount = "{total} {currency}".format(
-                    total=obj.amount_untaxed,
-                    currency=self.env.user.company_id.currency_id.name,
+                    total = lang.format('%.2f', obj.amount_untaxed, grouping=True),
+                    currency = currency.symbol,
                 )
 
             _maintenance_domain = [

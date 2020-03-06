@@ -24,12 +24,13 @@ class ProductTimeline(models.Model):
     @api.multi
     def _compute_fields(self):
         super(ProductTimeline, self)._compute_fields()
+        lang = self.env['res.lang'].search([('code', '=', self.env.user.lang)])
         for line in self:
             if line.res_model == 'purchase.order.line':
                 obj = self.env[line.res_model].browse(line.res_id)
                 order_obj = self.env[line.order_res_model].browse(line.order_res_id)
 
-                line.name = _('T: %s') % order_obj.partner_id.name
+                line.name = _('T: %s') % order_obj.partner_id.name if order_obj.partner_id else obj.name
                 line.order_name = order_obj.name
                 line.freight_forwarder_id = order_obj.partner_id.id
                 line.source_address = obj.trans_origin_sale_line_id.planned_source_address_id._display_address()
@@ -37,6 +38,6 @@ class ProductTimeline(models.Model):
 
                 line.currency_id = obj.currency_id.id
                 line.amount = "{price_subtotal} {currency}".format(
-                    price_subtotal=line.price_subtotal,
-                    currency=line.currency_id.name,
+                    price_subtotal = lang.format('%.2f', line.price_subtotal, grouping=True),
+                    currency = line.currency_id.symbol,
                 )

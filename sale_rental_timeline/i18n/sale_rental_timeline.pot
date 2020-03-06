@@ -223,7 +223,7 @@ msgid "Product:"
 msgstr ""
 
 #. module: sale_rental_timeline
-#: code:addons/sale_rental_timeline/models/product_timeline.py:148
+#: code:addons/sale_rental_timeline/models/product_timeline.py:130
 #, python-format
 msgid "R: %s"
 msgstr ""
@@ -246,12 +246,6 @@ msgstr ""
 #. module: sale_rental_timeline
 #: model_terms:ir.ui.view,arch_db:sale_rental_timeline.view_product_timeline_timeline
 msgid "Rental period:"
-msgstr ""
-
-#. module: sale_rental_timeline
-#: code:addons/sale_rental_timeline/models/product_timeline.py:129
-#, python-format
-msgid "Rental: %s"
 msgstr ""
 
 #. module: sale_rental_timeline
@@ -368,5 +362,11 @@ msgstr ""
 #. module: sale_rental_timeline
 #: model_terms:ir.ui.view,arch_db:sale_rental_timeline.view_product_timeline_timeline
 msgid "Warehouse:"
+msgstr ""
+
+#. module: sale_rental_timeline
+#: code:addons/sale_rental_timeline/models/product_timeline.py:150
+#, python-format
+msgid "r: %s"
 msgstr ""
 

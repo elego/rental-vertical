@@ -69,7 +69,7 @@ msgid "Source:"
 msgstr ""
 
 #. module: rental_sale_timeline_purchase
-#: code:addons/rental_sale_timeline_purchase/models/product_timeline.py:32
+#: code:addons/rental_sale_timeline_purchase/models/product_timeline.py:33
 #, python-format
 msgid "T: %s"
 msgstr ""
