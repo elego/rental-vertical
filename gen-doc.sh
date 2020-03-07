@@ -2,6 +2,7 @@
 
 TOOLS=${TOOLS:-~/work/odoo-dev/tools}
 ds=$(date "+%Y-%m-%d-%H-%M-%S")
+GET_MANIFEST_INFO=${GET_MANIFEST_INFO:-${TOOLS}/get_openerp_info.py}
 
 for p in rental_* sale_rental*; do
   m=${p}/__manifest__.py
@@ -21,34 +22,34 @@ for p in rental_* sale_rental*; do
     continue
   }
   if grep -q "'name'" ${m}; then
-    name=$(${TOOLS}/get_openerp_info.py -f ${m} -a name -p '' | sed -e 's/^\.$//' -e 's/|//g')
+    name=$(${GET_MANIFEST_INFO} -f ${m} -a name -p '' | sed -e 's/^\.$//' -e 's/|//g')
   else
     echo "error: module name not found, continuing with next package..."
     continue
   fi
   if grep -q "'summary'" ${m}; then
-    summary=$(${TOOLS}/get_openerp_info.py -f ${m} -a summary -p '' | sed -e 's/^\.$//' -e 's/|//g')
+    summary=$(${GET_MANIFEST_INFO} -f ${m} -a summary -p '' | sed -e 's/^\.$//' -e 's/|//g')
   else
     echo "error: module summary not found, continuing with next package..."
     continue
   fi
   if grep -q "'description'" ${m}; then
-    description=$(${TOOLS}/get_openerp_info.py -f ${m} -a description -p '' | sed -e 's/^\.$//' -e 's/|//g')
+    description=$(${GET_MANIFEST_INFO} -f ${m} -a description -p '' | sed -e 's/^\.$//' -e 's/|//g')
   else
     description='TODO'
   fi
   if grep -q "'usage'" ${m}; then
-    usage=$(${TOOLS}/get_openerp_info.py -f ${m} -a usage -p '' | sed -e 's/^\.$//' -e 's/|//g')
+    usage=$(${GET_MANIFEST_INFO} -f ${m} -a usage -p '' | sed -e 's/^\.$//' -e 's/|//g')
   else
     usage=''
   fi
   if grep -q "'contributors'" ${m}; then
-    contributors=$(${TOOLS}/get_openerp_info.py -f ${m} -a contributors -p '' | sed -e 's/^\.$//' -e 's/|//g')
+    contributors=$(${GET_MANIFEST_INFO} -f ${m} -a contributors -p '' | sed -e 's/^\.$//' -e 's/|//g')
   else
     contributors=''
   fi
   if grep -q "'author'" ${m}; then
-    author=$(${TOOLS}/get_openerp_info.py -f ${m} -a author -p '' | sed -e 's/^\.$//' -e 's/|//g')
+    author=$(${GET_MANIFEST_INFO} -f ${m} -a author -p '' | sed -e 's/^\.$//' -e 's/|//g')
   else
     author=''
   fi
@@ -57,7 +58,7 @@ for p in rental_* sale_rental*; do
     echo "Changelog"
     echo "---------"
     echo ""
-    git log --oneline -- ${p}
+    git log --oneline -- ${p} | sed -e 's/^/- /'
     echo ""
   } > ${historyfn}
   {
