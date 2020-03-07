@@ -12,7 +12,7 @@ a88dfb5 [IMP] refactoring of menus
 9a555c7 [MERGE] remotes/origin/feature_3304_blp214_german_translation_v12: addons-rental-vertical remotes/origin/feature_3304_blp214_german_translation_v12 - 94d9308ebc1357bfaee0061925fd5d59cdd50ccd issue #3304 add German translation for rental_base module
 94d9308 issue #3304 add German translation for rental_base module
 de76919 [IMP] auto setting analytic account by creating invoice and creating rental server product
-bf0ec64 [ADD] add module rental_sale_offday
+bf0ec64 [ADD] add module rental_offday
 2f11b55 [IMP] improves form view of products
 545a3ad [IMP] refactoring of project_task_order, functions is moved into rental_product_instance_repair and rental_repair.
 91b2863 [IMP] reset default action (timeline) of root menu

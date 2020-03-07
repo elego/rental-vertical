@@ -16,7 +16,7 @@ class ProductSetAdd(models.TransientModel):
     @api.model
     def _get_time_uom(self):
         time_uom = []
-        uom_month = self.env.ref('sale_rental_pricelist.product_uom_month')
+        uom_month = self.env.ref('rental_pricelist.product_uom_month')
         uom_day = self.env.ref('uom.product_uom_day')
         uom_hour = self.env.ref('uom.product_uom_hour')
         time_uom.extend([uom_month.id, uom_hour.id, uom_day.id])

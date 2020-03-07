@@ -13,7 +13,7 @@ the products in the set. There is no further relation between those products.
     'category': 'sale',
     'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
-        'sale_rental_pricelist',
+        'rental_pricelist',
         'sale_product_set',
         'rental_base',
     ],

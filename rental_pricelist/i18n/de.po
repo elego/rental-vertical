@@ -1,0 +1,216 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* rental_pricelist
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-06 18:57+0000\n"
+"PO-Revision-Date: 2020-03-06 18:57+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: rental_pricelist
+#: model:ir.model.fields,field_description:rental_pricelist.field_product_product__rental_ok
+#: model:ir.model.fields,field_description:rental_pricelist.field_product_template__rental_ok
+#: model:ir.model.fields,field_description:rental_pricelist.field_sale_order_line__rental_ok
+#: model_terms:ir.ui.view,arch_db:rental_pricelist.rental_product_search_view
+msgid "Can be rented"
+msgstr "Kann vermietet werden"
+
+#. module: rental_pricelist
+#: model:ir.model.fields,field_description:rental_pricelist.field_product_product__day_scale_pricelist_item_ids
+msgid "Day Scale Pricelist Items"
+msgstr "Preislistenposistionen für Tagesmiete"
+
+#. module: rental_pricelist
+#: model:ir.model.fields,field_description:rental_pricelist.field_product_product__def_pricelist_id
+msgid "Default Pricelist"
+msgstr "Standard-Preisliste"
+
+#. module: rental_pricelist
+#: model:ir.model.fields,field_description:rental_pricelist.field_product_product__hour_scale_pricelist_item_ids
+msgid "Hour Scale Pricelist Items"
+msgstr "Preislistenposistionen für Stundenmiete"
+
+#. module: rental_pricelist
+#: code:addons/rental_pricelist/models/sale.py:180
+#, python-format
+msgid "Missing \"Rental to Extend\" on the sale order line with rental service %s."
+msgstr "Es wurde kein Auftrag für die \"Mietverlängerung\" auf der Auftragszeile für das Produkt %s angegeben."
+
+#. module: rental_pricelist
+#: model:ir.model.fields,field_description:rental_pricelist.field_product_product__month_scale_pricelist_item_ids
+msgid "Month Scale Pricelist Items"
+msgstr "Preislistenposistionen für Monatsmiete"
+
+#. module: rental_pricelist
+#: model:uom.uom,name:rental_pricelist.product_uom_month
+msgid "Month(s)"
+msgstr "Monat(e)"
+
+#. module: rental_pricelist
+#: code:addons/rental_pricelist/models/product.py:132
+#, python-format
+msgid "No found expected Rental Type."
+msgstr "Es wurde kein Vermietungstyp (Mengeneinheit) gefunden."
+
+#. module: rental_pricelist
+#: code:addons/rental_pricelist/models/sale.py:136
+#, python-format
+msgid "Not enough stock!"
+msgstr "Lagerbestand nicht ausreichend!"
+
+#. module: rental_pricelist
+#: model:ir.model.fields,field_description:rental_pricelist.field_sale_order_line__number_of_time_unit
+msgid "Number of TU"
+msgstr "Anzahl der Zeiteinheiten"
+
+#. module: rental_pricelist
+#: code:addons/rental_pricelist/models/sale.py:196
+#, python-format
+msgid "On the \"new rental\" sale order line with product \"%s\", we should have a rental service product!"
+msgstr "In der Auftragszeile mit dem Typ \"Neue Vermietung\" und dem Produkt \"%s\" sollte ein Mietservice eingetragen sein!"
+
+#. module: rental_pricelist
+#: code:addons/rental_pricelist/models/sale.py:213
+#, python-format
+msgid "On the sale order line with product %s you are trying to sell a rented product with a quantity (%s) that is different from the rented quantity (%s). This is not supported."
+msgstr "In der Auftragszeile mit dem Produkt %s wird versucht, ein Produkt mit einer anderen Menge (%s) zu verkaufen als vermietet wurde (%s). Dieser Vorgang wird nicht unterstützt."
+
+#. module: rental_pricelist
+#: code:addons/rental_pricelist/models/sale.py:185
+#, python-format
+msgid "On the sale order line with rental service %s, you are trying to extend a rental with a rental quantity (%s) that is different from the quantity of the original rental (%s). This is not supported."
+msgstr "In der Auftragszeile mit dem Produkt %s wird versucht, eine bestehende Miete mit einer anderen Menge (%s) zu verlängern als ursprünglich vermietet wurde (%s). Dieser Vorgang wird nicht unterstützt."
+
+#. module: rental_pricelist
+#: model_terms:ir.ui.view,arch_db:rental_pricelist.product_normal_form_view
+msgid "Price"
+msgstr "Preis"
+
+#. module: rental_pricelist
+#: model:ir.model.fields,field_description:rental_pricelist.field_product_product__rental_price_day
+msgid "Price / Day"
+msgstr "Preis / Tag"
+
+#. module: rental_pricelist
+#: model:ir.model.fields,field_description:rental_pricelist.field_product_product__rental_price_hour
+msgid "Price / Hour"
+msgstr "Preis / Stunde"
+
+#. module: rental_pricelist
+#: model:ir.model.fields,field_description:rental_pricelist.field_product_product__rental_price_month
+msgid "Price / Month"
+msgstr "Preis / Monat"
+
+#. module: rental_pricelist
+#: model:ir.model.fields,help:rental_pricelist.field_product_product__rental_price_day
+#: model:ir.model.fields,help:rental_pricelist.field_product_product__rental_price_hour
+#: model:ir.model.fields,help:rental_pricelist.field_product_product__rental_price_month
+msgid "Price at which the product is sold to customers."
+msgstr "Preis, zu dem das Produkt an den Kunden verkauft wird."
+
+#. module: rental_pricelist
+#: model:ir.model,name:rental_pricelist.model_product_pricelist_item
+msgid "Pricelist Item"
+msgstr "Preislistenposition"
+
+#. module: rental_pricelist
+#: model_terms:ir.ui.view,arch_db:rental_pricelist.product_normal_form_view
+msgid "Pricelist Items"
+msgstr "Preislistenpositionen"
+
+#. module: rental_pricelist
+#: model:ir.model,name:rental_pricelist.model_product_product
+#: model:ir.model.fields,field_description:rental_pricelist.field_sale_order_line__display_product_id
+msgid "Product"
+msgstr "Produkt"
+
+#. module: rental_pricelist
+#: model:ir.model,name:rental_pricelist.model_product_template
+msgid "Product Template"
+msgstr "Produktvorlage"
+
+#. module: rental_pricelist
+#: model:ir.ui.menu,name:rental_pricelist.menu_products
+msgid "Products"
+msgstr "Produkte"
+
+#. module: rental_pricelist
+#: model_terms:ir.ui.view,arch_db:rental_pricelist.product_normal_form_view
+msgid "Rental Price"
+msgstr "Mietpreis"
+
+#. module: rental_pricelist
+#: model:ir.actions.act_window,name:rental_pricelist.view_rental_product_action
+msgid "Rental Product Variants"
+msgstr "Mietprodukte"
+
+#. module: rental_pricelist
+#: model:ir.model.fields,field_description:rental_pricelist.field_product_pricelist_item__day_item_id
+#: model:ir.model.fields,field_description:rental_pricelist.field_product_product__product_rental_day_id
+msgid "Rental Service (Day)"
+msgstr "Mietservice (Tag)"
+
+#. module: rental_pricelist
+#: model:ir.model.fields,field_description:rental_pricelist.field_product_pricelist_item__hour_item_id
+#: model:ir.model.fields,field_description:rental_pricelist.field_product_product__product_rental_hour_id
+msgid "Rental Service (Hour)"
+msgstr "Mietservice (Stunde)"
+
+#. module: rental_pricelist
+#: model:ir.model.fields,field_description:rental_pricelist.field_product_pricelist_item__month_item_id
+#: model:ir.model.fields,field_description:rental_pricelist.field_product_product__product_rental_month_id
+msgid "Rental Service (Month)"
+msgstr "Mietservice (Monat)"
+
+#. module: rental_pricelist
+#: code:addons/rental_pricelist/models/product.py:135
+#, python-format
+msgid "Rental of %s (%s)"
+msgstr "Miete von %s (%s)"
+
+#. module: rental_pricelist
+#: model:ir.model.fields,field_description:rental_pricelist.field_product_product__rental_of_day
+msgid "Rented in days"
+msgstr "Vermietbar in Tagen"
+
+#. module: rental_pricelist
+#: model:ir.model.fields,field_description:rental_pricelist.field_product_product__rental_of_hour
+msgid "Rented in hours"
+msgstr "Vermietbar in Stunden"
+
+#. module: rental_pricelist
+#: model:ir.model.fields,field_description:rental_pricelist.field_product_product__rental_of_month
+msgid "Rented in months"
+msgstr "Vermietbar in Monaten"
+
+#. module: rental_pricelist
+#: model:ir.model,name:rental_pricelist.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Auftragsposition"
+
+#. module: rental_pricelist
+#: model_terms:ir.ui.view,arch_db:rental_pricelist.view_order_form
+msgid "Sell From Rental"
+msgstr "Verkauf aus Vermietung"
+
+#. module: rental_pricelist
+#: code:addons/rental_pricelist/models/product.py:119
+#: code:addons/rental_pricelist/models/sale.py:65
+#, python-format
+msgid "The product has no related rental services."
+msgstr "Das Produkt hat keine zugehörigen Mietservices."
+
+#. module: rental_pricelist
+#: code:addons/rental_pricelist/models/sale.py:137
+#, python-format
+msgid "You want to rent %.2f %s but you only have %.2f %s currently available on the stock location \"%s\"! Make sure that you get some units back in the meantime or re-supply the stock location \"%s\"."
+msgstr "Es wird versucht, %.2f %s zu vermieten, aber es ist/sind aktuell nur %.2f %s auf dem Lagerplatz \"%s\" verfügbar! Es müssen in der Zwischenzeit entweder Einheiten zurück ins Lager kommen oder der Bestand auf dem Lagerplatz \"%s\" muss anderweitig erhöht werden."
+

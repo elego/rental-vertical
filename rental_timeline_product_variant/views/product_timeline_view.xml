@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_product_timeline_timeline" model="ir.ui.view">
+        <field name="name">product.timeline.timeline</field>
+        <field name="model">product.timeline</field>
+        <field name="inherit_id" ref="rental_timeline.view_product_timeline_timeline" />
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <field name="product_manu_id" />
+                <field name="product_manu_type_id" />
+                <field name="product_fleet_type_id" />
+            </field>
+            <tr t-if="record.product_categ_id" position="before">
+                <tr t-if="record.product_manu_id">
+                    <td>Manufacturer:</td>
+                    <td t-esc="record.product_manu_id" />
+                </tr>
+                <tr t-if="record.product_manu_type_id">
+                    <td>Type:</td>
+                    <td t-esc="record.product_manu_type_id" />
+                </tr>
+                <tr t-if="record.product_fleet_type_id">
+                    <td>Fleet Type:</td>
+                    <td t-esc="record.product_fleet_type_id" />
+                </tr>
+                <tr t-if="record.product_license_plate">
+                    <td>License Plate:</td>
+                    <td t-esc="record.product_license_plate" />
+                </tr>
+            </tr>
+        </field>
+    </record>
+</odoo>
