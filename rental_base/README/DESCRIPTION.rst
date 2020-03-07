@@ -1,7 +1,7 @@
 Rental Base
 ===========================================
 
-*This file has been generated on 2020-03-03-00-17-55. Changes to it will be overwritten.*
+*This file has been generated on 2020-03-07-21-04-09. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -16,13 +16,13 @@ Base Module for Rental Support
 This module add some basic configuration options and extensions for rental use cases.
 
 Configuration options:
- - Price Extension: set rental price with different unit of measure.
- - Off Days: use and calculate the off-days for rental periods which are not billed
- - Timelines: use timelines for rental product
- - Product Pack: allow renting of product packs
- - Product Variant: allow renting of product variants
- - Product Instance: rent unique product instances with serial numbers
- - Product Set: allow renting of product sets
- - Contract: allow use of contracts for renting
- - Repair Order: support repair orders during renting
+ - Rental Prices: Rental prices can be configured for hourly, daily or monthly rentals.
+ - Rental Off-Days: Off-days can be calculated for daily rentals which are excluded from price calculation.
+ - Timeline: Use timeline for order regarding a rental product.
+ - Rental Product Pack: Rental orders for product packs will also update the stock of pack components.
+ - Product Variant: Configure rental products with extended fields and smartbuttons.
+ - Product Instance: Use a product as unique product instance with serial number.
+ - Product Set: Rental products can be grouped in a set for usage in rental orders.
+ - Contract: Rental contracts are automatically created from monthly rentals for periodic invoicing.
+ - Repair Order: Support repair orders for product instances.
 

@@ -1,4 +1,4 @@
-Rental Product Instance Appointment
+Rental Timeline Repair
 ===========================================
 
 *This file has been generated on 2020-03-07-21-04-09. Changes to it will be overwritten.*
@@ -6,7 +6,7 @@ Rental Product Instance Appointment
 Summary
 -------
 
-Rental Product Instance Appointment
+extends the rental_timeline module to show the repair orders in the timeline.
 
 Description
 -----------
