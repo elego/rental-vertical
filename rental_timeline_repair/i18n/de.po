@@ -16,19 +16,9 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: rental_timeline_repair
-#: model:ir.model.fields,field_description:rental_timeline_repair.field_product_timeline___maintenance
-msgid " Maintenance"
-msgstr " Wartung"
-
-#. module: rental_timeline_repair
 #: selection:product.timeline,type:0
 msgid "Delivery"
 msgstr "Lieferung"
-
-#. module: rental_timeline_repair
-#: selection:product.timeline,type:0
-msgid "Maintenance"
-msgstr "Wartung"
 
 #. module: rental_timeline_repair
 #: code:addons/rental_timeline_repair/models/repair.py:66
@@ -53,6 +43,7 @@ msgid "Rental"
 msgstr "Vermietung"
 
 #. module: rental_timeline_repair
+#: model:ir.model.fields,field_description:rental_timeline_repair.field_product_timeline__repair
 #: selection:product.timeline,type:0
 msgid "Repair"
 msgstr "Reparieren"
@@ -78,7 +69,7 @@ msgid "Type"
 msgstr "Typ"
 
 #. module: rental_timeline_repair
-#: code:addons/rental_timeline_repair/models/product_timeline.py:26
+#: code:addons/rental_timeline_repair/models/product_timeline.py:27
 #, python-format
 msgid "r: %s"
 msgstr "R: %s"

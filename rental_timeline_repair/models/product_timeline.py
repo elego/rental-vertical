@@ -12,7 +12,8 @@ class ProductTimeline(models.Model):
         ],
     )
 
-    _maintenance = fields.Boolean(
+    repair = fields.Boolean(
+        'Repair',
         compute="_compute_fields",
     )
 
@@ -33,14 +34,13 @@ class ProductTimeline(models.Model):
                     currency = currency.symbol,
                 )
 
-            _maintenance_domain = [
-                ('type', '=', 'repair'),
-                ('product_id', '=', line.product_id.id),
-                ('date_start', '>=', line.date_start),
-                ('date_end', '<=', line.date_end),
-            ]
-
-            if line.type == 'repair' and not line.maintenance:
-                line._maintenance = False
-            else:
-                bool(self.search(_maintenance_domain))
+            if line.type != 'repair':
+                domain = [
+                    ('type', '=', 'repair'),
+                    ('product_id', '=', line.product_id.id),
+                    ('date_start', '>=', line.date_start),
+                    ('date_end', '<=', line.date_end),
+                ]
+                if bool(self.search(domain)):
+                    line.repair = True
+                    line.has_clues = True

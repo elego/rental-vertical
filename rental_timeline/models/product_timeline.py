@@ -50,16 +50,12 @@ class ProductTimeline(models.Model):
         selection=[
             ('rental', 'Rental'),
             ('reserved', 'Reserved'),
-            ('maintenance', 'Maintenance'),
         ],
     )
 
-    termin = fields.Boolean(
-        'Termin',
-    )
-
-    maintenance = fields.Boolean(
-        'Maintenance',
+    has_clues = fields.Char(
+        'Has Clues',
+        compute='_compute_fields',
     )
 
     redline = fields.Boolean(
@@ -158,6 +154,7 @@ class ProductTimeline(models.Model):
                     price_subtotal = lang.format('%.2f', line.price_subtotal, grouping=True),
                     currency = currency.symbol,
                 )
+                line.has_clues = False
 
             line.action_id = self.env.ref('rental_base.action_rental_orders').id
             line.menu_id = self.env.ref('rental_base.menu_rental_root').id

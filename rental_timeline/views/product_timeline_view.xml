@@ -15,8 +15,7 @@
                           stack="False"
                           event_open_popup="True"
                           colors="#f0ff00:type == 'reserved'; #33ffec:type == 'rental'; #ffce00:type=='maintenance'; #ff5a00:type == 'repair'; #FFA500:type=='delivery';">
-                    <field name="termin" />
-                    <field name="maintenance" />
+                    <field name="has_clues" />
                     <field name="redline" />
                     <field name="date_start" readonly="1" widget="date" />
                     <field name="date_end" readonly="1" widget="date" />
@@ -53,12 +52,9 @@
                         <div t-name="timeline-item">
                             <div t-attf-class="tooltip_content" style="display: none">
                                 <table border="1">
-                                    <tr t-if="record.termin or record.maintenance">
+                                    <tr t-if="record.has_clues">
                                         <td>Clues:</td>
-                                        <td>
-                                            <i t-if="record.termin" class="fa fa-fw o_button_icon fa-bell" />
-                                            <i t-if="record.maintenance" class="fa fa-fw o_button_icon fa-wrench" />
-                                        </td>
+                                        <td id="clues"></td>
                                     </tr>
                                     <tr t-if="record.order_name">
                                         <td>Order:</td>
@@ -105,8 +101,6 @@
                             <t t-if="record.redline">
                                 <hr color="#ff0000" />
                             </t>
-                            <i t-if="record.termin" class="fa fa-fw o_button_icon fa-bell" />
-                            <i t-if="record.maintenance" class="fa fa-fw o_button_icon fa-wrench" />
                             <t t-raw="record.display_name" />
                         </div>
                     </templates>
@@ -154,8 +148,6 @@
                 <form string="Timeline">
                     <group>
                         <field name="name" />
-                        <field name="termin" />
-                        <field name="maintenance" />
                         <field name="redline" />
                         <field name="product_id" readonly="1" />
                         <field name="type" />
