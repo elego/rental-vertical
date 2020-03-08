@@ -180,6 +180,11 @@ msgid "Partner"
 msgstr ""
 
 #. module: rental_invoice
+#: model:ir.model,name:rental_invoice.model_account_invoice_create_customer_invoice
+msgid "Wizard for creating customer invoices from vendor invoices"
+msgstr ""
+
+#. module: rental_invoice
 #: selection:account.invoice,arithmetically_correct:0
 #: selection:account.invoice,factually_correct:0
 msgid "Yes"
