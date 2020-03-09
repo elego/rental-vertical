@@ -13,6 +13,7 @@
         'purchase',
     ],
     'data': [
+        'data/groups.xml',
         'wizard/create_customer_invoice_view.xml',
         'views/account_invoice_view.xml',
     ],
