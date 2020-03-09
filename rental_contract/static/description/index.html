@@ -363,7 +363,7 @@ ul.auto-toc {
 <div class="document" id="rental-contract">
 <h1 class="title">Rental Contract</h1>
 
-<p><em>This file has been generated on 2020-03-07-21-04-09. Changes to it will be overwritten.</em></p>
+<p><em>This file has been generated on 2020-03-09-14-31-42. Changes to it will be overwritten.</em></p>
 <div class="section" id="summary">
 <h1>Summary</h1>
 <p>Extension of module contract for rental use cases</p>
@@ -373,10 +373,26 @@ ul.auto-toc {
 <p>During longtime rentals, it is often required to write invoices in regular intervals.
 This is possible with the contract module, which is here extended to support rental
 use cases in extension to purchase and sale use cases.</p>
+<p>The module adds subtypes for contracts in order to distinguish between customer contracts,
+customer rental contracts, vendor contracts and vendor rental contracts.
+It is possible to add more subtypes with own sequence, which automatically sets the contract's code.</p>
+<p>If a contract is automatically created from sale order, it passes the sale order type to the contract subtype.</p>
+</div>
+<div class="section" id="usage">
+<h1>Usage</h1>
+<p>You can add new contract subtypes here:</p>
+<blockquote>
+<ul class="simple">
+<li>Invoicing &gt; Configuration &gt; Contract &gt; Contract Subtypes</li>
+<li>Rentals &gt; Configuration &gt; Contract &gt; Contract Subtypes</li>
+</ul>
+</blockquote>
 </div>
 <div class="section" id="changelog">
 <h1>Changelog</h1>
 <ul class="simple">
+<li>c97bd4b issue #3462 add usage section for rental_contract</li>
+<li>804dc44 regenerate module documentation (issue #3339)</li>
 <li>6f170ba [IMP] remove default value of contract_type on customer invoice form</li>
 <li>994ee02 [IMP] todo points for rental_contract module</li>
 <li>4c76ef2 [MERGE] remotes/origin/fix_3339_blp311_extend_documentation_v12: addons-rental-vertical remotes/origin/fix_3339_blp311_extend_documentation_v12 - 7dde7fa1ec109919795e59198feb24fc96fcfeb1 add changelogs in HISTORY.rst and some minor improvements (issue #3339)</li>

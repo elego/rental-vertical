@@ -2,6 +2,8 @@
 Changelog
 ---------
 
+- c97bd4b issue #3462 add usage section for rental_contract
+- 804dc44 regenerate module documentation (issue #3339)
 - 6f170ba [IMP] remove default value of contract_type on customer invoice form
 - 994ee02 [IMP] todo points for rental_contract module
 - 4c76ef2 [MERGE] remotes/origin/fix_3339_blp311_extend_documentation_v12: addons-rental-vertical remotes/origin/fix_3339_blp311_extend_documentation_v12 - 7dde7fa1ec109919795e59198feb24fc96fcfeb1 add changelogs in HISTORY.rst and some minor improvements (issue #3339)

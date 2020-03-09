@@ -2,6 +2,8 @@
 Changelog
 ---------
 
+- e030fd1 issue #3279 add description and usage section for rental_product_variant
+- 804dc44 regenerate module documentation (issue #3339)
 - 4c76ef2 [MERGE] remotes/origin/fix_3339_blp311_extend_documentation_v12: addons-rental-vertical remotes/origin/fix_3339_blp311_extend_documentation_v12 - 7dde7fa1ec109919795e59198feb24fc96fcfeb1 add changelogs in HISTORY.rst and some minor improvements (issue #3339)
 - bf364e7 add some fields to the search view; issue #3296
 - 7dde7fa add changelogs in HISTORY.rst and some minor improvements (issue #3339)
