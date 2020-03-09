@@ -6,7 +6,7 @@
     "category": "Sales",
     "author": "Yu Weng <yweng@elegosoft.com>",
     "license": "AGPL-3",
-    "depends": ["sale_rental"],
+    "depends": ["rental_base"],
     "data": [
         "wizards/sale_rental_route_view.xml",
         "views/view_order_form.xml",

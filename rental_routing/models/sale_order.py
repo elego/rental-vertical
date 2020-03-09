@@ -64,6 +64,9 @@ class SaleOrder(models.Model):
             if sale.partner_shipping_id and not sale.partner_shipping_id.rental_onsite_location_id:
                 self.create_and_set_rental_onsite_location_route()
         res = super(SaleOrder, self).action_confirm()
+        for sale in self:
+            for line in sale.order_line:
+                line._reset_forward_rental_source()
         return res
 
     @api.multi
