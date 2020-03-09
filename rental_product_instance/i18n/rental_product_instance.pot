@@ -144,9 +144,3 @@ msgstr ""
 msgid "You can not have 2 serial numbers for a product instance."
 msgstr ""
 
-#. module: rental_product_instance
-#: code:addons/rental_product_instance/models/product_timeline.py:25
-#, python-format
-msgid "You can not have 2 timelines that overlaps on the same day."
-msgstr ""
-

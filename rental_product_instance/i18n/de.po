@@ -144,9 +144,3 @@ msgstr "Wenn der Haken gesetzt ist, wird das Produkt als Produktinstanz verwende
 msgid "You can not have 2 serial numbers for a product instance."
 msgstr "Für eine Produktinstanz dürfen nicht zwei Seriennummern existieren."
 
-#. module: rental_product_instance
-#: code:addons/rental_product_instance/models/product_timeline.py:25
-#, python-format
-msgid "You can not have 2 timelines that overlaps on the same day."
-msgstr "Aufträge dürfen in der Zeitachse zeitlich nicht überlappen."
-
