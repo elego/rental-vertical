@@ -6,6 +6,36 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
+class SaleOrder(models.Model):
+    _inherit = 'sale.order'
+
+    def action_cancel(self):
+        """
+            In case cancelling a SO which sells rental product.
+            Picking in should be created manually
+        """
+        res = super(SaleOrder, self).action_cancel()
+        for order in self:
+            for line in order.order_line.filtered(
+                    lambda l: l.rental_type == 'rental_extension' and
+                    l.extension_rental_id):
+                if (
+                    line.extension_rental_id.in_move_id and
+                    line.extension_rental_id.start_order_line_id.route_id and
+                    line.extension_rental_id.start_order_line_id.route_id == line.order_id.warehouse_id.rental_transit_route_id):
+                    initial_end_date = line.extension_rental_id.end_date
+                    end_datetime = initial_end_date + timedelta(days=line.customer_lead)
+                    line.extension_rental_id.in_move_id.move_orig_ids[0].write({
+                        'date_expected': initial_end_date,
+                        'date': initial_end_date,
+                        })
+                    line.extension_rental_id.in_move_id.write({
+                        'date_expected': end_datetime,
+                        'date': end_datetime,
+                        })
+        return res
+
 #TODO We need to change the function _action_launch_stock_rule in sale_rental module
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
@@ -46,4 +76,36 @@ class SaleOrderLine(models.Model):
             res['route_ids'] = self.order_id.warehouse_id.rental_transit_route_id
             # set value of 1st. stock move
             res['date_planned'] -= timedelta(days=self.customer_lead)
+        return res
+
+    def _action_launch_stock_rule(self):
+        for line in self:
+            if line.sell_rental_id:
+                if line.sell_rental_id.out_move_id.state != 'done':
+                    raise UserError(_(
+                        'Cannot sell the rental %s because it has '
+                        'not been delivered')
+                        % line.sell_rental_id.display_name)
+                if (
+                        line.sell_rental_id.start_order_line_id.route_id and
+                        line.sell_rental_id.start_order_line_id.route_id == line.order_id.warehouse_id.rental_transit_route_id):
+                    line.sell_rental_id.in_move_id.move_orig_ids[0]._action_cancel()
+        res = super(SaleOrderLine, self)._action_launch_stock_rule()
+        for line in self:
+            if (
+                    line.rental_type == 'rental_extension' and
+                    line.product_id.rented_product_id and
+                    line.extension_rental_id and
+                    line.extension_rental_id.in_move_id and
+                    line.extension_rental_id.start_order_line_id.route_id and
+                    line.extension_rental_id.start_order_line_id.route_id == line.order_id.warehouse_id.rental_transit_route_id):
+                end_datetime = line.end_date + timedelta(days=self.customer_lead)
+                line.extension_rental_id.in_move_id.move_orig_ids[0].write({
+                    'date_expected': line.end_date,
+                    'date': line.end_date,
+                    })
+                line.extension_rental_id.in_move_id.write({
+                    'date_expected': end_datetime,
+                    'date': end_datetime,
+                    })
         return res
