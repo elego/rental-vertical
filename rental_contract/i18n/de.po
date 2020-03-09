@@ -209,6 +209,11 @@ msgid "Sales Order Line"
 msgstr "Auftragsposition"
 
 #. module: rental_contract
+#: model_terms:ir.ui.view,arch_db:rental_contract.view_order_form_so_start_end_dates
+msgid "Service Period"
+msgstr "Leistungszeitraum"
+
+#. module: rental_contract
 #: model:ir.model.fields,field_description:rental_contract.field_contract_contract__sub_type
 #: model:ir.model.fields,field_description:rental_contract.field_contract_order_type__sub_type
 msgid "Sub Type"
@@ -240,3 +245,8 @@ msgstr "Lieferantenvertrag"
 #: model:contract.order.type,name:rental_contract.vendor_rental_contract_type
 msgid "Vendor Rental Contract"
 msgstr "Lieferanten-Mietvertrag"
+
+#. module: rental_contract
+#: model_terms:ir.ui.view,arch_db:rental_contract.view_order_form_so_start_end_dates
+msgid "to"
+msgstr "bis"

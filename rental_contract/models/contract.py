@@ -56,11 +56,18 @@ class ContractContract(models.Model):
     @api.multi
     def _prepare_invoice(self, date_invoice, journal=None):
         res = super(ContractContract, self)._prepare_invoice(date_invoice, journal)
+        so_id = self.contract_line_ids.mapped('sale_order_line_id.order_id')
         if self.type_id:
             res['contract_type_id'] = self.type_id.id
             if self.sale_type_id:
                 # contract is created from SO
                 res['sale_type_id'] = self.sale_type_id.id
+                if so_id.default_start_date:
+                    res['date_start'] = so_id.default_start_date
+                if so_id.default_end_date:
+                    res['date_end'] = so_id.default_end_date
+                if so_id.branch_name:
+                    res['branch_name'] = so_id.branch_name
             else:
                 res['sale_type_id'] = False
             if self.type_id.journal_id:

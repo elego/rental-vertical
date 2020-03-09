@@ -26,6 +26,7 @@ You can add new contract subtypes here:
     'depends': [
         'contract',
         'product_contract',
+        'sale_start_end_dates',
         'sale_rental',
         'rental_base',
     ],
