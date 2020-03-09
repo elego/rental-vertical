@@ -7,7 +7,7 @@
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
                 <field name="payment_term_id" position="after">
-                    <field name="contract_type_id"/>
+                    <field name="contract_type_id" domain="[('contract_type', '=', 'sale')]"/>
                 </field>
             </field>
         </record>
