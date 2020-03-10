@@ -6,19 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-11 12:26+0000\n"
-"PO-Revision-Date: 2020-02-11 12:26+0000\n"
+"POT-Creation-Date: 2020-03-09 12:20+0000\n"
+"PO-Revision-Date: 2020-03-09 12:20+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-
-#. module: rental_product_variant
-#: model:ir.model.fields,field_description:rental_product_variant.field_product_product__manu_id
-msgid "Manufacturer"
-msgstr ""
 
 #. module: rental_product_variant
 #: model_terms:ir.ui.view,arch_db:rental_product_variant.product_normal_form_view
@@ -28,6 +23,11 @@ msgstr ""
 #. module: rental_product_variant
 #: model_terms:ir.ui.view,arch_db:rental_product_variant.product_normal_form_view
 msgid "<span class=\"o_stat_text\">Purchase Orders</span>"
+msgstr ""
+
+#. module: rental_product_variant
+#: model_terms:ir.ui.view,arch_db:rental_product_variant.product_normal_form_view
+msgid "<span class=\"o_stat_text\">Rental Orders</span>"
 msgstr ""
 
 #. module: rental_product_variant
@@ -46,21 +46,15 @@ msgid "Additional Infomation"
 msgstr ""
 
 #. module: rental_product_variant
-#: code:addons/rental_product_variant/models/product.py:90
+#: code:addons/rental_product_variant/models/product.py:95
 #, python-format
 msgid "All Invoices"
 msgstr ""
 
 #. module: rental_product_variant
-#: code:addons/rental_product_variant/models/product.py:74
+#: code:addons/rental_product_variant/models/product.py:79
 #, python-format
 msgid "All Purchase Orders"
-msgstr ""
-
-#. module: rental_product_variant
-#: code:addons/rental_product_variant/models/product.py:58
-#, python-format
-msgid "All Sale Orders"
 msgstr ""
 
 #. module: rental_product_variant
@@ -158,6 +152,7 @@ msgstr ""
 #. module: rental_product_variant
 #: model:ir.actions.act_window,name:rental_product_variant.action_product_manufacturer
 #: model:ir.model.fields,field_description:rental_product_variant.field_product_manufacturer_type__manufacturer_id
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_product__manu_id
 #: model:ir.ui.menu,name:rental_product_variant.menu_product_manufacturer
 msgid "Manufacturer"
 msgstr ""
@@ -202,6 +197,11 @@ msgid "Product Manufacturer Type"
 msgstr ""
 
 #. module: rental_product_variant
+#: model:ir.ui.menu,name:rental_product_variant.menu_config_products
+msgid "Products"
+msgstr ""
+
+#. module: rental_product_variant
 #: model:ir.model.fields,field_description:rental_product_variant.field_product_product__qr_code
 msgid "QR-Code"
 msgstr ""
@@ -214,16 +214,6 @@ msgstr ""
 #. module: rental_product_variant
 #: model:ir.model.fields,field_description:rental_product_variant.field_product_product__rental_order_ids
 msgid "Rental Orders"
-msgstr ""
-
-#. module: rental_product_variant
-#: model_terms:ir.ui.view,arch_db:rental_product_variant.product_normal_form_view
-msgid "Repair"
-msgstr ""
-
-#. module: rental_product_variant
-#: model:ir.model.fields,field_description:rental_product_variant.field_product_product__repair_order_ids
-msgid "Repair Orders"
 msgstr ""
 
 #. module: rental_product_variant
@@ -283,4 +273,3 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:rental_product_variant.product_normal_form_view
 msgid "e.g. 10 m x 10 m x 10 m"
 msgstr ""
-
