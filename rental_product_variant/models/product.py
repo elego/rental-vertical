@@ -52,7 +52,7 @@ class ProductProduct(models.Model):
         for rental_service in self.rental_service_ids:
             record_ids += rental_service._get_sale_order_ids(type_id)
         record_ids = list(set(record_ids))
-        action = self.env.ref('rental_base.action_normal_orders').read([])[0]
+        action = self.env.ref('sale.action_orders').read([])[0]
         action['domain'] = [('id','in', record_ids)]
         return action
 
