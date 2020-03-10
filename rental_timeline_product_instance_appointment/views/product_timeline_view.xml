@@ -6,13 +6,13 @@
         <field name="inherit_id" ref="rental_timeline.view_product_timeline_timeline" />
         <field name="arch" type="xml">
             <templates position="before">
-                <field name="repair" />
+                <field name="appointment" />
             </templates>
             <td id="clues" position="inside">
-                <i t-if="record.repair" class="fa fa-fw o_button_icon fa-wrench" />
+                <i t-if="record.appointment" class="fa fa-fw o_button_icon fa-bell" />
             </td>
             <t t-raw="record.display_name" position="before">
-                <i t-if="record.repair" class="fa fa-fw o_button_icon fa-wrench" />
+                <i t-if="record.appointment" class="fa fa-fw o_button_icon fa-bell" />
             </t>
         </field>
     </record>
@@ -23,7 +23,7 @@
         <field name="inherit_id" ref="rental_timeline.view_product_timeline_form" />
         <field name="arch" type="xml">
             <field name="name" position="after">
-                <field name="repair" />
+                <field name="appointment" />
             </field>
         </field>
     </record>

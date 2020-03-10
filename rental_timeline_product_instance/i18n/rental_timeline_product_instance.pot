@@ -60,3 +60,9 @@ msgstr ""
 msgid "State:"
 msgstr ""
 
+#. module: rental_timeline_product_instance
+#: code:addons/rental_timeline_product_instance/models/product_timeline.py:40
+#, python-format
+msgid "You can not have 2 timelines that overlaps on the same day."
+msgstr ""
+
