@@ -26,9 +26,19 @@ msgid "<span class=\"o_stat_text\">Repairs</span>"
 msgstr ""
 
 #. module: rental_repair
+#: selection:repair.order,invoice_method:0
+msgid "After Repair"
+msgstr ""
+
+#. module: rental_repair
 #: code:addons/rental_repair/models/product.py:34
 #, python-format
 msgid "All Maintenance Orders"
+msgstr ""
+
+#. module: rental_repair
+#: selection:repair.order,invoice_method:0
+msgid "Before Repair"
 msgstr ""
 
 #. module: rental_repair
@@ -98,6 +108,46 @@ msgid "Income Analytic Account"
 msgstr ""
 
 #. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_repair_order__invoice_method
+msgid "Invoice Method"
+msgstr ""
+
+#. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_project_task__mobile
+msgid "Mobile"
+msgstr ""
+
+#. module: rental_repair
+#: model:ir.model.fields,help:rental_repair.field_project_task__mobile
+msgid "Mobile number"
+msgstr ""
+
+#. module: rental_repair
+#: selection:repair.order,invoice_method:0
+msgid "No Invoice"
+msgstr ""
+
+#. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_repair_order__fees_lines
+msgid "Operations"
+msgstr ""
+
+#. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_repair_order__operations
+msgid "Parts"
+msgstr ""
+
+#. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_project_task__phone
+msgid "Phone"
+msgstr ""
+
+#. module: rental_repair
+#: model:ir.model.fields,help:rental_repair.field_project_task__phone
+msgid "Phone number"
+msgstr ""
+
+#. module: rental_repair
 #: model:ir.model.fields,field_description:rental_repair.field_repair_order__date_start
 msgid "Planned Date Start"
 msgstr ""
@@ -110,6 +160,11 @@ msgstr ""
 #. module: rental_repair
 #: model:ir.model.fields,field_description:rental_repair.field_project_task__product_id
 msgid "Product Instance"
+msgstr ""
+
+#. module: rental_repair
+#: model:ir.model,name:rental_repair.model_purchase_order
+msgid "Purchase Order"
 msgstr ""
 
 #. module: rental_repair
@@ -142,12 +197,18 @@ msgid "Repairs"
 msgstr ""
 
 #. module: rental_repair
+#: model:ir.model.fields,help:rental_repair.field_repair_order__invoice_method
+msgid "Selecting 'Before Repair' or 'After Repair' will allow you to generate invoice before or after the repair is done respectively. 'No invoice' means you don't want to generate invoice for this repair order."
+msgstr ""
+
+#. module: rental_repair
 #: model:ir.model.fields,field_description:rental_repair.field_project_task__lot_id
 msgid "Serial Number"
 msgstr ""
 
 #. module: rental_repair
 #: model:ir.model,name:rental_repair.model_project_task
+#: model:ir.model.fields,field_description:rental_repair.field_purchase_order__project_task_id
 #: model:ir.model.fields,field_description:rental_repair.field_repair_order__project_task_id
 msgid "Task"
 msgstr ""
@@ -179,11 +240,17 @@ msgstr ""
 #. module: rental_repair
 #: model_terms:ir.actions.act_window,help:rental_repair.action_project_helpdesk_tasks
 msgid "To get things done, use activities and status on tasks.<br>\n"
-"                    Chat in real time or by email to collaborate efficiently."
+"                Chat in real time or by email to collaborate efficiently."
 msgstr ""
 
 #. module: rental_repair
 #: model:ir.model.fields,field_description:rental_repair.field_project_task__tracking
 msgid "Tracking"
+msgstr ""
+
+#. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_project_task__vendor_repair_ids
+#: model_terms:ir.ui.view,arch_db:rental_repair.view_task_form2
+msgid "Vendor Repair Orders"
 msgstr ""
 
