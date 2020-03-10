@@ -363,18 +363,39 @@ ul.auto-toc {
 <div class="document" id="rental-product-instance-appointment">
 <h1 class="title">Rental Product Instance Appointment</h1>
 
-<p><em>This file has been generated on 2020-03-03-00-17-55. Changes to it will be overwritten.</em></p>
+<p><em>This file has been generated on 2020-03-09-14-31-42. Changes to it will be overwritten.</em></p>
 <div class="section" id="summary">
 <h1>Summary</h1>
 <p>Rental Product Instance Appointment</p>
 </div>
 <div class="section" id="description">
 <h1>Description</h1>
-<p>TODO</p>
+<p>Product instances are unique products in a current state and some tasks needs to be regularly done with them.
+This module provides the possibility to add single or recurrent appointments for a product which automatically
+create project tasks a defined time before the actual appointment date.</p>
+</div>
+<div class="section" id="usage">
+<h1>Usage</h1>
+<ul class="simple">
+<li>Create a product instance.</li>
+<li>Add one or several appointments in 'Appointments' page on product view.</li>
+<li>Set a name, date, a notification lead time and a time interval for each appointment.</li>
+</ul>
+<p>The cron job 'Update product appointments daily' will check all product instances,
+create related project tasks in helpdesk project and update the due date for the next appointments.</p>
 </div>
 <div class="section" id="changelog">
 <h1>Changelog</h1>
-<p>4dc1d53 [ADD] module rental_product_instance_appointment</p>
+<ul class="simple">
+<li>07b0ce0 issue #3421 add description and usage section for rental_product_instance_appointment</li>
+<li>804dc44 regenerate module documentation (issue #3339)</li>
+<li>6fd1771 rename and split some addons; issue #3462</li>
+<li>fc3b308 issue #3287 fix description and help texts, add German translation</li>
+<li>4c76ef2 [MERGE] remotes/origin/fix_3339_blp311_extend_documentation_v12: addons-rental-vertical remotes/origin/fix_3339_blp311_extend_documentation_v12 - 7dde7fa1ec109919795e59198feb24fc96fcfeb1 add changelogs in HISTORY.rst and some minor improvements (issue #3339)</li>
+<li>5689f69 [FIX] singleton error</li>
+<li>7dde7fa add changelogs in HISTORY.rst and some minor improvements (issue #3339)</li>
+<li>4dc1d53 [ADD] module rental_product_instance_appointment</li>
+</ul>
 </div>
 </div>
 </body>

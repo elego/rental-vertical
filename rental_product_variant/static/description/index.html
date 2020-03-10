@@ -363,53 +363,64 @@ ul.auto-toc {
 <div class="document" id="rental-product-variant">
 <h1 class="title">Rental Product Variant</h1>
 
-<p><em>This file has been generated on 2020-03-03-00-17-55. Changes to it will be overwritten.</em></p>
+<p><em>This file has been generated on 2020-03-09-14-31-42. Changes to it will be overwritten.</em></p>
 <div class="section" id="summary">
 <h1>Summary</h1>
 <p>Extends model product with several fields for rental use cases.</p>
 </div>
 <div class="section" id="description">
 <h1>Description</h1>
+<p>This module adds several fields to the product form.</p>
 <dl class="docutils">
-<dt>Configuration options:</dt>
+<dt>Additional fields:</dt>
 <dd><ul class="first last simple">
-<li>Show Vehicle Identification Number</li>
-<li>Show License Plate</li>
-<li>Show Initial Registration</li>
+<li>further_ref [Char]: additional reference</li>
+<li>qr_code [Char]: QR code</li>
+<li>manu_year [Char]: year of manufacture</li>
+<li>manu_id [Many2one]: product.manufacturer -- manufacturer</li>
+<li>manu_type_id [Many2one]: product.manufacturer.type -- type</li>
+<li>fleet_type_id [Many2one]: fleet.type -- fleet type</li>
+<li>rental_order_ids [One2many]: sale.rental -- rented_product_id -- Rental Orders</li>
+<li>stock_move_ids [One2many]: stock.move -- product_id -- Stock Moves</li>
+<li>additional_info [Html]: arbitrary additional infomation</li>
+<li>dimension [Char]: dimension</li>
 </ul>
 </dd>
-<dt>Additional fields:</dt>
-<dd><p class="first">further_ref [Char]: additional reference
-qr_code [Char]: QR code
-manu_year [Char]: year of manufacture
-manu_id [Many2one]: product.manufacturer -- manufacturer
-manu_type_id [Many2one]: product.manufacturer.type -- type
-fleet_type_id [Many2one]: fleet.type -- fleet type</p>
-<p>vehicle_number [Char]: vehicle identification number
-license_plate [Char]: license plate
-init_regist [Date]: date of initial registration</p>
-<p class="last">rental_order_ids [One2many]: sale.rental -- rented_product_id -- Rental Orders
-stock_move_ids [One2many]: stock.move -- product_id -- Stock Moves
-additional_info [Html]: arbitrary additional infomation
-dimension [Char]: dimension</p>
+<dt>Additional fields configured and added by product category:</dt>
+<dd><ul class="first last simple">
+<li>Show Vehicle Identification Number -&gt; vehicle_number [Char]: vehicle identification number</li>
+<li>Show License Plate -&gt; license_plate [Char]: license plate</li>
+<li>Show Initial Registration -&gt; init_regist [Date]: date of initial registration</li>
+</ul>
 </dd>
 </dl>
 </div>
+<div class="section" id="usage">
+<h1>Usage</h1>
+<p>In order to get vehicle related fields, open the product category and activate the desired checkboxes.</p>
+</div>
 <div class="section" id="changelog">
 <h1>Changelog</h1>
-<p>467665c add some generated reST and HTML documentation (issue #3339)
-6965ed1 fix some mistakes in author and license, make summaries one line, add some descriptions (issue #3339)
-41ec0c4 [IMP] redefine fields for instance current condition
-4d17de4 [IMP] adjusts smartbuttons of product variant
-a88dfb5 [IMP] refactoring of menus
-d3c07ec issue #3279 add German translation for rental_product_variant
-41fb557 [FIX] fixes timeline view errors
-bbcea0f [FIX] fixes error by copying a product variant
-2f11b55 [IMP] improves form view of products
-b5f3dbc [IMP] fixes errors in module rental_product_pack and redefine type of field 'init_regist' Char -&gt; Date
-94e76bb [IMP] set liscense, copyrights and author
-b2e6d5c [IMP] Add neu Module rental_base, rental_product_pack and Refactoring of module sale_rental_menu (deprecated)
-676c70b [IMP] Refactoring of module swrent_product_extension</p>
+<ul class="simple">
+<li>e030fd1 issue #3279 add description and usage section for rental_product_variant</li>
+<li>804dc44 regenerate module documentation (issue #3339)</li>
+<li>4c76ef2 [MERGE] remotes/origin/fix_3339_blp311_extend_documentation_v12: addons-rental-vertical remotes/origin/fix_3339_blp311_extend_documentation_v12 - 7dde7fa1ec109919795e59198feb24fc96fcfeb1 add changelogs in HISTORY.rst and some minor improvements (issue #3339)</li>
+<li>bf364e7 add some fields to the search view; issue #3296</li>
+<li>7dde7fa add changelogs in HISTORY.rst and some minor improvements (issue #3339)</li>
+<li>467665c add some generated reST and HTML documentation (issue #3339)</li>
+<li>6965ed1 fix some mistakes in author and license, make summaries one line, add some descriptions (issue #3339)</li>
+<li>41ec0c4 [IMP] redefine fields for instance current condition</li>
+<li>4d17de4 [IMP] adjusts smartbuttons of product variant</li>
+<li>a88dfb5 [IMP] refactoring of menus</li>
+<li>d3c07ec issue #3279 add German translation for rental_product_variant</li>
+<li>41fb557 [FIX] fixes timeline view errors</li>
+<li>bbcea0f [FIX] fixes error by copying a product variant</li>
+<li>2f11b55 [IMP] improves form view of products</li>
+<li>b5f3dbc [IMP] fixes errors in module rental_product_pack and redefine type of field 'init_regist' Char -&gt; Date</li>
+<li>94e76bb [IMP] set liscense, copyrights and author</li>
+<li>b2e6d5c [IMP] Add neu Module rental_base, rental_product_pack and Refactoring of module sale_rental_menu (deprecated)</li>
+<li>676c70b [IMP] Refactoring of module swrent_product_extension</li>
+</ul>
 </div>
 </div>
 </body>

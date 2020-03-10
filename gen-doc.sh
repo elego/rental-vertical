@@ -4,7 +4,7 @@ TOOLS=${TOOLS:-~/work/odoo-dev/tools}
 ds=$(date "+%Y-%m-%d-%H-%M-%S")
 GET_MANIFEST_INFO=${GET_MANIFEST_INFO:-${TOOLS}/get_openerp_info.py}
 
-for p in rental_* sale_rental*; do
+for p in ${@:-rental_* sale_rental*}; do
   m=${p}/__manifest__.py
   docdir=${p}/README
   shtmldir=${p}/static/description
