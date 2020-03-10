@@ -31,9 +31,11 @@ The workflow is considered as this:
     'category': 'Purchase Management',
     'author': 'Elego Software Solutions GmbH',
     'depends': [
+        'account_invoice_start_end_dates',
         'purchase',
     ],
     'data': [
+        'data/groups.xml',
         'wizard/create_customer_invoice_view.xml',
         'views/account_invoice_view.xml',
     ],

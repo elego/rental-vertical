@@ -64,6 +64,11 @@ msgid "Create Customer Invoice"
 msgstr "Erstelle Kundenrechnung"
 
 #. module: rental_invoice
+#: model:res.groups,name:rental_invoice.group_create_customer_invoice_from_vendor_bill
+msgid "Create outgoing invoice from incoming invoice"
+msgstr "Ausgangsrechnung aus Eingangsrechnung erstellen"
+
+#. module: rental_invoice
 #: model:ir.model.fields,field_description:rental_invoice.field_account_invoice_create_customer_invoice__create_uid
 msgid "Created by"
 msgstr "Erstellt von"
@@ -97,6 +102,16 @@ msgstr "Kundenrechnungen"
 #: model:ir.model.fields,field_description:rental_invoice.field_account_invoice_create_customer_invoice__display_name
 msgid "Display Name"
 msgstr "Anzeigename"
+
+#. module: rental_invoice
+#: model:res.groups,name:rental_invoice.group_set_arithmetical_check
+msgid "Do arithmetical check on incoming invoices"
+msgstr "Eingangsrechnungen auf rechnerische Korrektheit prüfen"
+
+#. module: rental_invoice
+#: model:res.groups,name:rental_invoice.group_set_factual_check
+msgid "Do factual check on incoming invoices"
+msgstr "Eingangsrechnungen auf sachliche Korrektheit prüfen"
 
 #. module: rental_invoice
 #: model_terms:ir.ui.view,arch_db:rental_invoice.invoice_supplier_form
@@ -177,6 +192,11 @@ msgstr "Originalrechnung"
 #. module: rental_invoice
 #: model:ir.model.fields,field_description:rental_invoice.field_account_invoice_create_customer_invoice__partner_id
 msgid "Partner"
+msgstr ""
+
+#. module: rental_invoice
+#: model:ir.model,name:rental_invoice.model_account_invoice_create_customer_invoice
+msgid "Wizard for creating customer invoices from vendor invoices"
 msgstr ""
 
 #. module: rental_invoice

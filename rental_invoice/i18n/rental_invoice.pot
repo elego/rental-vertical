@@ -16,14 +16,14 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: rental_invoice
-#: code:addons/rental_invoice/wizard/create_customer_invoice.py:39
+#: code:addons/rental_invoice/wizard/create_customer_invoice.py:22
 #, python-format
 msgid "\n"
-"            The customer invoice cannot be created because the following products are not sellable:\n"
-"            {}\n"
+"                The customer invoice cannot be created because the following products are not sellable:\n"
+"                {}\n"
 "\n"
-"            Please set the products flag \"can be sold\" to true, if you really want to invoice these products to the customer.\n"
-"            "
+"                Please set the products flag \"can be sold\" to true, if you really want to invoice these products to the customer.\n"
+"                "
 msgstr ""
 
 #. module: rental_invoice
@@ -59,6 +59,11 @@ msgid "Create Customer Invoice"
 msgstr ""
 
 #. module: rental_invoice
+#: model:res.groups,name:rental_invoice.group_create_customer_invoice_from_vendor_bill
+msgid "Create outgoing invoice from incoming invoice"
+msgstr ""
+
+#. module: rental_invoice
 #: model:ir.model.fields,field_description:rental_invoice.field_account_invoice_create_customer_invoice__create_uid
 msgid "Created by"
 msgstr ""
@@ -91,6 +96,16 @@ msgstr ""
 #. module: rental_invoice
 #: model:ir.model.fields,field_description:rental_invoice.field_account_invoice_create_customer_invoice__display_name
 msgid "Display Name"
+msgstr ""
+
+#. module: rental_invoice
+#: model:res.groups,name:rental_invoice.group_set_arithmetical_check
+msgid "Do arithmetical check on incoming invoices"
+msgstr ""
+
+#. module: rental_invoice
+#: model:res.groups,name:rental_invoice.group_set_factual_check
+msgid "Do factual check on incoming invoices"
 msgstr ""
 
 #. module: rental_invoice
@@ -172,6 +187,11 @@ msgstr ""
 #. module: rental_invoice
 #: model:ir.model.fields,field_description:rental_invoice.field_account_invoice_create_customer_invoice__partner_id
 msgid "Partner"
+msgstr ""
+
+#. module: rental_invoice
+#: model:ir.model,name:rental_invoice.model_account_invoice_create_customer_invoice
+msgid "Wizard for creating customer invoices from vendor invoices"
 msgstr ""
 
 #. module: rental_invoice
