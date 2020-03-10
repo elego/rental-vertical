@@ -12,6 +12,7 @@
         'project',
         'rental_base',
         'repair',
+        'rental_purchase_order_type',
     ],
     'data': [
         'data/project_data.xml',

@@ -18,29 +18,39 @@ msgstr ""
 #. module: rental_repair
 #: model_terms:ir.ui.view,arch_db:rental_repair.product_normal_form_view
 msgid "<span class=\"o_stat_text\">Components</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">Komponenten</span>"
 
 #. module: rental_repair
 #: model_terms:ir.ui.view,arch_db:rental_repair.product_normal_form_view
 msgid "<span class=\"o_stat_text\">Repairs</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">Reparaturen</span>"
+
+#. module: rental_repair
+#: selection:repair.order,invoice_method:0
+msgid "After Repair"
+msgstr "Nach Reparatur"
 
 #. module: rental_repair
 #: code:addons/rental_repair/models/product.py:34
 #, python-format
 msgid "All Maintenance Orders"
-msgstr ""
+msgstr "Alle Wartungsaufträge"
+
+#. module: rental_repair
+#: selection:repair.order,invoice_method:0
+msgid "Before Repair"
+msgstr "Vor Reparatur"
 
 #. module: rental_repair
 #: model_terms:ir.actions.act_window,help:rental_repair.action_project_helpdesk_tasks
 msgid "Click <i>Create</i> to start a new ticket."
-msgstr ""
+msgstr "Click <i>Anlegen</i> um ein neues Ticket zu erstellen."
 
 #. module: rental_repair
 #: code:addons/rental_repair/models/product.py:54
 #, python-format
 msgid "Components"
-msgstr ""
+msgstr "Komponenten"
 
 #. module: rental_repair
 #: model:ir.model.fields,field_description:rental_repair.field_repair_fee__analytic_cost
@@ -57,7 +67,7 @@ msgstr "Erstellen Sie einen neuen Reparaturauftrag"
 #: model:ir.model.fields,field_description:rental_repair.field_repair_line__date_end
 #: model:ir.model.fields,field_description:rental_repair.field_repair_order__date_end
 msgid "Date Finished"
-msgstr ""
+msgstr "Reparaturende"
 
 #. module: rental_repair
 #: model:ir.model.fields,field_description:rental_repair.field_repair_order__date_deadline
@@ -72,18 +82,18 @@ msgstr "Stellen Sie die Rückverfolgbarkeit eines lagerfähigen Produkts in Ihre
 #. module: rental_repair
 #: model:ir.model.fields,field_description:rental_repair.field_repair_order__expense_analytic_account_id
 msgid "Expense Analytic Account"
-msgstr "Aufwands-Kostenstelle"
+msgstr "Aufwandskostenstelle"
 
 #. module: rental_repair
 #: model:ir.model.fields,field_description:rental_repair.field_repair_fee__expense_analytic_tag_ids
 #: model:ir.model.fields,field_description:rental_repair.field_repair_line__expense_analytic_tag_ids
 msgid "Expense Analytic Tags"
-msgstr ""
+msgstr "Aufwandskostenstellentags"
 
 #. module: rental_repair
 #: model:ir.actions.act_window,name:rental_repair.action_project_helpdesk_tasks
 msgid "Helpdesk Tickets"
-msgstr ""
+msgstr "Helpdesk-Tickets"
 
 #. module: rental_repair
 #: model_terms:ir.actions.act_window,help:rental_repair.action_repair_quotation_tree
@@ -95,7 +105,47 @@ msgstr "In einem Reparaturauftrag können Sie die Komponenten, die Sie entfernen
 #. module: rental_repair
 #: model:ir.model.fields,field_description:rental_repair.field_repair_order__income_analytic_account_id
 msgid "Income Analytic Account"
-msgstr "Erlös-Kostenstelle"
+msgstr "Erlöskostenstelle"
+
+#. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_repair_order__invoice_method
+msgid "Invoice Method"
+msgstr "Rechnungsmethode"
+
+#. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_project_task__mobile
+msgid "Mobile"
+msgstr "Mobil"
+
+#. module: rental_repair
+#: model:ir.model.fields,help:rental_repair.field_project_task__mobile
+msgid "Mobile number"
+msgstr "Mobilnummer"
+
+#. module: rental_repair
+#: selection:repair.order,invoice_method:0
+msgid "No Invoice"
+msgstr "Keine Rechnung"
+
+#. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_repair_order__fees_lines
+msgid "Operations"
+msgstr "Vorgänge"
+
+#. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_repair_order__operations
+msgid "Parts"
+msgstr "Teile"
+
+#. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_project_task__phone
+msgid "Phone"
+msgstr "Telefon"
+
+#. module: rental_repair
+#: model:ir.model.fields,help:rental_repair.field_project_task__phone
+msgid "Phone number"
+msgstr "Telefonnummer"
 
 #. module: rental_repair
 #: model:ir.model.fields,field_description:rental_repair.field_repair_order__date_start
@@ -111,6 +161,11 @@ msgstr "Produkt"
 #: model:ir.model.fields,field_description:rental_repair.field_project_task__product_id
 msgid "Product Instance"
 msgstr "Produktinstanz"
+
+#. module: rental_repair
+#: model:ir.model,name:rental_repair.model_purchase_order
+msgid "Purchase Order"
+msgstr "Beschaffungsauftrag"
 
 #. module: rental_repair
 #: model:ir.model,name:rental_repair.model_repair_fee
@@ -142,12 +197,18 @@ msgid "Repairs"
 msgstr "Reparaturen"
 
 #. module: rental_repair
+#: model:ir.model.fields,help:rental_repair.field_repair_order__invoice_method
+msgid "Selecting 'Before Repair' or 'After Repair' will allow you to generate invoice before or after the repair is done respectively. 'No invoice' means you don't want to generate invoice for this repair order."
+msgstr "Durch Auswahl der Einstellung 'Vor Reparatur' oder 'Nach Reparatur' können Sie steuern, ob Sie die Rechnung vor oder nach der Reparatur erstellen möchten . 'Keine Rechnung' bedeutet, dass Sie darauf verzichten, eine Rechnung zu generieren."
+
+#. module: rental_repair
 #: model:ir.model.fields,field_description:rental_repair.field_project_task__lot_id
 msgid "Serial Number"
 msgstr "Seriennummer"
 
 #. module: rental_repair
 #: model:ir.model,name:rental_repair.model_project_task
+#: model:ir.model.fields,field_description:rental_repair.field_purchase_order__project_task_id
 #: model:ir.model.fields,field_description:rental_repair.field_repair_order__project_task_id
 msgid "Task"
 msgstr "Aufgabe"
@@ -174,12 +235,12 @@ msgstr "Der Reparaturauftrag verwendet das Garantiedatum auf der Seriennummer, u
 #: model_terms:ir.ui.view,arch_db:rental_repair.product_normal_form_view
 #: model:project.project,label_tasks:rental_repair.project_project_helpdesk
 msgid "Tickets"
-msgstr ""
+msgstr "Tickets"
 
 #. module: rental_repair
 #: model_terms:ir.actions.act_window,help:rental_repair.action_project_helpdesk_tasks
 msgid "To get things done, use activities and status on tasks.<br>\n"
-"                    Chat in real time or by email to collaborate efficiently."
+"                Chat in real time or by email to collaborate efficiently."
 msgstr "Um Dinge zu erledigen, verwenden Sie Aktivitäten und Status für Aufgaben.<br>\n"
 "                    Chatten Sie in Echtzeit oder per E-Mail, um effizient zusammenzuarbeiten."
 
@@ -187,4 +248,10 @@ msgstr "Um Dinge zu erledigen, verwenden Sie Aktivitäten und Status für Aufgab
 #: model:ir.model.fields,field_description:rental_repair.field_project_task__tracking
 msgid "Tracking"
 msgstr "Nachverfolgung"
+
+#. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_project_task__vendor_repair_ids
+#: model_terms:ir.ui.view,arch_db:rental_repair.view_task_form2
+msgid "Vendor Repair Orders"
+msgstr "Reparaturbestellungen"
 

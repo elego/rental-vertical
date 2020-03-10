@@ -33,6 +33,12 @@ class ProjectTask(models.Model):
         string = "Repair Orders",
     )
 
+    vendor_repair_ids = fields.One2many(
+        comodel_name = 'purchase.order',
+        inverse_name = 'project_task_id',
+        string = "Vendor Repair Orders",
+    )
+
     phone = fields.Char(
         string = 'Phone',
         help = "Phone number",
