@@ -76,7 +76,7 @@
     </record>
 
     <record id="contract_order_type_action" model="ir.actions.act_window">
-        <field name="name">Contract Subtype</field>
+        <field name="name">Contract Subtypes</field>
         <field name="res_model">contract.order.type</field>
         <field name="view_mode">form,tree</field>
         <field name="view_id" ref="contract_order_type_tree_view"/>
@@ -99,7 +99,22 @@
         <field name="act_window_id" ref="contract_order_type_action"/>
     </record>
 
-    <menuitem id="contract_order_type_menu" parent="contract.menu_config_contract"
-              action="contract_order_type_action" sequence="2"/>
+    <!-- Menu in Invoicing -->
+    <menuitem name="Contract Subtypes"
+              id="contract_order_type_menu"
+              parent="contract.menu_config_contract"
+              action="contract_order_type_action"
+              sequence="2"/>
+
+    <!-- Menu in Rentals -->
+    <menuitem name="Contracts"
+            id="menu_config_contract"
+            parent="rental_base.menu_config"
+            sequence="20" />
+            <menuitem name="Contract Subtypes"
+                id="menu_contract_subtypes"
+                parent="menu_config_contract"
+                action="contract_order_type_action"
+                sequence="5" />
 
 </odoo>

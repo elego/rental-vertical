@@ -28,6 +28,13 @@ class SaleOrderLine(models.Model):
             res['analytic_account_id'] = self.product_id.income_analytic_account_id.id
         return res
 
+    @api.multi
+    def _prepare_invoice_line(self, qty):
+        res = super(SaleOrderLine, self)._prepare_invoice_line(qty)
+        if self.product_id.income_analytic_account_id:
+            res['analytic_account_id'] = self.product_id.income_analytic_account_id.id
+        return res
+
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
@@ -49,4 +56,17 @@ class SaleOrder(models.Model):
                 'type_id': type_id.id,
                 'sale_type_id': self.type_id.id
             })
+        return res
+
+    @api.multi
+    def _prepare_invoice(self):
+        res = super(SaleOrder, self)._prepare_invoice()
+        if self.type_id:
+            res['sale_type_id'] = self.type_id.id
+        if self.branch_name:
+            res['branch_name'] = self.branch_name
+        if self.default_start_date:
+            res['date_start'] = self.default_start_date
+        if self.default_end_date:
+            res['date_end'] = self.default_end_date
         return res

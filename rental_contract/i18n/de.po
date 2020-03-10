@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-05 10:54+0000\n"
-"PO-Revision-Date: 2020-03-05 10:54+0000\n"
+"POT-Creation-Date: 2020-03-09 10:45+0000\n"
+"PO-Revision-Date: 2020-03-09 10:45+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -57,15 +57,20 @@ msgid "Contract Line"
 msgstr "Vertragsposition"
 
 #. module: rental_contract
-#: model:ir.actions.act_window,name:rental_contract.contract_order_type_action
 #: model:ir.model,name:rental_contract.model_contract_order_type
 #: model:ir.model.fields,field_description:rental_contract.field_contract_contract__type_id
 #: model:ir.model.fields,field_description:rental_contract.field_res_partner__contract_type
 #: model:ir.model.fields,field_description:rental_contract.field_res_users__contract_type
-#: model:ir.ui.menu,name:rental_contract.contract_order_type_menu
 #: model_terms:ir.ui.view,arch_db:rental_contract.res_partner_contract_type_form_view
 msgid "Contract Subtype"
 msgstr "Vertragssubtyp"
+
+#. module: rental_contract
+#: model:ir.actions.act_window,name:rental_contract.contract_order_type_action
+#: model:ir.ui.menu,name:rental_contract.contract_order_type_menu
+#: model:ir.ui.menu,name:rental_contract.menu_contract_subtypes
+msgid "Contract Subtypes"
+msgstr "Vertragssubtypen"
 
 #. module: rental_contract
 #: model:ir.model.fields,field_description:rental_contract.field_account_invoice__contract_type_id
@@ -75,6 +80,7 @@ msgid "Contract Type"
 msgstr "Vertragstyp"
 
 #. module: rental_contract
+#: model:ir.ui.menu,name:rental_contract.menu_config_contract
 #: model:ir.ui.menu,name:rental_contract.menu_customer_top_contracts
 #: model:ir.ui.menu,name:rental_contract.menu_supplier_top_contracts
 msgid "Contracts"
@@ -203,6 +209,11 @@ msgid "Sales Order Line"
 msgstr "Auftragsposition"
 
 #. module: rental_contract
+#: model_terms:ir.ui.view,arch_db:rental_contract.view_order_form_so_start_end_dates
+msgid "Service Period"
+msgstr "Leistungszeitraum"
+
+#. module: rental_contract
 #: model:ir.model.fields,field_description:rental_contract.field_contract_contract__sub_type
 #: model:ir.model.fields,field_description:rental_contract.field_contract_order_type__sub_type
 msgid "Sub Type"
@@ -235,3 +246,7 @@ msgstr "Lieferantenvertrag"
 msgid "Vendor Rental Contract"
 msgstr "Lieferanten-Mietvertrag"
 
+#. module: rental_contract
+#: model_terms:ir.ui.view,arch_db:rental_contract.view_order_form_so_start_end_dates
+msgid "to"
+msgstr "bis"
