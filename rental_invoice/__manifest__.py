@@ -10,6 +10,7 @@
     'category': 'Purchase Management',
     'author': 'Elego Software Solutions GmbH',
     'depends': [
+        'account_invoice_start_end_dates',
         'purchase',
     ],
     'data': [
