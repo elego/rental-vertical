@@ -28,11 +28,12 @@ The workflow is considered as this:
 - Otherwise the incoming invoice cannot be validated.
 ''',
     'version': '12.0.1.0.0',
-    'category': 'Purchase Management',
+    'category': 'Accounting',
     'author': 'Elego Software Solutions GmbH',
     'depends': [
+        'account',
         'account_invoice_start_end_dates',
-        'purchase',
+        'account_invoice_pricelist',
     ],
     'data': [
         'data/groups.xml',

@@ -35,7 +35,7 @@
                     type="object"
                     class="oe_highlight"
                     attrs="{'invisible': ['|', ('state', '!=', 'draft'), ('factually_correct', '=', 'yes')]}"
-                    group="rental_invoice.group_set_factual_check"
+                    groups="rental_invoice.group_set_factual_check"
                 />
                 <button
                     name="action_set_factual_check_failed"
@@ -43,7 +43,7 @@
                     type="object"
                     class="oe_highlight"
                     attrs="{'invisible': ['|', ('state', '!=', 'draft'), ('factually_correct', '!=', False)]}"
-                    group="rental_invoice.group_set_factual_check"
+                    groups="rental_invoice.group_set_factual_check"
                 />
                 <button
                     name="action_set_arithmetical_check_succeeded"
@@ -51,7 +51,7 @@
                     type="object"
                     class="oe_highlight"
                     attrs="{'invisible': ['|', ('state', '!=', 'draft'), '|', ('factually_correct', '!=', 'yes'), ('arithmetically_correct', '=', 'yes')]}"
-                    group="rental_invoice.group_set_arithmetical_check"
+                    groups="rental_invoice.group_set_arithmetical_check"
                 />
                 <button
                     name="action_set_arithmetical_check_failed"
@@ -59,7 +59,7 @@
                     type="object"
                     class="oe_highlight"
                     attrs="{'invisible': ['|', ('state', '!=', 'draft'), '|', ('factually_correct', '!=', 'yes'), ('arithmetically_correct', '!=', False)]}"
-                    group="rental_invoice.group_set_arithmetical_check"
+                    groups="rental_invoice.group_set_arithmetical_check"
                 />
                 <button
                     name="%(rental_invoice.action_create_customer_invoice)d"
@@ -67,7 +67,7 @@
                     type="action"
                     class="oe_highlight"
                     attrs="{'invisible': ['|', ('customer_invoice_needed', '=', False), ('has_non_canceled_customer_invoices', '=', True)]}"
-                    group="rental_invoice.group_create_customer_invoice_from_vendor_bill"
+                    groups="rental_invoice.group_create_customer_invoice_from_vendor_bill"
                 />
             </header>
             <button name="action_invoice_open" position="attributes">
