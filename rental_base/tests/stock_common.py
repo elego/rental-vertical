@@ -45,9 +45,26 @@ class RentalStockCommon(common.TransactionCase):
 
         return rental_service
 
+    def _create_move(self, product, src_location, dst_location, **values):
+        Move = self.env['stock.move']
+        move = Move.new({
+            'product_id': product.id,
+            'location_id': src_location.id,
+            'location_dest_id': dst_location.id
+        })
+        move.onchange_product_id()
+        move_values = move._convert_to_write(move._cache)
+        move_values.update(**values)
+        return Move.create(move_values)
+
     def _print_move(self, move):
         print('-------------%s--------------' % move)
+        print(move.state)
+        if move.picking_id:
+            print("picking: %s" % move.picking_id.state)
         print(move.product_id.name)
         print(move.product_uom_qty)
+        print(move.product_uom.name)
         print(move.location_id.name)
         print(move.location_dest_id.name)
+        print(move.move_line_ids.lot_id)
