@@ -137,7 +137,6 @@ class ProductTimeline(models.Model):
                 obj = self.env[line.res_model].browse(line.res_id)
                 order_obj = obj.order_id
                 line.name = _('R: %s') % order_obj.partner_id.name
-                line.order_name = order_obj.name
                 line.partner_id = order_obj.partner_id.id
                 line.partner_shipping_address = order_obj.partner_shipping_id._display_address()
 

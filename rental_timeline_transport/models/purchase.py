@@ -28,7 +28,7 @@ class PurchaseOrderLine(models.Model):
             'date_start': self.date_planned,
             'date_end': self.trans_origin_sale_line_id.start_date,
             'product_id': self.trans_origin_sale_line_id.product_id.rented_product_id.id,
-            'order_name': self.name,
+            'order_name': self.order_id.name,
 
             'res_model': self._name,
             'res_id': self.id,
@@ -57,7 +57,7 @@ class PurchaseOrderLine(models.Model):
                     timelines[0].date_start = vals['date_planned']
                 if vals.get('name', False):
                     timelines = sorted(line.timeline_ids, key=lambda l: l.name)
-                    timelines[0].name = vals['name']
+                    timelines[0].order_name = vals['name']
             else:
                 raise exceptions.UserError(_('No found transport product.'))
 
@@ -70,12 +70,15 @@ class PurchaseOrderLine(models.Model):
     @api.multi
     def write(self, vals):
         res = super(PurchaseOrderLine, self).write(vals)
-        keys = {'date_planned'}
+        keys = {'date_planned', 'name'}
         if keys.intersection(vals.keys()):
             reset_lines = self.browse([])
             start_date = vals.get('date_planned', False)
+            name = vals.get('name', False)
             for line in self:
                 if start_date and line.date_planned != start_date:
+                    reset_lines |= line
+                if name and line.name != name:
                     reset_lines |= line
             reset_lines._reset_timeline(vals)
         return res
