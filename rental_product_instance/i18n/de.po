@@ -139,7 +139,7 @@ msgid "This product is a product instance, which can only have one unit in stock
 msgstr "Wenn der Haken gesetzt ist, wird das Produkt als Produktinstanz verwendet. Es kann nur eine Einheit davon existieren."
 
 #. module: rental_product_instance
-#: code:addons/rental_product_instance/models/stock.py:21
+#: code:addons/rental_product_instance/models/stock.py:20
 #, python-format
 msgid "You can not have 2 serial numbers for a product instance."
 msgstr "Für eine Produktinstanz dürfen nicht zwei Seriennummern existieren."

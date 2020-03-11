@@ -17,8 +17,8 @@ class StockProductionLot(models.Model):
                 ]
                 res = self.search_count(domain)
                 if res:
-                    raise exceptions.ValidationError(
-                        _('You can not have 2 serial numbers for a product instance.'))
+                    msg = _('You can not have 2 serial numbers for a product instance.')
+                    raise exceptions.ValidationError(msg)
 
 class StockMove(models.Model):
     _inherit = 'stock.move'

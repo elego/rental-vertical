@@ -10,14 +10,19 @@ class ProductCategory(models.Model):
         string="Show Instance Condition Type",
         selection=[
             ('hour', 'Hours'),
-            ('km', 'Kilometers')])
+            ('km', 'Kilometers'),
+        ],
+    )
 
 
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
-    product_instance = fields.Boolean(string='Product Instance', default=False,
-        help='This product is a product instance, which can only have one unit in stock.')
+    product_instance = fields.Boolean(
+        string='Product Instance',
+        default=False,
+        help='This product is a product instance, which can only have one unit in stock.',
+    )
 
     @api.onchange('product_instance')
     def onchange_product_instance(self):
@@ -37,8 +42,17 @@ class ProductTemplate(models.Model):
 class ProductProduct(models.Model):
     _inherit = 'product.product'
 
-    instance_serial_number_id = fields.Many2one('stock.production.lot', 'Serial Number', ondelete='set null', domain="[('product_id', '=', id)]")
-    instance_current_location_id = fields.Many2one('stock.location', string="Current Location")
+    instance_serial_number_id = fields.Many2one(
+        'stock.production.lot',
+        'Serial Number',
+        ondelete='set null',
+        domain="[('product_id', '=', id)]",
+    )
+
+    instance_current_location_id = fields.Many2one(
+        'stock.location',
+        string="Current Location",
+    )
     instance_state = fields.Selection(string="State",
         selection=[
             ('available', 'Available'),
@@ -47,17 +61,34 @@ class ProductProduct(models.Model):
             ('maintenance', 'Maintenance'),
             ('repair', 'Repair'),
             ('delivery', 'Delivery'),
-        ], compute="_compute_instance_state")
+        ],
+        compute="_compute_instance_state",
+    )
+
     show_instance_condition_type = fields.Selection(
         string="Show Instance Condition Type",
         selection=[
             ('hour', 'Hours'),
-            ('km', 'Kilometers')],
-        related="categ_id.show_instance_condition_type")
-    instance_condition_hour = fields.Char("Current Hours")
-    instance_condition_km = fields.Char("Current Kilometers")
-    instance_condition_date = fields.Date("Condition Date")
-    instance_next_service_date = fields.Date("Next Service")
+            ('km', 'Kilometers'),
+        ],
+        related="categ_id.show_instance_condition_type",
+    )
+
+    instance_condition_hour = fields.Char(
+        "Current Hours",
+    )
+
+    instance_condition_km = fields.Char(
+        "Current Kilometers",
+    )
+
+    instance_condition_date = fields.Date(
+        "Condition Date",
+    )
+
+    instance_next_service_date = fields.Date(
+        "Next Service",
+    )
 
     def _compute_instance_state(self):
         timeline_obj = self.env['product.timeline']

@@ -139,7 +139,7 @@ msgid "This product is a product instance, which can only have one unit in stock
 msgstr ""
 
 #. module: rental_product_instance
-#: code:addons/rental_product_instance/models/stock.py:21
+#: code:addons/rental_product_instance/models/stock.py:20
 #, python-format
 msgid "You can not have 2 serial numbers for a product instance."
 msgstr ""
