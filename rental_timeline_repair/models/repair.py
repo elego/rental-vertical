@@ -60,8 +60,8 @@ class RepairOrder(models.Model):
                     product = self.env['product.product'].browse(vals['product_id'])
                     timelines[0].product_id = product.id
                 if vals.get('name', False):
-                    timelines = sorted(order.timeline_ids, key=lambda l: l.name)
-                    timelines[0].name = vals['name']
+                    timelines = sorted(order.timeline_ids, key=lambda l: l.order_name)
+                    timelines[0].order_name = vals['name']
             else:
                 raise exceptions.UserError(_('No found repaired product.'))
 

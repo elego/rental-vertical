@@ -115,8 +115,9 @@
                <search string="Timeline">
                     <field name="name" />
 <!--                     <field name="click_res_id" /> -->
+                    <field name="order_name" />
                     <field name="partner_id" />
-                    <field name="product_id" />
+                    <field name="product_id" string="Product" filter_domain="['|', ('product_id','ilike', self), ('product_id.instance_serial_number_id', 'ilike', self)]" />
                     <field name="product_categ_id" />
                     <field name="type" />
                     <group expand="0" string="Group By">

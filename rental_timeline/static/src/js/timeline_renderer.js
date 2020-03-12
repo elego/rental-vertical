@@ -154,6 +154,44 @@ odoo.define('rental_timeline.TimelineRenderer', function(require){
                 vis.timeline.components.items.Item.prototype._repaintDragCenter
             );
         },
+
+        _onTodayClicked: function(){
+            this._scaleCurrentWindow(1, 'days', 'day');
+        },
+
+        _onScaleDayClicked: function(){
+            this._scaleCurrentWindow(1, 'days', 'now');
+        },
+
+        _onScaleWeekClicked: function(){
+            this._scaleCurrentWindow(7, 'days', 'now');
+        },
+
+        _onScaleMonthClicked: function(){
+            this._scaleCurrentWindow(1, 'months', 'now');
+        },
+
+        _onScaleYearClicked: function(){
+            this._scaleCurrentWindow(1, 'years', 'now');
+        },
+
+        _scaleCurrentWindow: function(factor, time_unit='hours', startOf='current_window'){
+            if(this.timeline){
+                var start = null;
+                if(startOf == 'current_window'){
+                    start = this.timeline.getWindow().start;
+                }
+                else{
+                    var moment_now = new moment();
+                    start = startOf == 'now' ? moment_now : moment_now.startOf(startOf);
+                }
+                this.current_window = {
+                    start: start,
+                    end: moment(start).add(factor, time_unit)
+                };
+                this.timeline.setWindow(this.current_window);
+            }
+        },
     });
 
     return TimelineRenderer;

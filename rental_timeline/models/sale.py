@@ -28,7 +28,7 @@ class SaleOrderLine(models.Model):
             'date_start': self.start_date,
             'date_end': self.end_date,
             'product_id': self.product_id.rented_product_id.id,
-            'order_name': self.name,
+            'order_name': self.order_id.name,
 
             'res_model': self._name,
             'res_id': self.id,
@@ -62,7 +62,7 @@ class SaleOrderLine(models.Model):
                     timelines[0].product_id = product.rented_product_id.id
                 if vals.get('name', False):
                     timelines = sorted(line.timeline_ids, key=lambda l: l.name)
-                    timelines[0].name = vals['name']
+                    timelines[0].order_name = vals['name']
             else:
                 raise exceptions.UserError(_('No found rented product.'))
 
