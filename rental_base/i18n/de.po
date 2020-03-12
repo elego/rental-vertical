@@ -211,7 +211,7 @@ msgstr "Produkte"
 #. module: rental_base
 #: model:ir.ui.menu,name:rental_base.menu_vendor_orders_purchase_form_action
 msgid "Purchase Orders"
-msgstr "Bestellungen"
+msgstr "Einkaufsbestellungen"
 
 #. module: rental_base
 #: model:ir.ui.menu,name:rental_base.menu_customer_quotations
