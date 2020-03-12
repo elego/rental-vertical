@@ -6,9 +6,10 @@ from odoo import fields, models, api
 class ProductProduct(models.Model):
     _inherit = 'product.product'
 
-    inspections_count = fields.Integer(compute='_compute_inspections_count',
-                                       string="Inspections Count",
-                                       type='integer')
+    inspections_count = fields.Integer(
+        compute='_compute_inspections_count',
+        string="Inspections Count",
+        type='integer')
 
     @api.multi
     def _compute_inspections_count(self):
