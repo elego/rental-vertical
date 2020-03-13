@@ -27,27 +27,19 @@
                 <button name="toggle_active" position="before">
                     <button class="oe_stat_button" name="action_view_sale_order"
                         type="object" icon="fa-line-chart" attrs="{'invisible': [('sale_ok', '=', False)]}">
-                        <div class="o_field_widget o_stat_info">
-                            <span class="o_stat_text">Sale Orders</span>
-                        </div>
+                        <field name="so_count" widget="statinfo" />
                     </button>
                     <button class="oe_stat_button" name="action_view_rental_order"
                         type="object" icon="fa-key" attrs="{'invisible': [('sale_ok', '=', False)]}">
-                        <div class="o_field_widget o_stat_info">
-                            <span class="o_stat_text">Rental Orders</span>
-                        </div>
+                        <field name="rental_count" widget="statinfo" />
                     </button>
                     <button class="oe_stat_button" name="action_view_all_purchase_order"
                         type="object" icon="fa-shopping-cart" attrs="{'invisible': [('purchase_ok', '=', False)]}">
-                        <div class="o_field_widget o_stat_info">
-                            <span class="o_stat_text">Purchase Orders</span>
-                        </div>
+                        <field name="po_count" widget="statinfo" />
                     </button>
                     <button class="oe_stat_button" name="action_view_all_invoice"
                         type="object" icon="fa-money">
-                        <div class="o_field_widget o_stat_info">
-                            <span class="o_stat_text">Invoices</span>
-                        </div>
+                        <field name="invoice_count" widget="statinfo" />
                     </button>
                 </button>
                 <xpath expr="//field[@name='categ_id']" position="replace" />

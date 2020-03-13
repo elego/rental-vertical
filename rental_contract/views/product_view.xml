@@ -11,17 +11,13 @@
                 <button name="toggle_active" position="before">
                     <button class="oe_stat_button" name="action_view_supplier_contract"
                         type="object" icon="fa-file-text">
-                        <div class="o_field_widget o_stat_info">
-                            <span class="o_stat_text">Supplier Contracts</span>
-                        </div>
+                        <field name="ven_contract_count" widget="statinfo" />
                     </button>
                 </button>
                 <button name="toggle_active" position="before">
                     <button class="oe_stat_button" name="action_view_customer_contract"
                         type="object" icon="fa-file-text-o">
-                        <div class="o_field_widget o_stat_info">
-                            <span class="o_stat_text">Customer Contracts</span>
-                        </div>
+                        <field name="cust_contract_count" widget="statinfo" />
                     </button>
                 </button>
             </field>
