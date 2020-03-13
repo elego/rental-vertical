@@ -122,12 +122,12 @@
                 id="menu_customer_invoices"
                 parent="menu_top_customer"
                 sequence="20" />
-                <menuitem name="Invoices"
+                <menuitem name="Customer Invoices"
                     id="menu_customer_invoices2"
                     parent="menu_customer_invoices"
                     action="account.action_invoice_tree1"
                     sequence="20" />
-                <menuitem name="Credit Notes"
+                <menuitem name="Customer Credit Notes"
                     id="menu_customer_credit_notes"
                     parent="menu_customer_invoices"
                     action="account.action_invoice_out_refund"
@@ -185,7 +185,7 @@
                 parent="menu_vendor_invoices"
                 action="account.action_vendor_bill_template"
                 sequence="5" />
-            <menuitem name="Credit Notes"
+            <menuitem name="Vendor Credit Notes"
                 id="menu_vendor_credit_notes"
                 parent="menu_vendor_invoices"
                 action="account.action_invoice_in_refund"
