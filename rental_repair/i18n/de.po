@@ -42,6 +42,21 @@ msgid "Before Repair"
 msgstr "Vor Reparatur"
 
 #. module: rental_repair
+#: model:project.task.type,legend_blocked:rental_repair.project_task_type_cancelled
+#: model:project.task.type,legend_blocked:rental_repair.project_task_type_done_-_no_documentation
+#: model:project.task.type,legend_blocked:rental_repair.project_task_type_has_appointment
+#: model:project.task.type,legend_blocked:rental_repair.project_task_type_in_progress
+#: model:project.task.type,legend_blocked:rental_repair.project_task_type_new
+#: model:project.task.type,legend_blocked:rental_repair.project_task_type_qualification
+msgid "Blocked"
+msgstr "Blockiert"
+
+#. module: rental_repair
+#: model:project.task.type,name:rental_repair.project_task_type_cancelled
+msgid "Cancelled"
+msgstr "Storniert"
+
+#. module: rental_repair
 #: model_terms:ir.actions.act_window,help:rental_repair.action_project_helpdesk_tasks
 msgid "Click <i>Create</i> to start a new ticket."
 msgstr "Click <i>Anlegen</i> um ein neues Ticket zu erstellen."
@@ -75,6 +90,11 @@ msgid "Deadline"
 msgstr "Frist"
 
 #. module: rental_repair
+#: model:project.task.type,name:rental_repair.project_task_type_done_-_no_documentation
+msgid "Done - no documentation"
+msgstr "Erledigt - Doku offen"
+
+#. module: rental_repair
 #: model:ir.model.fields,help:rental_repair.field_project_task__tracking
 msgid "Ensure the traceability of a storable product in your warehouse."
 msgstr "Stellen Sie die Rückverfolgbarkeit eines lagerfähigen Produkts in Ihrem Lager sicher."
@@ -91,9 +111,29 @@ msgid "Expense Analytic Tags"
 msgstr "Aufwandskostenstellentags"
 
 #. module: rental_repair
+#: model:project.task.type,name:rental_repair.project_task_type_has_appointment
+msgid "Has Appointment"
+msgstr "Termin vereinbart"
+
+#. module: rental_repair
 #: model:ir.actions.act_window,name:rental_repair.action_project_helpdesk_tasks
 msgid "Helpdesk Tickets"
 msgstr "Helpdesk-Tickets"
+
+#. module: rental_repair
+#: model:project.task.type,legend_normal:rental_repair.project_task_type_cancelled
+#: model:project.task.type,legend_normal:rental_repair.project_task_type_done_-_no_documentation
+#: model:project.task.type,legend_normal:rental_repair.project_task_type_has_appointment
+#: model:project.task.type,legend_normal:rental_repair.project_task_type_in_progress
+#: model:project.task.type,legend_normal:rental_repair.project_task_type_new
+#: model:project.task.type,legend_normal:rental_repair.project_task_type_qualification
+msgid "In Progress"
+msgstr "In Arbeit"
+
+#. module: rental_repair
+#: model:project.task.type,name:rental_repair.project_task_type_in_progress
+msgid "In Progress"
+msgstr "In Bearbeitung"
 
 #. module: rental_repair
 #: model_terms:ir.actions.act_window,help:rental_repair.action_repair_quotation_tree
@@ -121,6 +161,11 @@ msgstr "Mobil"
 #: model:ir.model.fields,help:rental_repair.field_project_task__mobile
 msgid "Mobile number"
 msgstr "Mobilnummer"
+
+#. module: rental_repair
+#: model:project.task.type,name:rental_repair.project_task_type_new
+msgid "New"
+msgstr "Neu"
 
 #. module: rental_repair
 #: selection:repair.order,invoice_method:0
@@ -166,6 +211,21 @@ msgstr "Produktinstanz"
 #: model:ir.model,name:rental_repair.model_purchase_order
 msgid "Purchase Order"
 msgstr "Beschaffungsauftrag"
+
+#. module: rental_repair
+#: model:project.task.type,name:rental_repair.project_task_type_qualification
+msgid "Qualification"
+msgstr "Qualifizierung"
+
+#. module: rental_repair
+#: model:project.task.type,legend_done:rental_repair.project_task_type_cancelled
+#: model:project.task.type,legend_done:rental_repair.project_task_type_done_-_no_documentation
+#: model:project.task.type,legend_done:rental_repair.project_task_type_has_appointment
+#: model:project.task.type,legend_done:rental_repair.project_task_type_in_progress
+#: model:project.task.type,legend_done:rental_repair.project_task_type_new
+#: model:project.task.type,legend_done:rental_repair.project_task_type_qualification
+msgid "Ready for Next Stage"
+msgstr "Bereit für nächste Stufe"
 
 #. module: rental_repair
 #: model:ir.model,name:rental_repair.model_repair_fee

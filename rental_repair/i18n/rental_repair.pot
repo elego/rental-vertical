@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-23 19:52+0000\n"
-"PO-Revision-Date: 2020-02-23 19:52+0000\n"
+"POT-Creation-Date: 2020-03-13 23:14+0000\n"
+"PO-Revision-Date: 2020-03-13 23:14+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -39,6 +39,21 @@ msgstr ""
 #. module: rental_repair
 #: selection:repair.order,invoice_method:0
 msgid "Before Repair"
+msgstr ""
+
+#. module: rental_repair
+#: model:project.task.type,legend_blocked:rental_repair.project_task_type_cancelled
+#: model:project.task.type,legend_blocked:rental_repair.project_task_type_done_-_no_documentation
+#: model:project.task.type,legend_blocked:rental_repair.project_task_type_has_appointment
+#: model:project.task.type,legend_blocked:rental_repair.project_task_type_in_progress
+#: model:project.task.type,legend_blocked:rental_repair.project_task_type_new
+#: model:project.task.type,legend_blocked:rental_repair.project_task_type_qualification
+msgid "Blocked"
+msgstr ""
+
+#. module: rental_repair
+#: model:project.task.type,name:rental_repair.project_task_type_cancelled
+msgid "Cancelled"
 msgstr ""
 
 #. module: rental_repair
@@ -75,6 +90,11 @@ msgid "Deadline"
 msgstr ""
 
 #. module: rental_repair
+#: model:project.task.type,name:rental_repair.project_task_type_done_-_no_documentation
+msgid "Done - no documentation"
+msgstr ""
+
+#. module: rental_repair
 #: model:ir.model.fields,help:rental_repair.field_project_task__tracking
 msgid "Ensure the traceability of a storable product in your warehouse."
 msgstr ""
@@ -91,8 +111,28 @@ msgid "Expense Analytic Tags"
 msgstr ""
 
 #. module: rental_repair
+#: model:project.task.type,name:rental_repair.project_task_type_has_appointment
+msgid "Has Appointment"
+msgstr ""
+
+#. module: rental_repair
 #: model:ir.actions.act_window,name:rental_repair.action_project_helpdesk_tasks
 msgid "Helpdesk Tickets"
+msgstr ""
+
+#. module: rental_repair
+#: model:project.task.type,legend_normal:rental_repair.project_task_type_cancelled
+#: model:project.task.type,legend_normal:rental_repair.project_task_type_done_-_no_documentation
+#: model:project.task.type,legend_normal:rental_repair.project_task_type_has_appointment
+#: model:project.task.type,legend_normal:rental_repair.project_task_type_in_progress
+#: model:project.task.type,legend_normal:rental_repair.project_task_type_new
+#: model:project.task.type,legend_normal:rental_repair.project_task_type_qualification
+msgid "In Progress"
+msgstr ""
+
+#. module: rental_repair
+#: model:project.task.type,name:rental_repair.project_task_type_in_progress
+msgid "In Progress"
 msgstr ""
 
 #. module: rental_repair
@@ -120,6 +160,11 @@ msgstr ""
 #. module: rental_repair
 #: model:ir.model.fields,help:rental_repair.field_project_task__mobile
 msgid "Mobile number"
+msgstr ""
+
+#. module: rental_repair
+#: model:project.task.type,name:rental_repair.project_task_type_new
+msgid "New"
 msgstr ""
 
 #. module: rental_repair
@@ -165,6 +210,21 @@ msgstr ""
 #. module: rental_repair
 #: model:ir.model,name:rental_repair.model_purchase_order
 msgid "Purchase Order"
+msgstr ""
+
+#. module: rental_repair
+#: model:project.task.type,name:rental_repair.project_task_type_qualification
+msgid "Qualification"
+msgstr ""
+
+#. module: rental_repair
+#: model:project.task.type,legend_done:rental_repair.project_task_type_cancelled
+#: model:project.task.type,legend_done:rental_repair.project_task_type_done_-_no_documentation
+#: model:project.task.type,legend_done:rental_repair.project_task_type_has_appointment
+#: model:project.task.type,legend_done:rental_repair.project_task_type_in_progress
+#: model:project.task.type,legend_done:rental_repair.project_task_type_new
+#: model:project.task.type,legend_done:rental_repair.project_task_type_qualification
+msgid "Ready for Next Stage"
 msgstr ""
 
 #. module: rental_repair
