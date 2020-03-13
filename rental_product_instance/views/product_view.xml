@@ -36,22 +36,22 @@
             <field name="inherit_id" ref="product.product_normal_form_view" />
             <field name="arch" type="xml">
                 <xpath expr="//button[@name='action_open_product_lot']" position="attributes">
-                    <attribute name="attrs">{'invisible': ['|', ('product_instance', '=', True), ('tracking', '!=', 'serial')]}</attribute>
+                    <attribute name="attrs">{'invisible': ['|', ('type', '!=', 'product'), ('tracking', '=', 'none')]}</attribute>
                 </xpath>
                 <xpath expr="//button[@name='action_open_quants']" position="attributes">
-                    <attribute name="attrs">{'invisible': ['|', ('product_instance', '=', True), ('type', '!=', 'product')]}</attribute>
+                    <attribute name="attrs">{'invisible': ['|',('product_instance', '=', True),('type', '!=', 'product')]}</attribute>
                 </xpath>
                 <xpath expr="//button[@name='%(stock.action_stock_level_forecast_report_product)d']" position="attributes">
-                    <attribute name="attrs">{'invisible': ['|', ('product_instance', '=', True), ('type', '!=', 'product')]}</attribute>
+                    <attribute name="attrs">{'invisible': ['|',('product_instance', '=', True),('type', '!=', 'product')]}</attribute>
                 </xpath>
                 <xpath expr="//button[@name='%(stock.action_stock_rules_report)d']" position="attributes">
-                    <attribute name="attrs">{'invisible': ['|', ('product_instance', '=', True), ('type', '!=', 'product')]}</attribute>
+                    <attribute name="attrs">{'invisible': ['|',('product_instance', '=', True),('type', '!=', 'product')]}</attribute>
                 </xpath>
                 <xpath expr="//button[@name='action_view_sales']" position="attributes">
-                    <attribute name="attrs">{'invisible': ['|', ('product_instance', '=', True), ('type', '!=', 'product')]}</attribute>
+                    <attribute name="attrs">{'invisible': [('product_instance', '=', True)]}</attribute>
                 </xpath>
                 <xpath expr="//button[@name='action_view_po']" position="attributes">
-                    <attribute name="attrs">{'invisible': ['|', ('product_instance', '=', True), ('type', '!=', 'product')]}</attribute>
+                    <attribute name="attrs">{'invisible': ['|',('product_instance', '=', True),('purchase_ok', '=', False)]}</attribute>
                 </xpath>
                 <xpath expr="//group[field[@name='manu_type_id']]" position="after">
                     <group name="instance_attributes"

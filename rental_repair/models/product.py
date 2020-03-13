@@ -8,12 +8,19 @@ class ProductProduct(models.Model):
 
     task_ids = fields.One2many('project.task', 'product_id', string='Tasks')
     task_count = fields.Integer('Task Count', compute="_compute_task_count")
-    repair_order_ids = fields.One2many('repair.order', 'product_id', string='Repair Orders')
+    repair_order_ids = fields.One2many('repair.order', 'product_id', string='Repairs')
+    repair_count = fields.Integer(compute="_compute_repair_count",
+        string='Repairs', help='Total number of Repair Orders')
 
     @api.multi
     def _compute_task_count(self):
         for p in self:
             p.task_count = len(p.task_ids)
+
+    @api.multi
+    def _compute_repair_count(self):
+        for p in self:
+            p.repair_count = len(p.repair_order_ids)
 
     @api.multi
     def action_view_project_task(self):
