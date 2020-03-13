@@ -37,6 +37,15 @@ class ProductProduct(models.Model):
     additional_info = fields.Html('Additional Infomation')
     dimension = fields.Char('Dimension')
 
+    invoice_count = fields.Integer(compute="_compute_invoice_count",
+        string='Invoices', help='Total number of Invoice Orders')
+    so_count = fields.Integer(compute="_compute_so_count",
+        string='Sales', help='Total number of Sale Orders')
+    po_count = fields.Integer(compute="_compute_po_count",
+        string='Purchase', help='Total number of Purchase Orders')
+    rental_count = fields.Integer(compute="_compute_rental_count",
+        string='Rental', help='Total number of Rental Orders')
+
     @api.multi
     def _get_sale_order_ids(self, type_id):
         self.ensure_one()
@@ -71,7 +80,7 @@ class ProductProduct(models.Model):
     @api.multi
     def action_view_all_purchase_order(self):
         self.ensure_one()
-        pols = self.env['purchase.order.line'].search([('product_id', '=', self.id)])
+        pols = self._get_related_records(model='purchase.order.line')
         record_ids = list(set([l.order_id.id for l in pols]))
         view_id = self.env.ref("purchase.purchase_order_tree").id
         return {
@@ -82,12 +91,13 @@ class ProductProduct(models.Model):
             'view_id': view_id,
             'res_model': 'purchase.order',
             'domain': "[('id','in',[" + ','.join(map(str, record_ids)) + "])]",
+            'context': "{'search_default_group_by_order_type': 1}"
             }
 
     @api.multi
     def action_view_all_invoice(self):
         self.ensure_one()
-        invls = self.env['account.invoice.line'].search([('product_id', '=', self.id)])
+        invls = self._get_related_records(model='account.invoice.line')
         record_ids = list(set([l.invoice_id.id for l in invls]))
         view_id = self.env.ref("account.invoice_tree").id
         return {
@@ -98,7 +108,39 @@ class ProductProduct(models.Model):
             'view_id': view_id,
             'res_model': 'account.invoice',
             'domain': "[('id','in',[" + ','.join(map(str, record_ids)) + "])]",
+            'context': "{'search_default_group_by_type': 1}"
             }
+
+    @api.multi
+    def _get_related_records(self, model):
+        self.ensure_one()
+        records = self.env[model].search(
+            [('product_id', '=', self.id)])
+        return records
+
+    @api.multi
+    def _compute_invoice_count(self):
+        for rec in self:
+            rec.invoice_count = len(rec._get_related_records(
+                model='account.invoice.line'))
+
+    @api.multi
+    def _compute_so_count(self):
+        type_id = self.env.ref('sale_order_type.normal_sale_type')
+        for rec in self:
+            rec.so_count = len(rec._get_sale_order_ids(type_id))
+
+    @api.multi
+    def _compute_rental_count(self):
+        type_id = self.env.ref('rental_base.rental_sale_type')
+        for rec in self:
+            rec.rental_count = len(rec._get_sale_order_ids(type_id))
+
+    @api.multi
+    def _compute_po_count(self):
+        for rec in self:
+            rec.po_count = len(rec._get_related_records(
+                model='purchase.order.line'))
 
 
 class ProductManufacturer(models.Model):
