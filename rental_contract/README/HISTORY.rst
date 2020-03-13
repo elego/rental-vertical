@@ -2,7 +2,15 @@
 Changelog
 ---------
 
+- 977d224 [IMP] todo points issue # 3279
+- e371276 [MERGE] remotes/origin/fix_3339_blp343_extend_documentation_v12: addons-rental-vertical remotes/origin/fix_3339_blp343_extend_documentation_v12 - 9576b54fbb0cbcbffb804587fd722df8a4057da0 allow cli overwrite of module arguments; regenerate doc for rental_product_instance_appointment rental_product_variant rental_offday rental_invoice rental_contract_month rental_contract (issue #3339)
+- f04eb22 [IMP] set analytic account,branch name,service period when create invoice from sale order
+- e6f3fb4 [IMP] todo points issue #3563    1. add a domain on 'contract_type_id’ in invoices in order to show only customer or vendor contracts
+- 9576b54 allow cli overwrite of module arguments; regenerate doc for rental_product_instance_appointment rental_product_variant rental_offday rental_invoice rental_contract_month rental_contract (issue #3339)
+- 7ea29f4 [IMP] todo points issue #3467    1. pass the values 'default_start_date’ from sale order to 'date_start’ in invoice    2. pass the values 'default_end_date’ from sale order to 'date_end’ in invoice    3. change the view for default_start_date and default_end_date by adding       a label 'Service Period’ as per Invoice(include German Transaltion)    4. pass the value for branch name from sale order to invoice
 - c97bd4b issue #3462 add usage section for rental_contract
+- d089119 issue #3563 add menu item in rentals menu for contract subtypes
+- d66cf18 issue #3462 add usage section for rental_contract
 - 804dc44 regenerate module documentation (issue #3339)
 - 6f170ba [IMP] remove default value of contract_type on customer invoice form
 - 994ee02 [IMP] todo points for rental_contract module

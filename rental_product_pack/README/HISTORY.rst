@@ -2,6 +2,8 @@
 Changelog
 ---------
 
+- a5b5799 [IMP] Unittests of module rental_product_pack
+- 804dc44 regenerate module documentation (issue #3339)
 - 7dde7fa add changelogs in HISTORY.rst and some minor improvements (issue #3339)
 - 467665c add some generated reST and HTML documentation (issue #3339)
 - 1db4760 add some more simple module decsriptions (issue #3339)

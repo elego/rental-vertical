@@ -363,7 +363,7 @@ ul.auto-toc {
 <div class="document" id="rental-off-day">
 <h1 class="title">Rental Off Day</h1>
 
-<p><em>This file has been generated on 2020-03-09-14-31-42. Changes to it will be overwritten.</em></p>
+<p><em>This file has been generated on 2020-03-13-20-37-37. Changes to it will be overwritten.</em></p>
 <div class="section" id="summary">
 <h1>Summary</h1>
 <p>Calculate off-days in rentals on daily basis</p>
@@ -381,36 +381,26 @@ products that are rentable in days. These days will not be included in price cal
 <div class="section" id="usage">
 <h1>Usage</h1>
 <p>The off-days can only be used for products rentable in days.</p>
-<ul>
-<li><p class="first">Create a stockable product and activate that it is rentable in days.</p>
-</li>
-<li><p class="first">Adjust its stock in location 'Rental In'.</p>
-</li>
-<li><p class="first">Create a sale order and rent out the product in days.</p>
-</li>
-<li><p class="first">Set a start and end date, e.g. for 3 weeks.</p>
-</li>
-<li><dl class="first docutils">
-<dt>On sale order line you will see a page 'Off-Days'.</dt>
-<dd><ul class="first simple">
-<li>Choose the type 'Weekend' in order to create 'Fixed Off-Days'</li>
-</ul>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">all21317.txt</tt>, line 34)</p>
-<p>Bullet list ends without a blank line; unexpected unindent.</p>
-</div>
-<p class="last">and you get a list with all saturdays and sundays withing the rental period.
+<ul class="simple">
+<li>Create a stockable product and activate that it is rentable in days.</li>
+<li>Adjust its stock in location 'Rental In'.</li>
+<li>Create a sale order and rent out the product in days.</li>
+<li>Set a start and end date, e.g. for 3 weeks.</li>
+<li>On sale order line you will see a page 'Off-Days'.
+- Choose the type 'Weekend' in order to create 'Fixed Off-Days' and you get a list with all saturdays and sundays withing the rental period.
 - Add some additional off-days.
-- The number of off-days reduces the rental quantity and is therefore not included in price calculation.</p>
-</dd>
-</dl>
-</li>
+- The number of off-days reduces the rental quantity and is therefore not included in price calculation.</li>
 </ul>
 </div>
 <div class="section" id="changelog">
 <h1>Changelog</h1>
 <ul class="simple">
+<li>e371276 [MERGE] remotes/origin/fix_3339_blp343_extend_documentation_v12: addons-rental-vertical remotes/origin/fix_3339_blp343_extend_documentation_v12 - 9576b54fbb0cbcbffb804587fd722df8a4057da0 allow cli overwrite of module arguments; regenerate doc for rental_product_instance_appointment rental_product_variant rental_offday rental_invoice rental_contract_month rental_contract (issue #3339)</li>
+<li>b454e5d [MERGE] remotes/origin/feature_3576_blp343_unittest_rental_offday_v12: addons-rental-vertical remotes/origin/feature_3576_blp343_unittest_rental_offday_v12 - d9313d98f1961b9291fd769e4cbb1d56a567f97b issue #3576 add unittest for rental_offday</li>
+<li>d9313d9 issue #3576 add unittest for rental_offday</li>
+<li>9576b54 allow cli overwrite of module arguments; regenerate doc for rental_product_instance_appointment rental_product_variant rental_offday rental_invoice rental_contract_month rental_contract (issue #3339)</li>
 <li>81eb48d issue #3287 add description and usage section for rental_offday</li>
+<li>f01d189 issue #3287 add description and usage section for rental_offday</li>
 <li>804dc44 regenerate module documentation (issue #3339)</li>
 <li>6fd1771 rename and split some addons; issue #3462</li>
 </ul>

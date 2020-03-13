@@ -2,6 +2,7 @@
 Changelog
 ---------
 
+- 804dc44 regenerate module documentation (issue #3339)
 - 7dde7fa add changelogs in HISTORY.rst and some minor improvements (issue #3339)
 - c63a6d1 [MERGE] remotes/origin/feature_3491_blp297_rental_purchase_order_type_v12: addons-rental-vertical remotes/origin/feature_3491_blp297_rental_purchase_order_type_v12 - 08b47a26c62ea472dbf53e0b3f415eea6925bc04 add sequences for the purchase order types 'Transport Order' and 'Repair Order'; issue #3491
 - 467665c add some generated reST and HTML documentation (issue #3339)

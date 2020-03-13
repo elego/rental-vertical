@@ -2,6 +2,8 @@
 Changelog
 ---------
 
+- 37e24aa [IMP] code standard using flake8
+- 804dc44 regenerate module documentation (issue #3339)
 - 7dde7fa add changelogs in HISTORY.rst and some minor improvements (issue #3339)
 - 467665c add some generated reST and HTML documentation (issue #3339)
 - 6965ed1 fix some mistakes in author and license, make summaries one line, add some descriptions (issue #3339)

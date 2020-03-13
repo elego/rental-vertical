@@ -2,6 +2,10 @@
 Changelog
 ---------
 
+- 977d224 [IMP] todo points issue # 3279
+- e371276 [MERGE] remotes/origin/fix_3339_blp343_extend_documentation_v12: addons-rental-vertical remotes/origin/fix_3339_blp343_extend_documentation_v12 - 9576b54fbb0cbcbffb804587fd722df8a4057da0 allow cli overwrite of module arguments; regenerate doc for rental_product_instance_appointment rental_product_variant rental_offday rental_invoice rental_contract_month rental_contract (issue #3339)
+- bf4c2ac add the page 'Vendor Repair orders'; issue #3296
+- 804dc44 regenerate module documentation (issue #3339)
 - 4c76ef2 [MERGE] remotes/origin/fix_3339_blp311_extend_documentation_v12: addons-rental-vertical remotes/origin/fix_3339_blp311_extend_documentation_v12 - 7dde7fa1ec109919795e59198feb24fc96fcfeb1 add changelogs in HISTORY.rst and some minor improvements (issue #3339)
 - 720217e move some fields from further informations to the header; issue #3296
 - 7dde7fa add changelogs in HISTORY.rst and some minor improvements (issue #3339)

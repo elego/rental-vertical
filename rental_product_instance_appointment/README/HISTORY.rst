@@ -2,6 +2,7 @@
 Changelog
 ---------
 
+- 9576b54 allow cli overwrite of module arguments; regenerate doc for rental_product_instance_appointment rental_product_variant rental_offday rental_invoice rental_contract_month rental_contract (issue #3339)
 - 07b0ce0 issue #3421 add description and usage section for rental_product_instance_appointment
 - 804dc44 regenerate module documentation (issue #3339)
 - 6fd1771 rename and split some addons; issue #3462

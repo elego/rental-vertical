@@ -5,6 +5,7 @@ ds=$(date "+%Y-%m-%d-%H-%M-%S")
 GET_MANIFEST_INFO=${GET_MANIFEST_INFO:-${TOOLS}/get_openerp_info.py}
 
 for p in ${@:-rental_* sale_rental*}; do
+  echo "processing ${p}..."
   m=${p}/__manifest__.py
   docdir=${p}/README
   shtmldir=${p}/static/description
@@ -63,7 +64,7 @@ for p in ${@:-rental_* sale_rental*}; do
   } > ${historyfn}
   {
     echo "${name}"
-    echo "==========================================="
+    echo "===================================================="
     echo ""
     echo "*This file has been generated on ${ds}. Changes to it will be overwritten.*"
     echo ""

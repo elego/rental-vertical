@@ -2,6 +2,7 @@
 Changelog
 ---------
 
+- 804dc44 regenerate module documentation (issue #3339)
 - 6fd1771 rename and split some addons; issue #3462
 - 7dde7fa add changelogs in HISTORY.rst and some minor improvements (issue #3339)
 - 467665c add some generated reST and HTML documentation (issue #3339)
