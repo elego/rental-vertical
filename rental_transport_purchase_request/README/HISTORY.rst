@@ -2,6 +2,7 @@
 Changelog
 ---------
 
+- 804dc44 regenerate module documentation (issue #3339)
 - 4c76ef2 [MERGE] remotes/origin/fix_3339_blp311_extend_documentation_v12: addons-rental-vertical remotes/origin/fix_3339_blp311_extend_documentation_v12 - 7dde7fa1ec109919795e59198feb24fc96fcfeb1 add changelogs in HISTORY.rst and some minor improvements (issue #3339)
 - e0caf88 [MERGE] remotes/origin/fix_3287_blp311_sale_rental_pricelist_v12: addons-rental-vertical remotes/origin/fix_3287_blp311_sale_rental_pricelist_v12 - 23c09f7decb00e1fcbf5f8b7fadb28f425442848 [IMP] add config option of model_rental_product_instance_appointment
 - 8d65c40 [MERGE] remotes/origin/feature_3462_blp311_refactoring_menus_v12: addons-rental-vertical remotes/origin/feature_3462_blp311_refactoring_menus_v12 - 6bcb6e6f14bb87e546b372f83f6f0b6961e60c71 Menu refactoring; issue #3462

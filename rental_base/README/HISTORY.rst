@@ -2,6 +2,12 @@
 Changelog
 ---------
 
+- c9f5b81 issue #3467 fix menu strings and translation
+- 705a197 [MERGE] remotes/origin/feature_3576_blp355_rental_product_pack_v12: addons-rental-vertical remotes/origin/feature_3576_blp355_rental_product_pack_v12 - b367d1778430938c768f5ab84bd8e543f34f113f [IMP] Unittests of module rental_product_instance
+- b367d17 [IMP] Unittests of module rental_product_instance
+- a5b5799 [IMP] Unittests of module rental_product_pack
+- b215fe3 issue #3462 change German translation for purchase order
+- 804dc44 regenerate module documentation (issue #3339)
 - 6fd1771 rename and split some addons; issue #3462
 - 20d0a8d Rename 'Repair Orders' to 'Repair Quotations'; issue #3462
 - fc3b308 issue #3287 fix description and help texts, add German translation
