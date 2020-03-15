@@ -59,7 +59,7 @@ for p in ${@:-rental_* sale_rental*}; do
     echo "Changelog"
     echo "---------"
     echo ""
-    git log --oneline -- ${p} | sed -e 's/^/- /'
+    git log --pretty=format:'%h %ad %ae %d %s' --date=iso -- ${p} | sed -e 's/^/- /'
     echo ""
   } > ${historyfn}
   {
