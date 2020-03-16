@@ -82,13 +82,14 @@ class ProductProduct(models.Model):
         self.ensure_one()
         pols = self._get_related_records(model='purchase.order.line')
         record_ids = list(set([l.order_id.id for l in pols]))
-        view_id = self.env.ref("purchase.purchase_order_tree").id
+        tree_view_id = self.env.ref("purchase.purchase_order_tree").id
+        form_view_id = self.env.ref("purchase.purchase_order_form").id
         return {
             'type': 'ir.actions.act_window',
             'name': _('All Purchase Orders'),
             'target': 'current',
-            'view_mode': "tree",
-            'view_id': view_id,
+            'view_mode': 'tree,form',
+            'view_ids': [tree_view_id, form_view_id],
             'res_model': 'purchase.order',
             'domain': "[('id','in',[" + ','.join(map(str, record_ids)) + "])]",
             'context': "{'search_default_group_by_order_type': 1}"
@@ -99,13 +100,14 @@ class ProductProduct(models.Model):
         self.ensure_one()
         invls = self._get_related_records(model='account.invoice.line')
         record_ids = list(set([l.invoice_id.id for l in invls]))
-        view_id = self.env.ref("account.invoice_tree").id
+        tree_view_id = self.env.ref("account.invoice_tree").id
+        form_view_id = self.env.ref("purchase.invoice_form").id
         return {
             'type': 'ir.actions.act_window',
             'name': _('All Invoices'),
             'target': 'current',
-            'view_mode': "tree",
-            'view_id': view_id,
+            'view_mode': 'tree,form',
+            'view_ids': [tree_view_id, form_view_id],
             'res_model': 'account.invoice',
             'domain': "[('id','in',[" + ','.join(map(str, record_ids)) + "])]",
             'context': "{'search_default_group_by_type': 1}"
