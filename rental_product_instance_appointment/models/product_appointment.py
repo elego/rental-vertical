@@ -8,31 +8,48 @@ class ProductAppointment(models.Model):
     _name = 'product.appointment'
     _description = 'Appointment'
 
-    @api.model
-    def _get_time_uom_domain(self):
-        uom_month = self.env.ref('rental_base.product_uom_month')
-        uom_day = self.env.ref('uom.product_uom_day')
-        return [('id', 'in', [uom_month.id, uom_day.id])]
-
-    name = fields.Char('Name', required=True)
-    date_next_appointment = fields.Date('Datum', required=True)
-    leads_of_notification = fields.Integer('Leads of Notification', required=True)
-    time_interval = fields.Integer('Time Inteval', required=True)
+    name = fields.Char(
+        'Name',
+        required=True,
+    )
+    date_next_appointment = fields.Date(
+        'Datum',
+        required=True,
+    )
+    leads_of_notification = fields.Integer(
+        'Leads of Notification',
+        required=True,
+    )
+    time_interval = fields.Integer(
+        'Time Inteval',
+        required=True,
+    )
     time_uom = fields.Selection(
-        selection=[('day', 'Day(s)'), ('month', 'Month(s)')],
-        string='Time UoM', required=True, default="day")
+        selection=[
+            ('day', 'Day(s)'),
+            ('month', 'Month(s)'),
+        ],
+        string='Time UoM',
+        required=True,
+        default="day",
+    )
     product_id = fields.Many2one(
         'product.product',
         string="Instance",
-        domain=[('product_instance', '=', True)])
-    create_task = fields.Boolean('Create Task', compute="_compute_create_task")
+        domain=[('product_instance', '=', True)],
+    )
+    create_task = fields.Boolean(
+        'Create Task',
+        compute="_compute_create_task",
+    )
 
     @api.multi
     def _compute_create_task(self):
         today = fields.Date.from_string(fields.Date.today())
         for record in self:
             record.create_task = False
-            if record.date_next_appointment - relativedelta(days=record.leads_of_notification) == today:
+            if record.date_next_appointment - relativedelta(
+                days=record.leads_of_notification) == today:
                 record.create_task = True
 
     def _prepare_task_vals(self):
@@ -70,9 +87,3 @@ class ProductAppointment(models.Model):
     def _cron_gen_update_appointment(self):
         all_appointments = self.search([])
         all_appointments.action_create_project_tasks()
-
-
-class ProductProduct(models.Model):
-    _inherit = 'product.product'
-
-    appointment_ids = fields.One2many('product.appointment', 'product_id', string="Appointments")
