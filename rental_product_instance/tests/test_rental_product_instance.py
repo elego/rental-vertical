@@ -6,7 +6,7 @@ from odoo.addons.rental_base.tests.stock_common import RentalStockCommon
 from odoo import fields
 from odoo.exceptions import ValidationError
 
-class TestRentalProductPack(RentalStockCommon):
+class TestRentalProductInstance(RentalStockCommon):
 
     def setUp(self):
         super().setUp()
@@ -23,7 +23,21 @@ class TestRentalProductPack(RentalStockCommon):
         self.date_start = fields.Date.from_string(fields.Date.today())
         self.date_end = self.date_start + relativedelta(days=1)
 
-    def test_00_onchange_product_intance_tracking(self):
+    def test_00_template_onchange_product_intance_tracking(self):
+        self.productA.write({
+            'product_instance': True,
+        })
+        self.productA.product_tmpl_id.onchange_product_instance()
+        self.assertEqual(self.productA.tracking, 'serial')
+        self.assertEqual(self.productA.type, 'product')
+
+        self.productA.write({
+            'tracking': 'lot',
+        })
+        self.productA.product_tmpl_id.onchange_tracking()
+        self.assertEqual(self.productA.product_instance, False)
+
+    def test_01_onchange_product_intance_tracking(self):
         self.productA.write({
             'product_instance': True,
         })
@@ -37,7 +51,7 @@ class TestRentalProductPack(RentalStockCommon):
         self.productA.onchange_tracking()
         self.assertEqual(self.productA.product_instance, False)
 
-    def test_01_instance_state(self):
+    def test_02_instance_state(self):
         self.productA.write({
             'product_instance': True,
             'product_timeline_ids': [
