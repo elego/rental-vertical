@@ -38,7 +38,7 @@ class SaleOrderLine(models.Model):
 
     @api.model
     def _get_time_uom(self):
-        uom_month = self.env.ref('rental_pricelist.product_uom_month')
+        uom_month = self.env.ref('rental_base.product_uom_month')
         uom_day = self.env.ref('uom.product_uom_day')
         uom_hour = self.env.ref('uom.product_uom_hour')
         return {
