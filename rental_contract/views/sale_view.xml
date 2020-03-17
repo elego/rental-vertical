@@ -15,22 +15,5 @@
             </field>
         </record>
 
-        <record id="view_order_form_so_start_end_dates" model="ir.ui.view">
-            <field name="name">sale.order.form.start_end_dates</field>
-            <field name="model">sale.order</field>
-            <field name="inherit_id" ref="sale_start_end_dates.view_order_form"/>
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='default_start_date']" position="replace"/>
-                <xpath expr="//field[@name='default_end_date']" position="replace"/>
-                <xpath expr="//field[@name='pricelist_id']" position="after">
-                    <label for="" string="Service Period"/>
-                    <div name="service_period">
-                        <field class="oe_inline" name="default_start_date" nolabel="1"/> to
-                        <field class="oe_inline" name="default_end_date" nolabel="1"/>
-                    </div>
-                </xpath>
-            </field>
-        </record>
-
     </data>
 </odoo>
