@@ -27,7 +27,7 @@ Activate the checkboxes for rental extensions.
 When activating 'Product Variant' you might have to activate the checkbox 'Product Variant' 
 in Sales > Configuration > Settings, too.
 ''',
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.0.1',
     'category': 'product',
     'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
