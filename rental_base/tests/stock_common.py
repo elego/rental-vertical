@@ -8,13 +8,16 @@ class RentalStockCommon(common.TransactionCase):
     def setUp(self):
         super().setUp()
 
-        # Picking Type and Locations
+        # Rental Type, Picking Type, Locations and Uoms
+        self.rental_sale_type = self.env.ref('rental_base.rental_sale_type')
         self.picking_type_in = self.env.ref('stock.picking_type_in')
         self.picking_type_out = self.env.ref('stock.picking_type_out')
         self.stock_location = self.env.ref('stock.stock_location_stock')
         self.supplier_location = self.env.ref('stock.stock_location_suppliers')
         self.customer_location = self.env.ref('stock.stock_location_customers')
+        self.uom_hour = self.env.ref('uom.product_uom_hour')
         self.uom_day = self.env.ref('uom.product_uom_day')
+        self.uom_month = self.env.ref('rental_base.product_uom_month')
         self.uom_unit = self.env.ref('uom.product_uom_unit')
         self.uom_kgm = self.env.ref('uom.product_uom_kgm')
 
