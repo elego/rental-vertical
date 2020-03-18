@@ -6,11 +6,6 @@ from odoo import api, fields, models
 class ProductPricelistItem(models.Model):
     _inherit = 'product.pricelist.item'
 
-    # rented_product_id = fields.Many2one(
-    #     'product.product',
-    #     string='Rental Service',
-    #)
-
     day_item_id = fields.Many2one(
         'product.product',
         string='Rental Service (Day)',

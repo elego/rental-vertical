@@ -55,7 +55,7 @@ class SaleOrderLine(models.Model):
             if self.display_product_id.rental_of_day:
                 self.product_uom = time_uoms['day']
                 self.product_id = self.display_product_id.product_rental_day_id
-            elif self.display_product_id.rental_of_day:
+            elif self.display_product_id.rental_of_month:
                 self.product_uom = time_uoms['month']
                 self.product_id = self.display_product_id.product_rental_month_id
             elif self.display_product_id.rental_of_hour:
@@ -100,9 +100,10 @@ class SaleOrderLine(models.Model):
             self.rental_type = False
             self.rental_qty = 0
             self.extension_rental_id = False
+            self.product_id = self.display_product_id
         else:
             self.sell_rental_id = False
-        self.product_id = self.display_product_id
+            self._set_product_id()
 
     #Override function in sale_rental
     @api.onchange('product_id', 'rental_qty')
@@ -119,6 +120,12 @@ class SaleOrderLine(models.Model):
                         self.rental_type == 'new_rental' and
                         self.rental_qty and self.order_id.warehouse_id):
                     product_uom = self.product_id.rented_product_id.uom_id
+                    time_uoms = self._get_time_uom()
+                    uom_ids = []
+                    for key in time_uoms:
+                        uom_ids.append(time_uoms[key].id)
+                    if uom_ids and product_uom.id not in uom_ids:
+                        product_uom = self.env['uom.uom'].browse(uom_ids[0])
                     warehouse = self.order_id.warehouse_id
                     rental_in_location = warehouse.rental_in_location_id
                     rented_product_ctx = \
@@ -243,6 +250,8 @@ class SaleOrderLine(models.Model):
                 if self.display_product_id.rental_of_hour:
                     uom_ids.append(time_uoms['hour'].id)
                 res['domain']['product_uom'] = [('id', 'in', uom_ids)]
+                if self.product_uom.id not in uom_ids:
+                    self.product_uom = uom_ids[0]
         return res
 
     @api.onchange('product_uom', 'product_uom_qty')
