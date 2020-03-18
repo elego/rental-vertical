@@ -15,7 +15,6 @@ easy way to specify the prices in a product tab as well as to use all the enhanc
         'rental_base',
     ],
     'data': [
-        'data/product_uom_data.xml',
         'views/sale_view.xml',
         'views/product_view.xml',
     ],

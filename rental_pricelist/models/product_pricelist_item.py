@@ -6,11 +6,6 @@ from odoo import api, fields, models
 class ProductPricelistItem(models.Model):
     _inherit = 'product.pricelist.item'
 
-    # rented_product_id = fields.Many2one(
-    #     'product.product',
-    #     string='Rental Service',
-    #)
-
     day_item_id = fields.Many2one(
         'product.product',
         string='Rental Service (Day)',
@@ -29,7 +24,7 @@ class ProductPricelistItem(models.Model):
 
     @api.onchange('product_id')
     def _onchange_product_id(self):
-        uom_month = self.env.ref('rental_pricelist.product_uom_month')
+        uom_month = self.env.ref('rental_base.product_uom_month')
         uom_day = self.env.ref('uom.product_uom_day')
         uom_hour = self.env.ref('uom.product_uom_hour')
         if self.product_id.rented_product_id:

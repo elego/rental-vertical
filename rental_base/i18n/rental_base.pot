@@ -168,6 +168,11 @@ msgid "Manage repair orders for product instances"
 msgstr ""
 
 #. module: rental_base
+#: model:uom.uom,name:rental_base.product_uom_month
+msgid "Month(s)"
+msgstr ""
+
+#. module: rental_base
 #: model_terms:ir.actions.act_window,help:rental_base.action_rental_orders
 #: model_terms:ir.actions.act_window,help:rental_base.action_rental_quotations
 msgid "Once the quotation is confirmed, it becomes a sales order.<br> You will be able to create an invoice and collect the payment."

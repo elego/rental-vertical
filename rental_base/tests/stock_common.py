@@ -8,13 +8,16 @@ class RentalStockCommon(common.TransactionCase):
     def setUp(self):
         super().setUp()
 
-        # Picking Type and Locations
+        # Rental Type, Picking Type, Locations and Uoms
+        self.rental_sale_type = self.env.ref('rental_base.rental_sale_type')
         self.picking_type_in = self.env.ref('stock.picking_type_in')
         self.picking_type_out = self.env.ref('stock.picking_type_out')
         self.stock_location = self.env.ref('stock.stock_location_stock')
         self.supplier_location = self.env.ref('stock.stock_location_suppliers')
         self.customer_location = self.env.ref('stock.stock_location_customers')
+        self.uom_hour = self.env.ref('uom.product_uom_hour')
         self.uom_day = self.env.ref('uom.product_uom_day')
+        self.uom_month = self.env.ref('rental_base.product_uom_month')
         self.uom_unit = self.env.ref('uom.product_uom_unit')
         self.uom_kgm = self.env.ref('uom.product_uom_kgm')
 
@@ -56,15 +59,3 @@ class RentalStockCommon(common.TransactionCase):
         move_values = move._convert_to_write(move._cache)
         move_values.update(**values)
         return Move.create(move_values)
-
-    def _print_move(self, move):
-        print('-------------%s--------------' % move)
-        print(move.state)
-        if move.picking_id:
-            print("picking: %s" % move.picking_id.state)
-        print(move.product_id.name)
-        print(move.product_uom_qty)
-        print(move.product_uom.name)
-        print(move.location_id.name)
-        print(move.location_dest_id.name)
-        print(move.move_line_ids.lot_id)

@@ -50,11 +50,6 @@ msgid "Month Scale Pricelist Items"
 msgstr ""
 
 #. module: rental_pricelist
-#: model:uom.uom,name:rental_pricelist.product_uom_month
-msgid "Month(s)"
-msgstr ""
-
-#. module: rental_pricelist
 #: code:addons/rental_pricelist/models/product.py:132
 #, python-format
 msgid "No found expected Rental Type."
