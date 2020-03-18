@@ -2,41 +2,42 @@
 Changelog
 ---------
 
-- c9f5b81 issue #3467 fix menu strings and translation
-- 705a197 [MERGE] remotes/origin/feature_3576_blp355_rental_product_pack_v12: addons-rental-vertical remotes/origin/feature_3576_blp355_rental_product_pack_v12 - b367d1778430938c768f5ab84bd8e543f34f113f [IMP] Unittests of module rental_product_instance
-- b367d17 [IMP] Unittests of module rental_product_instance
-- a5b5799 [IMP] Unittests of module rental_product_pack
-- b215fe3 issue #3462 change German translation for purchase order
-- 804dc44 regenerate module documentation (issue #3339)
-- 6fd1771 rename and split some addons; issue #3462
-- 20d0a8d Rename 'Repair Orders' to 'Repair Quotations'; issue #3462
-- fc3b308 issue #3287 fix description and help texts, add German translation
-- 4c76ef2 [MERGE] remotes/origin/fix_3339_blp311_extend_documentation_v12: addons-rental-vertical remotes/origin/fix_3339_blp311_extend_documentation_v12 - 7dde7fa1ec109919795e59198feb24fc96fcfeb1 add changelogs in HISTORY.rst and some minor improvements (issue #3339)
-- e0caf88 [MERGE] remotes/origin/fix_3287_blp311_sale_rental_pricelist_v12: addons-rental-vertical remotes/origin/fix_3287_blp311_sale_rental_pricelist_v12 - 23c09f7decb00e1fcbf5f8b7fadb28f425442848 [IMP] add config option of model_rental_product_instance_appointment
-- 8d65c40 [MERGE] remotes/origin/feature_3462_blp311_refactoring_menus_v12: addons-rental-vertical remotes/origin/feature_3462_blp311_refactoring_menus_v12 - 6bcb6e6f14bb87e546b372f83f6f0b6961e60c71 Menu refactoring; issue #3462
-- 23c09f7 [IMP] add config option of model_rental_product_instance_appointment
-- 6bcb6e6 Menu refactoring; issue #3462
-- 7dde7fa add changelogs in HISTORY.rst and some minor improvements (issue #3339)
-- 45c5c32 [IMP] remove invoice imort config setting from Rental-Configuration-Settings menu
-- e40e7db [MERGE] remotes/origin/feature_3339_blp297_add_some_module_descriptions_v12: addons-rental-vertical remotes/origin/feature_3339_blp297_add_some_module_descriptions_v12 - 467665c9235e57ea2552ec037f6561e8f18a9b8d add some generated reST and HTML documentation (issue #3339)
-- 467665c add some generated reST and HTML documentation (issue #3339)
-- 6965ed1 fix some mistakes in author and license, make summaries one line, add some descriptions (issue #3339)
-- a86d641 [IMP] config setting for import invoice
-- 50d383a reorder and create new rental menu items; issue #3462
-- 46f26e7 add missing dependency; issue #3279
-- a88dfb5 [IMP] refactoring of menus
-- 9a555c7 [MERGE] remotes/origin/feature_3304_blp214_german_translation_v12: addons-rental-vertical remotes/origin/feature_3304_blp214_german_translation_v12 - 94d9308ebc1357bfaee0061925fd5d59cdd50ccd issue #3304 add German translation for rental_base module
-- 94d9308 issue #3304 add German translation for rental_base module
-- de76919 [IMP] auto setting analytic account by creating invoice and creating rental server product
-- bf0ec64 [ADD] add module rental_sale_offday
-- 2f11b55 [IMP] improves form view of products
-- 545a3ad [IMP] refactoring of project_task_order, functions is moved into rental_product_instance_repair and rental_repair.
-- 91b2863 [IMP] reset default action (timeline) of root menu
-- 6a26f1d [IMP] add new filter for product search view and adjust the menu of timeline overview
-- 73e3d27 [IMP] add context (default_type_id) for menu action of rental order and add dynamic domain on fields product_id of sale.order.line
-- 94e76bb [IMP] set liscense, copyrights and author
-- 4aa3ee3 [IMP] change icon of rental_base
-- 5188db9 [ADD] add module rental_contract
-- 7aa3746 [IMP] add config setting for module rental_product_set
-- b2e6d5c [IMP] Add neu Module rental_base, rental_product_pack and Refactoring of module sale_rental_menu (deprecated)
+- cea0e94 2020-03-13 20:38:19 +0100 wagner@elegosoft.com  update documentation to build 380 (issue #3339)
+- c9f5b81 2020-03-13 08:48:23 +0100 maria.sparenberg@elegosoft.com  (origin/feature_3467_blp371_rentals_menu_v12) issue #3467 fix menu strings and translation
+- 705a197 2020-03-12 23:49:11 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_3576_blp355_rental_product_pack_v12: addons-rental-vertical remotes/origin/feature_3576_blp355_rental_product_pack_v12 - b367d1778430938c768f5ab84bd8e543f34f113f [IMP] Unittests of module rental_product_instance
+- b367d17 2020-03-11 22:02:43 +0100 yweng@elegosoft.com  (origin/feature_3576_blp355_rental_product_pack_v12) [IMP] Unittests of module rental_product_instance
+- a5b5799 2020-03-11 17:48:38 +0100 yweng@elegosoft.com  [IMP] Unittests of module rental_product_pack
+- b215fe3 2020-03-11 14:35:38 +0100 maria.sparenberg@elegosoft.com  (origin/feature_3462_blp355_menu_translation_v12) issue #3462 change German translation for purchase order
+- 804dc44 2020-03-07 21:06:12 +0100 wagner@elegosoft.com  regenerate module documentation (issue #3339)
+- 6fd1771 2020-03-06 20:32:25 +0100 kay.haeusler@elego.de  (origin/feature_3462_blp333_renaming_addons_v12) rename and split some addons; issue #3462
+- 20d0a8d 2020-03-05 23:04:10 +0100 kay.haeusler@elego.de  (origin/feature_3287_blp326_fix_strings_translation_manifest_v12) Rename 'Repair Orders' to 'Repair Quotations'; issue #3462
+- fc3b308 2020-03-05 16:12:50 +0100 maria.sparenberg@elegosoft.com  issue #3287 fix description and help texts, add German translation
+- 4c76ef2 2020-03-04 16:56:16 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_3339_blp311_extend_documentation_v12: addons-rental-vertical remotes/origin/fix_3339_blp311_extend_documentation_v12 - 7dde7fa1ec109919795e59198feb24fc96fcfeb1 add changelogs in HISTORY.rst and some minor improvements (issue #3339)
+- e0caf88 2020-03-04 16:56:14 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_3287_blp311_sale_rental_pricelist_v12: addons-rental-vertical remotes/origin/fix_3287_blp311_sale_rental_pricelist_v12 - 23c09f7decb00e1fcbf5f8b7fadb28f425442848 [IMP] add config option of model_rental_product_instance_appointment
+- 8d65c40 2020-03-04 16:56:06 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_3462_blp311_refactoring_menus_v12: addons-rental-vertical remotes/origin/feature_3462_blp311_refactoring_menus_v12 - 6bcb6e6f14bb87e546b372f83f6f0b6961e60c71 Menu refactoring; issue #3462
+- 23c09f7 2020-03-04 12:53:13 +0100 yweng@elegosoft.com  (origin/fix_3287_blp311_sale_rental_pricelist_v12) [IMP] add config option of model_rental_product_instance_appointment
+- 6bcb6e6 2020-03-03 16:57:04 +0100 kay.haeusler@elego.de  (origin/feature_3462_blp311_refactoring_menus_v12) Menu refactoring; issue #3462
+- 7dde7fa 2020-03-03 00:19:35 +0100 wagner@elegosoft.com  (origin/fix_3339_blp311_extend_documentation_v12, fix_3339_blp311_extend_documentation_v12) add changelogs in HISTORY.rst and some minor improvements (issue #3339)
+- 45c5c32 2020-03-02 09:35:59 +0100 cpatel@elegosoft.com  (origin/feature_3306_blp311_config_setting_import_invoice_v12) [IMP] remove invoice imort config setting from Rental-Configuration-Settings menu
+- e40e7db 2020-03-01 14:54:48 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_3339_blp297_add_some_module_descriptions_v12: addons-rental-vertical remotes/origin/feature_3339_blp297_add_some_module_descriptions_v12 - 467665c9235e57ea2552ec037f6561e8f18a9b8d add some generated reST and HTML documentation (issue #3339)
+- 467665c 2020-03-01 15:50:45 +0100 wagner@elegosoft.com  (origin/feature_3339_blp297_add_some_module_descriptions_v12, feature_3339_blp297_add_some_module_descriptions_v12) add some generated reST and HTML documentation (issue #3339)
+- 6965ed1 2020-02-29 22:46:34 +0100 wagner@elegosoft.com  fix some mistakes in author and license, make summaries one line, add some descriptions (issue #3339)
+- a86d641 2020-02-26 15:11:02 +0100 cpatel@elegosoft.com  (origin/feature_3306_blp297_config_setting_import_invoice_v12) [IMP] config setting for import invoice
+- 50d383a 2020-02-19 14:59:04 +0100 kay.haeusler@elego.de  reorder and create new rental menu items; issue #3462
+- 46f26e7 2020-02-13 10:22:44 +0100 kay.haeusler@elego.de  (origin/feature_3279_blp239_refactoring_menus_v12) add missing dependency; issue #3279
+- a88dfb5 2020-02-12 12:57:10 +0100 yweng@elegosoft.com  [IMP] refactoring of menus
+- 9a555c7 2020-02-10 19:52:46 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_3304_blp214_german_translation_v12: addons-rental-vertical remotes/origin/feature_3304_blp214_german_translation_v12 - 94d9308ebc1357bfaee0061925fd5d59cdd50ccd issue #3304 add German translation for rental_base module
+- 94d9308 2020-02-10 16:25:21 +0100 maria.sparenberg@elegosoft.com  (origin/feature_3304_blp214_german_translation_v12) issue #3304 add German translation for rental_base module
+- de76919 2020-02-10 14:00:04 +0100 yweng@elegosoft.com  [IMP] auto setting analytic account by creating invoice and creating rental server product
+- bf0ec64 2020-02-04 15:36:13 +0100 yweng@elegosoft.com  (origin/feature_3287_blp198_rental_sale_offday_v12) [ADD] add module rental_sale_offday
+- 2f11b55 2020-01-29 17:46:18 +0100 yweng@elegosoft.com  [IMP] improves form view of products
+- 545a3ad 2020-01-28 13:24:17 +0100 yweng@elegosoft.com  [IMP] refactoring of project_task_order, functions is moved into rental_product_instance_repair and rental_repair.
+- 91b2863 2020-01-27 18:45:23 +0100 yweng@elegosoft.com  (origin/feature_3467_blp157_rental_contract_v12) [IMP] reset default action (timeline) of root menu
+- 6a26f1d 2020-01-23 22:58:59 +0100 yweng@elegosoft.com  [IMP] add new filter for product search view and adjust the menu of timeline overview
+- 73e3d27 2020-01-23 22:37:27 +0100 yweng@elegosoft.com  [IMP] add context (default_type_id) for menu action of rental order and add dynamic domain on fields product_id of sale.order.line
+- 94e76bb 2020-01-23 13:08:03 +0100 yweng@elegosoft.com  [IMP] set liscense, copyrights and author
+- 4aa3ee3 2020-01-23 12:11:29 +0100 yweng@elegosoft.com  [IMP] change icon of rental_base
+- 5188db9 2020-01-22 20:51:43 +0100 yweng@elegosoft.com  [ADD] add module rental_contract
+- 7aa3746 2020-01-22 15:22:34 +0100 cpatel@elegosoft.com  (origin/feature_3304_blp157_rental_base_config_setting_v12) [IMP] add config setting for module rental_product_set
+- b2e6d5c 2020-01-21 20:51:21 +0100 yweng@elegosoft.com  (origin/feature_3304_blp151_refactoring_swrent_product_extension_v12) [IMP] Add neu Module rental_base, rental_product_pack and Refactoring of module sale_rental_menu (deprecated)
 

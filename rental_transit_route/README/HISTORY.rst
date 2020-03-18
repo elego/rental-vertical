@@ -2,15 +2,16 @@
 Changelog
 ---------
 
-- e371276 [MERGE] remotes/origin/fix_3339_blp343_extend_documentation_v12: addons-rental-vertical remotes/origin/fix_3339_blp343_extend_documentation_v12 - 9576b54fbb0cbcbffb804587fd722df8a4057da0 allow cli overwrite of module arguments; regenerate doc for rental_product_instance_appointment rental_product_variant rental_offday rental_invoice rental_contract_month rental_contract (issue #3339)
-- 5f33ee3 [IMP] fixes rental_extension and rental_sell workflow with transit route
-- 804dc44 regenerate module documentation (issue #3339)
-- 7dde7fa add changelogs in HISTORY.rst and some minor improvements (issue #3339)
-- 3a4c7b1 [MERGE] remotes/origin/feature_3432_blp297_rental_transit_route_v12: addons-rental-vertical remotes/origin/feature_3432_blp297_rental_transit_route_v12 - 372a394106030694aa4b97abe48347b18e6117d9 [IMP] smart button to show purchase requisition and purchase order for transport.
-- 467665c add some generated reST and HTML documentation (issue #3339)
-- 6965ed1 fix some mistakes in author and license, make summaries one line, add some descriptions (issue #3339)
-- eaca936 [IMP] post_init_hook to set transit route and locations
-- 182fde8 [IMP] set date_expected of moves for 'route transit'.
-- c1fb1c7 [FIX] transit route and delete button reset_rental_location_and_push_pull_rules
-- a6cbee8 [ADD] module rental_transit_route
+- cea0e94 2020-03-13 20:38:19 +0100 wagner@elegosoft.com  update documentation to build 380 (issue #3339)
+- e371276 2020-03-10 18:14:07 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_3339_blp343_extend_documentation_v12: addons-rental-vertical remotes/origin/fix_3339_blp343_extend_documentation_v12 - 9576b54fbb0cbcbffb804587fd722df8a4057da0 allow cli overwrite of module arguments; regenerate doc for rental_product_instance_appointment rental_product_variant rental_offday rental_invoice rental_contract_month rental_contract (issue #3339)
+- 5f33ee3 2020-03-09 16:34:02 +0100 yweng@elegosoft.com  [IMP] fixes rental_extension and rental_sell workflow with transit route
+- 804dc44 2020-03-07 21:06:12 +0100 wagner@elegosoft.com  regenerate module documentation (issue #3339)
+- 7dde7fa 2020-03-03 00:19:35 +0100 wagner@elegosoft.com  (origin/fix_3339_blp311_extend_documentation_v12, fix_3339_blp311_extend_documentation_v12) add changelogs in HISTORY.rst and some minor improvements (issue #3339)
+- 3a4c7b1 2020-03-01 14:54:53 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_3432_blp297_rental_transit_route_v12: addons-rental-vertical remotes/origin/feature_3432_blp297_rental_transit_route_v12 - 372a394106030694aa4b97abe48347b18e6117d9 [IMP] smart button to show purchase requisition and purchase order for transport.
+- 467665c 2020-03-01 15:50:45 +0100 wagner@elegosoft.com  (origin/feature_3339_blp297_add_some_module_descriptions_v12, feature_3339_blp297_add_some_module_descriptions_v12) add some generated reST and HTML documentation (issue #3339)
+- 6965ed1 2020-02-29 22:46:34 +0100 wagner@elegosoft.com  fix some mistakes in author and license, make summaries one line, add some descriptions (issue #3339)
+- eaca936 2020-02-28 14:31:09 +0100 yweng@elegosoft.com  [IMP] post_init_hook to set transit route and locations
+- 182fde8 2020-02-27 18:41:55 +0100 yweng@elegosoft.com  [IMP] set date_expected of moves for 'route transit'.
+- c1fb1c7 2020-02-27 15:33:48 +0100 yweng@elegosoft.com  [FIX] transit route and delete button reset_rental_location_and_push_pull_rules
+- a6cbee8 2020-02-19 12:33:40 +0100 yweng@elegosoft.com  [ADD] module rental_transit_route
 
