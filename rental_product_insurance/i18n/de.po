@@ -1,0 +1,87 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* rental_product_insurance
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-18 14:51+0000\n"
+"PO-Revision-Date: 2020-03-18 14:51+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: rental_product_insurance
+#: selection:product.product,insurance_type:0
+#: selection:sale.order.line,insurance_type:0
+msgid "Cost of Product"
+msgstr "Produktkosten"
+
+#. module: rental_product_insurance
+#: selection:product.product,insurance_type:0
+#: selection:sale.order.line,insurance_type:0
+msgid "Cost of rental"
+msgstr "Mietkosten"
+
+#. module: rental_product_insurance
+#: model_terms:ir.ui.view,arch_db:rental_product_insurance.product_normal_form_view
+#: model:product.product,name:rental_product_insurance.product_product_insurance
+#: model:product.template,name:rental_product_insurance.product_product_insurance_product_template
+msgid "Insurance"
+msgstr "Versicherung"
+
+#. module: rental_product_insurance
+#: model:ir.model.fields,field_description:rental_product_insurance.field_product_product__insurance_percent
+#: model:ir.model.fields,field_description:rental_product_insurance.field_sale_order_line__insurance_percent
+msgid "Insurance Percent"
+msgstr "Versicherung in Prozent"
+
+#. module: rental_product_insurance
+#: model:ir.model.fields,field_description:rental_product_insurance.field_product_product__insurance_type
+#: model:ir.model.fields,field_description:rental_product_insurance.field_sale_order_line__insurance_type
+msgid "Insurance Type"
+msgstr "Versicherungsart"
+
+#. module: rental_product_insurance
+#: code:addons/rental_product_insurance/models/sale.py:52
+#, python-format
+msgid "Insurance: %s"
+msgstr "Versicherung: %s"
+
+#. module: rental_product_insurance
+#: selection:product.product,insurance_type:0
+#: selection:sale.order.line,insurance_type:0
+msgid "None"
+msgstr "Keine"
+
+#. module: rental_product_insurance
+#: model:ir.model,name:rental_product_insurance.model_product_product
+msgid "Product"
+msgstr "Produkt"
+
+#. module: rental_product_insurance
+#: model:ir.model,name:rental_product_insurance.model_sale_order
+msgid "Sale Order"
+msgstr "Verkaufsauftrag"
+
+#. module: rental_product_insurance
+#: model:ir.model,name:rental_product_insurance.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Auftragsposition"
+
+#. module: rental_product_insurance
+#: model:product.product,uom_name:rental_product_insurance.product_product_insurance
+#: model:product.template,uom_name:rental_product_insurance.product_product_insurance_product_template
+msgid "Unit(s)"
+msgstr "Einheit(en)"
+
+#. module: rental_product_insurance
+#: model:product.product,weight_uom_name:rental_product_insurance.product_product_insurance
+#: model:product.template,weight_uom_name:rental_product_insurance.product_product_insurance_product_template
+msgid "kg"
+msgstr "kg"
+

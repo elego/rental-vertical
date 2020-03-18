@@ -24,18 +24,22 @@ Configuration options:
 Go to Rentals > Configuration > Settings.
 Activate the checkboxes for rental extensions.
 
-When activating 'Product Variant' you might have to activate the checkbox 'Product Variant' 
-in Sales > Configuration > Settings, too.
+Please activate the checkbox for using 'Product Variants' in Sales > Configuration > Settings, too.
+Otherwise you can not deal with rental orders.
 ''',
     'version': '12.0.1.0.1',
     'category': 'product',
     'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
+        'account',
         'crm',
         'product_analytic',
         'purchase',
+        'sale',
         'sale_order_type',
         'sale_rental',
+        'sale_start_end_dates',
+        'sale_stock',
         'repair',
     ],
     'data': [
@@ -45,6 +49,7 @@ in Sales > Configuration > Settings, too.
         'views/res_config_settings_view.xml',
         'views/stock_picking_views.xml',
         'views/menu_view.xml',
+        'views/sale_view.xml',
     ],
     'demo': [
     ],

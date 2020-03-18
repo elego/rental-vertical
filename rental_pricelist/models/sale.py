@@ -2,38 +2,36 @@
 
 from odoo import api, fields, models, exceptions, _
 from odoo.tools import float_compare, float_round
+from odoo.exceptions import ValidationError
 
 
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     number_of_time_unit = fields.Float(
-        'Number of TU',
+        string='Number of TU',
+        help="This is the time difference given by start and end date "
+             "for this order line.",
     )
 
     display_product_id = fields.Many2one(
-        'product.product',
+        comodel_name='product.product',
         string='Product',
         domain=lambda self: self._get_product_domain(),
     )
 
     rental_ok = fields.Boolean(
-        'Can be rented',
+        string='Can be rented',
         related='display_product_id.rental_ok',
     )
 
-    #must_have_dates = fields.Boolean(
-    #    string='Must Have Dates',
-    #    related=False,
-    #)
-
     @api.model
     def _get_product_domain(self):
-        domain = [('sale_ok','=',True)]
+        domain = [('sale_ok', '=', True)]
         rental_type_id = self.env.ref('rental_base.rental_sale_type').id
         if self.env.context.get('default_type_id', False) == rental_type_id:
-            domain.append(('rental_ok','=',True))
-            domain.append(('type','=','product'))
+            domain.append(('rental_ok', '=', True))
+            domain.append(('type', '=', 'product'))
         return domain
 
     @api.model
@@ -105,14 +103,14 @@ class SaleOrderLine(models.Model):
             self.sell_rental_id = False
             self._set_product_id()
 
-    #Override function in sale_rental
+    # Override function in sale_rental
     @api.onchange('product_id', 'rental_qty')
     def rental_product_id_change(self):
         res = {}
         if self.product_id:
             if self.product_id.rented_product_id:
-                #self.rental = True
-                #self.can_sell_rental = False
+                # self.rental = True
+                # self.can_sell_rental = False
                 self.sell_rental_id = False
                 if not self.rental_type:
                     self.rental_type = 'new_rental'
@@ -155,28 +153,28 @@ class SaleOrderLine(models.Model):
                                 rental_in_location.name)
                         }
             elif self.product_id.rental_service_ids:
-                #self.can_sell_rental = True
-                #self.rental = False
+                # self.can_sell_rental = True
+                # self.rental = False
                 self.rental_type = False
                 self.rental_qty = 0
                 self.extension_rental_id = False
             else:
                 self.rental_type = False
-                #self.rental = False
+                # self.rental = False
                 self.rental_qty = 0
                 self.extension_rental_id = False
-                #self.can_sell_rental = False
+                # self.can_sell_rental = False
                 self.sell_rental_id = False
         else:
             self.rental_type = False
-            #self.rental = False
+            # self.rental = False
             self.rental_qty = 0
             self.extension_rental_id = False
-            #self.can_sell_rental = False
+            # self.can_sell_rental = False
             self.sell_rental_id = False
         return res
 
-    #Override function in sale_rental
+    # Override function in sale_rental
     @api.constrains(
         'rental_type', 'extension_rental_id', 'start_date', 'end_date',
         'rental_qty', 'product_uom_qty', 'product_id')
@@ -204,7 +202,7 @@ class SaleOrderLine(models.Model):
                         'On the "new rental" sale order line with product '
                         '"%s", we should have a rental service product!') % (
                         line.product_id.name))
-                #if line.product_uom_qty !=\
+                # if line.product_uom_qty !=\
                 #        line.rental_qty * line.number_of_days:
                 #    raise ValidationError(_(
                 #        'On the sale order line with product "%s" '
@@ -226,8 +224,8 @@ class SaleOrderLine(models.Model):
                         line.product_uom_qty,
                         line.sell_rental_id.rental_qty))
 
-    #Override function in sale_rental
-    #replace number_of_days with number_of_time_unit
+    # Override function in sale_rental
+    # replace number_of_days with number_of_time_unit
     @api.onchange('rental_qty', 'number_of_time_unit', 'product_id')
     def rental_qty_number_of_days_change(self):
         if self.product_id.rented_product_id:

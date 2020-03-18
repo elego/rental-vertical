@@ -9,12 +9,16 @@ class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     show_offday = fields.Boolean(
-        'Show Off-Days',
+        string='Show Off-Days',
         compute='_compute_show_offday',
     )
 
     offday_number = fields.Float(
-        'Number of Off-Days',
+        string='Number of Off-Days',
+        help="This is the number of days, the product is not used by the customer "
+             "during the rental period.\n"
+             "Fixed off-days, e.g. for the weekend, can be created automatically "
+             "but you can also add manually more off-days.",
         compute='_compute_offday_number',
     )
 

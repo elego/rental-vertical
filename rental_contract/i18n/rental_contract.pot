@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-09 10:44+0000\n"
-"PO-Revision-Date: 2020-03-09 10:44+0000\n"
+"POT-Creation-Date: 2020-03-18 14:04+0000\n"
+"PO-Revision-Date: 2020-03-18 14:04+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,19 +16,14 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: rental_contract
-#: model_terms:ir.ui.view,arch_db:rental_contract.product_normal_form_view
-msgid "<span class=\"o_stat_text\">Customer Contracts</span>"
-msgstr ""
-
-#. module: rental_contract
-#: model_terms:ir.ui.view,arch_db:rental_contract.product_normal_form_view
-msgid "<span class=\"o_stat_text\">Supplier Contracts</span>"
-msgstr ""
-
-#. module: rental_contract
 #: model:ir.model.fields,field_description:rental_contract.field_contract_order_type__journal_id
 #: model_terms:ir.ui.view,arch_db:rental_contract.contract_order_type_search_view
 msgid "Billing Journal"
+msgstr ""
+
+#. module: rental_contract
+#: model:ir.model.fields,field_description:rental_contract.field_product_product__cust_contract_count
+msgid "C-Contracts"
 msgstr ""
 
 #. module: rental_contract
@@ -209,11 +204,6 @@ msgid "Sales Order Line"
 msgstr ""
 
 #. module: rental_contract
-#: model_terms:ir.ui.view,arch_db:rental_contract.view_order_form_so_start_end_dates
-msgid "Service Period"
-msgstr ""
-
-#. module: rental_contract
 #: model:ir.model.fields,field_description:rental_contract.field_contract_contract__sub_type
 #: model:ir.model.fields,field_description:rental_contract.field_contract_order_type__sub_type
 msgid "Sub Type"
@@ -230,10 +220,25 @@ msgid "Supplier Contracts"
 msgstr ""
 
 #. module: rental_contract
+#: model:ir.model.fields,help:rental_contract.field_product_product__cust_contract_count
+msgid "Total number of Customer Contracts"
+msgstr ""
+
+#. module: rental_contract
+#: model:ir.model.fields,help:rental_contract.field_product_product__ven_contract_count
+msgid "Total number of Vendor/Supplier Contracts"
+msgstr ""
+
+#. module: rental_contract
 #: model_terms:ir.ui.view,arch_db:rental_contract.contract_order_type_form_view
 #: model_terms:ir.ui.view,arch_db:rental_contract.contract_order_type_search_view
 #: model_terms:ir.ui.view,arch_db:rental_contract.contract_order_type_tree_view
 msgid "Type"
+msgstr ""
+
+#. module: rental_contract
+#: model:ir.model.fields,field_description:rental_contract.field_product_product__ven_contract_count
+msgid "V-Contracts"
 msgstr ""
 
 #. module: rental_contract
@@ -244,9 +249,4 @@ msgstr ""
 #. module: rental_contract
 #: model:contract.order.type,name:rental_contract.vendor_rental_contract_type
 msgid "Vendor Rental Contract"
-msgstr ""
-
-#. module: rental_contract
-#: model_terms:ir.ui.view,arch_db:rental_contract.view_order_form_so_start_end_dates
-msgid "to"
 msgstr ""
