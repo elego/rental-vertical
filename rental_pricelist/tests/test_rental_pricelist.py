@@ -88,21 +88,6 @@ class TestRentalPricelist(RentalStockCommon):
         line.product_id_change()
         line.product_uom_change()
 
-    def _print_sol(self, line):
-        print('-------------------------------------')
-        print("rental:              %s" % line.rental)
-        print("rental_type:         %s" % line.rental_type)
-        print("can_sell_rental:     %s" % line.can_sell_rental)
-        print("product_id:          %s" % line.product_id.name)
-        print("display_product_id:  %s" % line.display_product_id.name)
-        print("product_uom:         %s" % line.product_uom.name)
-        print("product_uom_qty:     %s" % line.product_uom_qty)
-        print("rental_qty:          %s" % line.rental_qty)
-        print("start_date:          %s" % line.start_date)
-        print("end_date:            %s" % line.end_date)
-        print("number_of_time_unit: %s" % line.number_of_time_unit)
-        print("price_unit:          %s" % line.price_unit)
-
     def test_00_auto_create_service_product(self):
         """
             check functions that create the rental service automatically.

@@ -26,13 +26,6 @@ class TestRentalProductInstanceAppointment(RentalStockCommon):
         self.today = fields.Date.from_string(fields.Date.today())
         self.tomorrow = self.today + relativedelta(days=1)
 
-    def _print_appointment(self, appointment):
-        print(appointment.product_id.name)
-        print(appointment.name)
-        print(appointment.date_next_appointment)
-        print(appointment.time_interval)
-        print(appointment.time_uom)
-
     def test_00_rental_product_instance_appointment_tasks(self):
         self.productA.write({
             'appointment_ids': [
@@ -66,7 +59,6 @@ class TestRentalProductInstanceAppointment(RentalStockCommon):
         # Check Appointments
         check_A = check_B = check_C = False
         for appointment in self.productA.appointment_ids:
-            #self._print_appointment(appointment)
             if appointment.name == 'Appointment A':
                 expected_next_appointment = self.today + relativedelta(months=1)
                 self.assertEqual(appointment.date_next_appointment, expected_next_appointment)
