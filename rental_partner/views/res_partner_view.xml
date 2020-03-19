@@ -8,6 +8,23 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='firstname']" position="replace"/>
                 <xpath expr="//field[@name='title']" position="replace"/>
+                <xpath expr="//div[hasclass('o_address_format')]" position="replace">
+                    <div class="o_address_format">
+                        <div attrs="{'invisible': ['|', ('parent_id', '=', False), ('type', '!=', 'contact')]}" class="oe_edit_only"><b>Company Address:</b></div>
+                        <field name="street" placeholder="Street..." class="o_address_street"
+                            attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                        <field name="street2" placeholder="Street 2..." class="o_address_street"
+                            attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                        <field name="zip" placeholder="ZIP" class="o_address_zip"
+                            attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                        <field name="city" placeholder="City" class="o_address_city" style="width:75%;margin-right: 0%;"
+                            attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                        <field name="country_id" placeholder="Country" class="o_address_country" style="width:100%;" options='{"no_open": True, "no_create": True}'
+                            attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                        <field name="state_id" class="o_address_state" style="width:100%;" placeholder="State" options='{"no_open": True}'
+                            attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}" context="{'country_id': country_id, 'zip': zip}"/>
+                    </div>
+                </xpath>
                 <xpath expr="//field[@name='lastname']" position="before">
                     <field name="title"
                         options="{&quot;no_open&quot;: True}"
