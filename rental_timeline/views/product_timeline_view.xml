@@ -27,8 +27,11 @@
                     <field name="number_of_days" />
                     <field name="rental_period" />
                     <field name="warehouse_id" />
+                    <field name="warehouse_name" />
                     <field name="product_id" />
+                    <field name="product_name" />
                     <field name="product_categ_id" />
+                    <field name="product_categ_name" />
                     <field name="action_id" />
                     <field name="menu_id" />
                     <field name="res_model" />
@@ -39,13 +42,13 @@
                     <templates>
                         <div t-name="tooltip-item-group">
                             <table border="1">
-                                <tr t-if="record.product_id">
+                                <tr t-if="record.product_name">
                                     <td>Product:</td>
-                                    <td t-esc="record.product_id" />
+                                    <td t-esc="record.product_name" />
                                 </tr>
-                                <tr t-if="record.product_categ_id">
+                                <tr t-if="record.product_categ_name">
                                     <td>Category:</td>
-                                    <td t-esc="record.product_categ_id" />
+                                    <td t-esc="record.product_categ_name" />
                                 </tr>
                             </table>
                         </div>
@@ -84,9 +87,9 @@
                                         <td>Shipping address:</td>
                                         <td t-esc="record.partner_shipping_address" />
                                     </tr>
-                                    <tr t-if="record.warehouse_id">
+                                    <tr t-if="record.warehouse_name">
                                         <td>Warehouse:</td>
-                                        <td t-esc="record.warehouse_id" />
+                                        <td t-esc="record.warehouse_name" />
                                     </tr>
                                     <tr t-if="record.type">
                                         <td>Type:</td>

@@ -6,14 +6,14 @@
         <field name="inherit_id" ref="rental_timeline.view_product_timeline_timeline" />
         <field name="arch" type="xml">
             <field name="partner_id" position="after">
-                <field name="freight_forwarder_id" />
+                <field name="freight_forwarder_name" />
                 <field name="source_address" />
                 <field name="destination_address" />
             </field>
             <tr t-if="record.partner_shipping_address" position="after">
-                <tr t-if="record.freight_forwarder_id">
+                <tr t-if="record.freight_forwarder_name">
                     <td>Freight forwarder:</td>
-                    <td t-esc="record.freight_forwarder_id" />
+                    <td t-esc="record.freight_forwarder_name" />
                 </tr>
                 <tr t-if="record.source_address">
                     <td>Source:</td>
