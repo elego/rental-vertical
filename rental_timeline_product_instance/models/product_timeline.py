@@ -18,9 +18,24 @@ class ProductTimeline(models.Model):
         related='product_id.instance_current_location_id',
     )
 
+    product_instance_current_location_name = fields.Char(
+        compute='_compute_fields',
+    )
+
     product_instance_serial_number_id = fields.Many2one(
         related='product_id.instance_serial_number_id',
     )
+
+    product_instance_serial_number_name = fields.Char(
+        compute='_compute_fields',
+    )
+
+    @api.multi
+    def _compute_fields(self):
+        super(ProductTimeline, self)._compute_fields()
+        for line in self:
+            line.product_instance_serial_number_name = line.product_instance_serial_number_id.display_name
+            line.product_instance_current_location_name = line.product_instance_current_location_id.display_name
 
     @api.multi
     @api.constrains('date_start', 'date_end')

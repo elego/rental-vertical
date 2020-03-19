@@ -18,10 +18,16 @@ class ProductTimeline(models.Model):
         ondelete='set null',
         compute='_compute_fields',
     )
+
+    freight_forwarder_name = fields.Many2one(
+        compute='_compute_fields',
+    )
+
     source_address = fields.Char(
         'Shipping address',
         compute='_compute_fields',
     )
+
     destination_address = fields.Char(
         'Shipping address',
         compute='_compute_fields',
@@ -47,3 +53,5 @@ class ProductTimeline(models.Model):
                     price_subtotal = lang.format('%.2f', line.price_subtotal, grouping=True),
                     currency = line.currency_id.symbol,
                 )
+
+            line.freight_forwarder_name = line.freight_forwarder_id.display_name

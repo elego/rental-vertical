@@ -40,6 +40,10 @@ class ProductTimeline(models.Model):
         required=True,
     )
 
+    product_name = fields.Char(
+        compute='_compute_fields',
+    )
+
     order_name = fields.Char(
         'Order',
         require=True,
@@ -68,6 +72,10 @@ class ProductTimeline(models.Model):
 
     product_categ_id = fields.Many2one(
         related='product_id.categ_id',
+    )
+
+    product_categ_name = fields.Char(
+        compute='_compute_fields',
     )
 
     name = fields.Char(
@@ -117,6 +125,10 @@ class ProductTimeline(models.Model):
         compute='_compute_fields',
     )
 
+    warehouse_name = fields.Char(
+        compute='_compute_fields',
+    )
+
     action_id = fields.Integer(
         compute='_compute_fields',
     )
@@ -154,6 +166,10 @@ class ProductTimeline(models.Model):
                     currency = currency.symbol,
                 )
                 line.has_clues = False
+
+            line.product_name = line.product_id.display_name
+            line.warehouse_name = line.warehouse_id.display_name
+            line.product_categ_name = line.product_categ_id.display_name
 
             line.action_id = self.env.ref('rental_base.action_rental_orders').id
             line.menu_id = self.env.ref('rental_base.menu_rental_root').id
