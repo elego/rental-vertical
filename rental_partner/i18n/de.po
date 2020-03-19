@@ -1,0 +1,136 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* rental_partner
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-19 09:45+0000\n"
+"PO-Revision-Date: 2020-03-19 09:45+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: rental_partner
+#: model:ir.model.fields,field_description:rental_partner.field_res_partner_degree__shortcut
+msgid "Abbreviation"
+msgstr "Abkürzung"
+
+#. module: rental_partner
+#: model:ir.model.fields,field_description:rental_partner.field_res_partner__type
+#: model:ir.model.fields,field_description:rental_partner.field_res_users__type
+msgid "Address Type"
+msgstr "Adressart"
+
+#. module: rental_partner
+#: selection:res.partner,type:0
+msgid "Branch"
+msgstr "Niederlassung"
+
+#. module: rental_partner
+#: model:ir.model,name:rental_partner.model_res_partner
+#: selection:res.partner,type:0
+msgid "Contact"
+msgstr "Kontakt"
+
+#. module: rental_partner
+#: model_terms:ir.ui.view,arch_db:rental_partner.view_partner_form
+msgid "Contact Name"
+msgstr "Ansprechpartner"
+
+#. module: rental_partner
+#: model:ir.model.fields,field_description:rental_partner.field_res_partner_degree__create_uid
+msgid "Created by"
+msgstr "Erstellt von"
+
+#. module: rental_partner
+#: model:ir.model.fields,field_description:rental_partner.field_res_partner_degree__create_date
+msgid "Created on"
+msgstr "Erstellt am"
+
+#. module: rental_partner
+#: model:ir.model.fields,field_description:rental_partner.field_res_partner__degree
+#: model:ir.model.fields,field_description:rental_partner.field_res_users__degree
+msgid "Degree"
+msgstr "Akademischer Grad"
+
+#. module: rental_partner
+#: model:ir.model.fields,field_description:rental_partner.field_res_partner_degree__name
+msgid "Degree Name"
+msgstr "Bezeichnung"
+
+#. module: rental_partner
+#: model:ir.model.fields,field_description:rental_partner.field_res_partner_degree__display_name
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: rental_partner
+#: model:ir.model.fields,field_description:rental_partner.field_res_partner_degree__id
+msgid "ID"
+msgstr "ID"
+
+#. module: rental_partner
+#: selection:res.partner,type:0
+msgid "Invoice address"
+msgstr "Rechnungsadresse:"
+
+#. module: rental_partner
+#: model:ir.model.fields,field_description:rental_partner.field_res_partner_degree____last_update
+msgid "Last Modified on"
+msgstr "Aktualisiert am"
+
+#. module: rental_partner
+#: model:ir.model.fields,field_description:rental_partner.field_res_partner_degree__write_uid
+msgid "Last Updated by"
+msgstr "Aktualisiert von"
+
+#. module: rental_partner
+#: model:ir.model.fields,field_description:rental_partner.field_res_partner_degree__write_date
+msgid "Last Updated on"
+msgstr "Aktualisiert am"
+
+#. module: rental_partner
+#: model_terms:ir.ui.view,arch_db:rental_partner.view_partner_form
+msgid "Name"
+msgstr "Bezeichnung"
+
+#. module: rental_partner
+#: selection:res.partner,type:0
+msgid "Other address"
+msgstr "Andere Adresse"
+
+#. module: rental_partner
+#: model:ir.model,name:rental_partner.model_res_partner_degree
+msgid "Partner Degree"
+msgstr "Akademischer Grad"
+
+#. module: rental_partner
+#: selection:res.partner,type:0
+msgid "Private Address"
+msgstr "Privatadresse"
+
+#. module: rental_partner
+#: selection:res.partner,type:0
+msgid "Shipping address"
+msgstr "Zustellungsadresse"
+
+#. module: rental_partner
+#: model:ir.model.fields,help:rental_partner.field_res_partner__type
+#: model:ir.model.fields,help:rental_partner.field_res_users__type
+msgid "Used by Sales and Purchase Apps to select the relevant address depending on the context."
+msgstr "Wird von den Verkauf und Einkauf Apps benutzt, um je nach Kontext die relevante Adresse zu wählen."
+
+#. module: rental_partner
+#: model_terms:ir.ui.view,arch_db:rental_partner.view_partner_form
+msgid "e.g. MBA"
+msgstr "z.B. MBA"
+
+#. module: rental_partner
+#: model_terms:ir.ui.view,arch_db:rental_partner.view_partner_form
+msgid "e.g. Mr."
+msgstr "z.B. Herr"
+
