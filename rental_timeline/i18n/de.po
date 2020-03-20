@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-20 14:33+0000\n"
-"PO-Revision-Date: 2020-03-20 14:33+0000\n"
+"POT-Creation-Date: 2020-03-20 21:38+0000\n"
+"PO-Revision-Date: 2020-03-20 21:38+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -81,9 +81,19 @@ msgid "Date End"
 msgstr "Enddatum"
 
 #. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__date_end_formated
+msgid "Date End Formated"
+msgstr ""
+
+#. module: rental_timeline
 #: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__date_start
 msgid "Date Start"
 msgstr "Startdatum"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__date_start_formated
+msgid "Date Start Formated"
+msgstr ""
 
 #. module: rental_timeline
 #: selection:product.timeline,type:0
@@ -220,7 +230,7 @@ msgid "Product:"
 msgstr "Produkt:"
 
 #. module: rental_timeline
-#: code:addons/rental_timeline/models/product_timeline.py:151
+#: code:addons/rental_timeline/models/product_timeline.py:168
 #, python-format
 msgid "R: %s"
 msgstr "V: %s"
@@ -334,6 +344,11 @@ msgstr "Gesamttage:"
 #: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__type
 msgid "Type"
 msgstr "Typ"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__type_formated
+msgid "Type Formated"
+msgstr ""
 
 #. module: rental_timeline
 #: model_terms:ir.ui.view,arch_db:rental_timeline.view_product_timeline_timeline

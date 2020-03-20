@@ -1,7 +1,11 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
+import logging
+from datetime import datetime
+
 from odoo import api, fields, models, _
 
+_logger = logging.getLogger(__name__)
 
 class ProductTimeline(models.Model):
     _name = 'product.timeline'
@@ -28,9 +32,17 @@ class ProductTimeline(models.Model):
         require=True,
     )
 
+    date_start_formated = fields.Char(
+        compute='_compute_fields',
+    )
+
     date_end = fields.Datetime(
         'Date End',
         require=True,
+    )
+
+    date_end_formated = fields.Char(
+        compute='_compute_fields',
     )
 
     product_id = fields.Many2one(
@@ -55,6 +67,10 @@ class ProductTimeline(models.Model):
             ('rental', 'Rental'),
             ('reserved', 'Reserved'),
         ],
+    )
+
+    type_formated = fields.Char(
+        compute='_compute_fields',
     )
 
     has_clues = fields.Char(
@@ -145,6 +161,7 @@ class ProductTimeline(models.Model):
     def _compute_fields(self):
         lang = self.env['res.lang'].search([('code', '=', self.env.user.lang)])
         for line in self:
+            date_with_time = False
             if line.res_model == 'sale.order.line':
                 obj = self.env[line.res_model].browse(line.res_id)
                 order_obj = obj.order_id
@@ -167,9 +184,32 @@ class ProductTimeline(models.Model):
                 )
                 line.has_clues = False
 
+                if obj.product_uom == self.env.ref('uom.product_uom_hour'):
+                    date_with_time = True
+
             line.product_name = line.product_id.display_name
             line.warehouse_name = line.warehouse_id.display_name
             line.product_categ_name = line.product_categ_id.display_name
+
+            try:
+                selections = self.fields_get()['type']['selection']
+                selection = [s for s in selections if s[0] == line.type][0]
+                line.type_formated = selection[1]
+            except Exception as e:
+                _logger.exception(e)
+                line.type_formated = str(line.type)
+
+            datetime_format = lang.date_format
+            if date_with_time:
+                datetime_format += " " + time.date_format
+            if isinstance(line.date_start, datetime):
+                line.date_start_formated = line.date_start.strftime(datetime_format)
+            else:
+                line.date_start_formated = str(line.date_start)
+            if isinstance(line.date_end, datetime):
+                line.date_end_formated = line.date_end.strftime(datetime_format)
+            else:
+                line.date_end_formated = str(line.date_end)
 
             line.action_id = self.env.ref('rental_base.action_rental_orders').id
             line.menu_id = self.env.ref('rental_base.menu_rental_root').id
