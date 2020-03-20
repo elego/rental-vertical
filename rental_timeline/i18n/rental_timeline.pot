@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-06 20:53+0000\n"
-"PO-Revision-Date: 2020-03-06 20:53+0000\n"
+"POT-Creation-Date: 2020-03-20 14:33+0000\n"
+"PO-Revision-Date: 2020-03-20 14:33+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -190,8 +190,18 @@ msgid "Product"
 msgstr ""
 
 #. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__product_categ_name
+msgid "Product Categ Name"
+msgstr ""
+
+#. module: rental_timeline
 #: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__product_categ_id
 msgid "Product Category"
+msgstr ""
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__product_name
+msgid "Product Name"
 msgstr ""
 
 #. module: rental_timeline
@@ -210,7 +220,7 @@ msgid "Product:"
 msgstr ""
 
 #. module: rental_timeline
-#: code:addons/rental_timeline/models/product_timeline.py:139
+#: code:addons/rental_timeline/models/product_timeline.py:151
 #, python-format
 msgid "R: %s"
 msgstr ""
@@ -333,6 +343,11 @@ msgstr ""
 #. module: rental_timeline
 #: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__warehouse_id
 msgid "Warehouse"
+msgstr ""
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__warehouse_name
+msgid "Warehouse Name"
 msgstr ""
 
 #. module: rental_timeline
