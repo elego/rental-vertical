@@ -41,11 +41,15 @@ addcol ()
 
 printf "| %-64s | %4s | %4s | %4s |\n" "*module*" "*lines*" "*misses*" "*percent*"
 
+case "$1" in
+  *coverage-report.txt) report="$1"; shift;;
+  *) report=${HOME}/Downloads/coverage-report.txt;;
+esac
 suma=
 sumb=
-for f in rental_* sale_* stock_*; do 
+for f in ${@:-rental_* sale_* stock_*}; do
   if [[ -s $f/__manifest__.py ]]; then 
-    s=$(grep "rental-vertical/${f}/" ${@:- ${HOME}/Downloads/coverage-report.txt} | addcol | grep 'sums:')
+    s=$(grep "rental-vertical/${f}/" ${report} | addcol | grep 'sums:')
     a=$( echo $s | awk '{print $3}')
     b=$( echo $s | awk '{print $4}')
     if [[ -n "$a"  && -n "$b" ]]; then
