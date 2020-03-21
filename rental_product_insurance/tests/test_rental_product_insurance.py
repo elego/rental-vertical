@@ -36,6 +36,17 @@ class TestRentalProductInsurance(RentalStockCommon):
                 'product_uom_qty': 2.0,
             })],
         })
+        self.sale_order = self.env['sale.order'].create({
+            'partner_id': self.partnerA.id,
+            'order_line': [(0, 0, {
+                'product_id': self.productA.id,
+                'name': self.productA.name,
+                'price_unit': 100,
+                'product_uom': self.uom_unit.id,
+                'product_uom_qty': 1,
+            })],
+        })
+
 
     def test_00_rental_product_insurance_type_product(self):
         self.productA.write({
@@ -58,7 +69,14 @@ class TestRentalProductInsurance(RentalStockCommon):
                 self.assertEqual(line.name, "Insurance: Rental of Product A (Day)")
                 check_insurance = True
         self.assertEqual(check_insurance, True)
-        
+
+        # test onchange_insurance_product_id again
+        self.sale_order.order_line.onchange_insurance_product_id()
+        self.assertEqual(
+            self.sale_order.order_line.insurance_type, 'product')
+        self.assertEqual(self.sale_order.order_line.insurance_percent, 20)
+
+       
     def test_01_rental_product_insurance_type_rental(self):
         self.productA.write({
             'insurance_type': 'rental',

@@ -27,6 +27,9 @@ class SaleOrderLine(models.Model):
                 rented_product = self.product_id.rented_product_id
                 self.insurance_type = rented_product.insurance_type
                 self.insurance_percent = rented_product.insurance_percent
+            else:
+                self.insurance_type = self.product_id.insurance_type
+                self.insurance_percent = self.product_id.insurance_percent
 
     def _create_rental_insurance_line(self):
         self.ensure_one()
