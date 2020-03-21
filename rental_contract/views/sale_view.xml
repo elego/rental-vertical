@@ -7,6 +7,7 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="product_contract.view_order_form"/>
         <field name="arch" type="xml">
+            <!-- Hide form fields -->
             <xpath expr="//field[@name='contract_id']" position="attributes">
                 <attribute name="attrs">{'invisible': 1}</attribute>
             </xpath>
@@ -33,6 +34,13 @@
             </xpath>
             <xpath expr="//separator/following-sibling::group[label[@for='auto_renew_interval']]" position="attributes">
                 <attribute name="attrs">{'invisible': 1}</attribute>
+            </xpath>
+            <!-- Hide tree fields -->
+            <xpath expr="//field[@name='order_line']/tree//field[@name='date_start']" position="attributes">
+                <attribute name="attrs">{'column_invisible': 1}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree//field[@name='date_end']" position="attributes">
+                <attribute name="attrs">{'column_invisible': 1}</attribute>
             </xpath>
         </field>
     </record>
