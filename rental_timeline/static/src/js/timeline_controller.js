@@ -14,8 +14,6 @@ odoo.define('rental_timeline.TimelineController', function (require) {
             var title = item.evt.__name;
             var res_model = item.evt.click_res_model;
             var res_id = item.evt.click_res_id;
-            console.log(res_model);
-            console.log(res_id);
             new dialogs.FormViewDialog(this, {
                 res_model: res_model,
                 res_id: parseInt(res_id, 10).toString() === res_id ? parseInt(res_id, 10) : res_id,
