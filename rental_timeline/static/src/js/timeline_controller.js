@@ -7,6 +7,20 @@ odoo.define('rental_timeline.TimelineController', function (require) {
     var TC = require('web_timeline.TimelineController');
 
     var TimelineController = TC.include({
+        _onGroupClick: function (event) {
+            var groupField = this.renderer.last_group_bys[0];
+            return this.do_action({
+                type: 'ir.actions.act_window',
+                res_model: this.renderer.view.fields[groupField].relation,
+                res_id: event.data.item.group,
+                target: 'new',
+                flags: {
+                    mode: 'readonly',
+                },
+                views: [[false, 'form']],
+            });
+        },
+
         _onUpdate: function (event) {
             var self = this;
             this.renderer = event.data.renderer;
@@ -23,7 +37,7 @@ odoo.define('rental_timeline.TimelineController', function (require) {
                 on_saved: function () {
                     self.write_completed();
                 },
-                mode: 'readonly',
+                readonly: true,
             }).open();
         },
 
