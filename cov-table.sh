@@ -64,6 +64,6 @@ for f in ${@:-rental_* sale_* stock_*}; do
 done
 p=$(( ( ${suma} - ${sumb} ) * 100 / ${suma} ))
 
-printf "| %-64s |>. %4d |>. %4d |>. %4d |\n" "*total*" "${suma}" "${sumb}" "$p"
+printf "| %-64s |>. %4s |>. %4s |>. %4s |\n" "*total*" "*${suma}*" "*${sumb}*" "*${p}*"
 
 
