@@ -10,6 +10,10 @@ class ProductTimeline(models.Model):
         related='product_id.instance_state',
     )
 
+    product_instance_state_formated = fields.Char(
+        compute='_compute_fields',
+    )
+
     product_instance_next_service_date = fields.Date(
         related='product_id.instance_next_service_date',
     )
@@ -36,6 +40,14 @@ class ProductTimeline(models.Model):
         for line in self:
             line.product_instance_serial_number_name = line.product_instance_serial_number_id.display_name
             line.product_instance_current_location_name = line.product_instance_current_location_id.display_name
+
+            try:
+                selections = self.fields_get()['product_instance_state']['selection']
+                selection = [s for s in selections if s[0] == line.product_instance_state][0]
+                line.product_instance_state_formated = selection[1]
+            except Exception as e:
+                _logger.exception(e)
+                line.product_instance_state_formated = str(line.product_instance_state)
 
     @api.multi
     @api.constrains('date_start', 'date_end')

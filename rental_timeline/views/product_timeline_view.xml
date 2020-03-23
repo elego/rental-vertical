@@ -15,10 +15,14 @@
                           stack="False"
                           event_open_popup="True"
                           colors="#f0ff00:type == 'reserved'; #33ffec:type == 'rental'; #ffce00:type=='maintenance'; #ff5a00:type == 'repair'; #FFA500:type=='delivery';">
+                    <field name="type" />
+                    <field name="type_formated" />
                     <field name="has_clues" />
                     <field name="redline" />
                     <field name="date_start" readonly="1" widget="date" />
+                    <field name="date_start_formated" readonly="1"/>
                     <field name="date_end" readonly="1" widget="date" />
+                    <field name="date_end_formated" readonly="1" />
                     <field name="partner_id" />
                     <field name="partner_shipping_address" />
                     <field name="currency_id" />
@@ -63,13 +67,13 @@
                                         <td>Order:</td>
                                         <td t-esc="record.order_name" />
                                     </tr>
-                                    <tr t-if="record.date_start">
+                                    <tr t-if="record.date_start_formated">
                                         <td>Start date:</td>
-                                        <td t-esc="record.date_start" />
+                                        <td t-esc="record.date_start_formated" />
                                     </tr>
-                                    <tr t-if="record.date_end">
+                                    <tr t-if="record.date_end_formated">
                                         <td>End date:</td>
-                                        <td t-esc="record.date_end" />
+                                        <td t-esc="record.date_end_formated" />
                                     </tr>
                                     <tr t-if="record.number_of_days">
                                         <td>Total days:</td>
@@ -91,9 +95,9 @@
                                         <td>Warehouse:</td>
                                         <td t-esc="record.warehouse_name" />
                                     </tr>
-                                    <tr t-if="record.type">
+                                    <tr t-if="record.type_formated">
                                         <td>Type:</td>
-                                        <td t-esc="record.type" />
+                                        <td t-esc="record.type_formated" />
                                     </tr>
                                     <tr t-if="record.amount">
                                         <td>Price:</td>

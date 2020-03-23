@@ -19,7 +19,7 @@ class ProductTimeline(models.Model):
         compute='_compute_fields',
     )
 
-    freight_forwarder_name = fields.Many2one(
+    freight_forwarder_name = fields.Char(
         compute='_compute_fields',
     )
 

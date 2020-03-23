@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-06 19:21+0000\n"
-"PO-Revision-Date: 2020-03-06 19:21+0000\n"
+"POT-Creation-Date: 2020-03-21 10:11+0000\n"
+"PO-Revision-Date: 2020-03-21 10:11+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -36,6 +36,21 @@ msgid "Next Service:"
 msgstr "Nächster Service:"
 
 #. module: rental_timeline_product_instance
+#: model:ir.model.fields,field_description:rental_timeline_product_instance.field_product_timeline__product_instance_current_location_name
+msgid "Product Instance Current Location Name"
+msgstr ""
+
+#. module: rental_timeline_product_instance
+#: model:ir.model.fields,field_description:rental_timeline_product_instance.field_product_timeline__product_instance_serial_number_name
+msgid "Product Instance Serial Number Name"
+msgstr ""
+
+#. module: rental_timeline_product_instance
+#: model:ir.model.fields,field_description:rental_timeline_product_instance.field_product_timeline__product_instance_state_formated
+msgid "Product Instance State Formated"
+msgstr ""
+
+#. module: rental_timeline_product_instance
 #: model:ir.model,name:rental_timeline_product_instance.model_product_timeline
 msgid "Product Timeline"
 msgstr "Produkt-Zeitachse"
@@ -61,10 +76,8 @@ msgid "State:"
 msgstr "Status:"
 
 #. module: rental_timeline_product_instance
-#: code:addons/rental_timeline_product_instance/models/product_timeline.py:40
+#: code:addons/rental_timeline_product_instance/models/product_timeline.py:67
 #, python-format
 msgid "You can not have 2 timelines that overlaps on the same day."
 msgstr "Aufträge dürfen in der Zeitachse zeitlich nicht überlappen."
-
-
 
