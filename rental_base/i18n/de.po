@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-18 13:50+0000\n"
-"PO-Revision-Date: 2020-03-18 13:50+0000\n"
+"POT-Creation-Date: 2020-03-21 11:14+0000\n"
+"PO-Revision-Date: 2020-03-21 11:14+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -104,10 +104,20 @@ msgid "Define a new transfer"
 msgstr "Neue Lagerbewegung erstellen"
 
 #. module: rental_base
+#: model_terms:ir.ui.view,arch_db:rental_base.view_order_form
+msgid "Delivered Rental Quantity"
+msgstr "Gelieferte Menge"
+
+#. module: rental_base
 #: model:ir.ui.menu,name:rental_base.menu_customer_delivery
 #: model:ir.ui.menu,name:rental_base.menu_vendor_delivery
 msgid "Delivery"
 msgstr "Lieferungen"
+
+#. module: rental_base
+#: model_terms:ir.ui.view,arch_db:rental_base.view_order_form
+msgid "Description"
+msgstr "Beschreibung"
 
 #. module: rental_base
 #: model_terms:ir.ui.view,arch_db:rental_base.res_config_settings_view_form
@@ -172,6 +182,11 @@ msgid "Incoming Deliveries"
 msgstr "Eingehende Lieferungen"
 
 #. module: rental_base
+#: model_terms:ir.ui.view,arch_db:rental_base.view_order_form
+msgid "Invoiced Rental Time"
+msgstr "Abgerechnete Zeit"
+
+#. module: rental_base
 #: model:ir.ui.menu,name:rental_base.menu_customer_invoices
 #: model:ir.ui.menu,name:rental_base.menu_vendor_invoices
 msgid "Invoices"
@@ -207,6 +222,16 @@ msgstr "Chancen"
 #: model_terms:ir.ui.view,arch_db:rental_base.view_order_form
 msgid "Order Information"
 msgstr "Auftragsinformation"
+
+#. module: rental_base
+#: model_terms:ir.ui.view,arch_db:rental_base.view_order_form
+msgid "Order Reference"
+msgstr "Bestellnummer"
+
+#. module: rental_base
+#: model_terms:ir.ui.view,arch_db:rental_base.view_order_form
+msgid "Order Type"
+msgstr "Auftragstyp"
 
 #. module: rental_base
 #: model_terms:ir.ui.view,arch_db:rental_base.view_order_form
