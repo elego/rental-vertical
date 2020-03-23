@@ -1,9 +1,7 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 from odoo import models, fields, api, _
-import odoo.addons.decimal_precision as dp
 from odoo.exceptions import ValidationError
 
-import math
 
 class ProductSetAdd(models.TransientModel):
     _inherit = 'product.set.add'
