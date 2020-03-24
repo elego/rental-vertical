@@ -41,13 +41,13 @@ msgid "Freight forwarder:"
 msgstr "Spediteur:"
 
 #. module: rental_timeline_transport
-#: code:addons/rental_timeline_transport/models/purchase.py:54
+#: code:addons/rental_timeline_transport/models/purchase.py:57
 #, python-format
 msgid "No found timelines."
 msgstr "Keine Zeiteinträge gefunden."
 
 #. module: rental_timeline_transport
-#: code:addons/rental_timeline_transport/models/purchase.py:62
+#: code:addons/rental_timeline_transport/models/purchase.py:65
 #, python-format
 msgid "No found transport product."
 msgstr "Konnte kein Transportprodukt finden."

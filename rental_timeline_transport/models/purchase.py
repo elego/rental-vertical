@@ -1,5 +1,8 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
+import functools
+import operator
+
 from odoo import api, fields, models, exceptions, _
 
 
@@ -83,6 +86,15 @@ class PurchaseOrderLine(models.Model):
             reset_lines._reset_timeline(vals)
         return res
 
+    @api.multi
+    def unlink(self):
+        domain = [
+            ('res_model', '=', self._name),
+            ('res_id', 'in', self.ids),
+        ]
+        self.env['product.timeline'].search(domain).unlink()
+        return super(PurchaseOrderLine, self).unlink()
+
 
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
@@ -110,3 +122,14 @@ class PurchaseOrder(models.Model):
                 line.timeline_ids.unlink()
         res = super(PurchaseOrder, self).action_cancel()
         return res
+
+    @api.multi
+    def unlink(self):
+        ids = functools.reduce(operator.iconcat, [i.order_line.ids for i in self], [])
+        if ids:
+            domain = [
+                ('res_model', '=', 'purchase.order.line'),
+                ('res_id', 'in', ids),
+            ]
+            self.env['product.timeline'].search(domain).unlink()
+        return super(PurchaseOrder, self).unlink()
