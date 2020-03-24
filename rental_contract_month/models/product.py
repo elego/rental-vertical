@@ -14,4 +14,4 @@ class ProductProduct(models.Model):
             if vals.get('rental_of_month', False):
                 if p.product_rental_month_id:
                     p.product_rental_month_id.is_contract = True
-                    p.product_rental_month_id.contract_template_id = template.id
+                    p.product_rental_month_id.property_contract_template_id = template.id
