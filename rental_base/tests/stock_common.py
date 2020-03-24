@@ -44,6 +44,7 @@ class RentalStockCommon(common.TransactionCase):
         rental_service.write({
             'uom_id': self.uom_day.id,
             'uom_po_id': self.uom_day.id,
+            'income_analytic_account_id': product.income_analytic_account_id.id,
             'list_price': 100})
 
         return rental_service
