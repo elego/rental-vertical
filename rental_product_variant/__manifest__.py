@@ -17,7 +17,6 @@ Additional fields:
  - rental_order_ids [One2many]: sale.rental -- rented_product_id -- Rental Orders
  - stock_move_ids [One2many]: stock.move -- product_id -- Stock Moves
  - additional_info [Html]: arbitrary additional infomation
- - dimension [Char]: dimension
 
 Additional fields configured and added by product category:
  - Show Vehicle Identification Number -> vehicle_number [Char]: vehicle identification number

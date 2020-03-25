@@ -11,10 +11,18 @@ class TestRentalProductInsurance(RentalStockCommon):
     def setUp(self):
         super().setUp()
 
+        self.analytic_account = self.env['account.analytic.account'].create({
+            'name': 'Analytic Account A',
+            'code': '100000',
+        })
+
         # Product Created A
         ProductObj = self.env['product.product']
-        self.productA = ProductObj.create(
-            {'name': 'Product A', 'type': 'product'})
+        self.productA = ProductObj.create({
+            'name': 'Product A',
+            'type': 'product',
+            'income_analytic_account_id': self.analytic_account.id,
+        })
         # Rental Service (Day) of Product A
         self.rental_service_day = self._create_rental_service_day(
             self.productA)
@@ -24,18 +32,29 @@ class TestRentalProductInsurance(RentalStockCommon):
         self.date_end = self.date_start + relativedelta(days=1)
         self.rental_order = self.env['sale.order'].create({
             'partner_id': self.partnerA.id,
+        })
+        self.rental_order_line = self.env['sale.order.line'].new({
+            'product_id': self.rental_service_day.id,
+            'name': self.rental_service_day.name,
+            'rental_type': 'new_rental',
+            'rental_qty': 1.0,
+            'price_unit': 100,
+            'product_uom': self.rental_service_day.uom_id.id,
+            'start_date': self.date_start,
+            'end_date': self.date_end,
+            'product_uom_qty': 2.0,
+        })
+        self.sale_order = self.env['sale.order'].create({
+            'partner_id': self.partnerA.id,
             'order_line': [(0, 0, {
-                'product_id': self.rental_service_day.id,
-                'name': self.rental_service_day.name,
-                'rental_type': 'new_rental',
-                'rental_qty': 1.0,
+                'product_id': self.productA.id,
+                'name': self.productA.name,
                 'price_unit': 100,
-                'product_uom': self.rental_service_day.uom_id.id,
-                'start_date': self.date_start,
-                'end_date': self.date_end,
-                'product_uom_qty': 2.0,
+                'product_uom': self.uom_unit.id,
+                'product_uom_qty': 1,
             })],
         })
+
 
     def test_00_rental_product_insurance_type_product(self):
         self.productA.write({
@@ -44,21 +63,35 @@ class TestRentalProductInsurance(RentalStockCommon):
             'standard_price': 1000,
         })
         # test onchange_insurance_product_id
-        self.rental_order.order_line.onchange_insurance_product_id()
+        self.rental_order_line.onchange_insurance_product_id()
         self.assertEqual(
-            self.rental_order.order_line.insurance_type, 'product')
-        self.assertEqual(self.rental_order.order_line.insurance_percent, 20)
-
-        self.rental_order.action_confirm()
+            self.rental_order_line.insurance_type, 'product')
+        self.assertEqual(self.rental_order_line.insurance_percent, 20)
+        vals = self.rental_order_line._convert_to_write(self.rental_order_line._cache)
+        vals['order_id'] = self.rental_order.id
+        self.rental_order_line  = self.env['sale.order.line'].create(vals)
         self.assertEqual(len(self.rental_order.order_line), 2)
         check_insurance = False
         for line in self.rental_order.order_line:
             if line.product_id == self.product_insurance:
                 self.assertEqual(line.price_unit, 200)
+                self.assertEqual(
+                    line.insurance_origin_line_id.id,
+                    self.rental_order_line.id
+                )
                 self.assertEqual(line.name, "Insurance: Rental of Product A (Day)")
+                invoice_line_vals = line._prepare_invoice_line(1)
+                self.assertEqual(invoice_line_vals['analytic_account_id'], self.analytic_account.id)
                 check_insurance = True
         self.assertEqual(check_insurance, True)
-        
+
+        # test onchange_insurance_product_id again
+        self.sale_order.order_line.onchange_insurance_product_id()
+        self.assertEqual(
+            self.sale_order.order_line.insurance_type, 'product')
+        self.assertEqual(self.sale_order.order_line.insurance_percent, 20)
+
+       
     def test_01_rental_product_insurance_type_rental(self):
         self.productA.write({
             'insurance_type': 'rental',
@@ -66,17 +99,25 @@ class TestRentalProductInsurance(RentalStockCommon):
             'standard_price': 1000,
         })
         # test onchange_insurance_product_id
-        self.rental_order.order_line.onchange_insurance_product_id()
+        self.rental_order_line.onchange_insurance_product_id()
         self.assertEqual(
-            self.rental_order.order_line.insurance_type, 'rental')
-        self.assertEqual(self.rental_order.order_line.insurance_percent, 20)
+            self.rental_order_line.insurance_type, 'rental')
 
-        self.rental_order.action_confirm()
+        self.assertEqual(self.rental_order_line.insurance_percent, 20)
+        vals = self.rental_order_line._convert_to_write(
+            self.rental_order_line._cache)
+        vals['order_id'] = self.rental_order.id
+
+        self.rental_order_line  = self.env['sale.order.line'].create(vals)
         self.assertEqual(len(self.rental_order.order_line), 2)
         check_insurance = False
         for line in self.rental_order.order_line:
             if line.product_id == self.product_insurance:
                 self.assertEqual(line.price_unit, 40)
-                check_insurance = True
+                self.assertEqual(
+                    line.insurance_origin_line_id.id,
+                    self.rental_order_line.id
+                )
                 self.assertEqual(line.name, "Insurance: Rental of Product A (Day)")
+                check_insurance = True
         self.assertEqual(check_insurance, True)

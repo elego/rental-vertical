@@ -77,11 +77,6 @@ msgid "Delivery"
 msgstr "Lieferung"
 
 #. module: rental_product_variant
-#: model:ir.model.fields,field_description:rental_product_variant.field_product_product__dimension
-msgid "Dimension"
-msgstr "Maße"
-
-#. module: rental_product_variant
 #: model:ir.model.fields,field_description:rental_product_variant.field_fleet_type__display_name
 #: model:ir.model.fields,field_description:rental_product_variant.field_product_manufacturer__display_name
 #: model:ir.model.fields,field_description:rental_product_variant.field_product_manufacturer_type__display_name

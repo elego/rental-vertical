@@ -34,6 +34,8 @@ Otherwise you can not deal with rental orders.
         'account',
         'crm',
         'product_analytic',
+        'product_dimension',
+        'prt_product_tweaks',
         'purchase',
         'sale',
         'sale_order_type',

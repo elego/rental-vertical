@@ -82,6 +82,12 @@ class ProductProduct(models.Model):
         "Current Kilometers",
     )
 
+    instance_condition_in_tree = fields.Char(
+        "Current Kilmeter / Hours",
+        compute="_compute_instance_condition_in_tree",
+        store="True",
+    )
+
     instance_condition_date = fields.Date(
         "Condition Date",
     )
@@ -89,6 +95,18 @@ class ProductProduct(models.Model):
     instance_next_service_date = fields.Date(
         "Next Service",
     )
+
+    @api.multi
+    @api.depends('instance_condition_hour', 'instance_condition_km')
+    def _compute_instance_condition_in_tree(self):
+        for record in self:
+            record.instance_condition_in_tree = ''
+            if record.show_instance_condition_type == 'hour':
+                record.instance_condition_in_tree = \
+                    record.instance_condition_hour
+            elif record.show_instance_condition_type == 'km':
+                record.instance_condition_in_tree = \
+                    record.instance_condition_km
 
     def _compute_instance_state(self):
         timeline_obj = self.env['product.timeline']

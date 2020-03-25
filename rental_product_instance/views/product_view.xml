@@ -71,7 +71,7 @@
                             <field name="instance_condition_date" class="oe_inline oe_no_button" />
                         </div>
                         <field name="instance_next_service_date" />
-                        <field name="instance_serial_number_id" />
+                        <field name="instance_serial_number_id" context="{'default_product_id': id}"/>
                         <field name="instance_current_location_id" />
                     </group>
                 </xpath>

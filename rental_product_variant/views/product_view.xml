@@ -47,8 +47,7 @@
                     <field name="fleet_type_id" />
                     <field name="categ_id" />
                 </xpath>
-                <xpath expr="//field[@name='default_code']" position="after">
-                    <field name="further_ref" />
+                <xpath expr="//field[@name='barcode']" position="before">
                     <field name="manu_id" />
                     <field name="manu_type_id" domain="[('manufacturer_id','=',manu_id)]" />
                     <field name="show_vehicle_number" invisible="1" />
@@ -61,12 +60,6 @@
                 </xpath>
                 <xpath expr="//field[@name='barcode']" position="after">
                     <field name="qr_code" />
-                </xpath>
-                <xpath expr="//div[field[@name='weight']]" position="after">
-                    <label for="dimension" />
-                    <div class="o_row">
-                        <field name="dimension" placeholder="e.g. 10 m x 10 m x 10 m" />
-                    </div>
                 </xpath>
                 <xpath expr="//field[@name='description']/.." position="replace" />
                 <xpath expr="//notebook" position="inside">
@@ -104,6 +97,7 @@
             <field name="inherit_id" ref="product.product_search_form_view" />
             <field name="arch" type="xml">
                 <search position="inside">
+                    <field name="license_plate" />
                     <field name="manu_id" />
                     <field name="manu_type_id" />
                 </search>

@@ -18,6 +18,9 @@ class SaleOrderLine(models.Model):
     insurance_percent = fields.Float(
         'Insurance Percent'
     )
+    insurance_origin_line_id = fields.Many2one(
+        'sale.order.line',
+    )
 
     @api.onchange('product_id')
     def onchange_insurance_product_id(self):
@@ -27,6 +30,23 @@ class SaleOrderLine(models.Model):
                 rented_product = self.product_id.rented_product_id
                 self.insurance_type = rented_product.insurance_type
                 self.insurance_percent = rented_product.insurance_percent
+            else:
+                self.insurance_type = self.product_id.insurance_type
+                self.insurance_percent = self.product_id.insurance_percent
+
+    def _prepare_rental_insurance_line(self):
+        self.ensure_one()
+        insurance_product = self.env.ref(
+            'rental_product_insurance.product_product_insurance')
+        vals = {
+            'name': self.name,
+            'product_uom_qty': 1,
+            'product_uom': self.env.ref('uom.product_uom_unit').id,
+            'product_id': insurance_product.id,
+            'insurance_origin_line_id': self.id,
+            'order_id': self.order_id.id,
+        }
+        return vals
 
     def _create_rental_insurance_line(self):
         self.ensure_one()
@@ -37,15 +57,7 @@ class SaleOrderLine(models.Model):
             price_unit = price_unit * percent / 100
         elif self.insurance_type == 'rental':
             price_unit = self.price_subtotal * percent / 100
-        insurance_product = self.env.ref(
-            'rental_product_insurance.product_product_insurance')
-        vals = {
-            'name': self.name,
-            'product_uom_qty': 1,
-            'product_uom': self.env.ref('uom.product_uom_unit').id,
-            'product_id': insurance_product.id,
-            'order_id': self.order_id.id,
-        }
+        vals = self._prepare_rental_insurance_line()
         insurance_line = self.env['sale.order.line'].create(vals)
         insurance_line.product_id_change()
         insurance_line.write({
@@ -54,20 +66,18 @@ class SaleOrderLine(models.Model):
         })
         return insurance_line
 
-
-class SaleOrder(models.Model):
-    _inherit = 'sale.order'
-
     @api.multi
-    def create_insurcance_cost(self):
-        for order in self:
-            order_line_vals = []
-            for line in order.order_line:
-                if line.insurance_type != 'none':
-                    line._create_rental_insurance_line()
+    def _prepare_invoice_line(self, qty):
+        res = super(SaleOrderLine, self)._prepare_invoice_line(qty)
+        if self.insurance_origin_line_id:
+            if self.insurance_origin_line_id.product_id.income_analytic_account_id:
+                rental_product = self.insurance_origin_line_id.product_id
+                res['analytic_account_id'] = rental_product.income_analytic_account_id.id
+        return res
 
-    @api.multi
-    def action_confirm(self):
-        self.create_insurcance_cost()
-        res = super(SaleOrder, self).action_confirm()
+    @api.model
+    def create(self, vals):
+        res = super().create(vals)
+        if res.insurance_type != 'none':
+            res._create_rental_insurance_line()
         return res
