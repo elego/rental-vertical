@@ -18,6 +18,7 @@
         'data/project_data.xml',
         'views/project_view.xml',
         'views/product_view.xml',
+        'views/purchase_views.xml',
         'views/repair_view.xml',
     ],
     'demo': [

@@ -12,6 +12,21 @@
         </field>
     </record>
 
+    <record id="view_task_tree2_helpdesk" model="ir.ui.view">
+        <field name="name">project.task.tree</field>
+        <field name="model">project.task</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="project.view_task_tree2" />
+        <field name="arch" type="xml">
+            <field name="project_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <tree position="inside">
+                <field name="tag_ids" widget="many2many_tags" />
+            </tree>
+        </field>
+    </record>
+
     <record id="view_task_form2" model="ir.ui.view">
         <field name="name">view.project.task.form</field>
         <field name="model">project.task</field>
@@ -45,6 +60,31 @@
         </field>
     </record>
 
+    <record id="view_task_form2_helpdesk" model="ir.ui.view">
+        <field name="name">view.project.task.form</field>
+        <field name="model">project.task</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="view_task_form2" />
+        <field name="arch" type="xml">
+            <field name="project_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_task_kanban" model="ir.ui.view">
+        <field name="name">project.task.kanban</field>
+        <field name="model">project.task</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="project.view_task_kanban" />
+        <field name="arch" type="xml">
+            <t t-if="record.email_from.raw_value" position="replace">
+                <t t-if="record.partner_id"><span><field name="partner_id" /></span></t>
+                <t t-if="record.product_id"><span><field name="product_id" /></span></t>
+            </t>
+        </field>
+    </record>
+
     <record id="action_project_helpdesk_tasks" model="ir.actions.act_window">
         <field name="name">Helpdesk Tickets</field>
         <field name="res_model">project.task</field>
@@ -60,6 +100,27 @@
                 Chat in real time or by email to collaborate efficiently.
             </p>
         </field>
+    </record>
+
+    <record id="kanban_view_helpdesk" model="ir.actions.act_window.view">
+        <field name="sequence" eval="0" />
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="view_task_kanban" />
+        <field name="act_window_id" ref="action_project_helpdesk_tasks" />
+    </record>
+
+    <record id="tree_view_helpdesk" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1" />
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_task_tree2_helpdesk" />
+        <field name="act_window_id" ref="action_project_helpdesk_tasks" />
+    </record>
+
+    <record id="form_view_helpdesk" model="ir.actions.act_window.view">
+        <field name="sequence" eval="2" />
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_task_form2_helpdesk" />
+        <field name="act_window_id" ref="action_project_helpdesk_tasks" />
     </record>
 
     <menuitem name="Tickets"
