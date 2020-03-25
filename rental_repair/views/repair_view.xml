@@ -7,6 +7,9 @@
             <field name="model">repair.order</field>
             <field name="inherit_id" ref="repair.view_repair_order_form" />
             <field name="arch" type="xml">
+                <xpath expr="//group[field[@name='location_id']]" position="inside">
+                    <field name="project_task_id" readonly="1" attrs="{'invisible': [('project_task_id','=',False)]}" />
+                </xpath>
                 <xpath expr="//field[@name='pricelist_id']" position="after">
                     <field name="income_analytic_account_id" />
                     <field name="expense_analytic_account_id" />
