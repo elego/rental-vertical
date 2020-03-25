@@ -94,6 +94,16 @@ class RepairOrder(models.Model):
         return res
 
     @api.multi
+    def unlink(self):
+        res = super(RepairOrder, self).unlink()
+        domain = [
+            ('res_model', '=', self._name),
+            ('res_id', 'in', self.ids),
+        ]
+        self.env['product.timeline'].search(domain).unlink()
+        return res
+
+    @api.multi
     def action_repair_cancel(self):
         """
             delete all time lines

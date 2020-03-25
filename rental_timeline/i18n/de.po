@@ -151,13 +151,13 @@ msgid "Name"
 msgstr "Bezeichnung"
 
 #. module: rental_timeline
-#: code:addons/rental_timeline/models/sale.py:67
+#: code:addons/rental_timeline/models/sale.py:70
 #, python-format
 msgid "No found rented product."
 msgstr "Konnte kein Vermietprodukt finden"
 
 #. module: rental_timeline
-#: code:addons/rental_timeline/models/sale.py:52
+#: code:addons/rental_timeline/models/sale.py:55
 #, python-format
 msgid "No found timelines."
 msgstr "Keine Zeiteinträge gefunden."
