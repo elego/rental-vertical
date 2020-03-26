@@ -19,16 +19,16 @@
                     icon="fa-ticket">
                     <field string="Tickets" name="task_count" widget="statinfo"/>
                 </button>
+                <button class="oe_stat_button"
+                    name="%(rental_repair.action_view_repair_order)d"
+                    type="action" icon="fa-gavel">
+                    <field name="repair_count" widget="statinfo" />
+                </button>
                 <button class="oe_stat_button" name="action_view_repair_history"
                     type="object" icon="fa-wrench">
                     <div class="o_field_widget o_stat_info">
                         <span class="o_stat_text">Components</span>
                     </div>
-                </button>
-                <button class="oe_stat_button"
-                    name="%(rental_repair.action_view_repair_order)d"
-                    type="action" icon="fa-gavel">
-                    <field name="repair_count" widget="statinfo" />
                 </button>
             </button>
         </field>

@@ -53,6 +53,17 @@ class ProductProduct(models.Model):
         return list(set([l.order_id.id for l in sols if l.order_id.type_id == type_id]))
 
     @api.multi
+    def _get_purchase_order_ids(self):
+        self.ensure_one()
+        if self.expense_analytic_account_id:
+            domain = ['|', ('product_id', '=', self.id),
+                  ('account_analytic_id', '=', self.expense_analytic_account_id.id)]
+        else:
+            domain = [('product_id', '=', self.id)]
+        pols = self.env['purchase.order.line'].search(domain)
+        return list(set([l.order_id.id for l in pols]))
+
+    @api.multi
     def action_view_sale_order(self):
         self.ensure_one()
         type_id = self.env.ref('sale_order_type.normal_sale_type')
@@ -79,8 +90,7 @@ class ProductProduct(models.Model):
     @api.multi
     def action_view_all_purchase_order(self):
         self.ensure_one()
-        pols = self._get_related_records(model='purchase.order.line')
-        record_ids = list(set([l.order_id.id for l in pols]))
+        record_ids = self._get_purchase_order_ids()
         tree_view_id = self.env.ref("purchase.purchase_order_tree").id
         form_view_id = self.env.ref("purchase.purchase_order_form").id
         return {
@@ -100,7 +110,7 @@ class ProductProduct(models.Model):
         invls = self._get_related_records(model='account.invoice.line')
         record_ids = list(set([l.invoice_id.id for l in invls]))
         tree_view_id = self.env.ref("account.invoice_tree").id
-        form_view_id = self.env.ref("purchase.invoice_form").id
+        form_view_id = self.env.ref("account.invoice_form").id
         return {
             'type': 'ir.actions.act_window',
             'name': _('All Invoices'),
@@ -140,8 +150,7 @@ class ProductProduct(models.Model):
     @api.multi
     def _compute_po_count(self):
         for rec in self:
-            rec.po_count = len(rec._get_related_records(
-                model='purchase.order.line'))
+            rec.po_count = len(rec._get_purchase_order_ids())
 
 
 class ProductManufacturer(models.Model):

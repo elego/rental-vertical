@@ -50,16 +50,17 @@ class ProductProduct(models.Model):
             ('project_id', '=', helpdesk.id)]).ids
         tree_view_id = self.env.ref('rental_repair.view_project_task_tree').id
         form_view_id = self.env.ref('project.view_task_form2').id
+        kanban_view_id = self.env.ref('project.view_task_kanban').id
         action_context = {
             'default_product_id': self.id,
             'default_project_id': helpdesk.id,
         }
         return {
             'type': 'ir.actions.act_window',
-            'name': _('All Maintenance Orders'),
+            'name': _('Tickets'),
             'target': 'current',
-            'view_mode': "tree,form",
-            'view_ids': [tree_view_id, form_view_id],
+            'view_mode': 'kanban,tree,form',
+            'view_ids': [kanban_view_id, tree_view_id, form_view_id],
             'res_model': res_model,
             'context': action_context,
             'domain': "[('id','in',[" + ','.join(map(str, record_ids)) + "])]",
