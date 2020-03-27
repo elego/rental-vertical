@@ -203,10 +203,10 @@
         parent="menu_rental_root"
         sequence="25" />
         <!--TODO add new action -->
-        <menuitem name="Product TCO"
+        <menuitem name="Total Cost of Ownership"
             id="menu_product_tco"
             parent="menu_reporting"
-            action="account.action_vendor_bill_template"
+            action="mis_builder.mis_report_instance_view_action"
             sequence="0" />
 
 
@@ -226,4 +226,18 @@
                 action="sale_rental.sale_rental_action"
                 groups="base.group_no_one"
                 sequence="100" />
+        <menuitem name="MIS Reporting"
+            id="mis_rental_report_conf_menu"
+            parent="menu_config"
+            sequence="10"/>
+            <menuitem name="MIS Report Templates"
+                id="mis_rental_report_view_menu"
+                parent="mis_rental_report_conf_menu"
+                action="mis_builder.mis_report_view_action"
+                sequence="0"/>
+            <menuitem name="MIS Report Styles"
+                id="mis_rental_report_style_view_menu"
+                parent="mis_rental_report_conf_menu"
+                action="mis_builder.mis_report_style_view_action"
+                sequence="1"/>
 </odoo>

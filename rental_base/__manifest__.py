@@ -43,6 +43,7 @@ Otherwise you can not deal with rental orders.
         'sale_start_end_dates',
         'sale_stock',
         'repair',
+        'mis_builder',
     ],
     'data': [
         'data/ir_sequence_data.xml',

@@ -95,6 +95,14 @@ class ProductProduct(models.Model):
     instance_next_service_date = fields.Date(
         "Next Service",
     )
+    real_sale_price = fields.Float(string='Real Sale Price',
+        help='This is the price at which the product instance was actually sold.')
+    real_total_kilometers = fields.Float(string='Real Total Kilometers',
+        help='This is the mileage the product instance had on sale.')
+    real_total_hours = fields.Float(string='Real Total Hours',
+        help='These are the total operating hours that the product instance had on sale.')
+    real_total_rental_time = fields.Float(string='Real Total Rental Time',
+        help='This is the total rental time for this product instance.')
 
     @api.multi
     @api.depends('instance_condition_hour', 'instance_condition_km')
