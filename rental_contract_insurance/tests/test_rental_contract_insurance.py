@@ -62,7 +62,7 @@ class TestRentalContractInsurance(RentalStockCommon):
         line.rental_qty_number_of_days_change()
         line.product_uom_change()
 
-    def test_00_rental_contract_instance(self):
+    def test_00_rental_contract_insurance(self):
         # add item from pricelist
         line = self.env['sale.order.line'].with_context({
             'type_id': self.rental_sale_type.id,
@@ -93,3 +93,18 @@ class TestRentalContractInsurance(RentalStockCommon):
                 self.assertEqual(invoice_line_vals['analytic_account_id'], self.analytic_account.id)
                 check_insurance_line = True
         self.assertTrue(check_insurance_line, 'No found expected insurance line')
+
+    def test_01_rental_contract_insurance_day(self):
+        # add item from pricelist
+        line = self.env['sale.order.line'].with_context({
+            'type_id': self.rental_sale_type.id,
+        }).new({
+            'display_product_id': self.productA.id,
+            'start_date': self.today,
+            'end_date': self.date_three_month_later,
+        })
+        self._run_sol_onchange_display_product_id(line)
+        line.onchange_insurance_product_id()
+        vals = line._convert_to_write(line._cache)
+        vals['order_id'] = self.rental_order.id
+        line  = self.env['sale.order.line'].create(vals)

@@ -45,6 +45,8 @@ class SaleOrderLine(models.Model):
             'product_id': insurance_product.id,
             'insurance_origin_line_id': self.id,
             'order_id': self.order_id.id,
+            'start_date': self.start_date,
+            'end_date': self.end_date,
         }
         return vals
 
