@@ -26,7 +26,7 @@ msgid "After Repair"
 msgstr "Nach Reparatur"
 
 #. module: rental_repair
-#: code:addons/rental_repair/models/product.py:41
+#: code:addons/rental_repair/models/product.py:59
 #, python-format
 msgid "All Maintenance Orders"
 msgstr "Alle Wartungsaufträge"
@@ -57,7 +57,7 @@ msgid "Click <i>Create</i> to start a new ticket."
 msgstr "Click <i>Anlegen</i> um ein neues Ticket zu erstellen."
 
 #. module: rental_repair
-#: code:addons/rental_repair/models/product.py:61
+#: code:addons/rental_repair/models/product.py:79
 #, python-format
 msgid "Components"
 msgstr "Komponenten"
@@ -133,8 +133,8 @@ msgstr "In Bearbeitung"
 #. module: rental_repair
 #: model_terms:ir.actions.act_window,help:rental_repair.action_repair_quotation_tree
 msgid "In a repair order, you can detail the components you remove,\n"
-"                add or replace and record the time you spent on the different\n"
-"                operations."
+"            add or replace and record the time you spent on the different\n"
+"            operations."
 msgstr "In einem Reparaturauftrag können Sie die Komponenten, die Sie entfernen, hinzufügen oder ersetzen, einzeln aufführen und die Zeit, die Sie für die verschiedenen Vorgänge gebraucht haben, aufzeichnen."
 
 #. module: rental_repair
@@ -280,8 +280,8 @@ msgstr "Aufgaben"
 #. module: rental_repair
 #: model_terms:ir.actions.act_window,help:rental_repair.action_repair_quotation_tree
 msgid "The repair order uses the warranty date on the Serial Number in\n"
-"                order to know if whether the repair should be invoiced to the\n"
-"                customer or not."
+"            order to know if whether the repair should be invoiced to the\n"
+"            customer or not."
 msgstr "Der Reparaturauftrag verwendet das Garantiedatum auf der Seriennummer, um festzustellen, ob die Reparatur dem Kunden in Rechnung gestellt werden soll oder nicht."
 
 #. module: rental_repair

@@ -8,10 +8,21 @@ class RepairLine(models.Model):
 
     expense_analytic_tag_ids = fields.Many2many(
         'account.analytic.tag',
-        string='Expense Analytic Tags',
-        domain=[('active_analytic_distribution', '=', False)])
-    analytic_cost = fields.Float('Cost')
-    date_end = fields.Date("Date Finished", related="repair_id.date_end")
+        string = 'Expense Analytic Tags',
+        domain = [
+            ('active_analytic_distribution', '=', False),
+        ],
+    )
+
+    analytic_cost = fields.Float(
+        'Cost',
+    )
+
+    date_end = fields.Date(
+        "Date Finished",
+        related = "repair_id.date_end",
+    )
+
 
     @api.onchange('repair_id', 'product_id', 'product_uom_qty')
     def onchange_product_id(self):
@@ -19,14 +30,22 @@ class RepairLine(models.Model):
         if self.product_id:
             self.analytic_cost = self.product_id.standard_price
 
+
 class RepairFee(models.Model):
     _inherit = 'repair.fee'
 
     expense_analytic_tag_ids = fields.Many2many(
         'account.analytic.tag',
-        string='Expense Analytic Tags',
-        domain=[('active_analytic_distribution', '=', False)])
-    analytic_cost = fields.Float('Cost')
+        string = 'Expense Analytic Tags',
+        domain = [
+            ('active_analytic_distribution', '=', False),
+        ],
+    )
+
+    analytic_cost = fields.Float(
+        'Cost',
+    )
+
 
     @api.onchange('repair_id', 'product_id', 'product_uom_qty')
     def onchange_product_id(self):
@@ -34,33 +53,65 @@ class RepairFee(models.Model):
         if self.product_id:
             self.analytic_cost = self.product_id.standard_price
 
+
 class RepairOrder(models.Model):
     _inherit = 'repair.order'
 
-    project_task_id = fields.Many2one('project.task', 'Ticket', ondelete="set null")
+    project_task_id = fields.Many2one(
+        'project.task',
+        'Ticket',
+        ondelete = "set null",
+    )
 
     income_analytic_account_id = fields.Many2one(
-        'account.analytic.account', string='Income Analytic Account',
-        company_dependent=True)
-    expense_analytic_account_id = fields.Many2one(
-        'account.analytic.account', string='Expense Analytic Account',
-        company_dependent=True)
-    date_start = fields.Date("Planned Date Start", default=fields.Date.today)
-    date_deadline = fields.Date("Deadline")
-    date_end = fields.Date("Date Finished")
+        'account.analytic.account',
+        string = 'Income Analytic Account',
+        company_dependent = True,
+    )
 
-    operations = fields.One2many(states={
-        'draft': [('readonly', False)],
-        'confirmed': [('readonly', False)],
-        'under_repair': [('readonly', False)]})
-    fees_lines = fields.One2many(states={
-        'draft': [('readonly', False)],
-        'confirmed': [('readonly', False)],
-        'under_repair': [('readonly', False)]})
-    invoice_method = fields.Selection(states={
-        'draft': [('readonly', False)],
-        'confirmed': [('readonly', False)],
-        'under_repair': [('readonly', False)]})
+    expense_analytic_account_id = fields.Many2one(
+        'account.analytic.account',
+        string = 'Expense Analytic Account',
+        company_dependent = True,
+    )
+
+    date_start = fields.Date(
+        "Planned Date Start",
+        default = fields.Date.today,
+    )
+
+    date_deadline = fields.Date(
+        "Deadline",
+    )
+
+    date_end = fields.Date(
+        "Date Finished",
+    )
+
+    operations = fields.One2many(
+        states = {
+            'draft': [('readonly', False)],
+            'confirmed': [('readonly', False)],
+            'under_repair': [('readonly', False)]
+        }
+    )
+
+    fees_lines = fields.One2many(
+        states = {
+            'draft': [('readonly', False)],
+            'confirmed': [('readonly', False)],
+            'under_repair': [('readonly', False)]
+        }
+    )
+
+    invoice_method = fields.Selection(
+        states = {
+            'draft': [('readonly', False)],
+            'confirmed': [('readonly', False)],
+            'under_repair': [('readonly', False)]
+        }
+    )
+
 
     @api.onchange('product_id')
     def onchange_product_id(self):
@@ -72,8 +123,8 @@ class RepairOrder(models.Model):
                 self.lot_id = self.product_id.instance_serial_number_id
 
     @api.multi
-    def action_invoice_create(self, group=False):
-        res = super(RepairOrder, self).action_invoice_create(group=group)
+    def action_invoice_create(self, group = False):
+        res = super(RepairOrder, self).action_invoice_create(group = group)
         for repair in self:
             if repair.income_analytic_account_id:
                 analytic_id = repair.income_analytic_account_id.id
