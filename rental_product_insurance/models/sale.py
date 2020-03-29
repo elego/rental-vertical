@@ -53,7 +53,7 @@ class SaleOrderLine(models.Model):
     def _create_rental_insurance_line(self):
         self.ensure_one()
         price_unit = 0
-        percent = self.product_id.rented_product_id.insurance_percent
+        percent = self.insurance_percent
         if self.insurance_type == 'product':
             price_unit = self.product_id.rented_product_id.standard_price
             price_unit = price_unit * percent / 100

@@ -22,7 +22,7 @@ class SaleOrderLine(models.Model):
         self.ensure_one()
         uom_month = self.env.ref('rental_base.product_uom_month')
         price_unit = 0
-        percent = self.product_id.rented_product_id.insurance_percent
+        percent = self.insurance_percent
         if self.insurance_type == 'product':
             price_unit = self.product_id.rented_product_id.standard_price
             price_unit = price_unit * percent / 100
