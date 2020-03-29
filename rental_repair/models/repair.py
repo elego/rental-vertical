@@ -37,7 +37,7 @@ class RepairFee(models.Model):
 class RepairOrder(models.Model):
     _inherit = 'repair.order'
 
-    project_task_id = fields.Many2one('project.task', 'Task', ondelete="set null")
+    project_task_id = fields.Many2one('project.task', 'Ticket', ondelete="set null")
 
     income_analytic_account_id = fields.Many2one(
         'account.analytic.account', string='Income Analytic Account',

@@ -264,8 +264,6 @@ msgstr ""
 
 #. module: rental_repair
 #: model:ir.model,name:rental_repair.model_project_task
-#: model:ir.model.fields,field_description:rental_repair.field_purchase_order__project_task_id
-#: model:ir.model.fields,field_description:rental_repair.field_repair_order__project_task_id
 msgid "Task"
 msgstr ""
 
@@ -284,6 +282,12 @@ msgstr ""
 msgid "The repair order uses the warranty date on the Serial Number in\n"
 "                order to know if whether the repair should be invoiced to the\n"
 "                customer or not."
+msgstr ""
+
+#. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_purchase_order__project_task_id
+#: model:ir.model.fields,field_description:rental_repair.field_repair_order__project_task_id
+msgid "Ticket"
 msgstr ""
 
 #. module: rental_repair

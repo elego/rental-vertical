@@ -79,8 +79,8 @@
         <field name="inherit_id" ref="project.view_task_kanban" />
         <field name="arch" type="xml">
             <t t-if="record.email_from.raw_value" position="replace">
-                <t t-if="record.partner_id"><span><field name="partner_id" /></span></t>
-                <t t-if="record.product_id"><span><field name="product_id" /></span></t>
+                <t t-if="record.partner_id"><span><field name="partner_id" /></span><br /></t>
+                <t t-if="record.product_id"><span><field name="product_id" /></span><br /></t>
             </t>
         </field>
     </record>
