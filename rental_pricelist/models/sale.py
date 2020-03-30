@@ -273,6 +273,8 @@ class SaleOrderLine(models.Model):
             elif self.product_uom.id == time_uoms['hour'].id:
                 number = ((self.end_date - self.start_date).days + 1) * 8
             elif self.product_uom.id == time_uoms['month'].id:
-                number = ((self.end_date - self.start_date).days + 1) / 30
+                # ref link to calculate months (why 30.4167 ?)
+                # https://www.checkyourmath.com/convert/time/days_months.php
+                number = ((self.end_date - self.start_date).days + 1) / 30.4167
                 number = float_round(number, precision_rounding=1)
             self.number_of_time_unit = number
