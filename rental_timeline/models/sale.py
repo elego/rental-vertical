@@ -42,7 +42,7 @@ class SaleOrderLine(models.Model):
     @api.multi
     def _create_product_timeline(self):
         self.ensure_one()
-        if self.product_id.rented_product_id and self.product_id.rented_product_id.product_instance:
+        if self.product_id.rented_product_id:
             if self.rental_type in ['new_rental', 'rental_extension']:
                 vals = self._prepare_timeline_vals()
                 self.env['product.timeline'].create(vals)
@@ -50,7 +50,7 @@ class SaleOrderLine(models.Model):
     @api.multi
     def _reset_timeline(self, vals):
         for line in self:
-            if line.product_id.rented_product_id and line.product_id.rented_product_id.product_instance:
+            if line.product_id.rented_product_id:
                 if not line.timeline_ids:
                     raise exceptions.UserError(_('No found timelines.'))
                 if vals.get('start_date', False):
