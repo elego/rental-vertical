@@ -1,9 +1,9 @@
 from odoo import api, fields, models, exceptions, _
 
 
-class CreateCustomerInvoice(models.TransientModel):
-    _name = 'account.invoice.create_customer_invoice'
-    _description = 'Wizard for creating customer invoices from vendor invoices'
+class CreateForwardInvoice(models.TransientModel):
+    _name = 'account.invoice.create_forward_invoice'
+    _description = 'Wizard for creating forward invoices from vendor invoices'
 
     partner_id = fields.Many2one(
         'res.partner',
@@ -13,17 +13,17 @@ class CreateCustomerInvoice(models.TransientModel):
     )
 
     @api.multi
-    def create_customer_invoice(self):
+    def create_forward_invoice(self):
         for invoice_vendor in self.env['account.invoice'].browse(self.env.context['active_ids']):
             used_products = set(l.product_id for l in invoice_vendor.invoice_line_ids if l.product_id)
             sale_products = set(p for p in used_products if p.sale_ok)
             non_sale_products = used_products - sale_products
             if non_sale_products:
                 msg = _("""
-                The customer invoice cannot be created because the following products are not sellable:
+                The invoice cannot be created because the following products are not sellable:
                 {}
 
-                Please set the products flag \"can be sold\" to true, if you really want to invoice these products to the customer.
+                 Please set the products flag \"can be sold\" to true, if you really want to forward the invoice.
                 """)
                 msg_products = "\n".join(["- %s" % _(p.display_name) for p in non_sale_products])
                 raise exceptions.ValidationError(msg.format(msg_products))

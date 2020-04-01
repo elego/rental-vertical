@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-03 11:48+0000\n"
-"PO-Revision-Date: 2020-03-03 11:48+0000\n"
+"POT-Creation-Date: 2020-04-07 19:40+0000\n"
+"PO-Revision-Date: 2020-04-07 19:40+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,142 +16,150 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: rental_invoice
-#: code:addons/rental_invoice/wizard/create_customer_invoice.py:22
+#: code:addons/rental_invoice/wizard/create_forward_invoice.py:22
 #, python-format
 msgid "\n"
-"                The customer invoice cannot be created because the following products are not sellable:\n"
+"                The invoice cannot be created because the following products are not sellable:\n"
 "                {}\n"
 "\n"
-"                Please set the products flag \"can be sold\" to true, if you really want to invoice these products to the customer.\n"
+"                 Please set the products flag \"can be sold\" to true, if you really want to forward the invoice.\n"
 "                "
 msgstr "\n"
-"                Die Ausgangsrechnung kann nicht erstellt werden, da die folgenden Produkte nicht verkaufbar sind.:\n"
+"                Die Rechnung kann nicht erstellt werden, da die folgenden Produkte nicht verkaufbar sind.:\n"
 "                {}\n"
 "\n"
-"                An den Produkten muss der Haken bei \"kann verkauft werden\" gesetzt werden, wenn diese dem Kunden wirklich in Rechnung gestellt werden sollen.\n"
+"                An den Produkten muss der Haken bei \"kann verkauft werden\" gesetzt werden, wenn die Rechnung weitergereicht werden soll.\n"
 "                "
 
 #. module: rental_invoice
 #: model_terms:ir.ui.view,arch_db:rental_invoice.invoice_supplier_form
-msgid "Arithmetical check failed"
-msgstr "Rechnerich Prüfung fehlgeschlagen"
+msgid "Are you sure you want to create an forward invoice from this vendor bill?"
+msgstr "Sind Sie sicher, dass Sie eine Kundenrechnung anhand dieser Lieferantenrechnungen erstellen möchten?"
 
 #. module: rental_invoice
 #: model_terms:ir.ui.view,arch_db:rental_invoice.invoice_supplier_form
-msgid "Arithmetical check succeeded"
-msgstr "Rechnerich Prüfung erfolgreich"
+msgid "Are you sure you want to set checks finished?"
+msgstr "Sind Sie sicher, dass Sie 'Prüfung durchgeführt' setzen möchten?"
 
 #. module: rental_invoice
-#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice__arithmetically_correct
-msgid "Arithmetically correct"
-msgstr "Rechnerich richtig"
+#: model_terms:ir.ui.view,arch_db:rental_invoice.invoice_supplier_form
+msgid "Are you sure you want to set clarify completed?"
+msgstr "Sind Sie sicher, dass Sie 'Klärung abgeschlossen' setzen möchten?"
 
 #. module: rental_invoice
-#: model_terms:ir.ui.view,arch_db:rental_invoice.create_customer_invoice_form
+#: model_terms:ir.ui.view,arch_db:rental_invoice.invoice_supplier_form
+msgid "Are you sure you want to set clarify needed and checks finished?"
+msgstr "Sind Sie sicher, dass Sie 'Klärung abgeschlossen' und 'Prüfung durchgeführt' setzen möchten?"
+
+#. module: rental_invoice
+#: model_terms:ir.ui.view,arch_db:rental_invoice.invoice_supplier_form
+msgid "Are you sure you want to set payment release?"
+msgstr "Sind Sie sicher, dass Sie 'Zahlung freigeben' setzen möchten?"
+
+#. module: rental_invoice
+#: model_terms:ir.ui.view,arch_db:rental_invoice.invoice_supplier_form
+msgid "Are you sure you want to set refund needed?"
+msgstr "Sind Sie sicher, dass Sie 'Gutschrift notwendig' setzen möchten?"
+
+#. module: rental_invoice
+#: model_terms:ir.ui.view,arch_db:rental_invoice.create_forward_invoice_form
 msgid "Cancel"
 msgstr "Abbrechen"
 
 #. module: rental_invoice
-#: model_terms:ir.ui.view,arch_db:rental_invoice.create_customer_invoice_form
+#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice__checks_finished
+#: model_terms:ir.ui.view,arch_db:rental_invoice.invoice_supplier_form
+#: model_terms:ir.ui.view,arch_db:rental_invoice.view_account_invoice_filter
+msgid "Checks finished"
+msgstr "Prüfung durchgeführt"
+
+#. module: rental_invoice
+#: model_terms:ir.ui.view,arch_db:rental_invoice.invoice_supplier_form
+msgid "Clarify completed"
+msgstr "Klärung abgeschlossen"
+
+#. module: rental_invoice
+#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice__clarify_needed
+#: model_terms:ir.ui.view,arch_db:rental_invoice.view_account_invoice_filter
+msgid "Clarify needed"
+msgstr "Klärung notwendig"
+
+#. module: rental_invoice
+#: model_terms:ir.ui.view,arch_db:rental_invoice.create_forward_invoice_form
 msgid "Create"
 msgstr "Anlegen"
 
 #. module: rental_invoice
-#: model:ir.actions.act_window,name:rental_invoice.action_create_customer_invoice
-#: model_terms:ir.ui.view,arch_db:rental_invoice.create_customer_invoice_form
+#: model:ir.actions.act_window,name:rental_invoice.action_create_forward_invoice
+#: model_terms:ir.ui.view,arch_db:rental_invoice.create_forward_invoice_form
 #: model_terms:ir.ui.view,arch_db:rental_invoice.invoice_supplier_form
-msgid "Create Customer Invoice"
-msgstr "Erstelle Kundenrechnung"
+msgid "Create Forward Invoice"
+msgstr "Erstelle Weiterberechnung"
 
 #. module: rental_invoice
-#: model:res.groups,name:rental_invoice.group_create_customer_invoice_from_vendor_bill
-msgid "Create outgoing invoice from incoming invoice"
-msgstr "Ausgangsrechnung aus Eingangsrechnung erstellen"
+#: model:res.groups,name:rental_invoice.group_create_forward_invoice_from_vendor_bill
+msgid "Create forward invoice from incoming invoice"
+msgstr "Weiterberechnung aus Eingangsrechnung erstellen"
 
 #. module: rental_invoice
-#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice_create_customer_invoice__create_uid
+#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice_create_forward_invoice__create_uid
 msgid "Created by"
 msgstr "Erstellt von"
 
 #. module: rental_invoice
-#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice_create_customer_invoice__create_date
+#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice_create_forward_invoice__create_date
 msgid "Created on"
 msgstr "Erstellt am"
 
 #. module: rental_invoice
-#: model_terms:ir.ui.view,arch_db:rental_invoice.create_customer_invoice_form
+#: model_terms:ir.ui.view,arch_db:rental_invoice.create_forward_invoice_form
 msgid "Customer"
 msgstr "Kunde"
 
 #. module: rental_invoice
-#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice__customer_invoice_count
-msgid "Customer Invoice Count"
-msgstr "Anzahl der Kundenrechnungen"
-
-#. module: rental_invoice
-#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice__customer_invoice_needed
-msgid "Customer Invoice needed"
-msgstr "Kundenrechnung benötigt"
-
-#. module: rental_invoice
-#: model_terms:ir.ui.view,arch_db:rental_invoice.invoice_supplier_form
-msgid "Customer Invoices"
-msgstr "Kundenrechnungen"
-
-#. module: rental_invoice
-#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice_create_customer_invoice__display_name
+#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice_create_forward_invoice__display_name
 msgid "Display Name"
 msgstr "Anzeigename"
 
 #. module: rental_invoice
-#: model:res.groups,name:rental_invoice.group_set_arithmetical_check
-msgid "Do arithmetical check on incoming invoices"
-msgstr "Eingangsrechnungen auf rechnerische Korrektheit prüfen"
+#: model:res.groups,name:rental_invoice.group_set_checks_finished
+msgid "Do checks finished on incoming invoices"
+msgstr "Eingangsrechnungen prüfen"
 
 #. module: rental_invoice
-#: model:res.groups,name:rental_invoice.group_set_factual_check
-msgid "Do factual check on incoming invoices"
-msgstr "Eingangsrechnungen auf sachliche Korrektheit prüfen"
+#: model:res.groups,name:rental_invoice.group_set_payment_release
+msgid "Do payment release on incoming invoices"
+msgstr "Eingangsrechnungen zur Zahlung freigeben"
+
+#. module: rental_invoice
+#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice__forward_invoice_count
+msgid "Forward Invoice Count"
+msgstr "Anzahl der Weiterberechnungen"
+
+#. module: rental_invoice
+#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice__forward_invoice_needed
+msgid "Forward Invoice needed"
+msgstr "Weiterberechnung notwendig"
 
 #. module: rental_invoice
 #: model_terms:ir.ui.view,arch_db:rental_invoice.invoice_supplier_form
-msgid "Factual check failed"
-msgstr "Sachliche Prüfung fehlgeschlagen"
+msgid "Forward Invoices"
+msgstr "Weiterberechnungen"
 
 #. module: rental_invoice
-#: model_terms:ir.ui.view,arch_db:rental_invoice.invoice_supplier_form
-msgid "Factual check succeeded"
-msgstr "Sachliche Prüfung erfolgreich"
+#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice__has_non_canceled_forward_invoices
+msgid "Has Non Canceled Forward Invoices"
+msgstr "Hat keine nicht abgebrochene Weiterberechnungen"
 
 #. module: rental_invoice
-#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice__factually_correct
-msgid "Factually correct"
-msgstr "Sachlich richtig"
-
-#. module: rental_invoice
-#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice__has_non_canceled_customer_invoices
-msgid "Has Non Canceled Customer Invoices"
-msgstr ""
-
-#. module: rental_invoice
-#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice_create_customer_invoice__id
+#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice_create_forward_invoice__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: rental_invoice
-#: model:ir.model.fields,help:rental_invoice.field_account_invoice__arithmetically_correct
-msgid "If the vendor bill and its positions have the correct quantity, price, taxes, etc., please set this field to 'yes'."
-msgstr "Wenn die Eingangsrechnungen mit all ihren Positionen die korrekten Mengen, Preise, Steuern, etc. aufweist, muss das Feld auf 'ja' gesetzt werden."
-
-#. module: rental_invoice
-#: model:ir.model.fields,help:rental_invoice.field_account_invoice__customer_invoice_needed
-msgid "If this vendor bill requires to be invoiced to a customer, please activate this checkbox."
-msgstr "Wenn die Eingangsrechnung einem Kunden in Rechnung gestellt werden muss, muss der Haken hier gesetzt werden."
-
-#. module: rental_invoice
-#: model:ir.model.fields,help:rental_invoice.field_account_invoice__factually_correct
-msgid "If you expect the supplier to invoice these positions to you, please set this field to 'yes'."
-msgstr "Wenn es korrekt ist, dass der Lieferant diese Positionen in Rechnung stellt, muss das Feld auf 'ja' gesetzt werden."
+#: model:ir.model.fields,help:rental_invoice.field_account_invoice__forward_invoice_needed
+msgid "If this vendor bill requires to forward this invoice, please activate this checkbox."
+msgstr "Wenn die Eingangsrechnung weiter berechnet werden muss, muss der Haken hier gesetzt werden."
 
 #. module: rental_invoice
 #: model:ir.model,name:rental_invoice.model_account_invoice
@@ -159,30 +167,30 @@ msgid "Invoice"
 msgstr "Rechnung"
 
 #. module: rental_invoice
-#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice__customer_invoice_ids
+#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice__forward_invoice_ids
 msgid "Invoices"
 msgstr "Rechnungen"
 
 #. module: rental_invoice
-#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice_create_customer_invoice____last_update
+#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice_create_forward_invoice____last_update
 msgid "Last Modified on"
 msgstr "Zuletzt geändert am"
 
 #. module: rental_invoice
-#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice_create_customer_invoice__write_uid
+#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice_create_forward_invoice__write_uid
 msgid "Last Updated by"
 msgstr "Zuletzt aktualisiert durch"
 
 #. module: rental_invoice
-#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice_create_customer_invoice__write_date
+#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice_create_forward_invoice__write_date
 msgid "Last Updated on"
 msgstr "Zuletzt aktualisiert am"
 
 #. module: rental_invoice
-#: selection:account.invoice,arithmetically_correct:0
-#: selection:account.invoice,factually_correct:0
-msgid "No"
-msgstr "Nein"
+#: code:addons/rental_invoice/models/account_invoice.py:91
+#, python-format
+msgid "No analytic account was set in some lines of the invoice."
+msgstr "Analysekonto fehlt bei mindestens einer Rechnungszeile"
 
 #. module: rental_invoice
 #: model:ir.model.fields,field_description:rental_invoice.field_account_invoice__origin_invoice
@@ -190,33 +198,44 @@ msgid "Origin Invoice"
 msgstr "Originalrechnung"
 
 #. module: rental_invoice
-#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice_create_customer_invoice__partner_id
+#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice_create_forward_invoice__partner_id
 msgid "Partner"
-msgstr ""
-
-#. module: rental_invoice
-#: model:ir.model,name:rental_invoice.model_account_invoice_create_customer_invoice
-msgid "Wizard for creating customer invoices from vendor invoices"
-msgstr ""
-
-#. module: rental_invoice
-#: selection:account.invoice,arithmetically_correct:0
-#: selection:account.invoice,factually_correct:0
-msgid "Yes"
-msgstr "Ja"
+msgstr "Partner"
 
 #. module: rental_invoice
 #: model_terms:ir.ui.view,arch_db:rental_invoice.view_account_invoice_filter
-msgid "checked failed"
-msgstr "fehlgeschlagene Überprüfungen"
+msgid "Payment release"
+msgstr "Zahlungsfreigabe"
 
 #. module: rental_invoice
-#: model_terms:ir.ui.view,arch_db:rental_invoice.view_account_invoice_filter
-msgid "to be arithmetically checked"
-msgstr "Rechnerich überprüfen"
+#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice__refund_needed
+#: model_terms:ir.ui.view,arch_db:rental_invoice.invoice_supplier_form
+msgid "Refund needed"
+msgstr "Gutschrift notwendig"
 
 #. module: rental_invoice
-#: model_terms:ir.ui.view,arch_db:rental_invoice.view_account_invoice_filter
-msgid "to be factually checked"
-msgstr "Sachlich überprüfen"
+#: model:ir.model.fields,field_description:rental_invoice.field_account_invoice__payment_release
+#: model_terms:ir.ui.view,arch_db:rental_invoice.invoice_supplier_form
+msgid "Release payment"
+msgstr "Zahlung freigeben"
+
+#. module: rental_invoice
+#: model:res.groups,name:rental_invoice.group_reset_invoice_checks
+msgid "Reset invoice checks"
+msgstr "Rechnungschecks zurücksetzen"
+
+#. module: rental_invoice
+#: model_terms:ir.ui.view,arch_db:rental_invoice.invoice_supplier_form
+msgid "This vendor bill is in the state 'Clarify'; are you sure you want to set payment release?"
+msgstr "Diese Eingangsrechnung ist im Status 'Klärung notwendig'; sind Sie sicher, dass Sie 'Zahlung freigeben' setzen möchten?"
+
+#. module: rental_invoice
+#: model_terms:ir.ui.view,arch_db:rental_invoice.invoice_supplier_form
+msgid "To clarify"
+msgstr "Klärung notwendig"
+
+#. module: rental_invoice
+#: model:ir.model,name:rental_invoice.model_account_invoice_create_forward_invoice
+msgid "Wizard for creating forward invoices from vendor invoices"
+msgstr "Wizard für das Erstellen von Weiterberechnungen anhand von Lieferantenrechnungen"
 

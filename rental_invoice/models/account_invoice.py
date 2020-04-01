@@ -1,35 +1,60 @@
-from odoo import api, fields, models, _
+from odoo import api, exceptions, fields, models, _
 
 class AccountInvoice(models.Model):
     _inherit = "account.invoice"
 
-    factually_correct = fields.Selection(
-        string='Factually correct',
-        selection=[
-            ('no', 'No'),
-            ('yes', 'Yes'),
-        ],
+    refund_needed = fields.Boolean(
+        string='Refund needed',
         copy=False,
+        readonly=True,
+        states={
+            'draft': [('readonly', False)],
+            'open': [('readonly', False)],
+        },
         track_visibility='onchange',
-        help="If you expect the supplier to invoice these positions to you, please set this field to 'yes'.",
     )
 
-    arithmetically_correct = fields.Selection(
-        string='Arithmetically correct',
-        selection=[
-            ('no', 'No'),
-            ('yes', 'Yes'),
-        ],
+    clarify_needed = fields.Boolean(
+        string='Clarify needed',
         copy=False,
+        readonly=True,
+        states={
+            'draft': [('readonly', False)],
+            'open': [('readonly', False)],
+        },
         track_visibility='onchange',
-        help="If the vendor bill and its positions have the correct quantity, price, taxes, etc., please set this field to 'yes'.",
     )
 
-    customer_invoice_needed = fields.Boolean(
-        string='Customer Invoice needed',
+    checks_finished = fields.Boolean(
+        string='Checks finished',
+        copy=False,
+        readonly=True,
+        states={
+            'draft': [('readonly', False)],
+        },
+        track_visibility='onchange',
+    )
+
+    payment_release = fields.Boolean(
+        string='Release payment',
+        copy=False,
+        readonly=True,
+        states={
+            'draft': [('readonly', False)],
+        },
+        track_visibility='onchange',
+    )
+
+    forward_invoice_needed = fields.Boolean(
+        string='Forward Invoice needed',
         copy=False,
         default=False,
-        help="If this vendor bill requires to be invoiced to a customer, please activate this checkbox.",
+        readonly=True,
+        states={
+            'draft': [('readonly', False)],
+            'open': [('readonly', False)],
+        },
+        help="If this vendor bill requires to forward this invoice, please activate this checkbox.",
     )
 
     origin_invoice = fields.Many2one(
@@ -39,58 +64,80 @@ class AccountInvoice(models.Model):
         copy=False,
     )
 
-    has_non_canceled_customer_invoices = fields.Boolean(
-        compute='_compute_customer_invoices',
+    has_non_canceled_forward_invoices = fields.Boolean(
+        compute='_compute_forward_invoices',
         readonly=True,
     )
 
-    customer_invoice_count = fields.Integer(
-        string='Customer Invoice Count',
-        compute='_compute_customer_invoices',
+    forward_invoice_count = fields.Integer(
+        string='Forward Invoice Count',
+        compute='_compute_forward_invoices',
         readonly=True,
         copy=False,
     )
 
-    customer_invoice_ids = fields.Many2many(
+    forward_invoice_ids = fields.Many2many(
         "account.invoice",
         string='Invoices',
-        compute="_compute_customer_invoices",
+        compute="_compute_forward_invoices",
         readonly=True,
         copy=False,
     )
 
     @api.multi
-    def action_set_factual_check_succeeded(self):
+    def invoice_checks(self):
         for order in self:
-            order.factually_correct = 'yes'
-    @api.multi
-    def action_set_factual_check_failed(self):
-        for order in self:
-            order.factually_correct = 'no'
+            if order.invoice_line_ids.filtered(lambda l: not l.account_analytic_id):
+                msg = _("No analytic account was set in some lines of the invoice.")
+                raise exceptions.UserError(msg)
 
     @api.multi
-    def action_set_arithmetical_check_succeeded(self):
-        for order in self:
-            order.arithmetically_correct = 'yes'
-    @api.multi
-    def action_set_arithmetical_check_failed(self):
-        for order in self:
-            order.arithmetically_correct = 'no'
+    def action_refund_needed(self):
+        self.write({
+            'refund_needed': True,
+        })
 
     @api.multi
-    def _compute_customer_invoices(self):
+    def action_clarify_needed(self):
+        self.invoice_checks()
+        self.write({
+            'clarify_needed': True,
+            'checks_finished': True,
+        })
+
+    @api.multi
+    def action_clarify_completed(self):
+        self.write({
+            'clarify_needed': False,
+        })
+
+    @api.multi
+    def action_checks_finished(self):
+        self.invoice_checks()
+        self.write({
+            'checks_finished': True,
+        })
+
+    @api.multi
+    def action_payment_release(self):
+        self.write({
+            'payment_release': True,
+        })
+
+    @api.multi
+    def _compute_forward_invoices(self):
         for order in self:
             domain = [('origin_invoice', '=', order.id)]
             non_canceled_domain = domain + [('state', '!=', 'cancel')]
-            customer_invoice_ids = self.search(domain)
-            non_canceled_customer_invoice_ids = self.search(non_canceled_domain)
-            order.customer_invoice_ids = customer_invoice_ids
-            order.customer_invoice_count = len(customer_invoice_ids)
-            order.has_non_canceled_customer_invoices = bool(non_canceled_customer_invoice_ids)
+            forward_invoice_ids = self.search(domain)
+            non_canceled_forward_invoice_ids = self.search(non_canceled_domain)
+            order.forward_invoice_ids = forward_invoice_ids
+            order.forward_invoice_count = len(forward_invoice_ids)
+            order.has_non_canceled_forward_invoices = bool(non_canceled_forward_invoice_ids)
 
     @api.multi
-    def action_view_customer_invoices(self):
-        invoices = self.mapped('customer_invoice_ids')
+    def action_view_forward_invoices(self):
+        invoices = self.mapped('forward_invoice_ids')
         action = self.env.ref('account.action_invoice_tree1').read()[0]
         if len(invoices) > 1:
             action['domain'] = [('id', 'in', invoices.ids)]
@@ -104,3 +151,9 @@ class AccountInvoice(models.Model):
         else:
             action = {'type': 'ir.actions.act_window_close'}
         return action
+
+    @api.multi
+    def action_invoice_open(self):
+        self.invoice_checks()
+        return super(AccountInvoice, self).action_invoice_open()
+

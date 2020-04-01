@@ -19,55 +19,83 @@
             <xpath expr="//notebook/preceding-sibling::div[1]" position="before">
                 <div class="oe_button_box" name="button_box">
                     <button
-                        name="action_view_customer_invoices"
+                        name="action_view_forward_invoices"
                         type="object"
                         class="oe_stat_button"
                         icon="fa-pencil-square-o"
-                        attrs="{'invisible': [('customer_invoice_count', '=', 0)]}">
-                        <field name="customer_invoice_count" widget="statinfo" string="Customer Invoices" />
+                        attrs="{'invisible': [('forward_invoice_count', '=', 0)]}">
+                        <field name="forward_invoice_count" widget="statinfo" string="Forward Invoices" />
                     </button>
                 </div>
             </xpath>
             <header position="inside">
                 <button
-                    name="action_set_factual_check_succeeded"
-                    string="Factual check succeeded"
+                    name="action_clarify_needed"
+                    string="To clarify"
                     type="object"
                     class="oe_highlight"
-                    attrs="{'invisible': ['|', ('state', '!=', 'draft'), ('factually_correct', '=', 'yes')]}"
-                    groups="rental_invoice.group_set_factual_check"
+                    attrs="{'invisible': ['|', ('state', '!=', 'draft'), ('clarify_needed', '=', True)]}"
+                    groups="rental_invoice.group_set_checks_finished"
+                    confirm="Are you sure you want to set clarify needed and checks finished?"
                 />
                 <button
-                    name="action_set_factual_check_failed"
-                    string="Factual check failed"
+                    name="action_clarify_needed"
+                    string="To clarify"
+                    type="object"
+                    attrs="{'invisible': ['|', ('state', '!=', 'open'), ('clarify_needed', '=', True)]}"
+                    groups="rental_invoice.group_set_checks_finished"
+                    confirm="Are you sure you want to set clarify needed and checks finished?"
+                />
+                <button
+                    name="action_clarify_completed"
+                    string="Clarify completed"
                     type="object"
                     class="oe_highlight"
-                    attrs="{'invisible': ['|', ('state', '!=', 'draft'), ('factually_correct', '!=', False)]}"
-                    groups="rental_invoice.group_set_factual_check"
+                    attrs="{'invisible': ['|', ('state', 'not in', ('draft', 'open', 'done')), ('clarify_needed', '=', False)]}"
+                    groups="rental_invoice.group_set_checks_finished"
+                    confirm="Are you sure you want to set clarify completed?"
                 />
                 <button
-                    name="action_set_arithmetical_check_succeeded"
-                    string="Arithmetical check succeeded"
+                    name="action_checks_finished"
+                    string="Checks finished"
                     type="object"
                     class="oe_highlight"
-                    attrs="{'invisible': ['|', ('state', '!=', 'draft'), '|', ('factually_correct', '!=', 'yes'), ('arithmetically_correct', '=', 'yes')]}"
-                    groups="rental_invoice.group_set_arithmetical_check"
+                    attrs="{'invisible': ['|', ('state', '!=', 'draft'), ('checks_finished', '=', True)]}"
+                    groups="rental_invoice.group_set_checks_finished"
+                    confirm="Are you sure you want to set checks finished?"
                 />
                 <button
-                    name="action_set_arithmetical_check_failed"
-                    string="Arithmetical check failed"
+                    name="action_payment_release"
+                    string="Release payment"
                     type="object"
                     class="oe_highlight"
-                    attrs="{'invisible': ['|', ('state', '!=', 'draft'), '|', ('factually_correct', '!=', 'yes'), ('arithmetically_correct', '!=', False)]}"
-                    groups="rental_invoice.group_set_arithmetical_check"
+                    attrs="{'invisible': ['|', '|', ('state', '!=', 'open'), ('payment_release', '=', True), ('clarify_needed', '=', True)]}"
+                    groups="rental_invoice.group_set_payment_release"
+                    confirm="Are you sure you want to set payment release?"
                 />
                 <button
-                    name="%(rental_invoice.action_create_customer_invoice)d"
-                    string="Create Customer Invoice"
+                    name="action_payment_release"
+                    string="Release payment"
+                    type="object"
+                    attrs="{'invisible': ['|', '|',('state', '!=', 'open'), ('payment_release', '=', True), ('clarify_needed', '=', False)]}"
+                    groups="rental_invoice.group_set_payment_release"
+                    confirm="This vendor bill is in the state 'Clarify'; are you sure you want to set payment release?"
+                />
+                <button
+                    name="action_refund_needed"
+                    string="Refund needed"
+                    type="object"
+                    attrs="{'invisible': ['|',('state', 'not in', ('draft', 'open')), ('refund_needed', '=', True)]}"
+                    confirm="Are you sure you want to set refund needed?"
+                />
+                <button
+                    name="%(rental_invoice.action_create_forward_invoice)d"
+                    string="Create Forward Invoice"
                     type="action"
                     class="oe_highlight"
-                    attrs="{'invisible': ['|', ('customer_invoice_needed', '=', False), ('has_non_canceled_customer_invoices', '=', True)]}"
-                    groups="rental_invoice.group_create_customer_invoice_from_vendor_bill"
+                    attrs="{'invisible': ['|', ('forward_invoice_needed', '=', False), ('has_non_canceled_forward_invoices', '=', True)]}"
+                    groups="rental_invoice.group_create_forward_invoice_from_vendor_bill"
+                    confirm="Are you sure you want to create an forward invoice from this vendor bill?"
                 />
             </header>
             <button name="action_invoice_open" position="attributes">
@@ -75,23 +103,98 @@
                 <attribute name="attrs">
                     {'invisible': [
                         '|',
-                        '&amp;',
-                        ('customer_invoice_needed', '=', True),
-                        ('has_non_canceled_customer_invoices', '=', False),
-                        '|',
                         ('state', '!=', 'draft'),
+                        ('checks_finished', '=', False),
+                    ]}
+                </attribute>
+            </button>
+            <button name="%(account.action_account_invoice_payment)d" position="attributes">
+                <attribute name="states"></attribute>
+                <attribute name="attrs">
+                    {'invisible': [
                         '|',
-                        ('factually_correct', '!=', 'yes'),
-                        ('arithmetically_correct', '!=', 'yes'),
+                        '&amp;',
+                        ('forward_invoice_needed', '=', True),
+                        ('has_non_canceled_forward_invoices', '=', False),
+                        '|',
+                        ('state', '!=', 'open'),
+                        ('payment_release', '=', False),
+                    ]}
+                </attribute>
+            </button>
+            <button name="%(account.action_account_invoice_refund)d" position="attributes">
+                <attribute name="states"></attribute>
+                <attribute name="attrs">
+                    {'invisible': [
+                        '|',
+                        ('type', 'in', ['in_refund','out_refund']),
+                        ('state', 'not in', ('open', 'in_payment','paid'))
                     ]}
                 </attribute>
             </button>
             <xpath expr="//group[field[@name='incoterm_id']]" position="inside">
-                <field name="customer_invoice_needed" />
-                <field name="has_non_canceled_customer_invoices" invisible="1" />
-                <field name="factually_correct" readonly="1" />
-                <field name="arithmetically_correct" readonly="1" />
+                <field name="forward_invoice_needed" attrs="{'readonly': [
+                    '|',
+                    '&amp;',
+                    ('has_non_canceled_forward_invoices', '=', True),
+                    ('forward_invoice_needed', '=', True),
+                    ('state', 'not in', ('draft', 'open')),
+                ]}" />
+                <field name="has_non_canceled_forward_invoices" invisible="1" />
+                <field name="clarify_needed" readonly="1" />
+                <field name="checks_finished" readonly="1" />
+                <field name="payment_release" readonly="1" />
+                <field name="refund_needed" readonly="1" />
             </xpath>
+        </field>
+    </record>
+
+    <record id="invoice_supplier_form_reset_invoice_checks" model="ir.ui.view">
+        <field name="name">account.invoice.supplier.form</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="invoice_supplier_form" />
+        <field name="groups_id" eval="[(4, ref('group_reset_invoice_checks'))]"/>
+        <field name="arch" type="xml">
+            <field name="clarify_needed" position="attributes">
+                <attribute name="readonly"></attribute>
+                <attribute name="attrs">
+                    {'readonly': [
+                        '|',
+                        ('state', 'not in', ('draft', 'open', 'done')),
+                        ('clarify_needed', '=', False),
+                    ]}
+                </attribute>
+            </field>
+            <field name="checks_finished" position="attributes">
+                <attribute name="readonly"></attribute>
+                <attribute name="attrs">
+                    {'readonly': [
+                        '|',
+                        ('state', '!=', 'draft'),
+                        ('checks_finished', '=', False),
+                    ]}
+                </attribute>
+            </field>
+            <field name="payment_release" position="attributes">
+                <attribute name="readonly"></attribute>
+                <attribute name="attrs">
+                    {'readonly': [
+                        '|',
+                        ('state', '!=', 'open'),
+                        ('payment_release', '=', False),
+                    ]}
+                </attribute>
+            </field>
+            <field name="refund_needed" position="attributes">
+                <attribute name="readonly"></attribute>
+                <attribute name="attrs">
+                    {'readonly': [
+                        '|',
+                        ('state', 'not in', ('draft', 'open')),
+                        ('refund_needed', '=', False),
+                    ]}
+                </attribute>
+            </field>
         </field>
     </record>
 
@@ -101,9 +204,9 @@
         <field name="inherit_id" ref="account.view_account_invoice_filter" />
         <field name="arch" type="xml">
             <search position="inside">
-                <filter name="to_be_factually_checked" string="to be factually checked" domain="[('factually_correct','=',False)]" />
-                <filter name="to_be_arithmetically_checked" string="to be arithmetically checked" domain="[('arithmetically_correct','=',False)]" />
-                <filter name="checked_failed" string="checked failed" domain="['|', ('factually_correct','=','no'), ('arithmetically_correct','=','no')]" />
+                <filter name="clarify_needed" string="Clarify needed" domain="[('clarify_needed','=',True)]" />
+                <filter name="checks_finished" string="Checks finished" domain="[('checks_finished','=',True)]" />
+                <filter name="payment_release" string="Payment release" domain="[('payment_release','=',True)]" />
             </search>
         </field>
     </record>

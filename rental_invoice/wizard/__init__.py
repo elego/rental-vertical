@@ -1,1 +1,1 @@
-from . import create_customer_invoice
+from . import create_forward_invoice

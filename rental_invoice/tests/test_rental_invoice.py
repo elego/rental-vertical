@@ -14,7 +14,7 @@ class TestRentalInvoice(AccountingTestCase):
     def setUp(self):
         super(TestRentalInvoice, self).setUp()
 
-        self.wizard_obj = self.env['account.invoice.create_customer_invoice']
+        self.wizard_obj = self.env['account.invoice.create_forward_invoice']
 
         self.date_start = date.today()
         self.date_end = self.date_start + timedelta(days=28)
@@ -93,7 +93,7 @@ class TestRentalInvoice(AccountingTestCase):
 
         # product in invoice line is not sellable
         with self.assertRaises(ValidationError) as e:
-            wizard.create_customer_invoice()
+            wizard.create_forward_invoice()
         self.assertIn(
             'The customer invoice cannot be created because the following products are not sellable:',
             e.exception.name)
@@ -101,7 +101,7 @@ class TestRentalInvoice(AccountingTestCase):
         self.assertFalse(self.vendor_bill.has_non_canceled_customer_invoices)
 
         self.product.write({'sale_ok': True})
-        wizard.create_customer_invoice()
+        wizard.create_forward_invoice()
         self.vendor_bill._compute_customer_invoices()
 
         self.assertEqual(self.vendor_bill.customer_invoice_count, 1)
