@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-11 11:54+0000\n"
-"PO-Revision-Date: 2020-02-11 11:54+0000\n"
+"POT-Creation-Date: 2020-03-27 09:59+0000\n"
+"PO-Revision-Date: 2020-03-27 09:59+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -29,6 +29,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_condition_hour
 msgid "Current Hours"
 msgstr "Aktuelle Stunden"
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_condition_in_tree
+msgid "Current Kilmeter / Hours"
+msgstr "Aktuelle Kilometer / "
 
 #. module: rental_product_instance
 #: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_condition_km
@@ -97,6 +102,26 @@ msgid "Product Timeline"
 msgstr "Produkt-Zeitachse"
 
 #. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__real_sale_price
+msgid "Real Sale Price"
+msgstr "Tatsächlicher Verkaufspreis"
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__real_total_hours
+msgid "Real Total Hours"
+msgstr "Tatsächliche Betriebsstunden"
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__real_total_kilometers
+msgid "Real Total Kilometers"
+msgstr "Gesamtkilometerstand"
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__real_total_rental_time
+msgid "Real Total Rental Time"
+msgstr "Gesamtmietzeit"
+
+#. module: rental_product_instance
 #: selection:product.product,instance_state:0
 msgid "Rental"
 msgstr "Vermietung"
@@ -133,10 +158,35 @@ msgid "Stock Move"
 msgstr "Lagerbuchung"
 
 #. module: rental_product_instance
+#: model:ir.model.fields,help:rental_product_instance.field_product_product__real_total_hours
+msgid "These are the total operating hours that the product instance had on sale."
+msgstr "Dies sind die Gesamtbetriebsstunden, die die Produktinstanz beim Verkauf hatte."
+
+#. module: rental_product_instance
+#: model:ir.model.fields,help:rental_product_instance.field_product_product__real_total_kilometers
+msgid "This is the mileage the product instance had on sale."
+msgstr "Dies ist der Kilometerstand, den die Produktinstanz beim Verkauf hatte."
+
+#. module: rental_product_instance
+#: model:ir.model.fields,help:rental_product_instance.field_product_product__real_sale_price
+msgid "This is the price at which the product instance was actually sold."
+msgstr "Dies ist der Preis, zu dem die Produktinstanz tatsächlich verkauft wurde."
+
+#. module: rental_product_instance
+#: model:ir.model.fields,help:rental_product_instance.field_product_product__real_total_rental_time
+msgid "This is the total rental time for this product instance."
+msgstr "Dies ist die Gesamtmietzeit der Produktinstanz."
+
+#. module: rental_product_instance
 #: model:ir.model.fields,help:rental_product_instance.field_product_product__product_instance
 #: model:ir.model.fields,help:rental_product_instance.field_product_template__product_instance
 msgid "This product is a product instance, which can only have one unit in stock."
 msgstr "Wenn der Haken gesetzt ist, wird das Produkt als Produktinstanz verwendet. Es kann nur eine Einheit davon existieren."
+
+#. module: rental_product_instance
+#: model_terms:ir.ui.view,arch_db:rental_product_instance.product_normal_form_view
+msgid "Total Cost of Ownership"
+msgstr "Total Cost of Ownership"
 
 #. module: rental_product_instance
 #: code:addons/rental_product_instance/models/stock.py:20

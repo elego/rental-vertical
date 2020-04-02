@@ -13,13 +13,13 @@ class ProjectTask(models.Model):
     )
 
     tracking = fields.Selection(
-        selection=[
+        selection = [
             ('serial', 'By Unique Serial Number'),
             ('lot', 'By Lots'),
             ('none', 'No Tracking'),
         ],
-        string = "Tracking",
-        related = "product_id.tracking",
+        string = 'Tracking',
+        related = 'product_id.tracking',
     )
 
     lot_id = fields.Many2one(
@@ -30,23 +30,23 @@ class ProjectTask(models.Model):
     repair_ids = fields.One2many(
         comodel_name = 'repair.order',
         inverse_name = 'project_task_id',
-        string = "Repair Orders",
+        string = 'Repair Orders',
     )
 
     vendor_repair_ids = fields.One2many(
         comodel_name = 'purchase.order',
         inverse_name = 'project_task_id',
-        string = "Vendor Repair Orders",
+        string = 'Vendor Repair Orders',
     )
 
     phone = fields.Char(
         string = 'Phone',
-        help = "Phone number",
+        help = 'Phone number',
     )
 
     mobile = fields.Char(
         string = 'Mobile',
-        help = "Mobile number",
+        help = 'Mobile number',
     )
 
 

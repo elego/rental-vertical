@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-21 11:14+0000\n"
-"PO-Revision-Date: 2020-03-21 11:14+0000\n"
+"POT-Creation-Date: 2020-03-27 09:59+0000\n"
+"PO-Revision-Date: 2020-03-27 09:59+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -91,6 +91,16 @@ msgstr "Kunden"
 #: model_terms:ir.ui.view,arch_db:rental_base.view_order_form
 msgid "Day(s)"
 msgstr "Tag(e)"
+
+#. module: rental_base
+#: model:ir.model.fields,field_description:rental_base.field_sale_order__default_end_date
+msgid "Default End Date"
+msgstr "Enddatum"
+
+#. module: rental_base
+#: model:ir.model.fields,field_description:rental_base.field_sale_order__default_start_date
+msgid "Default Start Date"
+msgstr "Startdatum"
 
 #. module: rental_base
 #: model:ir.model.fields,help:rental_base.field_sale_order_line__rental_qty_uom
@@ -198,6 +208,21 @@ msgid "Invoicing"
 msgstr "Abrechnung"
 
 #. module: rental_base
+#: model:ir.ui.menu,name:rental_base.mis_rental_report_style_view_menu
+msgid "MIS-Report Styles"
+msgstr "MIS-Berichtsstile"
+
+#. module: rental_base
+#: model:ir.ui.menu,name:rental_base.mis_rental_report_view_menu
+msgid "MIS-Report Templates"
+msgstr "MIS-Berichtsvorlagen"
+
+#. module: rental_base
+#: model:ir.ui.menu,name:rental_base.mis_rental_report_conf_menu
+msgid "MIS Reporting"
+msgstr "MIS-Berichte"
+
+#. module: rental_base
 #: model_terms:ir.ui.view,arch_db:rental_base.res_config_settings_view_form
 msgid "Manage repair orders for product instances"
 msgstr "Reparaturaufträge für Produktinstanzen verwalten"
@@ -255,11 +280,6 @@ msgstr "Ausgehende Lieferungen"
 #: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_rental_product_instance
 msgid "Product Instance"
 msgstr "Produktinstanz"
-
-#. module: rental_base
-#: model:ir.ui.menu,name:rental_base.menu_product_tco
-msgid "Product TCO"
-msgstr "Total Costs of Ownership"
 
 #. module: rental_base
 #: model:ir.model.fields,field_description:rental_base.field_sale_order_line__rental_qty_uom
@@ -389,6 +409,11 @@ msgid "Requests"
 msgstr "Anfragen"
 
 #. module: rental_base
+#: model:ir.model,name:rental_base.model_sale_order
+msgid "Sale Order"
+msgstr "Verkaufsauftrag"
+
+#. module: rental_base
 #: model:ir.model,name:rental_base.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Auftragsposition"
@@ -418,6 +443,11 @@ msgstr "Einstellungen"
 #: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_rental_timeline
 msgid "Timeline"
 msgstr "Zeitleiste"
+
+#. module: rental_base
+#: model:ir.ui.menu,name:rental_base.menu_product_tco
+msgid "Total Cost of Ownership"
+msgstr "Total Cost of Ownership"
 
 #. module: rental_base
 #: model_terms:ir.ui.view,arch_db:rental_base.view_order_form
@@ -454,3 +484,4 @@ msgstr "Lieferanten"
 #: model_terms:ir.ui.view,arch_db:rental_base.sale_start_end_dates
 msgid "to"
 msgstr "bis"
+

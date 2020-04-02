@@ -25,21 +25,21 @@
             <field name="inherit_id" ref="product.product_normal_form_view" />
             <field name="arch" type="xml">
                 <button name="toggle_active" position="before">
-                    <button class="oe_stat_button" name="action_view_sale_order"
-                        type="object" icon="fa-line-chart" attrs="{'invisible': [('sale_ok', '=', False)]}">
-                        <field name="so_count" widget="statinfo" />
-                    </button>
                     <button class="oe_stat_button" name="action_view_rental_order"
                         type="object" icon="fa-key" attrs="{'invisible': [('sale_ok', '=', False)]}">
                         <field name="rental_count" widget="statinfo" />
+                    </button>
+                    <button class="oe_stat_button" name="action_view_all_invoice"
+                        type="object" icon="fa-money">
+                        <field name="invoice_count" widget="statinfo" />
                     </button>
                     <button class="oe_stat_button" name="action_view_all_purchase_order"
                         type="object" icon="fa-shopping-cart" attrs="{'invisible': [('purchase_ok', '=', False)]}">
                         <field name="po_count" widget="statinfo" />
                     </button>
-                    <button class="oe_stat_button" name="action_view_all_invoice"
-                        type="object" icon="fa-money">
-                        <field name="invoice_count" widget="statinfo" />
+                    <button class="oe_stat_button" name="action_view_sale_order"
+                        type="object" icon="fa-line-chart" attrs="{'invisible': [('sale_ok', '=', False)]}">
+                        <field name="so_count" widget="statinfo" />
                     </button>
                 </button>
                 <xpath expr="//field[@name='categ_id']" position="replace" />

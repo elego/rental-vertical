@@ -6,4 +6,8 @@ from odoo import fields, models
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
-    project_task_id = fields.Many2one('project.task', 'Task', ondelete="set null")
+    project_task_id=fields.Many2one(
+        'project.task',
+        'Ticket',
+        ondelete='set null',
+    )

@@ -75,6 +75,14 @@
                         <field name="instance_current_location_id" />
                     </group>
                 </xpath>
+                <xpath expr="//page[@name='invoicing']//group[@name='payables']" position="after">
+                    <group string="Total Cost of Ownership">
+                        <field name="real_sale_price"/>
+                        <field name="real_total_kilometers" attrs="{'invisible': [('show_instance_condition_type', '!=', 'km')]}"/>
+                        <field name="real_total_hours" attrs="{'invisible': [('show_instance_condition_type', '!=', 'hour')]}"/>
+                        <field name="real_total_rental_time"/>
+                    </group>
+                </xpath>
             </field>
         </record>
 
