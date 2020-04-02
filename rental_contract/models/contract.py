@@ -51,6 +51,9 @@ class ContractContract(models.Model):
             contract_type = self.env['contract.order.type'].browse(vals['type_id'])
             if contract_type.sequence_id:
                 vals['code'] = contract_type.sequence_id.next_by_id()
+            else:
+                code = vals.get('name').split(': ')
+                vals['code'] = code[1]
         return super(ContractContract, self).create(vals)
 
     @api.multi

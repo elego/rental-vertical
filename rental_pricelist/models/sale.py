@@ -74,6 +74,7 @@ class SaleOrderLine(models.Model):
         rental_type_id = self.env.ref('rental_base.rental_sale_type').id
         if self.env.context.get('type_id', False) == rental_type_id:
             self.rental = True
+        self._set_product_id()
 
     @api.multi
     @api.onchange('rental')
@@ -273,6 +274,8 @@ class SaleOrderLine(models.Model):
             elif self.product_uom.id == time_uoms['hour'].id:
                 number = ((self.end_date - self.start_date).days + 1) * 8
             elif self.product_uom.id == time_uoms['month'].id:
-                number = ((self.end_date - self.start_date).days + 1) / 30
+                # ref link to calculate months (why 30.4167 ?)
+                # https://www.checkyourmath.com/convert/time/days_months.php
+                number = ((self.end_date - self.start_date).days + 1) / 30.4167
                 number = float_round(number, precision_rounding=1)
             self.number_of_time_unit = number
