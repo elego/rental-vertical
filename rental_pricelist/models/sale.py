@@ -74,6 +74,7 @@ class SaleOrderLine(models.Model):
         rental_type_id = self.env.ref('rental_base.rental_sale_type').id
         if self.env.context.get('type_id', False) == rental_type_id:
             self.rental = True
+        self._set_product_id()
 
     @api.multi
     @api.onchange('rental')
