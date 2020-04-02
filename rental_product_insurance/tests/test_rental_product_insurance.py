@@ -62,6 +62,7 @@ class TestRentalProductInsurance(RentalStockCommon):
             'insurance_percent': 20,
             'standard_price': 1000,
         })
+        self.rental_service_day.income_analytic_account_id = self.analytic_account
         # test onchange_insurance_product_id
         self.rental_order_line.onchange_insurance_product_id()
         self.assertEqual(
@@ -107,13 +108,14 @@ class TestRentalProductInsurance(RentalStockCommon):
         vals = self.rental_order_line._convert_to_write(
             self.rental_order_line._cache)
         vals['order_id'] = self.rental_order.id
+        vals['insurance_percent'] = 10
 
         self.rental_order_line  = self.env['sale.order.line'].create(vals)
         self.assertEqual(len(self.rental_order.order_line), 2)
         check_insurance = False
         for line in self.rental_order.order_line:
             if line.product_id == self.product_insurance:
-                self.assertEqual(line.price_unit, 40)
+                self.assertEqual(line.price_unit, 20)
                 self.assertEqual(
                     line.insurance_origin_line_id.id,
                     self.rental_order_line.id
