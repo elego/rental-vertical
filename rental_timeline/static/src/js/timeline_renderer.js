@@ -3,7 +3,7 @@ odoo.define('rental_timeline.TimelineRenderer', function(require){
 
     var TR = require('web_timeline.TimelineRenderer');
 
-    var TimelineRenderer = TR.include({
+    var TimelineRenderer = TR.extend({
         split_groups: function(events, group_bys){
             if(group_bys.length === 0){
                 return events;
