@@ -1,7 +1,7 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
 from odoo import api, fields, models, _
-
+from odoo.osv import expression
 
 class ProductCategory(models.Model):
     _inherit = 'product.category'
@@ -128,6 +128,32 @@ class ProductProduct(models.Model):
             ])
             if timelines:
                 product.instance_state = timelines[0].type
+
+    @api.model
+    def _name_search(self, name, args=None, operator='ilike', limit=100, name_get_uid=None):
+        res = super()._name_search(
+            name=name,
+            args=args,
+            operator=operator,
+            limit=limit,
+            name_get_uid=name_get_uid
+        )
+        args = args or []
+        if name:
+            domain = [
+                '|',
+                ('instance_serial_number_id.name', operator, name),
+                ('license_plate', operator, name),
+            ]
+            record_ids = self._search(
+                expression.AND([domain, args]),
+                limit=limit,
+                access_rights_uid=name_get_uid
+            )
+            if record_ids:
+                res2 = self.browse(record_ids).name_get()
+                return list(set(res + res2))
+        return res
 
     @api.onchange('product_instance')
     def onchange_product_instance(self):
