@@ -1,12 +1,12 @@
-odoo.define('rental_timeline.TimelineController', function (require) {
+odoo.define('rental_timeline.RentalTimelineController', function (require) {
     "use strict";
 
 
     var dialogs = require('web.view_dialogs');
 
-    var TC = require('web_timeline.TimelineController');
+    var _TimelineController = require('web_timeline.TimelineController');
 
-    var TimelineController = TC.include({
+    var RentalTimelineController = _TimelineController.extend({
         _onGroupClick: function (event) {
             var groupField = this.renderer.last_group_bys[0];
             return this.do_action({
@@ -43,5 +43,5 @@ odoo.define('rental_timeline.TimelineController', function (require) {
 
     });
 
-    return TimelineController;
+    return RentalTimelineController;
 });

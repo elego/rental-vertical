@@ -7,6 +7,7 @@
             <script type="text/javascript" src="/rental_timeline/static/src/js/Popup.js" />
             <script type="text/javascript" src="/rental_timeline/static/src/js/timeline_renderer.js" />
             <script type="text/javascript" src="/rental_timeline/static/src/js/timeline_controller.js" />
+            <script type="text/javascript" src="/rental_timeline/static/src/js/timeline_view.js" />
         </xpath>
     </template>
 </odoo>
