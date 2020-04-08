@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="name">purchase.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='incoterm_id']" position="after">
+                <field name="transport_confirmed"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']//field[@name='date_planned']" position="after">
+                <field name="trans_origin_sale_line_ids" invisible="0" />
+            </xpath>
+            <xpath expr="//button[@name='button_confirm']" position="before">
+                <button name="action_transport_confirm" type="object" string="Confirm Transport"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
