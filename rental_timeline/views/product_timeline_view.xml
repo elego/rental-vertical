@@ -5,7 +5,7 @@
         <record id="view_product_timeline_timeline" model="ir.ui.view">
             <field name="name">product.timeline.timeline</field>
             <field name="model">product.timeline</field>
-            <field name="type">timeline</field>
+            <field name="type">rental_timeline</field>
             <field name="arch" type="xml">
                 <timeline date_start="date_start"
                           date_stop="date_end"
@@ -173,7 +173,7 @@
             <field name="name">Timeline</field>
             <field name="res_model">product.timeline</field>
             <field name="view_type">form</field>
-            <field name="view_mode">timeline,form</field>
+            <field name="view_mode">rental_timeline,form</field>
             <field name="search_view_id" ref="view_product_timeline_search" />
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">

@@ -1,9 +1,9 @@
-odoo.define('rental_timeline.TimelineRenderer', function(require){
+odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
     "use strict";
 
-    var TR = require('web_timeline.TimelineRenderer');
+    var _TimelineRenderer = require('web_timeline.TimelineRenderer');
 
-    var TimelineRenderer = TR.extend({
+    var RentalTimelineRenderer = _TimelineRenderer.extend({
         split_groups: function(events, group_bys){
             if(group_bys.length === 0){
                 return events;
@@ -194,5 +194,5 @@ odoo.define('rental_timeline.TimelineRenderer', function(require){
         },
     });
 
-    return TimelineRenderer;
+    return RentalTimelineRenderer;
 });
