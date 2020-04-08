@@ -21,6 +21,10 @@
             <field name="name">Done - no documentation</field>
         </record>
 
+        <record id="project_task_type_done" model="project.task.type">
+            <field name="name">Done</field>
+        </record>
+
         <record id="project_task_type_cancelled" model="project.task.type">
             <field name="name">Cancelled</field>
         </record>
@@ -39,6 +43,7 @@
                     ref('project_task_type_in_progress'),
                     ref('project_task_type_has_appointment'),
                     ref('project_task_type_done_-_no_documentation'),
+                    ref('project_task_type_done'),
                     ref('project_task_type_cancelled'),
                 ]),
             ]" />
