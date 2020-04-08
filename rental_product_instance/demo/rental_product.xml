@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account_01530" model="account.analytic.account">
+        <field name="code">00530</field>
+        <field name="name">Volvo L110H</field>
+    </record>
+    <record id="rb_rental" model="fleet.type">
+        <field name="name">Rental</field>
+    </record>
+    <record id="volvo" model="product.manufacturer">
+        <field name="name">Volvo</field>
+    </record>
+    <record id="volvo_L110H" model="product.manufacturer.type">
+        <field name="manufacturer_id" ref="volvo" />
+        <field name="name">L110H</field>
+    </record>
+
+    <record id="rental_01530" model="product.product">
+        <field name="rental_ok" eval="True" />
+        <field name="product_instance" eval="True" />
+        <field name="tracking">serial</field>
+        <field name="name">Volvo L110H</field>
+        <field name="categ_id" ref="product.product_category_all" />
+        <field name="type">product</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+        <field name="default_code">01530</field>
+        <field name="manu_year">2018</field>
+        <field name="barcode">0012345</field>
+        <field name="description"></field>
+        <field name="further_ref">01111</field>
+        <field name="qr_code">02222</field>
+        <field name="vehicle_number">AUDI RT01530</field>
+        <field name="license_plate">BNA 1530</field>
+        <field name="init_regist">2018-05-01</field>
+        <field name="manu_id" ref="volvo" />
+        <field name="manu_type_id" ref="volvo_L110H" />
+        <field name="fleet_type_id" ref="rb_rental" />
+        <field name="instance_current_location_id" model="stock.location" search="[('name', '=', 'Rental In')]" />
+        <field name="rental_of_day" eval="True" />
+        <field name="rental_price_day">200</field>
+        <field name="rental_of_month" eval="True" />
+        <field name="rental_price_month">4500</field>
+        <field name="income_analytic_account_id" ref="account_01530" />
+        <field name="expense_analytic_account_id" ref="account_01530" />
+        <!-- <field name="image" type="base64" file="rockbird_demo/static/img/00530.png" /> -->
+    </record>
+    <record id="serial_rental_01530" model="stock.production.lot">
+        <field name="name">12808</field>
+        <field name="product_id" ref="rental_01530" />
+    </record>
+    <record id="rental_01530" model="product.product">
+        <field name="instance_serial_number_id" ref="serial_rental_01530" />
+    </record>
+    
+</odoo>
