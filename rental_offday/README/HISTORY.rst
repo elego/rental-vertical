@@ -2,6 +2,8 @@
 Changelog
 ---------
 
+- a26a41c 2020-03-18 13:58:55 +0100 maria.sparenberg@elegosoft.com  issue #3589 move fields to correct groups in module rental_offday
+- b49c01d 2020-03-15 10:12:53 +0100 wagner@elegosoft.com  (origin/fix_3339_blp384_extend_documentation_v12) regenerate doc (issue #3339)
 - cea0e94 2020-03-13 20:38:19 +0100 wagner@elegosoft.com  update documentation to build 380 (issue #3339)
 - e371276 2020-03-10 18:14:07 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_3339_blp343_extend_documentation_v12: addons-rental-vertical remotes/origin/fix_3339_blp343_extend_documentation_v12 - 9576b54fbb0cbcbffb804587fd722df8a4057da0 allow cli overwrite of module arguments; regenerate doc for rental_product_instance_appointment rental_product_variant rental_offday rental_invoice rental_contract_month rental_contract (issue #3339)
 - b454e5d 2020-03-10 18:14:06 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_3576_blp343_unittest_rental_offday_v12: addons-rental-vertical remotes/origin/feature_3576_blp343_unittest_rental_offday_v12 - d9313d98f1961b9291fd769e4cbb1d56a567f97b issue #3576 add unittest for rental_offday

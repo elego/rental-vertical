@@ -1,4 +1,4 @@
-Rental Timeline Transport
+Rental Contract Insurance
 ====================================================
 
 *This file has been generated on 2020-04-09-12-39-08. Changes to it will be overwritten.*
@@ -6,7 +6,7 @@ Rental Timeline Transport
 Summary
 -------
 
-extends the rental_timeline module to show the transport order fields in the timeline popup.
+Rental Contract Insurance
 
 Description
 -----------
