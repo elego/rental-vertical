@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">view_order_form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_view_invoice']" position="before">
+                <field name="trans_shipment_plan_ids" invisible="1"/>
+                <button type="object"
+                    name="action_view_shipment_plans"
+                    class="oe_stat_button"
+                    icon="fa-truck"
+                    attrs="{'invisible': [('trans_po_count', '=', 0)]}" groups="base.group_user">
+                    <field name="trans_shipment_plan_count" widget="statinfo" string="Shipment Plans"/>
+                </button>
+                <field name="trans_po_ids" invisible="1"/>
+                <button type="object"
+                    name="action_view_trans_pos"
+                    class="oe_stat_button"
+                    icon="fa-shopping-cart"
+                    attrs="{'invisible': [('trans_po_count', '=', 0)]}" groups="base.group_user">
+                    <field name="trans_po_count" widget="statinfo" string="Trans POs"/>
+                </button>
+                <field name="trans_pr_ids" invisible="1"/>
+                <button type="object"
+                    name="action_view_trans_prs"
+                    class="oe_stat_button"
+                    icon="fa-shopping-cart"
+                    attrs="{'invisible': [('trans_pr_count', '=', 0)]}" groups="base.group_user">
+                    <field name="trans_pr_count" widget="statinfo" string="Trans PRs"/>
+                </button>
+            </xpath>
+            <button name="print_quotation" position="after">
+                <button name="%(create_sale_trans_request_action)d" type="action" string="Create Transport PR"
+                        attrs="{'invisible': [('trans_pr_needed', '=', False)]}"/>
+                <button name="action_create_trans_cost" type="object" string="Create Transport Cost"
+                        attrs="{'invisible': ['|', ('trans_pr_needed', '=', False), ('trans_po_count', '=', 0)]}"/>
+            </button>
+            <xpath expr="//field[@name='product_packaging']" position="after">
+                <field name="trans_pr_needed"/>
+            </xpath>
+            <group name="sale_shipping" position="inside">
+                <field name="trans_pr_needed"/>
+                <field name="transport_cost_type"/>
+            </group>
+        </field>
+    </record>
+
+</odoo>

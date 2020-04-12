@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Part of rental-vertical See LICENSE file for full copyright and licensing details.
+-->
+
+<odoo>
+
+    <record id="create_sale_trans_request_form" model="ir.ui.view">
+        <field name="name">create.sale.trans.request.form</field>
+        <field name="model">create.sale.trans.request</field>
+        <field name="arch" type="xml">
+            <form string="Create Transport Request">
+                <group name="main">
+                    <field name="service_product_ids" widget="many2many_tags"/>
+                    <field name="origin_line_ids">
+                        <tree>
+                            <field name="order_line_id" invisible="1"/>
+                            <field name="product_id" readonly="1"/>
+                            <field name="product_uom_qty" readonly="1"/>
+                            <field name="product_uom" readonly="1"/>
+                            <field name="trans_shipment_plan_id" readonly="1"/>
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button name="action_confirm" string="Create"
+                        type="object" class="btn-primary"/>
+                    <button special="cancel" string="Cancel" class="btn-default"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    
+    <record id="create_sale_trans_request_action" model="ir.actions.act_window">
+        <field name="name">Create Transport Request</field>
+        <field name="res_model">create.sale.trans.request</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
