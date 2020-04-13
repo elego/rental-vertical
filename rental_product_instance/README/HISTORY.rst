@@ -2,6 +2,7 @@
 Changelog
 ---------
 
+- 0bab92d 2020-04-09 12:41:12 +0200 wagner@elegosoft.com  (HEAD -> fix_3339_blp455_extend_documentation_v12, origin/fix_3339_blp455_extend_documentation_v12, origin/fix_3339_blp355_extend_documentation_v12, fix_3339_blp355_extend_documentation_v12) update/regenerate addon documentation (issue #3339)
 - 73d3d13 2020-04-08 21:09:53 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_3615_blp435_test_rental_workflows_v12: addons-rental-vertical remotes/origin/feature_3615_blp435_test_rental_workflows_v12 - 871f83eb2d53a5a9dfc5f486aaa5acee6108d3fa [ADD] new module test_rental_workflows to manage integration tests
 - 871f83e 2020-04-08 14:52:58 +0200 cpatel@elegosoft.com  (origin/feature_3615_blp435_test_rental_workflows_v12) [ADD] new module test_rental_workflows to manage integration tests
 - 28dc119 2020-04-07 13:44:38 +0200 yweng@elegosoft.com  (origin/feature_3293_blp435_sale_transport_purchase_request_v12) [IMP] improves _name_search function of product to search product with serial number and license_plate

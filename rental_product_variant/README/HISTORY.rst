@@ -2,6 +2,7 @@
 Changelog
 ---------
 
+- 0bab92d 2020-04-09 12:41:12 +0200 wagner@elegosoft.com  (HEAD -> fix_3339_blp455_extend_documentation_v12, origin/fix_3339_blp455_extend_documentation_v12, origin/fix_3339_blp355_extend_documentation_v12, fix_3339_blp355_extend_documentation_v12) update/regenerate addon documentation (issue #3339)
 - 94f6f71 2020-03-26 10:09:51 +0100 cpatel@elegosoft.com  [IMP] todo points of rental product , ticket #3279
 - 197443e 2020-03-22 16:48:33 +0100 yweng@elegosoft.com  [IMP] improves form-, tree- and search-view of products (issue 3593)
 - 3119cfd 2020-03-18 10:07:48 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_3339_blp384_extend_documentation_v12: addons-rental-vertical remotes/origin/fix_3339_blp384_extend_documentation_v12 - b49c01dabbc653a42b77f82bd3c44a8759721359 regenerate doc (issue #3339)

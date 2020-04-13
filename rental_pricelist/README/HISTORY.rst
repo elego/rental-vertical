@@ -2,6 +2,7 @@
 Changelog
 ---------
 
+- 0bab92d 2020-04-09 12:41:12 +0200 wagner@elegosoft.com  (HEAD -> fix_3339_blp455_extend_documentation_v12, origin/fix_3339_blp455_extend_documentation_v12, origin/fix_3339_blp355_extend_documentation_v12, fix_3339_blp355_extend_documentation_v12) update/regenerate addon documentation (issue #3339)
 - eff3bc0 2020-04-02 13:01:43 +0200 cpatel@elegosoft.com  (origin/feature_3467_blp420_rental_todo_points_v12) [IMP] set start ,end date on sale order line automatically
 - ff31876 2020-03-30 17:55:07 +0200 cpatel@elegosoft.com  [IMP] renatl_contract,rental_pricelist todo points(ticket#3467,ticket#3589) 1. ticket#3467, set the code of automatically created contracts from sale order to the sale order number if the contract subtype has no sequence 2. ticket#3589, The computation of number_of_time_unit is not correct when using the uom Month(s)
 - ae99508 2020-03-18 11:50:27 +0100 maria.sparenberg@elegosoft.com  issue #3589 move fields to correct groups in module rental_pricelist

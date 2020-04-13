@@ -2,6 +2,7 @@
 Changelog
 ---------
 
+- 0bab92d 2020-04-09 12:41:12 +0200 wagner@elegosoft.com  (HEAD -> fix_3339_blp455_extend_documentation_v12, origin/fix_3339_blp455_extend_documentation_v12, origin/fix_3339_blp355_extend_documentation_v12, fix_3339_blp355_extend_documentation_v12) update/regenerate addon documentation (issue #3339)
 - f1a193e 2020-03-27 12:29:28 +0100 cpatel@elegosoft.com  (origin/feature_3279_blp420_rental_product_todo_points_v12) [IMP] german translation rental_base,rental_product_instance, ticket#3286
 - fc0321b 2020-03-27 10:50:44 +0100 cpatel@elegosoft.com  [IMP] todo points rental_base and rental_product_instance , ticket#3286
 - 94f6f71 2020-03-26 10:09:51 +0100 cpatel@elegosoft.com  [IMP] todo points of rental product , ticket #3279

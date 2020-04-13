@@ -2,6 +2,7 @@
 Changelog
 ---------
 
+- 0bab92d 2020-04-09 12:41:12 +0200 wagner@elegosoft.com  (HEAD -> fix_3339_blp455_extend_documentation_v12, origin/fix_3339_blp455_extend_documentation_v12, origin/fix_3339_blp355_extend_documentation_v12, fix_3339_blp355_extend_documentation_v12) update/regenerate addon documentation (issue #3339)
 - ad8158d 2020-04-07 23:14:03 +0200 kay.haeusler@elego.de  (origin/feature_3594_blp435_rental_repair_v12) add the missing type done; issue #3594
 - 94f6f71 2020-03-26 10:09:51 +0100 cpatel@elegosoft.com  [IMP] todo points of rental product , ticket #3279
 - 7b37dac 2020-03-29 16:46:52 +0200 kay.haeusler@elego.de  (origin/feature_3594_blp420_rental_repair_v12) reformat the code; issue #3594

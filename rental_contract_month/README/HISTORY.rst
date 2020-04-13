@@ -2,6 +2,7 @@
 Changelog
 ---------
 
+- 0bab92d 2020-04-09 12:41:12 +0200 wagner@elegosoft.com  (HEAD -> fix_3339_blp455_extend_documentation_v12, origin/fix_3339_blp455_extend_documentation_v12, origin/fix_3339_blp355_extend_documentation_v12, fix_3339_blp355_extend_documentation_v12) update/regenerate addon documentation (issue #3339)
 - bf019a3 2020-03-26 13:16:32 +0100 yweng@elegosoft.com  [IMP] unittest for rental_contract_month
 - 6fa2772 2020-03-24 20:26:41 +0100 yweng@elegosoft.com  [FIX] rental_contract_month
 - ea35976 2020-03-18 13:06:04 +0100 maria.sparenberg@elegosoft.com  issue #3589 move fields to correct groups in module rental_contract
