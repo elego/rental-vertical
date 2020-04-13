@@ -18,5 +18,5 @@
     'qweb': [
     ],
     'auto_install': True,
-    'license': 'LGPL-3',
+    'license': 'AGPL-3',
 }

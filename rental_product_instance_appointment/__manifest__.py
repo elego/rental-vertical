@@ -32,5 +32,5 @@ create related project tasks in helpdesk project and update the due date for the
     'qweb': [
     ],
     'auto_install': False,
-    'license': 'LGPL-3',
+    'license': 'AGPL-3',
 }

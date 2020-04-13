@@ -23,5 +23,5 @@ It can be used in rental orders, repair orders and maintenance orders.''',
     'qweb': [
     ],
     'application': True,
-    'license': 'LGPL-3',
+    'license': 'AGPL-3',
 }

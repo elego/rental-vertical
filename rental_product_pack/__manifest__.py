@@ -20,5 +20,5 @@ With this module, product packs can be rented as one compound product.
     'qweb': [
     ],
     'application': True,
-    'license': 'LGPL-3',
+    'license': 'AGPL-3',
 }

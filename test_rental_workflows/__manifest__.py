@@ -23,5 +23,5 @@ Test Rental Workflows
     'qweb': [
     ],
     'application': True,
-    'license': 'LGPL-3',
+    'license': 'AGPL-3',
 }

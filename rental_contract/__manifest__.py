@@ -47,5 +47,5 @@ You can add new contract subtypes here:
     'qweb': [
     ],
     'auto_install': True,
-    'license': 'LGPL-3',
+    'license': 'AGPL-3',
 }

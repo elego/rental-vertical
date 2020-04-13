@@ -23,5 +23,5 @@ easy way to specify the prices in a product tab as well as to use all the enhanc
     'qweb': [
     ],
     'application': True,
-    'license': 'LGPL-3',
+    'license': 'AGPL-3',
 }
