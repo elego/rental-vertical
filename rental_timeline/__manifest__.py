@@ -26,5 +26,5 @@ A complete timeline view will be generated for all rentable products.''',
     'qweb': [
     ],
     'application': True,
-    'license': 'LGPL-3',
+    'license': 'AGPL-3',
 }

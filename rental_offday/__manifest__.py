@@ -40,5 +40,5 @@ The off-days can only be used for products rentable in days.
     'qweb': [
     ],
     'auto_install': False,
-    'license': 'LGPL-3',
+    'license': 'AGPL-3',
 }

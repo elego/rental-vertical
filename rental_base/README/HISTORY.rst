@@ -2,6 +2,24 @@
 Changelog
 ---------
 
+- 2da340d 2020-04-13 14:11:24 +0200 wagner@elegosoft.com  (HEAD -> fix_3339_blp455_extend_documentation_v12, origin/fix_3339_blp455_extend_documentation_v12) change license for rental-vertical to AGPL (issue #3339)
+- 6d3410b 2020-04-13 13:28:20 +0200 wagner@elegosoft.com  regenerate documentation (issue #3339)
+- 0bab92d 2020-04-09 12:41:12 +0200 wagner@elegosoft.com  (origin/fix_3339_blp355_extend_documentation_v12, fix_3339_blp355_extend_documentation_v12) update/regenerate addon documentation (issue #3339)
+- f1a193e 2020-03-27 12:29:28 +0100 cpatel@elegosoft.com  (origin/feature_3279_blp420_rental_product_todo_points_v12) [IMP] german translation rental_base,rental_product_instance, ticket#3286
+- fc0321b 2020-03-27 10:50:44 +0100 cpatel@elegosoft.com  [IMP] todo points rental_base and rental_product_instance , ticket#3286
+- 94f6f71 2020-03-26 10:09:51 +0100 cpatel@elegosoft.com  [IMP] todo points of rental product , ticket #3279
+- 5cd55b2 2020-03-25 19:33:13 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_3593_blp412_rental_product_instance_v12: addons-rental-vertical remotes/origin/feature_3593_blp412_rental_product_instance_v12 - bbea9f1641b460a2b886c32b8f8f066be81bca9a [ADD] module rental_contract_insurance
+- 0354a69 2020-03-25 14:28:18 +0100 cpatel@elegosoft.com  (origin/feature_3589_blp412_rental_base_todo_points_v12) [IMP] todo points related to start and end date, ticket #3589
+- 07e6c64 2020-03-24 17:06:54 +0100 yweng@elegosoft.com  [IMP] rental_product_insurance
+- 197443e 2020-03-22 16:48:33 +0100 yweng@elegosoft.com  [IMP] improves form-, tree- and search-view of products (issue 3593)
+- 589487a 2020-03-21 12:21:30 +0100 maria.sparenberg@elegosoft.com  issue #3589 move some fields in sale order form for rental orders
+- 823d4c7 2020-03-17 20:06:15 +0100 maria.sparenberg@elegosoft.com  issue #3589 improve sale order (line) view in rental_base module
+- 3119cfd 2020-03-18 10:07:48 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_3339_blp384_extend_documentation_v12: addons-rental-vertical remotes/origin/fix_3339_blp384_extend_documentation_v12 - b49c01dabbc653a42b77f82bd3c44a8759721359 regenerate doc (issue #3339)
+- c71ec77 2020-03-18 10:31:23 +0100 yweng@elegosoft.com  (origin/feature_3576_blp384_unittest_instance_appointment_v12) [IMP] delete debug functions in unittests
+- fa3d632 2020-03-18 02:13:25 +0100 yweng@elegosoft.com  [IMP] unittests for module rental_pricelist
+- 5973497 2020-03-17 11:39:36 +0100 yweng@elegosoft.com  [MIG] add migration script for module rental_base 12.0.1.0.1
+- a8e3385 2020-03-16 22:30:45 +0100 yweng@elegosoft.com  [IMP] move product_uom_month from rental_pricelist into rental_base
+- b49c01d 2020-03-15 10:12:53 +0100 wagner@elegosoft.com  (origin/fix_3339_blp384_extend_documentation_v12) regenerate doc (issue #3339)
 - cea0e94 2020-03-13 20:38:19 +0100 wagner@elegosoft.com  update documentation to build 380 (issue #3339)
 - c9f5b81 2020-03-13 08:48:23 +0100 maria.sparenberg@elegosoft.com  (origin/feature_3467_blp371_rentals_menu_v12) issue #3467 fix menu strings and translation
 - 705a197 2020-03-12 23:49:11 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_3576_blp355_rental_product_pack_v12: addons-rental-vertical remotes/origin/feature_3576_blp355_rental_product_pack_v12 - b367d1778430938c768f5ab84bd8e543f34f113f [IMP] Unittests of module rental_product_instance

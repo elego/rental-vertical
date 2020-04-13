@@ -59,5 +59,5 @@ Otherwise you can not deal with rental orders.
     'qweb': [
     ],
     'application': True,
-    'license': 'LGPL-3',
+    'license': 'AGPL-3',
 }

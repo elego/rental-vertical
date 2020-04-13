@@ -2,6 +2,14 @@
 Changelog
 ---------
 
+- 2da340d 2020-04-13 14:11:24 +0200 wagner@elegosoft.com  (HEAD -> fix_3339_blp455_extend_documentation_v12, origin/fix_3339_blp455_extend_documentation_v12) change license for rental-vertical to AGPL (issue #3339)
+- 6d3410b 2020-04-13 13:28:20 +0200 wagner@elegosoft.com  regenerate documentation (issue #3339)
+- 0bab92d 2020-04-09 12:41:12 +0200 wagner@elegosoft.com  (origin/fix_3339_blp355_extend_documentation_v12, fix_3339_blp355_extend_documentation_v12) update/regenerate addon documentation (issue #3339)
+- ff31876 2020-03-30 17:55:07 +0200 cpatel@elegosoft.com  [IMP] renatl_contract,rental_pricelist todo points(ticket#3467,ticket#3589) 1. ticket#3467, set the code of automatically created contracts from sale order to the sale order number if the contract subtype has no sequence 2. ticket#3589, The computation of number_of_time_unit is not correct when using the uom Month(s)
+- c670a5f 2020-03-21 13:07:52 +0100 maria.sparenberg@elegosoft.com  (origin/feature_3589_blp400_rental_order_v12) issue #3589 remove start and end date from sale order line tree view
+- ea35976 2020-03-18 13:06:04 +0100 maria.sparenberg@elegosoft.com  issue #3589 move fields to correct groups in module rental_contract
+- 823d4c7 2020-03-17 20:06:15 +0100 maria.sparenberg@elegosoft.com  issue #3589 improve sale order (line) view in rental_base module
+- b49c01d 2020-03-15 10:12:53 +0100 wagner@elegosoft.com  (origin/fix_3339_blp384_extend_documentation_v12) regenerate doc (issue #3339)
 - cea0e94 2020-03-13 20:38:19 +0100 wagner@elegosoft.com  update documentation to build 380 (issue #3339)
 - 977d224 2020-03-13 10:58:32 +0100 cpatel@elegosoft.com  (origin/feature_3279_blp371_todo_points_v12) [IMP] todo points issue # 3279
 - e371276 2020-03-10 18:14:07 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_3339_blp343_extend_documentation_v12: addons-rental-vertical remotes/origin/fix_3339_blp343_extend_documentation_v12 - 9576b54fbb0cbcbffb804587fd722df8a4057da0 allow cli overwrite of module arguments; regenerate doc for rental_product_instance_appointment rental_product_variant rental_offday rental_invoice rental_contract_month rental_contract (issue #3339)

@@ -2,6 +2,15 @@
 Changelog
 ---------
 
+- 2da340d 2020-04-13 14:11:24 +0200 wagner@elegosoft.com  (HEAD -> fix_3339_blp455_extend_documentation_v12, origin/fix_3339_blp455_extend_documentation_v12) change license for rental-vertical to AGPL (issue #3339)
+- 6d3410b 2020-04-13 13:28:20 +0200 wagner@elegosoft.com  regenerate documentation (issue #3339)
+- 0bab92d 2020-04-09 12:41:12 +0200 wagner@elegosoft.com  (origin/fix_3339_blp355_extend_documentation_v12, fix_3339_blp355_extend_documentation_v12) update/regenerate addon documentation (issue #3339)
+- ad8158d 2020-04-07 23:14:03 +0200 kay.haeusler@elego.de  (origin/feature_3594_blp435_rental_repair_v12) add the missing type done; issue #3594
+- 94f6f71 2020-03-26 10:09:51 +0100 cpatel@elegosoft.com  [IMP] todo points of rental product , ticket #3279
+- 7b37dac 2020-03-29 16:46:52 +0200 kay.haeusler@elego.de  (origin/feature_3594_blp420_rental_repair_v12) reformat the code; issue #3594
+- a097cdf 2020-03-29 16:36:03 +0200 kay.haeusler@elego.de  rename the field project_task_id from Task to Ticket and add in the kanban view after the fields customer name and product name a line break; issue #3594
+- 6a9ce00 2020-03-25 16:16:13 +0100 kay.haeusler@elego.de  (origin/feature_3594_blp412_rental_repair_v12) some changes for the heldesk project; issue #3594
+- b49c01d 2020-03-15 10:12:53 +0100 wagner@elegosoft.com  (origin/fix_3339_blp384_extend_documentation_v12) regenerate doc (issue #3339)
 - bacec66 2020-03-13 23:49:18 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_3339_blp371_extend_documentation_v12: addons-rental-vertical remotes/origin/fix_3339_blp371_extend_documentation_v12 - cea0e9421f4cbb517c17e5edda4bab3d43cdd428 update documentation to build 380 (issue #3339)
 - b427ccc 2020-03-13 23:49:14 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_3296_blp371_rental_repair_v12: addons-rental-vertical remotes/origin/feature_3296_blp371_rental_repair_v12 - 2a3309f0d0c999a7c315cd7a77eeb3c9a880aaaa add project.task.type for the project Helpdesk; issue #3296
 - 2a3309f 2020-03-14 00:20:06 +0100 kay.haeusler@elego.de  (origin/feature_3296_blp371_rental_repair_v12) add project.task.type for the project Helpdesk; issue #3296

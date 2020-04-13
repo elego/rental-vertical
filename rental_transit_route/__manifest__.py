@@ -19,5 +19,5 @@
     'qweb': [
     ],
     'post_init_hook': 'post_init_hook',
-    'license': 'LGPL-3',
+    'license': 'AGPL-3',
 }

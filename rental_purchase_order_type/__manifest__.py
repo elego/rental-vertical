@@ -24,5 +24,5 @@ Additional order types:
     'qweb': [
     ],
     'application': False,
-    'license': 'LGPL-3',
+    'license': 'AGPL-3',
 }

@@ -1,4 +1,4 @@
-Rental Product Instance Repair
+Rental Contract Insurance
 ====================================================
 
 *This file has been generated on 2020-04-13-14-11-50. Changes to it will be overwritten.*
@@ -6,7 +6,7 @@ Rental Product Instance Repair
 Summary
 -------
 
-Extension of module rental_product_instance and rental_repair
+Rental Contract Insurance
 
 Description
 -----------

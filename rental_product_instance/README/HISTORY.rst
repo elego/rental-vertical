@@ -2,6 +2,18 @@
 Changelog
 ---------
 
+- 2da340d 2020-04-13 14:11:24 +0200 wagner@elegosoft.com  (HEAD -> fix_3339_blp455_extend_documentation_v12, origin/fix_3339_blp455_extend_documentation_v12) change license for rental-vertical to AGPL (issue #3339)
+- 6d3410b 2020-04-13 13:28:20 +0200 wagner@elegosoft.com  regenerate documentation (issue #3339)
+- 0bab92d 2020-04-09 12:41:12 +0200 wagner@elegosoft.com  (origin/fix_3339_blp355_extend_documentation_v12, fix_3339_blp355_extend_documentation_v12) update/regenerate addon documentation (issue #3339)
+- 73d3d13 2020-04-08 21:09:53 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_3615_blp435_test_rental_workflows_v12: addons-rental-vertical remotes/origin/feature_3615_blp435_test_rental_workflows_v12 - 871f83eb2d53a5a9dfc5f486aaa5acee6108d3fa [ADD] new module test_rental_workflows to manage integration tests
+- 871f83e 2020-04-08 14:52:58 +0200 cpatel@elegosoft.com  (origin/feature_3615_blp435_test_rental_workflows_v12) [ADD] new module test_rental_workflows to manage integration tests
+- 28dc119 2020-04-07 13:44:38 +0200 yweng@elegosoft.com  (origin/feature_3293_blp435_sale_transport_purchase_request_v12) [IMP] improves _name_search function of product to search product with serial number and license_plate
+- f1a193e 2020-03-27 12:29:28 +0100 cpatel@elegosoft.com  (origin/feature_3279_blp420_rental_product_todo_points_v12) [IMP] german translation rental_base,rental_product_instance, ticket#3286
+- fc0321b 2020-03-27 10:50:44 +0100 cpatel@elegosoft.com  [IMP] todo points rental_base and rental_product_instance , ticket#3286
+- 197443e 2020-03-22 16:48:33 +0100 yweng@elegosoft.com  [IMP] improves form-, tree- and search-view of products (issue 3593)
+- 3119cfd 2020-03-18 10:07:48 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_3339_blp384_extend_documentation_v12: addons-rental-vertical remotes/origin/fix_3339_blp384_extend_documentation_v12 - b49c01dabbc653a42b77f82bd3c44a8759721359 regenerate doc (issue #3339)
+- f883889 2020-03-16 22:31:35 +0100 yweng@elegosoft.com  [IMP] improves unittests of module rental_product_instance
+- b49c01d 2020-03-15 10:12:53 +0100 wagner@elegosoft.com  (origin/fix_3339_blp384_extend_documentation_v12) regenerate doc (issue #3339)
 - cea0e94 2020-03-13 20:38:19 +0100 wagner@elegosoft.com  update documentation to build 380 (issue #3339)
 - 977d224 2020-03-13 10:58:32 +0100 cpatel@elegosoft.com  (origin/feature_3279_blp371_todo_points_v12) [IMP] todo points issue # 3279
 - 705a197 2020-03-12 23:49:11 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_3576_blp355_rental_product_pack_v12: addons-rental-vertical remotes/origin/feature_3576_blp355_rental_product_pack_v12 - b367d1778430938c768f5ab84bd8e543f34f113f [IMP] Unittests of module rental_product_instance

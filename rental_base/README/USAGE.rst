@@ -5,6 +5,6 @@ Usage
 Go to Rentals > Configuration > Settings.
 Activate the checkboxes for rental extensions.
 
-When activating 'Product Variant' you might have to activate the checkbox 'Product Variant' 
-in Sales > Configuration > Settings, too.
+Please activate the checkbox for using 'Product Variants' in Sales > Configuration > Settings, too.
+Otherwise you can not deal with rental orders.
 

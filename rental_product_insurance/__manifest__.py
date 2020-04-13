@@ -22,5 +22,5 @@ With this module, product insurance can be sold as service.
     'qweb': [
     ],
     'application': True,
-    'license': 'LGPL-3',
+    'license': 'AGPL-3',
 }

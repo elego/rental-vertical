@@ -42,11 +42,11 @@ addcol ()
 printf "| %-64s | %4s | %4s | %4s |\n" "*module*" "*lines*" "*misses*" "*percent*"
 
 case "$1" in
-  *coverage-report.txt) report="$1"; shift;;
+  *coverage-report*.txt) report="$1"; shift;;
   *) report=${HOME}/Downloads/coverage-report.txt;;
 esac
-suma=
-sumb=
+suma=0
+sumb=0
 for f in ${@:-rental_* sale_* stock_*}; do
   if [[ -s $f/__manifest__.py ]]; then 
     s=$(grep "rental-vertical/${f}/" ${report} | addcol | grep 'sums:')
