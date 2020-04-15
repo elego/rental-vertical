@@ -31,6 +31,7 @@ In order to get vehicle related fields, open the product category and activate t
     'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
         'rental_base',
+        'purchase',
     ],
     'data': [
         'security/ir.model.access.csv',
