@@ -8,23 +8,30 @@
       <field name="arch" type="xml">
         <form string="Shipment Plan">
           <header>
-            <button name="%(create_trans_request_action)d" type="action" string="Create Transport PR" state="draft"/>
-            <!--
-            <button name="shipment_confirm"
+            <button name="%(create_trans_request_action)d"
+                type="action"
+                string="Create Transport PR"
+                state="draft"
+                class="oe_highlight"/>
+            <button name="action_confirm"
                 string="Confirm"
                 states="draft"
+                type="object"
                 class="oe_highlight"/>
-            <button name="button_action_transit"
-                string="Send to transit"
-                states="confirmed"
-                class="oe_highlight"
-                type="object"/>
-            <button name="cancel"
+            <button name="action_cancel"
                 string="Cancel"
+                type="object"
                 states="draft,confirmed"/>
             <button name="action_cancel_draft"
                 states="cancel"
                 string="Set to Draft"
+                type="object"/>
+
+            <!--
+            <button name="button_action_transit"
+                string="Send to transit"
+                states="confirmed"
+                class="oe_highlight"
                 type="object"/>
             -->
             <field name="state" select="1" readonly="1"

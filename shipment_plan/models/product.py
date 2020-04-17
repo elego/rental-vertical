@@ -20,5 +20,6 @@ class ProductProduct(models.Model):
         [
             ('po', 'Purchase Order'),
             ('pr', 'Purchase Requisition'),
-        ]
+        ],
+        default="po",
     )

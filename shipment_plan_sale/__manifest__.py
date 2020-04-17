@@ -11,6 +11,7 @@
     ],
     'data': [
         'wizard/create_transport_request_view.xml',
+        'views/product_view.xml',
         'views/sale_view.xml',
         'views/shipment_plan_view.xml',
     ],

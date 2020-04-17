@@ -131,9 +131,15 @@ class SaleOrder(models.Model):
     def action_create_trans_cost(self):
         self.ensure_one()
         price_unit = sum([p.amount_untaxed \
-            for p in self.trans_po_ids if p.transport_confirmed])
+            for p in self.trans_po_ids if p.selected_in_order])
+        margin = 0
         if price_unit == 0:
-            return
+            raise exceptions.UserError(
+                _('You need to select a transport purchase RFQ for this sale order first'))
+        for p in self.trans_po_ids:
+            if p.selected_in_order:
+                for pol in p.order_line:
+                    margin += pol.product_id.transport_sales_margin
         if self.transport_cost_type == "single":
             product_id = self.env['ir.config_parameter'].sudo().get_param(
                 'sale.transport_cost_product_id')
@@ -143,18 +149,19 @@ class SaleOrder(models.Model):
                 'product_id': product_transport_cost.id,
                 'product_uom_qty': 1,
                 'product_uom': self.env.ref('uom.product_uom_unit').id,
-                'price_unit': price_unit,
+                'price_unit': price_unit + margin,
             })]})
         elif self.transport_cost_type == "multi":
             order_line_vals = []
             for p in self.trans_po_ids:
-                if p.transport_confirmed:
+                if p.selected_in_order:
                     for pol in p.order_line:
+                        margin = pol.product_id.transport_sales_margin
                         order_line_vals.append((0, 0, {
                             'product_id': pol.product_id.id,
                             'product_uom_qty': pol.product_uom_qty,
                             'product_uom': pol.product_uom.id,
-                            'price_unit': pol.price_unit,
+                            'price_unit': pol.price_unit + margin,
                             'name': pol.name,
                         }))
             self.write({'order_line': order_line_vals})

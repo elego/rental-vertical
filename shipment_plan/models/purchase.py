@@ -46,8 +46,8 @@ class PurchaseOrderLine(models.Model):
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
-    transport_confirmed = fields.Boolean(
-        'Transport Confirmed'
+    selected_in_order = fields.Boolean(
+        'Selected in Order'
     )
 
     @api.multi
@@ -59,11 +59,11 @@ class PurchaseOrder(models.Model):
                 for pol in plan.trans_purchase_line_ids:
                     if pol.id != line.id \
                             and pol.product_id == line.product_id \
-                            and pol.order_id.transport_confirmed:
+                            and pol.order_id.selected_in_order:
                         raise exceptions.UserError(
                             _('You have already confirm the "%s" in Order "%s".') %(
                                 pol.product_id.name,
                                 pol.order_id.name
                             )
                         )
-        self.write({'transport_confirmed': True})
+        self.write({'selected_in_order': True})

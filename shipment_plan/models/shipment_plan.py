@@ -191,6 +191,7 @@ class ShipmentPlan(models.Model):
                     'requisition_id': new_requisition.id,
                     'product_id': p.id,
                     'name': description,
+                    'schedule_date': self.initial_etd,
                     'product_qty': 1,
                     'product_uom_id': uom_id,
                 })
@@ -231,3 +232,7 @@ class ShipmentPlan(models.Model):
         for record in self:
             record.state = "done"
 
+    @api.multi
+    def action_cancel_draft(self):
+        for record in self:
+            record.state = "draft"
