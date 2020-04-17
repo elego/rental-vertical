@@ -10,6 +10,9 @@ Test Rental Workflows
     'category': 'sale',
     'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
+        # 'sale',
+        'web',
+        'web_tour',
         'sale_rental',
         'rental_base',
         'rental_pricelist',
@@ -17,6 +20,8 @@ Test Rental Workflows
         'rental_product_instance',
     ],
     'data': [
+        'data/settings.xml',
+        'views/assets.xml',
     ],
     'demo': [
     ],
