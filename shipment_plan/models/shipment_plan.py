@@ -213,3 +213,21 @@ class ShipmentPlan(models.Model):
         action = self.env.ref('purchase.purchase_form_action').read([])[0]
         action['domain'] = [('id','in', self.trans_po_ids.ids)]
         return action
+
+    @api.multi
+    def action_cancel(self):
+        for record in self:
+            record.trans_po_ids.button_cancel()
+            record.trans_pr_ids.action_cancel()
+            record.state = "cancel"
+
+    @api.multi
+    def action_confirm(self):
+        for record in self:
+            record.state = "confirmed"
+
+    @api.multi
+    def action_done(self):
+        for record in self:
+            record.state = "done"
+

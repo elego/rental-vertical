@@ -45,6 +45,7 @@ class CreateSaleTransRequest(models.TransientModel):
     def action_confirm(self):
         self.ensure_one()
         shipment_plan = False
+        return_shipment_plan = False
         all_set, no_set = self._check_origin_lines()
         if all_set:
             shipment_plan = self.origin_line_ids[0].trans_shipment_plan_id
@@ -54,10 +55,8 @@ class CreateSaleTransRequest(models.TransientModel):
         else:
             raise execptions.UserError(_('No found suitable Shipment Plan.'))
         shipment_plan.create_purchase_request(self.service_product_ids)   
-
         rental_order_type = self.env.ref('rental_base.rental_sale_type')
         if self.order_id.type_id.id == rental_order_type.id:
-            return_shipment_plan = False
             if all_set:
                 return_shipment_plan = self.origin_line_ids[0].trans_return_shipment_plan_id
             elif no_set:
@@ -70,10 +69,15 @@ class CreateSaleTransRequest(models.TransientModel):
             else:
                 raise execptions.UserError(_('No found suitable Shipment Plan.'))
             return_shipment_plan.create_purchase_request(self.service_product_ids)   
-        self.origin_line_ids.mapped('order_line_id').write({
-            'trans_shipment_plan_id': shipment_plan.id,
-            'trans_return_shipment_plan_id': return_shipment_plan.id,
-        })
+
+        vals = {}
+        if shipment_plan:
+            vals['trans_shipment_plan_id'] = shipment_plan.id
+        if return_shipment_plan:
+            vals['trans_return_shipment_plan_id'] = return_shipment_plan.id
+        self.origin_line_ids.mapped('order_line_id').write(vals)
+
+
 
 class CreateSaleTransOriginLine(models.TransientModel):
     _inherit = "create.sale.trans.origin.line"

@@ -160,19 +160,13 @@ class SaleOrder(models.Model):
             self.write({'order_line': order_line_vals})
 
     @api.multi
-    def action_cancel_trans_order(self):
+    def action_shipment_plan_cancel(self):
         for order in self:
-            order.trans_po_ids.action_cancel()
+            order.trans_shipment_plan_ids.action_cancel()
 
     @api.multi
-    def action_cancel_trans_requisition(self):
-        for order in self:
-            order.trans_pr_ids.action_cancel()
-
-    @api.multi
-    def button_cancel(self):
-        self.action_cancel_trans_order()
-        self.action_cancel_trans_requisition()
+    def action_cancel(self):
+        self.action_shipment_plan_cancel()
         return super(SaleOrder, self).action_cancel()
 
     @api.multi
