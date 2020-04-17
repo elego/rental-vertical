@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<openerp>
+    <record model="ir.ui.view" id="view_shipment_plan_form">
+        <field name="name">shipment.plan.form</field>
+        <field name="model">shipment.plan</field>
+        <field name="inherit_id" ref="shipment_plan.view_shipment_plan_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Origin Sale" attrs="{'invisible': [('plan_type','!=','sale')]}">
+                    <group>
+                        <field name="sale_id" readonly="1"/>
+                        <field name="origin_sale_line_ids" readonly="1"/>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</openerp>

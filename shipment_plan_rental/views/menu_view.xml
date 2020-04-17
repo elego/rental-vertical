@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem name="Transport Requisition"
+        id="menu_trans_requisition"
+        parent="rental_base.menu_vendor_requests"
+        action="purchase_requisition.action_purchase_requisition"
+        sequence="2" />
+
+    <menuitem
+      id="menu_rental_action_shipment"
+      action="shipment_plan.action_shipment_plan"
+      parent="rental_base.menu_top_vendor"
+      sequence="1"/>
+
+</odoo>
