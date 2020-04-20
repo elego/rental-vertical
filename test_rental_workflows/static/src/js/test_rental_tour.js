@@ -193,10 +193,10 @@ odoo.define('rental.tour', function (require) {
         in_modal: false,
         position: 'bottom',
         run: function (){} //check Invoice: (Unit Price : 200.00)
-    }, {
+    }, /*{
         content: _t('Click on Validate'),
         trigger: 'button[name="action_invoice_open"]',
         position: 'bottom',
-    },
+    },*/
   ]);
 });
