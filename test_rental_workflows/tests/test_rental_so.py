@@ -6,7 +6,7 @@ import odoo.tests
 class TestUi(odoo.tests.HttpCase):
 
     def test_01_rental_tour(self):
-        self.phantom_js("/web", "odoo.__DEBUG__.services['web_tour.tour'].run('rental_tour', 1000)", "odoo.__DEBUG__.services['web_tour.tour'].tours.rental_tour.ready", login="admin")
+        self.phantom_js("/web", "odoo.__DEBUG__.services['web_tour.tour'].run('rental_tour')", "odoo.__DEBUG__.services['web_tour.tour'].tours.rental_tour.ready", login="admin")
 
 #@tagged('post_install', '-at_install')
 #class TestRentalSO(TestRentalPricelist):
