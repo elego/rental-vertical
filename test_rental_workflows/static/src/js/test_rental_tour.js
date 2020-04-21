@@ -95,9 +95,14 @@ odoo.define('rental.tour', function (require) {
         position: 'bottom',
     }, {
         content: _t("Click Send by email"),
-        trigger: 'button[name="action_quotation_send"]',
+        trigger: 'button[name="action_quotation_send"]:visible:not(:disabled)',
+    }, {
+        content: _t("Click Send"),
+        extra_trigger: '.o_act_window',
+        trigger: '.btn[name="action_send_mail"]',
     }, {
         content: _t("Click Confirm"),
+        extra_trigger: '.o_statusbar_status .btn-primary:contains("Quotation Sent")',
         trigger: 'button[name="action_confirm"]',
     }, {
         content: _t("Click on Delivery"),
