@@ -159,7 +159,7 @@ odoo.define('rental.tour', function (require) {
         id: "rental_product_invoice",
         run: 'click',
         position: 'bottom',
-    }, {
+    }, /*{
         content: _t('Check Sale Type on Invoice'),
         trigger: '.o_invoice_form a[name="sale_type_id"]:contains("Rental Order")',
         in_modal: false,
@@ -198,7 +198,7 @@ odoo.define('rental.tour', function (require) {
         in_modal: false,
         position: 'bottom',
         run: function (){} //check Invoice: (Unit Price : 200.00)
-    }, /*{
+    },*/ /*{
         content: _t('Click on Validate'),
         trigger: 'button[name="action_invoice_open"]',
         position: 'bottom',
