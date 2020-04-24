@@ -6,34 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-09 12:21+0000\n"
-"PO-Revision-Date: 2020-03-09 12:21+0000\n"
+"POT-Creation-Date: 2020-04-21 15:17+0000\n"
+"PO-Revision-Date: 2020-04-21 15:17+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-
-#. module: rental_product_variant
-#: model_terms:ir.ui.view,arch_db:rental_product_variant.product_normal_form_view
-msgid "<span class=\"o_stat_text\">Invoices</span>"
-msgstr "<span class=\"o_stat_text\">Rechnungen</span>"
-
-#. module: rental_product_variant
-#: model_terms:ir.ui.view,arch_db:rental_product_variant.product_normal_form_view
-msgid "<span class=\"o_stat_text\">Purchase Orders</span>"
-msgstr "<span class=\"o_stat_text\"> Bestellungen</span>"
-
-#. module: rental_product_variant
-#: model_terms:ir.ui.view,arch_db:rental_product_variant.product_normal_form_view
-msgid "<span class=\"o_stat_text\">Rental Orders</span>"
-msgstr "<span class=\"o_stat_text\">Mietaufträge</span>"
-
-#. module: rental_product_variant
-#: model_terms:ir.ui.view,arch_db:rental_product_variant.product_normal_form_view
-msgid "<span class=\"o_stat_text\">Sale Orders</span>"
-msgstr "<span class=\"o_stat_text\">Verkaufsaufträge</span>"
 
 #. module: rental_product_variant
 #: model_terms:ir.ui.view,arch_db:rental_product_variant.product_normal_form_view
@@ -46,13 +26,13 @@ msgid "Additional Infomation"
 msgstr "Weitere Informationen"
 
 #. module: rental_product_variant
-#: code:addons/rental_product_variant/models/product.py:95
+#: code:addons/rental_product_variant/models/product.py:116
 #, python-format
 msgid "All Invoices"
 msgstr "Alle Rechnungen"
 
 #. module: rental_product_variant
-#: code:addons/rental_product_variant/models/product.py:79
+#: code:addons/rental_product_variant/models/product.py:98
 #, python-format
 msgid "All Purchase Orders"
 msgstr "Alle Einkaufsbestellungen"
@@ -117,6 +97,11 @@ msgstr "Erstzulassung"
 #: model_terms:ir.ui.view,arch_db:rental_product_variant.product_normal_form_view
 msgid "Internal Notes"
 msgstr "Interne Notizen"
+
+#. module: rental_product_variant
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_product__invoice_count
+msgid "Invoices"
+msgstr "Rechnungen"
 
 #. module: rental_product_variant
 #: model:ir.model.fields,field_description:rental_product_variant.field_fleet_type____last_update
@@ -197,11 +182,17 @@ msgid "Products"
 msgstr "Produkte"
 
 #. module: rental_product_variant
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_product__po_count
+msgid "Purchase"
+msgstr "Einkauf"
+
+#. module: rental_product_variant
 #: model:ir.model.fields,field_description:rental_product_variant.field_product_product__qr_code
 msgid "QR-Code"
 msgstr "QR-Code"
 
 #. module: rental_product_variant
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_product__rental_count
 #: model_terms:ir.ui.view,arch_db:rental_product_variant.product_normal_form_view
 msgid "Rental"
 msgstr "Vermietung"
@@ -215,6 +206,11 @@ msgstr "Mietaufträge"
 #: model_terms:ir.ui.view,arch_db:rental_product_variant.product_normal_form_view
 msgid "Return"
 msgstr "Retoure ausführen"
+
+#. module: rental_product_variant
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_product__so_count
+msgid "Sales"
+msgstr "Verkauf"
 
 #. module: rental_product_variant
 #: model:ir.model.fields,field_description:rental_product_variant.field_product_category__show_init_regist
@@ -250,7 +246,29 @@ msgid "This note is only for internal purposes."
 msgstr "Dieser Hinweis dient nur internen Zwecken."
 
 #. module: rental_product_variant
+#: model:ir.model.fields,help:rental_product_variant.field_product_product__invoice_count
+msgid "Total number of Invoice Orders"
+msgstr "Gesamtanzahl von Rechnungen"
+
+#. module: rental_product_variant
+#: model:ir.model.fields,help:rental_product_variant.field_product_product__po_count
+msgid "Total number of Purchase Orders"
+msgstr "Gesamtanzahl von Einkaufsbestellungen"
+
+#. module: rental_product_variant
+#: model:ir.model.fields,help:rental_product_variant.field_product_product__rental_count
+msgid "Total number of Rental Orders"
+msgstr "Gesamtanzahl von Mietaufträgen"
+
+#. module: rental_product_variant
+#: model:ir.model.fields,help:rental_product_variant.field_product_product__so_count
+msgid "Total number of Sale Orders"
+msgstr "Gesamtanzahl von Verkaufsaufträgen"
+
+#. module: rental_product_variant
 #: model:ir.model.fields,field_description:rental_product_variant.field_product_product__manu_type_id
+#: model_terms:ir.ui.view,arch_db:rental_product_variant.view_account_invoice_filter
+#: model_terms:ir.ui.view,arch_db:rental_product_variant.view_purchase_order_filter
 msgid "Type"
 msgstr "Typ"
 
@@ -264,7 +282,3 @@ msgstr "Fahrgestellnummer"
 msgid "Year of Manufacture"
 msgstr "Baujahr"
 
-#. module: rental_product_variant
-#: model_terms:ir.ui.view,arch_db:rental_product_variant.product_normal_form_view
-msgid "e.g. 10 m x 10 m x 10 m"
-msgstr "z.B. 10 m x 10 m x 10 m"

@@ -35,8 +35,15 @@
             <field name="model">product.product</field>
             <field name="inherit_id" ref="product.product_normal_form_view" />
             <field name="arch" type="xml">
+                <!-- Change the exiting odoo's visible condition for two buttons
+                     1. serial Number
+                     2. Reordering Rules
+                -->
                 <xpath expr="//button[@name='action_open_product_lot']" position="attributes">
-                    <attribute name="attrs">{'invisible': ['|', ('type', '!=', 'product'), ('tracking', '=', 'none')]}</attribute>
+                    <attribute name="attrs">{'invisible': [('product_instance', '=', True)]}</attribute>
+                </xpath>
+                <xpath expr="//button[@name='%(stock.product_open_orderpoint)d']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('product_instance', '=', True)]}</attribute>
                 </xpath>
                 <xpath expr="//button[@name='action_open_quants']" position="attributes">
                     <attribute name="attrs">{'invisible': ['|',('product_instance', '=', True),('type', '!=', 'product')]}</attribute>
