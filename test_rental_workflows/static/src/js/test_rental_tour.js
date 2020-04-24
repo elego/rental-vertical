@@ -103,7 +103,7 @@ odoo.define('rental.tour', function (require) {
     }, {
         content: _t("Click Confirm"),
         extra_trigger: '.o_statusbar_status .btn-primary:contains("Quotation Sent")',
-        trigger: 'button[name="action_confirm"]',
+        trigger: 'button[name="action_confirm"]:visible:not(:disabled)',
     }, {
         content: _t("Click on Delivery"),
         trigger: 'button[name="action_view_delivery"]',
@@ -165,19 +165,21 @@ odoo.define('rental.tour', function (require) {
         in_modal: false,
         position: 'bottom',
         run: function (){} //check Invoice: Sale Type = Rental Order
-    }, {
+    }, /*{
         content: _t('Check Service Period from'),
+        extra_trigger: 'div[name="invoice_line_ids"]',
         trigger: '.o_invoice_form span[name="date_start"]:contains("03/01/2020")',
         in_modal: false,
         position: 'bottom',
         run: function (){} //check Invoice: Service Period from 03/01/2020
     }, {
         content: _t('Check Service Period to'),
+        extra_trigger: 'div[name="invoice_line_ids"]',
         trigger: '.o_invoice_form span[name="date_end"]:contains("05/01/2020")',
         in_modal: false,
         position: 'bottom',
         run: function (){} //check Invoice: Service Period to 05/01/2020
-    }, {
+    }, */{
         content: _t('Check total rental time on Invoice'),
         trigger: 'td.o_data_cell:contains("62.00")',
         extra_trigger: 'div[name="invoice_line_ids"]',
