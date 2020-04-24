@@ -69,8 +69,6 @@ class ContractContract(models.Model):
                     res['date_start'] = so_id.default_start_date
                 if so_id.default_end_date:
                     res['date_end'] = so_id.default_end_date
-                if so_id.branch_name:
-                    res['branch_name'] = so_id.branch_name
             else:
                 res['sale_type_id'] = False
             if self.type_id.journal_id:
