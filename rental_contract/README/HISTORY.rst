@@ -2,7 +2,10 @@
 Changelog
 ---------
 
-- 2da340d 2020-04-13 14:11:24 +0200 wagner@elegosoft.com  (HEAD -> fix_3339_blp455_extend_documentation_v12, origin/fix_3339_blp455_extend_documentation_v12) change license for rental-vertical to AGPL (issue #3339)
+- fa90668 2020-04-22 11:54:09 +0200 cpatel@elegosoft.com  (origin/fix_3615_blp488_branch_name_v12) [FIX] remove ref of branch_name
+- 38ff173 2020-04-22 11:33:31 +0200 yweng@elegosoft.com  [IMP] delete branch_name in function _prepare_invoice
+- 7fac932 2020-04-13 14:13:09 +0200 wagner@elegosoft.com  (origin/fix_3339_blp455_extend_documentation_v12, fix_3339_blp455_extend_documentation_v12) regenerate documentation (issue #3339)
+- 2da340d 2020-04-13 14:11:24 +0200 wagner@elegosoft.com  change license for rental-vertical to AGPL (issue #3339)
 - 6d3410b 2020-04-13 13:28:20 +0200 wagner@elegosoft.com  regenerate documentation (issue #3339)
 - 0bab92d 2020-04-09 12:41:12 +0200 wagner@elegosoft.com  (origin/fix_3339_blp355_extend_documentation_v12, fix_3339_blp355_extend_documentation_v12) update/regenerate addon documentation (issue #3339)
 - ff31876 2020-03-30 17:55:07 +0200 cpatel@elegosoft.com  [IMP] renatl_contract,rental_pricelist todo points(ticket#3467,ticket#3589) 1. ticket#3467, set the code of automatically created contracts from sale order to the sale order number if the contract subtype has no sequence 2. ticket#3589, The computation of number_of_time_unit is not correct when using the uom Month(s)

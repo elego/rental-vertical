@@ -2,7 +2,8 @@
 Changelog
 ---------
 
-- 2da340d 2020-04-13 14:11:24 +0200 wagner@elegosoft.com  (HEAD -> fix_3339_blp455_extend_documentation_v12, origin/fix_3339_blp455_extend_documentation_v12) change license for rental-vertical to AGPL (issue #3339)
+- 7fac932 2020-04-13 14:13:09 +0200 wagner@elegosoft.com  (origin/fix_3339_blp455_extend_documentation_v12, fix_3339_blp455_extend_documentation_v12) regenerate documentation (issue #3339)
+- 2da340d 2020-04-13 14:11:24 +0200 wagner@elegosoft.com  change license for rental-vertical to AGPL (issue #3339)
 - 6d3410b 2020-04-13 13:28:20 +0200 wagner@elegosoft.com  regenerate documentation (issue #3339)
 - 0bab92d 2020-04-09 12:41:12 +0200 wagner@elegosoft.com  (origin/fix_3339_blp355_extend_documentation_v12, fix_3339_blp355_extend_documentation_v12) update/regenerate addon documentation (issue #3339)
 - dccc9aa 2020-03-23 12:15:27 +0100 cpatel@elegosoft.com  (origin/feature_3576_blp400_rental_product_set_unittest_v12) [IMP] unit tests for rental_product_set

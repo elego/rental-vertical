@@ -2,7 +2,15 @@
 Changelog
 ---------
 
-- 2da340d 2020-04-13 14:11:24 +0200 wagner@elegosoft.com  (HEAD -> fix_3339_blp455_extend_documentation_v12, origin/fix_3339_blp455_extend_documentation_v12) change license for rental-vertical to AGPL (issue #3339)
+- ee4aa16 2020-04-24 18:19:29 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_3599_blp488_product_add_info_v12: addons-rental-vertical remotes/origin/feature_3599_blp488_product_add_info_v12 - b89e7ab8e9f73509433b234cbb0af2089feb7eb5 [IMP] active translation of field additional_info
+- b89e7ab 2020-04-24 13:05:01 +0200 yweng@elegosoft.com  (origin/feature_3599_blp488_product_add_info_v12) [IMP] active translation of field additional_info
+- f0589c7 2020-04-22 10:28:00 +0200 cpatel@elegosoft.com  (origin/feature_3279_blp488_rental_product_todo_points_v12) [IMP] product form changes, issue#3279
+- 3db8af4 2020-04-17 18:29:51 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_3615_blp461_rental_product_instance_v12: addons-rental-vertical remotes/origin/feature_3615_blp461_rental_product_instance_v12 - d70034acecc018edafc04c561ace080c83a4c86e [FIX] fix dependecy 'purchase_order_type' on rental_product_instance
+- f1d5958 2020-04-12 13:54:35 +0200 yweng@elegosoft.com  [ADD] Module shipment_plan, shipment_plan_sale and shipment_plan_rental
+- d70034a 2020-04-15 12:22:00 +0200 cpatel@elegosoft.com  (origin/feature_3615_blp461_rental_product_instance_v12) [FIX] fix dependecy 'purchase_order_type' on rental_product_instance
+- a91b535 2020-04-15 10:10:33 +0200 cpatel@elegosoft.com  [FIX] fix dependecy 'purchase' on rental_product_instance
+- 7fac932 2020-04-13 14:13:09 +0200 wagner@elegosoft.com  (origin/fix_3339_blp455_extend_documentation_v12, fix_3339_blp455_extend_documentation_v12) regenerate documentation (issue #3339)
+- 2da340d 2020-04-13 14:11:24 +0200 wagner@elegosoft.com  change license for rental-vertical to AGPL (issue #3339)
 - 6d3410b 2020-04-13 13:28:20 +0200 wagner@elegosoft.com  regenerate documentation (issue #3339)
 - 0bab92d 2020-04-09 12:41:12 +0200 wagner@elegosoft.com  (origin/fix_3339_blp355_extend_documentation_v12, fix_3339_blp355_extend_documentation_v12) update/regenerate addon documentation (issue #3339)
 - 94f6f71 2020-03-26 10:09:51 +0100 cpatel@elegosoft.com  [IMP] todo points of rental product , ticket #3279

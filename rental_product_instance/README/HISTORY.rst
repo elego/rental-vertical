@@ -2,7 +2,10 @@
 Changelog
 ---------
 
-- 2da340d 2020-04-13 14:11:24 +0200 wagner@elegosoft.com  (HEAD -> fix_3339_blp455_extend_documentation_v12, origin/fix_3339_blp455_extend_documentation_v12) change license for rental-vertical to AGPL (issue #3339)
+- f0589c7 2020-04-22 10:28:00 +0200 cpatel@elegosoft.com  (origin/feature_3279_blp488_rental_product_todo_points_v12) [IMP] product form changes, issue#3279
+- fdcbbbc 2020-04-14 18:55:21 +0200 cpatel@elegosoft.com  [IMP] add stock for demo product instance data
+- 7fac932 2020-04-13 14:13:09 +0200 wagner@elegosoft.com  (origin/fix_3339_blp455_extend_documentation_v12, fix_3339_blp455_extend_documentation_v12) regenerate documentation (issue #3339)
+- 2da340d 2020-04-13 14:11:24 +0200 wagner@elegosoft.com  change license for rental-vertical to AGPL (issue #3339)
 - 6d3410b 2020-04-13 13:28:20 +0200 wagner@elegosoft.com  regenerate documentation (issue #3339)
 - 0bab92d 2020-04-09 12:41:12 +0200 wagner@elegosoft.com  (origin/fix_3339_blp355_extend_documentation_v12, fix_3339_blp355_extend_documentation_v12) update/regenerate addon documentation (issue #3339)
 - 73d3d13 2020-04-08 21:09:53 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_3615_blp435_test_rental_workflows_v12: addons-rental-vertical remotes/origin/feature_3615_blp435_test_rental_workflows_v12 - 871f83eb2d53a5a9dfc5f486aaa5acee6108d3fa [ADD] new module test_rental_workflows to manage integration tests
