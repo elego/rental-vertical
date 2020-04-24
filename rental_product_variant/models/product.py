@@ -34,7 +34,7 @@ class ProductProduct(models.Model):
     #po_line_ids = fields.One2many('purchase.order.line', 'product_id', string='Purchase Order Lines')
     rental_order_ids = fields.One2many('sale.rental', 'rented_product_id', string='Rental Orders')
     stock_move_ids = fields.One2many('stock.move', 'product_id', string='Stock Moves')
-    additional_info = fields.Html('Additional Infomation')
+    additional_info = fields.Html('Additional Infomation', translate=True)
 
     invoice_count = fields.Integer(compute="_compute_invoice_count",
         string='Invoices', help='Total number of Invoice Orders')
