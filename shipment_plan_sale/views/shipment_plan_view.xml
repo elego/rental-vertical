@@ -5,6 +5,16 @@
         <field name="model">shipment.plan</field>
         <field name="inherit_id" ref="shipment_plan.view_shipment_plan_form"/>
         <field name="arch" type="xml">
+            <button name="action_view_trans_prs" position="after">
+                <field name="picking_ids" invisible="1"/>
+                <button type="object"
+                    name="action_view_pickings"
+                    class="oe_stat_button"
+                    icon="fa-truck"
+                    attrs="{'invisible': [('picking_count', '=', 0)]}" groups="base.group_user">
+                    <field name="picking_count" widget="statinfo" string="Pickings"/>
+                </button>
+            </button>
             <notebook position="inside">
                 <page string="Origin Sale" attrs="{'invisible': [('plan_type','!=','sale')]}">
                     <group>
