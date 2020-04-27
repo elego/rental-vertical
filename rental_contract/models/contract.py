@@ -65,10 +65,6 @@ class ContractContract(models.Model):
             if self.sale_type_id:
                 # contract is created from SO
                 res['sale_type_id'] = self.sale_type_id.id
-                if so_id.default_start_date:
-                    res['date_start'] = so_id.default_start_date
-                if so_id.default_end_date:
-                    res['date_end'] = so_id.default_end_date
             else:
                 res['sale_type_id'] = False
             if self.type_id.journal_id:
