@@ -42,6 +42,10 @@ class ProductAppointment(models.Model):
         'Create Task',
         compute="_compute_create_task",
     )
+    last_task_id = fields.Many2one(
+        'project.task',
+        string="Last Ticket",
+    )
 
     @api.multi
     def _compute_create_task(self):
@@ -79,7 +83,8 @@ class ProductAppointment(models.Model):
         for record in self:
             if record.create_task:
                 vals = record._prepare_task_vals()
-                task_obj.create(vals)
+                new_task = task_obj.create(vals)
+                record.last_task_id = new_task
             if record.date_next_appointment == today:
                 record._update_next_appointment()
 

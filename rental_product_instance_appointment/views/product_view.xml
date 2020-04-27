@@ -17,6 +17,7 @@
                                 <field name="leads_of_notification"/>
                                 <field name="time_interval"/>
                                 <field name="time_uom"/>
+                                <field name="last_task_id" domain="[('product_id', '=', parent.id)]"/>
                             </tree>
                         </field>
                     </page>
