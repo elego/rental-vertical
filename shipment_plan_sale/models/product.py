@@ -10,6 +10,6 @@ class ProductProduct(models.Model):
     _inherit = 'product.product'
 
     transport_sales_margin = fields.Float(
-        'Transport Sales Margin',
+        'Transport Sales Margin (%)',
         default=0,
     )

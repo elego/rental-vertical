@@ -136,11 +136,13 @@ class SaleOrder(models.Model):
         if price_unit == 0:
             raise exceptions.UserError(
                 _('You need to select a transport purchase RFQ for this sale order first'))
-        for p in self.trans_po_ids:
-            if p.selected_in_order:
-                for pol in p.order_line:
-                    margin += pol.product_id.transport_sales_margin
         if self.transport_cost_type == "single":
+            cost = 0
+            for p in self.trans_po_ids:
+                if p.selected_in_order:
+                    for pol in p.order_line:
+                        margin = pol.product_id.transport_sales_margin
+                        cost += pol.price_unit * (1 + (margin/100))
             product_id = self.env['ir.config_parameter'].sudo().get_param(
                 'sale.transport_cost_product_id')
             product_transport_cost = self.env['product.product'].browse(
@@ -149,7 +151,7 @@ class SaleOrder(models.Model):
                 'product_id': product_transport_cost.id,
                 'product_uom_qty': 1,
                 'product_uom': self.env.ref('uom.product_uom_unit').id,
-                'price_unit': price_unit + margin,
+                'price_unit': cost,
             })]})
         elif self.transport_cost_type == "multi":
             order_line_vals = []
@@ -161,7 +163,7 @@ class SaleOrder(models.Model):
                             'product_id': pol.product_id.id,
                             'product_uom_qty': pol.product_uom_qty,
                             'product_uom': pol.product_uom.id,
-                            'price_unit': pol.price_unit + margin,
+                            'price_unit': pol.price_unit * (1 + (margin/100)),
                             'name': pol.name,
                         }))
             self.write({'order_line': order_line_vals})
