@@ -2,3 +2,4 @@
 
 from . import product
 from . import product_appointment
+from . import project
