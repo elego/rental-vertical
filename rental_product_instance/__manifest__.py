@@ -18,8 +18,6 @@ It can be used in rental orders, repair orders and maintenance orders.''',
         'views/product_view.xml',
     ],
     'demo': [
-        'demo/rental_product.xml',
-        'demo/inventory.xml',
     ],
     'qweb': [
     ],

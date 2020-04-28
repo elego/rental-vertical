@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="rb_rental" model="fleet.type">
+            <field name="name">Rental</field>
+        </record>
+
+        <!-- Product1 -->
+
+        <record id="account_01531" model="account.analytic.account">
+            <field name="code">00531</field>
+            <field name="name">Volvo L110H</field>
+        </record>
+        <record id="volvo" model="product.manufacturer">
+            <field name="name">Volvo</field>
+        </record>
+        <record id="volvo_L110H" model="product.manufacturer.type">
+            <field name="manufacturer_id" ref="volvo" />
+            <field name="name">L110H</field>
+        </record>
+        <record id="rental_01531" model="product.product">
+            <field name="rental_ok" eval="True" />
+            <field name="product_instance" eval="True" />
+            <field name="tracking">serial</field>
+            <field name="name">Volvo L110H</field>
+            <field name="categ_id" ref="product.product_category_all" />
+            <field name="type">product</field>
+            <field name="uom_id" ref="uom.product_uom_unit" />
+            <field name="uom_po_id" ref="uom.product_uom_unit" />
+            <field name="default_code">01531</field>
+            <field name="manu_year">2018</field>
+            <field name="barcode">011500</field>
+            <field name="description"></field>
+            <field name="further_ref">01100</field>
+            <field name="qr_code">02200</field>
+            <field name="vehicle_number">VOLVO RT01531</field>
+            <field name="license_plate">BNA 1531</field>
+            <field name="init_regist">2018-05-01</field>
+            <field name="manu_id" ref="volvo" />
+            <field name="manu_type_id" ref="volvo_L110H" />
+            <field name="fleet_type_id" ref="rb_rental" />
+            <field name="instance_current_location_id" model="stock.location" search="[('name', '=', 'Rental In')]" />
+            <field name="rental_of_day" eval="True" />
+            <field name="rental_price_day">200</field>
+            <field name="rental_of_month" eval="True" />
+            <field name="rental_price_month">4500</field>
+            <field name="income_analytic_account_id" ref="account_01531" />
+            <field name="expense_analytic_account_id" ref="account_01531" />
+            <!-- <field name="image" type="base64" file="rockbird_demo/static/img/00530.png" /> -->
+        </record>
+        <record id="serial_rental_01531" model="stock.production.lot">
+            <field name="name">KTG11531</field>
+            <field name="product_id" ref="rental_01531" />
+        </record>
+        <record id="rental_01531" model="product.product">
+            <field name="instance_serial_number_id" ref="serial_rental_01531" />
+        </record>
+
+        <!-- Product2 -->
+
+        <record id="account_01532" model="account.analytic.account">
+            <field name="code">01532</field>
+            <field name="name">Cat 930M</field>
+        </record>
+        <record id="cat" model="product.manufacturer">
+            <field name="name">Cat</field>
+        </record>
+        <record id="cat_930M" model="product.manufacturer.type">
+            <field name="manufacturer_id" ref="cat" />
+            <field name="name">930M</field>
+        </record>
+        <record id="rental_01532" model="product.product">
+            <field name="rental_ok" eval="True" />
+            <field name="product_instance" eval="True" />
+            <field name="tracking">serial</field>
+            <field name="name">Cat 930M</field>
+            <field name="categ_id" ref="product.product_category_all" />
+            <field name="type">product</field>
+            <field name="uom_id" ref="uom.product_uom_unit" />
+            <field name="uom_po_id" ref="uom.product_uom_unit" />
+            <field name="default_code">01532</field>
+            <field name="manu_year">2018</field>
+            <field name="barcode">011600</field>
+            <field name="description"></field>
+            <field name="further_ref">01200</field>
+            <field name="qr_code">02300</field>
+            <field name="vehicle_number">CAT RT01532</field>
+            <field name="license_plate">BNA 1532</field>
+            <field name="init_regist">2018-05-01</field>
+            <field name="manu_id" ref="cat" />
+            <field name="manu_type_id" ref="cat_930M" />
+            <field name="fleet_type_id" ref="rb_rental" />
+            <field name="instance_current_location_id" model="stock.location" search="[('name', '=', 'Rental In')]" />
+            <field name="rental_of_day" eval="True" />
+            <field name="rental_price_day">200</field>
+            <field name="rental_of_month" eval="True" />
+            <field name="rental_price_month">4500</field>
+            <field name="income_analytic_account_id" ref="account_01532" />
+            <field name="expense_analytic_account_id" ref="account_01532" />
+            <!-- <field name="image" type="base64" file="rockbird_demo/static/img/00531.png" /> -->
+        </record>
+        <record id="serial_rental_01532" model="stock.production.lot">
+            <field name="name">KTG11532</field>
+            <field name="product_id" ref="rental_01532" />
+        </record>
+        <record id="rental_01532" model="product.product">
+            <field name="instance_serial_number_id" ref="serial_rental_01532" />
+        </record>
+    </data>
+</odoo>
