@@ -59,6 +59,13 @@ class SaleOrderLine(models.Model):
         res += "Destination Address: %s \n" %(dest_address)
         return res
 
+    def _prepare_procurement_values(self, group_id=False):
+        res = super()._prepare_procurement_values(group_id=group_id)
+        if self.trans_shipment_plan_id:
+            res['shipment_plan_id'] = self.trans_shipment_plan_id.id
+        return res
+
+
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 

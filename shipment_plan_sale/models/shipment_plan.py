@@ -6,6 +6,15 @@ import logging
 logger = logging.getLogger(__name__)
 
 
+class StockMove(models.Model):
+    _inherit = 'stock.move'
+
+    shipment_plan_id = fields.Many2one(
+        'shipment.plan',
+        'Shipment Plan',
+        ondelete="set null",
+    )
+
 class ShipmentPlan(models.Model):
     _inherit = "shipment.plan"
 
@@ -21,6 +30,10 @@ class ShipmentPlan(models.Model):
         'sale.order',
         'Origin Sale Order',
         compute="_compute_sale_id"
+    )
+    move_ids = fields.One2many(
+        'stock.move',
+        'shipment_plan_id',
     )
     picking_ids = fields.Many2many(
         'stock.picking',
@@ -38,10 +51,9 @@ class ShipmentPlan(models.Model):
     def _compute_picking_ids(self):
         for record in self:
             pickings = self.env['stock.picking'].browse()
-            for line in record.origin_sale_line_ids:
-                for move in line.move_ids:
-                    if move.picking_id:
-                        pickings |= move.picking_id
+            for move in record.move_ids:
+                if move.picking_id:
+                    pickings |= move.picking_id
             record.picking_ids = pickings
             record.picking_count = len(pickings)
 
