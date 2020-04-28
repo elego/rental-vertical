@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="invoice_form" model="ir.ui.view">
+            <field name="name">account.invoice.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button class="oe_stat_button"
+                        name="action_view_toll_charges"
+                        type="object"
+                        icon="fa-book"
+                        title="Toll Charges"
+                        attrs="{'invisible': [('toll_charge_count', '&lt;', 1)]}">
+                        <field string="Toll Charges"
+                               name="toll_charge_count"
+                               widget="statinfo"/>
+                    </button>
+                </xpath>
+                
+            </field>
+        </record>
+    </data>
+</odoo>

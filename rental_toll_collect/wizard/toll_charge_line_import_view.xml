@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="toll_charge_line_import_view" model="ir.ui.view">
+            <field name="name">toll.charge.line.import.view</field>
+            <field name="model">toll.charge.line.import.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Import Toll Charge Line">
+                    <group>
+                        <!-- <field name="attachment_ids" widget="many2many_binary" colspan="2"
+                               string="Upload Files" nolabel="1"/> -->
+                        <field name="data_file" filename="filename" placeholder="Choose a file to import..."/>
+                        <field name="filename" invisible="1"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="product_id"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button string="Import" name="import_toll_charge_lines" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="btn btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="action_toll_charge_line_import"
+                name="Toll Charge Line Import"
+                res_model="toll.charge.line.import"
+                view_type="form"
+                view_mode="form"
+                view_id="toll_charge_line_import_view"
+                target="new" />
+
+        <menuitem
+        parent="contract.menu_config_contract"
+        action="action_toll_charge_line_import"
+        id="menu_toll_charge_line_import"
+        sequence="4"
+        />
+
+    </data>
+</odoo>
