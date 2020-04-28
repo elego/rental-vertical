@@ -9,11 +9,20 @@
         <function model="stock.inventory" name="action_start">
             <value model="stock.inventory" search="[('state','=','draft'), ('id', '=', ref('inventory'))]" />
         </function>
-        <record id="inventory_line_rental_01530" model="stock.inventory.line">
-            <field name="product_id" ref="rental_01530" />
+
+        <record id="inventory_line_rental_01531" model="stock.inventory.line">
+            <field name="product_id" ref="rental_01531" />
             <field name="product_uom_id" ref="uom.product_uom_unit" />
             <field name="inventory_id" ref="inventory" />
-            <field name="prod_lot_id" ref="serial_rental_01530" />
+            <field name="prod_lot_id" ref="serial_rental_01531" />
+            <field name="product_qty">1</field>
+            <field name="location_id" model="stock.location" search="[('name', '=', 'Rental In')]" />
+        </record>
+        <record id="inventory_line_rental_01532" model="stock.inventory.line">
+            <field name="product_id" ref="rental_01532" />
+            <field name="product_uom_id" ref="uom.product_uom_unit" />
+            <field name="inventory_id" ref="inventory" />
+            <field name="prod_lot_id" ref="serial_rental_01532" />
             <field name="product_qty">1</field>
             <field name="location_id" model="stock.location" search="[('name', '=', 'Rental In')]" />
         </record>
