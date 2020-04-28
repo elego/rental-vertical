@@ -63,8 +63,4 @@ class SaleOrder(models.Model):
         res = super(SaleOrder, self)._prepare_invoice()
         if self.type_id:
             res['sale_type_id'] = self.type_id.id
-        if self.default_start_date:
-            res['date_start'] = self.default_start_date
-        if self.default_end_date:
-            res['date_end'] = self.default_end_date
         return res
