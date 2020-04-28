@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="toll_charge_line_form_view" model="ir.ui.view">
+        <field name="name">toll.charge.line.form.view</field>
+        <field name="model">toll.charge.line</field>
+        <field name="arch" type="xml">
+            <form string="Toll Charge Line">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="is_charges"/>
+                            <field name="toll_product_id"/>
+                            <field name="vehicle_reg_number"/>
+                            <field name="start_dt"/>
+                            <field name="booking_number"/>
+                        </group>
+                        <group>
+                            <field name="toll_type"/>
+                            <field name="drive"/>
+                            <field name="drive_via"/>
+                            <field name="departure"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="cost_centre"/>
+                            <field name="tariff_model"/>
+                            <field name="axis_class"/>
+                            <field name="weight_class"/>
+                            <field name="polution_class"/>
+                        </group>
+                        <group>
+                            <field name="procedure"/>
+                            <field name="road_operator"/>
+                            <field name="kilometer"/>
+                            <field name="toll_charge" widget="monetary"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="toll_charge_line_tree_view" model="ir.ui.view">
+        <field name="name">toll.charge.line.tree.view</field>
+        <field name="model">toll.charge.line</field>
+        <field name="arch" type="xml">
+            <tree string="Toll Charge Line">
+                <field name="toll_type"/>
+                <field name="vehicle_reg_number"/>
+                <field name="toll_product_id"/>
+                <field name="procedure"/>
+                <field name="kilometer" sum="Total Km"/>
+                <field name="toll_charge" sum="Total Charge"/>
+                <field name="start_dt"/>
+                <field name="is_charges" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="toll_charge_line_action" model="ir.actions.act_window">
+        <field name="name">Toll Charge Line</field>
+        <field name="res_model">toll.charge.line</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="toll_charge_line_tree_view"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Click to create new Toll Charge Line.</p>
+        </field>
+    </record>
+
+    <record id="toll_charge_line_action_form" model="ir.actions.act_window.view">
+        <field name="sequence" eval="2"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="toll_charge_line_form_view"/>
+        <field name="act_window_id" ref="toll_charge_line_action"/>
+    </record>
+
+    <record id="toll_charge_line_action_tree" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="toll_charge_line_tree_view"/>
+        <field name="act_window_id" ref="toll_charge_line_action"/>
+    </record>
+
+    <menuitem id="toll_charge_line_menu" parent="contract.menu_config_contract"
+              action="toll_charge_line_action" sequence="3"/>
+
+</odoo>

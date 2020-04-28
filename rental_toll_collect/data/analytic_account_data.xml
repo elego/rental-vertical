@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="account_analytic_account_maut" model="account.analytic.account">
+            <field name="name">Maut</field>
+            <field name="code">MT</field>
+            <field name="active" eval="True"/>
+        </record>
+        <record id="product_maut" model="product.product">
+            <field name="name">Road charges (Maut)</field>
+            <field name="purchase_ok" eval="True" />
+            <field name="sale_ok" eval="True" />
+            <field name="type">service</field>
+            <field name="uom_id" ref="rental_base.product_uom_month" />
+            <field name="uom_po_id" ref="rental_base.product_uom_month" />
+            <!-- <field name="product_instance" eval="True" />
+            <field name="must_have_date" eval="True"/>
+            <field name="income_analytic_account_id" ref="account_analytic_account_maut" />
+            <field name="expense_analytic_account_id" ref="account_analytic_account_maut" />
+            <field name="default_code">TL001</field> -->
+        </record>
+    </data>
+</odoo>

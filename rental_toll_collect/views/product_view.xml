@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="product_normal_form_view" model="ir.ui.view">
+            <field name="name">view.product.product.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page name="toll_charge_line" string="Toll Charge Line">
+                        <field name="toll_line_ids" />
+                    </page>
+                </xpath>
+                <button name="toggle_active" position="before">
+                    <button class="oe_stat_button"
+                        name="action_view_open_toll_charge"
+                        type="object"
+                        icon="fa-book"
+                        title="Toll Charges">
+                        <field string="Toll Charges"
+                               name="open_toll_charge_count"
+                               widget="statinfo"/>
+                    </button>
+                </button>
+            </field>
+        </record>
+    </data>
+</odoo>

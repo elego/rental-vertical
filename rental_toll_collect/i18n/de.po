@@ -1,0 +1,264 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* rental_toll_collect
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-04-28 12:49+0000\n"
+"PO-Revision-Date: 2020-04-28 12:49+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: rental_toll_collect
+#: selection:toll.charge.line,procedure:0
+msgid "Automatic Procedure"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__axis_class
+msgid "Axis Class"
+msgstr "Achsklasse"
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__booking_number
+msgid "Booking Number"
+msgstr "Buchungsnummer"
+
+#. module: rental_toll_collect
+#: model_terms:ir.actions.act_window,help:rental_toll_collect.toll_charge_line_action
+msgid "Click to create new Toll Charge Line."
+msgstr ""
+
+#. module: rental_toll_collect
+#: model:ir.model,name:rental_toll_collect.model_contract_contract
+msgid "Contract"
+msgstr "Vertrag"
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__cost_centre
+msgid "Cost Center"
+msgstr "Kostenstelle"
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__create_uid
+msgid "Created by"
+msgstr "Erstellt von"
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__create_date
+msgid "Created on"
+msgstr "Erstellt am"
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__departure
+msgid "Departure"
+msgstr "Abfahrt"
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__display_name
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__drive
+msgid "Drive"
+msgstr "Auffahrt"
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__drive_via
+msgid "Drive via"
+msgstr "über"
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: rental_toll_collect
+#: model:ir.model,name:rental_toll_collect.model_account_invoice
+msgid "Invoice"
+msgstr "Rechnung"
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__is_charges
+msgid "Is Charged"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__kilometer
+msgid "Kilometer"
+msgstr "km"
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line____last_update
+msgid "Last Modified on"
+msgstr "Zuletzt geändert am"
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__write_uid
+msgid "Last Updated by"
+msgstr "Zuletzt aktualisiert durch"
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__write_date
+msgid "Last Updated on"
+msgstr "Zuletzt aktualisiert am"
+
+#. module: rental_toll_collect
+#: selection:toll.charge.line,procedure:0
+msgid "Manual Procedure App"
+msgstr ""
+
+#. module: rental_toll_collect
+#: selection:toll.charge.line,procedure:0
+msgid "Manual Procedure Internet"
+msgstr ""
+
+#. module: rental_toll_collect
+#: selection:toll.charge.line,procedure:0
+msgid "Manual Procedure Toll"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model:product.product,uom_name:rental_toll_collect.product_maut
+#: model:product.template,uom_name:rental_toll_collect.product_maut_product_template
+msgid "Month(s)"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_product_product__open_toll_charge_count
+msgid "Open Toll Charge"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__polution_class
+msgid "Pollution Class"
+msgstr "Schadstoffklasse"
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__procedure
+msgid "Procedure"
+msgstr "Verf.¹"
+
+#. module: rental_toll_collect
+#: model:ir.model,name:rental_toll_collect.model_product_product
+msgid "Product"
+msgstr "Produkt"
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__road_operator
+msgid "Road Operator"
+msgstr "Straßenbetreiber"
+
+#. module: rental_toll_collect
+#: model:product.product,name:rental_toll_collect.product_maut
+#: model:product.template,name:rental_toll_collect.product_maut_product_template
+msgid "Road charges (Maut)"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__start_date
+msgid "Date"
+msgstr "Datum"
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__start_time
+msgid "Start"
+msgstr "Start"
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__tariff_model
+msgid "Tariff Model"
+msgstr "Tarifmodell"
+
+#. module: rental_toll_collect
+#: selection:toll.charge.line,toll_type:0
+msgid "Toll"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__toll_charge
+msgid "Toll Charge"
+msgstr "EUR"
+
+#. module: rental_toll_collect
+#: model:ir.actions.act_window,name:rental_toll_collect.toll_charge_line_action
+#: model:ir.model,name:rental_toll_collect.model_toll_charge_line
+#: model:ir.ui.menu,name:rental_toll_collect.toll_charge_line_menu
+#: model_terms:ir.ui.view,arch_db:rental_toll_collect.product_normal_form_view
+#: model_terms:ir.ui.view,arch_db:rental_toll_collect.toll_charge_line_form_view
+#: model_terms:ir.ui.view,arch_db:rental_toll_collect.toll_charge_line_tree_view
+msgid "Toll Charge Line"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_account_invoice__toll_line_ids
+#: model:ir.model.fields,field_description:rental_toll_collect.field_contract_contract__toll_line_ids
+#: model:ir.model.fields,field_description:rental_toll_collect.field_product_product__toll_line_ids
+msgid "Toll Charge Lines"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_account_invoice__toll_charge_count
+#: model_terms:ir.ui.view,arch_db:rental_toll_collect.invoice_form
+#: model_terms:ir.ui.view,arch_db:rental_toll_collect.product_normal_form_view
+msgid "Toll Charges"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__toll_contract_id
+msgid "Toll Contract"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__toll_invoice_id
+msgid "Toll Invoice"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__toll_product_id
+msgid "Toll Product"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model_terms:ir.ui.view,arch_db:rental_toll_collect.toll_charge_line_tree_view
+msgid "Total Charge"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model_terms:ir.ui.view,arch_db:rental_toll_collect.toll_charge_line_tree_view
+msgid "Total Km"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_product_product__toll_amount
+msgid "Total Toll Charge Amount"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__toll_type
+msgid "Type"
+msgstr "Art"
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__vehicle_reg_number
+msgid "Vehicle Registration Number"
+msgstr "Kfz-Kennz."
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__weight_class
+msgid "Weight Class"
+msgstr "Gewichtsklasse"
+
+#. module: rental_toll_collect
+#: model:product.product,weight_uom_name:rental_toll_collect.product_maut
+#: model:product.template,weight_uom_name:rental_toll_collect.product_maut_product_template
+msgid "kg"
+msgstr ""
+
