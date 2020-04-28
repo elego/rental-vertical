@@ -11,7 +11,7 @@
                             <field name="is_charges"/>
                             <field name="toll_product_id"/>
                             <field name="vehicle_reg_number"/>
-                            <field name="start_date"/>
+                            <field name="start_dt"/>
                             <field name="booking_number"/>
                         </group>
                         <group>
@@ -52,7 +52,7 @@
                 <field name="procedure"/>
                 <field name="kilometer" sum="Total Km"/>
                 <field name="toll_charge" sum="Total Charge"/>
-                <field name="start_date"/>
+                <field name="start_dt"/>
                 <field name="is_charges" />
             </tree>
         </field>
