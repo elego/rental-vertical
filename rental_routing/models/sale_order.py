@@ -60,9 +60,11 @@ class SaleOrder(models.Model):
 
     @api.multi
     def action_confirm(self):
+        rental_order_type = self.env.ref('rental_base.rental_sale_type')
         for sale in self:
-            if sale.partner_shipping_id and not sale.partner_shipping_id.rental_onsite_location_id:
-                self.create_and_set_rental_onsite_location_route()
+            if sale.type_id.id == rental_order_type.id:
+                if sale.partner_shipping_id and not sale.partner_shipping_id.rental_onsite_location_id:
+                    self.create_and_set_rental_onsite_location_route()
         res = super(SaleOrder, self).action_confirm()
         for sale in self:
             for line in sale.order_line:
