@@ -72,7 +72,7 @@
                        attrs="{'invisible': [('is_contract', '=', False)]}"
                 />
                 <field name="is_auto_renew"
-                       attrs="{'invisible': [('is_contract', '=', False)]}"
+                       attrs="{'invisible': ['|', ('is_contract', '=', False), ('rental', '=', True)]}"
                 />
                 <label for="auto_renew_interval" attrs="{'invisible': [('is_auto_renew', '=', False)]}"/>
                 <div  attrs="{'invisible': [('is_auto_renew', '=', False)]}">
