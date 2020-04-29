@@ -78,7 +78,7 @@ class TestRentalContractInsurance(RentalStockCommon):
         vals['order_id'] = self.rental_order.id
         line  = self.env['sale.order.line'].create(vals)
         self.rental_order.action_confirm()
-        self.assertEqual(self.rental_order.contract_count, 2)
+        self.assertEqual(self.rental_order.contract_count, 1)
 
         check_insurance_line = False
         for line in self.rental_order.order_line:
