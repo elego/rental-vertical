@@ -1,13 +1,13 @@
-odoo.define('rental.tour', function (require) {
+odoo.define('rental.contract', function (require) {
     "use strict";
- 
+
     var core = require('web.core');
     var tour = require('web_tour.tour');
- 
+
     var _t = core._t;
     var _wait = "1000";
 
-    tour.register('rental_tour', {
+    tour.register('rental_contract_tour', {
         url: "/web",
     }, [tour.STEPS.SHOW_APPS_MENU_ITEM, {
         content: _t('Go to main menu of rental'),
@@ -37,14 +37,14 @@ odoo.define('rental.tour', function (require) {
         extra_trigger: 'ul.ui-autocomplete',
         run: 'click'
     }, {
-        content: _t('Set default_start_date to 05/01/2020'),
+        content: _t('Set default_start_date to 04/01/2020'),
         trigger: '.o_form_editable .o_datepicker_input[name="default_start_date"]',
-        run: 'text 03/01/2020',
+        run: 'text 04/01/2020',
         position: 'bottom',
     }, {
-        content: _t('Set default_end_date to 07/01/2020'),
+        content: _t('Set default_end_date to 08/01/2020'),
         trigger: '.o_form_editable .o_datepicker_input[name="default_end_date"]',
-        run: 'text 05/01/2020',
+        run: 'text 08/01/2020',
         position: 'bottom',
     },{
         content: _t("Click here to create or add Product"),
@@ -54,7 +54,16 @@ odoo.define('rental.tour', function (require) {
         trigger: ".o_field_many2one[name='display_product_id'] .o_input_dropdown input",
         run: 'click'
     }, {
-        trigger: 'li a:contains("Volvo L110H")',
+        trigger: 'li a:contains("Cat 930M")',
+        in_modal: false,
+        extra_trigger: 'ul.ui-autocomplete',
+        run: 'click'
+    }, {
+        trigger: ".o_field_many2one[name='product_uom'] .o_input_dropdown input",
+        extra_trigger: ".o_field_many2one[name='display_product_id'] .o_external_button",
+        run: 'click'
+    }, {
+        trigger: 'li a:contains("Month(s)")',
         in_modal: false,
         extra_trigger: 'ul.ui-autocomplete',
         run: 'click'
@@ -62,26 +71,25 @@ odoo.define('rental.tour', function (require) {
         content: _t('Click on Save & Close'),
         trigger: 'button span:contains(Save & Close)',
         extra_trigger: '.o_act_window',
-        id: "rental_product_selected",
         run: 'click',
         position: 'bottom',
     }, {
         content: _t('Check total rental time'),
-        trigger: 'td.o_data_cell:contains("62.00")',
+        trigger: 'td.o_data_cell:contains("4.00")',
         extra_trigger: 'div[name="order_line"]',
         in_modal: false,
         position: 'bottom',
-        run: function (){} //check (must be diff between 05/01/2020 and 07/01/2020)
+        run: function (){} //check (must be diff between 04/01/2020 and 08/01/2020)
     }, {
         content: _t('Check Unit of measure'),
-        trigger: 'td.o_data_cell:contains("Day(s)")',
+        trigger: 'td.o_data_cell:contains("Month(s)")',
         extra_trigger: 'div[name="order_line"]',
         in_modal: false,
         position: 'bottom',
-        run: function (){} //check (must be Day(s))
+        run: function (){} //check (must be Month(s))
     }, {
         content: _t('Check Unit Price'),
-        trigger: 'td.o_data_cell:contains("200.00")',
+        trigger: 'td.o_data_cell:contains("4,500.00")',
         extra_trigger: 'div[name="order_line"]',
         in_modal: false,
         position: 'bottom',
@@ -91,19 +99,61 @@ odoo.define('rental.tour', function (require) {
         trigger: '.o_form_button_save',
         position: 'bottom',
     }, {
-        content: _t("Click Send by email"),
-        trigger: 'button[name="action_quotation_send"]:visible:not(:disabled)',
-    }, {
-        content: _t("Click Send"),
-        extra_trigger: '.o_act_window',
-        trigger: '.btn[name="action_send_mail"]',
+        content: _t("Click Print"),
+        trigger: 'button[name="print_quotation"]:visible:not(:disabled)',
     }, {
         content: _t("Click Confirm"),
         extra_trigger: '.o_statusbar_status .btn-primary:contains("Quotation Sent")',
         trigger: 'button[name="action_confirm"]:visible:not(:disabled)',
     }, {
+        content: _t("Click on Contracts"),
+        trigger: 'button[name="action_show_contracts"]',
+        extra_trigger: '.o_statusbar_status .btn-primary:contains("Sales Order")'
+    }, {
+        content: _t('Check Contract Type'),
+        trigger: '.o_form_view span[name="contract_type"]:contains("Customer")',
+        in_modal: false,
+        position: 'bottom',
+        run: function (){} //check Contract: Contract Type = Customer
+    }, {
+        content: _t('Check Contract Subtype'),
+        trigger: '.o_form_view a[name="type_id"]:contains("Rental Contract")',
+        extra_trigger: 'div[name="contract_line_ids"]',
+        in_modal: false,
+        position: 'bottom',
+        run: function (){} //check Contract: Contract Subtype = Rental Contract
+    }, {
+        content: _t('Check Date of Next Invoice'),
+        trigger: '.o_form_view span[name="recurring_next_date"]:contains("04/01/2020")',
+        extra_trigger: 'div[name="contract_line_ids"]',
+        in_modal: false,
+        position: 'bottom',
+        run: function (){} //check Contract: Date of Next Invoice = Customer
+    }, {
+        content: _t('Check Date Start on contract line'),
+        trigger: 'td.o_data_cell:contains("04/01/2020")',
+        extra_trigger: 'div[name="contract_line_ids"]',
+        in_modal: false,
+        position: 'bottom',
+        run: function (){} //check Contract Line: Date Start = 04/01/2020
+    }, {
+        content: _t('Check Date End on contract line'),
+        trigger: 'td.o_data_cell:contains("07/31/2020")',
+        extra_trigger: 'div[name="contract_line_ids"]',
+        in_modal: false,
+        position: 'bottom',
+        run: function (){} //check Contract Line: Date End = 07/31/2020 (1 day before)
+    },
+    // TODO checks on analytic account of product in contract line
+    {
+        content: _t("Use the breadcrumbs to <b>go back to your Rental Order</b>."),
+        trigger: ".breadcrumb-item:not(.active):last",
+        extra_trigger: '.o_form_view',
+        position: "bottom"
+    }, {
         content: _t("Click on Delivery"),
         trigger: 'button[name="action_view_delivery"]',
+        extra_trigger: '.o_form_view',
     }, {
         content: _t('Check Outgoing Delivery'),
         trigger: 'td.o_data_cell:contains("Rental/Rental Out")',
@@ -142,57 +192,14 @@ odoo.define('rental.tour', function (require) {
         position: 'bottom',
         run: function (){} //check Done: 1.0 Unit(s)
     }, {
-        content: _t("Use the breadcrumbs to <b>go back to your Transfer</b>."),
+        content: _t("Use the breadcrumbs to <b>go back to Rental Order</b>."),
         trigger: ".breadcrumb-item:not(.active):nth-last-child(3)",
         extra_trigger: '.o_form_view',
         position: "bottom"
     }, {
-        content: _t("Click on Create Invoice"),
-        trigger: '.o_statusbar_buttons button span:contains("Create Invoice")',
-    }, {
-        content: _t('Click on Create and View Invoice'),
-        trigger: 'button[name="create_invoices"]',
-        extra_trigger: '.o_act_window',
-        id: "rental_product_invoice",
-        run: 'click',
-        position: 'bottom',
-    }, {
-        content: _t('Check Sale Type on Invoice'),
-        trigger: '.o_invoice_form a[name="sale_type_id"]:contains("Rental Order")',
-        in_modal: false,
-        position: 'bottom',
-        run: function (){} //check Invoice: Sale Type = Rental Order
-    }, {
-        content: _t('Check total rental time on Invoice'),
-        trigger: 'td.o_data_cell:contains("62.00")',
-        extra_trigger: 'div[name="invoice_line_ids"]',
-        in_modal: false,
-        position: 'bottom',
-        run: function (){} //check Invoice: (Rental Time : 62 days)
-    }, {
-        content: _t('Check Unit of measure on Invoice'),
-        trigger: 'td.o_data_cell:contains("Day(s)")',
-        extra_trigger: 'div[name="invoice_line_ids"]',
-        in_modal: false,
-        position: 'bottom',
-        run: function (){} //check Invoice: (Uom : Day(s))
-    }, {
-        content: _t('Check Unit Price on Invoice'),
-        trigger: 'td.o_data_cell:contains("200.00")',
-        extra_trigger: 'div[name="invoice_line_ids"]',
-        in_modal: false,
-        position: 'bottom',
-        run: function (){} //check Invoice: (Unit Price : 200.00)
-    },
-    // TODO checks on analytic account of product in invoice line
-    {
         content: _t('Go to Overview'),
         trigger: 'li a[data-menu-xmlid="rental_timeline.menu_overview"]',
         position: 'bottom'
-    }, /*{
-        content: _t('Click on Validate'),
-        trigger: 'button[name="action_invoice_open"]',
-        position: 'bottom',
-    },*/
+    },
   ]);
 });
