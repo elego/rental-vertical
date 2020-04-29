@@ -28,13 +28,6 @@ class SaleOrderLine(models.Model):
             res['analytic_account_id'] = self.product_id.income_analytic_account_id.id
         return res
 
-    @api.multi
-    def _prepare_invoice_line(self, qty):
-        res = super(SaleOrderLine, self)._prepare_invoice_line(qty)
-        if self.product_id.income_analytic_account_id:
-            res['analytic_account_id'] = self.product_id.income_analytic_account_id.id
-        return res
-
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'

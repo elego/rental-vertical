@@ -61,5 +61,5 @@ class SaleOrderLine(models.Model):
         if self.insurance_origin_line_id:
             if self.insurance_origin_line_id.product_id.income_analytic_account_id:
                 rental_product = self.insurance_origin_line_id.product_id
-                res['analytic_account_id'] = rental_product.income_analytic_account_id.id
+                res['account_analytic_id'] = rental_product.income_analytic_account_id.id
         return res
