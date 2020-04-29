@@ -180,7 +180,7 @@ msgstr "Tarifmodell"
 #. module: rental_toll_collect
 #: selection:toll.charge.line,toll_type:0
 msgid "Toll"
-msgstr ""
+msgstr "Maut"
 
 #. module: rental_toll_collect
 #: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__toll_charge

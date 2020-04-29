@@ -21,14 +21,16 @@ class TollChargeLine(models.Model):
     drive = fields.Char(string='Drive')
     drive_via = fields.Char(string='Drive via')
     departure = fields.Char(string='Departure')
-    cost_centre = fields.Many2one('account.analytic.account',
-        string='Cost Center',
-        default=lambda self: self._default_analytic_account())
+    cost_center= fields.Char(string='Cost Center')
+    # cost_center = fields.Many2one('account.analytic.account',
+    #     string='Cost Center',
+    #     default=lambda self: self._default_analytic_account())
     tariff_model = fields.Char(string='Tariff Model')
     axis_class = fields.Char(string='Axis Class')
     weight_class = fields.Char(string='Weight Class')
     polution_class = fields.Char(string='Pollution Class')
-    road_operator = fields.Many2one('res.partner', string='Road Operator')
+    road_operator = fields.Char(string='Road Operator')
+    # road_operator = fields.Many2one('res.partner', string='Road Operator')
     procedure = fields.Selection(
         [('AV', 'Automatic Procedure'),
          ('MVM', 'Manual Procedure Toll'),
@@ -48,13 +50,13 @@ class TollChargeLine(models.Model):
     @api.multi
     @api.depends('start_date', 'start_time')
     def _compute_start_dt(self):
-        for charge_line in self:
-            if meeting.start_date:
-                if meeting.start_time:
-                    start = dt.strptime(meeting.start_time, "%H:%M")
+        for cl in self:
+            if cl.start_date:
+                if cl.start_time:
+                    start = dt.strptime(cl.start_time, "%H:%M")
                     offset = start - dt.strptime("00:00", "%H:%M")
-                    meeting.start_dt = meeting.start_date + offset
+                    cl.start_dt = cl.start_date + offset
                 else:
-                    meeting.start_dt = meeting.start_date
+                    cl.start_dt = cl.start_date
             else:
-                meeting.start_dt = False
+                cl.start_dt = False

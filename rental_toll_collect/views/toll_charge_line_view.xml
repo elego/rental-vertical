@@ -23,7 +23,7 @@
                     </group>
                     <group>
                         <group>
-                            <field name="cost_centre"/>
+                            <field name="cost_center"/>
                             <field name="tariff_model"/>
                             <field name="axis_class"/>
                             <field name="weight_class"/>

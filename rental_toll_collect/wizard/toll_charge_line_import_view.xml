@@ -3,7 +3,7 @@
     <data>
         <record id="toll_charge_line_import_view" model="ir.ui.view">
             <field name="name">toll.charge.line.import.view</field>
-            <field name="model">toll.charge.line.import.wizard</field>
+            <field name="model">toll.charge.line.import</field>
             <field name="arch" type="xml">
                 <form string="Import Toll Charge Line">
                     <group>
