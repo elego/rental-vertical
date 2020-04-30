@@ -11,7 +11,6 @@ class TollChargeLine(models.Model):
     def _default_analytic_account(self):
         return self.env.ref('rental_toll_collect.account_analytic_account_maut').id
 
-
     vehicle_reg_number = fields.Char(string='Vehicle Registration Number')
     start_date = fields.Datetime(string='Date')
     start_time = fields.Char(string='Start')
@@ -41,7 +40,7 @@ class TollChargeLine(models.Model):
     toll_charge = fields.Float(string='Toll Charge')
     is_charges = fields.Boolean(string='Is Charged', default=False)
     toll_product_id = fields.Many2one('product.product',
-        string='Toll Product')
+        string='Toll Product', compute='_compute_toll_product_id', store=True)
     toll_contract_id = fields.Many2one('contract.contract',
         string='Toll Contract')
     toll_invoice_id = fields.Many2one('account.invoice',
@@ -60,3 +59,12 @@ class TollChargeLine(models.Model):
                     cl.start_dt = cl.start_date
             else:
                 cl.start_dt = False
+
+    @api.multi
+    @api.depends('vehicle_reg_number')
+    def _compute_toll_product_id(self):
+        products = self.env['product.product']
+        for cl in self:
+            if cl.vehicle_reg_number:
+                prod_domain = [('license_plate', '=', cl.vehicle_reg_number)]
+                cl.toll_product_id = products.search(prod_domain)

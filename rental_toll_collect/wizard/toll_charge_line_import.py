@@ -5,7 +5,9 @@ import csv
 import base64
 from io import StringIO
 
-from odoo import api, models, fields
+from odoo import api, models, fields, _
+from odoo.exceptions import RedirectWarning
+from odoo.tools import pycompat
 from odoo.tools.mimetypes import guess_mimetype
 from odoo.addons.base_import_async.models.base_import_import import (
     OPT_HAS_HEADER, OPT_QUOTING, OPT_SEPARATOR,
@@ -53,13 +55,25 @@ IMPORT_MAPPINGS = [
 ]
 
 
+class TollChargeLineBaseImport(models.TransientModel):
+    
+    _inherit = "base_import.import"
+
+    @api.multi
+    def parse_preview(self, options, **kwargs):
+        self.ensure_one()
+        if self.res_model == 'toll.charge.line':
+            options.update(OPTIONS)
+        wizard = super(TollChargeLineBaseImport, self)
+        res = wizard.parse_preview(options, **kwargs)
+        return res
+
+
 class TollChargeLineImport(models.TransientModel):
     _name = 'toll.charge.line.import'
 
     data_file = fields.Binary(string='Upload File', required=True)
     filename = fields.Char()
-    product_id = fields.Many2one('product.product',
-        string='Product')
 
     def _check_csv(self, data_file, filename):
         return filename and os.path.splitext(filename)[1] == '.csv' or \
@@ -77,7 +91,15 @@ class TollChargeLineImport(models.TransientModel):
                 'file_name': self.filename,
                 'file': base64.b64decode(self.data_file),
             })
-            wizard= wizard.with_context(product_id=self.product_id.id)
             res = wizard.do(fields, columns, OPTIONS, dryrun=False)
-            return res
-
+            messages = res.get('messages',[])
+            errors = list(filter(lambda m: m['type']=='error', messages))
+            if errors:
+                aoid = 'rental_toll_collect.toll_charge_line_action'
+                action_id = self.env.ref(aoid).id
+                go_msg = _('Try again with Import button to see details')
+                err_fmt = _('%s Errors were found during the import !'
+                            'The first one is: \n\n %s')
+                err_msg = err_fmt % (len(errors), errors[0]['message'])
+                raise Warning(err_msg)
+                # raise RedirectWarning(err_msg , action_id, go_msg)
