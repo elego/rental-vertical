@@ -11,7 +11,6 @@ class TollChargeLine(models.Model):
     def _default_analytic_account(self):
         return self.env.ref('rental_toll_collect.account_analytic_account_maut').id
 
-
     vehicle_reg_number = fields.Char(string='Vehicle Registration Number')
     start_date = fields.Datetime(string='Date')
     start_time = fields.Char(string='Start')
@@ -21,14 +20,16 @@ class TollChargeLine(models.Model):
     drive = fields.Char(string='Drive')
     drive_via = fields.Char(string='Drive via')
     departure = fields.Char(string='Departure')
-    cost_centre = fields.Many2one('account.analytic.account',
-        string='Cost Center',
-        default=lambda self: self._default_analytic_account())
+    cost_center= fields.Char(string='Cost Center')
+    # cost_center = fields.Many2one('account.analytic.account',
+    #     string='Cost Center',
+    #     default=lambda self: self._default_analytic_account())
     tariff_model = fields.Char(string='Tariff Model')
     axis_class = fields.Char(string='Axis Class')
     weight_class = fields.Char(string='Weight Class')
     polution_class = fields.Char(string='Pollution Class')
-    road_operator = fields.Many2one('res.partner', string='Road Operator')
+    road_operator = fields.Char(string='Road Operator')
+    # road_operator = fields.Many2one('res.partner', string='Road Operator')
     procedure = fields.Selection(
         [('AV', 'Automatic Procedure'),
          ('MVM', 'Manual Procedure Toll'),
@@ -39,7 +40,7 @@ class TollChargeLine(models.Model):
     toll_charge = fields.Float(string='Toll Charge')
     is_charges = fields.Boolean(string='Is Charged', default=False)
     toll_product_id = fields.Many2one('product.product',
-        string='Toll Product')
+        string='Toll Product', compute='_compute_toll_product_id', store=True)
     toll_contract_id = fields.Many2one('contract.contract',
         string='Toll Contract')
     toll_invoice_id = fields.Many2one('account.invoice',
@@ -48,13 +49,22 @@ class TollChargeLine(models.Model):
     @api.multi
     @api.depends('start_date', 'start_time')
     def _compute_start_dt(self):
-        for charge_line in self:
-            if meeting.start_date:
-                if meeting.start_time:
-                    start = dt.strptime(meeting.start_time, "%H:%M")
+        for cl in self:
+            if cl.start_date:
+                if cl.start_time:
+                    start = dt.strptime(cl.start_time, "%H:%M")
                     offset = start - dt.strptime("00:00", "%H:%M")
-                    meeting.start_dt = meeting.start_date + offset
+                    cl.start_dt = cl.start_date + offset
                 else:
-                    meeting.start_dt = meeting.start_date
+                    cl.start_dt = cl.start_date
             else:
-                meeting.start_dt = False
+                cl.start_dt = False
+
+    @api.multi
+    @api.depends('vehicle_reg_number')
+    def _compute_toll_product_id(self):
+        products = self.env['product.product']
+        for cl in self:
+            if cl.vehicle_reg_number:
+                prod_domain = [('license_plate', '=', cl.vehicle_reg_number)]
+                cl.toll_product_id = products.search(prod_domain)

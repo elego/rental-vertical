@@ -16,10 +16,10 @@
     'data': [
         'security/ir.model.access.csv',
         'data/analytic_account_data.xml',
-        # 'wizard/toll_charge_line_import_view.xml',
         'views/toll_charge_line_view.xml',
         'views/product_view.xml',
         'views/account_invoice_view.xml',
+        'wizard/toll_charge_line_import_view.xml',
     ],
     'demo': [
     ],
