@@ -2,12 +2,12 @@
 <odoo>
     <data noupdate="0">
         <record id="product_product_contract_insurance" model="product.product">
-            <field name="name">Insurance Contract</field>
-            <field name="default_code">Insurance Contract</field>
+            <field name="name">Insurance</field>
+            <field name="default_code"></field>
             <field name="type">service</field>
             <field name="categ_id" ref="product.product_category_1"/>
             <field name="property_contract_template_id"
-                   ref="rental_contract_insurance.rental_contract_insurance_template"/>
+                   ref="rental_contract.rental_contract_template"/>
             <field name="sale_ok" eval="True"/>
             <field name="is_contract" eval="True"/>
             <field name="list_price">0.0</field>
