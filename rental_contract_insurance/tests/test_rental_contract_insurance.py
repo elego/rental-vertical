@@ -83,6 +83,7 @@ class TestRentalContractInsurance(RentalStockCommon):
         check_insurance_line = False
         for line in self.rental_order.order_line:
             if line.product_id == self.contract_insurance_product:
+                self.assertEqual(line.display_product_id, self.contract_insurance_product)
                 self.assertEqual(line.date_start, self.today)
                 self.assertEqual(line.date_end, self.date_three_month_later)
                 contract_line = line.contract_id.contract_line_ids[0]
@@ -90,7 +91,7 @@ class TestRentalContractInsurance(RentalStockCommon):
                 self.assertEqual(contract_line.date_end, self.date_three_month_later)
                 self.assertEqual(contract_line.analytic_account_id, self.analytic_account)
                 invoice_line_vals = line._prepare_invoice_line(1)
-                self.assertEqual(invoice_line_vals['analytic_account_id'], self.analytic_account.id)
+                self.assertEqual(invoice_line_vals['account_analytic_id'], self.analytic_account.id)
                 check_insurance_line = True
         self.assertTrue(check_insurance_line, 'No found expected insurance line')
 

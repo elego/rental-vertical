@@ -82,7 +82,7 @@ class TestRentalProductInsurance(RentalStockCommon):
                 )
                 self.assertEqual(line.name, "Insurance: Rental of Product A (Day)")
                 invoice_line_vals = line._prepare_invoice_line(1)
-                self.assertEqual(invoice_line_vals['analytic_account_id'], self.analytic_account.id)
+                self.assertEqual(invoice_line_vals['account_analytic_id'], self.analytic_account.id)
                 check_insurance = True
         self.assertEqual(check_insurance, True)
 
