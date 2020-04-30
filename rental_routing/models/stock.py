@@ -37,9 +37,6 @@ class StockMove(models.Model):
                     move.rental_out_id.out_move_id.product_uom_qty += (
                         move.product_uom_qty
                     )
-                    move.rental_out_id.out_move_id.ordered_qty = (
-                        move.rental_out_id.out_move_id.product_uom_qty
-                    )
             if move.rental_in_id:
                 if move.rental_in_id.in_move_id.state == "done":
                     raise UserError(
@@ -51,9 +48,6 @@ class StockMove(models.Model):
                 else:
                     move.rental_in_id.in_move_id.product_uom_qty += (
                         move.product_uom_qty
-                    )
-                    move.rental_in_id.in_move_id.ordered_qty = (
-                        move.rental_in_id.in_move_id.product_uom_qty
                     )
         return super(StockMove, self)._action_cancel()
 

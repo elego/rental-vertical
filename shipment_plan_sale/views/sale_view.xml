@@ -39,7 +39,7 @@
                         attrs="{'invisible': ['|', ('trans_pr_needed', '=', False), ('trans_po_count', '=', 0)]}"/>
             </button>
             <xpath expr="//field[@name='product_packaging']" position="after">
-                <field name="trans_pr_needed"/>
+                <field name="trans_pr_needed" invisible="1"/>
             </xpath>
             <group name="sale_shipping" position="inside">
                 <field name="trans_pr_needed"/>

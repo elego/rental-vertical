@@ -63,7 +63,6 @@ class SaleRentalRouteOutLine(models.TransientModel):
         # Moves for rented product use always the default uom of the product.
         # So we don't need to compute the quantity in uom of move.
         self.move_id.product_uom_qty -= self.qty
-        self.move_id.ordered_qty = self.move_id.product_uom_qty
         new_picking = self.rental_in_move_id.picking_id.copy(
             {
                 "move_lines": [],
@@ -88,9 +87,6 @@ class SaleRentalRouteOutLine(models.TransientModel):
         )._split(self.qty)
         if reset_qty:
             self.rental_in_move_id.product_uom_qty -= 1
-        self.rental_in_move_id.ordered_qty = (
-            self.rental_in_move_id.product_uom_qty
-        )
         new_move = self.env["stock.move"].browse(new_move_id)
         new_move.write(
             {
@@ -195,7 +191,6 @@ class SaleRentalRouteInLine(models.TransientModel):
         # Moves for rented product use always the default uom of the product.
         # So we don't need to compute the quantity in uom of move.
         self.move_id.product_uom_qty -= self.qty
-        self.move_id.ordered_qty -= self.move_id.product_uom_qty
         new_picking = self.move_id.picking_id.copy(
             {
                 "move_lines": [],
@@ -220,9 +215,6 @@ class SaleRentalRouteInLine(models.TransientModel):
         )._split(self.qty)
         if reset_qty:
             self.rental_out_move_id.product_uom_qty -= 1
-        self.rental_out_move_id.ordered_qty = (
-            self.rental_out_move_id.product_uom_qty
-        )
         new_move = self.env["stock.move"].browse(new_move_id)
         new_move.write(
             {
