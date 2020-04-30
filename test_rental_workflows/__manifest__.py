@@ -17,6 +17,10 @@ Test Rental Workflows
         'rental_pricelist',
         'rental_product_set',
         'rental_product_instance',
+        'rental_product_variant',
+        'rental_offday',
+        'rental_contract_month',
+        'rental_timeline',
     ],
     'data': [
         'data/settings.xml',
