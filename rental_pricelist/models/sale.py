@@ -279,3 +279,20 @@ class SaleOrderLine(models.Model):
                 number = ((self.end_date - self.start_date).days + 1) / 30.4167
                 number = float_round(number, precision_rounding=1)
             self.number_of_time_unit = number
+
+    # Override function from module sale_start_end_dates
+    @api.onchange('product_id')
+    def start_end_dates_product_id_change(self):
+        if self.product_id.must_have_dates:
+            if not self.start_date and not self.end_date:
+                if self.order_id.default_start_date:
+                    self.start_date = self.order_id.default_start_date
+                else:
+                    self.start_date = False
+                if self.order_id.default_end_date:
+                    self.end_date = self.order_id.default_end_date
+                else:
+                    self.end_date = False
+        else:
+            self.start_date = False
+            self.end_date = False
