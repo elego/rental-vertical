@@ -16,6 +16,7 @@
     ],
     'data': [
         'data/project_data.xml',
+        'security/security.xml',
         'views/project_view.xml',
         'views/product_view.xml',
         'views/purchase_views.xml',

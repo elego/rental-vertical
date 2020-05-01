@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-25 16:54+0000\n"
-"PO-Revision-Date: 2020-03-25 16:54+0000\n"
+"POT-Creation-Date: 2020-05-01 21:06+0000\n"
+"PO-Revision-Date: 2020-05-01 21:06+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,18 +26,13 @@ msgid "After Repair"
 msgstr "Nach Reparatur"
 
 #. module: rental_repair
-#: code:addons/rental_repair/models/product.py:59
-#, python-format
-msgid "All Maintenance Orders"
-msgstr "Alle Wartungsaufträge"
-
-#. module: rental_repair
 #: selection:repair.order,invoice_method:0
 msgid "Before Repair"
 msgstr "Vor Reparatur"
 
 #. module: rental_repair
 #: model:project.task.type,legend_blocked:rental_repair.project_task_type_cancelled
+#: model:project.task.type,legend_blocked:rental_repair.project_task_type_done
 #: model:project.task.type,legend_blocked:rental_repair.project_task_type_done_-_no_documentation
 #: model:project.task.type,legend_blocked:rental_repair.project_task_type_has_appointment
 #: model:project.task.type,legend_blocked:rental_repair.project_task_type_in_progress
@@ -57,7 +52,7 @@ msgid "Click <i>Create</i> to start a new ticket."
 msgstr "Click <i>Anlegen</i> um ein neues Ticket zu erstellen."
 
 #. module: rental_repair
-#: code:addons/rental_repair/models/product.py:79
+#: code:addons/rental_repair/models/product.py:80
 #, python-format
 msgid "Components"
 msgstr "Komponenten"
@@ -74,6 +69,16 @@ msgid "Create a new reparation order"
 msgstr "Erstellen Sie einen neuen Reparaturauftrag"
 
 #. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_project_task_stagnation__create_uid
+msgid "Created by"
+msgstr "Erstellt von"
+
+#. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_project_task_stagnation__create_date
+msgid "Created on"
+msgstr "Erstellt am"
+
+#. module: rental_repair
 #: model:ir.model.fields,field_description:rental_repair.field_repair_line__date_end
 #: model:ir.model.fields,field_description:rental_repair.field_repair_order__date_end
 msgid "Date Finished"
@@ -85,9 +90,24 @@ msgid "Deadline"
 msgstr "Frist"
 
 #. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_project_task_stagnation__display_name
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: rental_repair
+#: model:project.task.type,name:rental_repair.project_task_type_done
+msgid "Done"
+msgstr "Erledigt"
+
+#. module: rental_repair
 #: model:project.task.type,name:rental_repair.project_task_type_done_-_no_documentation
 msgid "Done - no documentation"
 msgstr "Erledigt - Doku offen"
+
+#. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_project_task_stagnation__end_time
+msgid "End Time"
+msgstr "Endzeit"
 
 #. module: rental_repair
 #: model:ir.model.fields,help:rental_repair.field_project_task__tracking
@@ -116,12 +136,19 @@ msgid "Helpdesk Tickets"
 msgstr "Helpdesk-Tickets"
 
 #. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_project_task_stagnation__id
+msgid "ID"
+msgstr "ID"
+
+#. module: rental_repair
 #: model:project.task.type,legend_normal:rental_repair.project_task_type_cancelled
+#: model:project.task.type,legend_normal:rental_repair.project_task_type_done
 #: model:project.task.type,legend_normal:rental_repair.project_task_type_done_-_no_documentation
 #: model:project.task.type,legend_normal:rental_repair.project_task_type_has_appointment
 #: model:project.task.type,legend_normal:rental_repair.project_task_type_in_progress
 #: model:project.task.type,legend_normal:rental_repair.project_task_type_new
 #: model:project.task.type,legend_normal:rental_repair.project_task_type_qualification
+
 msgid "In Progress"
 msgstr "In Arbeit"
 
@@ -148,6 +175,21 @@ msgid "Invoice Method"
 msgstr "Rechnungsmethode"
 
 #. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_project_task_stagnation____last_update
+msgid "Last Modified on"
+msgstr "Zuletzt geändert am"
+
+#. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_project_task_stagnation__write_uid
+msgid "Last Updated by"
+msgstr "Zuletzt aktualisiert durch"
+
+#. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_project_task_stagnation__write_date
+msgid "Last Updated on"
+msgstr "Zuletzt aktualisiert am"
+
+#. module: rental_repair
 #: model:ir.model.fields,field_description:rental_repair.field_project_task__mobile
 msgid "Mobile"
 msgstr "Mobil"
@@ -166,6 +208,16 @@ msgstr "Neu"
 #: selection:repair.order,invoice_method:0
 msgid "No Invoice"
 msgstr "Keine Rechnung"
+
+#. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_project_task_stagnation__note
+msgid "Note"
+msgstr "Notiz"
+
+#. module: rental_repair
+#: model_terms:ir.ui.view,arch_db:rental_repair.view_task_form2_helpdesk
+msgid "Note …"
+msgstr "Notiz …"
 
 #. module: rental_repair
 #: model:ir.model.fields,field_description:rental_repair.field_repair_order__fees_lines
@@ -203,6 +255,11 @@ msgid "Product Instance"
 msgstr "Produktinstanz"
 
 #. module: rental_repair
+#: model:ir.model,name:rental_repair.model_project_task_stagnation
+msgid "Project task stagnation"
+msgstr "Projekt Ticket Stilltand"
+
+#. module: rental_repair
 #: model:ir.model,name:rental_repair.model_purchase_order
 msgid "Purchase Order"
 msgstr "Beschaffungsauftrag"
@@ -214,6 +271,7 @@ msgstr "Qualifizierung"
 
 #. module: rental_repair
 #: model:project.task.type,legend_done:rental_repair.project_task_type_cancelled
+#: model:project.task.type,legend_done:rental_repair.project_task_type_done
 #: model:project.task.type,legend_done:rental_repair.project_task_type_done_-_no_documentation
 #: model:project.task.type,legend_done:rental_repair.project_task_type_has_appointment
 #: model:project.task.type,legend_done:rental_repair.project_task_type_in_progress
@@ -263,6 +321,17 @@ msgid "Serial Number"
 msgstr "Seriennummer"
 
 #. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_project_task__stagnation_ids
+#: model_terms:ir.ui.view,arch_db:rental_repair.view_task_form2_helpdesk
+msgid "Stagnation"
+msgstr "Stillstand"
+
+#. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_project_task_stagnation__start_time
+msgid "Start Time"
+msgstr "Startzeit"
+
+#. module: rental_repair
 #: model:ir.model,name:rental_repair.model_project_task
 msgid "Task"
 msgstr "Aufgabe"
@@ -285,15 +354,24 @@ msgid "The repair order uses the warranty date on the Serial Number in\n"
 msgstr "Der Reparaturauftrag verwendet das Garantiedatum auf der Seriennummer, um festzustellen, ob die Reparatur dem Kunden in Rechnung gestellt werden soll oder nicht."
 
 #. module: rental_repair
+#: code:addons/rental_repair/models/project.py:133
+#, python-format
+msgid "The start time '{start_time}' must be earlier than the end time {end_time}."
+msgstr "Die Startzeit '{start_time}' muss vor der Endzeit {end_time} liegen."
+
+#. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_project_task_stagnation__project_task_id
 #: model:ir.model.fields,field_description:rental_repair.field_purchase_order__project_task_id
 #: model:ir.model.fields,field_description:rental_repair.field_repair_order__project_task_id
 msgid "Ticket"
 msgstr "Ticket"
 
 #. module: rental_repair
+#: code:addons/rental_repair/models/product.py:60
 #: model:ir.ui.menu,name:rental_repair.menu_tickets
 #: model_terms:ir.ui.view,arch_db:rental_repair.product_normal_form_view
 #: model:project.project,label_tasks:rental_repair.project_project_helpdesk
+#, python-format
 msgid "Tickets"
 msgstr "Tickets"
 
@@ -307,7 +385,17 @@ msgstr "Um Dinge zu erledigen, verwenden Sie Aktivitäten und Status für Aufgab
 #. module: rental_repair
 #: model:ir.model.fields,help:rental_repair.field_product_product__repair_count
 msgid "Total number of Repair Orders"
-msgstr ""
+msgstr "Anzahl von Reparaturaufträgen"
+
+#. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_project_task__total_stagnation_time
+msgid "Total stagnation"
+msgstr "Gesamtstillstand"
+
+#. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_project_task__total_stagnation_time_sec
+msgid "Total stagnation (seconds)"
+msgstr "Gesamtstillstand (Sekunden)"
 
 #. module: rental_repair
 #: model:ir.model.fields,field_description:rental_repair.field_project_task__tracking
@@ -319,4 +407,52 @@ msgstr "Nachverfolgung"
 #: model_terms:ir.ui.view,arch_db:rental_repair.view_task_form2
 msgid "Vendor Repair Orders"
 msgstr "Reparaturbestellungen"
+
+#. module: rental_repair
+#: code:addons/rental_repair/models/project.py:82
+#, python-format
+msgid "{} day"
+msgstr "{} Tag"
+
+#. module: rental_repair
+#: code:addons/rental_repair/models/project.py:81
+#, python-format
+msgid "{} days"
+msgstr "{} Tage"
+
+#. module: rental_repair
+#: code:addons/rental_repair/models/project.py:84
+#, python-format
+msgid "{} hour"
+msgstr "{} Stunde"
+
+#. module: rental_repair
+#: code:addons/rental_repair/models/project.py:83
+#, python-format
+msgid "{} hours"
+msgstr "{} Stunden"
+
+#. module: rental_repair
+#: code:addons/rental_repair/models/project.py:86
+#, python-format
+msgid "{} minute"
+msgstr "{} Minute"
+
+#. module: rental_repair
+#: code:addons/rental_repair/models/project.py:85
+#, python-format
+msgid "{} minutes"
+msgstr "{} Minuten"
+
+#. module: rental_repair
+#: code:addons/rental_repair/models/project.py:88
+#, python-format
+msgid "{} second"
+msgstr "{} Sekunde"
+
+#. module: rental_repair
+#: code:addons/rental_repair/models/project.py:87
+#, python-format
+msgid "{} seconds"
+msgstr "{} Sekunden"
 
