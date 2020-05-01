@@ -243,22 +243,18 @@
             sequence="13" />
 
         <!-- Menu in Rentals -->
-        <menuitem name="Products"
-            id="menu_config_products"
-            parent="rental_base.menu_config"
+        <menuitem action="action_product_manufacturer"
+            id="menu_product_manufacturer"
+            parent="rental_base.menu_config_products"
             sequence="10" />
-            <menuitem action="action_product_manufacturer"
-                id="menu_product_manufacturer"
-                parent="menu_config_products"
-                sequence="10" />
-            <menuitem action="action_product_manufacturer_type"
-                id="menu_product_manufacturer_type"
-                parent="menu_config_products"
-                sequence="15" />
-            <menuitem action="action_fleet_type"
-                id="menu_fleet_type"
-                parent="menu_config_products"
-                sequence="20" />
+        <menuitem action="action_product_manufacturer_type"
+            id="menu_product_manufacturer_type"
+            parent="rental_base.menu_config_products"
+            sequence="15" />
+        <menuitem action="action_fleet_type"
+            id="menu_fleet_type"
+            parent="rental_base.menu_config_products"
+            sequence="20" />
 
     </data>
 </odoo>
