@@ -13,6 +13,10 @@ class ProjectTask(models.Model):
         domain = "[('product_instance', '=', True)]",
     )
 
+    partner_id = fields.Many2one(
+        string = 'Partner',
+    )
+
     tracking = fields.Selection(
         selection = [
             ('serial', 'By Unique Serial Number'),

@@ -223,6 +223,11 @@ msgid "Operations"
 msgstr ""
 
 #. module: rental_repair
+#: model:ir.model.fields,field_description:rental_repair.field_project_task__partner_id
+msgid "Partner"
+msgstr ""
+
+#. module: rental_repair
 #: model:ir.model.fields,field_description:rental_repair.field_repair_order__operations
 msgid "Parts"
 msgstr ""
@@ -352,7 +357,7 @@ msgid "The repair order uses the warranty date on the Serial Number in\n"
 msgstr ""
 
 #. module: rental_repair
-#: code:addons/rental_repair/models/project.py:133
+#: code:addons/rental_repair/models/project.py:137
 #, python-format
 msgid "The start time '{start_time}' must be earlier than the end time {end_time}."
 msgstr ""
@@ -406,49 +411,49 @@ msgid "Vendor Repair Orders"
 msgstr ""
 
 #. module: rental_repair
-#: code:addons/rental_repair/models/project.py:82
+#: code:addons/rental_repair/models/project.py:86
 #, python-format
 msgid "{} day"
 msgstr ""
 
 #. module: rental_repair
-#: code:addons/rental_repair/models/project.py:81
+#: code:addons/rental_repair/models/project.py:85
 #, python-format
 msgid "{} days"
 msgstr ""
 
 #. module: rental_repair
-#: code:addons/rental_repair/models/project.py:84
+#: code:addons/rental_repair/models/project.py:88
 #, python-format
 msgid "{} hour"
 msgstr ""
 
 #. module: rental_repair
-#: code:addons/rental_repair/models/project.py:83
+#: code:addons/rental_repair/models/project.py:87
 #, python-format
 msgid "{} hours"
 msgstr ""
 
 #. module: rental_repair
-#: code:addons/rental_repair/models/project.py:86
+#: code:addons/rental_repair/models/project.py:90
 #, python-format
 msgid "{} minute"
 msgstr ""
 
 #. module: rental_repair
-#: code:addons/rental_repair/models/project.py:85
+#: code:addons/rental_repair/models/project.py:89
 #, python-format
 msgid "{} minutes"
 msgstr ""
 
 #. module: rental_repair
-#: code:addons/rental_repair/models/project.py:88
+#: code:addons/rental_repair/models/project.py:92
 #, python-format
 msgid "{} second"
 msgstr ""
 
 #. module: rental_repair
-#: code:addons/rental_repair/models/project.py:87
+#: code:addons/rental_repair/models/project.py:91
 #, python-format
 msgid "{} seconds"
 msgstr ""
