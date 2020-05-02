@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-27 09:58+0000\n"
-"PO-Revision-Date: 2020-03-27 09:58+0000\n"
+"POT-Creation-Date: 2020-05-01 22:25+0000\n"
+"PO-Revision-Date: 2020-05-01 22:25+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -292,6 +292,7 @@ msgid "Product Variant"
 msgstr ""
 
 #. module: rental_base
+#: model:ir.ui.menu,name:rental_base.menu_config_products
 #: model:ir.ui.menu,name:rental_base.menu_master_data
 msgid "Products"
 msgstr ""
