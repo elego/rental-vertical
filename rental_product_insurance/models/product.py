@@ -11,7 +11,7 @@ class ProductProduct(models.Model):
         selection=[
             ('none', 'None'),
             ('product', 'Cost of Product'),
-            ('rental', 'Cost of rental'),
+            ('rental', 'Cost of Rental'),
         ],
         default="none",
     )
