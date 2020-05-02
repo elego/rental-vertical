@@ -69,6 +69,31 @@
             <field name="project_id" position="attributes">
                 <attribute name="invisible">1</attribute>
             </field>
+            <field name="lot_id" position="after">
+                <field name="total_stagnation_time" />
+            </field>
+            <page name="extra_info" position="before">
+                <page name="stagnation" string="Stagnation">
+                    <field name="stagnation_ids">
+                        <tree editable="bottom">
+                            <field name="start_time" />
+                            <field name="end_time" />
+                            <field name="note" placeholder="Note …" />
+                        </tree>
+                        <form>
+                            <group>
+                                <group>
+                                    <field name="start_time" />
+                                </group>
+                                <group>
+                                    <field name="end_time" />
+                                </group>
+                                <field name="note" placeholder="Note …" />
+                            </group>
+                        </form>
+                    </field>
+                </page>
+            </page>
         </field>
     </record>
 
