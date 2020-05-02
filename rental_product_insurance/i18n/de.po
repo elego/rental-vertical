@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-27 10:37+0000\n"
-"PO-Revision-Date: 2020-04-27 10:37+0000\n"
+"POT-Creation-Date: 2020-05-02 10:39+0000\n"
+"PO-Revision-Date: 2020-05-02 10:39+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr "Produktkosten"
 #. module: rental_product_insurance
 #: selection:product.product,insurance_type:0
 #: selection:sale.order.line,insurance_type:0
-msgid "Cost of rental"
+msgid "Cost of Rental"
 msgstr "Mietkosten"
 
 #. module: rental_product_insurance
@@ -43,7 +43,7 @@ msgstr "Origin Position"
 #: model:ir.model.fields,field_description:rental_product_insurance.field_product_product__insurance_percent
 #: model:ir.model.fields,field_description:rental_product_insurance.field_sale_order_line__insurance_percent
 msgid "Insurance Percent"
-msgstr "Versicherung in Prozent"
+msgstr "Prozent"
 
 #. module: rental_product_insurance
 #: model:ir.model.fields,field_description:rental_product_insurance.field_product_product__insurance_type
@@ -52,7 +52,7 @@ msgid "Insurance Type"
 msgstr "Versicherungsart"
 
 #. module: rental_product_insurance
-#: code:addons/rental_product_insurance/models/sale.py:66
+#: code:addons/rental_product_insurance/models/sale.py:67
 #, python-format
 msgid "Insurance: %s"
 msgstr "Versicherung: %s"
@@ -67,11 +67,6 @@ msgstr "Keine"
 #: model:ir.model,name:rental_product_insurance.model_product_product
 msgid "Product"
 msgstr "Produkt"
-
-#. module: rental_product_insurance
-#: model:ir.model,name:rental_product_insurance.model_sale_order
-msgid "Sale Order"
-msgstr "Verkaufsauftrag"
 
 #. module: rental_product_insurance
 #: model:ir.model,name:rental_product_insurance.model_sale_order_line
