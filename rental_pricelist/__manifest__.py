@@ -10,7 +10,7 @@ easy way to specify the prices in a product tab as well as to use all the enhanc
 ''',
     'version': '12.0.1.0.0',
     'category': 'sale',
-    'author': 'Elego Software Solutions Gmbh',
+    'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
         'rental_base',
     ],

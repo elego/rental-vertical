@@ -4,7 +4,7 @@
     "summary": "",
     "version": "12.0.1.0.0",
     "category": "Sales",
-    "author": "Yu Weng <yweng@elegosoft.com>",
+    'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     "license": "AGPL-3",
     "depends": ["rental_base"],
     "data": [

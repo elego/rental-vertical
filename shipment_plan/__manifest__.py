@@ -5,7 +5,7 @@
     'summary': 'Shipment Management',
     'version': '12.0.1.0.0',
     'category': 'Transportation',
-    'author': 'Elego Software Solutions Gmbh',
+    'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
         'account',
         'purchase',
@@ -26,5 +26,5 @@
     'qweb': [
     ],
     'application': False,
-    'license': 'LGPL-3',
+    'license': 'AGPL-3',
 }

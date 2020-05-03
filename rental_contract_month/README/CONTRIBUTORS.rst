@@ -2,6 +2,6 @@
 Contributors
 ------------
 
-OCA/Elego Software Solutions GmbH
+Odoo Community Association (OCA)/Elego Software Solutions GmbH
 
 
