@@ -5,7 +5,7 @@
     'summary': 'extends the rental_timeline module to show the transport order fields in the timeline popup.',
     'version': '12.0.1.0.0',
     'category': 'sale',
-    'author': 'Elego Software Solutions Gmbh',
+    'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
         'rental_timeline',
         'rental_transport_purchase_request',

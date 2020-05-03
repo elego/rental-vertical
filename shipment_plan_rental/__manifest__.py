@@ -17,5 +17,5 @@
     ],
     'qweb': [
     ],
-    'license': 'LGPL-3',
+    'license': 'AGPL-3',
 }

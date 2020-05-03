@@ -18,7 +18,7 @@ create related project tasks in helpdesk project and update the due date for the
 ''',
     'version': '12.0.1.0.0',
     'category': 'rental',
-    'author': 'Elego Software Solutions Gmbh',
+    'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
         'rental_product_instance_repair',
     ],

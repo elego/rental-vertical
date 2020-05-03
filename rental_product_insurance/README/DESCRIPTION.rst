@@ -1,7 +1,7 @@
 Rental Product Insurance
 ====================================================
 
-*This file has been generated on 2020-04-24-20-53-17. Changes to it will be overwritten.*
+*This file has been generated on 2020-05-03-18-32-45. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -11,5 +11,6 @@ Sell Insurance of Product
 Description
 -----------
 
-With this module, product insurance can be sold as service.
+This module provides the opportunity to sell and invoice insurances related to the selled and invoiced rentable products.
+The insurance price is either based on the product's costs or the order's amount and given as percentage.
 

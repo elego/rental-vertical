@@ -9,7 +9,7 @@ for the rented product instances automatically.
 A complete timeline view will be generated for all rentable products.''',
     'version': '12.0.1.0.1',
     'category': 'sale',
-    'author': 'Elego Software Solutions Gmbh',
+    'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
         'web_timeline',
         'rental_base',

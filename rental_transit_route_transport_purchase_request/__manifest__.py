@@ -5,7 +5,7 @@
     'summary': 'Extension of module "Rental Transit Route" and "Rental Transport Purchase Request"',
     'version': '12.0.1.0.0',
     'category': 'stock',
-    'author': 'Elego Software Solutions Gmbh',
+    'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
         'rental_transport_purchase_request',
         'rental_transit_route',

@@ -21,7 +21,7 @@ A contract is automatically created.
 ''',
     'version': '12.0.1.0.0',
     'category': 'rental',
-    'author': 'OCA/Elego Software Solutions GmbH',
+    'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
         'rental_contract',
         'rental_pricelist',
