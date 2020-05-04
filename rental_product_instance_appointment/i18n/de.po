@@ -1,0 +1,129 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* rental_product_instance_appointment
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-05-04 12:03+0000\n"
+"PO-Revision-Date: 2020-05-04 12:03+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model,name:rental_product_instance_appointment.model_product_appointment
+msgid "Appointment"
+msgstr "Termin"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_product__appointment_ids
+#: model_terms:ir.ui.view,arch_db:rental_product_instance_appointment.product_normal_form_view
+msgid "Appointments"
+msgstr "Termine"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__create_task
+msgid "Create Task"
+msgstr "Aufgabe erstellen"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__create_uid
+msgid "Created by"
+msgstr "Erstellt von"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__create_date
+msgid "Created on"
+msgstr "Erstellt am"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__date_next_appointment
+msgid "Date"
+msgstr "Datum"
+
+#. module: rental_product_instance_appointment
+#: selection:product.appointment,time_uom:0
+msgid "Day(s)"
+msgstr "Tag(e)"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__display_name
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__id
+msgid "ID"
+msgstr "ID"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__product_id
+msgid "Instance"
+msgstr "Produktinstanz"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment____last_update
+msgid "Last Modified on"
+msgstr "Zuletzt geändert am"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__last_task_id
+msgid "Last Ticket"
+msgstr "Letztes Ticket"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__write_uid
+msgid "Last Updated by"
+msgstr "Zuletzt aktualisiert durch"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__write_date
+msgid "Last Updated on"
+msgstr "Zuletzt aktualisiert am"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__leads_of_notification
+msgid "Leads of Notification"
+msgstr "Vorlaufzeit für Benachrichtigung"
+
+#. module: rental_product_instance_appointment
+#: selection:product.appointment,time_uom:0
+msgid "Month(s)"
+msgstr "Monat(e)"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__name
+msgid "Name"
+msgstr "Bezeichnung"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model,name:rental_product_instance_appointment.model_product_product
+msgid "Product"
+msgstr "Produkt"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model,name:rental_product_instance_appointment.model_project_task
+msgid "Task"
+msgstr "Aufgabe"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__time_interval
+msgid "Time Interval"
+msgstr "Intervall"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__time_uom
+msgid "Time UoM"
+msgstr "Zeiteinheit"
+
+#. module: rental_product_instance_appointment
+#: model:ir.actions.server,name:rental_product_instance_appointment.daily_gen_product_appointment_ir_actions_server
+#: model:ir.cron,cron_name:rental_product_instance_appointment.daily_gen_product_appointment
+#: model:ir.cron,name:rental_product_instance_appointment.daily_gen_product_appointment
+msgid "Update product appointments daily"
+msgstr "Termine für Produktinstanzen täglich aktualisieren"
