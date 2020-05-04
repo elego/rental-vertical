@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="product.product_normal_form_view"/>
             <field name="arch" type="xml">
                 <xpath expr="//notebook" position="inside">
-                    <page string="Appointment" name="appointment"
+                    <page string="Appointments" name="appointment"
                           attrs="{'invisible': [('product_instance','=',False)]}">
                         <field name="appointment_ids">
                             <tree default_order="date_next_appointment" editable="top">

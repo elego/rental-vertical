@@ -13,7 +13,7 @@ class ProductAppointment(models.Model):
         required=True,
     )
     date_next_appointment = fields.Date(
-        'Datum',
+        'Date',
         required=True,
     )
     leads_of_notification = fields.Integer(
@@ -21,7 +21,7 @@ class ProductAppointment(models.Model):
         required=True,
     )
     time_interval = fields.Integer(
-        'Time Inteval',
+        'Time Interval',
         required=True,
     )
     time_uom = fields.Selection(
