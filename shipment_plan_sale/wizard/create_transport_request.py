@@ -84,6 +84,7 @@ class CreateSaleTransRequest(models.TransientModel):
             show_address=True).id
         order_lines = self.origin_line_ids.mapped('order_line_id')
         note = order_lines.get_transport_details()
+        dangerous_goods = any([l.dangerous_goods for l in order.order_line])
         res = {
             'name': 'Shipment Plan for %s' %order.name,
             'plan_type': 'sale',
@@ -94,6 +95,7 @@ class CreateSaleTransRequest(models.TransientModel):
             'initial_eta': order.date_order,
             'origin': order.name,
             'origin_sale_line_ids': [(6, 0, order_lines.ids)],
+            'dangerous_goods': dangerous_goods,
         }
         return res
 

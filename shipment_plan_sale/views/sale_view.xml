@@ -12,7 +12,7 @@
                     name="action_view_shipment_plans"
                     class="oe_stat_button"
                     icon="fa-truck"
-                    attrs="{'invisible': [('trans_po_count', '=', 0)]}" groups="base.group_user">
+                    attrs="{'invisible': [('trans_shipment_plan_count', '=', 0)]}" groups="base.group_user">
                     <field name="trans_shipment_plan_count" widget="statinfo" string="Shipment Plans"/>
                 </button>
                 <field name="trans_po_ids" invisible="1"/>
@@ -40,6 +40,10 @@
             </button>
             <xpath expr="//field[@name='product_packaging']" position="after">
                 <field name="trans_pr_needed" invisible="1"/>
+                <label for="dangerous_goods"/>
+                <div>
+                    <field name="dangerous_goods" class="oe_inline"/>
+                </div>
             </xpath>
             <group name="sale_shipping" position="inside">
                 <field name="trans_pr_needed"/>

@@ -86,6 +86,10 @@
                 <div>
                   <field name="consignee_id" class="oe_inline"/>
                 </div>
+                <label for="dangerous_goods"/>
+                <div>
+                  <field name="dangerous_goods" class="oe_inline"/>
+                </div>
               </group>
               <group>
                 <!--
