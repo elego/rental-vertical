@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-01 22:27+0000\n"
-"PO-Revision-Date: 2020-05-01 22:27+0000\n"
+"POT-Creation-Date: 2020-05-06 15:22+0000\n"
+"PO-Revision-Date: 2020-05-06 15:22+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,23 +16,18 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: rental_product_variant
-#: model_terms:ir.ui.view,arch_db:rental_product_variant.product_normal_form_view
-msgid "Add. Info"
-msgstr "Weitere Informationen"
-
-#. module: rental_product_variant
 #: model:ir.model.fields,field_description:rental_product_variant.field_product_product__additional_info
-msgid "Additional Infomation"
+msgid "Additional Information"
 msgstr "Weitere Informationen"
 
 #. module: rental_product_variant
-#: code:addons/rental_product_variant/models/product.py:116
+#: code:addons/rental_product_variant/models/product.py:186
 #, python-format
 msgid "All Invoices"
 msgstr "Alle Rechnungen"
 
 #. module: rental_product_variant
-#: code:addons/rental_product_variant/models/product.py:98
+#: code:addons/rental_product_variant/models/product.py:168
 #, python-format
 msgid "All Purchase Orders"
 msgstr "Alle Einkaufsbestellungen"
@@ -89,6 +84,24 @@ msgid "ID"
 msgstr "ID"
 
 #. module: rental_product_variant
+#: model:ir.model.fields,help:rental_product_variant.field_product_category__show_init_regist
+#: model:ir.model.fields,help:rental_product_variant.field_product_product__show_init_regist
+msgid "If checked, the initial registration is displayed in product form view."
+msgstr "Wenn der Haken gesetzt ist, wird das Feld Erstzulassung im Produktformular angezeigt."
+
+#. module: rental_product_variant
+#: model:ir.model.fields,help:rental_product_variant.field_product_category__show_license_plate
+#: model:ir.model.fields,help:rental_product_variant.field_product_product__show_license_plate
+msgid "If checked, the license plate is displayed in product form view."
+msgstr "Wenn der Haken gesetzt ist, wird das Feld Fahrzeugkennzeichen im Produktformular angezeigt."
+
+#. module: rental_product_variant
+#: model:ir.model.fields,help:rental_product_variant.field_product_category__show_vehicle_number
+#: model:ir.model.fields,help:rental_product_variant.field_product_product__show_vehicle_number
+msgid "If checked, the vehicle identification number is displayed in product form view."
+msgstr "Wenn der Haken gesetzt ist, wird das Feld Fahrgestellnummer im Produktformular angezeigt."
+
+#. module: rental_product_variant
 #: model:ir.model.fields,field_description:rental_product_variant.field_product_product__init_regist
 msgid "Initial Registration"
 msgstr "Erstzulassung"
@@ -115,7 +128,7 @@ msgstr "Zuletzt geändert am"
 #: model:ir.model.fields,field_description:rental_product_variant.field_product_manufacturer__write_uid
 #: model:ir.model.fields,field_description:rental_product_variant.field_product_manufacturer_type__write_uid
 msgid "Last Updated by"
-msgstr "Zuletzt aktualisiert durch"
+msgstr "Zuletzt aktualisiert von"
 
 #. module: rental_product_variant
 #: model:ir.model.fields,field_description:rental_product_variant.field_fleet_type__write_date
@@ -226,6 +239,11 @@ msgid "Show Vehicle Identification Number"
 msgstr "Fahrgestellnummer anzeigen"
 
 #. module: rental_product_variant
+#: model_terms:ir.ui.view,arch_db:rental_product_variant.product_normal_form_view
+msgid "Specification"
+msgstr "Spezifikation"
+
+#. module: rental_product_variant
 #: model:ir.model.fields,field_description:rental_product_variant.field_product_product__stock_move_ids
 msgid "Stock Moves"
 msgstr "Lagerbuchungen"
@@ -236,29 +254,29 @@ msgid "Technical: used to compute quantities."
 msgstr "Technisch: zur Berechnung von Mengen verwendet."
 
 #. module: rental_product_variant
-#: model_terms:ir.ui.view,arch_db:rental_product_variant.product_normal_form_view
-msgid "This note is only for internal purposes."
-msgstr "Dieser Hinweis dient nur internen Zwecken."
-
-#. module: rental_product_variant
 #: model:ir.model.fields,help:rental_product_variant.field_product_product__invoice_count
-msgid "Total number of Invoice Orders"
-msgstr "Gesamtanzahl von Rechnungen"
+msgid "This is the total number of invoices including invoice lines with this product."
+msgstr "Dies ist die Gesamtanzahl von Rechnungen, die Rechnungszeilen mit diesem Produkt enthalten."
 
 #. module: rental_product_variant
 #: model:ir.model.fields,help:rental_product_variant.field_product_product__po_count
-msgid "Total number of Purchase Orders"
-msgstr "Gesamtanzahl von Einkaufsbestellungen"
+msgid "This it the total number of purchase orders including order lines with this product or related analytic account."
+msgstr "Dies ist die Gesamtanzahl von Einkaufsbestellungen, die Bestellzeilen mit diesem Produkt oder der zugehörigen Kostenstelle enthalten."
 
 #. module: rental_product_variant
 #: model:ir.model.fields,help:rental_product_variant.field_product_product__rental_count
-msgid "Total number of Rental Orders"
-msgstr "Gesamtanzahl von Mietaufträgen"
+msgid "This it the total number of rental orders including order lines with this product."
+msgstr "Dies ist die Gesamtanzahl von Mietaufträgen, die Auftragszeilen mit diesem Produkt enthalten."
 
 #. module: rental_product_variant
 #: model:ir.model.fields,help:rental_product_variant.field_product_product__so_count
-msgid "Total number of Sale Orders"
-msgstr "Gesamtanzahl von Verkaufsaufträgen"
+msgid "This it the total number of sale orders including order lines with this product."
+msgstr "Dies ist die Gesamtanzahl von Verkaufsaufträgen, die Auftragszeilen mit diesem Produkt enthalten."
+
+#. module: rental_product_variant
+#: model_terms:ir.ui.view,arch_db:rental_product_variant.product_normal_form_view
+msgid "This note is only for internal purposes."
+msgstr "Dieser Hinweis dient nur internen Zwecken."
 
 #. module: rental_product_variant
 #: model:ir.model.fields,field_description:rental_product_variant.field_product_product__manu_type_id

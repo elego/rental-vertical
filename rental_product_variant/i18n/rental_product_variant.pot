@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-01 22:27+0000\n"
-"PO-Revision-Date: 2020-05-01 22:27+0000\n"
+"POT-Creation-Date: 2020-05-06 15:22+0000\n"
+"PO-Revision-Date: 2020-05-06 15:22+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,23 +16,18 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: rental_product_variant
-#: model_terms:ir.ui.view,arch_db:rental_product_variant.product_normal_form_view
-msgid "Add. Info"
-msgstr ""
-
-#. module: rental_product_variant
 #: model:ir.model.fields,field_description:rental_product_variant.field_product_product__additional_info
-msgid "Additional Infomation"
+msgid "Additional Information"
 msgstr ""
 
 #. module: rental_product_variant
-#: code:addons/rental_product_variant/models/product.py:116
+#: code:addons/rental_product_variant/models/product.py:186
 #, python-format
 msgid "All Invoices"
 msgstr ""
 
 #. module: rental_product_variant
-#: code:addons/rental_product_variant/models/product.py:98
+#: code:addons/rental_product_variant/models/product.py:168
 #, python-format
 msgid "All Purchase Orders"
 msgstr ""
@@ -86,6 +81,24 @@ msgstr ""
 #: model:ir.model.fields,field_description:rental_product_variant.field_product_manufacturer__id
 #: model:ir.model.fields,field_description:rental_product_variant.field_product_manufacturer_type__id
 msgid "ID"
+msgstr ""
+
+#. module: rental_product_variant
+#: model:ir.model.fields,help:rental_product_variant.field_product_category__show_init_regist
+#: model:ir.model.fields,help:rental_product_variant.field_product_product__show_init_regist
+msgid "If checked, the initial registration is displayed in product form view."
+msgstr ""
+
+#. module: rental_product_variant
+#: model:ir.model.fields,help:rental_product_variant.field_product_category__show_license_plate
+#: model:ir.model.fields,help:rental_product_variant.field_product_product__show_license_plate
+msgid "If checked, the license plate is displayed in product form view."
+msgstr ""
+
+#. module: rental_product_variant
+#: model:ir.model.fields,help:rental_product_variant.field_product_category__show_vehicle_number
+#: model:ir.model.fields,help:rental_product_variant.field_product_product__show_vehicle_number
+msgid "If checked, the vehicle identification number is displayed in product form view."
 msgstr ""
 
 #. module: rental_product_variant
@@ -226,6 +239,11 @@ msgid "Show Vehicle Identification Number"
 msgstr ""
 
 #. module: rental_product_variant
+#: model_terms:ir.ui.view,arch_db:rental_product_variant.product_normal_form_view
+msgid "Specification"
+msgstr ""
+
+#. module: rental_product_variant
 #: model:ir.model.fields,field_description:rental_product_variant.field_product_product__stock_move_ids
 msgid "Stock Moves"
 msgstr ""
@@ -236,28 +254,28 @@ msgid "Technical: used to compute quantities."
 msgstr ""
 
 #. module: rental_product_variant
-#: model_terms:ir.ui.view,arch_db:rental_product_variant.product_normal_form_view
-msgid "This note is only for internal purposes."
-msgstr ""
-
-#. module: rental_product_variant
 #: model:ir.model.fields,help:rental_product_variant.field_product_product__invoice_count
-msgid "Total number of Invoice Orders"
+msgid "This is the total number of invoices including invoice lines with this product."
 msgstr ""
 
 #. module: rental_product_variant
 #: model:ir.model.fields,help:rental_product_variant.field_product_product__po_count
-msgid "Total number of Purchase Orders"
+msgid "This it the total number of purchase orders including order lines with this product or related analytic account."
 msgstr ""
 
 #. module: rental_product_variant
 #: model:ir.model.fields,help:rental_product_variant.field_product_product__rental_count
-msgid "Total number of Rental Orders"
+msgid "This it the total number of rental orders including order lines with this product."
 msgstr ""
 
 #. module: rental_product_variant
 #: model:ir.model.fields,help:rental_product_variant.field_product_product__so_count
-msgid "Total number of Sale Orders"
+msgid "This it the total number of sale orders including order lines with this product."
+msgstr ""
+
+#. module: rental_product_variant
+#: model_terms:ir.ui.view,arch_db:rental_product_variant.product_normal_form_view
+msgid "This note is only for internal purposes."
 msgstr ""
 
 #. module: rental_product_variant

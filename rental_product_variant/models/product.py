@@ -6,50 +6,120 @@ from odoo import api, fields, models, _
 class ProductCategory(models.Model):
     _inherit = 'product.category'
 
-    show_vehicle_number = fields.Boolean("Show Vehicle Identification Number")
-    show_license_plate = fields.Boolean("Show License Plate")
-    show_init_regist = fields.Boolean('Show Initial Registration')
+    show_vehicle_number = fields.Boolean(
+        string="Show Vehicle Identification Number",
+        help="If checked, the vehicle identification number "
+             "is displayed in product form view.",
+    )
+    show_license_plate = fields.Boolean(
+        string="Show License Plate",
+        help="If checked, the license plate is displayed in "
+             "product form view.",
+    )
+    show_init_regist = fields.Boolean(
+        string='Show Initial Registration',
+        help="If checked, the initial registration is displayed "
+             "in product form view.",
+    )
 
 
 class ProductProduct(models.Model):
     _inherit = 'product.product'
 
-    further_ref = fields.Char("Further Reference")
-    qr_code = fields.Char('QR-Code')
-    manu_year = fields.Char('Year of Manufacture')
-    manu_id = fields.Many2one('product.manufacturer', 'Manufacturer') #Marke
-    manu_type_id = fields.Many2one('product.manufacturer.type', 'Type', ondelete='set null') #Marke Typ
-    fleet_type_id = fields.Many2one('fleet.type', 'Fleet Type', ondelete='set null') #Flottentyp
+    additional_info = fields.Html(
+        string="Additional Information",
+        translate=True,
+    )
+    further_ref = fields.Char(
+        string="Further Reference",
+    )
+    qr_code = fields.Char(
+        string="QR-Code",
+    )
+    manu_year = fields.Char(
+        string="Year of Manufacture",
+    )
+    manu_id = fields.Many2one(
+        comodel_name='product.manufacturer',
+        string="Manufacturer",
+    )
+    manu_type_id = fields.Many2one(
+        comodel_name='product.manufacturer.type',
+        string="Type",
+        ondelete='set null',
+    )
+    fleet_type_id = fields.Many2one(
+        comodel_name='fleet.type',
+        string="Fleet Type",
+        ondelete='set null',
+    )
 
-    #Category special fields
-    vehicle_number = fields.Char("Vehicle Identification Number")
-    license_plate = fields.Char("License Plate")
-    init_regist = fields.Date('Initial Registration')
-    show_vehicle_number = fields.Boolean("Show Vehicle Identification Number", related="categ_id.show_vehicle_number")
-    show_license_plate = fields.Boolean("Show License Plate", related="categ_id.show_license_plate")
-    show_init_regist = fields.Boolean('Show Initial Registration', related="categ_id.show_init_regist")
+    # Category special fields
+    vehicle_number = fields.Char(
+        string="Vehicle Identification Number",
+    )
+    license_plate = fields.Char(
+        string="License Plate",
+    )
+    init_regist = fields.Date(
+        string="Initial Registration",
+    )
+    show_vehicle_number = fields.Boolean(
+        string="Show Vehicle Identification Number",
+        related="categ_id.show_vehicle_number",
+    )
+    show_license_plate = fields.Boolean(
+        string="Show License Plate",
+        related="categ_id.show_license_plate",
+    )
+    show_init_regist = fields.Boolean(
+        string='Show Initial Registration',
+        related="categ_id.show_init_regist",
+    )
 
-    #sol_ids = fields.One2many('sale.order.line', 'product_id', string='Sale Order Lines')
-    #inv_line_ids = fields.One2many('account.invoice.line', 'product_id', string='Invoice Lines')
-    #po_line_ids = fields.One2many('purchase.order.line', 'product_id', string='Purchase Order Lines')
-    rental_order_ids = fields.One2many('sale.rental', 'rented_product_id', string='Rental Orders')
-    stock_move_ids = fields.One2many('stock.move', 'product_id', string='Stock Moves')
-    additional_info = fields.Html('Additional Infomation', translate=True)
+    # Lists
+    rental_order_ids = fields.One2many(
+        comodel_name='sale.rental',
+        inverse_name='rented_product_id',
+        string='Rental Orders',
+    )
+    stock_move_ids = fields.One2many(
+        comodel_name='stock.move',
+        inverse_name='product_id',
+        string='Stock Moves',
+    )
 
-    invoice_count = fields.Integer(compute="_compute_invoice_count",
-        string='Invoices', help='Total number of Invoice Orders')
-    so_count = fields.Integer(compute="_compute_so_count",
-        string='Sales', help='Total number of Sale Orders')
-    po_count = fields.Integer(compute="_compute_po_count",
-        string='Purchase', help='Total number of Purchase Orders')
-    rental_count = fields.Integer(compute="_compute_rental_count",
-        string='Rental', help='Total number of Rental Orders')
+    # Smartbutton Counts
+    invoice_count = fields.Integer(
+        compute='_compute_invoice_count',
+        string="Invoices",
+        help="This is the total number of invoices including "
+             "invoice lines with this product.",
+    )
+    so_count = fields.Integer(
+        compute='_compute_so_count',
+        string="Sales",
+        help="This it the total number of sale orders including "
+             "order lines with this product.",
+    )
+    po_count = fields.Integer(
+        compute='_compute_po_count',
+        string="Purchase",
+        help="This it the total number of purchase orders including "
+             "order lines with this product or related analytic account.",
+    )
+    rental_count = fields.Integer(
+        compute="_compute_rental_count",
+        string="Rental",
+        help="This it the total number of rental orders including "
+             "order lines with this product.",
+    )
 
     @api.multi
     def _get_sale_order_ids(self, type_id):
         self.ensure_one()
         sols = self.env['sale.order.line'].search([
-            ('product_id','=',self.id)])
+            ('product_id', '=', self.id)])
         return list(set([l.order_id.id for l in sols if l.order_id.type_id == type_id]))
 
     @api.multi
@@ -57,7 +127,7 @@ class ProductProduct(models.Model):
         self.ensure_one()
         if self.expense_analytic_account_id:
             domain = ['|', ('product_id', '=', self.id),
-                  ('account_analytic_id', '=', self.expense_analytic_account_id.id)]
+                      ('account_analytic_id', '=', self.expense_analytic_account_id.id)]
         else:
             domain = [('product_id', '=', self.id)]
         pols = self.env['purchase.order.line'].search(domain)
@@ -157,20 +227,32 @@ class ProductManufacturer(models.Model):
     _name = 'product.manufacturer'
     _description = 'Product Manufacturer'
 
-    name = fields.Char('Name')
-    manufacturer_type_ids = fields.One2many('product.manufacturer.type', 'manufacturer_id')
+    name = fields.Char(
+        string="Name",
+    )
+    manufacturer_type_ids = fields.One2many(
+        comodel_name='product.manufacturer.type',
+        inverse_name='manufacturer_id',
+    )
 
 
 class ProductManufacturerType(models.Model):
     _name = 'product.manufacturer.type'
     _description = 'Product Manufacturer Type'
 
-    name = fields.Char('Name')
-    manufacturer_id = fields.Many2one('product.manufacturer', 'Manufacturer')
+    name = fields.Char(
+        string='Name',
+    )
+    manufacturer_id = fields.Many2one(
+        comodel_name='product.manufacturer',
+        string="Manufacturer",
+    )
 
 
 class FleetType(models.Model):
     _name = 'fleet.type'
     _description = 'Fleet Type'
 
-    name = fields.Char('Name')
+    name = fields.Char(
+        string="Name",
+    )
