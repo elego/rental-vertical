@@ -100,6 +100,9 @@ class ShipmentPlan(models.Model):
         states={'draft': [('readonly', False)]},
     )
     origin = fields.Char('Origin Ref')
+    dangerous_goods = fields.Boolean(
+        "Dangerous Goods"
+    )
     trans_requisition_line_ids = fields.Many2many(
         'purchase.requisition.line',
         'rel_shipment_plan_requisition_line',

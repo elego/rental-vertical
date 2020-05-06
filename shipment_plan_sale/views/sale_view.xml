@@ -40,6 +40,10 @@
             </button>
             <xpath expr="//field[@name='product_packaging']" position="after">
                 <field name="trans_pr_needed" invisible="1"/>
+                <label for="dangerous_goods"/>
+                <div>
+                    <field name="dangerous_goods" class="oe_inline"/>
+                </div>
             </xpath>
             <group name="sale_shipping" position="inside">
                 <field name="trans_pr_needed"/>

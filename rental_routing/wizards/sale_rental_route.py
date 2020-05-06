@@ -66,6 +66,7 @@ class SaleRentalRouteOutLine(models.TransientModel):
         new_picking = self.rental_in_move_id.picking_id.copy(
             {
                 "move_lines": [],
+                "picking_type_id": self.rental_in_id.start_order_line_id.order_id.warehouse_id.int_type_id.id,
                 "location_id": self.rental_in_move_id.location_id.id,
                 "location_dest_id": self.move_id.location_dest_id.id,
                 "rental_order": self.rental_in_id.start_order_line_id.order_id.id,
@@ -194,6 +195,7 @@ class SaleRentalRouteInLine(models.TransientModel):
         new_picking = self.move_id.picking_id.copy(
             {
                 "move_lines": [],
+                "picking_type_id": self.rental_id.start_order_line_id.order_id.warehouse_id.int_type_id.id,
                 "location_id": self.move_id.location_id.id,
                 "location_dest_id": self.rental_out_move_id.location_dest_id.id,
                 "rental_order": self.rental_id.start_order_line_id.order_id.id,

@@ -12,6 +12,7 @@
         "views/view_order_form.xml",
         "views/sale_rental_view.xml",
         "views/res_partner_view.xml",
+        "views/stock_view.xml",
     ],
     "installable": True,
 }

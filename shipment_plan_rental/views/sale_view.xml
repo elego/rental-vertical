@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_shipment_plan_order_form" model="ir.ui.view">
+        <field name="name">view_order_form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="shipment_plan_sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//label[@for='dangerous_goods']" position="replace"/>
+            <xpath expr="//field[@name='dangerous_goods']/.." position="replace"/>
+        </field>
+    </record>
+
+    <record id="view_rental_order_form" model="ir.ui.view">
+        <field name="name">view_order_form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="rental_base.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@id='rental_transport']" position="inside">
+                <label for="dangerous_goods"/>
+                <div>
+                    <field name="dangerous_goods" class="oe_inline"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -10,6 +10,10 @@ logger = logging.getLogger(__name__)
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
+    dangerous_goods = fields.Boolean(
+        "Dangerous Goods"
+    )
+
     trans_pr_needed = fields.Boolean(
         "Transport PR Needed",
         compute="_compute_trans_pr_needed"
