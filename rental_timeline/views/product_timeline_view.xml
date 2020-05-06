@@ -14,7 +14,8 @@
                           tooltip='{"followMouse": true}'
                           stack="False"
                           event_open_popup="True"
-                          colors="#f0ff00:type == 'reserved'; #33ffec:type == 'rental'; #ffce00:type=='maintenance'; #ff5a00:type == 'repair'; #FFA500:type=='delivery';">
+                          colors="#CC9966:type == 'reserved'; #66CCCC:type == 'rental'; #ffce00:type=='maintenance'; #99CC99:type == 'repair'; #FFCC33:type=='delivery';"
+                >
                     <field name="type" />
                     <field name="type_formated" />
                     <field name="has_clues" />
