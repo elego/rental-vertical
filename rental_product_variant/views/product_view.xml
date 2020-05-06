@@ -83,7 +83,7 @@
                     </page>
                 </xpath>
                 <xpath expr="//notebook//page[@name='general_information']" position="after">
-                    <page string="Add. Info" name="add_info">
+                    <page string="Specification" name="add_info">
                         <field name="additional_info" no_label="1" />
                     </page>
                 </xpath>
