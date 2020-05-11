@@ -185,14 +185,15 @@ odoo.define('rental.tour', function (require) {
         run: function (){} //check Invoice: (Unit Price : 200.00)
     },
     // TODO checks on analytic account of product in invoice line
-    {
-        content: _t('Go to Overview'),
-        trigger: 'li a[data-menu-xmlid="rental_timeline.menu_overview"]',
-        position: 'bottom'
-    }, /*{
+    /*{
         content: _t('Click on Validate'),
         trigger: 'button[name="action_invoice_open"]',
         position: 'bottom',
     },*/
+    {
+        content: _t('Go to Overview'),
+        trigger: 'li a[data-menu-xmlid="rental_timeline.menu_overview"]',
+        position: 'bottom'
+    },
   ]);
 });

@@ -46,7 +46,7 @@
             <field name="rental_price_month">4500</field>
             <field name="income_analytic_account_id" ref="account_01531" />
             <field name="expense_analytic_account_id" ref="account_01531" />
-            <!-- <field name="image" type="base64" file="rockbird_demo/static/img/00530.png" /> -->
+            <!-- TODO Image of Product -->
         </record>
         <record id="serial_rental_01531" model="stock.production.lot">
             <field name="name">KTG11531</field>
@@ -97,7 +97,7 @@
             <field name="rental_price_month">4500</field>
             <field name="income_analytic_account_id" ref="account_01532" />
             <field name="expense_analytic_account_id" ref="account_01532" />
-            <!-- <field name="image" type="base64" file="rockbird_demo/static/img/00531.png" /> -->
+            <!-- TODO Image of Product -->
         </record>
         <record id="serial_rental_01532" model="stock.production.lot">
             <field name="name">KTG11532</field>
@@ -105,6 +105,54 @@
         </record>
         <record id="rental_01532" model="product.product">
             <field name="instance_serial_number_id" ref="serial_rental_01532" />
+        </record>
+
+        <!-- Product 3 -->
+
+        <record id="account_01533" model="account.analytic.account">
+            <field name="code">01533</field>
+            <field name="name">Cat 933M</field>
+        </record>
+        <record id="cat_933M" model="product.manufacturer.type">
+            <field name="manufacturer_id" ref="cat" />
+            <field name="name">933M</field>
+        </record>
+        <record id="rental_01533" model="product.product">
+            <field name="rental_ok" eval="True" />
+            <field name="product_instance" eval="True" />
+            <field name="tracking">serial</field>
+            <field name="name">Cat 933M</field>
+            <field name="categ_id" ref="product.product_category_all" />
+            <field name="type">product</field>
+            <field name="uom_id" ref="uom.product_uom_unit" />
+            <field name="uom_po_id" ref="uom.product_uom_unit" />
+            <field name="default_code">01533</field>
+            <field name="manu_year">2018</field>
+            <field name="barcode">011700</field>
+            <field name="description"></field>
+            <field name="further_ref">01300</field>
+            <field name="qr_code">02400</field>
+            <field name="vehicle_number">CAT RT01533</field>
+            <field name="license_plate">BNA 1533</field>
+            <field name="init_regist">2018-05-01</field>
+            <field name="manu_id" ref="cat" />
+            <field name="manu_type_id" ref="cat_933M" />
+            <field name="fleet_type_id" ref="rb_rental" />
+            <field name="instance_current_location_id" model="stock.location" search="[('name', '=', 'Rental In')]" />
+            <field name="rental_of_day" eval="True" />
+            <field name="rental_price_day">200</field>
+            <field name="rental_of_month" eval="True" />
+            <field name="rental_price_month">4500</field>
+            <field name="income_analytic_account_id" ref="account_01533" />
+            <field name="expense_analytic_account_id" ref="account_01533" />
+            <!-- TODO Image of Product -->
+        </record>
+        <record id="serial_rental_01533" model="stock.production.lot">
+            <field name="name">KTG11533</field>
+            <field name="product_id" ref="rental_01533" />
+        </record>
+        <record id="rental_01533" model="product.product">
+            <field name="instance_serial_number_id" ref="serial_rental_01533" />
         </record>
     </data>
 </odoo>

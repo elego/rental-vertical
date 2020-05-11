@@ -197,6 +197,85 @@ odoo.define('rental.contract', function (require) {
         extra_trigger: '.o_form_view',
         position: "bottom"
     }, {
+        content: _t("Use the breadcrumbs to <b>go back to Rental Order</b>."),
+        trigger: ".breadcrumb-item:not(.active):nth-last-child(3)",
+        extra_trigger: '.o_form_view',
+        position: "bottom"
+    }, /*{
+        content: _t("Click on Contracts"),
+        trigger: 'button[name="action_show_contracts"]',
+        extra_trigger: '.o_statusbar_status .btn-primary:contains("Sales Order")'
+    }, {
+        content: _t("Click on Create Invoice"),
+        trigger: 'button[name="recurring_create_invoice"]',
+        extra_trigger: '.o_form_view',
+    }, {
+        content: _t('Click on Invoices'),
+        trigger: 'button[name="action_show_invoices"]',
+        extra_trigger: 'div[name="invoice_count"] span.o_stat_value:contains("1")',
+        run: 'click',
+        position: 'bottom',
+    }, {
+        content: _t('Check status of Invoice which is created on 04/01/2020'),
+        trigger: 'td.o_data_cell:contains("Draft")',
+        extra_trigger: '.o_list_view',
+        in_modal: false,
+        position: 'bottom',
+        run: function (){} //check Invoice: Status = Draft
+    }, {
+        content: _t('Click on Invoice from list which is created on 04/01/2020'),
+        trigger: 'td.o_data_cell:contains("04/01/2020")',
+        extra_trigger: '.o_list_view',
+        position: 'bottom',
+        run: 'click',
+    }, {
+        content: _t('Check Sale Type on Invoice'),
+        trigger: '.o_invoice_form a[name="sale_type_id"]:contains("Rental Order")',
+        in_modal: false,
+        position: 'bottom',
+        run: function (){} //check Invoice: Sale Type = Rental Order
+    }, {
+        content: _t('Check Contract Type on Invoice'),
+        trigger: '.o_invoice_form a[name="contract_type_id"]:contains("Rental Contract")',
+        in_modal: false,
+        position: 'bottom',
+        run: function (){} //check Invoice: Contract Type = Rental Contract
+    }, {
+        content: _t('Check Invoice Date on Invoice'),
+        trigger: 'td span[name="date_invoice"]:contains("04/01/2020")',
+        extra_trigger: '.o_invoice_form',
+        in_modal: false,
+        position: 'bottom',
+        run: function (){} //check Invoice: Invoice Date = 04/01/2020
+    }, {
+        content: _t('Check total rental time on Invoice'),
+        trigger: 'td.o_data_cell:contains("1.000")',
+        extra_trigger: 'div[name="invoice_line_ids"]',
+        in_modal: false,
+        position: 'bottom',
+        run: function (){} //check Invoice: (Rental Time : 1 month)
+    }, {
+        content: _t('Check Unit of measure on Invoice'),
+        trigger: 'td.o_data_cell:contains("Month(s)")',
+        extra_trigger: 'div[name="invoice_line_ids"]',
+        in_modal: false,
+        position: 'bottom',
+        run: function (){} //check Invoice: (Uom : Month(s))
+    }, {
+        content: _t('Check Unit Price on Invoice'),
+        trigger: 'td.o_data_cell:contains("4,500.00")',
+        extra_trigger: 'div[name="invoice_line_ids"]',
+        in_modal: false,
+        position: 'bottom',
+        run: function (){} //check Invoice: (Unit Price : 4,500.00)
+    },*/
+    // TODO checks on analytic account of product in invoice line
+    /*{
+        content: _t('Click on Validate'),
+        trigger: 'button[name="action_invoice_open"]',
+        position: 'bottom',
+    },*/
+    {
         content: _t('Go to Overview'),
         trigger: 'li a[data-menu-xmlid="rental_timeline.menu_overview"]',
         position: 'bottom'
