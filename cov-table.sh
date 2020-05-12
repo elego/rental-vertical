@@ -47,7 +47,7 @@ case "$1" in
 esac
 suma=0
 sumb=0
-for f in ${@:-rental_* sale_* stock_*}; do
+for f in ${@:-rental_* sale_* stock_* shipment_*}; do
   if [[ -s $f/__manifest__.py ]]; then 
     s=$(grep "rental-vertical/${f}/" ${report} | addcol | grep 'sums:')
     a=$( echo $s | awk '{print $3}')
