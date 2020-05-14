@@ -173,12 +173,12 @@ odoo.define('rental.quality', function (require) {
         extra_trigger:"div[name='inspection_lines']",
         run: 'click'
     }, {
-        trigger: "tr.o_selected_row .o_field_many2one[name='qualitative_value'] .o_input_dropdown input",
+        trigger: "tr.o_selected_row td div.o_field_many2one[name='qualitative_value'] .o_input_dropdown input",
         extra_trigger:"tr.o_selected_row",
         run: 'click'
     }, {
         trigger: 'ul.ui-autocomplete li a:contains("Good")',
-        extra_trigger: 'ul.ui-autocomplete',
+        extra_trigger: 'ul.ui-autocomplete:visible',
         in_modal: false,
         run: 'click'
     }, {
@@ -186,25 +186,25 @@ odoo.define('rental.quality', function (require) {
         extra_trigger:"div[name='inspection_lines']",
         run: 'click'
     }, {
-        trigger: "tr.o_selected_row .o_field_many2one[name='qualitative_value'] .o_input_dropdown input",
+        trigger: "tr.o_selected_row td div.o_field_many2one[name='qualitative_value'] .o_input_dropdown input",
         extra_trigger:"tr.o_selected_row",
         run: 'click'
     }, {
         trigger: 'ul.ui-autocomplete li a:contains("Good")',
         in_modal: false,
-        extra_trigger: 'ul.ui-autocomplete',
+        extra_trigger: 'ul.ui-autocomplete:visible',
         run: 'click'
     }, {
         trigger: "td.o_data_cell:contains('Scratches / dents')",
         extra_trigger:"div[name='inspection_lines']",
         run: 'click'
     }, {
-        trigger: "tr.o_selected_row .o_field_many2one[name='qualitative_value'] .o_input_dropdown input",
+        trigger: "tr.o_selected_row td div.o_field_many2one[name='qualitative_value'] .o_input_dropdown input",
         extra_trigger:"tr.o_selected_row",
         run: 'click'
     }, {
         trigger: 'ul.ui-autocomplete li.ui-menu-item a:contains("No")',
-        extra_trigger: 'ul.ui-autocomplete',
+        extra_trigger: 'ul.ui-autocomplete:visible',
         in_modal: false,
         run: 'click'
     }, {
@@ -212,12 +212,12 @@ odoo.define('rental.quality', function (require) {
         extra_trigger:"div[name='inspection_lines']",
         run: 'click'
     }, {
-        trigger: "tr.o_selected_row .o_field_many2one[name='qualitative_value'] .o_input_dropdown input",
+        trigger: "tr.o_selected_row td div.o_field_many2one[name='qualitative_value'] .o_input_dropdown input",
         extra_trigger:"tr.o_selected_row",
         run: 'click'
     }, {
         trigger: 'ul.ui-autocomplete li.ui-menu-item a:contains("No")',
-        extra_trigger: 'ul.ui-autocomplete',
+        extra_trigger: 'ul.ui-autocomplete:visible',
         in_modal: false,
         run: 'click'
     }, {
@@ -289,12 +289,12 @@ odoo.define('rental.quality', function (require) {
         extra_trigger:"div[name='inspection_lines']",
         run: 'click'
     }, {
-        trigger: "tr.o_selected_row .o_field_many2one[name='qualitative_value'] .o_input_dropdown input",
+        trigger: "tr.o_selected_row td div.o_field_many2one[name='qualitative_value'] .o_input_dropdown input",
         extra_trigger:"tr.o_selected_row",
         run: 'click'
     }, {
         trigger: 'ul.ui-autocomplete li a:contains("Good")',
-        extra_trigger: 'ul.ui-autocomplete',
+        extra_trigger: 'ul.ui-autocomplete:visible',
         in_modal: false,
         run: 'click'
     }, {
@@ -302,12 +302,12 @@ odoo.define('rental.quality', function (require) {
         extra_trigger:"div[name='inspection_lines']",
         run: 'click'
     }, {
-        trigger: "tr.o_selected_row .o_field_many2one[name='qualitative_value'] .o_input_dropdown input",
+        trigger: "tr.o_selected_row td div.o_field_many2one[name='qualitative_value'] .o_input_dropdown input",
         extra_trigger:"tr.o_selected_row",
         run: 'click'
     }, {
         trigger: 'ul.ui-autocomplete li a:contains("Good")',
-        extra_trigger: 'ul.ui-autocomplete',
+        extra_trigger: 'ul.ui-autocomplete:visible',
         in_modal: false,
         run: 'click'
     }, {
@@ -315,12 +315,12 @@ odoo.define('rental.quality', function (require) {
         extra_trigger:"div[name='inspection_lines']",
         run: 'click'
     }, {
-        trigger: "tr.o_selected_row .o_field_many2one[name='qualitative_value'] .o_input_dropdown input",
+        trigger: "tr.o_selected_row td div.o_field_many2one[name='qualitative_value'] .o_input_dropdown input",
         extra_trigger:"tr.o_selected_row",
         run: 'click'
     }, {
         trigger: 'ul.ui-autocomplete li.ui-menu-item a:contains("No")',
-        extra_trigger: 'ul.ui-autocomplete',
+        extra_trigger: 'ul.ui-autocomplete:visible',
         in_modal: false,
         run: 'click'
     }, {
@@ -328,12 +328,12 @@ odoo.define('rental.quality', function (require) {
         extra_trigger:"div[name='inspection_lines']",
         run: 'click'
     }, {
-        trigger: "tr.o_selected_row .o_field_many2one[name='qualitative_value'] .o_input_dropdown input",
+        trigger: "tr.o_selected_row td div.o_field_many2one[name='qualitative_value'] .o_input_dropdown input",
         extra_trigger:"tr.o_selected_row",
         run: 'click'
     }, {
         trigger: 'ul.ui-autocomplete li.ui-menu-item a:contains("No")',
-        extra_trigger: 'ul.ui-autocomplete',
+        extra_trigger: 'ul.ui-autocomplete:visible',
         in_modal: false,
         run: 'click'
     }, {
