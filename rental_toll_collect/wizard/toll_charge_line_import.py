@@ -24,8 +24,8 @@ OPTIONS = {
     'datetime_format': '',
     'encoding': 'iso-8859-9',
     'fields': [],
-    'float_decimal_separator': '.',
-    'float_thousand_separator': ',',
+    'float_decimal_separator': ',',
+    'float_thousand_separator': '.',
     'headers': True,
     'keep_matches': False,
     'name_create_enabled_fields': {},
@@ -34,24 +34,24 @@ OPTIONS = {
 }
 
 IMPORT_MAPPINGS = [
-    {'column_name': '6020986205', 'field_name': False, 'id': 1},
-    {'column_name': 'kfz-kennz.', 'field_name': 'vehicle_reg_number', 'id': 2},
+    {'column_name': '6020986205', 'field_name': False, 'id': 1},  # TODO: Should this be hardcoded here?
+    {'column_name': 'kfz-kennz.', 'field_name': 'license_plate', 'id': 2},
     {'column_name': 'datum', 'field_name': 'start_date', 'id': 3},
     {'column_name': 'start', 'field_name': 'start_time', 'id': 4},
     {'column_name': 'buchungsnummer', 'field_name': 'booking_number', 'id': 5},
     {'column_name': 'art', 'field_name': 'toll_type', 'id': 6},
-    {'column_name': 'auffahrt', 'field_name': 'drive', 'id': 7},
-    {'column_name': 'über', 'field_name': 'drive_via', 'id': 8},
-    {'column_name': 'abfahrt', 'field_name': 'departure', 'id': 9},
-    {'column_name': 'kostenstelle', 'field_name': 'cost_center', 'id': 10},
+    {'column_name': 'auffahrt', 'field_name': 'route_ramp', 'id': 7},
+    {'column_name': 'über', 'field_name': 'route_via', 'id': 8},
+    {'column_name': 'abfahrt', 'field_name': 'route_exit', 'id': 9},
+    {'column_name': 'kostenstelle', 'field_name': 'analytic_account', 'id': 10},
     {'column_name': 'tarifmodell', 'field_name': 'tariff_model', 'id': 11},
-    {'column_name': 'achsklasse', 'field_name': 'axis_class', 'id': 12},
+    {'column_name': 'achsklasse', 'field_name': 'axle_class', 'id': 12},
     {'column_name': 'gewichtsklasse', 'field_name': 'weight_class', 'id': 13},
     {'column_name': 'schadstoffklasse', 'field_name': 'polution_class', 'id': 14},
     {'column_name': 'straßenbetreiber', 'field_name': 'road_operator', 'id': 15},
     {'column_name': 'verf.¹', 'field_name': 'procedure', 'id': 16},
-    {'column_name': 'km', 'field_name': 'kilometer', 'id': 17},
-    {'column_name': 'eur', 'field_name': 'toll_charge', 'id': 18}
+    {'column_name': 'km', 'field_name': 'distance', 'id': 17},
+    {'column_name': 'eur', 'field_name': 'amount', 'id': 18}
 ]
 
 
@@ -72,8 +72,13 @@ class TollChargeLineBaseImport(models.TransientModel):
 class TollChargeLineImport(models.TransientModel):
     _name = 'toll.charge.line.import'
 
-    data_file = fields.Binary(string='Upload File', required=True)
-    filename = fields.Char()
+    data_file = fields.Binary(
+        string="Upload File",
+        required=True,
+    )
+    filename = fields.Char(
+        string="Filename",
+    )
 
     def _check_csv(self, data_file, filename):
         return filename and os.path.splitext(filename)[1] == '.csv' or \
@@ -92,8 +97,8 @@ class TollChargeLineImport(models.TransientModel):
                 'file': base64.b64decode(self.data_file),
             })
             res = wizard.do(fields, columns, OPTIONS, dryrun=False)
-            messages = res.get('messages',[])
-            errors = list(filter(lambda m: m['type']=='error', messages))
+            messages = res.get('messages', [])
+            errors = list(filter(lambda m: m['type'] == 'error', messages))
             if errors:
                 aoid = 'rental_toll_collect.toll_charge_line_action'
                 action_id = self.env.ref(aoid).id

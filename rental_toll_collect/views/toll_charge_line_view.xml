@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
     <record id="toll_charge_line_form_view" model="ir.ui.view">
         <field name="name">toll.charge.line.form.view</field>
         <field name="model">toll.charge.line</field>
@@ -7,33 +8,37 @@
             <form string="Toll Charge Line">
                 <sheet>
                     <group>
-                        <group>
-                            <field name="is_charges"/>
-                            <field name="toll_product_id"/>
-                            <field name="vehicle_reg_number"/>
-                            <field name="start_dt"/>
-                            <field name="booking_number"/>
-                        </group>
-                        <group>
-                            <field name="toll_type"/>
-                            <field name="drive"/>
-                            <field name="drive_via"/>
-                            <field name="departure"/>
-                        </group>
-                    </group>
-                    <group>
-                        <group>
-                            <field name="cost_center"/>
-                            <field name="tariff_model"/>
-                            <field name="axis_class"/>
+                        <group name="vehicle_info" string="Vehicle Information">
+                            <field name="product_id" attrs="{'readonly': 1}"/>
+                            <field name="license_plate" attrs="{'readonly': 1}"/>
+                            <field name="axle_class"/>
                             <field name="weight_class"/>
                             <field name="polution_class"/>
                         </group>
-                        <group>
+                        <group name="general_info" string="General Information">
+                            <field name="toll_type"/>
                             <field name="procedure"/>
+                            <field name="toll_date"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group name="invoicing_info" string="Invoicing Information">
+                            <field name="booking_number"/>
+                            <field name="tariff_model"/>
+                            <field name="analytic_account"/>
+                            <field name="chargeable"/>
+                            <field name="invoiced" attrs="{'invisible': [('chargeable', '=', False)]}"/>
+                            <field name="invoice_id" attrs="{'invisible': [('invoiced', '=', False)]}"/>
+                        </group>
+                        <group name="route_info" string="Route Information">
                             <field name="road_operator"/>
-                            <field name="kilometer"/>
-                            <field name="toll_charge" widget="monetary"/>
+                            <field name="route_ramp"/>
+                            <field name="route_via"/>
+                            <field name="route_exit"/>
+                            <field name="distance"/>
+                            <field name="company_currency_id" invisible="1"/>
+                            <field name="amount"
+                                   widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
                         </group>
                     </group>
                 </sheet>
@@ -46,25 +51,26 @@
         <field name="model">toll.charge.line</field>
         <field name="arch" type="xml">
             <tree string="Toll Charge Line">
-                <field name="toll_type"/>
-                <field name="vehicle_reg_number"/>
-                <field name="toll_product_id"/>
-                <field name="procedure"/>
-                <field name="kilometer" sum="Total Km"/>
-                <field name="toll_charge" sum="Total Charge"/>
-                <field name="start_dt"/>
-                <field name="is_charges" />
+                <field name="toll_date"/>
+                <field name="product_id"/>
+                <field name="distance" sum="Total Distance"/>
+                <field name="company_currency_id" invisible="1"/>
+                <field name="amount" sum="Total Amount"
+                       widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                <field name="chargeable"/>
+                <field name="invoiced" attrs="{'invisible': [('chargeable', '=', False)]}"/>
+                <field name="invoice_id" attrs="{'invisible': [('invoiced', '=', False)]}"/>
             </tree>
         </field>
     </record>
 
     <record id="toll_charge_line_action" model="ir.actions.act_window">
-        <field name="name">Toll Charge Line</field>
+        <field name="name">Toll Charge Lines</field>
         <field name="res_model">toll.charge.line</field>
         <field name="view_mode">form,tree</field>
         <field name="view_id" ref="toll_charge_line_tree_view"/>
         <field name="help" type="html">
-            <p class="oe_view_nocontent_create">Click to create new Toll Charge Line.</p>
+            <p class="oe_view_nocontent_create">Click to create new toll charge line.</p>
         </field>
     </record>
 
@@ -82,7 +88,16 @@
         <field name="act_window_id" ref="toll_charge_line_action"/>
     </record>
 
-    <menuitem id="toll_charge_line_menu" parent="contract.menu_config_contract"
-              action="toll_charge_line_action" sequence="3"/>
+    <menuitem
+        name="Toll Charges"
+        id="menu_toll_charges"
+        parent="rental_base.menu_master_data"
+        sequence="20" />
+        <menuitem
+            id="menu_toll_charge_line"
+            parent="menu_toll_charges"
+            action="toll_charge_line_action"
+            sequence="3"
+        />
 
 </odoo>

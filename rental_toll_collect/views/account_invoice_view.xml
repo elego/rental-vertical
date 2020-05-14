@@ -8,14 +8,19 @@
             <field name="arch" type="xml">
                 <xpath expr="//div[@name='button_box']" position="inside">
                     <button class="oe_stat_button"
-                        name="action_view_toll_charges"
+                        name="action_view_product_toll_charges"
                         type="object"
-                        icon="fa-book"
-                        title="Toll Charges"
-                        attrs="{'invisible': [('toll_charge_count', '&lt;', 1)]}">
-                        <field string="Toll Charges"
-                               name="toll_charge_count"
-                               widget="statinfo"/>
+                        icon="fa-road"
+                        title="Products Toll Charges"
+                    >
+                        <div class="o_field_widget o_stat_info mr4">
+                            <span class="o_stat_text"># Toll Lines:</span>
+                            <span class="o_stat_text"># Invoiced:</span>
+                        </div>
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_value"><field name="toll_line_count"/></span>
+                            <span class="o_stat_value"><field name="toll_line_charged_count"/></span>
+                            </div>
                     </button>
                 </xpath>
                 
