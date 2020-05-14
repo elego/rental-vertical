@@ -203,7 +203,7 @@ odoo.define('rental.quality', function (require) {
         extra_trigger:"tr.o_selected_row",
         run: 'click'
     }, {
-        trigger: 'ul.ui-autocomplete li a:contains("No")',
+        trigger: 'ul.ui-autocomplete li.ui-menu-item a:contains("No")',
         extra_trigger: 'ul.ui-autocomplete',
         in_modal: false,
         run: 'click'
@@ -216,7 +216,7 @@ odoo.define('rental.quality', function (require) {
         extra_trigger:"tr.o_selected_row",
         run: 'click'
     }, {
-        trigger: 'ul.ui-autocomplete li a:contains("No")',
+        trigger: 'ul.ui-autocomplete li.ui-menu-item a:contains("No")',
         extra_trigger: 'ul.ui-autocomplete',
         in_modal: false,
         run: 'click'
@@ -319,7 +319,7 @@ odoo.define('rental.quality', function (require) {
         extra_trigger:"tr.o_selected_row",
         run: 'click'
     }, {
-        trigger: 'ul.ui-autocomplete li a:contains("No")',
+        trigger: 'ul.ui-autocomplete li.ui-menu-item a:contains("No")',
         extra_trigger: 'ul.ui-autocomplete',
         in_modal: false,
         run: 'click'
@@ -332,7 +332,7 @@ odoo.define('rental.quality', function (require) {
         extra_trigger:"tr.o_selected_row",
         run: 'click'
     }, {
-        trigger: 'ul.ui-autocomplete li a:contains("No")',
+        trigger: 'ul.ui-autocomplete li.ui-menu-item a:contains("No")',
         extra_trigger: 'ul.ui-autocomplete',
         in_modal: false,
         run: 'click'
