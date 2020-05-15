@@ -37,16 +37,16 @@ odoo.define('rental.tour', function (require) {
         extra_trigger: 'ul.ui-autocomplete',
         run: 'click'
     }, {
-        content: _t('Set default_start_date to 05/01/2020'),
+        content: _t('Set default_start_date to 03/01/2020'),
         trigger: '.o_form_editable .o_datepicker_input[name="default_start_date"]',
         run: 'text 03/01/2020',
         position: 'bottom',
     }, {
-        content: _t('Set default_end_date to 07/01/2020'),
+        content: _t('Set default_end_date to 05/01/2020'),
         trigger: '.o_form_editable .o_datepicker_input[name="default_end_date"]',
         run: 'text 05/01/2020',
         position: 'bottom',
-    },{
+    }, {
         content: _t("Click here to create or add Product"),
         trigger: "a:contains('Add a product')",
         position: "bottom",
@@ -58,6 +58,116 @@ odoo.define('rental.tour', function (require) {
         in_modal: false,
         extra_trigger: 'ul.ui-autocomplete',
         run: 'click'
+    },
+    // check validation with Off-Days (Off-Day Type : Weekend)
+    {
+        content: _t('Check Off-Time'),
+        trigger: '.o_form_editable td span[name="offday_number"]:contains("0.00")',
+        extra_trigger: '.o_form_editable',
+        in_modal: false,
+        position: 'bottom',
+        run: function (){} // check Off-Time : 0.00 Day(s)
+    }, {
+        content: _t("Click on Off Days"),
+        trigger: "div.o_notebook ul li a:contains('Off-Days')",
+        position: "bottom",
+    }, {
+        content: _t("Change Off-Day Type to Weekend"),
+        trigger: '.o_notebook select[name="fixed_offday_type"]',
+        extra_trigger: '.o_notebook',
+        run: function (){
+            var inputValue = $('.o_notebook select[name="fixed_offday_type"] option:last-child').val();
+            $('.o_notebook select[name="fixed_offday_type"]').val(inputValue);
+            $('.o_notebook select[name="fixed_offday_type"]').trigger('change');
+        }
+    }, {
+        content: _t('Check Off-Time'),
+        trigger: '.o_form_editable td span[name="offday_number"]:contains("17.00")',
+        extra_trigger: '.o_notebook',
+        in_modal: false,
+        position: 'bottom',
+        run: function (){} // check Off-Time : 17 Day(s)(total number of weekend days from 03/01/2020 to 05/01/2020)
+    }, {
+        content: _t("Click to add line of additional days off"),
+        trigger: "div[name='add_offday_ids'] a:contains('Add a line')",
+        extra_trigger: 'div[name="add_offday_ids"]',
+        run: 'click',
+        position: "bottom",
+    }, {
+        content: _t('Add additional off-days to 03/13/2020'),
+        trigger: 'div[name="add_offday_ids"] .o_datepicker_input[name="date"]',
+        run: 'text 03/13/2020',
+        position: 'bottom',
+    }, {
+        content: _t('Add additional off-days Description'),
+        trigger: 'div[name="add_offday_ids"] input[name="name"]',
+        run: 'text Public Holiday',
+        position: 'bottom',
+    }, {
+        content: _t('Check Off-Time'),
+        trigger: '.o_form_editable td span[name="offday_number"]:contains("18.00")',
+        extra_trigger: '.o_notebook',
+        in_modal: false,
+        position: 'bottom',
+        run: function (){} //check Off-Time : 17 + 1 = 18 Day(s)
+    },{
+        content: _t('Click on Save & Close'),
+        trigger: 'button span:contains(Save & Close)',
+        extra_trigger: '.o_act_window',
+        id: "rental_product_selected",
+        run: 'click',
+        position: 'bottom',
+    }, {
+        content: _t('Check Ordered Qty'),
+        trigger: 'td.o_data_cell:contains("44.00")',
+        extra_trigger: 'div[name="order_line"]',
+        in_modal: false,
+        position: 'bottom',
+        run: function (){} //check Ordered Qty: 44 = [62 - (17 + 1)], where 62=diff(05/01/2020 - 03/01/2020)
+    }, {
+        content: _t('Check Unit of measure'),
+        trigger: 'td.o_data_cell:contains("Day(s)")',
+        extra_trigger: 'div[name="order_line"]',
+        in_modal: false,
+        position: 'bottom',
+        run: function (){} //check Unit of measure : Day(s)
+    }, {
+        content: _t('Check Unit Price'),
+        trigger: 'td.o_data_cell:contains("200.00")',
+        extra_trigger: 'div[name="order_line"]',
+        in_modal: false,
+        position: 'bottom',
+        run: function (){} //check Unit Price : 200.00
+    },
+    // check validation without Off-Days (Off-Day Type : None)
+    {
+        content: _t("Click on line to edit"),
+        trigger: "div[name='order_line'] tr.o_data_row span[name='product_id']",
+        extra_trigger: 'div[name="order_line"]',
+        run: 'click',
+        position: "bottom",
+    }, {
+        content: _t("Change Off-Day Type to None"),
+        trigger: '.o_notebook select[name="fixed_offday_type"]',
+        extra_trigger: '.o_notebook',
+        run: function (){
+            var inputValue = $('.o_notebook select[name="fixed_offday_type"] option:nth-last-child(2)').val();
+            $('.o_notebook select[name="fixed_offday_type"]').val(inputValue);
+            $('.o_notebook select[name="fixed_offday_type"]').trigger('change');
+        }
+    }, {
+        content: _t('Remove Additional Off Days line'),
+        trigger: 'div[name="add_offday_ids"] td.o_list_record_remove button[name="delete"]',
+        extra_trigger: 'div[name="add_offday_ids"]',
+        run: 'click',
+        position: 'bottom',
+    }, {
+        content: _t('Check Off-Time'),
+        trigger: '.o_form_editable td span[name="offday_number"]:contains("0.00")',
+        extra_trigger: '.o_form_editable',
+        in_modal: false,
+        position: 'bottom',
+        run: function (){} // check Off-Time : 0.00 Day(s)
     }, {
         content: _t('Click on Save & Close'),
         trigger: 'button span:contains(Save & Close)',
@@ -66,26 +176,26 @@ odoo.define('rental.tour', function (require) {
         run: 'click',
         position: 'bottom',
     }, {
-        content: _t('Check total rental time'),
+        content: _t('Check Ordered Qty'),
         trigger: 'td.o_data_cell:contains("62.00")',
         extra_trigger: 'div[name="order_line"]',
         in_modal: false,
         position: 'bottom',
-        run: function (){} //check (must be diff between 05/01/2020 and 07/01/2020)
+        run: function (){} //check Ordered Qty: 62 = diff(05/01/2020 - 03/01/2020)
     }, {
         content: _t('Check Unit of measure'),
         trigger: 'td.o_data_cell:contains("Day(s)")',
         extra_trigger: 'div[name="order_line"]',
         in_modal: false,
         position: 'bottom',
-        run: function (){} //check (must be Day(s))
+        run: function (){} //check Unit of measure : Day(s)
     }, {
         content: _t('Check Unit Price'),
         trigger: 'td.o_data_cell:contains("200.00")',
         extra_trigger: 'div[name="order_line"]',
         in_modal: false,
         position: 'bottom',
-        run: function (){} //check
+        run: function (){} //check Unit Price : 200.00
     }, {
         content: _t('Save Rental Order'),
         trigger: '.o_form_button_save',

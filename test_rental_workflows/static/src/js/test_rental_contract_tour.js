@@ -46,7 +46,7 @@ odoo.define('rental.contract', function (require) {
         trigger: '.o_form_editable .o_datepicker_input[name="default_end_date"]',
         run: 'text 08/01/2020',
         position: 'bottom',
-    },{
+    }, {
         content: _t("Click here to create or add Product"),
         trigger: "a:contains('Add a product')",
         position: "bottom",
