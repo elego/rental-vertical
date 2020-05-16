@@ -21,6 +21,7 @@ Test Rental Workflows
         'rental_offday',
         'rental_contract_month',
         'rental_timeline',
+        'quality_control_stock',
     ],
     'data': [
         'data/settings.xml',
@@ -29,6 +30,7 @@ Test Rental Workflows
     'demo': [
         'demo/rental_products.xml',
         'demo/inventory.xml',
+        'demo/quality_control_data.xml',
     ],
     'qweb': [
     ],
