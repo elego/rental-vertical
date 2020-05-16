@@ -1,4 +1,4 @@
-# Part of rental-vertical See LICENSE file for full copyright and licensing details.
+ Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
 {
     'name': 'Rental Base',
@@ -42,7 +42,6 @@ Otherwise you can not deal with rental orders.
         'sale_start_end_dates',
         'sale_stock',
         'repair',
-        'mis_builder',
     ],
     'data': [
         'data/ir_sequence_data.xml',
