@@ -20,7 +20,7 @@ Create a sale order, add the rental service and confirm the order.
 A contract is automatically created.
 ''',
     'version': '12.0.1.0.0',
-    'category': 'rental',
+    'category': 'Rental',
     'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
         'rental_contract',

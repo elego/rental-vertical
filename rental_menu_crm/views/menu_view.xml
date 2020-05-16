@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem name="Opportunities"
+        id="menu_opportunities"
+        parent="menu_rental_root"
+        action="crm.action_your_pipeline"
+        sequence="5" />
+
+</odoo>

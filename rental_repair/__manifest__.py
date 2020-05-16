@@ -6,7 +6,7 @@
     'description': '''
 ''',
     'version': '12.0.1.0.0',
-    'category': 'project',
+    'category': 'Rental/Service',
     'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
         'project',

@@ -6,7 +6,7 @@
 {
     'name': 'Sale Rental',
     'version': '12.0.1.0.0',
-    'category': 'Sales',
+    'category': 'Rental',
     'license': 'AGPL-3',
     'summary': 'Manage Rental of Products',
     'author': 'Akretion, Sodexis, Odoo Community Association (OCA)',
