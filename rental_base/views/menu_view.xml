@@ -190,18 +190,6 @@
         sequence="20" />
 
 
-    <menuitem name="Reporting"
-        id="menu_reporting"
-        parent="menu_rental_root"
-        sequence="25" />
-        <!--TODO add new action -->
-        <menuitem name="Total Cost of Ownership"
-            id="menu_product_tco"
-            parent="menu_reporting"
-            action="mis_builder.mis_report_instance_view_action"
-            sequence="0" />
-
-
     <menuitem name="Configuration"
         id="menu_config"
         parent="menu_rental_root"
