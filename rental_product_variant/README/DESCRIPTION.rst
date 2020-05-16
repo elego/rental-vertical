@@ -1,7 +1,7 @@
 Rental Product Variant
 ====================================================
 
-*This file has been generated on 2020-05-16-14-52-39. Changes to it will be overwritten.*
+*This file has been generated on 2020-05-16-18-08-11. Changes to it will be overwritten.*
 
 Summary
 -------

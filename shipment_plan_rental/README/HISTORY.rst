@@ -2,6 +2,7 @@
 Changelog
 ---------
 
+- 89adaaf 2020-05-16 14:54:03 +0200 wagner@elegosoft.com  (origin/fix_3339_blp559_refactor_menu_view_v12, fix_3339_blp559_refactor_menu_view_v12) fixup categories and regenerate documentation (issue #3339)
 - 6052842 2020-05-06 20:53:44 +0200 yweng@elegosoft.com  (origin/feature_3432_blp543_forward_shipment_plan_v12) [IMP] use picking type 'internal' for forward transfer and add field 'dangerous_goods' for sale.order.line and shipment.plan
 - 134218b 2020-05-03 18:34:51 +0200 wagner@elegosoft.com  (origin/feature_3339_blp541_update_doc_v12, feature_3339_blp541_update_doc_v12) unify license and author and regenerate documentation (issue #3613, issue #3339)
 - 09915e6 2020-04-28 18:32:08 +0200 yweng@elegosoft.com  (origin/feature_3432_blp503_stock_shipment_management_v12) [IMP] improves reference between shipment.plan and stock.picking

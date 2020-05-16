@@ -2,6 +2,7 @@
 Changelog
 ---------
 
+- 89adaaf 2020-05-16 14:54:03 +0200 wagner@elegosoft.com  (origin/fix_3339_blp559_refactor_menu_view_v12, fix_3339_blp559_refactor_menu_view_v12) fixup categories and regenerate documentation (issue #3339)
 - bb264cf 2020-05-04 14:11:21 +0200 maria.sparenberg@elegosoft.com  (origin/feature_3421_blp542_appointments_v12) issue #3421 fix some typos and update German translation
 - 134218b 2020-05-03 18:34:51 +0200 wagner@elegosoft.com  (origin/feature_3339_blp541_update_doc_v12, feature_3339_blp541_update_doc_v12) unify license and author and regenerate documentation (issue #3613, issue #3339)
 - 43e76d8 2020-04-27 13:44:56 +0200 yweng@elegosoft.com  (origin/feature_3421_blp503_rental_product_instance_appointment_v12) [IMP] add new field 'last_task_id' for product.appointment
