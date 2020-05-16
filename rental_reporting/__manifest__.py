@@ -17,6 +17,7 @@ just install
     'category': 'Rental/Reporting',
     'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
+        'rental_base',
         'mis_builder',
     ],
     'data': [

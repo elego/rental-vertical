@@ -15,6 +15,7 @@ just install
     'category': 'Rental/CRM',
     'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
+        'rental_base',
         'crm',
     ],
     'data': [
