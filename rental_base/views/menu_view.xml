@@ -54,14 +54,6 @@
         sequence="5"
         web_icon="rental_base,static/description/icon.png" />
 
-
-    <menuitem name="Opportunities"
-        id="menu_opportunities"
-        parent="menu_rental_root"
-        action="crm.action_your_pipeline"
-        sequence="5" />
-
-
     <menuitem name="Customers"
         id="menu_top_customer"
         parent="menu_rental_root"
