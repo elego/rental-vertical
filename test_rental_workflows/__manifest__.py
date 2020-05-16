@@ -7,7 +7,7 @@
 Test Rental Workflows
 ''',
     'version': '12.0.1.0.0',
-    'category': 'sale',
+    'category': 'Tests',
     'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
         'web',

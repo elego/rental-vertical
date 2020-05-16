@@ -5,7 +5,7 @@
     'summary': 'Extension of module action_loan for rental use cases',
     'description': '',
     'version': '12.0.1.0.0',
-    'category': 'rental',
+    'category': 'Rental',
     'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
         'account_loan',

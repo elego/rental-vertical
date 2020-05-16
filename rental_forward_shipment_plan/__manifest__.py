@@ -3,7 +3,7 @@
     "name": "Rental Forward Shipment Plan",
     "summary": "Rental Routing Shipment Plan",
     "version": "12.0.1.0.0",
-    "category": "rental",
+    "category": "Rental",
     'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     "license": "AGPL-3",
     "depends": [

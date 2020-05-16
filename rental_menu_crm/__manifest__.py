@@ -12,7 +12,7 @@ This module just adds menu extenions to the rental application.
 just install
 ''',
     'version': '12.0.1.0.1',
-    'category': 'crm',
+    'category': 'Rental/CRM',
     'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
         'crm',

@@ -2,6 +2,9 @@
 Changelog
 ---------
 
+- 6052842 2020-05-06 20:53:44 +0200 yweng@elegosoft.com  (origin/feature_3432_blp543_forward_shipment_plan_v12) [IMP] use picking type 'internal' for forward transfer and add field 'dangerous_goods' for sale.order.line and shipment.plan
+- 817bca7 2020-05-06 15:16:39 +0200 yweng@elegosoft.com  [FIX] view of sale.order to show the button of shipment.plan
+- 134218b 2020-05-03 18:34:51 +0200 wagner@elegosoft.com  (origin/feature_3339_blp541_update_doc_v12, feature_3339_blp541_update_doc_v12) unify license and author and regenerate documentation (issue #3613, issue #3339)
 - fbdac57 2020-04-29 20:43:38 +0200 yweng@elegosoft.com  (origin/feature_3432_blp521_stock_shipment_plan_v12) [IMP] set invisible for field trans_pr_needed of sale.order.line
 - 09915e6 2020-04-28 18:32:08 +0200 yweng@elegosoft.com  (origin/feature_3432_blp503_stock_shipment_management_v12) [IMP] improves reference between shipment.plan and stock.picking
 - b7dcb59 2020-04-24 21:00:25 +0200 yweng@elegosoft.com  [IMP] Relation between shipment.plan and stock.picking

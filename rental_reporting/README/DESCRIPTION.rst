@@ -1,15 +1,17 @@
-Rental Menu CRM
+Rental Reporting
 ====================================================
 
-*This file has been generated on 2020-05-16-14-20-08. Changes to it will be overwritten.*
+*This file has been generated on 2020-05-16-14-52-39. Changes to it will be overwritten.*
 
 Summary
 -------
 
-Add CRM to the Rental Menu
+Add rental-specific reporting menu and functions
 
 Description
 -----------
 
-This module just adds menu extenions to the rental application.
+This module adds rental-specific reporting to the rental application.
+Currently, this ist still just a menu :-(
+The actual reporting is still missing.
 

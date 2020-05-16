@@ -9,7 +9,7 @@ Additional order types:
  - Repair Order: used to order repair work during rental periods
 ''',
     'version': '12.0.1.0.0',
-    'category': 'Purchase Management',
+    'category': 'Rental/Purchase',
     'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
         'purchase_order_type',

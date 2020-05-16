@@ -26,7 +26,7 @@ The off-days can only be used for products rentable in days.
 
 ''',
     'version': '12.0.1.0.0',
-    'category': 'rental',
+    'category': 'Rental',
     'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
         'rental_pricelist',

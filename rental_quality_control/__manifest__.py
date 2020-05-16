@@ -4,7 +4,7 @@
     'name': 'Rental Quality Control',
     'summary': 'New text field to define the reason for quality failure.',
     'version': '12.0.1.0.0',
-    'category': 'sale',
+    'category': 'Rental',
     'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
         'sale_rental',

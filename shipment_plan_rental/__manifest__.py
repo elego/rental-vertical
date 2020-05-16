@@ -4,7 +4,7 @@
     'name': 'Shipment Plan Rental',
     'summary': 'Shipment Plan for Rental',
     'version': '12.0.1.0.0',
-    'category': 'purchase',
+    'category': 'Rental/Transportation',
     'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
         'shipment_plan_sale',

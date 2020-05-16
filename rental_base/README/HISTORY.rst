@@ -2,7 +2,10 @@
 Changelog
 ---------
 
-- c87d146 2020-05-16 14:19:32 +0200 wagner@elegosoft.com  (HEAD -> fix_3339_blp559_refactor_menu_view_v12) extract rental CRM menu to rental_menu_crm (issue #3339)
+- 66d82c2 2020-05-16 14:49:58 +0200 wagner@elegosoft.com  (HEAD -> fix_3339_blp559_refactor_menu_view_v12) extract rental reporting menu to rental_reporting (issue #3339)
+- 81e739b 2020-05-16 14:47:55 +0200 wagner@elegosoft.com  remove crm dependency from rental_base (issue #3339)
+- 8963f35 2020-05-16 14:20:55 +0200 wagner@elegosoft.com  (re)generate documentation for rental_base and rental_menu_crm (issue #3339)
+- c87d146 2020-05-16 14:19:32 +0200 wagner@elegosoft.com  extract rental CRM menu to rental_menu_crm (issue #3339)
 - 134218b 2020-05-03 18:34:51 +0200 wagner@elegosoft.com  (origin/feature_3339_blp541_update_doc_v12, feature_3339_blp541_update_doc_v12) unify license and author and regenerate documentation (issue #3613, issue #3339)
 - e5c59af 2020-05-02 00:38:12 +0200 kay.haeusler@elego.de  (origin/feature_3642_blp531_product_highlights_v12) move the menu products from rental_product_variant to rental_base; issue #3642
 - 795b1b6 2020-04-24 20:58:26 +0200 wagner@elegosoft.com  (tag: bp_rental_v12_integration-cep-521, tag: bp_rental_v12_integration-cep-520, tag: bp_rental_v12_integration-cep-519, tag: bp_rental_v12_integration-cep-518, tag: bp_rental_v12_integration-cep-517, tag: bp_rental_v12_integration-cep-516, tag: bp_rental_v12_integration-cep-514, tag: bp_rental_v12_integration-cep-513, tag: bp_rental_v12_integration-cep-512, tag: bp_rental_v12_integration-cep-511, tag: bp_rental_v12_integration-cep-510, tag: bp_rental_v12_integration-cep-509, tag: bp_rental_v12_integration-cep-508, tag: bp_rental_v12_integration-cep-507, tag: bp_rental_v12_integration-cep-506, tag: bp_rental_v12_integration-cep-505, tag: bp_humanilog_v12_integration-cep-322, tag: bp_humanilog_v12_integration-cep-321, tag: bp_humanilog_v12_integration-cep-320, tag: baseline_rental-vertical_v12_swrent_daily_build-503, origin/rental_v12_integration-cep-503, rental_v12_integration-cep-503) regenerate documentation (issue #3613)

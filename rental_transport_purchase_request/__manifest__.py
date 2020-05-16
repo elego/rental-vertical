@@ -4,7 +4,7 @@
     'name': 'Rental Transport Purchase Request',
     'summary': 'Rental Transport Purchase Request',
     'version': '12.0.1.0.0',
-    'category': 'purchase',
+    'category': 'Rental/Purchase',
     'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
         'rental_base',
