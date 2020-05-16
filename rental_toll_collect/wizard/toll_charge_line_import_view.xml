@@ -38,9 +38,9 @@
             target="new" />
 
         <menuitem
-            parent="contract.menu_config_contract"
-            action="action_toll_charge_line_import"
             id="menu_toll_charge_line_import"
+            parent="rental_toll_collect.menu_toll_charges"
+            action="action_toll_charge_line_import"
             sequence="4"
         />
 
