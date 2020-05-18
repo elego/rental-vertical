@@ -26,6 +26,14 @@
             <field name="product_qty">1</field>
             <field name="location_id" model="stock.location" search="[('name', '=', 'Rental In')]" />
         </record>
+        <record id="inventory_line_rental_01533" model="stock.inventory.line">
+            <field name="product_id" ref="rental_01533" />
+            <field name="product_uom_id" ref="uom.product_uom_unit" />
+            <field name="inventory_id" ref="inventory" />
+            <field name="prod_lot_id" ref="serial_rental_01533" />
+            <field name="product_qty">1</field>
+            <field name="location_id" model="stock.location" search="[('name', '=', 'Rental In')]" />
+        </record>
 
         <function model="stock.inventory" name="action_validate">
             <value model="stock.inventory" search="[('state','in',['confirm', 'draft']),('id', '=', ref('inventory'))]" />
