@@ -16,7 +16,7 @@ The insurance price is either based on the product's costs or the order's amount
 - Save the sale order and see the newly added line for the insurance with the calculated price.
 ''',
     'version': '12.0.1.0.0',
-    'category': 'product',
+    'category': 'Rental',
     'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
         'rental_base',

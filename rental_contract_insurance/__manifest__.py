@@ -4,7 +4,7 @@
     'name': 'Rental Contract Insurance',
     'summary': 'Rental Contract Insurance',
     'version': '12.0.1.0.0',
-    'category': 'rental',
+    'category': 'Rental',
     'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
         'rental_contract_month',

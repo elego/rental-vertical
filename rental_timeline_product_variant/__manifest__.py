@@ -4,7 +4,7 @@
     'name': 'Rental Timeline Product Variant',
     'summary': 'Extends the rental_timeline module to show the product variant fields in the timeline product popup.',
     'version': '12.0.1.0.0',
-    'category': 'sale',
+    'category': 'Rental',
     'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
         'rental_timeline',

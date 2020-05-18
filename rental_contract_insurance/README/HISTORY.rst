@@ -2,6 +2,8 @@
 Changelog
 ---------
 
+- 89adaaf 2020-05-16 14:54:03 +0200 wagner@elegosoft.com  (origin/fix_3339_blp559_refactor_menu_view_v12, fix_3339_blp559_refactor_menu_view_v12) fixup categories and regenerate documentation (issue #3339)
+- 134218b 2020-05-03 18:34:51 +0200 wagner@elegosoft.com  (origin/feature_3339_blp541_update_doc_v12, feature_3339_blp541_update_doc_v12) unify license and author and regenerate documentation (issue #3613, issue #3339)
 - 38953ec 2020-04-30 17:42:35 +0200 yweng@elegosoft.com  (origin/feature_3477_blp521_rental_product_insurance_v12, feature_3477_blp521_rental_product_insurance_v12) [IMP] add some translations for module rental_contract_insurance
 - 411a283 2020-04-30 14:00:21 +0200 yweng@elegosoft.com  [IMP] adjust unit tests for module rental_product_insurance and rental_contract_insurance
 - 2d48d5f 2020-04-29 17:50:04 +0200 wagner@elegosoft.com  adapt contract count in test (issue #3615)

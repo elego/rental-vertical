@@ -28,14 +28,12 @@ Please activate the checkbox for using 'Product Variants' in Sales > Configurati
 Otherwise you can not deal with rental orders.
 ''',
     'version': '12.0.1.0.1',
-    'category': 'product',
+    'category': 'Rental',
     'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
         'account',
-        'crm',
         'product_analytic',
         'product_dimension',
-        'prt_product_tweaks',
         'purchase',
         'sale',
         'sale_order_type',
@@ -43,7 +41,6 @@ Otherwise you can not deal with rental orders.
         'sale_start_end_dates',
         'sale_stock',
         'repair',
-        'mis_builder',
     ],
     'data': [
         'data/ir_sequence_data.xml',

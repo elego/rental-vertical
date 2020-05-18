@@ -4,7 +4,7 @@
     'name': 'Sale Shipment Plan',
     'summary': 'Sale Shipment Plan',
     'version': '12.0.1.0.0',
-    'category': 'Transportation',
+    'category': 'Sale/Transportation',
     'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
         'shipment_plan',
