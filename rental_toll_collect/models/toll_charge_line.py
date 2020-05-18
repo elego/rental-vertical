@@ -8,63 +8,157 @@ class TollChargeLine(models.Model):
     _name = 'toll.charge.line'
     _description = 'Toll Charge Line'
 
-    def _default_analytic_account(self):
-        return self.env.ref('rental_toll_collect.account_analytic_account_maut').id
+    amount = fields.Float(
+        string='Toll Charge Amount',
+        currency_field='company_currency_id',
+    )
 
-    vehicle_reg_number = fields.Char(string='Vehicle Registration Number')
-    start_date = fields.Datetime(string='Date')
-    start_time = fields.Char(string='Start')
-    start_dt = fields.Datetime(string='Start Datetime', compute='_compute_start_dt')
-    booking_number = fields.Char(string='Booking Number')
-    toll_type = fields.Selection([('toll', 'Toll')], string='Type')
-    drive = fields.Char(string='Drive')
-    drive_via = fields.Char(string='Drive via')
-    departure = fields.Char(string='Departure')
-    cost_center= fields.Char(string='Cost Center')
-    # cost_center = fields.Many2one('account.analytic.account',
-    #     string='Cost Center',
-    #     default=lambda self: self._default_analytic_account())
-    tariff_model = fields.Char(string='Tariff Model')
-    axis_class = fields.Char(string='Axis Class')
-    weight_class = fields.Char(string='Weight Class')
-    polution_class = fields.Char(string='Pollution Class')
-    road_operator = fields.Char(string='Road Operator')
-    # road_operator = fields.Many2one('res.partner', string='Road Operator')
+    analytic_account = fields.Char(
+        string="Analytic Account",
+        help="This is the analytic account given in CSV file. "
+             "It is not linked to Odoo analytic accounts."
+    )
+
+    axle_class = fields.Char(
+        string="Axle Class",
+    )
+
+    booking_number = fields.Char(
+        string="Booking Number",
+    )
+
+    company_currency_id = fields.Many2one(
+        comodel_name='res.currency',
+        related='product_id.company_id.currency_id',
+        readonly=True, store=True)
+
+    distance = fields.Float(
+        string="Distance (km)"
+    )
+
+    invoiced = fields.Boolean(
+        string='Invoiced?',
+        compute="_compute_invoiced",
+    )
+
+    invoice_id = fields.Many2one(
+        comodel_name='account.invoice',
+        string="Invoice",
+    )
+
+    license_plate = fields.Char(
+        string="License Plate",
+    )
+
+    name = fields.Char(
+        string="Name",
+        compute="_compute_name",
+        store=True,
+    )
+
+    polution_class = fields.Char(
+        string="Pollution Class",
+    )
+
     procedure = fields.Selection(
-        [('AV', 'Automatic Procedure'),
-         ('MVM', 'Manual Procedure Toll'),
-         ('MVI', 'Manual Procedure Internet'),
-         ('MVA', 'Manual Procedure App')],
-        string='Procedure')
-    kilometer = fields.Float(string='Kilometer')
-    toll_charge = fields.Float(string='Toll Charge')
-    is_charges = fields.Boolean(string='Is Charged', default=False)
-    toll_product_id = fields.Many2one('product.product',
-        string='Toll Product', compute='_compute_toll_product_id', store=True)
-    toll_contract_id = fields.Many2one('contract.contract',
-        string='Toll Contract')
-    toll_invoice_id = fields.Many2one('account.invoice',
-        string='Toll Invoice')
+        [
+            ("AV", "Automatic Procedure"),
+            ("MVM", "Manual Procedure Toll"),
+            ("MVI", "Manual Procedure Internet"),
+            ("MVA", "Manual Procedure App"),
+        ],
+        string="Procedure",
+    )
+
+    product_id = fields.Many2one(
+        comodel_name='product.product',
+        string="Product",
+        compute='_compute_product_id',
+        store=True,
+    )
+
+    road_operator = fields.Char(
+        string="Road Operator",
+    )
+
+    route_exit = fields.Char(
+        string="Exit",
+    )
+
+    route_ramp = fields.Char(
+        string="Ramp",
+    )
+
+    route_via = fields.Char(
+        string="Drive via",
+    )
+
+    start_date = fields.Datetime(
+        string="Date",
+    )
+
+    start_time = fields.Char(
+        string="Time",
+    )
+
+    tariff_model = fields.Char(
+        string="Tariff Model",
+    )
+
+    toll_date = fields.Datetime(
+        string="Date",
+        compute='_compute_toll_date',
+        store=True,
+    )
+
+    toll_type = fields.Selection(
+        [
+            ("toll", "Toll")
+        ],
+        string="Type",
+    )
+
+    chargeable = fields.Boolean(
+        string='Chargeable?',
+        default=True,
+    )
+
+    weight_class = fields.Char(
+        string='Weight Class'
+    )
+
+    @api.multi
+    @api.depends('invoice_id')
+    def _compute_invoiced(self):
+        for cl in self:
+            cl.invoiced = bool(cl.invoice_id)
+
+    @api.multi
+    @api.depends('license_plate', 'toll_date')
+    def _compute_name(self):
+        for cl in self:
+            cl.name = cl.license_plate + " on " + cl.toll_date.strftime("%Y-%m-%d %H:%M")
+
+    @api.multi
+    @api.depends('license_plate')
+    def _compute_product_id(self):
+        products = self.env['product.product']
+        for cl in self:
+            if cl.license_plate:
+                prod_domain = [('license_plate', '=', cl.license_plate)]
+                cl.product_id = products.search(prod_domain)
 
     @api.multi
     @api.depends('start_date', 'start_time')
-    def _compute_start_dt(self):
+    def _compute_toll_date(self):
         for cl in self:
             if cl.start_date:
                 if cl.start_time:
                     start = dt.strptime(cl.start_time, "%H:%M")
                     offset = start - dt.strptime("00:00", "%H:%M")
-                    cl.start_dt = cl.start_date + offset
+                    cl.toll_date = cl.start_date + offset
                 else:
-                    cl.start_dt = cl.start_date
+                    cl.toll_date = cl.start_date
             else:
-                cl.start_dt = False
+                cl.toll_date = False
 
-    @api.multi
-    @api.depends('vehicle_reg_number')
-    def _compute_toll_product_id(self):
-        products = self.env['product.product']
-        for cl in self:
-            if cl.vehicle_reg_number:
-                prod_domain = [('license_plate', '=', cl.vehicle_reg_number)]
-                cl.toll_product_id = products.search(prod_domain)

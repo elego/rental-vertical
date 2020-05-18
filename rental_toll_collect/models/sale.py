@@ -1,16 +1,10 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
-from odoo import api, fields, models, exceptions, _
+from odoo import api, fields, models, _
 
 
-class AccountInvoice(models.Model):
-    _inherit = 'account.invoice'
-
-    toll_line_ids = fields.One2many(
-        comodel_name='toll.charge.line',
-        inverse_name='invoice_id',
-        string="Toll Charge Lines",
-    )
+class SaleOrder(models.Model):
+    _inherit = 'sale.order'
 
     toll_line_count = fields.Integer(
         compute='_compute_toll_line_count',
@@ -27,7 +21,7 @@ class AccountInvoice(models.Model):
     @api.multi
     def _compute_toll_charged_count(self):
         for rec in self:
-            rec.toll_line_charged_count = len(rec.toll_line_ids)
+            rec.toll_line_charged_count = sum([len(invoice.toll_line_ids) for invoice in self.invoice_ids])
 
     @api.multi
     def _compute_toll_line_count(self):
@@ -39,7 +33,7 @@ class AccountInvoice(models.Model):
         self.ensure_one()
         toll_charge_lines = self.env['toll.charge.line']
 
-        for line in self.invoice_line_ids:
+        for line in self.order_line:
             if line.product_id:
                 # Only products or related rental products with license plate can have toll charge lines.
                 if line.product_id.license_plate:
@@ -49,7 +43,7 @@ class AccountInvoice(models.Model):
                         ('toll_date', '<=', line.end_date),
                         '|',
                         ('invoice_id', '=', False),
-                        ('invoice_id', '=', self.id),
+                        ('invoice_id', 'in', self.invoice_ids.id),
                     ])
                 elif line.product_id.rented_product_id and line.product_id.rented_product_id.license_plate:
                     toll_charge_lines |= self.env['toll.charge.line'].search([
@@ -58,7 +52,7 @@ class AccountInvoice(models.Model):
                         ('toll_date', '<=', line.end_date),
                         '|',
                         ('invoice_id', '=', False),
-                        ('invoice_id', '=', self.id),
+                        ('invoice_id', '=', self.invoice_ids.id),
                     ])
                 # After manually invoicing toll charge lines the "real" product can only be found by analytic account.
                 elif line.product_id == self.env.ref('rental_toll_collect.product_toll'):
@@ -72,7 +66,7 @@ class AccountInvoice(models.Model):
                             ('toll_date', '<=', line.end_date),
                             '|',
                             ('invoice_id', '=', False),
-                            ('invoice_id', '=', self.id),
+                            ('invoice_id', '=', self.invoice_ids.id),
                         ])
         return list(set(toll_charge_lines.mapped('id')))
 
@@ -92,37 +86,18 @@ class AccountInvoice(models.Model):
             'domain': "[('id','in',[" + ','.join(map(str, record_ids)) + "])]",
             }
 
-    @api.multi
-    def create_toll_charge_invoice_lines(self, values):
-        self.ensure_one()
-        invoice_line_context = {
-            'type': self.type,
-            'journal_id': self.journal_id.id,
-            'default_invoice_id': self.id,
-        }
-        invoice_line_obj = self.env['account.invoice.line'].with_context(invoice_line_context)
-        toll_charge_product = self.env.ref('rental_toll_collect.product_toll')
-        for key, value in values.items():
-            line = invoice_line_obj.create({
-                'product_id': toll_charge_product.id,
-                'name': toll_charge_product.display_name + " for " + key.license_plate,
-                'quantity': sum(value['distance']),
-                'uom_id': toll_charge_product.uom_id.id,
-                'price_unit': sum(value['amount']) / sum(value['distance']),  # TODO: check total amount, rounding!!!
-                'start_date': min(value['date']).date(),
-                'end_date': max(value['date']).date(),
-                'account_analytic_id': key.income_analytic_account_id.id if key.income_analytic_account_id else False,
-            })
-            # line._onchange_product_id()
-            # line._onchange_uom_id()
-            # line._onchange_account_id()
-
-    @staticmethod
-    def get_toll_charge_invoice_line_values(toll_lines):
-        values = {product: {'amount': [], 'date': [], 'distance': [], }
-                  for product in toll_lines.mapped('product_id')}
-        for tcl in toll_lines:
-            values[tcl.product_id]['amount'].append(tcl.amount)
-            values[tcl.product_id]['date'].append(tcl.toll_date)
-            values[tcl.product_id]['distance'].append(tcl.distance)
-        return values
+    def _finalize_invoices(self, invoices, references):
+        """
+        When creating the invoice from sale order, the invoice lines for toll charges will be added,
+        before calling the super-method.
+        :param invoices: values of this dictionary contains the invoices
+        :param references: dictionary contains the mapping of invoice and sale order
+        """
+        for invoice in invoices.values():
+            tcls = self.env['toll.charge.line'].browse(references[invoice].get_product_toll_charges())
+            tcls = tcls.filtered(lambda l: l.chargeable and not l.invoiced)
+            values = invoice.get_toll_charge_invoice_line_values(tcls)
+            invoice.create_toll_charge_invoice_lines(values)
+            for tcl in tcls:
+                tcl.write({'invoice_id': invoice.id, })
+        super(SaleOrder, self)._finalize_invoices(invoices, references)
