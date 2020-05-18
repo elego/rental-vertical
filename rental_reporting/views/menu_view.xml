@@ -2,7 +2,7 @@
 <odoo>
     <menuitem name="Reporting"
         id="menu_reporting"
-        parent="menu_rental_root"
+        parent="rental_base.menu_rental_root"
         sequence="25" />
         <!--TODO add new action -->
         <menuitem name="Total Cost of Ownership"

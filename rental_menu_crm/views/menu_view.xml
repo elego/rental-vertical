@@ -2,7 +2,7 @@
 <odoo>
     <menuitem name="Opportunities"
         id="menu_opportunities"
-        parent="menu_rental_root"
+        parent="rental_base.menu_rental_root"
         action="crm.action_your_pipeline"
         sequence="5" />
 
