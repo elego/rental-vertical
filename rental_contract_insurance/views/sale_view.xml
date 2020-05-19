@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="rental_product_insurance.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='insurance_type']" position="after">
+                    <field name="insurance_entire_time"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

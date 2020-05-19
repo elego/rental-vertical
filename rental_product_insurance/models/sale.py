@@ -18,10 +18,35 @@ class SaleOrderLine(models.Model):
     insurance_percent = fields.Float(
         'Insurance Percent'
     )
+    insurance_amount = fields.Float(
+        'Insurance Amount',
+        compute="_compute_insurance_amount"
+    )
+    insurance_price_unit = fields.Float(
+        'Insurance Amount',
+        compute="_compute_insurance_amount"
+    )
     insurance_origin_line_id = fields.Many2one(
         'sale.order.line',
         copy=False,
     )
+    insurance_line_ids = fields.One2many(
+        'sale.order.line',
+        'insurance_origin_line_id',
+    )
+    update_insurance_line = fields.Boolean(
+        string='Update Insurance Line',
+    )
+
+    @api.onchange(
+        'product_uom_qty',
+        'product_uom',
+        'price_unit',
+        'insurance_percent',
+        'insurance_type',
+    )
+    def onchange_insurance_params(self):
+        self.update_insurance_line = True
 
     @api.onchange('product_id')
     def onchange_insurance_product_id(self):
@@ -35,14 +60,28 @@ class SaleOrderLine(models.Model):
                 self.insurance_type = self.product_id.insurance_type
                 self.insurance_percent = self.product_id.insurance_percent
 
+    def _compute_insurance_amount(self):
+        for record in self:
+            record.insurance_amount = 0
+            record.insurance_price_unit = 0
+            percent = record.insurance_percent
+            if record.insurance_type == 'product':
+                price = record.product_id.rented_product_id.standard_price
+                record.insurance_amount = price * percent / 100
+            elif record.insurance_type == 'rental':
+                record.insurance_amount = record.price_subtotal * percent / 100
+            if record.rental and record.product_uom_qty:
+                record.insurance_price_unit = \
+                    record.rental_qty * record.insurance_amount / record.product_uom_qty
+
     def _prepare_rental_insurance_line(self):
         self.ensure_one()
         insurance_product = self.env.ref(
             'rental_product_insurance.product_product_insurance')
         vals = {
             'name': self.name,
-            'product_uom_qty': 1,
-            'product_uom': self.env.ref('uom.product_uom_unit').id,
+            'product_uom_qty': self.product_uom_qty / self.rental_qty,
+            'product_uom': self.product_uom.id,
             'product_id': insurance_product.id,
             'insurance_origin_line_id': self.id,
             'order_id': self.order_id.id,
@@ -53,21 +92,29 @@ class SaleOrderLine(models.Model):
 
     def _create_rental_insurance_line(self):
         self.ensure_one()
-        price_unit = 0
-        percent = self.insurance_percent
-        if self.insurance_type == 'product':
-            price_unit = self.product_id.rented_product_id.standard_price
-            price_unit = price_unit * percent / 100
-        elif self.insurance_type == 'rental':
-            price_unit = self.price_subtotal * percent / 100
         vals = self._prepare_rental_insurance_line()
         insurance_line = self.env['sale.order.line'].create(vals)
         insurance_line.product_id_change()
         insurance_line.write({
             'name': _('Insurance: %s') % self.name,
-            'price_unit': price_unit,
+            'product_uom': self.product_uom.id,
+            'price_unit': self.insurance_price_unit,
         })
+        self.update_insurance_line = False
         return insurance_line
+
+    @api.multi
+    def update_rental_insurance_line(self):
+        self.ensure_one()
+        if not self.insurance_line_ids:
+            return self._create_rental_insurance_line()
+        self.insurance_line_ids.write({
+            'product_uom_qty': self.product_uom_qty / self.rental_qty,
+            'product_uom': self.product_uom.id,
+            'price_unit': self.insurance_price_unit,
+        })
+        self.update_insurance_line = False
+        return self.insurance_line_ids
 
     @api.multi
     def _prepare_invoice_line(self, qty):

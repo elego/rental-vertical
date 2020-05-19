@@ -13,6 +13,7 @@
     'data': [
         'data/contract_template_data.xml',
         'data/product_data.xml',
+        'views/sale_view.xml',
     ],
     'demo': [
     ],
