@@ -8,7 +8,7 @@
     'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
         'rental_timeline',
-        'rental_transport_purchase_request',
+        #'rental_transport_purchase_request',
     ],
     'data': [
         'views/product_timeline_view.xml',
@@ -17,6 +17,7 @@
     ],
     'qweb': [
     ],
-    'auto_install': True,
+    'installable': False,
+    #'auto_install': True,
     'license': 'AGPL-3',
 }
