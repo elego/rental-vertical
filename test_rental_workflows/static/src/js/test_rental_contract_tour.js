@@ -156,21 +156,21 @@ odoo.define('rental.contract', function (require) {
         extra_trigger: '.o_form_view',
     }, {
         content: _t('Check Outgoing Delivery'),
-        trigger: 'td.o_data_cell:contains("Rental/Rental Out")',
+        trigger: 'td.o_data_cell:contains("WH/OUT/")',
         extra_trigger: '.o_list_view',
         in_modal: false,
         position: 'bottom',
         run: function (){} //check there must be OUT deleivery
     }, {
         content: _t('Check Incoming Delivery'),
-        trigger: 'td.o_data_cell:contains("Rental/Rental In")',
+        trigger: 'td.o_data_cell:contains("WH/IN/")',
         extra_trigger: '.o_list_view',
         in_modal: false,
         position: 'bottom',
         run: function (){} //check there must be IN deleivery
     }, {
         content: _t('Click on Outgoing Delivery'),
-        trigger: 'td.o_data_cell:contains("Rental/Rental Out")',
+        trigger: 'td.o_data_cell:contains("WH/OUT/")',
         extra_trigger: '.o_list_view',
         position: 'bottom',
         run: 'click',
