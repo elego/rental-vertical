@@ -105,23 +105,23 @@ odoo.define('rental.quality', function (require) {
         trigger: 'button[name="action_view_delivery"]',
     }, {
         content: _t('Check Outgoing Delivery'),
-        trigger: 'td.o_data_cell:contains("Rental/Rental Out")',
+        trigger: 'td.o_data_cell:contains("WH/OUT/")',
         extra_trigger: '.o_list_view',
         in_modal: false,
         position: 'bottom',
         run: function (){} //check there must be OUT deleivery
     }, {
         content: _t('Check Incoming Delivery'),
-        trigger: 'td.o_data_cell:contains("Rental/Rental In")',
+        trigger: 'td.o_data_cell:contains("WH/IN/")',
         extra_trigger: '.o_list_view',
         in_modal: false,
         position: 'bottom',
         run: function (){} //check there must be IN deleivery
     }, 
-    // Quality test when Rental/Rental Out, status : Quality success
+    // Quality test when WH/OUT/, status : Quality success
     {
         content: _t('Click on Outgoing Delivery'),
-        trigger: 'td.o_data_cell:contains("Rental/Rental Out")',
+        trigger: 'td.o_data_cell:contains("WH/OUT/")',
         extra_trigger: '.o_list_view',
         position: 'bottom',
         run: 'click',
@@ -234,16 +234,21 @@ odoo.define('rental.quality', function (require) {
         extra_trigger: '.o_form_view',
         position: "bottom"
     }, 
-    // Quality test when Rental/Rental In, status : Quality success
+    // Quality test when WH/IN/, status : Quality success
     {
         content: _t('Click on Incoming Delivery'),
-        trigger: 'td.o_data_cell:contains("Rental/Rental In")',
+        trigger: 'td.o_data_cell:contains("WH/IN/")',
         extra_trigger: '.o_list_view',
         position: 'bottom',
         run: 'click',
     }, {
+        content: _t("Click on Check Availability"),
+        trigger: 'button[name="action_assign"]',
+        extra_trigger: '.o_statusbar_status .btn-primary:contains("Waiting")',
+    },{
         content: _t("Click on Validate"),
         trigger: 'button[name="button_validate"]',
+        extra_trigger: '.o_statusbar_status .btn-primary:contains("Ready")',
     }, {
         content: _t('Click on Apply'),
         trigger: 'button span:contains("Apply")',
