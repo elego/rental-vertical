@@ -6,6 +6,39 @@ from odoo import api, fields, models, exceptions, _
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
+    insurance_entire_time = fields.Boolean(
+        'Insurance for entire Time',
+        default=True,
+    )
+
+    def _compute_insurance_amount(self):
+        for record in self:
+            record.insurance_amount = 0
+            record.insurance_price_unit = 0
+            percent = record.insurance_percent
+            if record.insurance_type == 'product':
+                price = record.product_id.rented_product_id.standard_price
+                record.insurance_amount = price * percent / 100
+            elif record.insurance_type == 'rental':
+                record.insurance_amount = record.price_subtotal * percent / 100
+            if record.rental and record.product_uom_qty:
+                if record.insurance_entire_time and record.number_of_time_unit:
+                    record.insurance_price_unit = record.insurance_amount / record.number_of_time_unit
+                else:
+                    record.insurance_price_unit = \
+                        record.rental_qty * record.insurance_amount / record.product_uom_qty
+
+    @api.onchange(
+        'product_uom_qty',
+        'product_uom',
+        'price_unit',
+        'insurance_percent',
+        'insurance_type',
+        'insurance_entire_time',
+    )
+    def onchange_insurance_params(self):
+        self.update_insurance_line = True
+
     def _prepare_rental_insurance_line(self):
         self.ensure_one()
         vals = super()._prepare_rental_insurance_line()
@@ -21,20 +54,15 @@ class SaleOrderLine(models.Model):
     def _create_rental_insurance_line(self):
         self.ensure_one()
         uom_month = self.env.ref('rental_base.product_uom_month')
-        price_unit = 0
-        percent = self.insurance_percent
-        if self.insurance_type == 'product':
-            price_unit = self.product_id.rented_product_id.standard_price
-            price_unit = price_unit * percent / 100
-        elif self.insurance_type == 'rental':
-            price_unit = self.price_subtotal * percent / 100
         vals = self._prepare_rental_insurance_line()
         insurance_line = self.env['sale.order.line'].create(vals)
         insurance_line.product_id_change()
         insurance_line.write({
             'name': _('Insurance: %s') % self.name,
-            'price_unit': price_unit,
+            'product_uom': self.product_uom.id,
+            'price_unit': self.insurance_price_unit,
         })
+        self.update_insurance_line = False
         if self.product_uom == uom_month:
             insurance_line.onchange_product()
             insurance_line.write({
@@ -42,6 +70,22 @@ class SaleOrderLine(models.Model):
                 'date_end' : vals['date_end'],
             })
         return insurance_line
+
+    @api.multi
+    def update_rental_insurance_line(self):
+        self.ensure_one()
+        if not self.insurance_line_ids:
+            return self._create_rental_insurance_line()
+        qty = self.product_uom_qty / self.rental_qty
+        if self.insurance_entire_time:
+            qty = self.number_of_time_unit
+        self.insurance_line_ids.write({
+            'product_uom_qty': qty,
+            'product_uom': self.product_uom.id,
+            'price_unit': self.insurance_price_unit,
+        })
+        self.update_insurance_line = False
+        return self.insurance_line_ids
 
     @api.multi
     def _prepare_contract_line_values(

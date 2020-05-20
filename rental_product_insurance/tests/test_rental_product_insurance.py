@@ -75,7 +75,7 @@ class TestRentalProductInsurance(RentalStockCommon):
         check_insurance = False
         for line in self.rental_order.order_line:
             if line.product_id == self.product_insurance:
-                self.assertEqual(line.price_unit, 200)
+                self.assertEqual(line.price_unit, 100)
                 self.assertEqual(
                     line.insurance_origin_line_id.id,
                     self.rental_order_line.id
@@ -115,7 +115,7 @@ class TestRentalProductInsurance(RentalStockCommon):
         check_insurance = False
         for line in self.rental_order.order_line:
             if line.product_id == self.product_insurance:
-                self.assertEqual(line.price_unit, 20)
+                self.assertEqual(line.price_unit, 10)
                 self.assertEqual(
                     line.insurance_origin_line_id.id,
                     self.rental_order_line.id
