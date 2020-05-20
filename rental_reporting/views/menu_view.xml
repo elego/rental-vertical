@@ -10,4 +10,18 @@
             parent="menu_reporting"
             action="mis_builder.mis_report_instance_view_action"
             sequence="0" />
+    <menuitem name="MIS Reporting"
+        id="mis_rental_report_config_menu"
+        parent="rental_base.menu_config"
+        sequence="10" />
+        <menuitem name="MIS Report Templates"
+            id="mis_rental_report_menu"
+            parent="mis_rental_report_config_menu"
+            action="mis_builder.mis_report_view_action"
+            sequence="0" />
+        <menuitem name="MIS Report Styles"
+            id="mis_rental_report_style_menu"
+            parent="mis_rental_report_config_menu"
+            action="mis_builder.mis_report_style_view_action"
+            sequence="1" />
 </odoo>

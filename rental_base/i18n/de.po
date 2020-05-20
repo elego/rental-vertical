@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-01 22:26+0000\n"
-"PO-Revision-Date: 2020-05-01 22:26+0000\n"
+"POT-Creation-Date: 2020-05-20 08:56+0000\n"
+"PO-Revision-Date: 2020-05-20 08:56+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -208,21 +208,6 @@ msgid "Invoicing"
 msgstr "Abrechnung"
 
 #. module: rental_base
-#: model:ir.ui.menu,name:rental_base.mis_rental_report_style_view_menu
-msgid "MIS Report Styles"
-msgstr "MIS-Berichtsstile"
-
-#. module: rental_base
-#: model:ir.ui.menu,name:rental_base.mis_rental_report_view_menu
-msgid "MIS Report Templates"
-msgstr "MIS-Berichtsvorlagen"
-
-#. module: rental_base
-#: model:ir.ui.menu,name:rental_base.mis_rental_report_conf_menu
-msgid "MIS Reporting"
-msgstr "MIS-Berichte"
-
-#. module: rental_base
 #: model_terms:ir.ui.view,arch_db:rental_base.res_config_settings_view_form
 msgid "Manage repair orders for product instances"
 msgstr "Reparaturaufträge für Produktinstanzen verwalten"
@@ -237,11 +222,6 @@ msgstr "Monat(e)"
 #: model_terms:ir.actions.act_window,help:rental_base.action_rental_quotations
 msgid "Once the quotation is confirmed, it becomes a sales order.<br> You will be able to create an invoice and collect the payment."
 msgstr "Sobald das Angebot bestätigt ist, wird es zu einem Kundenauftrag.<br> Sie können eine Rechnung erstellen und die Zahlung einziehen."
-
-#. module: rental_base
-#: model:ir.ui.menu,name:rental_base.menu_opportunities
-msgid "Opportunities"
-msgstr "Chancen"
 
 #. module: rental_base
 #: model_terms:ir.ui.view,arch_db:rental_base.view_order_form
@@ -395,11 +375,6 @@ msgid "Repair Quotations"
 msgstr "Reparaturangebote"
 
 #. module: rental_base
-#: model:ir.ui.menu,name:rental_base.menu_reporting
-msgid "Reporting"
-msgstr "Berichtswesen"
-
-#. module: rental_base
 #: model:ir.ui.menu,name:rental_base.menu_vendors_quotations
 msgid "Request for Quotations"
 msgstr "Angebotsanfragen"
@@ -444,11 +419,6 @@ msgstr "Einstellungen"
 #: model:ir.model.fields,field_description:rental_base.field_res_config_settings__module_rental_timeline
 msgid "Timeline"
 msgstr "Zeitleiste"
-
-#. module: rental_base
-#: model:ir.ui.menu,name:rental_base.menu_product_tco
-msgid "Total Cost of Ownership"
-msgstr "Total Cost of Ownership"
 
 #. module: rental_base
 #: model_terms:ir.ui.view,arch_db:rental_base.view_order_form
