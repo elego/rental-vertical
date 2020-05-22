@@ -151,11 +151,18 @@ class ProductProduct(models.Model):
     @api.multi
     def _update_rental_service_analytic_account(self, vals):
         self.ensure_one()
-        income_analytic_account_id = vals.get('income_analytic_account_id', False)
-        expense_analytic_account_id = vals.get('expense_analytic_account_id', False)
+        income_analytic_account_id = self.income_analytic_account_id.id
+        expense_analytic_account_id = self.expense_analytic_account_id.id
+        if 'income_analytic_account_id' in vals:
+            income_analytic_account_id = vals.get(
+                'income_analytic_account_id', False)
+        if 'expense_analytic_account_id' in vals:
+            expense_analytic_account_id = vals.get(
+                'expense_analytic_account_id', False)
         self.rental_service_ids.write({
             'income_analytic_account_id': income_analytic_account_id,
-            'expense_analytic_account_id': expense_analytic_account_id})
+            'expense_analytic_account_id': expense_analytic_account_id,
+        })
 
     @api.multi
     def write(self, vals):
