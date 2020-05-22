@@ -50,7 +50,13 @@ odoo.define('rental.tour', function (require) {
         content: _t("Click here to create or add Product"),
         trigger: "a:contains('Add a product')",
         position: "bottom",
-    }, {
+    },
+    // check of Pricelist/price scales
+    // scale price of Volvo L110H
+    //   Month   Price
+    //    <3     4500
+    //    >=3    800
+    {
         trigger: ".o_field_many2one[name='display_product_id'] .o_input_dropdown input",
         run: 'click'
     }, {
@@ -58,9 +64,179 @@ odoo.define('rental.tour', function (require) {
         in_modal: false,
         extra_trigger: 'ul.ui-autocomplete',
         run: 'click'
+    }, {
+        trigger: ".o_field_many2one[name='product_uom'] .o_input_dropdown input",
+        extra_trigger: ".o_field_many2one[name='display_product_id'] .o_external_button",
+        run: 'click'
+    }, {
+        trigger: 'li a:contains("Month(s)")',
+        in_modal: false,
+        extra_trigger: 'ul.ui-autocomplete',
+        run: 'click'
+    }, {
+        content: _t('Click on Save & Close'),
+        trigger: 'button span:contains(Save & Close)',
+        extra_trigger: '.o_act_window',
+        id: "rental_product_selected",
+        run: 'click',
+        position: 'bottom',
+    }, {
+        content: _t('Check Ordered Qty'),
+        trigger: 'td.o_data_cell:contains("2.00")',
+        extra_trigger: 'div[name="order_line"]',
+        in_modal: false,
+        position: 'bottom',
+        run: function (){} //check Ordered Qty: 2 = diff(05/01/2020 - 03/01/2020) Month(s)
+    }, {
+        content: _t('Check Unit of measure'),
+        trigger: 'td.o_data_cell:contains("Month(s)")',
+        extra_trigger: 'div[name="order_line"]',
+        in_modal: false,
+        position: 'bottom',
+        run: function (){} //check Unit of measure : Month(s)
+    }, {
+        content: _t('Check Unit Price'),
+        trigger: 'td.o_data_cell:contains("4,500.00")',
+        extra_trigger: 'div[name="order_line"]',
+        in_modal: false,
+        position: 'bottom',
+        run: function (){} //check Unit Price : 4500.00
+    }, {
+        content: _t("Click on line to edit"),
+        trigger: "div[name='order_line'] tr.o_data_row span[name='product_id']",
+        extra_trigger: 'div[name="order_line"]',
+        run: 'click',
+        position: "bottom",
+    }, {
+        content: _t('Set end_date to 06/01/2020'),
+        trigger: '.o_form_editable .o_datepicker_input[name="end_date"]',
+        run: 'text 06/01/2020',
+        position: 'bottom',
+    }, {
+        content: _t('Click on Save & Close'),
+        trigger: 'button span:contains(Save & Close)',
+        extra_trigger: '.o_act_window',
+        id: "rental_product_selected",
+        run: 'click',
+        position: 'bottom',
+    }, {
+        content: _t('Check Ordered Qty'),
+        trigger: 'td.o_data_cell:contains("3.00")',
+        extra_trigger: 'div[name="order_line"]',
+        in_modal: false,
+        position: 'bottom',
+        run: function (){} //check Ordered Qty: 3 = diff(06/01/2020 - 03/01/2020) Month(s)
+    }, {
+        content: _t('Check Unit of measure'),
+        trigger: 'td.o_data_cell:contains("Month(s)")',
+        extra_trigger: 'div[name="order_line"]',
+        in_modal: false,
+        position: 'bottom',
+        run: function (){} //check Unit of measure : Month(s)
+    }, {
+        content: _t('Check Unit Price'),
+        trigger: 'td.o_data_cell:contains("800.00")',
+        extra_trigger: 'div[name="order_line"]',
+        in_modal: false,
+        position: 'bottom',
+        run: function (){} //check Unit Price : 800.00
+    },
+    // check of Pricelist/price scales
+    // scale price of Volvo L110H
+    //    Days    Price
+    //    <80     200
+    //    >=80    70
+    {
+        content: _t("Click on line to edit"),
+        trigger: "div[name='order_line'] tr.o_data_row span[name='product_id']",
+        extra_trigger: 'div[name="order_line"]',
+        run: 'click',
+        position: "bottom",
+    }, {
+        trigger: ".o_field_many2one[name='product_uom'] .o_input_dropdown input",
+        extra_trigger: ".o_field_many2one[name='display_product_id'] .o_external_button",
+        run: 'click'
+    }, {
+        trigger: 'li a:contains("Day(s)")',
+        in_modal: false,
+        extra_trigger: 'ul.ui-autocomplete',
+        run: 'click'
+    }, {
+        content: _t('Click on Save & Close'),
+        trigger: 'button span:contains(Save & Close)',
+        extra_trigger: '.o_act_window',
+        id: "rental_product_selected",
+        run: 'click',
+        position: 'bottom',
+    }, {
+        content: _t('Check Ordered Qty'),
+        trigger: 'td.o_data_cell:contains("93.00")',
+        extra_trigger: 'div[name="order_line"]',
+        in_modal: false,
+        position: 'bottom',
+        run: function (){} //check Ordered Qty: 93 = diff(06/01/2020 - 03/01/2020)
+    }, {
+        content: _t('Check Unit of measure'),
+        trigger: 'td.o_data_cell:contains("Day(s)")',
+        extra_trigger: 'div[name="order_line"]',
+        in_modal: false,
+        position: 'bottom',
+        run: function (){} //check Unit of measure : Day(s)
+    }, {
+        content: _t('Check Unit Price'),
+        trigger: 'td.o_data_cell:contains("70.00")',
+        extra_trigger: 'div[name="order_line"]',
+        in_modal: false,
+        position: 'bottom',
+        run: function (){} //check Unit Price : 70.00
+    }, {
+        content: _t("Click on line to edit"),
+        trigger: "div[name='order_line'] tr.o_data_row span[name='product_id']",
+        extra_trigger: 'div[name="order_line"]',
+        run: 'click',
+        position: "bottom",
+    }, {
+        content: _t('Set end_date to 05/01/2020'),
+        trigger: '.o_form_editable .o_datepicker_input[name="end_date"]',
+        run: 'text 05/01/2020',
+        position: 'bottom',
+    }, {
+        content: _t('Click on Save & Close'),
+        trigger: 'button span:contains(Save & Close)',
+        extra_trigger: '.o_act_window',
+        id: "rental_product_selected",
+        run: 'click',
+        position: 'bottom',
+    }, {
+        content: _t('Check Ordered Qty'),
+        trigger: 'td.o_data_cell:contains("62.00")',
+        extra_trigger: 'div[name="order_line"]',
+        in_modal: false,
+        position: 'bottom',
+        run: function (){} //check Ordered Qty: 62 = diff(05/01/2020 - 03/01/2020)
+    }, {
+        content: _t('Check Unit of measure'),
+        trigger: 'td.o_data_cell:contains("Day(s)")',
+        extra_trigger: 'div[name="order_line"]',
+        in_modal: false,
+        position: 'bottom',
+        run: function (){} //check Unit of measure : Day(s)
+    }, {
+        content: _t('Check Unit Price'),
+        trigger: 'td.o_data_cell:contains("200.00")',
+        extra_trigger: 'div[name="order_line"]',
+        in_modal: false,
+        position: 'bottom',
+        run: function (){} //check Unit Price : 200.00
     },
     // check validation with Off-Days (Off-Day Type : Weekend)
     {
+        content: _t("Click on line to edit"),
+        trigger: "div[name='order_line'] tr.o_data_row span[name='product_id']",
+        extra_trigger: 'div[name="order_line"]',
+        run: 'click',
+        position: "bottom",
+    }, {
         content: _t('Check Off-Time'),
         trigger: '.o_form_editable td span[name="offday_number"]:contains("0.00")',
         extra_trigger: '.o_form_editable',
@@ -181,7 +357,7 @@ odoo.define('rental.tour', function (require) {
         extra_trigger: 'div[name="order_line"]',
         in_modal: false,
         position: 'bottom',
-        run: function (){} //check Ordered Qty: 62 = diff(05/01/2020 - 03/01/2020)
+        run: function (){} //check Ordered Qty: 62 = diff(05/01/2020 - 03/01/2020) Day(s)
     }, {
         content: _t('Check Unit of measure'),
         trigger: 'td.o_data_cell:contains("Day(s)")',
@@ -293,8 +469,14 @@ odoo.define('rental.tour', function (require) {
         in_modal: false,
         position: 'bottom',
         run: function (){} //check Invoice: (Unit Price : 200.00)
-    },
-    // TODO checks on analytic account of product in invoice line
+    }, /*{
+        content: _t('Check Analytic Account on Invoice'),
+        trigger: 'td.o_data_cell span[name="account_analytic_id"]:contains("[00531] Volvo L110H")',
+        extra_trigger: 'div[name="invoice_line_ids"]',
+        in_modal: false,
+        position: 'bottom',
+        run: function (){} //check Invoice: (Analytic Account : [00531] Volvo L110H)
+    },*/
     /*{
         content: _t('Click on Validate'),
         trigger: 'button[name="action_invoice_open"]',

@@ -122,13 +122,20 @@ odoo.define('rental.contract', function (require) {
         in_modal: false,
         position: 'bottom',
         run: function (){} //check Contract: Contract Subtype = Rental Contract
-    }, {
+    }, /*{
+        content: _t('Check Analytic Account on Invoice'),
+        trigger: '.o_form_view span[name="analytic_account_id"]:contains("[00532] Cat 930M")',
+        extra_trigger: 'div[name="contract_line_ids"]',
+        in_modal: false,
+        position: 'bottom',
+        run: function (){} //check Contract: (Analytic Account : [00532] Cat 930M)
+    },*/ {
         content: _t('Check Date of Next Invoice'),
         trigger: '.o_form_view span[name="recurring_next_date"]:contains("04/01/2020")',
         extra_trigger: 'div[name="contract_line_ids"]',
         in_modal: false,
         position: 'bottom',
-        run: function (){} //check Contract: Date of Next Invoice = Customer
+        run: function (){} //check Contract: Date of Next Invoice = 04/01/2020
     }, {
         content: _t('Check Date Start on contract line'),
         trigger: 'td.o_data_cell:contains("04/01/2020")',
@@ -297,8 +304,14 @@ odoo.define('rental.contract', function (require) {
         in_modal: false,
         position: 'bottom',
         run: function (){} //check Invoice: (Unit Price : 4,500.00)
-    },
-    // TODO checks on analytic account of product in invoice line
+    }, /*{
+        content: _t('Check Analytic Account on Invoice'),
+        trigger: 'td.o_data_cell span[name="account_analytic_id"]:contains("[00532] Cat 930M")',
+        extra_trigger: 'div[name="invoice_line_ids"]',
+        in_modal: false,
+        position: 'bottom',
+        run: function (){} //check Invoice: (Analytic Account : [00532] Cat 930M)
+    },*/
     /*{
         content: _t('Click on Validate'),
         trigger: 'button[name="action_invoice_open"]',
