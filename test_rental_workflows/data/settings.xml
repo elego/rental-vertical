@@ -19,6 +19,9 @@
         <field name="group_analytic_accounting" eval="True" />
         <field name="group_analytic_tags" eval="True" />
         <field name="group_subtask_project" eval="True" />
+        <field name="group_sale_pricelist" eval="True" />
+        <field name="group_pricelist_item" eval="True" />
+        <!-- <field name="group_product_pricelist" eval="True" /> -->
     </record>
     <function model="res.config.settings" name="execute">
         <value model="res.config.settings" search="[('id', '=', ref('test_rental_workflows.workflow_settings_group'))]"/>

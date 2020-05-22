@@ -55,6 +55,31 @@
         <record id="rental_01531" model="product.product">
             <field name="instance_serial_number_id" ref="serial_rental_01531" />
         </record>
+        <!-- Product 1 added to Public Pricelist's Item -->
+        <record id="rental_pricelist_item_01" model="product.pricelist.item">
+            <field name="base">list_price</field>
+            <field name="applied_on">0_product_variant</field>
+            <field name="pricelist_id" ref="product.list0"/>
+            <field name="product_id" model="product.product" search="[('rented_product_id', '=', ref('rental_01531')), ('uom_id', '=', ref('uom.product_uom_day'))]" />
+            <field name="min_quantity">80</field>
+            <field name="fixed_price">70</field>
+            <field name="compute_price">fixed</field>
+        </record>
+        <function model="product.pricelist.item" name="_onchange_product_id">
+            <value model="product.pricelist.item" search="[('id','=', ref('rental_pricelist_item_01'))]" />
+        </function>
+        <record id="rental_pricelist_item_02" model="product.pricelist.item">
+            <field name="base">list_price</field>
+            <field name="applied_on">0_product_variant</field>
+            <field name="pricelist_id" ref="product.list0"/>
+            <field name="product_id" model="product.product" search="[('rented_product_id', '=', ref('rental_01531')), ('uom_id', '=', ref('rental_base.product_uom_month'))]" />
+            <field name="min_quantity">3</field>
+            <field name="fixed_price">800</field>
+            <field name="compute_price">fixed</field>
+        </record>
+        <function model="product.pricelist.item" name="_onchange_product_id">
+            <value model="product.pricelist.item" search="[('id','=', ref('rental_pricelist_item_02'))]" />
+        </function>
 
         <!-- Product2 -->
 
