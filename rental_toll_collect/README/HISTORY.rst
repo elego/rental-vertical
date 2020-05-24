@@ -2,7 +2,8 @@
 Changelog
 ---------
 
-- 89adaaf 2020-05-16 14:54:03 +0200 wagner@elegosoft.com  (origin/fix_3339_blp559_refactor_menu_view_v12, fix_3339_blp559_refactor_menu_view_v12) fixup categories and regenerate documentation (issue #3339)
+- 94dc79c 2020-05-16 18:10:44 +0200 wagner@elegosoft.com  (origin/fix_3339_blp559_extend_documentation_v12, fix_3339_blp559_extend_documentation_v12) update module documentation (issue #3339)
+- 89adaaf 2020-05-16 14:54:03 +0200 wagner@elegosoft.com  fixup categories and regenerate documentation (issue #3339)
 - 115d176 2020-05-15 09:13:21 +0200 maria.sparenberg@elegosoft.com  (origin/feature_3478_blp559_rental_toll_collect_v12) issue #3478 add toll charge invoice lines when creating invoice from sale order
 - 5b7911e 2020-05-14 16:05:37 +0200 maria.sparenberg@elegosoft.com  issue #3478 refactor the entire module
 - 134218b 2020-05-03 18:34:51 +0200 wagner@elegosoft.com  (origin/feature_3339_blp541_update_doc_v12, feature_3339_blp541_update_doc_v12) unify license and author and regenerate documentation (issue #3613, issue #3339)

@@ -2,7 +2,9 @@
 Changelog
 ---------
 
-- 89adaaf 2020-05-16 14:54:03 +0200 wagner@elegosoft.com  (origin/fix_3339_blp559_refactor_menu_view_v12, fix_3339_blp559_refactor_menu_view_v12) fixup categories and regenerate documentation (issue #3339)
+- cb28bea 2020-05-19 18:05:47 +0200 yweng@elegosoft.com  (origin/feature_3477_blp602_rental_product_insurance_v12, feature_3477_blp602_rental_product_insurance_v12) [IMP] Extension of Rental Insurance 1. New Button on tree view to update/create insurance line 2. set product_uom_qty of Insurance by using number_of_time_unit or product_uom_qty / rental_qty of origin line 3. add function fields to calculate insurance_price_unit and insurance_amount
+- 94dc79c 2020-05-16 18:10:44 +0200 wagner@elegosoft.com  (origin/fix_3339_blp559_extend_documentation_v12, fix_3339_blp559_extend_documentation_v12) update module documentation (issue #3339)
+- 89adaaf 2020-05-16 14:54:03 +0200 wagner@elegosoft.com  fixup categories and regenerate documentation (issue #3339)
 - 134218b 2020-05-03 18:34:51 +0200 wagner@elegosoft.com  (origin/feature_3339_blp541_update_doc_v12, feature_3339_blp541_update_doc_v12) unify license and author and regenerate documentation (issue #3613, issue #3339)
 - 38953ec 2020-04-30 17:42:35 +0200 yweng@elegosoft.com  (origin/feature_3477_blp521_rental_product_insurance_v12, feature_3477_blp521_rental_product_insurance_v12) [IMP] add some translations for module rental_contract_insurance
 - 411a283 2020-04-30 14:00:21 +0200 yweng@elegosoft.com  [IMP] adjust unit tests for module rental_product_insurance and rental_contract_insurance

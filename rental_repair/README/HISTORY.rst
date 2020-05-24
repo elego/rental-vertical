@@ -2,7 +2,8 @@
 Changelog
 ---------
 
-- 89adaaf 2020-05-16 14:54:03 +0200 wagner@elegosoft.com  (origin/fix_3339_blp559_refactor_menu_view_v12, fix_3339_blp559_refactor_menu_view_v12) fixup categories and regenerate documentation (issue #3339)
+- 94dc79c 2020-05-16 18:10:44 +0200 wagner@elegosoft.com  (origin/fix_3339_blp559_extend_documentation_v12, fix_3339_blp559_extend_documentation_v12) update module documentation (issue #3339)
+- 89adaaf 2020-05-16 14:54:03 +0200 wagner@elegosoft.com  fixup categories and regenerate documentation (issue #3339)
 - 134218b 2020-05-03 18:34:51 +0200 wagner@elegosoft.com  (origin/feature_3339_blp541_update_doc_v12, feature_3339_blp541_update_doc_v12) unify license and author and regenerate documentation (issue #3613, issue #3339)
 - 38a47e3 2020-05-02 16:51:39 +0200 kay.haeusler@elego.de  (origin/feature_3534_blp531_rental_repair_v12) Rename the field Customer into Partner; issue #3534
 - 2f11d1e 2020-05-01 23:28:44 +0200 kay.haeusler@elego.de  (origin/feature_3594_blp531_rental_repair_v12) add the feature 'stagnation'; issue #3594
