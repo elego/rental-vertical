@@ -2,8 +2,10 @@
 Changelog
 ---------
 
+- 3188aa7 2020-05-20 11:15:34 +0200 cpatel@elegosoft.com  (origin/fix_3339_blp602_refactor_menu_view_v12) [FIX] remove ref of mis_builder from rental_base and moved menu items to rental_reporting module
+- 94dc79c 2020-05-16 18:10:44 +0200 wagner@elegosoft.com  (origin/fix_3339_blp559_extend_documentation_v12, fix_3339_blp559_extend_documentation_v12) update module documentation (issue #3339)
 - e310d9b 2020-05-16 13:18:01 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_3339_blp559_remove_dependency_to_product_tweaks_v12: addons-rental-vertical remotes/origin/fix_3339_blp559_remove_dependency_to_product_tweaks_v12 - ad1cfe07746960755671826cfb2a20aa889b5533 remove dependency to third-party addon prt_product_tweaks (issue #3339)
-- 89adaaf 2020-05-16 14:54:03 +0200 wagner@elegosoft.com  (origin/fix_3339_blp559_refactor_menu_view_v12, fix_3339_blp559_refactor_menu_view_v12) fixup categories and regenerate documentation (issue #3339)
+- 89adaaf 2020-05-16 14:54:03 +0200 wagner@elegosoft.com  fixup categories and regenerate documentation (issue #3339)
 - 0a560fd 2020-05-16 14:49:58 +0200 wagner@elegosoft.com  extract rental reporting menu to rental_reporting (issue #3339)
 - c5dbd03 2020-05-16 14:47:55 +0200 wagner@elegosoft.com  remove crm dependency from rental_base (issue #3339)
 - 7d23241 2020-05-16 14:20:55 +0200 wagner@elegosoft.com  (re)generate documentation for rental_base and rental_menu_crm (issue #3339)
