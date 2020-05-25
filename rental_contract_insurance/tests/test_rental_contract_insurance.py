@@ -35,6 +35,7 @@ class TestRentalContractInsurance(RentalStockCommon):
         })
         self.today = fields.Date.from_string(fields.Date.today())
         self.date_three_month_later = self.today + relativedelta(months=3)
+        self.date_19_later = self.today + relativedelta(days=19)
         self.rental_order = self.env['sale.order'].with_context({
             'default_type_id': self.rental_sale_type.id,
         }).create({
@@ -43,6 +44,8 @@ class TestRentalContractInsurance(RentalStockCommon):
         })
         self.contract_insurance_product = self.env.ref(
             'rental_contract_insurance.product_product_contract_insurance')
+        self.product_insurance = self.env.ref(
+            'rental_product_insurance.product_product_insurance')
 
     def _run_sol_onchange_display_product_id(self, line):
         line.onchange_display_product_id() # product_id, rental changed
@@ -102,10 +105,35 @@ class TestRentalContractInsurance(RentalStockCommon):
         }).new({
             'display_product_id': self.productA.id,
             'start_date': self.today,
-            'end_date': self.date_three_month_later,
+            'end_date': self.date_19_later,
         })
         self._run_sol_onchange_display_product_id(line)
         line.onchange_insurance_product_id()
         vals = line._convert_to_write(line._cache)
         vals['order_id'] = self.rental_order.id
-        line  = self.env['sale.order.line'].create(vals)
+        order_line = self.env['sale.order.line'].create(vals)
+        #Set product_uom_qty and number_of_time_unit
+        order_line.product_uom_qty = 10
+        order_line.number_of_time_unit = 20
+        order_line.update_rental_insurance_line()
+        self.assertEqual(order_line.insurance_price_unit, 10)
+        self.assertEqual(order_line.insurance_amount, 200)
+        check_insurance = False
+        for line in self.rental_order.order_line:
+            if line.product_id == self.product_insurance:
+                self.assertEqual(line.price_unit, 10)
+                self.assertEqual(line.product_uom_qty, 20)
+                check_insurance = True
+        self.assertEqual(check_insurance, True)
+
+        order_line.insurance_entire_time = False
+        self.assertEqual(order_line.insurance_price_unit, 20)
+        self.assertEqual(order_line.insurance_amount, 200)
+        order_line.update_rental_insurance_line()
+        check_insurance = False
+        for line in self.rental_order.order_line:
+            if line.product_id == self.product_insurance:
+                self.assertEqual(line.price_unit, 20)
+                self.assertEqual(line.product_uom_qty, 10)
+                check_insurance = True
+        self.assertEqual(check_insurance, True)

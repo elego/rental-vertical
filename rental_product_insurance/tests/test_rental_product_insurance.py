@@ -37,12 +37,13 @@ class TestRentalProductInsurance(RentalStockCommon):
             'product_id': self.rental_service_day.id,
             'name': self.rental_service_day.name,
             'rental_type': 'new_rental',
-            'rental_qty': 1.0,
+            'rental_qty': 2.0,
             'price_unit': 100,
             'product_uom': self.rental_service_day.uom_id.id,
             'start_date': self.date_start,
             'end_date': self.date_end,
-            'product_uom_qty': 2.0,
+            'product_uom_qty': 4.0,
+            'rental': True,
         })
         self.sale_order = self.env['sale.order'].create({
             'partner_id': self.partnerA.id,
@@ -71,11 +72,15 @@ class TestRentalProductInsurance(RentalStockCommon):
         vals = self.rental_order_line._convert_to_write(self.rental_order_line._cache)
         vals['order_id'] = self.rental_order.id
         self.rental_order_line  = self.env['sale.order.line'].create(vals)
+        self.assertEqual(self.rental_order_line.insurance_amount, 200)
+        self.assertEqual(self.rental_order_line.insurance_price_unit, 100)
         self.assertEqual(len(self.rental_order.order_line), 2)
         check_insurance = False
         for line in self.rental_order.order_line:
             if line.product_id == self.product_insurance:
+                self.insurance_line = line
                 self.assertEqual(line.price_unit, 100)
+                self.assertEqual(line.product_uom_qty, 2)
                 self.assertEqual(
                     line.insurance_origin_line_id.id,
                     self.rental_order_line.id
@@ -85,8 +90,21 @@ class TestRentalProductInsurance(RentalStockCommon):
                 self.assertEqual(invoice_line_vals['account_analytic_id'], self.analytic_account.id)
                 check_insurance = True
         self.assertEqual(check_insurance, True)
+        self.rental_order_line.write({
+            'insurance_percent': 10,
+        })
+        self.rental_order_line.onchange_insurance_params()
+        self.assertEqual(self.rental_order_line.update_insurance_line, True)
+        self.rental_order_line.update_rental_insurance_line()
+        self.assertEqual(self.rental_order_line.insurance_percent, 10)
+        self.assertEqual(self.rental_order_line.insurance_amount, 100)
+        self.assertEqual(self.rental_order_line.insurance_price_unit, 50)
+        self.assertEqual(self.rental_order_line.product_uom_qty, 4)
+        self.assertEqual(self.rental_order_line.update_insurance_line, False)
+        self.assertEqual(self.insurance_line.product_uom_qty, 2)
+        self.assertEqual(self.insurance_line.price_unit, 50)
 
-        # test onchange_insurance_product_id again
+        # test onchange_insurance_product_id again in normal sale order
         self.sale_order.order_line.onchange_insurance_product_id()
         self.assertEqual(
             self.sale_order.order_line.insurance_type, 'product')
@@ -111,11 +129,14 @@ class TestRentalProductInsurance(RentalStockCommon):
         vals['insurance_percent'] = 10
 
         self.rental_order_line  = self.env['sale.order.line'].create(vals)
+        self.assertEqual(self.rental_order_line.insurance_amount, 40)
+        self.assertEqual(self.rental_order_line.insurance_price_unit, 20)
         self.assertEqual(len(self.rental_order.order_line), 2)
         check_insurance = False
         for line in self.rental_order.order_line:
             if line.product_id == self.product_insurance:
-                self.assertEqual(line.price_unit, 10)
+                self.assertEqual(line.price_unit, 20)
+                self.assertEqual(line.product_uom_qty, 2)
                 self.assertEqual(
                     line.insurance_origin_line_id.id,
                     self.rental_order_line.id

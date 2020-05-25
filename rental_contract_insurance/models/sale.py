@@ -11,6 +11,14 @@ class SaleOrderLine(models.Model):
         default=True,
     )
 
+    @api.depends(
+        'insurance_percent',
+        'insurance_type',
+        'product_uom_qty',
+        'rental_qty',
+        'price_unit',
+        'insurance_entire_time',
+    )
     def _compute_insurance_amount(self):
         for record in self:
             record.insurance_amount = 0
