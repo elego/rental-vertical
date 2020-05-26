@@ -36,23 +36,14 @@ class SaleOrder(models.Model):
         for line in self.order_line:
             if line.product_id:
                 # Only products or related rental products with license plate can have toll charge lines.
-                if line.product_id.license_plate:
+                if line.product_id.license_plate or line.display_product_id.license_plate:
                     toll_charge_lines |= self.env['toll.charge.line'].search([
-                        ('product_id', '=', line.product_id.id),
+                        ('product_id', 'in', [line.product_id.id, line.display_product_id.id]),
                         ('toll_date', '>=', line.start_date),
                         ('toll_date', '<=', line.end_date),
                         '|',
                         ('invoice_id', '=', False),
-                        ('invoice_id', 'in', self.invoice_ids.id),
-                    ])
-                elif line.product_id.rented_product_id and line.product_id.rented_product_id.license_plate:
-                    toll_charge_lines |= self.env['toll.charge.line'].search([
-                        ('product_id', '=', line.product_id.rented_product_id.id),
-                        ('toll_date', '>=', line.start_date),
-                        ('toll_date', '<=', line.end_date),
-                        '|',
-                        ('invoice_id', '=', False),
-                        ('invoice_id', '=', self.invoice_ids.id),
+                        ('invoice_id', 'in', self.invoice_ids.ids),
                     ])
                 # After manually invoicing toll charge lines the "real" product can only be found by analytic account.
                 elif line.product_id == self.env.ref('rental_toll_collect.product_toll'):
@@ -61,12 +52,12 @@ class SaleOrder(models.Model):
                     ])
                     if product:
                         toll_charge_lines |= self.env['toll.charge.line'].search([
-                            ('product_id', '=', product.id),
+                            ('product_id', 'in', product.ids),
                             ('toll_date', '>=', line.start_date),
                             ('toll_date', '<=', line.end_date),
                             '|',
                             ('invoice_id', '=', False),
-                            ('invoice_id', '=', self.invoice_ids.id),
+                            ('invoice_id', '=', self.invoice_ids.ids),
                         ])
         return list(set(toll_charge_lines.mapped('id')))
 

@@ -67,7 +67,7 @@ class AccountInvoice(models.Model):
                     ])
                     if product:
                         toll_charge_lines |= self.env['toll.charge.line'].search([
-                            ('product_id', '=', product.id),
+                            ('product_id', 'in', product.ids),
                             ('toll_date', '>=', line.start_date),
                             ('toll_date', '<=', line.end_date),
                             '|',

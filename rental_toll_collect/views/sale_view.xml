@@ -12,6 +12,7 @@
                         type="object"
                         icon="fa-road"
                         title="Products Toll Charges"
+                        attrs="{'invisible': [('toll_line_count', '=', 0)]}"
                     >
                         <div class="o_field_widget o_stat_info mr4">
                             <span class="o_stat_text"># Toll Lines:</span>
