@@ -15,8 +15,8 @@
                         attrs="{'invisible': [('toll_line_count', '=', 0)]}"
                     >
                         <div class="o_field_widget o_stat_info mr4">
-                            <span class="o_stat_text"># Toll Lines:</span>
-                            <span class="o_stat_text"># Invoiced:</span>
+                            <span class="o_stat_text">Toll Lines:</span>
+                            <span class="o_stat_text">Invoiced:</span>
                         </div>
                         <div class="o_field_widget o_stat_info">
                             <span class="o_stat_value"><field name="toll_line_count"/></span>

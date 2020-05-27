@@ -113,9 +113,6 @@ class AccountInvoice(models.Model):
                 'end_date': max(value['date']).date(),
                 'account_analytic_id': key.income_analytic_account_id.id if key.income_analytic_account_id else False,
             })
-            # line._onchange_product_id()
-            # line._onchange_uom_id()
-            # line._onchange_account_id()
 
     @staticmethod
     def get_toll_charge_invoice_line_values(toll_lines):

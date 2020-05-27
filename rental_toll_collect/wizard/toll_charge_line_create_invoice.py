@@ -3,11 +3,11 @@ from odoo import models, api, fields, _
 
 class TollChargeLineInvoice(models.TransientModel):
     _name = "toll.charge.line.create_invoice"
-    _description = "Wizard for creating an invoice from toll charge line(s)."
+    _description = "Wizard for creating an invoice from toll charge line(s)"
 
     partner_id = fields.Many2one(
         comodel_name="res.partner",
-        string='"Partner',
+        string="Partner",
         help="Please set a customer to invoice the chosen toll charge line(s).",
         domain=[("customer", "=", True)],
         required=True,
