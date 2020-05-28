@@ -41,11 +41,19 @@ odoo.define('rental.tour', function (require) {
         trigger: '.o_form_editable .o_datepicker_input[name="default_start_date"]',
         run: 'text 03/01/2020',
         position: 'bottom',
+        /*run: function (){
+            var inputValue = moment("2020/03/01", 'YYYY/M/D').format('MM/DD/YYYY');
+            $('.o_form_editable .o_datepicker_input[name="default_start_date"]').val(inputValue).trigger('change');
+        }*/
     }, {
         content: _t('Set default_end_date to 05/01/2020'),
         trigger: '.o_form_editable .o_datepicker_input[name="default_end_date"]',
         run: 'text 05/01/2020',
         position: 'bottom',
+        /*run: function (){
+            var inputValue = moment("2020/05/01", 'YYYY/M/D').format('MM/DD/YYYY');
+            $('.o_form_editable .o_datepicker_input[name="default_end_date"]').val(inputValue).trigger('change');
+        }*/
     }, {
         content: _t("Click here to create or add Product"),
         trigger: "a:contains('Add a product')",
@@ -469,14 +477,14 @@ odoo.define('rental.tour', function (require) {
         in_modal: false,
         position: 'bottom',
         run: function (){} //check Invoice: (Unit Price : 200.00)
-    }, /*{
+    }, {
         content: _t('Check Analytic Account on Invoice'),
         trigger: 'td.o_data_cell span[name="account_analytic_id"]:contains("[00531] Volvo L110H")',
         extra_trigger: 'div[name="invoice_line_ids"]',
         in_modal: false,
         position: 'bottom',
         run: function (){} //check Invoice: (Analytic Account : [00531] Volvo L110H)
-    },*/
+    },
     /*{
         content: _t('Click on Validate'),
         trigger: 'button[name="action_invoice_open"]',
