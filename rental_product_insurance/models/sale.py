@@ -11,7 +11,7 @@ class SaleOrderLine(models.Model):
         selection=[
             ('none', 'None'),
             ('product', 'Cost of Product'),
-            ('rental', 'Cost of rental'),
+            ('rental', 'Cost of Rental'),
         ],
         default="none",
     )
@@ -60,6 +60,13 @@ class SaleOrderLine(models.Model):
                 self.insurance_type = self.product_id.insurance_type
                 self.insurance_percent = self.product_id.insurance_percent
 
+    @api.depends(
+        'insurance_percent',
+        'insurance_type',
+        'product_uom_qty',
+        'rental_qty',
+        'price_unit',
+    )
     def _compute_insurance_amount(self):
         for record in self:
             record.insurance_amount = 0
