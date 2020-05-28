@@ -56,7 +56,6 @@ IMPORT_MAPPINGS = [
 
 
 class TollChargeLineBaseImport(models.TransientModel):
-    
     _inherit = "base_import.import"
 
     @api.multi
@@ -71,9 +70,10 @@ class TollChargeLineBaseImport(models.TransientModel):
 
 class TollChargeLineImport(models.TransientModel):
     _name = 'toll.charge.line.import'
+    _description = "Wizard for importing csv-file containing toll collect data"
 
     data_file = fields.Binary(
-        string="Upload File",
+        string="File",
         required=True,
     )
     filename = fields.Char(
@@ -102,9 +102,9 @@ class TollChargeLineImport(models.TransientModel):
             if errors:
                 aoid = 'rental_toll_collect.toll_charge_line_action'
                 action_id = self.env.ref(aoid).id
-                go_msg = _('Try again with Import button to see details')
-                err_fmt = _('%s Errors were found during the import !'
-                            'The first one is: \n\n %s')
+                go_msg = _("Try again with Import button to see details")
+                err_fmt = _("%s Errors were found during the import! "
+                            "The first one is: \n\n %s")
                 err_msg = err_fmt % (len(errors), errors[0]['message'])
                 raise Warning(err_msg)
                 # raise RedirectWarning(err_msg , action_id, go_msg)

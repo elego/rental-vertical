@@ -146,7 +146,14 @@ class TollChargeLine(models.Model):
         for cl in self:
             if cl.license_plate:
                 prod_domain = [('license_plate', '=', cl.license_plate)]
-                cl.product_id = products.search(prod_domain)
+                product = products.search(prod_domain)
+                if len(product) > 1:
+                    raise exceptions.ValidationError(
+                        _("There are %s vehicles with the license plate '%s'.")
+                        % (len(product), cl.license_plate)
+                    )
+                else:
+                    cl.product_id = product
 
     @api.multi
     @api.depends('start_date', 'start_time')

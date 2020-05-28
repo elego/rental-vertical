@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <record id="invoice_form" model="ir.ui.view">
-            <field name="name">account.invoice.form</field>
-            <field name="model">account.invoice</field>
-            <field name="inherit_id" ref="account.invoice_form"/>
+        <record id="contract_contract_form_view_toll_collect" model="ir.ui.view">
+            <field name="name">contract.form.view</field>
+            <field name="model">contract.contract</field>
+            <field name="inherit_id" ref="contract.contract_contract_form_view"/>
             <field name="arch" type="xml">
                 <xpath expr="//div[@name='button_box']" position="inside">
                     <button class="oe_stat_button"
@@ -24,7 +24,7 @@
                             </div>
                     </button>
                 </xpath>
-                
+
             </field>
         </record>
     </data>

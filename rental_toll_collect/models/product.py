@@ -9,7 +9,7 @@ class ProductProduct(models.Model):
     toll_line_ids = fields.One2many(
         comodel_name='toll.charge.line',
         inverse_name='product_id',
-        string="Toll Fee Lines",
+        string="Toll Charge Lines",
         help="These are all toll charge lines related to this product.",
     )
 
