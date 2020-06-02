@@ -7,6 +7,7 @@ from odoo import api, fields, models, exceptions, _
 
 class RentalOffday(models.Model):
     _name = 'rental.offday'
+    _description = "Off-days for daily rentals"
 
     add_order_line_id = fields.Many2one(
         'sale.order.line',
