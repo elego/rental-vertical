@@ -40,7 +40,7 @@
                                        'default_applied_on': '0_product_variant',
                                        'default_compute_price': 'fixed',
                                        'default_product_id': product_rental_month_id, 'default_pricelist_id': def_pricelist_id}"
-                                       attrs="{'invisible': [('rental_of_month', '=', False)]}"
+                                       attrs="{'invisible': ['|', ('rental_of_month', '=', False), ('product_rental_month_id', '=', False)]}"
                                        nolabel="1">
                                     <tree string="Pricelist Items" editable="bottom">
                                         <field name="min_quantity"/>
@@ -66,7 +66,7 @@
                                        'default_applied_on': '0_product_variant',
                                        'default_compute_price': 'fixed',
                                        'default_product_id': product_rental_day_id, 'default_pricelist_id': def_pricelist_id}"
-                                       attrs="{'invisible': [('rental_of_day', '=', False)]}"
+                                       attrs="{'invisible': ['|', ('rental_of_day', '=', False), ('product_rental_day_id', '=', False)]}"
                                        nolabel="1">
                                     <tree string="Pricelist Items" editable="bottom">
                                         <field name="min_quantity"/>
@@ -92,7 +92,7 @@
                                        'default_applied_on': '0_product_variant',
                                        'default_compute_price': 'fixed',
                                        'default_product_id': product_rental_hour_id, 'default_pricelist_id': def_pricelist_id}"
-                                       attrs="{'invisible': [('rental_of_hour', '=', False)]}"
+                                       attrs="{'invisible': ['|', ('rental_of_hour', '=', False), ('product_rental_hour_id', '=', False)]}"
                                        nolabel="1">
                                     <tree string="Pricelist Items" editable="bottom">
                                         <field name="min_quantity"/>
