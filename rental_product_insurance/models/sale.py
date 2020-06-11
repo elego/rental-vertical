@@ -18,13 +18,8 @@ class SaleOrderLine(models.Model):
     insurance_percent = fields.Float(
         'Insurance Percent'
     )
-    insurance_amount = fields.Float(
-        'Insurance Amount',
-        compute="_compute_insurance_amount"
-    )
     insurance_price_unit = fields.Float(
         'Insurance Amount',
-        compute="_compute_insurance_amount"
     )
     insurance_origin_line_id = fields.Many2one(
         'sale.order.line',
@@ -60,26 +55,25 @@ class SaleOrderLine(models.Model):
                 self.insurance_type = self.product_id.insurance_type
                 self.insurance_percent = self.product_id.insurance_percent
 
-    @api.depends(
+    @api.onchange(
         'insurance_percent',
         'insurance_type',
         'product_uom_qty',
         'rental_qty',
         'price_unit',
     )
-    def _compute_insurance_amount(self):
-        for record in self:
-            record.insurance_amount = 0
-            record.insurance_price_unit = 0
-            percent = record.insurance_percent
-            if record.insurance_type == 'product':
-                price = record.product_id.rented_product_id.standard_price
-                record.insurance_amount = price * percent / 100
-            elif record.insurance_type == 'rental':
-                record.insurance_amount = record.price_subtotal * percent / 100
-            if record.rental and record.product_uom_qty:
-                record.insurance_price_unit = \
-                    record.rental_qty * record.insurance_amount / record.product_uom_qty
+    def onchange_insurance_amount(self):
+        insurance_amount = 0
+        self.insurance_price_unit = 0
+        percent = self.insurance_percent
+        if self.insurance_type == 'product':
+            price = self.product_id.rented_product_id.standard_price
+            insurance_amount = price * percent / 100
+        elif self.insurance_type == 'rental':
+            insurance_amount = self.price_subtotal * percent / 100
+        if self.rental and self.product_uom_qty:
+            self.insurance_price_unit = \
+                self.rental_qty * insurance_amount / self.product_uom_qty
 
     def _prepare_rental_insurance_line(self):
         self.ensure_one()

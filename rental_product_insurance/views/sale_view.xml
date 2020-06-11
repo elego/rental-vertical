@@ -24,7 +24,7 @@
                     ]}">
                         <field name="insurance_percent" class="oe_inline"/> %
                     </div>
-                    <field name="insurance_amount"
+                    <field name="insurance_price_unit"
                            attrs="{'invisible': [
                                       '|',
                                       ('insurance_type','=','none'),
