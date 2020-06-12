@@ -18,6 +18,10 @@ class SaleOrderLine(models.Model):
     insurance_percent = fields.Float(
         'Insurance Percent'
     )
+    # TODO delete dumy field insurance_amount
+    insurance_amount = fields.Float(
+        'Insurance Amount',
+    )
     insurance_price_unit = fields.Float(
         'Insurance Amount',
     )

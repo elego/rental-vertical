@@ -24,6 +24,8 @@
                     ]}">
                         <field name="insurance_percent" class="oe_inline"/> %
                     </div>
+                    <!-- TODO delete dummy field insurance_amount-->
+                    <field name="insurance_amount" invisible="1"/>
                     <field name="insurance_price_unit"
                            attrs="{'invisible': [
                                       '|',
