@@ -255,4 +255,5 @@ class FleetType(models.Model):
 
     name = fields.Char(
         string="Name",
+        translate=True,
     )
