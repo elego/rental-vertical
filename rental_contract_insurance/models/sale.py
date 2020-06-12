@@ -11,30 +11,30 @@ class SaleOrderLine(models.Model):
         default=True,
     )
 
-    @api.depends(
+    @api.onchange(
         'insurance_percent',
         'insurance_type',
         'product_uom_qty',
         'rental_qty',
         'price_unit',
         'insurance_entire_time',
+        'number_of_time_unit',
     )
-    def _compute_insurance_amount(self):
-        for record in self:
-            record.insurance_amount = 0
-            record.insurance_price_unit = 0
-            percent = record.insurance_percent
-            if record.insurance_type == 'product':
-                price = record.product_id.rented_product_id.standard_price
-                record.insurance_amount = price * percent / 100
-            elif record.insurance_type == 'rental':
-                record.insurance_amount = record.price_subtotal * percent / 100
-            if record.rental and record.product_uom_qty:
-                if record.insurance_entire_time and record.number_of_time_unit:
-                    record.insurance_price_unit = record.insurance_amount / record.number_of_time_unit
-                else:
-                    record.insurance_price_unit = \
-                        record.rental_qty * record.insurance_amount / record.product_uom_qty
+    def onchange_insurance_amount(self):
+        insurance_amount = 0
+        self.insurance_price_unit = 0
+        percent = self.insurance_percent
+        if self.insurance_type == 'product':
+            price = self.product_id.rented_product_id.standard_price
+            insurance_amount = price * percent / 100
+        elif self.insurance_type == 'rental':
+            insurance_amount = self.price_subtotal * percent / 100
+        if self.rental and self.product_uom_qty:
+            if self.insurance_entire_time and self.number_of_time_unit:
+                self.insurance_price_unit = insurance_amount / self.number_of_time_unit
+            else:
+                self.insurance_price_unit = \
+                    self.rental_qty * insurance_amount / self.product_uom_qty
 
     @api.onchange(
         'product_uom_qty',
@@ -76,6 +76,7 @@ class SaleOrderLine(models.Model):
             insurance_line.write({
                 'date_start': vals['date_start'],
                 'date_end' : vals['date_end'],
+                'product_uom_qty' : vals['product_uom_qty'],
             })
         return insurance_line
 
