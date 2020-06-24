@@ -50,6 +50,8 @@ class SaleOrderLine(models.Model):
     @api.multi
     def _reset_timeline(self, vals):
         for line in self:
+            if not line.rental:
+                continue
             if line.product_id.rented_product_id:
                 if not line.timeline_ids:
                     raise exceptions.UserError(_('No found timelines.'))

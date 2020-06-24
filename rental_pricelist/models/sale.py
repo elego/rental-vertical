@@ -30,8 +30,16 @@ class SaleOrderLine(models.Model):
         domain = [('sale_ok', '=', True)]
         rental_type_id = self.env.ref('rental_base.rental_sale_type').id
         if self.env.context.get('default_type_id', False) == rental_type_id:
-            domain.append(('rental_ok', '=', True))
-            domain.append(('type', '=', 'product'))
+            domain = [
+                '|', '&',
+                ('type', '=', 'product'),
+                '|',
+                ('sale_ok', '=', True),
+                ('rental_ok', '=', True),
+                '&',
+                ('type', '=', 'service'),
+                ('sale_ok', '=', True),
+            ]
         return domain
 
     @api.model
@@ -60,7 +68,9 @@ class SaleOrderLine(models.Model):
                 self.product_uom = time_uoms['hour']
                 self.product_id = self.display_product_id.product_rental_hour_id
             else:
-                raise exceptions.UserError(_('The product has no related rental services.'))
+                self.rental = False
+                self.product_id = self.display_product_id
+                #raise exceptions.UserError(_('The product has no related rental services.'))
 
     @api.multi
     @api.onchange('display_product_id')
