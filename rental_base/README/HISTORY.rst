@@ -2,6 +2,7 @@
 Changelog
 ---------
 
+- 57b29fa 2020-05-24 12:58:49 +0200 wagner@elegosoft.com  (origin/fix_3339_blp622_extend_documentation_v12, origin/fix_3339_bl616_extend_documentation_v12, fix_3339_blp622_extend_documentation_v12, fix_3339_bl616_extend_documentation_v12) update documentation for fix release (issue #3339)
 - 3188aa7 2020-05-20 11:15:34 +0200 cpatel@elegosoft.com  (origin/fix_3339_blp602_refactor_menu_view_v12) [FIX] remove ref of mis_builder from rental_base and moved menu items to rental_reporting module
 - 94dc79c 2020-05-16 18:10:44 +0200 wagner@elegosoft.com  (origin/fix_3339_blp559_extend_documentation_v12, fix_3339_blp559_extend_documentation_v12) update module documentation (issue #3339)
 - e310d9b 2020-05-16 13:18:01 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_3339_blp559_remove_dependency_to_product_tweaks_v12: addons-rental-vertical remotes/origin/fix_3339_blp559_remove_dependency_to_product_tweaks_v12 - ad1cfe07746960755671826cfb2a20aa889b5533 remove dependency to third-party addon prt_product_tweaks (issue #3339)

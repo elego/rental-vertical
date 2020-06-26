@@ -2,6 +2,10 @@
 Changelog
 ---------
 
+- f40add6 2020-06-26 10:15:20 +0200 maria.sparenberg@elegosoft.com  (origin/fix_3637_blp666_add_product_identification_number_v12) issue #3637 update German translation and pot-file
+- c0f4831 2020-06-26 06:37:53 +0200 wagner@elegosoft.com  (origin/fix_2637_add_product_identification_number_v12, fix_2637_add_product_identification_number_v12) add product_identification_number, show_product_identification_number and change german translation for vehicle number (issue #3637)
+- 2619f8f 2020-06-10 17:56:51 +0200 yweng@elegosoft.com  (origin/feature_3668_blp636_set_option_invisible_before_creating_product_v12) [IMP] set translatable for field name of fleet.type
+- 57b29fa 2020-05-24 12:58:49 +0200 wagner@elegosoft.com  (origin/fix_3339_blp622_extend_documentation_v12, origin/fix_3339_bl616_extend_documentation_v12, fix_3339_blp622_extend_documentation_v12, fix_3339_bl616_extend_documentation_v12) update documentation for fix release (issue #3339)
 - 94dc79c 2020-05-16 18:10:44 +0200 wagner@elegosoft.com  (origin/fix_3339_blp559_extend_documentation_v12, fix_3339_blp559_extend_documentation_v12) update module documentation (issue #3339)
 - 89adaaf 2020-05-16 14:54:03 +0200 wagner@elegosoft.com  fixup categories and regenerate documentation (issue #3339)
 - af656d0 2020-05-06 17:34:25 +0200 maria.sparenberg@elegosoft.com  (origin/feature_3599_blp543_product_variant_v12) issue #3599 format field definitions and change page string for additional info to specification

@@ -6,6 +6,11 @@ from odoo import api, fields, models, _
 class ProductCategory(models.Model):
     _inherit = 'product.category'
 
+    show_product_identification_number = fields.Boolean(
+        string="Show Product Identification Number",
+        help="If checked, the product identification number "
+             "is displayed in product form view.",
+    )
     show_vehicle_number = fields.Boolean(
         string="Show Vehicle Identification Number",
         help="If checked, the vehicle identification number "
@@ -55,14 +60,21 @@ class ProductProduct(models.Model):
     )
 
     # Category special fields
+    product_identification_number = fields.Char(
+        string="Product Identification Number (PIN)",
+    )
     vehicle_number = fields.Char(
-        string="Vehicle Identification Number",
+        string="Vehicle Identification Number (VIN)",
     )
     license_plate = fields.Char(
         string="License Plate",
     )
     init_regist = fields.Date(
         string="Initial Registration",
+    )
+    show_product_identification_number = fields.Boolean(
+        string="Show Product Identification Number",
+        related="categ_id.show_product_identification_number",
     )
     show_vehicle_number = fields.Boolean(
         string="Show Vehicle Identification Number",

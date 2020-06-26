@@ -1,7 +1,7 @@
 Rental Product Variant
 ====================================================
 
-*This file has been generated on 2020-05-24-12-57-37. Changes to it will be overwritten.*
+*This file has been generated on 2020-06-26-19-23-38. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -26,6 +26,7 @@ Additional fields:
  - additional_info [Html]: arbitrary additional infomation
 
 Additional fields configured and added by product category:
+ - Show Product Identification Number -> product_number [Char]: product identification number
  - Show Vehicle Identification Number -> vehicle_number [Char]: vehicle identification number
  - Show License Plate -> license_plate [Char]: license plate
  - Show Initial Registration -> init_regist [Date]: date of initial registration

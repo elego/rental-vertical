@@ -10,6 +10,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//sheet" position="inside">
                     <group name="show_attrs" string="Product Attribute Extension">
+                        <field name="show_product_identification_number" />
                         <field name="show_vehicle_number" />
                         <field name="show_license_plate" />
                         <field name="show_init_regist" />
@@ -50,9 +51,11 @@
                 <xpath expr="//field[@name='barcode']" position="before">
                     <field name="manu_id" />
                     <field name="manu_type_id" domain="[('manufacturer_id','=',manu_id)]" />
+                    <field name="show_product_identification_number" invisible="1" />
                     <field name="show_vehicle_number" invisible="1" />
                     <field name="show_license_plate" invisible="1" />
                     <field name="show_init_regist" invisible="1" />
+                    <field name="product_identification_number" attrs="{'invisible': [('show_product_identification_number', '=', False)]}" />
                     <field name="vehicle_number" attrs="{'invisible': [('show_vehicle_number', '=', False)]}" />
                     <field name="license_plate" attrs="{'invisible': [('show_license_plate', '=', False)]}" />
                     <field name="manu_year" />

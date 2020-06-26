@@ -2,6 +2,10 @@
 Changelog
 ---------
 
+- 7fcb746 2020-06-26 11:50:09 +0200 yweng@elegosoft.com  [IMP] adjust function _get_product_domain to sell normal service (without rental service) in rental order (issue 3729)
+- e52be41 2020-06-24 12:33:36 +0200 yweng@elegosoft.com  (origin/defect_3729_blp662_sell_service_in_rental_order_v12) [IMP] adjust function _get_product_domain to sell normal service in rental order (issue 3729)
+- d244988 2020-06-10 17:32:49 +0200 yweng@elegosoft.com  [IMP] set invisible for field instance_serial_number_id and Pricelist Items before creating the product
+- 57b29fa 2020-05-24 12:58:49 +0200 wagner@elegosoft.com  (origin/fix_3339_blp622_extend_documentation_v12, origin/fix_3339_bl616_extend_documentation_v12, fix_3339_blp622_extend_documentation_v12, fix_3339_bl616_extend_documentation_v12) update documentation for fix release (issue #3339)
 - 3266c20 2020-05-22 13:33:18 +0200 yweng@elegosoft.com  (origin/defect_3627_blp612_update_analytic_account_v12) [FIX] corrects function _update_rental_service_analytic_account()
 - 94dc79c 2020-05-16 18:10:44 +0200 wagner@elegosoft.com  (origin/fix_3339_blp559_extend_documentation_v12, fix_3339_blp559_extend_documentation_v12) update module documentation (issue #3339)
 - 89adaaf 2020-05-16 14:54:03 +0200 wagner@elegosoft.com  fixup categories and regenerate documentation (issue #3339)

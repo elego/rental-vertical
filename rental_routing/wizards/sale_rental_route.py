@@ -9,6 +9,7 @@ class SaleRentalRouteOutLine(models.TransientModel):
     """
 
     _name = "sale.rental.route.out.line"
+    _description = "Sale Rental Route Out Line"
 
     parent_id = fields.Many2one("sale.rental.route", "Parent")
     rental_id = fields.Many2one("sale.rental", "Rental", required=True)
@@ -140,6 +141,7 @@ class SaleRentalRouteInLine(models.TransientModel):
     """
 
     _name = "sale.rental.route.in.line"
+    _description = "Sale Rental Route In Line"
 
     parent_id = fields.Many2one("sale.rental.route", "Parent")
     rental_id = fields.Many2one("sale.rental", "Rental", required=True)
@@ -269,6 +271,7 @@ class SaleRentalRoute(models.TransientModel):
     """
 
     _name = "sale.rental.route"
+    _description = "Sale Rental Route"
 
     rental_id = fields.Many2one("sale.rental", "Rent")
     product_id = fields.Many2one(

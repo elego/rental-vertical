@@ -2,6 +2,11 @@
 Changelog
 ---------
 
+- 03dc336 2020-06-12 15:32:00 +0200 yweng@elegosoft.com  (origin/feature_3477_blp636_rental_product_insurance_v12) [IMP] add dummy field insurance_amount to due with the update error of module rockbird_sale
+- 85703c8 2020-06-11 14:46:38 +0200 yweng@elegosoft.com  [IMP] delete field insurance_amount of sale.order.line and change function _compute_insurance_amount to onchange_insurance_amount
+- 8d86931 2020-05-25 17:47:16 +0200 yweng@elegosoft.com  (origin/feature_3477_blp623_rental_product_insurance_v12) [IMP] add some translations for module rental_product_insurance and rental_contract_insurance
+- 157939b 2020-05-25 16:58:30 +0200 yweng@elegosoft.com  [IMP] improves unittests of module rental_contract_insurance and rental_product_insurance
+- 57b29fa 2020-05-24 12:58:49 +0200 wagner@elegosoft.com  (origin/fix_3339_blp622_extend_documentation_v12, origin/fix_3339_bl616_extend_documentation_v12, fix_3339_blp622_extend_documentation_v12, fix_3339_bl616_extend_documentation_v12) update documentation for fix release (issue #3339)
 - cb28bea 2020-05-19 18:05:47 +0200 yweng@elegosoft.com  (origin/feature_3477_blp602_rental_product_insurance_v12, feature_3477_blp602_rental_product_insurance_v12) [IMP] Extension of Rental Insurance 1. New Button on tree view to update/create insurance line 2. set product_uom_qty of Insurance by using number_of_time_unit or product_uom_qty / rental_qty of origin line 3. add function fields to calculate insurance_price_unit and insurance_amount
 - 94dc79c 2020-05-16 18:10:44 +0200 wagner@elegosoft.com  (origin/fix_3339_blp559_extend_documentation_v12, fix_3339_blp559_extend_documentation_v12) update module documentation (issue #3339)
 - 89adaaf 2020-05-16 14:54:03 +0200 wagner@elegosoft.com  fixup categories and regenerate documentation (issue #3339)

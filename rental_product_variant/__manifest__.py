@@ -19,6 +19,7 @@ Additional fields:
  - additional_info [Html]: arbitrary additional infomation
 
 Additional fields configured and added by product category:
+ - Show Product Identification Number -> product_number [Char]: product identification number
  - Show Vehicle Identification Number -> vehicle_number [Char]: vehicle identification number
  - Show License Plate -> license_plate [Char]: license plate
  - Show Initial Registration -> init_regist [Date]: date of initial registration
@@ -26,7 +27,7 @@ Additional fields configured and added by product category:
     'usage': '''
 In order to get vehicle related fields, open the product category and activate the desired checkboxes.
 ''',
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.1.0',
     'category': 'Rental',
     'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
