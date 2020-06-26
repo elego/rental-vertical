@@ -287,8 +287,8 @@ msgstr "Typ"
 
 #. module: rental_product_variant
 #: model:ir.model.fields,field_description:rental_product_variant.field_product_product__vehicle_number
-msgid "Vehicle Identification Number"
-msgstr "Fahrgestellnummer"
+msgid "Vehicle Identification Number (VIN)"
+msgstr "Fahrzeug-Identifizierungsnummer (FIN) "
 
 #. module: rental_product_variant
 #: model:ir.model.fields,field_description:rental_product_variant.field_product_product__manu_year
