@@ -2,6 +2,7 @@
 Changelog
 ---------
 
+- 57b29fa 2020-05-24 12:58:49 +0200 wagner@elegosoft.com  (origin/fix_3339_blp622_extend_documentation_v12, origin/fix_3339_bl616_extend_documentation_v12, fix_3339_blp622_extend_documentation_v12, fix_3339_bl616_extend_documentation_v12) update documentation for fix release (issue #3339)
 - 94dc79c 2020-05-16 18:10:44 +0200 wagner@elegosoft.com  (origin/fix_3339_blp559_extend_documentation_v12, fix_3339_blp559_extend_documentation_v12) update module documentation (issue #3339)
 - 396490e 2020-05-16 13:18:00 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_3339_blp559_refactor_menu_view_v12: addons-rental-vertical remotes/origin/fix_3339_blp559_refactor_menu_view_v12 - 89adaaf36d7d2e9e16214501d4ad516a1eb7a007 fixup categories and regenerate documentation (issue #3339)
 - 89adaaf 2020-05-16 14:54:03 +0200 wagner@elegosoft.com  fixup categories and regenerate documentation (issue #3339)
