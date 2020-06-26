@@ -38,7 +38,9 @@ class SaleOrderLine(models.Model):
                 ('rental_ok', '=', True),
                 '&',
                 ('type', '=', 'service'),
+                '&',
                 ('sale_ok', '=', True),
+                ('rental_ok', '=', False),
             ]
         return domain
 
