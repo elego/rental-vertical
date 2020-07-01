@@ -6,9 +6,9 @@
         <field name="inherit_id" ref="contract.contract_contract_form_view"/>
         <field name="arch" type="xml">
             <field name="contract_type" position="replace">
-                <field name="contract_type" attrs="{'readonly': [('sale_type_id', '!=', False)]}" required="1"/>
+                <field name="contract_type" required="1"/>
                 <field name="sale_type_id" invisible="1"/>
-                <field name="type_id" required="1" domain="[('contract_type', '=', contract_type)]" attrs="{'readonly': [('sale_type_id', '!=', False)]}"/>
+                <field name="type_id" required="1" domain="[('contract_type', '=', contract_type)]"/>
             </field>
         </field>
     </record>
