@@ -6,6 +6,9 @@ from odoo import api, fields, models, _
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
+    date_start = fields.Date(related="start_date", store=True)
+    date_end = fields.Date(related="end_date", store=True)
+
     @api.onchange('end_date')
     def end_date_change(self):
         res = super(SaleOrderLine, self).end_date_change()
