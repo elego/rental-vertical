@@ -99,6 +99,29 @@ odoo.define('rental.contract', function (require) {
         trigger: '.o_form_button_save',
         position: 'bottom',
     }, {
+        content: _t("Click on line to"),
+        trigger: "tr.o_data_row",
+        extra_trigger: 'div.o_form_readonly',
+        run: 'click',
+        position: "bottom",
+    }, {
+        content: _t('Check End Date'),
+        trigger: 'span[name="end_date"]:contains("08/01/2020")',
+        in_modal: false,
+        position: 'bottom',
+        run: function (){
+            if ($('span[name="date_end"]:contains("08/01/2020")').length) {
+                console.log('Check date_end successfully.');
+            } else {
+                console.error('Check date_end unsuccessfully');
+            }
+        } //check End Date = Date End 08/01/2020 (#3748)
+    }, {
+        content: _t('Click Button Close'),
+        trigger: 'button.close',
+        in_modal: false,
+        position: 'bottom',
+    }, {
         content: _t("Click Print"),
         trigger: 'button[name="print_quotation"]:visible:not(:disabled)',
     }, {
