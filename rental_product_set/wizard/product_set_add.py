@@ -56,10 +56,16 @@ class ProductSetAdd(models.TransientModel):
 
     @api.multi
     def prepare_rental_so_line(self, sale_order_id, set_line, product, uom_id, max_sequence):
+        rental_type = self.env.ref('rental_base.rental_sale_type')
         line_data = self.env['sale.order.line'].new({
                 'order_id': sale_order_id,
                 'product_id': product.id,
-                'display_product_id': product.id,
+                'display_product_id': product.rented_product_id.id,
+                'rental': True,
+                'rental_qty': self.quantity,
+                'can_sell_rental': False,
+                'sell_rental_id': False,
+                'type_id': rental_type.id,
                 'product_uom_qty': set_line.quantity * self.quantity,
                 'product_uom': uom_id.id,
                 'sequence': max_sequence + set_line.sequence,
@@ -67,8 +73,11 @@ class ProductSetAdd(models.TransientModel):
                 'start_date': self.start_date,
                 'end_date': self.end_date,
             })
+        line_data.rental_product_id_change()
+        line_data.product_uom_change()
         line_data.product_id_change()
         line_data.onchange_start_end_date()
+        line_data.rental_qty_number_of_days_change()
         line_values = line_data._convert_to_write(line_data._cache)
         return line_values
 
