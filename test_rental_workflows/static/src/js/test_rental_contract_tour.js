@@ -118,9 +118,8 @@ odoo.define('rental.contract', function (require) {
         } //check End Date = Date End 08/01/2020 (#3748)
     }, {
         content: _t('Click Button Close'),
-        trigger: 'button.close',
+        trigger: 'i.fa-close',
         in_modal: false,
-        position: 'bottom',
     }, {
         content: _t("Click Print"),
         trigger: 'button[name="print_quotation"]:visible:not(:disabled)',
@@ -146,13 +145,28 @@ odoo.define('rental.contract', function (require) {
         position: 'bottom',
         run: function (){} //check Contract: Contract Subtype = Rental Contract
     }, {
+        content: _t("Click on contract line"),
+        trigger: "tr.o_data_row",
+        run: 'click',
+        position: "bottom",
+    }, {
+        content: _t('Check Analytic Account'),
+        trigger: 'a[name="analytic_account_id"]:contains("[01532] Cat 930M")',
+        in_modal: false,
+        position: 'bottom',
+        run: function (){}
+    }, {
+        content: _t('Click Button Close'),
+        trigger: 'i.fa-close',
+        in_modal: false,
+    }, /*{
         content: _t('Check Analytic Account on Invoice'),
         trigger: '.o_form_view span[name="analytic_account_id"]:contains("[01532] Cat 930M")',
         extra_trigger: 'div[name="contract_line_ids"]',
         in_modal: false,
         position: 'bottom',
         run: function (){} //check Contract: (Analytic Account : [01532] Cat 930M)
-    }, {
+    }, */{
         content: _t('Check Date of Next Invoice'),
         trigger: '.o_form_view span[name="recurring_next_date"]:contains("04/01/2020")',
         extra_trigger: 'div[name="contract_line_ids"]',
@@ -168,7 +182,7 @@ odoo.define('rental.contract', function (require) {
         run: function (){} //check Contract Line: Date Start = 04/01/2020
     }, {
         content: _t('Check Date End on contract line'),
-        trigger: 'td.o_data_cell:contains("07/31/2020")',
+        trigger: 'td.o_data_cell:contains("08/01/2020")',
         extra_trigger: 'div[name="contract_line_ids"]',
         in_modal: false,
         position: 'bottom',
