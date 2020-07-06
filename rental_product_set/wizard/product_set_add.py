@@ -56,7 +56,7 @@ class ProductSetAdd(models.TransientModel):
 
     @api.multi
     def prepare_rental_so_line(self, sale_order_id, set_line, product, uom_id, max_sequence):
-        rental_type = self.env.ref('rental_base.rental_sale_type')
+        # rental_type = self.env.ref('rental_base.rental_sale_type')
         line_data = self.env['sale.order.line'].new({
                 'order_id': sale_order_id,
                 'product_id': product.id,
@@ -65,7 +65,7 @@ class ProductSetAdd(models.TransientModel):
                 'rental_qty': self.quantity,
                 'can_sell_rental': False,
                 'sell_rental_id': False,
-                'type_id': rental_type.id,
+                'rental_type': 'new_rental',
                 'product_uom_qty': set_line.quantity * self.quantity,
                 'product_uom': uom_id.id,
                 'sequence': max_sequence + set_line.sequence,
