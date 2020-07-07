@@ -14,6 +14,7 @@
         'views/product_view.xml',
         'views/sale_view.xml',
         'views/shipment_plan_view.xml',
+        'views/stock_view.xml',
     ],
     'demo': [
     ],

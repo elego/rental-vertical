@@ -12,7 +12,7 @@ class ShipmentPlan(models.Model):
 
     src_forward_shipment_plan_id = fields.Many2one(
         'shipment.plan',
-        "Dest Forward Shipment Plan",
+        "Source Forward Shipment Plan",
         ondelete="restrict",
         copy=False,
     )
