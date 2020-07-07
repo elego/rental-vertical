@@ -14,6 +14,7 @@ With this module, product packs can be rented as one compound product.
         'product_pack',
     ],
     'data': [
+        'security/ir.model.access.csv',
     ],
     'demo': [
     ],
