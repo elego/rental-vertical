@@ -67,6 +67,7 @@ class TestRentalProductSet(TransactionCase):
         # set end_date with fix days=32
         self.start_date = date.today()
         self.end_date = self.start_date + timedelta(days=32)
+        self.end_date_two_motnhs = self.start_date + timedelta(days=64)
         # create so with only one sale order line
         self.rental_so_order = self.env['sale.order'].create({
             'partner_id': self.env.ref('base.res_partner_1').id,
@@ -145,7 +146,7 @@ class TestRentalProductSet(TransactionCase):
             'product_set_id': self.rental_product_set.id,
             'rental_ok': True,
             'start_date': self.start_date,
-            'end_date': self.end_date,
+            'end_date': self.end_date_two_motnhs,
             'quantity': 1,
             'uom_id': self.uom_month.id,
             })
@@ -167,9 +168,9 @@ class TestRentalProductSet(TransactionCase):
             [self.start_date, self.start_date])
         # check end_date
         self.assertEquals(so.order_line.mapped('end_date'),
-            [self.end_date, self.end_date])
+            [self.end_date_two_motnhs, self.end_date_two_motnhs])
         # check product_uom_qty, rental_qty
         self.assertEquals(so.order_line.mapped('product_uom_qty'),
-            [1.0, 1.0])
+            [2.0, 2.0])
         self.assertEquals(so.order_line.mapped('rental_qty'),
             [1.0, 1.0])
