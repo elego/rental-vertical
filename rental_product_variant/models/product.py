@@ -131,7 +131,7 @@ class ProductProduct(models.Model):
     def _get_sale_order_ids(self, type_id):
         self.ensure_one()
         sols = self.env['sale.order.line'].search([
-            ('product_id', '=', self.id)])
+            ('display_product_id', '=', self.id)])
         return list(set([l.order_id.id for l in sols if l.order_id.type_id == type_id]))
 
     @api.multi

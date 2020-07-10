@@ -20,8 +20,12 @@ class ProductProduct(models.Model):
     @api.multi
     def _get_contract_ids(self, contract_type):
         self.ensure_one()
-        cls = self.env['contract.line'].search([
-            ('product_id','=',self.id)])
+        if contract_type == 'sale':
+            cls = self.env['contract.line'].search([
+            ('product_id.rented_product_id','=',self.id)])
+        else:
+            cls = self.env['contract.line'].search([
+                ('product_id','=',self.id)])
         return list(set([l.contract_id.id for l in cls if l.contract_id.contract_type == contract_type]))
 
     @api.multi
