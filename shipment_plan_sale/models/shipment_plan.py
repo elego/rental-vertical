@@ -1,25 +1,17 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
+from datetime import timedelta
 from odoo import api, fields, models, exceptions, _
 import logging
 
 logger = logging.getLogger(__name__)
 
 
-class StockMove(models.Model):
-    _inherit = 'stock.move'
-
-    shipment_plan_id = fields.Many2one(
-        'shipment.plan',
-        'Shipment Plan',
-        ondelete="set null",
-    )
-
 class ShipmentPlan(models.Model):
     _inherit = "shipment.plan"
 
     plan_type = fields.Selection(
-        selection_add=[('sale', 'Sale')]
+        selection_add=[('internal', 'Internal Picking'), ('sale', 'Sale')]
     )
     origin_sale_line_ids = fields.One2many(
         'sale.order.line',

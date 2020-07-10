@@ -6,6 +6,9 @@ from odoo import api, fields, models, _
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
+    date_start = fields.Date(related="start_date", store=True)
+    date_end = fields.Date(related="end_date", store=True)
+
     @api.onchange('end_date')
     def end_date_change(self):
         res = super(SaleOrderLine, self).end_date_change()
@@ -39,14 +42,14 @@ class SaleOrder(models.Model):
         so_rental_order = self.env.ref('rental_base.rental_sale_type')
         customer_contract = self.env.ref('rental_contract.customer_contract_type')
         customer_rental_contract = self.env.ref('rental_contract.customer_rental_contract_type')
-
+        type_id = False
         if res:
             if self.type_id.id == so_normal_order.id:
                 type_id = customer_contract
             if self.type_id.id == so_rental_order.id:
                 type_id = customer_rental_contract
             res.update({
-                'type_id': type_id.id,
+                'type_id': type_id.id if type_id else False,
                 'sale_type_id': self.type_id.id
             })
         return res

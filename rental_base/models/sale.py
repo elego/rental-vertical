@@ -40,6 +40,15 @@ class SaleOrder(models.Model):
     default_end_date = fields.Date(string='Default End Date',
             compute='_compute_default_end_date', readonly=False)
 
+    @api.multi
+    def unlink(self):
+        for rec in self:
+            rentals = self.env['sale.rental'].search([
+                ('start_order_line_id', 'in', rec.order_line.ids),
+            ])
+            rentals.unlink()
+        res = super().unlink()
+
 
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
