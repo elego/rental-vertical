@@ -32,6 +32,7 @@ Otherwise you can not deal with rental orders.
     'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
         'account',
+        'board',
         'product_analytic',
         'product_dimension',
         'purchase',

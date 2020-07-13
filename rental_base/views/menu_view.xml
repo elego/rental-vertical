@@ -54,6 +54,12 @@
         sequence="5"
         web_icon="rental_base,static/description/icon.png" />
 
+    <menuitem name="Dashboard"
+        parent="menu_rental_root"
+        id="menu_rental_dashboard"
+        action="board.open_board_my_dash_action"
+        sequence="0"/>
+
     <menuitem name="Customers"
         id="menu_top_customer"
         parent="menu_rental_root"
