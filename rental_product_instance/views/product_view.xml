@@ -57,9 +57,6 @@
                 <xpath expr="//button[@name='action_view_sales']" position="attributes">
                     <attribute name="attrs">{'invisible': [('product_instance', '=', True)]}</attribute>
                 </xpath>
-                <xpath expr="//button[@name='action_view_po']" position="attributes">
-                    <attribute name="attrs">{'invisible': ['|',('product_instance', '=', True),('purchase_ok', '=', False)]}</attribute>
-                </xpath>
                 <xpath expr="//group[field[@name='manu_type_id']]" position="after">
                     <group name="instance_attributes"
                         attrs="{'invisible': [('product_instance', '=', False)]}">
@@ -90,6 +87,18 @@
                         <field name="real_total_hours" attrs="{'invisible': [('show_instance_condition_type', '!=', 'hour')]}"/>
                         <field name="real_total_rental_time"/>
                     </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="product_normal_form_view_inherit_purchase" model="ir.ui.view">
+            <field name="name">product.product.purchase.order</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="groups_id" eval="[(4, ref('purchase.group_purchase_user'))]"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_view_po']" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|',('product_instance', '=', True),('purchase_ok', '=', False)]}</attribute>
                 </xpath>
             </field>
         </record>
