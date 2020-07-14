@@ -102,10 +102,19 @@ class ProductProduct(models.Model):
     )
 
     # Smartbutton Counts
-    invoice_count = fields.Integer(
+    #TODO Delete field in next Baseline
+    invoice_count = fields.Integer('Invoices')
+
+    in_invoice_count = fields.Integer(
         compute='_compute_invoice_count',
-        string="Invoices",
-        help="This is the total number of invoices including "
+        string="In Inv.",
+        help="This is the total number of in invoices including "
+             "invoice lines with this product.",
+    )
+    out_invoice_count = fields.Integer(
+        compute='_compute_invoice_count',
+        string="Out Inv.",
+        help="This is the total number of out invoices including "
              "invoice lines with this product.",
     )
     so_count = fields.Integer(
@@ -131,7 +140,10 @@ class ProductProduct(models.Model):
     def _get_sale_order_ids(self, type_id):
         self.ensure_one()
         sols = self.env['sale.order.line'].search([
-            ('display_product_id', '=', self.id)])
+            '|',
+            ('product_id', '=', self.id),
+            ('product_id', 'in', self.rental_service_ids.ids),
+        ])
         return list(set([l.order_id.id for l in sols if l.order_id.type_id == type_id]))
 
     @api.multi
@@ -146,13 +158,20 @@ class ProductProduct(models.Model):
         return list(set([l.order_id.id for l in pols]))
 
     @api.multi
+    def _get_invoice_ids(self, inv_types=[]):
+        self.ensure_one()
+        ails = self.env['account.invoice.line'].search([
+            '|',
+            ('product_id', '=', self.id),
+            ('product_id', 'in', self.rental_service_ids.ids),
+        ])
+        return list(set([l.invoice_id.id for l in ails if l.invoice_id.type in inv_types]))
+
+    @api.multi
     def action_view_sale_order(self):
         self.ensure_one()
         type_id = self.env.ref('sale_order_type.normal_sale_type')
         record_ids = self._get_sale_order_ids(type_id)
-        for rental_service in self.rental_service_ids:
-            record_ids += rental_service._get_sale_order_ids(type_id)
-        record_ids = list(set(record_ids))
         action = self.env.ref('sale.action_orders').read([])[0]
         action['domain'] = [('id','in', record_ids)]
         return action
@@ -162,9 +181,6 @@ class ProductProduct(models.Model):
         self.ensure_one()
         type_id = self.env.ref('rental_base.rental_sale_type')
         record_ids = self._get_sale_order_ids(type_id)
-        for rental_service in self.rental_service_ids: 
-            record_ids += rental_service._get_sale_order_ids(type_id)
-        record_ids = list(set(record_ids))
         action = self.env.ref('rental_base.action_rental_orders').read([])[0]
         action['domain'] = [('id','in', record_ids)]
         return action
@@ -187,10 +203,23 @@ class ProductProduct(models.Model):
             }
 
     @api.multi
+    def action_view_invoice(self):
+        self.ensure_one()
+        inv_type =  self.env.context.get('inv_type')
+        record_ids = self._get_invoice_ids(inv_type)
+        action = {}
+        if inv_type == 'in_invoice':
+            action = self.env.ref('account.').read([])[0]
+            action['domain'] = [('id','in', record_ids)]
+        elif inv_type == 'out_invoice':
+            action = self.env.ref('account.action_invoice_tree1').read([])[0]
+            action['domain'] = [('id','in', record_ids)]
+        return action
+
+    @api.multi
     def action_view_all_invoice(self):
         self.ensure_one()
-        invls = self._get_related_records(model='account.invoice.line')
-        record_ids = list(set([l.invoice_id.id for l in invls]))
+        record_ids = self._get_invoice_ids(inv_types=['in_invoice', 'out_invoice'])
         tree_view_id = self.env.ref("account.invoice_tree").id
         form_view_id = self.env.ref("account.invoice_form").id
         return {
@@ -205,17 +234,10 @@ class ProductProduct(models.Model):
             }
 
     @api.multi
-    def _get_related_records(self, model):
-        self.ensure_one()
-        records = self.env[model].search(
-            [('product_id', '=', self.id)])
-        return records
-
-    @api.multi
     def _compute_invoice_count(self):
         for rec in self:
-            rec.invoice_count = len(rec._get_related_records(
-                model='account.invoice.line'))
+            rec.in_invoice_count = len(rec._get_invoice_ids(inv_types=['in_invoice']))
+            rec.out_invoice_count = len(rec._get_invoice_ids(inv_types=['out_invoice']))
 
     @api.multi
     def _compute_so_count(self):
