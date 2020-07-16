@@ -6,9 +6,9 @@ from odoo import api, fields, models, _
 class RepairLine(models.Model):
     _inherit = 'repair.line'
 
-    expense_analytic_tag_ids = fields.Many2many(
+    analytic_tag_ids = fields.Many2many(
         'account.analytic.tag',
-        string = 'Expense Analytic Tags',
+        string = 'Analytic Tags',
     )
 
     analytic_cost = fields.Float(
@@ -31,9 +31,9 @@ class RepairLine(models.Model):
 class RepairFee(models.Model):
     _inherit = 'repair.fee'
 
-    expense_analytic_tag_ids = fields.Many2many(
+    analytic_tag_ids = fields.Many2many(
         'account.analytic.tag',
-        string = 'Expense Analytic Tags',
+        string = 'Analytic Tags',
     )
 
     analytic_cost = fields.Float(
@@ -125,13 +125,13 @@ class RepairOrder(models.Model):
                 for operation in repair.operations:
                     if operation.invoiced and operation.invoice_line_id:
                         operation.invoice_line_id.account_analytic_id = analytic_id
-                    if operation.invoiced and operation.invoice_line_id and operation.expense_analytic_tag_ids:
-                        operation.invoice_line_id.analytic_tag_ids = operation.expense_analytic_tag_ids
+                    if operation.invoiced and operation.invoice_line_id and operation.analytic_tag_ids:
+                        operation.invoice_line_id.analytic_tag_ids = operation.analytic_tag_ids
                 for fee in repair.fees_lines:
                     if fee.invoiced and fee.invoice_line_id:
                         fee.invoice_line_id.account_analytic_id = analytic_id
-                    if fee.invoiced and fee.invoice_line_id and fee.expense_analytic_tag_ids:
-                        fee.invoice_line_id.analytic_tag_ids = fee.expense_analytic_tag_ids
+                    if fee.invoiced and fee.invoice_line_id and fee.analytic_tag_ids:
+                        fee.invoice_line_id.analytic_tag_ids = fee.analytic_tag_ids
         return res
 
     @api.multi
@@ -166,7 +166,7 @@ class RepairOrder(models.Model):
             'name': line.name,
             'date': self.date_end,
             'account_id': self.expense_analytic_account_id.id,
-            'tag_ids': [(6, 0, line.expense_analytic_tag_ids.ids)],
+            'tag_ids': [(6, 0, line.analytic_tag_ids.ids)],
             'unit_amount': line.product_uom_qty,
             'product_id': line.product_id and line.product_id.id or False,
             'product_uom_id': line.product_uom and line.product_uom.id or False,

@@ -18,13 +18,13 @@
                 <field name="date_end" />
             </field>
             <xpath expr="//field[@name='operations']//tree//field[@name='product_uom_qty']" position="before">
-                <field name="expense_analytic_tag_ids" groups="analytic.group_analytic_tags" widget="many2many_tags" options="{'color_field': 'color'}" />
+                <field name="analytic_tag_ids" groups="analytic.group_analytic_tags" widget="many2many_tags" options="{'color_field': 'color'}" />
             </xpath>
             <xpath expr="//field[@name='operations']//tree//field[@name='tax_id']" position="before">
                 <field name="analytic_cost" />
             </xpath>
             <xpath expr="//field[@name='fees_lines']//tree//field[@name='product_uom_qty']" position="before">
-                <field name="expense_analytic_tag_ids" groups="analytic.group_analytic_tags" widget="many2many_tags" options="{'color_field': 'color'}" />
+                <field name="analytic_tag_ids" groups="analytic.group_analytic_tags" widget="many2many_tags" options="{'color_field': 'color'}" />
             </xpath>
             <xpath expr="//field[@name='fees_lines']//tree//field[@name='tax_id']" position="before">
                 <field name="analytic_cost" />
