@@ -32,7 +32,8 @@
                     </button>
                     <button class="oe_stat_button" name="action_view_all_invoice"
                         type="object" icon="fa-money">
-                        <field name="invoice_count" widget="statinfo" />
+                        <field name="in_invoice_count" widget="statinfo" />
+                        <field name="out_invoice_count" widget="statinfo" />
                     </button>
                     <button class="oe_stat_button" name="action_view_all_purchase_order"
                         type="object" icon="fa-shopping-cart" attrs="{'invisible': [('purchase_ok', '=', False)]}">

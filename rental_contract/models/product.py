@@ -20,21 +20,17 @@ class ProductProduct(models.Model):
     @api.multi
     def _get_contract_ids(self, contract_type):
         self.ensure_one()
-        if contract_type == 'sale':
-            cls = self.env['contract.line'].search([
-            ('product_id.rented_product_id','=',self.id)])
-        else:
-            cls = self.env['contract.line'].search([
-                ('product_id','=',self.id)])
+        cls = self.env['contract.line'].search([
+            '|',
+            ('product_id', '=', self.id),
+            ('product_id', 'in', self.rental_service_ids.ids),
+        ])
         return list(set([l.contract_id.id for l in cls if l.contract_id.contract_type == contract_type]))
 
     @api.multi
     def action_view_supplier_contract(self):
         self.ensure_one()
         record_ids = self._get_contract_ids(contract_type='purchase')
-        for rental_service in self.rental_service_ids: 
-            record_ids += rental_service._get_contract_ids(contract_type='purchase')
-        record_ids = list(set(record_ids))
         action = self.env.ref('contract.action_supplier_contract').read([])[0]
         action['domain'] = [('id','in', record_ids)]
         return action
@@ -43,9 +39,6 @@ class ProductProduct(models.Model):
     def action_view_customer_contract(self):
         self.ensure_one()
         record_ids = self._get_contract_ids(contract_type='sale')
-        for rental_service in self.rental_service_ids: 
-            record_ids += rental_service._get_contract_ids(contract_type='sale')
-        record_ids = list(set(record_ids))
         action = self.env.ref('contract.action_customer_contract').read([])[0]
         action['domain'] = [('id','in', record_ids)]
         return action
