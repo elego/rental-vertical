@@ -20,7 +20,7 @@
         <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
         <field name="search_view_id" ref="sale.sale_order_view_search_inherit_sale" />
         <field name="context" eval="{'default_type_id': ref('rental_sale_type')}" />
-        <field name="domain" eval="[('type_id','=', ref('rental_sale_type')), ('state', 'not in', ('draft', 'sent', 'cancel'))]" />
+        <field name="domain" eval="[('type_id','=', ref('rental_sale_type')), ('state', 'not in', ('draft', 'sent'))]" />
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create a new quotation, the first step of a new sale!
@@ -38,7 +38,7 @@
         <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
         <field name="search_view_id" ref="sale.sale_order_view_search_inherit_sale" />
         <field name="context" eval="{'default_type_id': ref('rental_sale_type')}" />
-        <field name="domain" eval="[('type_id','=', ref('rental_sale_type')), ('state', '=', 'draft')]" />
+        <field name="domain" eval="[('type_id','=', ref('rental_sale_type')), ('state', 'in', ['draft', 'cancel'])]" />
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create a new quotation, the first step of a new sale!
