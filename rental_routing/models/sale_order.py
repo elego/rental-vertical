@@ -114,7 +114,7 @@ class SaleOrder(models.Model):
             raise UserError(
                 _('No found default picking type "internal" of warehouse.')
             )
-        location_name = "Location [%s]" % self.partner_shipping_id.name
+        location_name = "Location [%s]" % self.partner_shipping_id.display_name
         new_location = rental_out_location.copy({"name": location_name})
 
         # set onsite location of partner address
@@ -122,7 +122,7 @@ class SaleOrder(models.Model):
         self.partner_shipping_id.property_stock_customer = new_location
 
         # Create a new route for the new location
-        route_name = "Rent [%s]" % self.partner_shipping_id.name
+        route_name = "Rent [%s]" % self.partner_shipping_id.display_name
         new_route = self.warehouse_id.rental_route_id.copy(
             {"name": route_name}
         )
