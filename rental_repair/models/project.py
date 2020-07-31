@@ -36,6 +36,7 @@ class ProjectTask(models.Model):
         comodel_name = 'repair.order',
         inverse_name = 'project_task_id',
         string = 'Repair Orders',
+        groups = 'stock.group_stock_user',
     )
 
     vendor_repair_ids = fields.One2many(
