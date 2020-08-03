@@ -45,9 +45,7 @@ class ProductProduct(models.Model):
         self.ensure_one()
         res_model = 'project.task'
         helpdesk = self.env.ref('rental_repair.project_project_helpdesk')
-        record_ids = self.env[res_model].search([
-            ('product_id', '=', self.id),
-            ('project_id', '=', helpdesk.id)]).ids
+        record_ids = self.task_ids.ids
         tree_view_id = self.env.ref('rental_repair.view_project_task_tree').id
         form_view_id = self.env.ref('project.view_task_form2').id
         kanban_view_id = self.env.ref('project.view_task_kanban').id
