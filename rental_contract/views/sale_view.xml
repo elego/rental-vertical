@@ -15,10 +15,10 @@
                 <attribute name="attrs">{'invisible': 1}</attribute>
             </xpath>
             <xpath expr="//field[@name='order_line']//field[@name='date_start']/.." position="attributes">
-                <attribute name="attrs">{'invisible': ['|', ('is_contract', '=', False), ('rental', '=', True)]}</attribute>
+                <attribute name="invisible">1</attribute>
             </xpath>
             <xpath expr="//field[@name='order_line']//field[@name='date_end']/.." position="attributes">
-                <attribute name="attrs">{'invisible': ['|', ('is_contract', '=', False), ('rental', '=', True)]}</attribute>
+                <attribute name="invisible">1</attribute>
             </xpath>
             <xpath expr="//field[@name='is_contract']/following-sibling::separator" position="attributes">
                 <attribute name="attrs">{'invisible': 1}</attribute>
@@ -86,5 +86,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>

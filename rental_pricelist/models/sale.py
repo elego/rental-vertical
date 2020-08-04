@@ -1,7 +1,7 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
 from odoo import api, fields, models, exceptions, _
-from odoo.tools import float_compare, float_round
+from odoo.tools import float_compare
 from odoo.exceptions import ValidationError
 
 
@@ -43,17 +43,6 @@ class SaleOrderLine(models.Model):
                 ('rental_ok', '=', False),
             ]
         return domain
-
-    @api.model
-    def _get_time_uom(self):
-        uom_month = self.env.ref('rental_base.product_uom_month')
-        uom_day = self.env.ref('uom.product_uom_day')
-        uom_hour = self.env.ref('uom.product_uom_hour')
-        return {
-            'month': uom_month,
-            'day': uom_day,
-            'hour': uom_hour,
-        }
 
     @api.multi
     def _set_product_id(self):
@@ -279,17 +268,7 @@ class SaleOrderLine(models.Model):
     @api.onchange('start_date', 'end_date', 'product_uom')
     def onchange_start_end_date(self):
         if self.start_date and self.end_date:
-            number = False
-            time_uoms = self._get_time_uom()
-            if self.product_uom.id == time_uoms['day'].id:
-                number = (self.end_date - self.start_date).days + 1
-            elif self.product_uom.id == time_uoms['hour'].id:
-                number = ((self.end_date - self.start_date).days + 1) * 8
-            elif self.product_uom.id == time_uoms['month'].id:
-                # ref link to calculate months (why 30.4167 ?)
-                # https://www.checkyourmath.com/convert/time/days_months.php
-                number = ((self.end_date - self.start_date).days + 1) / 30.4167
-                number = float_round(number, precision_rounding=1)
+            number = self._get_number_of_time_unit()
             self.number_of_time_unit = number
 
     # Override function from module sale_start_end_dates
