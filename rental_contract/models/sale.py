@@ -38,16 +38,15 @@ class SaleOrder(models.Model):
     @api.multi
     def _prepare_contract_value(self, contract_template):
         res = super(SaleOrder, self)._prepare_contract_value(contract_template)
-        so_normal_order = self.env.ref('sale_order_type.normal_sale_type')
         so_rental_order = self.env.ref('rental_base.rental_sale_type')
         customer_contract = self.env.ref('rental_contract.customer_contract_type')
         customer_rental_contract = self.env.ref('rental_contract.customer_rental_contract_type')
         type_id = False
         if res:
-            if self.type_id.id == so_normal_order.id:
-                type_id = customer_contract
             if self.type_id.id == so_rental_order.id:
                 type_id = customer_rental_contract
+            else:
+                type_id = customer_contract
             res.update({
                 'type_id': type_id.id if type_id else False,
                 'sale_type_id': self.type_id.id
