@@ -21,6 +21,13 @@ class SaleOrderLine(models.Model):
         if self.start_date:
             self.date_start = self.start_date
 
+    @api.onchange('date_start', 'date_end', 'product_uom')
+    def onchange_contract_date_start_end(self):
+        if self.date_start and self.date_end and not self.rental:
+            number = self._get_number_of_time_unit()
+            if number:
+                self.product_uom_qty = number
+
     @api.multi
     def _prepare_contract_line_values(
         self, contract, predecessor_contract_line_id=False

@@ -1,6 +1,7 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
 from odoo import api, fields, models, exceptions, _
+from odoo.tools import float_round
 
 
 class SaleOrder(models.Model):
@@ -64,3 +65,30 @@ class SaleOrderLine(models.Model):
         if self.product_id.income_analytic_account_id:
             res['account_analytic_id'] = self.product_id.income_analytic_account_id.id
         return res
+
+    @api.model
+    def _get_time_uom(self):
+        uom_month = self.env.ref('rental_base.product_uom_month')
+        uom_day = self.env.ref('uom.product_uom_day')
+        uom_hour = self.env.ref('uom.product_uom_hour')
+        return {
+            'month': uom_month,
+            'day': uom_day,
+            'hour': uom_hour,
+        }
+
+    @api.multi
+    def _get_number_of_time_unit(self):
+        self.ensure_one()
+        number = False
+        time_uoms = self._get_time_uom()
+        if self.product_uom.id == time_uoms['day'].id:
+            number = (self.end_date - self.start_date).days + 1
+        elif self.product_uom.id == time_uoms['hour'].id:
+            number = ((self.end_date - self.start_date).days + 1) * 8
+        elif self.product_uom.id == time_uoms['month'].id:
+            # ref link to calculate months (why 30.4167 ?)
+            # https://www.checkyourmath.com/convert/time/days_months.php
+            number = ((self.end_date - self.start_date).days + 1) / 30.4167
+            number = float_round(number, precision_rounding=1)
+        return number
