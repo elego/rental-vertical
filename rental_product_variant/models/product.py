@@ -137,14 +137,18 @@ class ProductProduct(models.Model):
     )
 
     @api.multi
-    def _get_sale_order_ids(self, type_id):
+    def _get_sale_order_ids(self, rental=True):
         self.ensure_one()
+        type_id = self.env.ref('rental_base.rental_sale_type')
         sols = self.env['sale.order.line'].search([
             '|',
             ('product_id', '=', self.id),
             ('product_id', 'in', self.rental_service_ids.ids),
         ])
-        return list(set([l.order_id.id for l in sols if l.order_id.type_id == type_id]))
+        if rental:
+            return list(set([l.order_id.id for l in sols if l.order_id.type_id == type_id]))
+        else:
+            return list(set([l.order_id.id for l in sols if l.order_id.type_id != type_id]))
 
     @api.multi
     def _get_purchase_order_ids(self):
@@ -170,8 +174,7 @@ class ProductProduct(models.Model):
     @api.multi
     def action_view_sale_order(self):
         self.ensure_one()
-        type_id = self.env.ref('sale_order_type.normal_sale_type')
-        record_ids = self._get_sale_order_ids(type_id)
+        record_ids = self._get_sale_order_ids()
         action = self.env.ref('sale.action_orders').read([])[0]
         action['domain'] = [('id','in', record_ids)]
         return action
@@ -179,8 +182,7 @@ class ProductProduct(models.Model):
     @api.multi
     def action_view_rental_order(self):
         self.ensure_one()
-        type_id = self.env.ref('rental_base.rental_sale_type')
-        record_ids = self._get_sale_order_ids(type_id)
+        record_ids = self._get_sale_order_ids(rental=True)
         action = self.env.ref('rental_base.action_rental_orders').read([])[0]
         action['domain'] = [('id','in', record_ids)]
         return action
@@ -241,15 +243,13 @@ class ProductProduct(models.Model):
 
     @api.multi
     def _compute_so_count(self):
-        type_id = self.env.ref('sale_order_type.normal_sale_type')
         for rec in self:
-            rec.so_count = len(rec._get_sale_order_ids(type_id))
+            rec.so_count = len(rec._get_sale_order_ids())
 
     @api.multi
     def _compute_rental_count(self):
-        type_id = self.env.ref('rental_base.rental_sale_type')
         for rec in self:
-            rec.rental_count = len(rec._get_sale_order_ids(type_id))
+            rec.rental_count = len(rec._get_sale_order_ids(rental=True))
 
     @api.multi
     def _compute_po_count(self):
