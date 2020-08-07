@@ -9,29 +9,29 @@ class SaleOrder(models.Model):
     @api.depends('order_line.start_date')
     def _compute_default_start_date(self):
         for order in self:
+            dates = []
             so_lines = order.order_line
             if so_lines:
-                for i in range(len(so_lines)):
-                    default_start_date = so_lines[0].start_date
-                    if i > 0 and so_lines[i].start_date:
-                        if so_lines[i].start_date <= default_start_date:
-                            default_start_date = so_lines[i].start_date
+                for line in so_lines:
+                    if line.start_date:
+                        dates.append(line.start_date)
+            if dates:
                 order.update({
-                    'default_start_date': default_start_date,
+                    'default_start_date': min(dates),
                     })
 
     @api.depends('order_line.end_date')
     def _compute_default_end_date(self):
         for order in self:
+            dates = []
             so_lines = order.order_line
             if so_lines:
-                for i in range(len(so_lines)):
-                    default_end_date = so_lines[0].end_date
-                    if i > 0 and so_lines[i].end_date:
-                        if so_lines[i].end_date >= default_end_date:
-                            default_end_date = so_lines[i].end_date
+                for line in so_lines:
+                    if line.end_date:
+                        dates.append(line.end_date)
+            if dates:
                 order.update({
-                    'default_end_date': default_end_date,
+                    'default_end_date': min(dates),
                     })
 
 
