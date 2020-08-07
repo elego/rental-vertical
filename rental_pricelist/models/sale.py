@@ -159,9 +159,9 @@ class SaleOrderLine(models.Model):
                                 'get some units back in the meantime or '
                                 're-supply the stock location "%s".') % (
                                 self.rental_qty,
-                                product_uom.name,
+                                self.product_id.rented_product_id.uom_id.name,
                                 in_location_available_qty,
-                                product_uom.name,
+                                self.product_id.rented_product_id.uom_id.name,
                                 rental_in_location.name,
                                 rental_in_location.name)
                         }
