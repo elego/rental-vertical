@@ -30,7 +30,19 @@
                         type="object" icon="fa-key" attrs="{'invisible': [('sale_ok', '=', False)]}">
                         <field name="rental_count" widget="statinfo" />
                     </button>
+                    <button class="oe_stat_button" name="action_view_invoice"
+                        context="{'inv_type': 'in_invoice'}"
+                        type="object" icon="fa-money">
+                        <field name="in_invoice_count" widget="statinfo" />
+                    </button>
+                    <button class="oe_stat_button" name="action_view_invoice"
+                        context="{'inv_type': 'out_invoice'}"
+                        type="object" icon="fa-money">
+                        <field name="out_invoice_count" widget="statinfo" />
+                    </button>
+                    <!--TODO delete button action_view_all_invoice-->
                     <button class="oe_stat_button" name="action_view_all_invoice"
+                        invisible="1"
                         type="object" icon="fa-money">
                         <field name="in_invoice_count" widget="statinfo" />
                         <field name="out_invoice_count" widget="statinfo" />
