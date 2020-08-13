@@ -2,6 +2,52 @@
 
 from odoo import api, fields, models, exceptions, _
 
+class ProductProduct(models.Model):
+    _inherit = 'product.product'
+
+    day_insurance_product_ids = fields.Many2many(
+        'product.product',
+        'day_insurance_product_rel',
+        'product_id',
+        'day_product_id',
+        string='Insurance Products (Day)',
+        domain=lambda self: [
+            ('uom_id', '=', self.env.ref('uom.product_uom_day').id),
+            ('is_insurance', '=', True),
+        ],
+    )
+    month_insurance_product_ids = fields.Many2many(
+        'product.product',
+        'month_insurance_product_rel',
+        'product_id',
+        'month_product_id',
+        string='Insurance Products (Month)',
+        domain=lambda self: [
+            ('uom_id', '=', self.env.ref('rental_base.product_uom_month').id),
+            ('is_insurance', '=', True),
+        ],
+    )
+
+    @api.constrains('is_insurance', 'uom_id')
+    def _check_insurance_uom(self):
+        res = self.search([
+            ('is_insurance', '=', True),
+            ('uom_id.category_id', '!=', self.env.ref('uom.uom_categ_wtime')),
+        ])
+        if res:
+            raise exceptions.ValidationError(
+                _('Uom of Insurance product should be in Category Time.'))
+
+    def _get_insurance_product(self, uom):
+        self.ensure_one()
+        uom_day = self.env.ref('uom.product_uom_day')
+        uom_month = self.env.ref('rental_base.product_uom_month')
+        res = self.browse()
+        if uom == uom_day:
+            res = self.day_insurance_product_ids
+        elif uom == uom_month:
+            res = self.month_insurance_product_ids
+        return res
 
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
@@ -11,6 +57,22 @@ class SaleOrderLine(models.Model):
         default=True,
     )
 
+    #override
+    @api.onchange('product_id', 'product_uom')
+    def onchange_insurance_product_id(self):
+        self.insurance_type = 'none'
+        if self.product_id:
+            if self.product_id.rented_product_id:
+                rented_product = self.product_id.rented_product_id
+                self.insurance_type = rented_product.insurance_type
+                self.insurance_percent = rented_product.insurance_percent
+                self.insurance_product_ids = rented_product._get_insurance_product(self.product_uom)
+            else:
+                self.insurance_type = self.product_id.insurance_type
+                self.insurance_percent = self.product_id.insurance_percent
+                self.insurance_product_ids = self.product_id._get_insurance_product(self.product_uom)
+
+    #override
     @api.onchange(
         'insurance_percent',
         'insurance_type',
@@ -36,6 +98,7 @@ class SaleOrderLine(models.Model):
                 self.insurance_price_unit = \
                     self.rental_qty * insurance_amount / self.product_uom_qty
 
+    #override
     @api.onchange(
         'product_uom_qty',
         'product_uom',
@@ -43,58 +106,30 @@ class SaleOrderLine(models.Model):
         'insurance_percent',
         'insurance_type',
         'insurance_entire_time',
+        'insurance_product_ids',
     )
     def onchange_insurance_params(self):
         self.update_insurance_line = True
 
-    def _prepare_rental_insurance_line(self):
-        self.ensure_one()
-        vals = super()._prepare_rental_insurance_line()
-        contract_insurance_product = self.env.ref(
-            'rental_contract_insurance.product_product_contract_insurance')
-        uom_month = self.env.ref('rental_base.product_uom_month')
-        if self.product_uom == uom_month:
-            vals['product_id'] = contract_insurance_product.id
-            vals['date_start'] = self.start_date
-            vals['date_end'] = self.end_date
-        return vals
-        
-    def _create_rental_insurance_line(self):
-        self.ensure_one()
-        uom_month = self.env.ref('rental_base.product_uom_month')
-        vals = self._prepare_rental_insurance_line()
-        insurance_line = self.env['sale.order.line'].create(vals)
-        insurance_line.product_id_change()
-        insurance_line.write({
-            'name': _('Insurance: %s') % self.name,
-            'product_uom': self.product_uom.id,
-            'price_unit': self.insurance_price_unit,
-        })
-        self.update_insurance_line = False
-        if self.product_uom == uom_month:
-            insurance_line.onchange_product()
-            insurance_line.write({
-                'date_start': vals['date_start'],
-                'date_end' : vals['date_end'],
-                'product_uom_qty' : vals['product_uom_qty'],
-            })
-        return insurance_line
-
-    @api.multi
-    def update_rental_insurance_line(self):
-        self.ensure_one()
-        if not self.insurance_line_ids:
-            return self._create_rental_insurance_line()
+    def _prepare_rental_insurance_line(self, product):
+        res = super()._prepare_rental_insurance_line(product)
         qty = self.product_uom_qty / self.rental_qty
         if self.insurance_entire_time:
             qty = self.number_of_time_unit
-        self.insurance_line_ids.write({
+        res['product_uom_qty'] = qty
+        return res
+
+    @api.multi
+    def update_rental_insurance_line(self):
+        res = super().update_rental_insurance_line()
+        if res:
+            qty = self.product_uom_qty / self.rental_qty
+            if self.insurance_entire_time:
+                qty = self.number_of_time_unit
+            res.write({
             'product_uom_qty': qty,
-            'product_uom': self.product_uom.id,
-            'price_unit': self.insurance_price_unit,
-        })
-        self.update_insurance_line = False
-        return self.insurance_line_ids
+            })
+        return res
 
     @api.multi
     def _prepare_contract_line_values(
@@ -106,13 +141,4 @@ class SaleOrderLine(models.Model):
             if self.insurance_origin_line_id.product_id.income_analytic_account_id:
                 rental_product = self.insurance_origin_line_id.product_id
                 res['analytic_account_id'] = rental_product.income_analytic_account_id.id
-        return res
-
-    @api.multi
-    def _prepare_invoice_line(self, qty):
-        res = super(SaleOrderLine, self)._prepare_invoice_line(qty)
-        if self.insurance_origin_line_id:
-            if self.insurance_origin_line_id.product_id.income_analytic_account_id:
-                rental_product = self.insurance_origin_line_id.product_id
-                res['account_analytic_id'] = rental_product.income_analytic_account_id.id
         return res

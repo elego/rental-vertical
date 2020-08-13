@@ -18,10 +18,6 @@ class SaleOrderLine(models.Model):
     insurance_percent = fields.Float(
         'Insurance Percent'
     )
-    # TODO delete dumy field insurance_amount
-    insurance_amount = fields.Float(
-        'Insurance Amount',
-    )
     insurance_price_unit = fields.Float(
         'Insurance Amount',
     )
@@ -36,6 +32,25 @@ class SaleOrderLine(models.Model):
     update_insurance_line = fields.Boolean(
         string='Update Insurance Line',
     )
+    insurance_product_ids = fields.Many2many(
+        'product.product',
+        'insurance_product_sol_rel',
+        'sol_id',
+        'product_id',
+        string='Insurance Products',
+        domain=lambda self: [
+            ('is_insurance', '=', True),
+        ],
+    )
+
+    @api.constrains('insurance_product_ids', 'product_uom')
+    def _check_insurance_product_uom(self):
+        for rec in self:
+            res = rec.insurance_product_ids.filtered(
+                lambda product: product.uom_id != rec.product_uom)
+        if res:
+            raise exceptions.ValidationError(
+                _('Uom of the selected Insurance product should be same as the sale order line'))
 
     @api.onchange(
         'product_uom_qty',
@@ -43,21 +58,26 @@ class SaleOrderLine(models.Model):
         'price_unit',
         'insurance_percent',
         'insurance_type',
+        'insurance_product_ids',
     )
     def onchange_insurance_params(self):
         self.update_insurance_line = True
 
-    @api.onchange('product_id')
+    @api.onchange('product_id', 'product_uom')
     def onchange_insurance_product_id(self):
         self.insurance_type = 'none'
+        insurance_product = self.env.ref(
+            'rental_product_insurance.product_product_insurance')
         if self.product_id:
             if self.product_id.rented_product_id:
                 rented_product = self.product_id.rented_product_id
                 self.insurance_type = rented_product.insurance_type
                 self.insurance_percent = rented_product.insurance_percent
+                self.insurance_product_ids = insurance_product
             else:
                 self.insurance_type = self.product_id.insurance_type
                 self.insurance_percent = self.product_id.insurance_percent
+                self.insurance_product_ids = insurance_product
 
     @api.onchange(
         'insurance_percent',
@@ -79,15 +99,23 @@ class SaleOrderLine(models.Model):
             self.insurance_price_unit = \
                 self.rental_qty * insurance_amount / self.product_uom_qty
 
-    def _prepare_rental_insurance_line(self):
+    @api.onchange(
+        'product_uom_qty',
+        'product_uom',
+        'price_unit',
+        'insurance_percent',
+        'insurance_type',
+    )
+    def onchange_insurance_params(self):
+        self.update_insurance_line = True
+
+    def _prepare_rental_insurance_line(self, product):
         self.ensure_one()
-        insurance_product = self.env.ref(
-            'rental_product_insurance.product_product_insurance')
         vals = {
-            'name': self.name,
+            'name': product.name,
             'product_uom_qty': self.product_uom_qty / self.rental_qty,
             'product_uom': self.product_uom.id,
-            'product_id': insurance_product.id,
+            'product_id': product.id,
             'insurance_origin_line_id': self.id,
             'order_id': self.order_id.id,
             'start_date': self.start_date,
@@ -95,29 +123,36 @@ class SaleOrderLine(models.Model):
         }
         return vals
 
-    def _create_rental_insurance_line(self):
+    def _create_rental_insurance_line(self, product):
         self.ensure_one()
-        vals = self._prepare_rental_insurance_line()
+        vals = self._prepare_rental_insurance_line(product)
         insurance_line = self.env['sale.order.line'].create(vals)
         insurance_line.product_id_change()
         insurance_line.write({
-            'name': _('Insurance: %s') % self.name,
-            'product_uom': self.product_uom.id,
+            'name': product.name,
             'price_unit': self.insurance_price_unit,
         })
-        self.update_insurance_line = False
         return insurance_line
 
     @api.multi
     def update_rental_insurance_line(self):
         self.ensure_one()
-        if not self.insurance_line_ids:
-            return self._create_rental_insurance_line()
-        self.insurance_line_ids.write({
-            'product_uom_qty': self.product_uom_qty / self.rental_qty,
-            'product_uom': self.product_uom.id,
-            'price_unit': self.insurance_price_unit,
-        })
+        old_insurance_lines = self.insurance_line_ids
+        for product in self.insurance_product_ids:
+            insurance_line = False
+            for line in old_insurance_lines:
+                if line.product_id == product:
+                    insurance_line = line
+                    old_insurance_lines -= insurance_line
+            if not insurance_line:
+                insurance_line = self._create_rental_insurance_line(product)
+            insurance_line.write({
+                'product_uom_qty': self.product_uom_qty / self.rental_qty,
+                'product_uom': self.product_uom.id,
+                'price_unit': self.insurance_price_unit,
+            })
+        if old_insurance_lines:
+            old_insurance_lines.unlink()
         self.update_insurance_line = False
         return self.insurance_line_ids
 
@@ -134,5 +169,7 @@ class SaleOrderLine(models.Model):
     def create(self, vals):
         res = super().create(vals)
         if res.insurance_type != 'none':
-            res._create_rental_insurance_line()
+            for product in res.insurance_product_ids:
+                res._create_rental_insurance_line(product)
+            res.update_insurance_line = False
         return res
