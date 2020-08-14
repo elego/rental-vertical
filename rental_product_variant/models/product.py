@@ -211,7 +211,7 @@ class ProductProduct(models.Model):
         record_ids = self._get_invoice_ids(inv_type)
         action = {}
         if inv_type == 'in_invoice':
-            action = self.env.ref('account.').read([])[0]
+            action = self.env.ref('account.action_vendor_bill_template').read([])[0]
             action['domain'] = [('id','in', record_ids)]
         elif inv_type == 'out_invoice':
             action = self.env.ref('account.action_invoice_tree1').read([])[0]
