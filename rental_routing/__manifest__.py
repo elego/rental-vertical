@@ -2,7 +2,7 @@
 {
     "name": "Sale Rental Routing",
     "summary": "",
-    "version": "12.0.1.0.0",
+    "version": "12.0.1.0.1",
     "category": "Rental",
     'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     "license": "AGPL-3",
