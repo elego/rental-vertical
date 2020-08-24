@@ -15,7 +15,7 @@ class ProductProduct(models.Model):
     @api.multi
     def _get_loan_ids(self):
         self.ensure_one()
-        loans = self.env['account.loan'].search([
+        loans = self.env['account.loan'].sudo().search([
             ('product_id','=',self.id)])
         return loans.ids
 
