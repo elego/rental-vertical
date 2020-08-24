@@ -38,4 +38,15 @@
         </field>
     </record>
 
+    <record id="view_sales_order_filter" model="ir.ui.view">
+        <field name="name">view.sales.order.filter</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']" position="attributes">
+                <attribute name="filter_domain">['|', ('order_line.product_id', 'ilike', self), ('order_line.display_product_id', 'ilike', self)]</attribute>
+            </xpath>
+        </field>
+    </record>
+
 </odoo>
