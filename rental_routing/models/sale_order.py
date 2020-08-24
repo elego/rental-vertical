@@ -119,7 +119,6 @@ class SaleOrder(models.Model):
 
         # set onsite location of partner address
         self.partner_shipping_id.rental_onsite_location_id = new_location
-        self.partner_shipping_id.property_stock_customer = new_location
 
         # Create a new route for the new location
         route_name = "Rent [%s]" % self.partner_shipping_id.display_name
