@@ -3,7 +3,7 @@
 from dateutil.relativedelta import relativedelta
 
 from odoo.addons.rental_base.tests.stock_common import RentalStockCommon
-from odoo import fields
+from odoo import fields, exceptions
 
 
 class TestRentalPricelist(RentalStockCommon):
@@ -31,6 +31,11 @@ class TestRentalPricelist(RentalStockCommon):
         })
         self.productC = ProductObj.create({
             'name': 'Product C',
+            'type': 'product',
+            'rental_ok': True,
+        })
+        self.productD = ProductObj.create({
+            'name': 'Product D',
             'type': 'product',
             'rental_ok': True,
         })
@@ -345,3 +350,25 @@ class TestRentalPricelist(RentalStockCommon):
         self._run_sol_onchange_date(line, end_date=self.date_three_month_later)
         self.assertEqual(line.product_uom_qty, 3)
         self.assertEqual(line.price_unit, 800)
+
+    def test_04_check_rental_order_line_productD(self):
+        """
+            check function check_rental_order_line()
+        """
+        line = self.env['sale.order.line'].with_context({
+            'type_id': self.rental_sale_type.id,
+        }).new({
+            'order_id': self.rental_order.id,
+            'display_product_id': self.productD.id,
+        })
+        line.onchange_display_product_id()
+        line.product_id_change()
+        line.rental = True
+        vals = line._convert_to_write(line._cache)
+        self.env['sale.order.line'].create(vals)
+        with self.assertRaises(exceptions.UserError) as e:
+            self.rental_order.action_confirm()
+        self.assertEqual(
+            "Product D is not correctly configured.",
+            e.exception.name
+        )
