@@ -71,7 +71,7 @@
         </field>
     </record>
 
-    <menuitem name="Repair Orders"
+    <menuitem name="Service Orders"
         id="menu_repair_orders"
         parent="rental_base.menu_customer_orders"
         action="rental_repair.action_repair_quotation_tree"
