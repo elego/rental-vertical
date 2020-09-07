@@ -2,3 +2,4 @@
 
 from . import product
 from . import stock
+from . import instance_operating_data

@@ -104,6 +104,12 @@ class ProductProduct(models.Model):
     real_total_rental_time = fields.Float(string='Real Total Rental Time',
         help='This is the total rental time for this product instance.')
 
+    instance_operating_data_ids = fields.One2many(
+        'instance.operating.data',
+        'instance_id',
+        string="Operating Data"
+    )
+
     @api.multi
     @api.depends('instance_condition_hour', 'instance_condition_km')
     def _compute_instance_condition_in_tree(self):
@@ -168,3 +174,10 @@ class ProductProduct(models.Model):
         if products:
             products.product_instance = False
         return res
+
+    @api.multi
+    def action_view_operating_data(self):
+        self.ensure_one()
+        action = self.env.ref('rental_product_instance.action_instance_operating_data').read([])[0]
+        action['context'] = {'default_instance_id': self.id, 'search_default_instance_id': self.id}
+        return action

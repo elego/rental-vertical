@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-21 15:05+0000\n"
-"PO-Revision-Date: 2020-04-21 15:05+0000\n"
+"POT-Creation-Date: 2020-09-07 12:00+0000\n"
+"PO-Revision-Date: 2020-09-07 12:00+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,11 +26,27 @@ msgid "Condition Date"
 msgstr ""
 
 #. module: rental_product_instance
+#: model_terms:ir.actions.act_window,help:rental_product_instance.action_instance_operating_data
+msgid "Create a operating data!"
+msgstr ""
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_instance_operating_data__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_instance_operating_data__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: rental_product_instance
 #: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_condition_hour
 msgid "Current Hours"
 msgstr ""
 
 #. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_instance_operating_data__operating_data
 #: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_condition_in_tree
 msgid "Current Kilmeter / Hours"
 msgstr ""
@@ -43,11 +59,21 @@ msgstr ""
 #. module: rental_product_instance
 #: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_current_location_id
 msgid "Current Location"
+msgstr "Aktueller Lagerort"
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_instance_operating_data__date
+msgid "Date"
 msgstr ""
 
 #. module: rental_product_instance
 #: selection:product.product,instance_state:0
 msgid "Delivery"
+msgstr "Lieferung"
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_instance_operating_data__display_name
+msgid "Display Name"
 msgstr ""
 
 #. module: rental_product_instance
@@ -56,8 +82,28 @@ msgid "Hours"
 msgstr ""
 
 #. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_instance_operating_data__id
+msgid "ID"
+msgstr ""
+
+#. module: rental_product_instance
 #: selection:product.category,show_instance_condition_type:0
 msgid "Kilometers"
+msgstr ""
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_instance_operating_data____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_instance_operating_data__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_instance_operating_data__write_date
+msgid "Last Updated on"
 msgstr ""
 
 #. module: rental_product_instance
@@ -73,6 +119,13 @@ msgstr ""
 #. module: rental_product_instance
 #: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_next_service_date
 msgid "Next Service"
+msgstr ""
+
+#. module: rental_product_instance
+#: model:ir.actions.act_window,name:rental_product_instance.action_instance_operating_data
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_operating_data_ids
+#: model_terms:ir.ui.view,arch_db:rental_product_instance.product_normal_form_view
+msgid "Operating Data"
 msgstr ""
 
 #. module: rental_product_instance
@@ -137,6 +190,11 @@ msgid "Reserved"
 msgstr ""
 
 #. module: rental_product_instance
+#: model_terms:ir.ui.view,arch_db:rental_product_instance.instance_operating_data_search
+msgid "Search Operating Data"
+msgstr ""
+
+#. module: rental_product_instance
 #: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_serial_number_id
 msgid "Serial Number"
 msgstr ""
@@ -192,5 +250,10 @@ msgstr ""
 #: code:addons/rental_product_instance/models/stock.py:20
 #, python-format
 msgid "You can not have 2 serial numbers for a product instance."
+msgstr ""
+
+#. module: rental_product_instance
+#: model:ir.model,name:rental_product_instance.model_instance_operating_data
+msgid "instance.operating.data"
 msgstr ""
 

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="instance_operating_data_form" model="ir.ui.view">
+            <field name="name">instance.operating.data.form</field>
+            <field name="model">instance.operating.data</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="instance_id"/>
+                        <field name="operating_data"/>
+                        <field name="date"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="instance_operating_data_tree" model="ir.ui.view">
+            <field name="name">instance.operating.data.tree</field>
+            <field name="model">instance.operating.data</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="instance_id"/>
+                    <field name="operating_data"/>
+                    <field name="date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="instance_operating_data_search" model="ir.ui.view">
+            <field name="name">instance.operating.data.search</field>
+            <field name="model">instance.operating.data</field>
+            <field name="priority" eval="15"/>
+            <field name="arch" type="xml">
+                <search string="Search Operating Data">
+                    <field name="instance_id"/>
+               </search>
+            </field>
+        </record>
+
+        <record id="action_instance_operating_data" model="ir.actions.act_window">
+            <field name="name">Operating Data</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">instance.operating.data</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="instance_operating_data_search" />
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a operating data!
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>
