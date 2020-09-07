@@ -57,6 +57,11 @@
                 <xpath expr="//button[@name='action_view_sales']" position="attributes">
                     <attribute name="attrs">{'invisible': [('product_instance', '=', True)]}</attribute>
                 </xpath>
+                <button name="toggle_active" position="before">
+                    <button class="oe_stat_button" name="action_view_operating_data"
+                        type="object" icon="fa-history" string="Operating Data" attrs="{'invisible': [('product_instance', '=', False)]}">
+                    </button>
+                </button>
                 <xpath expr="//group[field[@name='manu_type_id']]" position="after">
                     <group name="instance_attributes"
                         attrs="{'invisible': [('product_instance', '=', False)]}">
