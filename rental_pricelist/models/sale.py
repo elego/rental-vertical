@@ -62,6 +62,8 @@ class SaleOrderLine(models.Model):
                 self.rental = False
                 self.product_id = self.display_product_id
                 #raise exceptions.UserError(_('The product has no related rental services.'))
+        elif not self.rental and self.display_product_id:
+            self.product_id = self.display_product_id
 
     @api.multi
     @api.onchange('display_product_id')
@@ -287,3 +289,22 @@ class SaleOrderLine(models.Model):
         else:
             self.start_date = False
             self.end_date = False
+
+
+class SaleOrder(models.Model):
+    _inherit = 'sale.order'
+
+    @api.multi
+    def _check_rental_order_line(self):
+        for order in self:
+            for line in order.order_line:
+                if line.rental and line.product_id:
+                    if line.product_id.type != 'service':
+                        raise exceptions.UserError(
+                            _('%s is not correctly configured.') %line.product_id.name
+                        )
+
+    @api.multi
+    def action_confirm(self):
+        self._check_rental_order_line()
+        return super().action_confirm()

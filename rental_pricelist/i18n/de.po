@@ -6,14 +6,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-18 13:57+0000\n"
-"PO-Revision-Date: 2020-03-18 13:57+0000\n"
+"POT-Creation-Date: 2020-08-25 10:14+0000\n"
+"PO-Revision-Date: 2020-08-25 10:14+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: rental_pricelist
+#: code:addons/rental_pricelist/models/sale.py:304
+#, python-format
+msgid "%s is not correctly configured."
+msgstr "%s ist nicht korrect konfiguriert."
 
 #. module: rental_pricelist
 #: model_terms:ir.ui.view,arch_db:rental_pricelist.view_order_form
@@ -44,7 +50,7 @@ msgid "Hour Scale Pricelist Items"
 msgstr "Preislistenposistionen für Stundenmiete"
 
 #. module: rental_pricelist
-#: code:addons/rental_pricelist/models/sale.py:185
+#: code:addons/rental_pricelist/models/sale.py:189
 #, python-format
 msgid "Missing \"Rental to Extend\" on the sale order line with rental service %s."
 msgstr "Es wurde kein Auftrag für die \"Mietverlängerung\" auf der Auftragszeile für das Produkt %s angegeben."
@@ -61,7 +67,7 @@ msgid "No found expected Rental Type."
 msgstr "Es wurde kein Vermietungstyp (Mengeneinheit) gefunden."
 
 #. module: rental_pricelist
-#: code:addons/rental_pricelist/models/sale.py:141
+#: code:addons/rental_pricelist/models/sale.py:145
 #, python-format
 msgid "Not enough stock!"
 msgstr "Lagerbestand nicht ausreichend!"
@@ -72,19 +78,19 @@ msgid "Number of TU"
 msgstr "Anzahl der Zeiteinheiten"
 
 #. module: rental_pricelist
-#: code:addons/rental_pricelist/models/sale.py:201
+#: code:addons/rental_pricelist/models/sale.py:205
 #, python-format
 msgid "On the \"new rental\" sale order line with product \"%s\", we should have a rental service product!"
 msgstr "In der Auftragszeile mit dem Typ \"Neue Vermietung\" und dem Produkt \"%s\" sollte ein Mietservice eingetragen sein!"
 
 #. module: rental_pricelist
-#: code:addons/rental_pricelist/models/sale.py:218
+#: code:addons/rental_pricelist/models/sale.py:222
 #, python-format
 msgid "On the sale order line with product %s you are trying to sell a rented product with a quantity (%s) that is different from the rented quantity (%s). This is not supported."
 msgstr "In der Auftragszeile mit dem Mietserviceprodukt %s versuchen Sie das Produkt in einer Menge (%s) zu verkaufen die von der vermieteten Menge (%s) abweicht. Diese Funktionalität wird nicht unterstützt."
 
 #. module: rental_pricelist
-#: code:addons/rental_pricelist/models/sale.py:190
+#: code:addons/rental_pricelist/models/sale.py:194
 #, python-format
 msgid "On the sale order line with rental service %s, you are trying to extend a rental with a rental quantity (%s) that is different from the quantity of the original rental (%s). This is not supported."
 msgstr "In der Auftragszeile mit dem Produkt %s wird versucht, eine bestehende Miete mit einer anderen Menge (%s) zu verlängern als ursprünglich vermietet wurde (%s). Dieser Vorgang wird nicht unterstützt."
@@ -214,7 +220,7 @@ msgid "Time"
 msgstr "Zeit"
 
 #. module: rental_pricelist
-#: code:addons/rental_pricelist/models/sale.py:142
+#: code:addons/rental_pricelist/models/sale.py:146
 #, python-format
 msgid "You want to rent %.2f %s but you only have %.2f %s currently available on the stock location \"%s\"! Make sure that you get some units back in the meantime or re-supply the stock location \"%s\"."
 msgstr "Es wird versucht, %.2f %s zu vermieten, aber es ist/sind aktuell nur %.2f %s auf dem Lagerplatz \"%s\" verfügbar! Es müssen in der Zwischenzeit entweder Einheiten zurück ins Lager kommen oder der Bestand auf dem Lagerplatz \"%s\" muss anderweitig erhöht werden."
