@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-16 13:42+0000\n"
-"PO-Revision-Date: 2020-07-16 13:42+0000\n"
+"POT-Creation-Date: 2020-09-02 11:05+0000\n"
+"PO-Revision-Date: 2020-09-02 11:05+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -58,7 +58,7 @@ msgid "Click <i>Create</i> to start a new ticket."
 msgstr "Click <i>Anlegen</i> um ein neues Ticket zu erstellen."
 
 #. module: rental_repair
-#: code:addons/rental_repair/models/product.py:80
+#: code:addons/rental_repair/models/product.py:78
 #, python-format
 msgid "Components"
 msgstr "Komponenten"
@@ -125,7 +125,6 @@ msgstr "Stellen Sie die Rückverfolgbarkeit eines lagerfähigen Produkts in Ihre
 msgid "Expense Analytic Account"
 msgstr "Aufwandskostenstelle"
 
-
 #. module: rental_repair
 #: model:project.task.type,name:rental_repair.project_task_type_has_appointment
 msgid "Has Appointment"
@@ -149,7 +148,6 @@ msgstr "ID"
 #: model:project.task.type,legend_normal:rental_repair.project_task_type_in_progress
 #: model:project.task.type,legend_normal:rental_repair.project_task_type_new
 #: model:project.task.type,legend_normal:rental_repair.project_task_type_qualification
-
 msgid "In Progress"
 msgstr "In Arbeit"
 
@@ -304,7 +302,6 @@ msgstr "Reparaturauftrag"
 #. module: rental_repair
 #: model:ir.actions.act_window,name:rental_repair.action_repair_quotation_tree
 #: model:ir.model.fields,field_description:rental_repair.field_project_task__repair_ids
-#: model:ir.ui.menu,name:rental_repair.menu_repair_orders
 #: model_terms:ir.ui.view,arch_db:rental_repair.view_task_form2
 msgid "Repair Orders"
 msgstr "Reparaturaufträge"
@@ -325,6 +322,11 @@ msgstr "Durch Auswahl der Einstellung 'Vor Reparatur' oder 'Nach Reparatur' kön
 #: model:ir.model.fields,field_description:rental_repair.field_project_task__lot_id
 msgid "Serial Number"
 msgstr "Seriennummer"
+
+#. module: rental_repair
+#: model:ir.ui.menu,name:rental_repair.menu_repair_orders
+msgid "Service Orders"
+msgstr "Service Orders"
 
 #. module: rental_repair
 #: model:ir.model.fields,field_description:rental_repair.field_project_task__stagnation_ids
@@ -360,7 +362,7 @@ msgid "The repair order uses the warranty date on the Serial Number in\n"
 msgstr "Der Reparaturauftrag verwendet das Garantiedatum auf der Seriennummer, um festzustellen, ob die Reparatur dem Kunden in Rechnung gestellt werden soll oder nicht."
 
 #. module: rental_repair
-#: code:addons/rental_repair/models/project.py:137
+#: code:addons/rental_repair/models/project.py:138
 #, python-format
 msgid "The start time '{start_time}' must be earlier than the end time {end_time}."
 msgstr "Die Startzeit '{start_time}' muss vor der Endzeit {end_time} liegen."
@@ -373,7 +375,7 @@ msgid "Ticket"
 msgstr "Ticket"
 
 #. module: rental_repair
-#: code:addons/rental_repair/models/product.py:60
+#: code:addons/rental_repair/models/product.py:58
 #: model:ir.ui.menu,name:rental_repair.menu_tickets
 #: model_terms:ir.ui.view,arch_db:rental_repair.product_normal_form_view
 #: model:project.project,label_tasks:rental_repair.project_project_helpdesk
@@ -415,49 +417,49 @@ msgid "Vendor Repair Orders"
 msgstr "Reparaturbestellungen"
 
 #. module: rental_repair
-#: code:addons/rental_repair/models/project.py:86
+#: code:addons/rental_repair/models/project.py:87
 #, python-format
 msgid "{} day"
 msgstr "{} Tag"
 
 #. module: rental_repair
-#: code:addons/rental_repair/models/project.py:85
+#: code:addons/rental_repair/models/project.py:86
 #, python-format
 msgid "{} days"
 msgstr "{} Tage"
 
 #. module: rental_repair
-#: code:addons/rental_repair/models/project.py:88
+#: code:addons/rental_repair/models/project.py:89
 #, python-format
 msgid "{} hour"
 msgstr "{} Stunde"
 
 #. module: rental_repair
-#: code:addons/rental_repair/models/project.py:87
+#: code:addons/rental_repair/models/project.py:88
 #, python-format
 msgid "{} hours"
 msgstr "{} Stunden"
 
 #. module: rental_repair
-#: code:addons/rental_repair/models/project.py:90
+#: code:addons/rental_repair/models/project.py:91
 #, python-format
 msgid "{} minute"
 msgstr "{} Minute"
 
 #. module: rental_repair
-#: code:addons/rental_repair/models/project.py:89
+#: code:addons/rental_repair/models/project.py:90
 #, python-format
 msgid "{} minutes"
 msgstr "{} Minuten"
 
 #. module: rental_repair
-#: code:addons/rental_repair/models/project.py:92
+#: code:addons/rental_repair/models/project.py:93
 #, python-format
 msgid "{} second"
 msgstr "{} Sekunde"
 
 #. module: rental_repair
-#: code:addons/rental_repair/models/project.py:91
+#: code:addons/rental_repair/models/project.py:92
 #, python-format
 msgid "{} seconds"
 msgstr "{} Sekunden"

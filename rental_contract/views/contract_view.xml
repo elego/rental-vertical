@@ -13,6 +13,21 @@
         </field>
     </record>
 
+    <record id="contract_contract_search_view" model="ir.ui.view">
+        <field name="name">contract.contract.search</field>
+        <field name="model">contract.contract</field>
+        <field name="inherit_id" ref="contract.contract_contract_search_view"/>
+        <field name="arch" type="xml">
+            <filter name="group_by_date_end" position="after">
+                <filter name="group_by_type_id"
+                        string="Subscription Subtype"
+                        domain="[]"
+                        context="{'group_by':'type_id'}"
+                />
+            </filter>
+        </field>
+    </record>
+
     <menuitem name="Contracts"
         id="menu_customer_top_contracts"
         parent="rental_base.menu_top_customer"

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-16 13:46+0000\n"
-"PO-Revision-Date: 2020-07-16 13:46+0000\n"
+"POT-Creation-Date: 2020-09-02 11:05+0000\n"
+"PO-Revision-Date: 2020-09-02 11:05+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -58,7 +58,7 @@ msgid "Click <i>Create</i> to start a new ticket."
 msgstr ""
 
 #. module: rental_repair
-#: code:addons/rental_repair/models/product.py:80
+#: code:addons/rental_repair/models/product.py:78
 #, python-format
 msgid "Components"
 msgstr ""
@@ -151,6 +151,7 @@ msgstr ""
 msgid "In Progress"
 msgstr ""
 
+#. module: rental_repair
 #: model:project.task.type,name:rental_repair.project_task_type_in_progress
 msgid "In Progress"
 msgstr ""
@@ -301,7 +302,6 @@ msgstr ""
 #. module: rental_repair
 #: model:ir.actions.act_window,name:rental_repair.action_repair_quotation_tree
 #: model:ir.model.fields,field_description:rental_repair.field_project_task__repair_ids
-#: model:ir.ui.menu,name:rental_repair.menu_repair_orders
 #: model_terms:ir.ui.view,arch_db:rental_repair.view_task_form2
 msgid "Repair Orders"
 msgstr ""
@@ -321,6 +321,11 @@ msgstr ""
 #. module: rental_repair
 #: model:ir.model.fields,field_description:rental_repair.field_project_task__lot_id
 msgid "Serial Number"
+msgstr ""
+
+#. module: rental_repair
+#: model:ir.ui.menu,name:rental_repair.menu_repair_orders
+msgid "Service Orders"
 msgstr ""
 
 #. module: rental_repair
@@ -411,49 +416,49 @@ msgid "Vendor Repair Orders"
 msgstr ""
 
 #. module: rental_repair
-#: code:addons/rental_repair/models/project.py:86
+#: code:addons/rental_repair/models/project.py:87
 #, python-format
 msgid "{} day"
 msgstr ""
 
 #. module: rental_repair
-#: code:addons/rental_repair/models/project.py:85
+#: code:addons/rental_repair/models/project.py:86
 #, python-format
 msgid "{} days"
 msgstr ""
 
 #. module: rental_repair
-#: code:addons/rental_repair/models/project.py:88
+#: code:addons/rental_repair/models/project.py:89
 #, python-format
 msgid "{} hour"
 msgstr ""
 
 #. module: rental_repair
-#: code:addons/rental_repair/models/project.py:87
+#: code:addons/rental_repair/models/project.py:88
 #, python-format
 msgid "{} hours"
 msgstr ""
 
 #. module: rental_repair
-#: code:addons/rental_repair/models/project.py:90
+#: code:addons/rental_repair/models/project.py:91
 #, python-format
 msgid "{} minute"
 msgstr ""
 
 #. module: rental_repair
-#: code:addons/rental_repair/models/project.py:89
+#: code:addons/rental_repair/models/project.py:90
 #, python-format
 msgid "{} minutes"
 msgstr ""
 
 #. module: rental_repair
-#: code:addons/rental_repair/models/project.py:92
+#: code:addons/rental_repair/models/project.py:93
 #, python-format
 msgid "{} second"
 msgstr ""
 
 #. module: rental_repair
-#: code:addons/rental_repair/models/project.py:91
+#: code:addons/rental_repair/models/project.py:92
 #, python-format
 msgid "{} seconds"
 msgstr ""
