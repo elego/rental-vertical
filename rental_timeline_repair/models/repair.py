@@ -112,3 +112,13 @@ class RepairOrder(models.Model):
             order.timeline_ids.unlink()
         res = super(RepairOrder, self).action_repair_cancel()
         return res
+
+    @api.multi
+    def action_repair_cancel_draft(self):
+        """
+            recreate the timeline items
+        """
+        res = super(RepairOrder, self).action_repair_cancel_draft()
+        for order in self:
+            order._create_product_timeline()
+        return res

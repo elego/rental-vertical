@@ -124,6 +124,17 @@ class PurchaseOrder(models.Model):
         return res
 
     @api.multi
+    def button_draft(self):
+        '''
+            recreate the timeline items
+        '''
+        res = super(PurchaseOrder, self).button_draft()
+        for order in self:
+            for line in order.order_line:
+                line._create_product_timeline()
+        return res
+
+    @api.multi
     def unlink(self):
         ids = functools.reduce(operator.iconcat, [i.order_line.ids for i in self], [])
         if ids:

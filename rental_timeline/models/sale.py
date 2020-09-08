@@ -127,6 +127,17 @@ class SaleOrder(models.Model):
         return res
 
     @api.multi
+    def action_draft(self):
+        '''
+            recreate the timeline items
+        '''
+        res = super(SaleOrder, self).action_draft()
+        for order in self:
+            for line in order.order_line:
+                line._create_product_timeline()
+        return res
+
+    @api.multi
     def action_confirm(self):
         '''
             change type of time lines
