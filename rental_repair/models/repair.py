@@ -54,36 +54,51 @@ class RepairOrder(models.Model):
     project_task_id = fields.Many2one(
         'project.task',
         'Ticket',
-        ondelete = "set null",
+        ondelete="set null",
     )
 
     income_analytic_account_id = fields.Many2one(
         'account.analytic.account',
-        string = 'Income Analytic Account',
-        company_dependent = True,
+        string='Income Analytic Account',
+        company_dependent=True,
     )
 
     expense_analytic_account_id = fields.Many2one(
         'account.analytic.account',
-        string = 'Expense Analytic Account',
-        company_dependent = True,
+        string='Expense Analytic Account',
+        company_dependent=True,
+    )
+
+    client_order_ref = fields.Char(
+        string='Customer Reference',
+        help="This is the order number or reference from your customer.",
+        copy=False,
+    )
+
+    date_order = fields.Date(
+        string="Quotation / Order Date",
+        default=fields.Date.today,
+        help="This date is printed on report as quotation / order date."
     )
 
     date_start = fields.Date(
-        "Planned Date Start",
-        default = fields.Date.today,
+        string="Planned Date Start",
+        default=fields.Date.today,
+        help="This date is the planned start date for the repair."
     )
 
     date_deadline = fields.Date(
-        "Deadline",
+        string="Deadline",
+        help="This date is the planned end date for the repair."
     )
 
     date_end = fields.Date(
-        "Date Finished",
+        string="Date Finished",
+        help="This date is the real end date for the repair."
     )
 
     operations = fields.One2many(
-        states = {
+        states={
             'draft': [('readonly', False)],
             'confirmed': [('readonly', False)],
             'under_repair': [('readonly', False)]
@@ -91,7 +106,7 @@ class RepairOrder(models.Model):
     )
 
     fees_lines = fields.One2many(
-        states = {
+        states={
             'draft': [('readonly', False)],
             'confirmed': [('readonly', False)],
             'under_repair': [('readonly', False)]
@@ -99,13 +114,19 @@ class RepairOrder(models.Model):
     )
 
     invoice_method = fields.Selection(
-        states = {
+        states={
             'draft': [('readonly', False)],
             'confirmed': [('readonly', False)],
             'under_repair': [('readonly', False)]
         }
     )
 
+    user_id = fields.Many2one(
+        comodel_name='res.users',
+        string='Contact Person',
+        index=True,
+        default=lambda self: self.env.user,
+    )
 
     @api.onchange('product_id')
     def onchange_product_id(self):
@@ -117,9 +138,10 @@ class RepairOrder(models.Model):
                 self.lot_id = self.product_id.instance_serial_number_id
 
     @api.multi
-    def action_invoice_create(self, group = False):
-        res = super(RepairOrder, self).action_invoice_create(group = group)
+    def action_invoice_create(self, group=False):
+        res = super(RepairOrder, self).action_invoice_create(group=group)
         for repair in self:
+            repair.invoice_id.name = repair.client_order_ref
             if repair.income_analytic_account_id:
                 analytic_id = repair.income_analytic_account_id.id
                 for operation in repair.operations:

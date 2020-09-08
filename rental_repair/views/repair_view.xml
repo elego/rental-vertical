@@ -8,15 +8,48 @@
             <xpath expr="//group[field[@name='location_id']]" position="inside">
                 <field name="project_task_id" readonly="1" attrs="{'invisible': [('project_task_id','=',False)]}" />
             </xpath>
-            <field name="pricelist_id" position="after">
-                <field name="income_analytic_account_id" />
-                <field name="expense_analytic_account_id" />
+            <!-- Partner and Invoice Info -->
+            <field name="partner_id" position="before">
+                <separator colspan="2"/>
             </field>
-            <field name="partner_id" position="after">
+            <field name="invoice_method" position="replace"/>
+            <field name="partner_invoice_id" position="replace"/>
+            <field name="pricelist_id" position="replace"/>
+            <field name="address_id" position="after">
+                <field name="invoice_method"/>
+                <field name="partner_invoice_id"
+                       attrs="{'invisible':[('invoice_method','=', 'none')],'required':[('invoice_method','!=','none')]}"
+                       groups="sale.group_delivery_invoice_address"
+                />
+                <field name="pricelist_id"
+                       groups="product.group_sale_pricelist"
+                       context="{'product_id':product_id}"
+                       attrs="{'invisible':[('invoice_method','=', 'none')]}"
+                />
+                <field name="client_order_ref"/>
+                <separator colspan="2"/>
+                <field name="income_analytic_account_id"
+                       options="{'no_quick_create': True, 'no_create_edit' : True}"
+                />
+                <field name="expense_analytic_account_id"
+                       options="{'no_quick_create': True, 'no_create_edit' : True}"
+                />
+            </field>
+            <!-- Company and User Info -->
+            <field name="company_id" position="after">
+                <field name="user_id"
+                       options="{'no_quick_create': True, 'no_create_edit' : True}"
+                />
+                <separator colspan="2"/>
+            </field>
+            <!-- Dates -->
+            <field name="guarantee_limit" position="before">
+                <field name="date_order"/>
                 <field name="date_start" />
                 <field name="date_deadline" />
                 <field name="date_end" />
             </field>
+            <!-- Parts and Operations -->
             <xpath expr="//field[@name='operations']//tree//field[@name='product_uom_qty']" position="before">
                 <field name="analytic_tag_ids" groups="analytic.group_analytic_tags" widget="many2many_tags" options="{'color_field': 'color'}" />
             </xpath>
