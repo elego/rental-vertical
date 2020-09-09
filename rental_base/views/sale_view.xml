@@ -147,7 +147,7 @@
                 <attribute name="attrs">{'invisible': 1}</attribute>
             </xpath>
             <xpath expr="//page[@name='order_lines']//form//field[@name='name']" position="attributes">
-                <attribute name="attrs">{'invisible': 1}</attribute>
+                <attribute name="attrs">{'invisible': [('display_type', '=', False)]}</attribute>
             </xpath>
 
             <!-- Group: Order Information -->
