@@ -412,7 +412,7 @@ msgstr "Leistungszeitraum"
 #. module: rental_base
 #: model:ir.ui.menu,name:rental_base.menu_customer_repair_orders
 msgid "Service Quotations"
-msgstr "Service Angebot"
+msgstr "Service-Angebote"
 
 #. module: rental_base
 #: model:ir.actions.act_window,name:rental_base.action_rental_configuration
