@@ -326,7 +326,7 @@ msgstr "Seriennummer"
 #. module: rental_repair
 #: model:ir.ui.menu,name:rental_repair.menu_repair_orders
 msgid "Service Orders"
-msgstr "Service Orders"
+msgstr "Service Auftrag"
 
 #. module: rental_repair
 #: model:ir.model.fields,field_description:rental_repair.field_project_task__stagnation_ids
