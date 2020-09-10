@@ -11,9 +11,9 @@ class SaleOrder(models.Model):
         res = super(SaleOrder, self).action_confirm()
         for order in self:
             out_pickings = order.picking_ids.filtered(
-                lambda x: x.picking_type_id.code == "outgoing")
+                lambda x: x.picking_type_id.code == "outgoing" and x.state != 'cancel')
             in_pickings = order.picking_ids.filtered(
-                lambda x: x.picking_type_id.code == "incoming")
+                lambda x: x.picking_type_id.code == "incoming" and x.state != 'cancel')
             for picking in out_pickings:
                 for move in picking.move_ids_without_package:
                     if move.product_id and move.product_id.pack_ok:
