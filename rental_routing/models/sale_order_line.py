@@ -74,10 +74,12 @@ class SaleOrderLine(models.Model):
                         move.write({"move_dest_ids": [(5, 0, 0)]})
                     elif move.picking_type_id.code == 'incoming':
                         res["in_move_id_bk"] = move.id
-                        move.state = "confirmed"
+                        if move.state != "cancel":
+                            move.state = "confirmed"
                     else:
                         move.write({"move_dest_ids": [(5, 0, 0)]})
-                        move.state = "confirmed"
+                        if move.state != "cancel":
+                            move.state = "confirmed"
             if self.order_id.partner_shipping_id.rental_onsite_location_id:
                 res[
                     "rental_onsite_location_id"
