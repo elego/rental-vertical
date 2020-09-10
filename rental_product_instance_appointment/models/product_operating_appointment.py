@@ -106,6 +106,7 @@ class ProductOperatingAppointment(models.Model):
                 record.last_task_id = new_task
             if record.date_next_appointment == today:
                 record._update_next_appointment()
+                record.threshold += record.interval
 
     @api.model
     def _cron_gen_update_appointment(self):
