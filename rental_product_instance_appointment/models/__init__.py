@@ -2,4 +2,5 @@
 
 from . import product
 from . import product_appointment
+from . import product_operating_appointment
 from . import project

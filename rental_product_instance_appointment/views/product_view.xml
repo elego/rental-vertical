@@ -20,6 +20,19 @@
                                 <field name="last_task_id" domain="[('product_id', '=', parent.id)]"/>
                             </tree>
                         </field>
+                        <field name="operating_appointment_ids"
+                               attrs="{'invisible': [('show_instance_condition_type', 'not in', ('km', 'hour'))]}">
+                            <tree default_order="date_next_appointment" editable="top">
+                                <field name="name"/>
+                                <field name="date_next_appointment"/>
+                                <field name="threshold"/>
+                                <field name="interval"/>
+                                <field name="operating_uom"/>
+                                <field name="daily_increase"/>
+                                <field name="leads_of_notification"/>
+                                <field name="last_task_id" domain="[('product_id', '=', parent.id)]"/>
+                            </tree>
+                        </field>
                     </page>
                 </xpath>
             </field>

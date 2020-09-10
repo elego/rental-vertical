@@ -49,7 +49,7 @@ msgstr "Aktuelle Stunden"
 #: model:ir.model.fields,field_description:rental_product_instance.field_instance_operating_data__operating_data
 #: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_condition_in_tree
 msgid "Current Kilmeter / Hours"
-msgstr "Aktuelle Kilometer / "
+msgstr "Aktueller Betriebswert"
 
 #. module: rental_product_instance
 #: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_condition_km

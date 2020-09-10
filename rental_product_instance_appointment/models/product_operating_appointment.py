@@ -4,9 +4,9 @@ from dateutil.relativedelta import relativedelta
 from odoo import api, fields, models, _
 
 
-class ProductAppointment(models.Model):
-    _name = 'product.appointment'
-    _description = 'Appointment'
+class ProductOperatingAppointment(models.Model):
+    _name = 'product.operating.appointment'
+    _description = 'Operating Appointment'
     _order = 'date_next_appointment desc'
 
     name = fields.Char(
@@ -15,24 +15,30 @@ class ProductAppointment(models.Model):
     )
     date_next_appointment = fields.Date(
         'Date',
-        required=True,
+        compute="_compute_date_next_appointment",
     )
     leads_of_notification = fields.Integer(
         'Leads of Notification',
         required=True,
     )
-    time_interval = fields.Integer(
-        'Time Interval',
+    threshold = fields.Integer(
+        'Threshold',
+    )
+    interval = fields.Integer(
+        'Interval',
         required=True,
     )
-    time_uom = fields.Selection(
+    daily_increase = fields.Integer(
+        'Daily Increase'
+    )
+    operating_uom = fields.Selection(
         selection=[
-            ('day', 'Day(s)'),
-            ('month', 'Month(s)'),
+            ('km', 'Kilometer'),
+            ('hour', 'Operating Hours'),
         ],
-        string='Time UoM',
+        string='Operating UoM',
         required=True,
-        default="day",
+        default="km",
     )
     product_id = fields.Many2one(
         'product.product',
@@ -53,9 +59,16 @@ class ProductAppointment(models.Model):
         today = fields.Date.from_string(fields.Date.today())
         for record in self:
             record.create_task = False
+            if record.product_id.show_instance_condition_type not in ('km', 'hour'):
+                continue
             if record.date_next_appointment - relativedelta(
                 days=record.leads_of_notification) == today:
                 record.create_task = True
+
+    @api.multi
+    def _compute_date_next_appointment(self):
+        for record in self:
+            record._update_next_appointment()
 
     def _prepare_task_vals(self):
         self.ensure_one()
@@ -72,10 +85,15 @@ class ProductAppointment(models.Model):
     def _update_next_appointment(self):
         self.ensure_one()
         today = fields.Date.from_string(fields.Date.today())
-        if self.time_uom == 'day':
-            self.date_next_appointment = today + relativedelta(days=self.time_interval)
-        if self.time_uom == 'month':
-            self.date_next_appointment = today + relativedelta(months=self.time_interval)
+        diff = 0
+        if self.operating_uom == 'km':
+            km = self.product_id.instance_condition_km and int(self.product_id.instance_condition_km) or 0
+            diff = self.threshold - km
+        elif self.operating_uom == 'hour':
+            hour = self.product_id.instance_condition_hour and int(self.product_id.instance_condition_hour) or 0
+            diff = self.threshold - hour
+        days = diff / self.daily_increase
+        self.date_next_appointment = today + relativedelta(days=days)
 
     @api.multi
     def action_create_project_tasks(self):
