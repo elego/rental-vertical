@@ -10,6 +10,7 @@
                 <xpath expr="//notebook" position="inside">
                     <page string="Appointments" name="appointment"
                           attrs="{'invisible': [('product_instance','=',False)]}">
+                        <separator name="appointment" string="Date Dependent Appointments"/>
                         <field name="appointment_ids">
                             <tree default_order="date_next_appointment" editable="top">
                                 <field name="name"/>
@@ -17,6 +18,23 @@
                                 <field name="leads_of_notification"/>
                                 <field name="time_interval"/>
                                 <field name="time_uom"/>
+                                <field name="last_task_id" domain="[('product_id', '=', parent.id)]"/>
+                            </tree>
+                        </field>
+                        <separator name="operating_appointment"
+                                   string="Usage Dependent Appointments"
+                                   attrs="{'invisible': [('show_instance_condition_type', 'not in', ('km', 'hour'))]}"
+                        />
+                        <field name="operating_appointment_ids"
+                               attrs="{'invisible': [('show_instance_condition_type', 'not in', ('km', 'hour'))]}">
+                            <tree default_order="date_next_appointment" editable="top">
+                                <field name="name"/>
+                                <field name="date_next_appointment"/>
+                                <field name="threshold"/>
+                                <field name="interval"/>
+                                <field name="operating_uom"/>
+                                <field name="daily_increase"/>
+                                <field name="leads_of_notification"/>
                                 <field name="last_task_id" domain="[('product_id', '=', parent.id)]"/>
                             </tree>
                         </field>

@@ -20,6 +20,7 @@ class StockProductionLot(models.Model):
                     msg = _('You can not have 2 serial numbers for a product instance.')
                     raise exceptions.ValidationError(msg)
 
+
 class StockMove(models.Model):
     _inherit = 'stock.move'
 

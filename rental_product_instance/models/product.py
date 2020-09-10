@@ -3,6 +3,7 @@
 from odoo import api, fields, models, _
 from odoo.osv import expression
 
+
 class ProductCategory(models.Model):
     _inherit = 'product.category'
 
@@ -53,7 +54,8 @@ class ProductProduct(models.Model):
         'stock.location',
         string="Current Location",
     )
-    instance_state = fields.Selection(string="State",
+    instance_state = fields.Selection(
+        string="State",
         selection=[
             ('available', 'Available'),
             ('rental', 'Rental'),
@@ -75,34 +77,48 @@ class ProductProduct(models.Model):
     )
 
     instance_condition_hour = fields.Char(
-        "Current Hours",
+        string="Current Hours",
+        compute="_compute_instance_condition",
     )
 
     instance_condition_km = fields.Char(
-        "Current Kilometers",
+        string="Current Kilometers",
+        compute="_compute_instance_condition",
     )
 
     instance_condition_in_tree = fields.Char(
-        "Current Kilmeter / Hours",
-        compute="_compute_instance_condition_in_tree",
-        store="True",
+        string="Current Operating Data",
+        compute="_compute_instance_condition",
     )
 
     instance_condition_date = fields.Date(
-        "Condition Date",
+        string="Condition Date",
+        compute="_compute_instance_condition",
     )
 
     instance_next_service_date = fields.Date(
-        "Next Service",
+        string="Next Service",
     )
-    real_sale_price = fields.Float(string='Real Sale Price',
-        help='This is the price at which the product instance was actually sold.')
-    real_total_kilometers = fields.Float(string='Real Total Kilometers',
-        help='This is the mileage the product instance had on sale.')
-    real_total_hours = fields.Float(string='Real Total Hours',
-        help='These are the total operating hours that the product instance had on sale.')
-    real_total_rental_time = fields.Float(string='Real Total Rental Time',
-        help='This is the total rental time for this product instance.')
+
+    real_sale_price = fields.Float(
+        string='Real Sale Price',
+        help='This is the price at which the product instance was actually sold.'
+    )
+
+    real_total_kilometers = fields.Float(
+        string='Real Total Kilometers',
+        help='This is the mileage the product instance had on sale.'
+    )
+
+    real_total_hours = fields.Float(
+        string='Real Total Hours',
+        help='These are the total operating hours that the product instance had on sale.'
+    )
+
+    real_total_rental_time = fields.Float(
+        string='Real Total Rental Time',
+        help='This is the total rental time for this product instance.'
+    )
 
     instance_operating_data_ids = fields.One2many(
         'instance.operating.data',
@@ -111,16 +127,25 @@ class ProductProduct(models.Model):
     )
 
     @api.multi
-    @api.depends('instance_condition_hour', 'instance_condition_km')
-    def _compute_instance_condition_in_tree(self):
+    def _compute_instance_condition(self):
         for record in self:
+            record.instance_condition_km = ''
+            record.instance_condition_hour = ''
             record.instance_condition_in_tree = ''
+            record.instance_condition_date = False
+            for o_data in record.instance_operating_data_ids:
+                if not record.instance_condition_date:
+                    record.instance_condition_date = o_data.date
+                    record.instance_condition_in_tree = o_data.operating_data
+                if o_data.date > record.instance_condition_date:
+                    record.instance_condition_date = o_data.date
+                    record.instance_condition_in_tree = o_data.operating_data
             if record.show_instance_condition_type == 'hour':
-                record.instance_condition_in_tree = \
-                    record.instance_condition_hour
+                record.instance_condition_hour = \
+                    record.instance_condition_in_tree
             elif record.show_instance_condition_type == 'km':
-                record.instance_condition_in_tree = \
-                    record.instance_condition_km
+                record.instance_condition_km = \
+                    record.instance_condition_in_tree
 
     def _compute_instance_state(self):
         timeline_obj = self.env['product.timeline']

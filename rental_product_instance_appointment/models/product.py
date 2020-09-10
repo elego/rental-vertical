@@ -9,5 +9,11 @@ class ProductProduct(models.Model):
     appointment_ids = fields.One2many(
         'product.appointment',
         'product_id',
-        string="Appointments"
+        string="Appointments",
+    )
+
+    operating_appointment_ids = fields.One2many(
+        'product.operating.appointment',
+        'product_id',
+        string="Operating Appointments",
     )

@@ -5,14 +5,16 @@ from odoo import api, fields, models, _
 
 class InstanceOperatingData(models.Model):
     _name = 'instance.operating.data'
+    _description = 'Instance Operating Data'
+    _order = 'date desc'
 
     instance_id = fields.Many2one(
         'product.product',
-        string="Instance",
+        string="Product Instance",
     )
 
     operating_data = fields.Char(
-        string='Current Kilmeter / Hours',
+        string='Operating Data',
     )
 
     date = fields.Date(
