@@ -32,7 +32,7 @@ class SaleOrder(models.Model):
                         dates.append(line.end_date)
             if dates:
                 order.update({
-                    'default_end_date': min(dates),
+                    'default_end_date': max(dates),
                     })
 
 
