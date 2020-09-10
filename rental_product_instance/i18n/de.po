@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-07 12:00+0000\n"
-"PO-Revision-Date: 2020-09-07 12:00+0000\n"
+"POT-Creation-Date: 2020-09-10 08:57+0000\n"
+"PO-Revision-Date: 2020-09-10 08:57+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr "Verfügbar"
 #. module: rental_product_instance
 #: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_condition_date
 msgid "Condition Date"
-msgstr ""
+msgstr "Datum"
 
 #. module: rental_product_instance
 #: model_terms:ir.actions.act_window,help:rental_product_instance.action_instance_operating_data
@@ -46,12 +46,6 @@ msgid "Current Hours"
 msgstr "Aktuelle Stunden"
 
 #. module: rental_product_instance
-#: model:ir.model.fields,field_description:rental_product_instance.field_instance_operating_data__operating_data
-#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_condition_in_tree
-msgid "Current Kilmeter / Hours"
-msgstr "Aktueller Betriebswert"
-
-#. module: rental_product_instance
 #: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_condition_km
 msgid "Current Kilometers"
 msgstr "Aktuelle Kilometer"
@@ -60,6 +54,11 @@ msgstr "Aktuelle Kilometer"
 #: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_current_location_id
 msgid "Current Location"
 msgstr "Aktueller Lagerort"
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_condition_in_tree
+msgid "Current Operating Data"
+msgstr "Aktueller Betriebswert"
 
 #. module: rental_product_instance
 #: model:ir.model.fields,field_description:rental_product_instance.field_instance_operating_data__date
@@ -87,9 +86,9 @@ msgid "ID"
 msgstr ""
 
 #. module: rental_product_instance
-#: model:ir.model.fields,field_description:rental_product_instance.field_instance_operating_data__instance_id
-msgid "Instance"
-msgstr "Produktinstanz"
+#: model:ir.model,name:rental_product_instance.model_instance_operating_data
+msgid "Instance Operating Data"
+msgstr "Betriebsdaten"
 
 #. module: rental_product_instance
 #: selection:product.category,show_instance_condition_type:0
@@ -104,7 +103,7 @@ msgstr "Zuletzt geändert am"
 #. module: rental_product_instance
 #: model:ir.model.fields,field_description:rental_product_instance.field_instance_operating_data__write_uid
 msgid "Last Updated by"
-msgstr "Zuletzt aktualisiert durch"
+msgstr "Zuletzt aktualisiert von"
 
 #. module: rental_product_instance
 #: model:ir.model.fields,field_description:rental_product_instance.field_instance_operating_data__write_date
@@ -128,6 +127,7 @@ msgstr "Nächster Service"
 
 #. module: rental_product_instance
 #: model:ir.actions.act_window,name:rental_product_instance.action_instance_operating_data
+#: model:ir.model.fields,field_description:rental_product_instance.field_instance_operating_data__operating_data
 #: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_operating_data_ids
 #: model_terms:ir.ui.view,arch_db:rental_product_instance.product_normal_form_view
 msgid "Operating Data"
@@ -144,6 +144,7 @@ msgid "Product Category"
 msgstr "Produktkategorie"
 
 #. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_instance_operating_data__instance_id
 #: model:ir.model.fields,field_description:rental_product_instance.field_product_product__product_instance
 #: model:ir.model.fields,field_description:rental_product_instance.field_product_template__product_instance
 msgid "Product Instance"
@@ -153,11 +154,6 @@ msgstr "Produktinstanz"
 #: model:ir.model,name:rental_product_instance.model_product_template
 msgid "Product Template"
 msgstr "Produktvorlage"
-
-#. module: rental_product_instance
-#: model:ir.model,name:rental_product_instance.model_product_timeline
-msgid "Product Timeline"
-msgstr "Produkt-Zeitachse"
 
 #. module: rental_product_instance
 #: model:ir.model.fields,field_description:rental_product_instance.field_product_product__real_sale_price
@@ -218,7 +214,7 @@ msgstr "Status"
 #. module: rental_product_instance
 #: model:ir.model,name:rental_product_instance.model_stock_move
 msgid "Stock Move"
-msgstr "Lagerbuchung"
+msgstr "Lagerbewegung"
 
 #. module: rental_product_instance
 #: model:ir.model.fields,help:rental_product_instance.field_product_product__real_total_hours
@@ -256,9 +252,4 @@ msgstr "Total Cost of Ownership"
 #, python-format
 msgid "You can not have 2 serial numbers for a product instance."
 msgstr "Für eine Produktinstanz dürfen nicht zwei Seriennummern existieren."
-
-#. module: rental_product_instance
-#: model:ir.model,name:rental_product_instance.model_instance_operating_data
-msgid "instance.operating.data"
-msgstr ""
 

@@ -10,11 +10,11 @@ class InstanceOperatingData(models.Model):
 
     instance_id = fields.Many2one(
         'product.product',
-        string="Instance",
+        string="Product Instance",
     )
 
     operating_data = fields.Char(
-        string='Current Kilmeter / Hours',
+        string='Operating Data',
     )
 
     date = fields.Date(

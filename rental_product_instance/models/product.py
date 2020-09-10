@@ -3,6 +3,7 @@
 from odoo import api, fields, models, _
 from odoo.osv import expression
 
+
 class ProductCategory(models.Model):
     _inherit = 'product.category'
 
@@ -53,7 +54,8 @@ class ProductProduct(models.Model):
         'stock.location',
         string="Current Location",
     )
-    instance_state = fields.Selection(string="State",
+    instance_state = fields.Selection(
+        string="State",
         selection=[
             ('available', 'Available'),
             ('rental', 'Rental'),
@@ -75,36 +77,48 @@ class ProductProduct(models.Model):
     )
 
     instance_condition_hour = fields.Char(
-        "Current Hours",
+        string="Current Hours",
         compute="_compute_instance_condition",
     )
 
     instance_condition_km = fields.Char(
-        "Current Kilometers",
+        string="Current Kilometers",
         compute="_compute_instance_condition",
     )
 
     instance_condition_in_tree = fields.Char(
-        "Current Kilmeter / Hours",
+        string="Current Operating Data",
         compute="_compute_instance_condition",
     )
 
     instance_condition_date = fields.Date(
-        "Condition Date",
+        string="Condition Date",
         compute="_compute_instance_condition",
     )
 
     instance_next_service_date = fields.Date(
-        "Next Service",
+        string="Next Service",
     )
-    real_sale_price = fields.Float(string='Real Sale Price',
-        help='This is the price at which the product instance was actually sold.')
-    real_total_kilometers = fields.Float(string='Real Total Kilometers',
-        help='This is the mileage the product instance had on sale.')
-    real_total_hours = fields.Float(string='Real Total Hours',
-        help='These are the total operating hours that the product instance had on sale.')
-    real_total_rental_time = fields.Float(string='Real Total Rental Time',
-        help='This is the total rental time for this product instance.')
+
+    real_sale_price = fields.Float(
+        string='Real Sale Price',
+        help='This is the price at which the product instance was actually sold.'
+    )
+
+    real_total_kilometers = fields.Float(
+        string='Real Total Kilometers',
+        help='This is the mileage the product instance had on sale.'
+    )
+
+    real_total_hours = fields.Float(
+        string='Real Total Hours',
+        help='These are the total operating hours that the product instance had on sale.'
+    )
+
+    real_total_rental_time = fields.Float(
+        string='Real Total Rental Time',
+        help='This is the total rental time for this product instance.'
+    )
 
     instance_operating_data_ids = fields.One2many(
         'instance.operating.data',
