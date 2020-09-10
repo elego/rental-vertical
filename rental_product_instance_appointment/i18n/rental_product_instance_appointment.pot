@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-04 12:03+0000\n"
-"PO-Revision-Date: 2020-05-04 12:03+0000\n"
+"POT-Creation-Date: 2020-09-10 08:35+0000\n"
+"PO-Revision-Date: 2020-09-10 08:35+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -28,22 +28,36 @@ msgstr ""
 
 #. module: rental_product_instance_appointment
 #: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__create_task
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment__create_task
 msgid "Create Task"
 msgstr ""
 
 #. module: rental_product_instance_appointment
 #: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__create_uid
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment__create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: rental_product_instance_appointment
 #: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__create_date
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment__create_date
 msgid "Created on"
 msgstr ""
 
 #. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment__daily_increase
+msgid "Daily Increase"
+msgstr ""
+
+#. module: rental_product_instance_appointment
 #: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__date_next_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment__date_next_appointment
 msgid "Date"
+msgstr ""
+
+#. module: rental_product_instance_appointment
+#: model_terms:ir.ui.view,arch_db:rental_product_instance_appointment.product_normal_form_view
+msgid "Date Dependent Appointments"
 msgstr ""
 
 #. module: rental_product_instance_appointment
@@ -53,41 +67,59 @@ msgstr ""
 
 #. module: rental_product_instance_appointment
 #: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__display_name
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: rental_product_instance_appointment
 #: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__id
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment__id
 msgid "ID"
 msgstr ""
 
 #. module: rental_product_instance_appointment
 #: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__product_id
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment__product_id
 msgid "Instance"
 msgstr ""
 
 #. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment__interval
+msgid "Interval"
+msgstr ""
+
+#. module: rental_product_instance_appointment
+#: selection:product.operating.appointment,operating_uom:0
+msgid "Kilometer"
+msgstr ""
+
+#. module: rental_product_instance_appointment
 #: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment____last_update
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment____last_update
 msgid "Last Modified on"
 msgstr ""
 
 #. module: rental_product_instance_appointment
 #: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__last_task_id
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment__last_task_id
 msgid "Last Ticket"
 msgstr ""
 
 #. module: rental_product_instance_appointment
 #: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__write_uid
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment__write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: rental_product_instance_appointment
 #: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__write_date
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment__write_date
 msgid "Last Updated on"
 msgstr ""
 
 #. module: rental_product_instance_appointment
 #: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__leads_of_notification
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment__leads_of_notification
 msgid "Leads of Notification"
 msgstr ""
 
@@ -98,7 +130,28 @@ msgstr ""
 
 #. module: rental_product_instance_appointment
 #: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__name
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment__name
 msgid "Name"
+msgstr ""
+
+#. module: rental_product_instance_appointment
+#: model:ir.model,name:rental_product_instance_appointment.model_product_operating_appointment
+msgid "Operating Appointment"
+msgstr ""
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_product__operating_appointment_ids
+msgid "Operating Appointments"
+msgstr ""
+
+#. module: rental_product_instance_appointment
+#: selection:product.operating.appointment,operating_uom:0
+msgid "Operating Hours"
+msgstr ""
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment__operating_uom
+msgid "Operating UoM"
 msgstr ""
 
 #. module: rental_product_instance_appointment
@@ -109,6 +162,11 @@ msgstr ""
 #. module: rental_product_instance_appointment
 #: model:ir.model,name:rental_product_instance_appointment.model_project_task
 msgid "Task"
+msgstr ""
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment__threshold
+msgid "Threshold"
 msgstr ""
 
 #. module: rental_product_instance_appointment
@@ -127,3 +185,9 @@ msgstr ""
 #: model:ir.cron,name:rental_product_instance_appointment.daily_gen_product_appointment
 msgid "Update product appointments daily"
 msgstr ""
+
+#. module: rental_product_instance_appointment
+#: model_terms:ir.ui.view,arch_db:rental_product_instance_appointment.product_normal_form_view
+msgid "Usage Dependent Appointments"
+msgstr ""
+
