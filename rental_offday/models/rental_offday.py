@@ -10,23 +10,23 @@ class RentalOffday(models.Model):
     _description = "Off-days for daily rentals"
 
     add_order_line_id = fields.Many2one(
-        'sale.order.line',
-        string='Order Line',
+        comodel_name='sale.order.line',
+        string='Order Line (of additional off-day)',
         ondelete='set null',
     )
 
     fixed_order_line_id = fields.Many2one(
-        'sale.order.line',
-        string='Order Line',
+        comodel_name='sale.order.line',
+        string='Order Line (of fixed off-day)',
         ondelete='set null',
     )
 
     name = fields.Char(
-        'Description'
+        string='Description'
     )
 
     date = fields.Date(
-        'Date',
+        string='Date',
         required=True,
     )
 

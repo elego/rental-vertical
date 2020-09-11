@@ -7,28 +7,27 @@ class ProductProduct(models.Model):
     _inherit = 'product.product'
 
     task_ids = fields.One2many(
-        'project.task',
-        'product_id',
-        string = 'Tasks',
+        comodel_name='project.task',
+        inverse_name='product_id',
+        string='Tasks',
     )
 
     task_count = fields.Integer(
-        'Task Count',
-        compute = '_compute_task_count',
+        string='Task Count',
+        compute='_compute_task_count',
     )
 
     repair_order_ids = fields.One2many(
-        'repair.order',
-        'product_id',
-        string = 'Repairs',
+        comodel_name='repair.order',
+        inverse_name='product_id',
+        string='Repair Orders',
     )
 
     repair_count = fields.Integer(
-        compute = '_compute_repair_count',
-        string = 'Repairs',
-        help = 'Total number of Repair Orders',
+        compute='_compute_repair_count',
+        string='# Repair Orders',
+        help='Total number of Repair Orders',
     )
-
 
     @api.multi
     def _compute_task_count(self):

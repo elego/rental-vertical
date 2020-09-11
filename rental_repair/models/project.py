@@ -8,69 +8,68 @@ class ProjectTask(models.Model):
     _inherit = 'project.task'
 
     product_id = fields.Many2one(
-        comodel_name = 'product.product',
-        string = 'Product Instance',
-        domain = "[('product_instance', '=', True)]",
+        comodel_name='product.product',
+        string='Product',
+        domain="[('product_instance', '=', True)]",
     )
 
     partner_id = fields.Many2one(
-        string = 'Partner',
+        string='Partner',
     )
 
     tracking = fields.Selection(
-        selection = [
+        selection=[
             ('serial', 'By Unique Serial Number'),
             ('lot', 'By Lots'),
             ('none', 'No Tracking'),
         ],
-        string = 'Tracking',
-        related = 'product_id.tracking',
+        string='Tracking',
+        related='product_id.tracking',
     )
 
     lot_id = fields.Many2one(
-        comodel_name = 'stock.production.lot',
-        string = 'Serial Number',
+        comodel_name='stock.production.lot',
+        string='Serial Number',
     )
 
     repair_ids = fields.One2many(
-        comodel_name = 'repair.order',
-        inverse_name = 'project_task_id',
-        string = 'Repair Orders',
-        groups = 'stock.group_stock_user',
+        comodel_name='repair.order',
+        inverse_name='project_task_id',
+        string='Repair Orders',
+        groups='stock.group_stock_user',
     )
 
     vendor_repair_ids = fields.One2many(
-        comodel_name = 'purchase.order',
-        inverse_name = 'project_task_id',
-        string = 'Vendor Repair Orders',
+        comodel_name='purchase.order',
+        inverse_name='project_task_id',
+        string='Vendor Repair Orders',
     )
 
     phone = fields.Char(
-        string = 'Phone',
-        help = 'Phone number',
+        string='Phone',
+        help='Phone number',
     )
 
     mobile = fields.Char(
-        string = 'Mobile',
-        help = 'Mobile number',
+        string='Mobile',
+        help='Mobile number',
     )
 
     stagnation_ids = fields.One2many(
-        comodel_name = 'project.task.stagnation',
-        inverse_name = 'project_task_id',
-        string = 'Stagnation',
+        comodel_name='project.task.stagnation',
+        inverse_name='project_task_id',
+        string='Stagnation',
     )
 
     total_stagnation_time_sec = fields.Float(
-        string = "Total stagnation (seconds)",
-        compute = '_compute_total_stagnation_time',
+        string="Total stagnation (seconds)",
+        compute='_compute_total_stagnation_time',
     )
 
     total_stagnation_time = fields.Char(
-        string = "Total stagnation",
-        compute = '_compute_stagnation_time',
+        string="Total stagnation",
+        compute='_compute_stagnation_time',
     )
-
 
     @api.onchange('partner_id')
     def _onchange_partner_id(self):
@@ -83,14 +82,14 @@ class ProjectTask(models.Model):
         h, m = divmod(m, 60)
         d, h = divmod(h, 24)
         r = "{days} {day} {hours} {hour} {minutes} {minute} {seconds} {second}".format(
-            days = _('{} days').format(d) if d > 1 else '',
-            day = _('{} day').format(d) if d == 1 else '',
-            hours = _('{} hours').format(h) if h > 1 else '',
-            hour = _('{} hour').format(h) if h == 1 else '',
-            minutes = _('{} minutes').format(m) if m > 1 else '',
-            minute = _('{} minute').format(m) if m == 1 else '',
-            seconds = _('{} seconds').format(s) if s > 1 else '',
-            second = _('{} second').format(s) if s == 1 else '',
+            days=_('{} days').format(d) if d > 1 else '',
+            day=_('{} day').format(d) if d == 1 else '',
+            hours=_('{} hours').format(h) if h > 1 else '',
+            hour=_('{} hour').format(h) if h == 1 else '',
+            minutes=_('{} minutes').format(m) if m > 1 else '',
+            minute=_('{} minute').format(m) if m == 1 else '',
+            seconds=_('{} seconds').format(s) if s > 1 else '',
+            second=_('{} second').format(s) if s == 1 else '',
         )
 
         return " ".join(r.split())
@@ -111,9 +110,9 @@ class ProjectStagnation(models.Model):
         ('check_datetime_range', 'CHECK(end_time > start_time)', 'The start time must be earlier than the end time.'),
     ]
 
-    project_task_id=fields.Many2one(
-        'project.task',
-        'Ticket',
+    project_task_id = fields.Many2one(
+        comodel_name='project.task',
+        string='Ticket',
         ondelete='set null',
     )
 
@@ -136,7 +135,7 @@ class ProjectStagnation(models.Model):
         for stagnation in self:
             if stagnation.end_time <= stagnation.start_time:
                 msg = _("The start time '{start_time}' must be earlier than the end time {end_time}.").format(
-                    start_time = stagnation.start_time,
-                    end_time = stagnation.end_time,
+                    start_time=stagnation.start_time,
+                    end_time=stagnation.end_time,
                 )
                 raise exceptions.UserError(msg)

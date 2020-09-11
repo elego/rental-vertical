@@ -14,6 +14,7 @@ class ProductTimeline(models.Model):
     )
 
     product_manu_type_id = fields.Many2one(
+        string="Product Type of Manufacturer",
         related='product_id.manu_type_id',
     )
 
