@@ -22,7 +22,7 @@ class SaleOrderLine(models.Model):
 
     rental_ok = fields.Boolean(
         string='Can be rented',
-        related='display_product_id.rental_ok',
+        related='display_product_id.rental',
     )
 
     @api.model
@@ -35,12 +35,12 @@ class SaleOrderLine(models.Model):
                 ('type', '=', 'product'),
                 '|',
                 ('sale_ok', '=', True),
-                ('rental_ok', '=', True),
+                ('rental', '=', True),
                 '&',
                 ('type', '=', 'service'),
                 '&',
                 ('sale_ok', '=', True),
-                ('rental_ok', '=', False),
+                ('rental', '=', False),
             ]
         return domain
 
@@ -70,7 +70,7 @@ class SaleOrderLine(models.Model):
     def onchange_display_product_id(self):
         if self.display_product_id:
             self.product_id = self.display_product_id
-            if self.display_product_id.rental_ok:
+            if self.display_product_id.rental:
                 self.rental = True
             self.rental = False
             self.can_sell_rental = False
@@ -242,7 +242,7 @@ class SaleOrderLine(models.Model):
         res = super(SaleOrderLine, self).product_id_change()
         if self.rental and 'domain' in res and 'product_uom' in res['domain']:
             del(res['domain']['product_uom'])
-            if self.display_product_id.rental_ok:
+            if self.display_product_id.rental:
                 time_uoms = self._get_time_uom()
                 uom_ids = []
                 if self.display_product_id.rental_of_month:

@@ -18,7 +18,7 @@ class TestRentalOffDay(TransactionCase):
             'default_code': '00123',
             'type': 'product',
             'sale_ok': True,
-            'rental_ok': True,
+            'rental': True,
             'rental_of_day': True,
             'rental_price_day': 200.00,
         })

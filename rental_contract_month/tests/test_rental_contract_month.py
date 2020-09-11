@@ -20,7 +20,7 @@ class TestRentalProductInsurance(RentalStockCommon):
 
     def test_00_rental_contract_month(self):
         self.productA.write({
-            'rental_ok': True,
+            'rental': True,
             'rental_of_month': True,
             'rental_price_month': 1000,
         })

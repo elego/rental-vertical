@@ -6,12 +6,6 @@ from odoo import api, fields, models, exceptions, _
 from odoo.tools import float_compare
 
 
-class ProductTemplate(models.Model):
-    _inherit = 'product.template'
-
-    rental_ok = fields.Boolean('Can be rented')
-
-
 class ProductProduct(models.Model):
     _inherit = 'product.product'
 
@@ -142,7 +136,7 @@ class ProductProduct(models.Model):
         rental_service.write({
             'uom_id': uom.id,
             'uom_po_id': uom.id,
-            'rental_ok': True,
+            'rental': True,
             'income_analytic_account_id': product.income_analytic_account_id.id,
             'expense_analytic_account_id': product.expense_analytic_account_id.id,
             'list_price': price})
