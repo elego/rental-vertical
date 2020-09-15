@@ -38,7 +38,7 @@ class StockWarehouse(models.Model):
         self.ensure_one()
         route_obj = self.env['stock.location.route']
         try:
-            rental_route = self.env.ref('sale_rental.route_warehouse0_rental')
+            rental_route = self.env.ref('rental_sale.route_warehouse0_rental')
         except Exception:
             rental_routes = route_obj.search([('name', '=', _('Rent'))])
             rental_route = rental_routes and rental_routes[0] or False
@@ -46,7 +46,7 @@ class StockWarehouse(models.Model):
             raise UserError(_("Can't find any generic 'Rent' route."))
         try:
             sell_rented_product_route = self.env.ref(
-                'sale_rental.route_warehouse0_sell_rented_product')
+                'rental_sale.route_warehouse0_sell_rented_product')
         except Exception:
             sell_rented_product_routes = route_obj.search(
                 [('name', '=', _('Sell Rented Product'))])
@@ -157,9 +157,9 @@ class StockWarehouse(models.Model):
 
     def write(self, vals):
         if 'rental_allowed' in vals:
-            rental_route = self.env.ref('sale_rental.route_warehouse0_rental')
+            rental_route = self.env.ref('rental_sale.route_warehouse0_rental')
             sell_rented_route = self.env.ref(
-                'sale_rental.route_warehouse0_sell_rented_product')
+                'rental_sale.route_warehouse0_sell_rented_product')
             if vals.get('rental_allowed'):
                 self._create_rental_locations()
                 self.write({
@@ -209,7 +209,7 @@ class StockInventory(models.Model):
 
     def create_demo_and_validate(self):
         silo = self.env['stock.inventory.line']
-        demo_inv = self.env.ref('sale_rental.rental_inventory')
+        demo_inv = self.env.ref('rental_sale.rental_inventory')
         rental_in_loc = self.env.ref('stock.warehouse0').rental_in_location_id
         demo_inv.location_id = rental_in_loc
         demo_inv.action_start()

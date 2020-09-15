@@ -24,7 +24,7 @@
                 string="Rental Services" col="1">
                 <field name="rental_service_ids" nolabel="1" attrs="{'invisible': [('rental_service_ids', '=', [])]}"/>
                 <button type="action"
-                    name="%(sale_rental.create_rental_product_action)d"
+                    name="%(rental_sale.create_rental_product_action)d"
                        string="Create Rental Service" />
             </group>
         </group>
