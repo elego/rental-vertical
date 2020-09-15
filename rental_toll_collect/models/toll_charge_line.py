@@ -7,6 +7,7 @@ from odoo import api, fields, models, exceptions, _
 class TollChargeLine(models.Model):
     _name = 'toll.charge.line'
     _description = 'Toll Charge Line'
+    _order = 'toll_date desc'
 
     amount = fields.Float(
         string='Toll Charge Amount',

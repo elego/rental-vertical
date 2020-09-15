@@ -105,7 +105,7 @@ class AccountInvoice(models.Model):
         for key, value in values.items():
             line = invoice_line_obj.create({
                 'product_id': toll_charge_product.id,
-                'name': toll_charge_product.display_name + " for " + key.license_plate,
+                'name': toll_charge_product.display_name + _(" for ") + key.license_plate,
                 'quantity': sum(value['distance']),
                 'uom_id': toll_charge_product.uom_id.id,
                 'price_unit': sum(value['amount']) / sum(value['distance']),  # TODO: check total amount, rounding!!!

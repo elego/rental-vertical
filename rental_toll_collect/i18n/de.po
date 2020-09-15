@@ -6,14 +6,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-27 14:32+0000\n"
-"PO-Revision-Date: 2020-05-27 14:32+0000\n"
+"POT-Creation-Date: 2020-09-15 10:49+0000\n"
+"PO-Revision-Date: 2020-09-15 10:49+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: rental_toll_collect
+#: code:addons/rental_toll_collect/models/account_invoice.py:108
+#, python-format
+msgid " for "
+msgstr " für "
 
 #. module: rental_toll_collect
 #: model:ir.model.fields,field_description:rental_toll_collect.field_account_invoice__toll_line_charged_count
@@ -316,7 +322,7 @@ msgid "Tariff Model"
 msgstr "Tarifmodell"
 
 #. module: rental_toll_collect
-#: code:addons/rental_toll_collect/models/toll_charge_line.py:152
+#: code:addons/rental_toll_collect/models/toll_charge_line.py:153
 #, python-format
 msgid "There are %s vehicles with the license plate '%s'."
 msgstr "Es gibt %s Fahrzeuge mit dem Fahrzeugkennzeichen '%s'."
