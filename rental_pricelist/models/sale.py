@@ -107,7 +107,7 @@ class SaleOrderLine(models.Model):
             self.sell_rental_id = False
             self._set_product_id()
 
-    # Override function in sale_rental
+    # Override function in rental_sale
     @api.onchange('product_id', 'rental_qty')
     def rental_product_id_change(self):
         res = {}
@@ -178,7 +178,7 @@ class SaleOrderLine(models.Model):
             self.sell_rental_id = False
         return res
 
-    # Override function in sale_rental
+    # Override function in rental_sale
     @api.constrains(
         'rental_type', 'extension_rental_id', 'start_date', 'end_date',
         'rental_qty', 'product_uom_qty', 'product_id')
@@ -228,7 +228,7 @@ class SaleOrderLine(models.Model):
                         line.product_uom_qty,
                         line.sell_rental_id.rental_qty))
 
-    # Override function in sale_rental
+    # Override function in rental_sale
     # replace number_of_days with number_of_time_unit
     @api.onchange('rental_qty', 'number_of_time_unit', 'product_id')
     def rental_qty_number_of_days_change(self):
