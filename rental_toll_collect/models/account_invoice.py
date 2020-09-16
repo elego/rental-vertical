@@ -27,12 +27,12 @@ class AccountInvoice(models.Model):
     @api.multi
     def _compute_toll_charged_count(self):
         for rec in self:
-            rec.toll_line_charged_count = len(rec.toll_line_ids)
+            rec.toll_line_charged_count = len(rec.toll_line_ids.filtered('invoiced'))
 
     @api.multi
     def _compute_toll_line_count(self):
         for rec in self:
-            rec.toll_line_count = len(rec.get_product_toll_charges())
+            rec.toll_line_count = len(rec.toll_line_ids)
 
     @api.multi
     def get_product_toll_charges(self):
@@ -123,3 +123,14 @@ class AccountInvoice(models.Model):
             values[tcl.product_id]['date'].append(tcl.toll_date)
             values[tcl.product_id]['distance'].append(tcl.distance)
         return values
+
+
+class AccountInvoiceLine(models.Model):
+    _inherit = 'account.invoice.line'
+
+    toll_line_ids = fields.One2many(
+        comodel_name='toll.charge.line',
+        inverse_name='invoice_line_id',
+        string="Toll Charge Lines",
+    )
+

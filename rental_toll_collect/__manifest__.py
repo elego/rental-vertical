@@ -60,7 +60,6 @@ The csv should contain the following columns:
         'views/product_view.xml',
         'views/sale_view.xml',
         'wizard/toll_charge_line_import_view.xml',
-        'wizard/toll_charge_line_create_invoice_view.xml',
     ],
     'demo': [
     ],
