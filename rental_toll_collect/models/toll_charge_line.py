@@ -140,10 +140,10 @@ class TollChargeLine(models.Model):
     )
 
     @api.multi
-    @api.depends('invoice_line_id')
+    @api.depends('invoice_line_id', 'invoice_line_id.toll_product_line_ids', 'chargeable')
     def _compute_invoiced(self):
         for cl in self:
-            cl.invoiced = bool(cl.invoice_line_id) and cl.chargeable
+            cl.invoiced = cl.chargeable and cl.invoice_line_id and cl.invoice_line_id.toll_product_line_ids
 
     @api.multi
     @api.depends('license_plate', 'toll_date')

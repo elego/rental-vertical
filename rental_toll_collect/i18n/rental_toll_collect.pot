@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-16 13:13+0000\n"
-"PO-Revision-Date: 2020-09-16 13:13+0000\n"
+"POT-Creation-Date: 2020-09-17 14:59+0000\n"
+"PO-Revision-Date: 2020-09-17 14:59+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: rental_toll_collect
-#: code:addons/rental_toll_collect/models/account_invoice.py:108
+#: code:addons/rental_toll_collect/models/account_invoice.py:110
 #, python-format
 msgid " for "
 msgstr ""
@@ -244,6 +244,11 @@ msgid "Open Toll Charges"
 msgstr ""
 
 #. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_account_invoice_line__toll_product_origin_line_id
+msgid "Origin for toll product invoice line"
+msgstr ""
+
+#. module: rental_toll_collect
 #: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__polution_class
 msgid "Pollution Class"
 msgstr ""
@@ -301,7 +306,7 @@ msgid "Tariff Model"
 msgstr ""
 
 #. module: rental_toll_collect
-#: code:addons/rental_toll_collect/models/toll_charge_line.py:163
+#: code:addons/rental_toll_collect/models/toll_charge_line.py:164
 #, python-format
 msgid "There are %s vehicles with the license plate '%s'."
 msgstr ""
@@ -365,7 +370,7 @@ msgid "Toll Charge Lines"
 msgstr ""
 
 #. module: rental_toll_collect
-#: code:addons/rental_toll_collect/models/account_invoice.py:87
+#: code:addons/rental_toll_collect/models/account_invoice.py:44
 #: code:addons/rental_toll_collect/models/sale.py:41
 #: model:ir.ui.menu,name:rental_toll_collect.menu_toll_charges
 #: model_terms:ir.ui.view,arch_db:rental_toll_collect.product_normal_form_view
@@ -374,6 +379,11 @@ msgstr ""
 #: model:product.template,name:rental_toll_collect.product_toll_product_template
 #, python-format
 msgid "Toll Charges"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_account_invoice_line__toll_product_line_ids
+msgid "Toll product invoice lines"
 msgstr ""
 
 #. module: rental_toll_collect

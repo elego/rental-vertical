@@ -47,18 +47,6 @@ class ContractContract(models.Model):
             'domain': "[('id','in',[" + ','.join(map(str, record_ids.ids)) + "])]",
             }
 
-    def _finalize_invoice_creation(self, invoices):
-        """
-        When creating the invoice from contract, the invoice lines for toll charges will be added,
-        before calling the super-method.
-        :param invoices: current invoices to be created from contract
-        """
-        for invoice in invoices:
-            tcls = invoice.invoice_line_ids.mapped('toll_line_ids').filtered(lambda l: l.chargeable)
-            values = invoice.get_toll_charge_invoice_line_values(tcls)
-            invoice.create_toll_charge_invoice_lines(values)
-        super(ContractContract, self)._finalize_invoice_creation(invoices)
-
 
 class ContractLine(models.Model):
     _inherit = 'contract.line'
@@ -66,8 +54,8 @@ class ContractLine(models.Model):
     @api.multi
     def _prepare_invoice_line(self, invoice_id=False, invoice_values=False):
         res = super(ContractLine, self)._prepare_invoice_line(invoice_id, invoice_values)
-        end_date = res.get('end_date', self.next_period_date_end)
-        start_date = res.get('start_date', self.next_period_date_start)
+        start_date = fields.Date.to_date(res.get('start_date')) or self.next_period_date_start
+        end_date = fields.Date.to_date(res.get('end_date')) or self.next_period_date_end
         if end_date and start_date:
             toll_charge_lines = self.sale_order_line_id.toll_line_ids.filtered(
                 lambda l: end_date >= l.toll_date.date() >= start_date
