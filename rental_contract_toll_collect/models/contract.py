@@ -15,7 +15,7 @@ class ContractContract(models.Model):
 
     toll_line_charged_count = fields.Integer(
         compute='_compute_toll_charged_count',
-        string="# Toll Charge Lines",
+        string="# Invoiced Toll Charge Lines",
         type='integer',
     )
 

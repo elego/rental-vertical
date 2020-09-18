@@ -106,7 +106,7 @@ class TollChargeLine(models.Model):
     )
 
     start_date = fields.Datetime(
-        string="Date",
+        string="Date (CSV)",
     )
 
     start_time = fields.Char(
@@ -138,6 +138,17 @@ class TollChargeLine(models.Model):
     weight_class = fields.Char(
         string='Weight Class'
     )
+
+    editable = fields.Boolean(
+        string="Editable",
+        compute='_compute_editable',
+    )
+
+    @api.multi
+    @api.depends('invoice_id')
+    def _compute_editable(self):
+        for cl in self:
+            cl.editable = cl.invoice_id.state == 'draft' if cl.invoice_id else True
 
     @api.multi
     @api.depends('invoice_line_id', 'invoice_line_id.toll_product_line_ids', 'chargeable')

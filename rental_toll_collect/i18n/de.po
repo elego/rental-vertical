@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-17 14:59+0000\n"
-"PO-Revision-Date: 2020-09-17 14:59+0000\n"
+"POT-Creation-Date: 2020-09-18 12:53+0000\n"
+"PO-Revision-Date: 2020-09-18 12:53+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -119,10 +119,14 @@ msgid "Currency"
 msgstr "Währung"
 
 #. module: rental_toll_collect
-#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__start_date
 #: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__toll_date
 msgid "Date"
 msgstr "Datum"
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__start_date
+msgid "Date (CSV)"
+msgstr "Datum (CSV)"
 
 #. module: rental_toll_collect
 #: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__display_name
@@ -139,6 +143,11 @@ msgstr "Distanz (km)"
 #: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__route_via
 msgid "Drive via"
 msgstr "über"
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__editable
+msgid "Editable"
+msgstr "Editierbar"
 
 #. module: rental_toll_collect
 #: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__route_exit
@@ -309,7 +318,7 @@ msgid "Tariff Model"
 msgstr "Tarifmodell"
 
 #. module: rental_toll_collect
-#: code:addons/rental_toll_collect/models/toll_charge_line.py:164
+#: code:addons/rental_toll_collect/models/toll_charge_line.py:175
 #, python-format
 msgid "There are %s vehicles with the license plate '%s'."
 msgstr "Es gibt %s Fahrzeuge mit dem Fahrzeugkennzeichen '%s'."

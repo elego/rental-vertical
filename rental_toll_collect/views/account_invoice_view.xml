@@ -40,7 +40,7 @@
                         <page name="toll_charges" string="Toll Charges">
                             <group>
                                 <field name="toll_line_ids" nolabel="1">
-                                    <tree>
+                                    <tree create="0" delete="0" editable="top">
                                         <field name="toll_date"/>
                                         <field name="product_id"/>
                                         <field name="distance" sum="Total Distance"/>

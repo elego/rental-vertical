@@ -7,10 +7,13 @@
         <field name="arch" type="xml">
             <form string="Toll Charge Line">
                 <sheet>
+                    <field name="editable" invisible="1"/>
                     <group>
                         <group name="vehicle_info" string="Vehicle Information">
-                            <field name="product_id" attrs="{'readonly': 1}"/>
-                            <field name="license_plate" attrs="{'readonly': 1}"/>
+                            <field name="product_id"/>
+                            <field name="license_plate"
+                                   attrs="{'readonly': [('editable', '=', False)]}"
+                            />
                             <field name="axle_class"/>
                             <field name="weight_class"/>
                             <field name="polution_class"/>
@@ -21,26 +24,39 @@
                             <field name="toll_date"/>
                         </group>
                     </group>
-                    <group>
+                    <group attrs="{'readonly': [('editable', '=', False)]}">
                         <group name="invoicing_info" string="Invoicing Information">
                             <field name="booking_number"/>
                             <field name="tariff_model"/>
                             <field name="analytic_account"/>
-                            <field name="chargeable"/>
-                            <field name="invoiced"/>
-                            <field name="invoice_id" attrs="{'invisible': [('invoiced', '=', False)]}"/>
-                            <field name="invoice_line_id" attrs="{'invisible': [('invoiced', '=', False)]}"/>
-                            <field name="sale_line_id"/>
+                            <field name="chargeable"
+                                   attrs="{'readonly': [('editable', '=', False)]}"
+                            />
+                            <field name="invoiced"
+                                   attrs="{'readonly': 1}"
+                            />
+                            <field name="invoice_id"/>
+                            <field name="invoice_line_id"
+                                   attrs="{'readonly': ['|', ('chargeable', '=', False), ('editable', '=', False)]}"
+                            />
+                            <field name="sale_line_id"
+                                   attrs="{'readonly': [('editable', '=', False)]}"
+                            />
                         </group>
                         <group name="route_info" string="Route Information">
                             <field name="road_operator"/>
                             <field name="route_ramp"/>
                             <field name="route_via"/>
                             <field name="route_exit"/>
-                            <field name="distance"/>
+                            <field name="distance"
+                                   attrs="{'readonly': [('editable', '=', False)]}"
+                            />
                             <field name="company_currency_id" invisible="1"/>
                             <field name="amount"
-                                   widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                                   widget="monetary"
+                                   options="{'currency_field': 'company_currency_id'}"
+                                   attrs="{'readonly': [('editable', '=', False)]}"
+                            />
                         </group>
                     </group>
                 </sheet>
@@ -53,14 +69,24 @@
         <field name="model">toll.charge.line</field>
         <field name="arch" type="xml">
             <tree string="Toll Charge Line">
+                <field name="editable" invisible="1"/>
                 <field name="toll_date"/>
                 <field name="product_id"/>
-                <field name="distance" sum="Total Distance"/>
+                <field name="distance"
+                       attrs="{'readonly': [('editable', '=', False)]}"
+                       sum="Total Distance"
+                />
                 <field name="company_currency_id" invisible="1"/>
-                <field name="amount" sum="Total Amount"
-                       widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
-                <field name="chargeable"/>
-                <field name="invoiced"/>
+                <field name="amount"
+                       attrs="{'readonly': [('editable', '=', False)]}"
+                       sum="Total Amount"
+                       widget="monetary"
+                       options="{'currency_field': 'company_currency_id'}"
+                />
+                <field name="chargeable"
+                       attrs="{'readonly': [('editable', '=', False)]}"
+                />
+                <field name="invoiced" readonly="1"/>
                 <field name="invoice_id" attrs="{'invisible': [('invoiced', '=', False)]}"/>
             </tree>
         </field>

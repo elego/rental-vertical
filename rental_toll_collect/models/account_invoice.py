@@ -72,13 +72,13 @@ class AccountInvoiceLine(models.Model):
     )
 
     def _get_toll_charge_lines(self, values):
-        product = values.get('product_id')
+        product = values.get('product_id') or (self.product_id and self.product_id.id)
         rented_product_id = self.env['product.product'].browse(product).rented_product_id
         products = [product]
         if rented_product_id:
             products.append(rented_product_id.id)
-        start_date = fields.Date.to_date(values.get('start_date'))
-        end_date = fields.Date.to_date(values.get('end_date'))
+        start_date = fields.Date.to_date(values.get('start_date')) or self.start_date
+        end_date = fields.Date.to_date(values.get('end_date')) or self.end_date
         toll_charge_lines = self.env['toll.charge.line'].search([
             ('product_id', 'in', products),
             ('toll_date', '>=', start_date),
@@ -139,11 +139,17 @@ class AccountInvoiceLine(models.Model):
     @api.multi
     def write(self, values):
         if not self.display_type and self.toll_product_line_ids:
-            toll_charge_lines = self._get_toll_charge_lines(values)
-            values.update({
-                'toll_line_ids': [(6, 0, toll_charge_lines.ids)],
-            })
+            if not values.get('toll_line_ids'):
+                toll_charge_lines = self._get_toll_charge_lines(values)
+                values.update({
+                    'toll_line_ids': [(6, 0, toll_charge_lines.ids)],
+                })
+                res = super(AccountInvoiceLine, self).write(values)
+            else:
+                res = super(AccountInvoiceLine, self).write(values)
+                toll_charge_lines = self._get_toll_charge_lines(values)
             vals = self._prepare_toll_product_line(toll_charge_lines.filtered('chargeable'))
             for line in self.toll_product_line_ids:
                 line.write(vals)
+            return res
         return super(AccountInvoiceLine, self).write(values)
