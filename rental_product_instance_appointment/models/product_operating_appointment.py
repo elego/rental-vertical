@@ -29,7 +29,8 @@ class ProductOperatingAppointment(models.Model):
         required=True,
     )
     daily_increase = fields.Integer(
-        'Daily Increase'
+        'Daily Increase',
+        default=1,
     )
     operating_uom = fields.Selection(
         selection=[
