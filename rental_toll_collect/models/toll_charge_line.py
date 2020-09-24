@@ -7,6 +7,7 @@ from odoo import api, fields, models, exceptions, _
 class TollChargeLine(models.Model):
     _name = 'toll.charge.line'
     _description = 'Toll Charge Line'
+    _order = 'toll_date desc'
 
     amount = fields.Float(
         string='Toll Charge Amount',
@@ -42,8 +43,19 @@ class TollChargeLine(models.Model):
     )
 
     invoice_id = fields.Many2one(
-        comodel_name='account.invoice',
         string="Invoice",
+        related="invoice_line_id.invoice_id",
+        store=True,
+    )
+
+    invoice_line_id = fields.Many2one(
+        comodel_name='account.invoice.line',
+        string="Invoice Line",
+    )
+
+    sale_line_id = fields.Many2one(
+        comodel_name='sale.order.line',
+        string="Sale Order Line",
     )
 
     license_plate = fields.Char(
@@ -94,7 +106,7 @@ class TollChargeLine(models.Model):
     )
 
     start_date = fields.Datetime(
-        string="Date",
+        string="Date (CSV)",
     )
 
     start_time = fields.Char(
@@ -127,11 +139,22 @@ class TollChargeLine(models.Model):
         string='Weight Class'
     )
 
+    editable = fields.Boolean(
+        string="Editable",
+        compute='_compute_editable',
+    )
+
     @api.multi
     @api.depends('invoice_id')
+    def _compute_editable(self):
+        for cl in self:
+            cl.editable = cl.invoice_id.state == 'draft' if cl.invoice_id else True
+
+    @api.multi
+    @api.depends('invoice_line_id', 'invoice_line_id.toll_product_line_ids', 'chargeable')
     def _compute_invoiced(self):
         for cl in self:
-            cl.invoiced = bool(cl.invoice_id)
+            cl.invoiced = cl.chargeable and cl.invoice_line_id and cl.invoice_line_id.toll_product_line_ids
 
     @api.multi
     @api.depends('license_plate', 'toll_date')
@@ -168,4 +191,3 @@ class TollChargeLine(models.Model):
                     cl.toll_date = cl.start_date
             else:
                 cl.toll_date = False
-

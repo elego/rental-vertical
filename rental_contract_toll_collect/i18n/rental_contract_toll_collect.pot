@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-27 14:39+0000\n"
-"PO-Revision-Date: 2020-05-27 14:39+0000\n"
+"POT-Creation-Date: 2020-09-18 12:55+0000\n"
+"PO-Revision-Date: 2020-09-18 12:55+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,6 +17,10 @@ msgstr ""
 
 #. module: rental_contract_toll_collect
 #: model:ir.model.fields,field_description:rental_contract_toll_collect.field_contract_contract__toll_line_charged_count
+msgid "# Invoiced Toll Charge Lines"
+msgstr ""
+
+#. module: rental_contract_toll_collect
 #: model:ir.model.fields,field_description:rental_contract_toll_collect.field_contract_contract__toll_line_count
 msgid "# Toll Charge Lines"
 msgstr ""
@@ -43,28 +47,8 @@ msgid "Products Toll Charges"
 msgstr ""
 
 #. module: rental_contract_toll_collect
-#: code:addons/rental_contract_toll_collect/models/contract.py:180
-#, python-format
-msgid "Something bad happened during invoice creation. The 'Last Date Invoiced' should have been set but it was not."
-msgstr ""
-
-#. module: rental_contract_toll_collect
-#: code:addons/rental_contract_toll_collect/models/contract.py:143
-#: model:product.product,name:rental_contract_toll_collect.product_toll_contract
-#: model:product.template,name:rental_contract_toll_collect.product_toll_contract_product_template
+#: code:addons/rental_contract_toll_collect/models/contract.py:42
 #, python-format
 msgid "Toll Charges"
-msgstr ""
-
-#. module: rental_contract_toll_collect
-#: model:product.product,weight_uom_name:rental_contract_toll_collect.product_toll_contract
-#: model:product.template,weight_uom_name:rental_contract_toll_collect.product_toll_contract_product_template
-msgid "kg"
-msgstr ""
-
-#. module: rental_contract_toll_collect
-#: model:product.product,uom_name:rental_contract_toll_collect.product_toll_contract
-#: model:product.template,uom_name:rental_contract_toll_collect.product_toll_contract_product_template
-msgid "km"
 msgstr ""
 

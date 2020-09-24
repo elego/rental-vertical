@@ -15,7 +15,7 @@ toll charges for the given time period.
 - Import the csv-file downloaded from Toll Collect Portal in order to create toll charge lines.
 - The cronjob will automatically create invoices for this contract.
 - If the date of the imported toll charge lines match the service period of invoice lines to be created, 
-a new invoice line with the toll product is additionally added for each vehicle product with distance and amount.
+  a new invoice line with the toll product is additionally added for each vehicle product with distance and amount.
     """,
     'version': '12.0.1.0.0',
     'category': 'Rental',
