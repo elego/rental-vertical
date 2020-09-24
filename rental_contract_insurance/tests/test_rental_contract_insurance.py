@@ -26,7 +26,7 @@ class TestRentalContractInsurance(RentalStockCommon):
             'standard_price': 1000,
         })
         self.productA.write({
-            'rental_ok': True,
+            'rental': True,
             'rental_of_month': True,
             'rental_of_day': True,
             'rental_price_month': 1000,

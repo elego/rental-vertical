@@ -9,8 +9,8 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='sale_ok']/.." position="before">
                     <div>
-                        <field name="rental_ok"/>
-                        <label for="rental_ok"/>
+                        <field name="rental"/>
+                        <label for="rental"/>
                     </div>
                 </xpath>
             </field>
@@ -25,7 +25,7 @@
                 <xpath expr="//group[@name='rental-product']" position="replace"/>
                 <xpath expr="//notebook" position="inside">
                     <page name="rental_price" string="Rental Price" 
-                          attrs="{'invisible': ['|', ('rental_ok', '=', False), ('type', '!=', 'product')]}">
+                          attrs="{'invisible': ['|', ('rental', '=', False), ('type', '!=', 'product')]}">
                         <group>
                             <group>
                                 <field name="rental_of_month"/>
@@ -120,8 +120,8 @@
             <field name="arch" type="xml">
                 <xpath expr="//filter[@name='inactive']" position="after">
                     <separator/>
-                    <filter name="rental_ok" string="Can be rented"
-                            domain="[('rental_ok','=',True), ('type','=','product')]"/>
+                    <filter name="rental" string="Can be rented"
+                            domain="[('rental','=',True), ('type','=','product')]"/>
                 </xpath>
             </field>
         </record>
@@ -131,7 +131,7 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">product.product</field>
             <field name="view_mode">tree,form,kanban</field>
-            <field name="context">{'search_default_rental_ok': 1}</field>
+            <field name="context">{'search_default_rental': 1}</field>
             <field name="view_type">form</field>
             <field name="search_view_id" ref="rental_product_search_view"/>
         </record>

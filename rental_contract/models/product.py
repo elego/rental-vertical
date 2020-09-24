@@ -11,10 +11,10 @@ class ProductProduct(models.Model):
     ven_contract_count = fields.Integer(compute="_compute_ven_contract_count",
         string='V-Contracts', help='Total number of Vendor/Supplier Contracts')
 
-    @api.onchange('is_contract', 'rental_ok')
-    def onchange_is_contract_rental_ok(self):
+    @api.onchange('is_contract', 'rental')
+    def onchange_is_contract_rental(self):
         template = self.env.ref('rental_contract.rental_contract_template')
-        if self.is_contract and self.rental_ok:
+        if self.is_contract and self.rental:
             self.contract_template_id = template.id
 
     @api.multi

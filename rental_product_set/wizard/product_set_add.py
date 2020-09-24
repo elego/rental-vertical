@@ -42,7 +42,7 @@ class ProductSetAdd(models.TransientModel):
             sale_order_line_env = self.env['sale.order.line']
             sale_order_line = self.env['sale.order.line']
             for set_line in self.product_set_id.set_line_ids:
-                if set_line.product_id.rental_service_ids and set_line.product_id.rental_ok:
+                if set_line.product_id.rental_service_ids and set_line.product_id.rental:
                     for rent_product in set_line.product_id.rental_service_ids:
                         if self.uom_id.id in uom_list:
                             if self.uom_id.id == rent_product.uom_id.id:
@@ -87,7 +87,7 @@ class ProductSetAdd(models.TransientModel):
             time_uom = []
             uom_list = self._get_time_uom()
             for set_line in self.product_set_id.set_line_ids:
-                if set_line.product_id.rental_service_ids and set_line.product_id.rental_ok:
+                if set_line.product_id.rental_service_ids and set_line.product_id.rental:
                     for rent_product in set_line.product_id.rental_service_ids:
                         if rent_product.uom_id.id in uom_list:
                             time_uom.append(rent_product.uom_id.id)

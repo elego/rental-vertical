@@ -24,7 +24,7 @@ class TestRentalProductSet(TransactionCase):
             'default_code': 'RP001',
             'type': 'product',
             'sale_ok': True,
-            'rental_ok': True,
+            'rental': True,
             'rental_of_month': True,
             'rental_price_month': 300.00,
         })
@@ -34,7 +34,7 @@ class TestRentalProductSet(TransactionCase):
             'default_code': 'RP002',
             'type': 'product',
             'sale_ok': True,
-            'rental_ok': True,
+            'rental': True,
             'rental_of_month': True,
             'rental_price_month': 300.00,
             'rental_of_day': True,

@@ -27,8 +27,6 @@ msgid "<span>&amp;nbsp;</span>"
 msgstr "<span>&amp;nbsp;</span>"
 
 #. module: rental_pricelist
-#: model:ir.model.fields,field_description:rental_pricelist.field_product_product__rental_ok
-#: model:ir.model.fields,field_description:rental_pricelist.field_product_template__rental_ok
 #: model:ir.model.fields,field_description:rental_pricelist.field_sale_order_line__rental_ok
 #: model_terms:ir.ui.view,arch_db:rental_pricelist.rental_product_search_view
 msgid "Can be rented"

@@ -19,7 +19,7 @@
             <field name="name">L110H</field>
         </record>
         <record id="rental_01531" model="product.product">
-            <field name="rental_ok" eval="True" />
+            <field name="rental" eval="True" />
             <field name="product_instance" eval="True" />
             <field name="tracking">serial</field>
             <field name="name">Volvo L110H</field>
@@ -95,7 +95,7 @@
             <field name="name">930M</field>
         </record>
         <record id="rental_01532" model="product.product">
-            <field name="rental_ok" eval="True" />
+            <field name="rental" eval="True" />
             <field name="product_instance" eval="True" />
             <field name="tracking">serial</field>
             <field name="name">Cat 930M</field>
@@ -143,7 +143,7 @@
             <field name="name">933M</field>
         </record>
         <record id="rental_01533" model="product.product">
-            <field name="rental_ok" eval="True" />
+            <field name="rental" eval="True" />
             <field name="product_instance" eval="True" />
             <field name="tracking">serial</field>
             <field name="name">Cat 933M</field>

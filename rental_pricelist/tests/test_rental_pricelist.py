@@ -16,7 +16,7 @@ class TestRentalPricelist(RentalStockCommon):
         self.productA = ProductObj.create({
             'name': 'Product A',
             'type': 'product',
-            'rental_ok': True,
+            'rental': True,
             'rental_of_month': True,
             'rental_of_day': True,
             'rental_of_hour': True,
@@ -27,17 +27,17 @@ class TestRentalPricelist(RentalStockCommon):
         self.productB = ProductObj.create({
             'name': 'Product B',
             'type': 'product',
-            'rental_ok': True,
+            'rental': True,
         })
         self.productC = ProductObj.create({
             'name': 'Product C',
             'type': 'product',
-            'rental_ok': True,
+            'rental': True,
         })
         self.productD = ProductObj.create({
             'name': 'Product D',
             'type': 'product',
-            'rental_ok': True,
+            'rental': True,
         })
         self.today = fields.Date.from_string(fields.Date.today())
         self.tomorrow = self.today + relativedelta(days=1)
