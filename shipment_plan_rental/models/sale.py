@@ -18,10 +18,12 @@ class SaleOrderLine(models.Model):
     trans_return_requisition_line_ids = fields.Many2many(
         'purchase.requisition.line',
         related="trans_return_shipment_plan_id.trans_requisition_line_ids",
+        string="Transfer Requisition Line (Return)",
     )
     trans_return_purchase_line_ids = fields.Many2many(
         'purchase.order.line',
         related="trans_return_shipment_plan_id.trans_purchase_line_ids",
+        string="Transfer Purchase Line (Return)",
     )
 
     #(override)
