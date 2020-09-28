@@ -11,8 +11,10 @@
         'rental_product_insurance',
     ],
     'data': [
-        'data/contract_template_data.xml',
+        'security/ir.model.access.csv',
         'data/product_data.xml',
+        #TODO add data to set visible group of uom
+        'data/contract_template_data.xml',
         'views/sale_view.xml',
     ],
     'demo': [

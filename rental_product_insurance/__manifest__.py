@@ -15,7 +15,7 @@ The insurance price is either based on the product's costs or the order's amount
 - Add a line with a product and see the default settings for the insurance.
 - Save the sale order and see the newly added line for the insurance with the calculated price.
 ''',
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.0.1',
     'category': 'Rental',
     'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
@@ -24,7 +24,6 @@ The insurance price is either based on the product's costs or the order's amount
     'data': [
         'data/product_data.xml',
         'views/product_view.xml',
-        'views/sale_view.xml',
     ],
     'demo': [
     ],
