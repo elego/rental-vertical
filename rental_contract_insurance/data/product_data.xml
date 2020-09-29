@@ -6,8 +6,6 @@
             <field name="default_code"></field>
             <field name="type">service</field>
             <field name="categ_id" ref="product.product_category_1"/>
-            <field name="uom_id" ref="rental_base.product_uom_month"/>
-            <field name="uom_po_id" ref="uom.product_uom_month"/>
             <field name="property_contract_template_id"
                    ref="rental_contract.rental_contract_template"/>
             <field name="sale_ok" eval="True"/>
