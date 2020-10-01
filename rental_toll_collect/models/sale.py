@@ -18,6 +18,11 @@ class SaleOrder(models.Model):
         type='integer',
     )
 
+    update_toll_lines = fields.Boolean(
+        string="Update Toll Charge Lines",
+        compute="_compute_update_toll_lines"
+    )
+
     @api.multi
     def _compute_toll_charged_count(self):
         for rec in self:
@@ -29,6 +34,11 @@ class SaleOrder(models.Model):
     def _compute_toll_line_count(self):
         for rec in self:
             rec.toll_line_count = len(rec.order_line.mapped('toll_line_ids'))
+
+    @api.multi
+    def _compute_update_toll_lines(self):
+        for rec in self:
+            rec.update_toll_lines = any(rec.order_line.mapped('update_toll_lines'))
 
     @api.multi
     def action_view_product_toll_charges(self):
@@ -46,6 +56,13 @@ class SaleOrder(models.Model):
             'domain': "[('id','in',[" + ','.join(map(str, record_ids)) + "])]",
             }
 
+    @api.multi
+    def action_update_toll_charges(self):
+        for order in self:
+            for line in order.order_line:
+                line.update_toll_charge_lines()
+        return True
+
 
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
@@ -56,30 +73,46 @@ class SaleOrderLine(models.Model):
         string="Toll Charge Lines",
     )
 
+    update_toll_lines = fields.Boolean(
+        string='Update Toll Charge Lines',
+        default=False,
+    )
+
+    @api.onchange(
+        'product_id'
+        'start_date',
+        'end_date',
+    )
+    def onchange_toll_lines_params(self):
+        self.update_toll_lines = True
+
+    @api.model_create_multi
+    def create(self, values):
+        so_lines = super().create(values)
+        for line in so_lines:
+            line.update_toll_charge_lines()
+        return so_lines
+
     @api.multi
-    def write(self, values):
+    def update_toll_charge_lines(self):
+        self.ensure_one()
         if not self.display_type:
-            products = [
-                values.get('product_id', self.product_id.id),
-                values.get('display_product_id', self.display_product_id.id),
-            ]
-            start_date = fields.Date.to_date(values.get('start_date')) or self.start_date
-            end_date = fields.Date.to_date(values.get('end_date')) or self.end_date
             toll_charge_lines = self.env['toll.charge.line'].search([
-                ('product_id', 'in', products),
-                ('toll_date', '>=', start_date),
-                ('toll_date', '<=', end_date),
+                ('product_id', 'in', [self.product_id.id, self.display_product_id.id]),
+                ('toll_date', '>=', self.start_date),
+                ('toll_date', '<=', self.end_date),
                 '|',
                 ('invoice_id', '=', False),
                 ('invoice_id', 'in', self.order_id.invoice_ids.ids),
             ])
-            values.update({
+            self.write({
                 'toll_line_ids': [(6, 0, toll_charge_lines.ids)],
+                'update_toll_lines': False,
             })
-        return super(SaleOrderLine, self).write(values)
 
     @api.multi
     def _prepare_invoice_line(self, qty):
+        self.update_toll_charge_lines()
         res = super(SaleOrderLine, self)._prepare_invoice_line(qty)
         res.update({
             'toll_line_ids': [(6, 0, self.toll_line_ids.ids)],

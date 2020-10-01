@@ -24,6 +24,11 @@ class AccountInvoice(models.Model):
         type='integer',
     )
 
+    update_toll_lines = fields.Boolean(
+        string="Update Toll Charge Lines",
+        compute="_compute_update_toll_lines"
+    )
+
     @api.multi
     def _compute_toll_charged_count(self):
         for rec in self:
@@ -33,6 +38,11 @@ class AccountInvoice(models.Model):
     def _compute_toll_line_count(self):
         for rec in self:
             rec.toll_line_count = len(rec.toll_line_ids)
+
+    @api.multi
+    def _compute_update_toll_lines(self):
+        for rec in self:
+            rec.update_toll_lines = any(rec.invoice_line_ids.mapped('update_toll_lines'))
 
     @api.multi
     def action_view_product_toll_charges(self):
@@ -48,6 +58,20 @@ class AccountInvoice(models.Model):
             'res_model': 'toll.charge.line',
             'domain': "[('id','in',[" + ','.join(map(str, self.toll_line_ids.ids)) + "])]",
             }
+
+    @api.multi
+    def action_update_toll_charges(self):
+        for invoice in self:
+            for line in invoice.invoice_line_ids:
+                line.update_toll_charge_lines()
+                if line.toll_line_ids:
+                    if line.toll_product_line_ids:
+                        vals = line._prepare_toll_product_line(line.toll_line_ids.filtered('chargeable'))
+                        line.toll_product_line_ids.write(vals)
+                    else:
+                        line._create_toll_product_line()
+                line.update_toll_lines = False
+        return True
 
 
 class AccountInvoiceLine(models.Model):
@@ -71,23 +95,18 @@ class AccountInvoiceLine(models.Model):
         string="Toll product invoice lines"
     )
 
-    def _get_toll_charge_lines(self, values):
-        product = values.get('product_id') or (self.product_id and self.product_id.id)
-        rented_product_id = self.env['product.product'].browse(product).rented_product_id
-        products = [product]
-        if rented_product_id:
-            products.append(rented_product_id.id)
-        start_date = fields.Date.to_date(values.get('start_date')) or self.start_date
-        end_date = fields.Date.to_date(values.get('end_date')) or self.end_date
-        toll_charge_lines = self.env['toll.charge.line'].search([
-            ('product_id', 'in', products),
-            ('toll_date', '>=', start_date),
-            ('toll_date', '<=', end_date),
-            '|',
-            ('invoice_id', '=', False),
-            ('invoice_id', '=', self.invoice_id.id),
-        ])
-        return toll_charge_lines
+    update_toll_lines = fields.Boolean(
+        string="Update Toll Charge Lines",
+        default=False,
+    )
+
+    @api.onchange(
+        'product_id'
+        'start_date',
+        'end_date',
+    )
+    def onchange_toll_lines_params(self):
+        self.update_toll_lines = True
 
     def _prepare_toll_product_line(self, chargeable_toll_lines):
         self.ensure_one()
@@ -124,32 +143,45 @@ class AccountInvoiceLine(models.Model):
         toll_product_line = self.env['account.invoice.line'].create(vals)
         return toll_product_line
 
+    @api.multi
+    def update_toll_charge_lines(self):
+        self.ensure_one()
+        if not self.display_type:
+            rented_product_id = self.env['product.product'].browse(self.product_id.id).rented_product_id
+            products = [self.product_id.id]
+            if rented_product_id:
+                products.append(rented_product_id.id)
+            toll_charge_lines = self.env['toll.charge.line'].search([
+                ('product_id', 'in', products),
+                ('toll_date', '>=', self.start_date),
+                ('toll_date', '<=', self.end_date),
+                '|',
+                ('invoice_id', '=', False),
+                ('invoice_id', '=', self.invoice_id.id),
+            ])
+            self.write({
+                'toll_line_ids': [(6, 0, toll_charge_lines.ids)],
+                'update_toll_lines': False,
+            })
+
     @api.model
     def create(self, vals):
-        if not self.display_type:
-            toll_charge_lines = self._get_toll_charge_lines(vals)
-            vals.update({
-                'toll_line_ids': [(6, 0, toll_charge_lines.ids)],
-            })
-        res = super().create(vals)
-        if res.toll_line_ids:
-            res._create_toll_product_line()
-        return res
+        i_lines = super().create(vals)
+        toll_product_lines = self.env['account.invoice.line']
+        for line in i_lines:
+            if not vals.get('toll_line_ids', False):
+                line.update_toll_charge_lines()
+            if line.toll_line_ids:
+                toll_product_lines |= line._create_toll_product_line()
+                line.update_toll_lines = False
+        i_lines |= toll_product_lines
+        return i_lines
 
     @api.multi
     def write(self, values):
-        if not self.display_type and self.toll_product_line_ids:
-            if not values.get('toll_line_ids'):
-                toll_charge_lines = self._get_toll_charge_lines(values)
-                values.update({
-                    'toll_line_ids': [(6, 0, toll_charge_lines.ids)],
-                })
-                res = super(AccountInvoiceLine, self).write(values)
-            else:
-                res = super(AccountInvoiceLine, self).write(values)
-                toll_charge_lines = self._get_toll_charge_lines(values)
-            vals = self._prepare_toll_product_line(toll_charge_lines.filtered('chargeable'))
-            for line in self.toll_product_line_ids:
-                line.write(vals)
-            return res
-        return super(AccountInvoiceLine, self).write(values)
+        toll_lines = values.get('toll_line_ids', False)
+        if toll_lines and any([item[2] for item in toll_lines]):
+            values.update({
+                'update_toll_lines': True
+            })
+        super(AccountInvoiceLine, self).write(values)
