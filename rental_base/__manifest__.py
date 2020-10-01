@@ -38,7 +38,7 @@ Otherwise you can not deal with rental orders.
         'purchase',
         'sale',
         'sale_order_type',
-        'sale_rental',
+        'rental_sale',
         'sale_start_end_dates',
         'sale_stock',
         'repair',

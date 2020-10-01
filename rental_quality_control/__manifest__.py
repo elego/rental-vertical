@@ -7,7 +7,7 @@
     'category': 'Rental',
     'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     'depends': [
-        'sale_rental',
+        'rental_sale',
         'quality_control_stock',
     ],
     'data': [
