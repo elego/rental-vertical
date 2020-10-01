@@ -25,7 +25,27 @@
                             </div>
                     </button>
                 </xpath>
-                
+                <xpath expr="//button[@name='action_invoice_open']" position="before">
+                    <field name="update_toll_lines" invisible="1"/>
+                    <button
+                            name="action_update_toll_charges"
+                            type="object"
+                            string="Update Toll Charges"
+                            groups="account.group_account_invoice"
+                            class="btn-primary"
+                            attrs="{'invisible': ['|', ('state', '!=', 'draft'), ('update_toll_lines', '=', False)]}"
+                    />
+                    <button
+                            name="action_update_toll_charges"
+                            type="object"
+                            string="Update Toll Charges"
+                            groups="account.group_account_invoice"
+                            attrs="{'invisible': ['|', ('state', '!=', 'draft'), ('update_toll_lines', '=', True)]}"
+                    />
+                </xpath>
+                <field name="display_type" position="after">
+                    <field name="update_toll_lines" invisible="1"/>
+                </field>
             </field>
         </record>
 
@@ -35,6 +55,9 @@
             <field name="model">account.invoice.line</field>
             <field name="inherit_id" ref="account.view_invoice_line_form"/>
             <field name="arch" type="xml">
+                <field name="display_type" position="after">
+                    <field name="update_toll_lines" invisible="1"/>
+                </field>
                 <xpath expr="//form" position="inside">
                     <notebook>
                         <page name="toll_charges" string="Toll Charges">

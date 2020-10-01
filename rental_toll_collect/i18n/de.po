@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-18 12:53+0000\n"
-"PO-Revision-Date: 2020-09-18 12:53+0000\n"
+"POT-Creation-Date: 2020-10-01 16:47+0000\n"
+"PO-Revision-Date: 2020-10-01 16:47+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: rental_toll_collect
-#: code:addons/rental_toll_collect/models/account_invoice.py:110
+#: code:addons/rental_toll_collect/models/account_invoice.py:129
 #, python-format
 msgid " for "
 msgstr " für "
@@ -305,7 +305,7 @@ msgstr "Verkaufsauftrag"
 #. module: rental_toll_collect
 #: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__sale_line_id
 msgid "Sale Order Line"
-msgstr "Auftragspositionen"
+msgstr "Auftragsposition"
 
 #. module: rental_toll_collect
 #: model:ir.model,name:rental_toll_collect.model_sale_order_line
@@ -382,8 +382,8 @@ msgid "Toll Charge Lines"
 msgstr "Mautpositionen"
 
 #. module: rental_toll_collect
-#: code:addons/rental_toll_collect/models/account_invoice.py:44
-#: code:addons/rental_toll_collect/models/sale.py:41
+#: code:addons/rental_toll_collect/models/account_invoice.py:54
+#: code:addons/rental_toll_collect/models/sale.py:51
 #: model:ir.ui.menu,name:rental_toll_collect.menu_toll_charges
 #: model_terms:ir.ui.view,arch_db:rental_toll_collect.product_normal_form_view
 #: model_terms:ir.ui.view,arch_db:rental_toll_collect.view_invoice_line_form
@@ -419,7 +419,21 @@ msgstr "Versuchen Sie den Import erneut."
 #. module: rental_toll_collect
 #: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__toll_type
 msgid "Type"
-msgstr "Art"
+msgstr "Typ"
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_account_invoice__update_toll_lines
+#: model:ir.model.fields,field_description:rental_toll_collect.field_account_invoice_line__update_toll_lines
+#: model:ir.model.fields,field_description:rental_toll_collect.field_sale_order__update_toll_lines
+#: model:ir.model.fields,field_description:rental_toll_collect.field_sale_order_line__update_toll_lines
+msgid "Update Toll Charge Lines"
+msgstr "Maut aktualisieren"
+
+#. module: rental_toll_collect
+#: model_terms:ir.ui.view,arch_db:rental_toll_collect.invoice_form
+#: model_terms:ir.ui.view,arch_db:rental_toll_collect.view_order_form
+msgid "Update Toll Charges"
+msgstr "Maut aktualisieren"
 
 #. module: rental_toll_collect
 #: model_terms:ir.ui.view,arch_db:rental_toll_collect.toll_charge_line_form_view
@@ -430,11 +444,6 @@ msgstr "Fahrzeuginformationen"
 #: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__weight_class
 msgid "Weight Class"
 msgstr "Gewichtsklasse"
-
-#. module: rental_toll_collect
-#: model:ir.model,name:rental_toll_collect.model_toll_charge_line_create_invoice
-msgid "Wizard for creating an invoice from toll charge line(s)"
-msgstr "Assistent zur Erstellung einer Rechnung für Mautposition(en)"
 
 #. module: rental_toll_collect
 #: model:ir.model,name:rental_toll_collect.model_toll_charge_line_import
