@@ -14,6 +14,14 @@ class SaleOrderLine(models.Model):
         compute='_compute_timeline_ids',
     )
 
+    rental_type = fields.Selection(
+        states={
+            'draft': [('readonly', False)],
+            'sent': [('readonly', False)],
+            'sale': [('readonly', False)],
+        }
+    )
+
     @api.multi
     def _compute_timeline_ids(self):
         for line in self:
@@ -27,12 +35,11 @@ class SaleOrderLine(models.Model):
     def _prepare_timeline_vals(self):
         self.ensure_one()
         return {
-            'type': 'reserved',
+            'type': 'rental' if self.state == 'sale' else 'reserved',
             'date_start': self.start_date,
             'date_end': self.end_date,
             'product_id': self.product_id.rented_product_id.id,
             'order_name': self.order_id.name,
-
             'res_model': self._name,
             'res_id': self.id,
             'click_res_model': self.order_id._name,
@@ -96,6 +103,17 @@ class SaleOrderLine(models.Model):
                     reset_lines |= line
                 if name and line.name != name:
                     reset_lines |= line
+                # Since rental_type needed to be editable in state 'sent' and 'sale
+                # to create new order lines in these states it is here forbidden to
+                # change it on existing sale order lines.
+                if line.order_id.state != "draft" and "rental_type" in vals:
+                    raise exceptions.UserError(
+                        _(
+                            "You are not allowed to change the 'rental type' "
+                            "of an already confirmed order.\n\n"
+                            "Line with product: '%s'"
+                        ) % line.product_id.display_name
+                    )
             reset_lines._reset_timeline(vals)
         return res
 
