@@ -38,6 +38,32 @@ class SaleOrderLine(models.Model):
             res['analytic_account_id'] = self.product_id.income_analytic_account_id.id
         return res
 
+    @api.model_create_multi
+    def create(self, values):
+        """
+        When creating new sale order lines, when order state is 'sale',
+        contract lines have to be added in existing or new contract, too.
+        :param vals_list: dictionary
+        :return: sale.order.line objects
+        """
+        so_lines = super().create(values)
+        for sol in so_lines:
+            if sol.product_id and sol.order_id.state == 'sale':
+                if sol.product_id.is_contract and sol.product_id.property_contract_template_id:
+                    contracts = self.env['contract.line'].search([
+                        ('sale_order_line_id', 'in', sol.order_id.order_line.ids),
+                    ]).mapped('contract_id').filtered(
+                        lambda c:
+                        c.contract_template_id == sol.product_id.property_contract_template_id and
+                        c.date_end >= sol.start_date
+                    )
+                    if contracts:
+                        sol.create_contract_line(contracts[0])
+                        sol.write({'contract_id': contracts[0].id})
+                    else:
+                        sol.order_id.action_create_contract()
+        return sol
+
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
