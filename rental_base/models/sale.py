@@ -4,8 +4,21 @@ from odoo import api, fields, models, exceptions, _
 from odoo.tools import float_round
 import datetime
 
+
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
+
+    default_start_date = fields.Date(
+        string="Default Start Date",
+        compute='_compute_default_start_date',
+        readonly=False
+    )
+
+    default_end_date = fields.Date(
+        string="Default End Date",
+        compute='_compute_default_end_date',
+        readonly=False
+    )
 
     @api.depends('order_line.start_date')
     def _compute_default_start_date(self):
@@ -34,12 +47,6 @@ class SaleOrder(models.Model):
                 order.update({
                     'default_end_date': max(dates),
                     })
-
-
-    default_start_date = fields.Date(string='Default Start Date',
-            compute='_compute_default_start_date', readonly=False)
-    default_end_date = fields.Date(string='Default End Date',
-            compute='_compute_default_end_date', readonly=False)
 
     @api.multi
     def unlink(self):
@@ -110,18 +117,54 @@ class SaleOrderLine(models.Model):
         return number
 
     @api.multi
+    def update_start_end_date(self, date_start, date_end):
+        for line in self:
+            # update sale order lines
+            line.with_context(allow_write=True).start_date = date_start
+            line.with_context(allow_write=True).end_date = date_end
+            datetime_start = fields.Datetime.to_datetime(date_start)
+            datetime_end = fields.Datetime.to_datetime(date_end)
+            # update rental
+            if line.rental:
+                rental = self.env['sale.rental'].search([
+                    ('start_order_line_id', '=', line.id),
+                    ('state', '!=', 'cancel'),
+                    ('out_move_id.state', '!=', 'cancel'),
+                    ('in_move_id.state', '!=', 'cancel'),
+                ])
+                if rental and date_start:
+                    date_move_out = fields.Date.to_date(rental.out_move_id.date_expected)
+                    if date_start != date_move_out:
+                        if rental.out_move_id.state not in ['draft', 'confirmed', 'waiting']:
+                            raise exceptions.UserError(
+                                _("Outgoing Shipment is in state %s. You can not change the Date Start anymore.")
+                                % rental.out_move_id.state
+                            )
+                        rental.out_move_id.date_expected = datetime_start
+                if rental and date_end:
+                    date_move_in = fields.Date.to_date(rental.in_move_id.date_expected)
+                    if date_end != date_move_in:
+                        if rental.in_move_id.state not in ['draft', 'confirmed', 'waiting']:
+                            raise exceptions.UserError(
+                                _("Incoming Shipment is in state %s. You can not change the Date End anymore.")
+                                % rental.in_move_id.state
+                            )
+                        rental.in_move_id.date_expected = datetime_end
+
+    @api.multi
     def write(self, values):
         """
         Both fields start_date and end_date were made editable in state draft, sent and sale,
         in order to allow the creation of new sale order lines with start and end dates.
         However, it is forbidden to write the dates of already existing sale order lines.
+        To update these existing line, the method 'update_start_end_date' should be called.
         :param values: dictionary
         :return: Boolean
         """
         for sol in self:
-            if sol.order_id.state != "draft":
+            if sol.order_id.state not in ('draft', 'sent'):
                 messages = []
-                if "start_date" in values:
+                if 'start_date' in values and not self._context.get('allow_write', False):
                     if (isinstance(values['start_date'], str)
                         and sol.start_date != datetime.datetime.strptime(values['start_date'], "%Y-%m-%d").date()) \
                             or (isinstance(values['start_date'], datetime.date)
@@ -129,10 +172,10 @@ class SaleOrderLine(models.Model):
                         messages.append(
                             _(
                                 "You are not allowed to change the 'start date' "
-                                "in an order line of an confirmed order."
+                                "in an order line of a confirmed order."
                             )
                         )
-                if "end_date" in values:
+                if 'end_date' in values and not self._context.get('allow_write', False):
                     if (isinstance(values['end_date'], str)
                         and sol.end_date != datetime.datetime.strptime(values['end_date'], "%Y-%m-%d").date()) \
                             or (isinstance(values['end_date'], datetime.date)
@@ -140,14 +183,19 @@ class SaleOrderLine(models.Model):
                         messages.append(
                             _(
                                 "You are not allowed to change the 'end date' "
-                                "in an order line of an confirmed order."
+                                "in an order line of a confirmed order."
                             )
                         )
                 if messages:
                     messages.append(
                         _(
-                            "\nLine with product: '%s'"
-                        ) % sol.product_id.display_name
+                            "\nOrder: %s\n"
+                            "Line with product: '%s'\n\n"
+                            "Please use instead the button 'Update Times' "
+                            "in the order to correctly update the order "
+                            "line's times, its timeline entry, contract and "
+                            "its stock moves and pickings as required."
+                        ) % (sol.order_id.name, sol.product_id.display_name)
                     )
-                    raise exceptions.UserError('\n'.join(messages))
+                    raise exceptions.UserError("\n".join(messages))
         return super(SaleOrderLine, self).write(values)

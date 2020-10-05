@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-02 11:44+0000\n"
-"PO-Revision-Date: 2020-10-02 11:44+0000\n"
+"POT-Creation-Date: 2020-10-05 14:08+0000\n"
+"PO-Revision-Date: 2020-10-05 14:08+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -254,7 +254,7 @@ msgstr "Produkt"
 #. module: rental_timeline
 #: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__product_categ_name
 msgid "Product Categ Name"
-msgstr ""
+msgstr "Bezeichnung der Produktkategorie"
 
 #. module: rental_timeline
 #: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__product_categ_id
@@ -284,7 +284,7 @@ msgstr "Produkt:"
 #. module: rental_timeline
 #: selection:ir.ui.view,type:0
 msgid "QWeb"
-msgstr "Qweb"
+msgstr "QWeb"
 
 #. module: rental_timeline
 #: code:addons/rental_timeline/models/product_timeline.py:168
@@ -330,11 +330,6 @@ msgstr "Vermietungstyp"
 #: model_terms:ir.ui.view,arch_db:rental_timeline.view_product_timeline_timeline
 msgid "Rental period:"
 msgstr "Mietdauer:"
-
-#. module: rental_timeline
-#: selection:product.timeline,type:0
-msgid "Repair"
-msgstr "Reparatur"
 
 #. module: rental_timeline
 #: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__res_id
@@ -452,7 +447,6 @@ msgstr "Ansicht"
 #. module: rental_timeline
 #: model:ir.model.fields,field_description:rental_timeline.field_ir_actions_act_window_view__view_mode
 #: model:ir.model.fields,field_description:rental_timeline.field_ir_ui_view__type
-#: model:ir.model.fields,field_description:rental_timeline.field_website_page__type
 msgid "View Type"
 msgstr "Ansichtstyp"
 
@@ -464,7 +458,7 @@ msgstr "Lager"
 #. module: rental_timeline
 #: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__warehouse_name
 msgid "Warehouse Name"
-msgstr ""
+msgstr "Bezeichnung des Lagers"
 
 #. module: rental_timeline
 #: model_terms:ir.ui.view,arch_db:rental_timeline.view_product_timeline_timeline
@@ -474,9 +468,11 @@ msgstr "Lager"
 #. module: rental_timeline
 #: code:addons/rental_timeline/models/sale.py:111
 #, python-format
-msgid "You are not allowed to change the 'rental type' of an already confirmed order.\n"
+msgid "You are not allowed to change the 'rental type' in an order line of a confirmed order.\n"
 "\n"
+"Order: %s\n"
 "Line with product: '%s'"
-msgstr "Es ist nicht erlaubt, den 'Vermietungstyp' von einem bereits bestätigten Auftrag zu ändern.\n"
+msgstr "Es ist nicht erlaubt, den 'Vermietungstyp' in einer Auftragszeile eines bestätigten Auftrags zu ändern.\n"
 "\n"
+"Auftrag: %s\n"
 "Position mit Produkt: '%s'"

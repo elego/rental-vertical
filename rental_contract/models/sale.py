@@ -38,6 +38,24 @@ class SaleOrderLine(models.Model):
             res['analytic_account_id'] = self.product_id.income_analytic_account_id.id
         return res
 
+    @api.multi
+    def update_start_end_date(self, date_start, date_end):
+        super(SaleOrderLine, self).update_start_end_date(date_start, date_start)
+        for line in self:
+            if line.is_contract and line.contract_id:
+                contract_lines = line.contract_id.contract_line_ids.with_context(no_date_checks=True).filtered(
+                    lambda x: x.sale_order_line_id.id == line.id
+                )
+                for cl in contract_lines:
+                    cl.write({
+                        'recurring_next_date': date_end,
+                        'date_start': date_start,
+                        'date_end': date_end,
+                    })
+                    cl._onchange_date_start()
+                    if cl.last_date_invoiced and cl.date_end <= cl.last_date_invoiced:
+                        cl.recurring_next_date = False
+
     @api.model_create_multi
     def create(self, values):
         """

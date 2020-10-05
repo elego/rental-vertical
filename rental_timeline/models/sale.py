@@ -87,7 +87,7 @@ class SaleOrderLine(models.Model):
     @api.multi
     def write(self, vals):
         res = super(SaleOrderLine, self).write(vals)
-        keys = {'date_start', 'end_date', 'product_id', 'name'}
+        keys = {'start_date', 'end_date', 'product_id', 'name'}
         if keys.intersection(vals.keys()):
             reset_lines = self.browse([])
             start_date = vals.get('start_date', False)
@@ -106,13 +106,14 @@ class SaleOrderLine(models.Model):
                 # Since rental_type needed to be editable in state 'sent' and 'sale
                 # to create new order lines in these states it is here forbidden to
                 # change it on existing sale order lines.
-                if line.order_id.state != "draft" and "rental_type" in vals:
+                if line.order_id.state not in ("draft", "sent") and "rental_type" in vals:
                     raise exceptions.UserError(
                         _(
                             "You are not allowed to change the 'rental type' "
-                            "of an already confirmed order.\n\n"
+                            "in an order line of a confirmed order.\n\n"
+                            "Order: %s\n"
                             "Line with product: '%s'"
-                        ) % line.product_id.display_name
+                        ) % (line.order_id.name, line.product_id.display_name)
                     )
             reset_lines._reset_timeline(vals)
         return res
@@ -126,6 +127,15 @@ class SaleOrderLine(models.Model):
         ]
         self.env['product.timeline'].search(domain).unlink()
         return res
+
+    @api.multi
+    def update_start_end_date(self, date_start, date_end):
+        super(SaleOrderLine, self).update_start_end_date(date_start, date_start)
+        for line in self:
+            line._reset_timeline({
+                'start_date': fields.Datetime.to_datetime(date_start),
+                'end_date': fields.Datetime.to_datetime(date_end),
+            })
 
 
 class SaleOrder(models.Model):

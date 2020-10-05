@@ -76,6 +76,15 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <!-- Sale Order -->
+            <!-- Button Header -->
+            <xpath expr="//button[@name='print_quotation']" position="after">
+                <button
+                        name="%(action_update_sale_line_date)d"
+                        string="Update Times"
+                        type="action"
+                        attrs="{'invisible': [('state', 'in', ['draft', 'sent'])]}"
+                />
+            </xpath>
             <!-- Hide fields inserted by sale module to move them to new location -->
             <xpath expr="//group[@name='sales_person']//field[@name='client_order_ref']" position="attributes">
                 <attribute name="attrs">{'invisible': 1}</attribute>
