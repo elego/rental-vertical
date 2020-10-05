@@ -44,6 +44,6 @@ In order to get vehicle related fields, open the product category and activate t
     ],
     'qweb': [
     ],
-    'application': True,
+    'application': False,
     'license': 'AGPL-3',
 }

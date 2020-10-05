@@ -19,6 +19,6 @@
     ],
     'qweb': [
     ],
-    'application': True,
+    'application': False,
     'license': 'AGPL-3',
 }
