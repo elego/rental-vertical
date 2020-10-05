@@ -2,7 +2,7 @@
 
 from odoo import api, fields, models, exceptions, _
 from odoo.tools import float_round
-
+import datetime
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
@@ -59,6 +59,22 @@ class SaleOrderLine(models.Model):
         related='product_id.rented_product_id.uom_id',
     )
 
+    start_date = fields.Date(
+        states={
+            'draft': [('readonly', False)],
+            'sent': [('readonly', False)],
+            'sale': [('readonly', False)],
+        }
+    )
+
+    end_date = fields.Date(
+        states={
+            'draft': [('readonly', False)],
+            'sent': [('readonly', False)],
+            'sale': [('readonly', False)],
+        }
+    )
+
     @api.multi
     def _prepare_invoice_line(self, qty):
         res = super(SaleOrderLine, self)._prepare_invoice_line(qty)
@@ -92,3 +108,46 @@ class SaleOrderLine(models.Model):
             number = ((self.end_date - self.start_date).days + 1) / 30.4167
             number = float_round(number, precision_rounding=1)
         return number
+
+    @api.multi
+    def write(self, values):
+        """
+        Both fields start_date and end_date were made editable in state draft, sent and sale,
+        in order to allow the creation of new sale order lines with start and end dates.
+        However, it is forbidden to write the dates of already existing sale order lines.
+        :param values: dictionary
+        :return: Boolean
+        """
+        for sol in self:
+            if sol.order_id.state != "draft":
+                messages = []
+                if "start_date" in values:
+                    if (isinstance(values['start_date'], str)
+                        and sol.start_date != datetime.datetime.strptime(values['start_date'], "%Y-%m-%d").date()) \
+                            or (isinstance(values['start_date'], datetime.date)
+                                and sol.start_date != values['start_date']):
+                        messages.append(
+                            _(
+                                "You are not allowed to change the 'start date' "
+                                "in an order line of an confirmed order."
+                            )
+                        )
+                if "end_date" in values:
+                    if (isinstance(values['end_date'], str)
+                        and sol.end_date != datetime.datetime.strptime(values['end_date'], "%Y-%m-%d").date()) \
+                            or (isinstance(values['end_date'], datetime.date)
+                                and sol.end_date != values['end_date']):
+                        messages.append(
+                            _(
+                                "You are not allowed to change the 'end date' "
+                                "in an order line of an confirmed order."
+                            )
+                        )
+                if messages:
+                    messages.append(
+                        _(
+                            "\nLine with product: '%s'"
+                        ) % sol.product_id.display_name
+                    )
+                    raise exceptions.UserError('\n'.join(messages))
+        return super(SaleOrderLine, self).write(values)
