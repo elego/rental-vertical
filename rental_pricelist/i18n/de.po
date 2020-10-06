@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-25 10:14+0000\n"
-"PO-Revision-Date: 2020-08-25 10:14+0000\n"
+"POT-Creation-Date: 2020-10-06 13:29+0000\n"
+"PO-Revision-Date: 2020-10-06 13:29+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -27,10 +27,20 @@ msgid "<span>&amp;nbsp;</span>"
 msgstr "<span>&amp;nbsp;</span>"
 
 #. module: rental_pricelist
+#: model_terms:ir.ui.view,arch_db:rental_pricelist.product_normal_form_view
+msgid "<strong colspan=\"2\">Bulk Prices</strong>"
+msgstr "<strong colspan=\"2\">Staffelpreise</strong>"
+
+#. module: rental_pricelist
 #: model:ir.model.fields,field_description:rental_pricelist.field_sale_order_line__rental_ok
 #: model_terms:ir.ui.view,arch_db:rental_pricelist.rental_product_search_view
 msgid "Can be rented"
 msgstr "Kann vermietet werden"
+
+#. module: rental_pricelist
+#: model_terms:ir.ui.view,arch_db:rental_pricelist.product_normal_form_view
+msgid "Daily Basis"
+msgstr "Tagesbasis"
 
 #. module: rental_pricelist
 #: model:ir.model.fields,field_description:rental_pricelist.field_product_product__day_scale_pricelist_item_ids
@@ -48,6 +58,11 @@ msgid "Hour Scale Pricelist Items"
 msgstr "Preislistenposistionen für Stundenmiete"
 
 #. module: rental_pricelist
+#: model_terms:ir.ui.view,arch_db:rental_pricelist.product_normal_form_view
+msgid "Hourly Basis"
+msgstr "Stundenbasis"
+
+#. module: rental_pricelist
 #: code:addons/rental_pricelist/models/sale.py:189
 #, python-format
 msgid "Missing \"Rental to Extend\" on the sale order line with rental service %s."
@@ -59,7 +74,12 @@ msgid "Month Scale Pricelist Items"
 msgstr "Preislistenposistionen für Monatsmiete"
 
 #. module: rental_pricelist
-#: code:addons/rental_pricelist/models/product.py:132
+#: model_terms:ir.ui.view,arch_db:rental_pricelist.product_normal_form_view
+msgid "Monthly Basis"
+msgstr "Monatsbasis"
+
+#. module: rental_pricelist
+#: code:addons/rental_pricelist/models/product.py:126
 #, python-format
 msgid "No found expected Rental Type."
 msgstr "Es wurde kein Vermietungstyp (Mengeneinheit) gefunden."
@@ -128,7 +148,7 @@ msgstr "Preislistenposition"
 #. module: rental_pricelist
 #: model_terms:ir.ui.view,arch_db:rental_pricelist.product_normal_form_view
 msgid "Pricelist Items"
-msgstr "Preislistenpositionen"
+msgstr "Preislisten-Positionen"
 
 #. module: rental_pricelist
 #: model:ir.model,name:rental_pricelist.model_product_product
@@ -175,7 +195,7 @@ msgid "Rental Service (Month)"
 msgstr "Mietservice (Monat)"
 
 #. module: rental_pricelist
-#: code:addons/rental_pricelist/models/product.py:135
+#: code:addons/rental_pricelist/models/product.py:129
 #, python-format
 msgid "Rental of %s (%s)"
 msgstr "Miete von %s (%s)"
@@ -196,13 +216,17 @@ msgid "Rented in months"
 msgstr "Vermietbar in Monaten"
 
 #. module: rental_pricelist
+#: model:ir.model,name:rental_pricelist.model_sale_order
+msgid "Sale Order"
+msgstr "Verkaufsauftrag"
+
+#. module: rental_pricelist
 #: model:ir.model,name:rental_pricelist.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Auftragsposition"
 
 #. module: rental_pricelist
-#: code:addons/rental_pricelist/models/product.py:119
-#: code:addons/rental_pricelist/models/sale.py:63
+#: code:addons/rental_pricelist/models/product.py:113
 #, python-format
 msgid "The product has no related rental services."
 msgstr "Das Produkt hat keine zugehörigen Mietservices."

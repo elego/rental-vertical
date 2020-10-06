@@ -6,17 +6,30 @@
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="rental_base.view_order_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//group[@id='order_info']" position="inside">
+                <xpath expr="//separator[@id='description']" position="before">
+                    <separator id="insurance" string="Insurance" attrs="{'invisible': [('rental','=',False),]}"/>
                     <field name="update_insurance_line" invisible="1"/>
-                    <field name="insurance_product_ids" context="{'default_sol_id': active_id}" nolabel="1">
+                    <field name="insurance_entire_time"
+                           attrs="{'invisible': [('rental','=',False),]}"
+                    />
+                    <field name="insurance_product_ids"
+                           context="{'default_sol_id': active_id}"
+                           nolabel="1"
+                           colspan="2"
+                           attrs="{'invisible': [('rental','=',False),]}"
+                    >
                         <tree editable="bottom">
-                            <field name="product_id" options="{'no_create': True, 'no_open': True}"/>
-                            <field name="insurance_type"/>
+                            <field name="insurance_product_id"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                            <field name="insurance_type"
+                                   string="Type"
+                            />
                             <field name="insurance_percent"/>
-                            <field name="insurance_price_unit"/>
+                            <field name="insurance_price_unit"
+                                   string="Amount"
+                            />
                         </tree>
                     </field>
-                    <field name="insurance_entire_time"/>
                     <field name="insurance_line_ids" invisible="1"/>
                 </xpath>
                 <xpath expr="//field[@name='order_line']//tree//field[@name='price_unit']" position="after">
@@ -33,33 +46,6 @@
                                        ('update_insurance_line','=',False),
                                    ]}"/>
                 </xpath>
-            </field>
-        </record>
-
-        <record id="rental_pricelist_product_normal_form_view" model="ir.ui.view">
-            <field name="name">view.rental.pricelist.product.form</field>
-            <field name="model">product.product</field>
-            <field name="inherit_id" ref="rental_pricelist.product_normal_form_view" />
-            <field name="arch" type="xml">
-                <field name="day_scale_pricelist_item_ids" position="after">
-                    <field name="day_insurance_product_ids" context="{'default_product_id': active_id}" nolabel="1">
-                        <tree editable="bottom">
-                            <field name="insurance_product_id" options="{'no_create': True, 'no_open': True}"/>
-                            <field name="insurance_type"/>
-                            <field name="insurance_percent"/>
-                        </tree>
-                    </field>
-                </field>
-                <field name="month_scale_pricelist_item_ids" position="after">
-                    <field name="month_insurance_product_ids" context="{'default_product_id': active_id}" nolabel="1">
-                        <tree editable="bottom">
-                            <field name="insurance_product_id" options="{'no_create': True, 'no_open': True}"/>
-                            <field name="insurance_type"/>
-                            <field name="insurance_percent"/>
-                        </tree>
-                    </field>
-
-                </field>
             </field>
         </record>
 

@@ -198,7 +198,8 @@
                 />
             </xpath>
             <xpath expr="//div[@name='discount']" position="after">
-                <separator string="Description"
+                <separator id="description"
+                           string="Description"
                            attrs="{'invisible': [('display_type', '!=', False)]}"
                            colspan="2"
                 />

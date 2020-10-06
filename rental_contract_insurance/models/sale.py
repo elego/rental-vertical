@@ -30,7 +30,7 @@ class SaleOrderLine(models.Model):
     def _check_insurance_product_uom(self):
         for rec in self:
             res = rec.insurance_product_ids.filtered(
-                lambda product: product.product_id.uom_id != rec.product_uom)
+                lambda product: product.insurance_product_id.uom_id != rec.product_uom)
         if res:
             raise exceptions.ValidationError(
                 _('Uom of the selected Insurance product should be same as the sale order line'))
@@ -51,7 +51,7 @@ class SaleOrderLine(models.Model):
             vals = [(5, 0, 0)]
             for ins_prod in insurance_products:
                 vals.append((0, 0, {
-                    'product_id': ins_prod.insurance_product_id.id,
+                    'insurance_product_id': ins_prod.insurance_product_id.id,
                     'insurance_type': ins_prod.insurance_type,
                     'insurance_percent': ins_prod.insurance_percent,
                 }))
@@ -103,7 +103,7 @@ class SaleOrderLine(models.Model):
         for product in self.insurance_product_ids:
             insurance_line = False
             for line in old_insurance_lines:
-                if line.product_id == product.product_id:
+                if line.product_id == product.insurance_product_id:
                     insurance_line = line
                     old_insurance_lines -= insurance_line
             if not insurance_line:

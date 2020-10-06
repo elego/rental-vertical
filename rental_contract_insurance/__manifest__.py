@@ -9,6 +9,7 @@
     'depends': [
         'rental_contract_month',
         'rental_product_insurance',
+        'rental_pricelist',
     ],
     'data': [
         'security/ir.model.access.csv',
@@ -16,6 +17,7 @@
         #TODO add data to set visible group of uom
         'data/contract_template_data.xml',
         'views/sale_view.xml',
+        'views/product_view.xml',
     ],
     'demo': [
     ],

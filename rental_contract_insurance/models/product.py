@@ -41,6 +41,7 @@ class ProductProduct(models.Model):
 
 class DayInsuranceProductInfo(models.Model):
     _name = 'day.insurance.product.info'
+    _description = "Daily Insurances"
 
     product_id = fields.Many2one(
         'product.product',
@@ -69,6 +70,7 @@ class DayInsuranceProductInfo(models.Model):
 
 class MonthInsuranceProductInfo(models.Model):
     _name = 'month.insurance.product.info'
+    _description = "Monthly Insurances"
 
     product_id = fields.Many2one(
         'product.product',
@@ -97,12 +99,13 @@ class MonthInsuranceProductInfo(models.Model):
 
 class InsuranceProductSolInfo(models.Model):
     _name = 'insurance.product.sol.info'
+    _description = "Insurance information on sale order line"
 
     sol_id = fields.Many2one(
         'sale.order.line',
         string='Order Line'
     )
-    product_id = fields.Many2one(
+    insurance_product_id = fields.Many2one(
         'product.product',
         string='Product',
         domain=lambda self: [
