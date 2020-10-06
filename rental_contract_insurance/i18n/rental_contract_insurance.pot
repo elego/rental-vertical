@@ -18,218 +18,218 @@ msgstr ""
 #. module: rental_contract_insurance
 #: model_terms:ir.ui.view,arch_db:rental_contract_insurance.rental_pricelist_product_normal_form_view
 msgid "<strong colspan=\"2\">Insurances</strong>"
-msgstr "<strong colspan=\"2\">Versicherungen</strong>"
+msgstr ""
 
 #. module: rental_contract_insurance
 #: model_terms:ir.ui.view,arch_db:rental_contract_insurance.view_order_form
 msgid "Amount"
-msgstr "Betrag"
+msgstr ""
 
 #. module: rental_contract_insurance
 #: selection:day.insurance.product.info,insurance_type:0
 #: selection:insurance.product.sol.info,insurance_type:0
 #: selection:month.insurance.product.info,insurance_type:0
 msgid "Cost of Product"
-msgstr "Produktkosten"
+msgstr ""
 
 #. module: rental_contract_insurance
 #: selection:day.insurance.product.info,insurance_type:0
 #: selection:insurance.product.sol.info,insurance_type:0
 #: selection:month.insurance.product.info,insurance_type:0
 msgid "Cost of Rental"
-msgstr "Mietkosten"
+msgstr ""
 
 #. module: rental_contract_insurance
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_day_insurance_product_info__create_uid
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_insurance_product_sol_info__create_uid
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_month_insurance_product_info__create_uid
 msgid "Created by"
-msgstr "Erstellt von"
+msgstr ""
 
 #. module: rental_contract_insurance
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_day_insurance_product_info__create_date
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_insurance_product_sol_info__create_date
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_month_insurance_product_info__create_date
 msgid "Created on"
-msgstr "Erstellt am"
+msgstr ""
 
 #. module: rental_contract_insurance
 #: model:ir.model,name:rental_contract_insurance.model_day_insurance_product_info
 msgid "Daily Insurances"
-msgstr "Versichungen auf Tagesbasis"
+msgstr ""
 
 #. module: rental_contract_insurance
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_day_insurance_product_info__display_name
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_insurance_product_sol_info__display_name
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_month_insurance_product_info__display_name
 msgid "Display Name"
-msgstr "Anzeigename"
+msgstr ""
 
 #. module: rental_contract_insurance
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_day_insurance_product_info__id
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_insurance_product_sol_info__id
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_month_insurance_product_info__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: rental_contract_insurance
 #: model_terms:ir.ui.view,arch_db:rental_contract_insurance.view_order_form
 #: model:product.product,name:rental_contract_insurance.product_product_contract_insurance
 #: model:product.template,name:rental_contract_insurance.product_product_contract_insurance_product_template
 msgid "Insurance"
-msgstr "Versicherung"
+msgstr ""
 
 #. module: rental_contract_insurance
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_day_insurance_product_info__insurance_product_id
 msgid "Insurance (Day)"
-msgstr "Versicherung (Tag)"
+msgstr ""
 
 #. module: rental_contract_insurance
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_month_insurance_product_info__insurance_product_id
 msgid "Insurance (Month)"
-msgstr "Versicherung (Monat)"
+msgstr ""
 
 #. module: rental_contract_insurance
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_insurance_product_sol_info__insurance_price_unit
 msgid "Insurance Amount"
-msgstr "Versicherungsbetrag"
+msgstr ""
 
 #. module: rental_contract_insurance
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_sale_order_line__insurance_line_ids
 msgid "Insurance Line"
-msgstr "Versicherungsposition"
+msgstr ""
 
 #. module: rental_contract_insurance
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_sale_order_line__insurance_origin_line_id
 msgid "Insurance Origin Line"
-msgstr "Ursprungszeile für Versicherung"
+msgstr ""
 
 #. module: rental_contract_insurance
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_day_insurance_product_info__insurance_percent
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_insurance_product_sol_info__insurance_percent
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_month_insurance_product_info__insurance_percent
 msgid "Insurance Percent"
-msgstr "Prozent"
+msgstr ""
 
 #. module: rental_contract_insurance
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_sale_order_line__insurance_product_ids
 msgid "Insurance Products"
-msgstr "Versicherungsprodukte"
+msgstr ""
 
 #. module: rental_contract_insurance
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_product_product__day_insurance_product_ids
 msgid "Insurance Products (Day)"
-msgstr "Versicherungsprodukte (Tag)"
+msgstr ""
 
 #. module: rental_contract_insurance
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_product_product__month_insurance_product_ids
 msgid "Insurance Products (Month)"
-msgstr "Versicherungsprodukte (Monat)"
+msgstr ""
 
 #. module: rental_contract_insurance
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_day_insurance_product_info__insurance_type
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_insurance_product_sol_info__insurance_type
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_month_insurance_product_info__insurance_type
 msgid "Insurance Type"
-msgstr "Versicherungsart"
+msgstr ""
 
 #. module: rental_contract_insurance
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_sale_order_line__insurance_entire_time
 msgid "Insurance for entire Time"
-msgstr "Ganze Versicherungszeit"
+msgstr ""
 
 #. module: rental_contract_insurance
 #: model:ir.model,name:rental_contract_insurance.model_insurance_product_sol_info
 msgid "Insurance information on sale order line"
-msgstr "Versicherungsinformation an der Auftragszeile"
+msgstr ""
 
 #. module: rental_contract_insurance
 #: model_terms:ir.ui.view,arch_db:rental_contract_insurance.rental_pricelist_product_normal_form_view
 msgid "Insurances"
-msgstr "Versicherungen"
+msgstr ""
 
 #. module: rental_contract_insurance
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_day_insurance_product_info____last_update
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_insurance_product_sol_info____last_update
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_month_insurance_product_info____last_update
 msgid "Last Modified on"
-msgstr "Zuletzt geändert am"
+msgstr ""
 
 #. module: rental_contract_insurance
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_day_insurance_product_info__write_uid
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_insurance_product_sol_info__write_uid
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_month_insurance_product_info__write_uid
 msgid "Last Updated by"
-msgstr "Zuletzt aktualisiert von"
+msgstr ""
 
 #. module: rental_contract_insurance
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_day_insurance_product_info__write_date
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_insurance_product_sol_info__write_date
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_month_insurance_product_info__write_date
 msgid "Last Updated on"
-msgstr "Zuletzt aktualisiert am"
+msgstr ""
 
 #. module: rental_contract_insurance
 #: model:ir.model,name:rental_contract_insurance.model_month_insurance_product_info
 msgid "Monthly Insurances"
-msgstr "Versicherungen auf Monatsbasis"
+msgstr ""
 
 #. module: rental_contract_insurance
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_insurance_product_sol_info__sol_id
 msgid "Order Line"
-msgstr "Auftragsposition"
+msgstr ""
 
 #. module: rental_contract_insurance
 #: model:ir.model,name:rental_contract_insurance.model_product_product
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_insurance_product_sol_info__insurance_product_id
 #: model_terms:ir.ui.view,arch_db:rental_contract_insurance.rental_pricelist_product_normal_form_view
 msgid "Product"
-msgstr "Produkt"
+msgstr ""
 
 #. module: rental_contract_insurance
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_day_insurance_product_info__product_id
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_month_insurance_product_info__product_id
 msgid "Rented Product"
-msgstr "Mietprodukt"
+msgstr ""
 
 #. module: rental_contract_insurance
 #: model:ir.model,name:rental_contract_insurance.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Auftragsposition"
+msgstr ""
 
 #. module: rental_contract_insurance
 #: model_terms:ir.ui.view,arch_db:rental_contract_insurance.rental_pricelist_product_normal_form_view
 #: model_terms:ir.ui.view,arch_db:rental_contract_insurance.view_order_form
 msgid "Type"
-msgstr "Typ"
+msgstr ""
 
 #. module: rental_contract_insurance
 #: model:product.product,uom_name:rental_contract_insurance.product_product_contract_insurance
 #: model:product.template,uom_name:rental_contract_insurance.product_product_contract_insurance_product_template
 msgid "Unit(s)"
-msgstr "Einheit(en)"
+msgstr ""
 
 #. module: rental_contract_insurance
 #: code:addons/rental_contract_insurance/models/product.py:28
 #, python-format
 msgid "Uom of Insurance product should be in Category Time."
-msgstr "Die Mengeneinheit des Versicherungsprodukt sollte von Kategorie 'Zeit' sein."
+msgstr ""
 
 #. module: rental_contract_insurance
 #: code:addons/rental_contract_insurance/models/sale.py:36
 #, python-format
 msgid "Uom of the selected Insurance product should be same as the sale order line"
-msgstr "Die Mengeneinheit dews gewählten Versicherungsproduktes sollte dieselbe sein wie in der Auftragszeile."
+msgstr ""
 
 #. module: rental_contract_insurance
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_sale_order_line__update_insurance_line
 #: model_terms:ir.ui.view,arch_db:rental_contract_insurance.view_order_form
 msgid "Update Insurance Line"
-msgstr "Versicherung aktualisieren"
+msgstr ""
 
 #. module: rental_contract_insurance
 #: model:product.product,weight_uom_name:rental_contract_insurance.product_product_contract_insurance
 #: model:product.template,weight_uom_name:rental_contract_insurance.product_product_contract_insurance_product_template
 msgid "kg"
-msgstr "kg"
+msgstr ""
 

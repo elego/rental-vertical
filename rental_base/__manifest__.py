@@ -48,6 +48,7 @@ Otherwise you can not deal with rental orders.
         'data/ir_sequence_data.xml',
         'data/order_type_data.xml',
         'data/product_uom_data.xml',
+        'wizard/update_sale_line_date_view.xml',
         'views/res_config_settings_view.xml',
         'views/stock_picking_views.xml',
         'views/menu_view.xml',
