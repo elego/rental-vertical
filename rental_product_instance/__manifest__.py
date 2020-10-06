@@ -23,6 +23,6 @@ It can be used in rental orders, repair orders and maintenance orders.''',
     ],
     'qweb': [
     ],
-    'application': True,
+    'application': False,
     'license': 'AGPL-3',
 }

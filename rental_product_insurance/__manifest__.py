@@ -29,6 +29,6 @@ The insurance price is either based on the product's costs or the order's amount
     ],
     'qweb': [
     ],
-    'application': True,
+    'application': False,
     'license': 'AGPL-3',
 }

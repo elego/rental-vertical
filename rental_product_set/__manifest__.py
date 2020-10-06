@@ -25,6 +25,6 @@ the products in the set. There is no further relation between those products.
     ],
     'qweb': [
     ],
-    'application': True,
+    'application': False,
     'license': 'AGPL-3',
 }
