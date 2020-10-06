@@ -7,8 +7,8 @@
             <field name="purchase_ok" eval="True"/>
             <field name="sale_ok" eval="True"/>
             <field name="type">service</field>
-            <field name="uom_id" ref="uom.product_uom_km"/>
-            <field name="uom_po_id" ref="uom.product_uom_km"/>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
         </record>
 
     </data>

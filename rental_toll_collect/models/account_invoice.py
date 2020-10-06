@@ -111,6 +111,7 @@ class AccountInvoiceLine(models.Model):
     def _prepare_toll_product_line(self, chargeable_toll_lines):
         self.ensure_one()
         toll_charge_product = self.env.ref('rental_toll_collect.product_toll')
+        uom_km = self.env.ref('uom.product_uom_km')
         distance = sum(chargeable_toll_lines.mapped('distance'))
         total_amount = sum(chargeable_toll_lines.mapped('amount'))
         license_plate = self.product_id.license_plate or self.product_id.rented_product_id.license_plate \
@@ -123,10 +124,10 @@ class AccountInvoiceLine(models.Model):
         )
         vals = {
             'product_id': toll_charge_product.id,
-            'quantity': distance,
+            'quantity': 1.0,
             'uom_id': toll_charge_product.uom_id.id,
-            'price_unit': total_amount / distance,  # TODO: check total amount, rounding!!!
-            'name': toll_charge_product.display_name + _(" for ") + license_plate,
+            'price_unit': round(total_amount, 2),
+            'name': toll_charge_product.display_name + _(" for ") + license_plate + _(" Total Distance: ") + str(round(distance, 2)) + " " + uom_km.name,
             'toll_product_origin_line_id': self.id,
             'invoice_id': self.invoice_id.id,
             'start_date': self.start_date,
