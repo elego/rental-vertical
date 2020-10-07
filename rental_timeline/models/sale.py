@@ -130,7 +130,7 @@ class SaleOrderLine(models.Model):
 
     @api.multi
     def update_start_end_date(self, date_start, date_end):
-        super(SaleOrderLine, self).update_start_end_date(date_start, date_start)
+        super(SaleOrderLine, self).update_start_end_date(date_start, date_end)
         for line in self:
             line._reset_timeline({
                 'start_date': fields.Datetime.to_datetime(date_start),
