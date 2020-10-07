@@ -74,6 +74,7 @@ class ProductProduct(models.Model):
             ('km', 'Kilometers'),
         ],
         related="categ_id.show_instance_condition_type",
+        store=True,
     )
 
     instance_condition_hour = fields.Char(
@@ -136,10 +137,10 @@ class ProductProduct(models.Model):
             for o_data in record.instance_operating_data_ids:
                 if not record.instance_condition_date:
                     record.instance_condition_date = o_data.date
-                    record.instance_condition_in_tree = o_data.operating_data
+                    record.instance_condition_in_tree = str(o_data.operating_data)
                 if o_data.date > record.instance_condition_date:
                     record.instance_condition_date = o_data.date
-                    record.instance_condition_in_tree = o_data.operating_data
+                    record.instance_condition_in_tree = str(o_data.operating_data)
             if record.show_instance_condition_type == 'hour':
                 record.instance_condition_hour = \
                     record.instance_condition_in_tree

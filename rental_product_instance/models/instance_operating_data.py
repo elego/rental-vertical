@@ -11,12 +11,15 @@ class InstanceOperatingData(models.Model):
     instance_id = fields.Many2one(
         'product.product',
         string="Product Instance",
+        required=True,
     )
 
-    operating_data = fields.Char(
+    operating_data = fields.Integer(
         string='Operating Data',
+        required=True,
     )
 
     date = fields.Date(
         string='Date',
+        required=True,
     )

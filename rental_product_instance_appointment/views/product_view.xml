@@ -26,8 +26,10 @@
                                    attrs="{'invisible': [('show_instance_condition_type', 'not in', ('km', 'hour'))]}"
                         />
                         <field name="operating_appointment_ids"
+                               context="{'default_product_id': active_id, 'default_operating_uom': show_instance_condition_type}"
                                attrs="{'invisible': [('show_instance_condition_type', 'not in', ('km', 'hour'))]}">
                             <tree default_order="date_next_appointment" editable="top">
+                                <field name="product_id" invisible="1"/>
                                 <field name="name"/>
                                 <field name="date_next_appointment"/>
                                 <field name="threshold"/>
