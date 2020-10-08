@@ -1,9 +1,9 @@
 odoo.define('rental.tour', function (require) {
     "use strict";
- 
+
     var core = require('web.core');
     var tour = require('web_tour.tour');
- 
+
     var _t = core._t;
     var _wait = "1000";
 
@@ -479,11 +479,11 @@ odoo.define('rental.tour', function (require) {
         run: function (){} //check Invoice: (Unit Price : 200.00)
     }, {
         content: _t('Check Analytic Account on Invoice'),
-        trigger: 'td.o_data_cell span[name="account_analytic_id"]:contains("[00531] Volvo L110H")',
+        trigger: 'td.o_data_cell span[name="account_analytic_id"]:contains("[01531] Volvo L110H")',
         extra_trigger: 'div[name="invoice_line_ids"]',
         in_modal: false,
         position: 'bottom',
-        run: function (){} //check Invoice: (Analytic Account : [00531] Volvo L110H)
+        run: function (){} //check Invoice: (Analytic Account : [01531] Volvo L110H)
     },
     /*{
         content: _t('Click on Validate'),

@@ -14,6 +14,12 @@ class TestUi(odoo.tests.HttpCase):
     def test_03_rental_return_product_qc_tour(self):
         self.phantom_js("/web", "odoo.__DEBUG__.services['web_tour.tour'].run('rental_return_product_qc')", "odoo.__DEBUG__.services['web_tour.tour'].tours.rental_return_product_qc.ready", login="admin")
 
+    def test_04_rental_toll_collect_tour(self):
+        self.phantom_js("/web", "odoo.__DEBUG__.services['web_tour.tour'].run('toll_collect_tour')", "odoo.__DEBUG__.services['web_tour.tour'].tours.toll_collect_tour.ready", login="admin")
+
+    def test_05_rental_contract_toll_collect_tour(self):
+        self.phantom_js("/web", "odoo.__DEBUG__.services['web_tour.tour'].run('contract_toll_collect_tour')", "odoo.__DEBUG__.services['web_tour.tour'].tours.contract_toll_collect_tour.ready", login="admin")
+
 #@tagged('post_install', '-at_install')
 #class TestRentalSO(TestRentalPricelist):
 #    """ Test renting of a product instance for 60 days including quotation and order"""
