@@ -17,6 +17,10 @@ class ProductOperatingAppointment(models.Model):
         'Date',
         compute="_compute_date_next_appointment",
     )
+    date_last_appointment = fields.Date(
+        'Last Date',
+        related="last_task_id.date_deadline",
+    )
     leads_of_notification = fields.Integer(
         'Leads of Notification',
         required=True,
@@ -38,8 +42,7 @@ class ProductOperatingAppointment(models.Model):
             ('hour', 'Operating Hours'),
         ],
         string='Operating UoM',
-        required=True,
-        default="km",
+        related="product_id.show_instance_condition_type",
     )
     product_id = fields.Many2one(
         'product.product',
@@ -62,8 +65,12 @@ class ProductOperatingAppointment(models.Model):
             record.create_task = False
             if record.product_id.show_instance_condition_type not in ('km', 'hour'):
                 continue
-            if record.date_next_appointment - relativedelta(
-                days=record.leads_of_notification) == today:
+            date_notification = record.date_next_appointment - relativedelta(
+                days=record.leads_of_notification
+            ) 
+            if date_notification == today \
+                    or (date_notification < today and not record.date_last_appointment) \
+                    or (date_notification < today and record.date_last_appointment < today):
                 record.create_task = True
 
     @api.multi
@@ -88,10 +95,10 @@ class ProductOperatingAppointment(models.Model):
         today = fields.Date.from_string(fields.Date.today())
         diff = 0
         if self.operating_uom == 'km':
-            km = self.product_id.instance_condition_km and int(self.product_id.instance_condition_km) or 0
+            km = self.product_id.instance_condition_km and float(self.product_id.instance_condition_km) or 0.0
             diff = self.threshold - km
         elif self.operating_uom == 'hour':
-            hour = self.product_id.instance_condition_hour and int(self.product_id.instance_condition_hour) or 0
+            hour = self.product_id.instance_condition_hour and float(self.product_id.instance_condition_hour) or 0.0
             diff = self.threshold - hour
         days = diff / self.daily_increase
         self.date_next_appointment = today + relativedelta(days=days)
