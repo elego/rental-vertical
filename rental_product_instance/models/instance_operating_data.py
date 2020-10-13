@@ -14,7 +14,7 @@ class InstanceOperatingData(models.Model):
         required=True,
     )
 
-    operating_data = fields.Integer(
+    operating_data = fields.Float(
         string='Operating Data',
         required=True,
     )

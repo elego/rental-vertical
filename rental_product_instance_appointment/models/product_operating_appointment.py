@@ -95,10 +95,10 @@ class ProductOperatingAppointment(models.Model):
         today = fields.Date.from_string(fields.Date.today())
         diff = 0
         if self.operating_uom == 'km':
-            km = self.product_id.instance_condition_km and int(self.product_id.instance_condition_km) or 0
+            km = self.product_id.instance_condition_km and float(self.product_id.instance_condition_km) or 0.0
             diff = self.threshold - km
         elif self.operating_uom == 'hour':
-            hour = self.product_id.instance_condition_hour and int(self.product_id.instance_condition_hour) or 0
+            hour = self.product_id.instance_condition_hour and float(self.product_id.instance_condition_hour) or 0.0
             diff = self.threshold - hour
         days = diff / self.daily_increase
         self.date_next_appointment = today + relativedelta(days=days)

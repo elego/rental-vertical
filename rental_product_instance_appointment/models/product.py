@@ -27,22 +27,42 @@ class ProductProduct(models.Model):
         for rec in self:
             instance_next_service_date = False
             for app in rec.appointment_ids:
-                if not instance_next_service_date \
-                        or (app.date_next_appointment >= today \
-                        and app.date_next_appointment < instance_next_service_date):
-                    instance_next_service_date = app.date_next_appointment
+                # If a project task is created for this appointment,
+                # the next appointment date would have been updated already
+                if app.date_last_appointment:
+                    if today <= app.date_last_appointment \
+                            and (not instance_next_service_date
+                                 or (instance_next_service_date
+                                     and app.date_last_appointment < instance_next_service_date)):
+                        instance_next_service_date = app.date_last_appointment
+                else:
+                    if today <= app.date_next_appointment \
+                        and (not instance_next_service_date
+                             or (instance_next_service_date
+                                 and app.date_next_appointment < instance_next_service_date)):
+                        instance_next_service_date = app.date_next_appointment
             for app in rec.operating_appointment_ids:
-                if not instance_next_service_date \
-                        or (app.date_last_appointment >= today \
-                        and app.date_last_appointment < instance_next_service_date):
-                    instance_next_service_date = app.date_last_appointment
+                # If a project task is created for this appointment,
+                # the next appointment date would have been updated already
+                if app.date_last_appointment:
+                    if today <= app.date_last_appointment \
+                            and (not instance_next_service_date
+                                 or (instance_next_service_date
+                                     and app.date_last_appointment < instance_next_service_date)):
+                        instance_next_service_date = app.date_last_appointment
+                else:
+                    if today <= app.date_next_appointment \
+                        and (not instance_next_service_date
+                             or (instance_next_service_date
+                                 and app.date_next_appointment < instance_next_service_date)):
+                        instance_next_service_date = app.date_next_appointment
             if instance_next_service_date:
                 rec.instance_next_service_date = instance_next_service_date
 
     @api.multi
     def update_operating_data_daily_increase(self):
         for product in self:
-            i = 20 # take last 20 operating data
+            i = 20  # take last 20 operating data
             daily_increase_list = []
             od_last = False
             date_od_last = False
@@ -63,8 +83,8 @@ class ProductProduct(models.Model):
                 i -= 1
                 if i == 0:
                     break
-            avg_daily_increase = 1 #default value 1
+            avg_daily_increase = 1  # default value 1
             if daily_increase_list:
                 avg_daily_increase = sum(daily_increase_list) / len(daily_increase_list)
             for oa in product.operating_appointment_ids:
-                oa.daily_increase = avg_daily_increase
+                oa.daily_increase = int(avg_daily_increase)

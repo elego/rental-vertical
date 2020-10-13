@@ -17,6 +17,10 @@ class ProductAppointment(models.Model):
         'Date',
         required=True,
     )
+    date_last_appointment = fields.Date(
+        'Last Date',
+        related="last_task_id.date_deadline",
+    )
     leads_of_notification = fields.Integer(
         'Leads of Notification',
         required=True,
