@@ -40,7 +40,7 @@ class SaleOrderLine(models.Model):
 
     @api.multi
     def update_start_end_date(self, date_start, date_end):
-        super(SaleOrderLine, self).update_start_end_date(date_start, date_start)
+        super(SaleOrderLine, self).update_start_end_date(date_start, date_end)
         for line in self:
             if line.is_contract and line.contract_id:
                 contract_lines = line.contract_id.contract_line_ids.with_context(no_date_checks=True).filtered(
