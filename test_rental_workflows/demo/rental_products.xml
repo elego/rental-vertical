@@ -6,9 +6,9 @@
         </record>
 
         <!-- Product1 -->
-
+        <!-- Rental Pricelist Tour -->
         <record id="account_01531" model="account.analytic.account">
-            <field name="code">00531</field>
+            <field name="code">01531</field>
             <field name="name">Volvo L110H</field>
         </record>
         <record id="volvo" model="product.manufacturer">
@@ -82,7 +82,7 @@
         </function>
 
         <!-- Product2 -->
-
+        <!-- Rental Contract Tour -->
         <record id="account_01532" model="account.analytic.account">
             <field name="code">01532</field>
             <field name="name">Cat 930M</field>
@@ -133,7 +133,7 @@
         </record>
 
         <!-- Product 3 -->
-
+        <!-- Rental Quality Control Tour -->
         <record id="account_01533" model="account.analytic.account">
             <field name="code">01533</field>
             <field name="name">Cat 933M</field>
@@ -179,5 +179,103 @@
         <record id="rental_01533" model="product.product">
             <field name="instance_serial_number_id" ref="serial_rental_01533" />
         </record>
+
+
+        <!-- Product 4 -->
+        <!-- Rental Toll Collect Tour -->
+        <record id="account_01534" model="account.analytic.account">
+            <field name="code">01534</field>
+            <field name="name">Volvo L011H</field>
+        </record>
+        <record id="volvo_L011H" model="product.manufacturer.type">
+            <field name="manufacturer_id" ref="volvo" />
+            <field name="name">L011H</field>
+        </record>
+        <record id="rental_01534" model="product.product">
+            <field name="rental" eval="True" />
+            <field name="product_instance" eval="True" />
+            <field name="tracking">serial</field>
+            <field name="name">Volvo L011H</field>
+            <field name="categ_id" ref="product.product_category_all" />
+            <field name="type">product</field>
+            <field name="uom_id" ref="uom.product_uom_unit" />
+            <field name="uom_po_id" ref="uom.product_uom_unit" />
+            <field name="default_code">01534</field>
+            <field name="manu_year">2018</field>
+            <field name="barcode">011800</field>
+            <field name="description"></field>
+            <field name="further_ref">01400</field>
+            <field name="qr_code">02500</field>
+            <field name="vehicle_number">VOLVO RT01534</field>
+            <field name="license_plate">BNA 1534</field>
+            <field name="init_regist">2018-05-01</field>
+            <field name="manu_id" ref="volvo" />
+            <field name="manu_type_id" ref="volvo_L110H" />
+            <field name="fleet_type_id" ref="rb_rental" />
+            <field name="instance_current_location_id" model="stock.location" search="[('name', '=', 'Rental In')]" />
+            <field name="rental_of_day" eval="True" />
+            <field name="rental_price_day">200</field>
+            <field name="rental_of_month" eval="True" />
+            <field name="rental_price_month">4500</field>
+            <field name="income_analytic_account_id" ref="account_01534" />
+            <field name="expense_analytic_account_id" ref="account_01534" />
+            <!-- TODO Image of Product -->
+        </record>
+        <record id="serial_rental_01534" model="stock.production.lot">
+            <field name="name">KTG11534</field>
+            <field name="product_id" ref="rental_01534" />
+        </record>
+        <record id="rental_01534" model="product.product">
+            <field name="instance_serial_number_id" ref="serial_rental_01534" />
+        </record>
+
+        <!-- Product 5 -->
+        <!-- Rental Contract Toll Collect Tour -->
+        <record id="account_01535" model="account.analytic.account">
+            <field name="code">01535</field>
+            <field name="name">Volvo L80H</field>
+        </record>
+        <record id="volvo_L80H" model="product.manufacturer.type">
+            <field name="manufacturer_id" ref="volvo" />
+            <field name="name">L80H</field>
+        </record>
+        <record id="rental_01535" model="product.product">
+            <field name="rental" eval="True" />
+            <field name="product_instance" eval="True" />
+            <field name="tracking">serial</field>
+            <field name="name">Volvo L80H</field>
+            <field name="categ_id" ref="product.product_category_all" />
+            <field name="type">product</field>
+            <field name="uom_id" ref="uom.product_uom_unit" />
+            <field name="uom_po_id" ref="uom.product_uom_unit" />
+            <field name="default_code">01535</field>
+            <field name="manu_year">2018</field>
+            <field name="barcode">011900</field>
+            <field name="description"></field>
+            <field name="further_ref">01500</field>
+            <field name="qr_code">02600</field>
+            <field name="vehicle_number">VOLVO RT01535</field>
+            <field name="license_plate">BNA 1535</field>
+            <field name="init_regist">2018-05-01</field>
+            <field name="manu_id" ref="volvo" />
+            <field name="manu_type_id" ref="volvo_L80H" />
+            <field name="fleet_type_id" ref="rb_rental" />
+            <field name="instance_current_location_id" model="stock.location" search="[('name', '=', 'Rental In')]" />
+            <field name="rental_of_day" eval="True" />
+            <field name="rental_price_day">200</field>
+            <field name="rental_of_month" eval="True" />
+            <field name="rental_price_month">4500</field>
+            <field name="income_analytic_account_id" ref="account_01535" />
+            <field name="expense_analytic_account_id" ref="account_01535" />
+        </record>
+        <record id="serial_rental_01535" model="stock.production.lot">
+            <field name="name">KTG11535</field>
+            <field name="product_id" ref="rental_01535" />
+        </record>
+        <record id="rental_01535" model="product.product">
+            <field name="instance_serial_number_id" ref="serial_rental_01535" />
+        </record>
+
+
     </data>
 </odoo>

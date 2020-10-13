@@ -31,6 +31,7 @@ Test Rental Workflows
         'demo/rental_products.xml',
         'demo/inventory.xml',
         'demo/quality_control_data.xml',
+        'demo/toll.charge.line.csv',
     ],
     'qweb': [
     ],
