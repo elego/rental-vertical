@@ -28,9 +28,9 @@ class ProductProduct(models.Model):
             instance_next_service_date = False
             for app in rec.appointment_ids:
                 if not instance_next_service_date \
-                        or (app.date_last_appointment >= today \
-                        and app.date_last_appointment < instance_next_service_date):
-                    instance_next_service_date = app.date_last_appointment
+                        or (app.date_next_appointment >= today \
+                        and app.date_next_appointment < instance_next_service_date):
+                    instance_next_service_date = app.date_next_appointment
             for app in rec.operating_appointment_ids:
                 if not instance_next_service_date \
                         or (app.date_last_appointment >= today \
@@ -68,4 +68,3 @@ class ProductProduct(models.Model):
                 avg_daily_increase = sum(daily_increase_list) / len(daily_increase_list)
             for oa in product.operating_appointment_ids:
                 oa.daily_increase = avg_daily_increase
-
