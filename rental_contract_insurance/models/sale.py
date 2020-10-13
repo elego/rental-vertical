@@ -87,11 +87,11 @@ class SaleOrderLine(models.Model):
 
     def _create_rental_insurance_line(self, product):
         self.ensure_one()
-        vals = self._prepare_rental_insurance_line(product.product_id)
+        vals = self._prepare_rental_insurance_line(product.insurance_product_id)
         insurance_line = self.env['sale.order.line'].create(vals)
         insurance_line.product_id_change()
         insurance_line.write({
-            'name': product.product_id.name,
+            'name': product.insurance_product_id.name,
             'price_unit': product.insurance_price_unit,
         })
         return insurance_line
