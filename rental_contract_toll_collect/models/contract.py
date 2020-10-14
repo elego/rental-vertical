@@ -56,7 +56,7 @@ class ContractLine(models.Model):
         res = super(ContractLine, self)._prepare_invoice_line(invoice_id, invoice_values)
         start_date = fields.Date.to_date(res.get('start_date')) or self.next_period_date_start
         end_date = fields.Date.to_date(res.get('end_date')) or self.next_period_date_end
-        if end_date and start_date:
+        if end_date and start_date and self.sale_order_line_id:
             self.sale_order_line_id.update_toll_charge_lines()
             toll_charge_lines = self.sale_order_line_id.toll_line_ids.filtered(
                 lambda l: end_date >= l.toll_date.date() >= start_date
