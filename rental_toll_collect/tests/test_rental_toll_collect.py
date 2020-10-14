@@ -1,10 +1,13 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
+import os
+import base64
 from odoo import fields, exceptions
 from odoo.tests.common import TransactionCase
 from datetime import date, datetime as dt, timedelta
 
 import logging
+_path = os.path.dirname(os.path.dirname(__file__))
 _logger = logging.getLogger(__name__)
 
 
@@ -32,6 +35,20 @@ class TestRentalTollCollect(TransactionCase):
         self.partner = self.env.ref('base.res_partner_1')
         self.pricelist = self.env.ref('product.list0')
         self.toll_product = self.env.ref('rental_toll_collect.product_toll')
+
+        # Create Product Test Import
+        self.import_product = ProductObj.create({
+            'name': 'Test Import',
+            'type': 'product',
+            'rental': True,
+            'rental_of_month': True,
+            'rental_of_day': True,
+            'rental_of_hour': False,
+            'rental_price_month': 4500,
+            'rental_price_day': 200,
+            'license_plate': 'BNA 1830',
+        })
+        self.assertEqual(len(self.import_product.rental_service_ids), 2)
 
         # Create Product A
         self.product = ProductObj.create({
@@ -112,6 +129,20 @@ class TestRentalTollCollect(TransactionCase):
         })
         self.assertEqual(len(self.sale_order.order_line), 1)
         self.so_line = self.sale_order.order_line[0]
+
+    def run_import_toll_charge_lines(self, file_name, file_type):
+        with open(os.path.join(_path, 'tests/data', file_name), 'rb') as file:
+            import_wizard = self.env['toll.charge.line.import'].create({
+                'data_file': base64.b64encode(file.read()),
+                'filename': file_name})
+            import_wizard.import_toll_charge_lines()
+            domain = [('booking_number', 'in', ['100000000000051', '100000000000052', '100000000000053'])]
+            lines = self.env['toll.charge.line'].search(domain)
+            self.assertEqual(len(lines), 3)
+            self.assertEqual(lines.mapped('product_id'), self.import_product)
+            self.assertEqual(lines.mapped('amount'),[6.91, 2.93, 0.27])
+            self.assertEqual(lines.mapped('distance'),[39.9, 16.9, 1.6])
+            self.assertEqual(lines.mapped('chargeable'),[True, True, True])
 
     def test_01_toll_charge_lines(self):
         """
@@ -206,3 +237,8 @@ class TestRentalTollCollect(TransactionCase):
         self.assertEquals(self.invoice.invoice_line_ids.mapped('price_unit'), [200.00, 3.25])
         self.assertEquals(self.sale_order.toll_line_count, 3)
         self.assertEquals(self.sale_order.toll_line_charged_count, 2)
+
+    def test_04_import_csv_toll_charge_lines(self):
+        self.run_import_toll_charge_lines(
+            'test_toll_charge_line.csv',
+            'text/csv')
