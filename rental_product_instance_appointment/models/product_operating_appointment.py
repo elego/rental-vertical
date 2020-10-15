@@ -10,52 +10,91 @@ class ProductOperatingAppointment(models.Model):
     _order = 'date_next_appointment desc'
 
     name = fields.Char(
-        'Name',
+        string="Name",
         required=True,
     )
+
     date_next_appointment = fields.Date(
-        'Date',
+        string="Date",
+        help="This is the planned appointment date "
+             "for this usage dependent appointment. "
+             "It is computed by the difference of "
+             "threshold and current operating data "
+             "divided by the daily increase.",
         compute="_compute_date_next_appointment",
     )
+
     date_last_appointment = fields.Date(
-        'Last Date',
+        string="Last Appointment Date",
         related="last_task_id.date_deadline",
     )
+
     leads_of_notification = fields.Integer(
-        'Leads of Notification',
+        string="Leads of Notification",
+        help="This is the number of days previous "
+             "to the appointment date in order to "
+             "create a task in the helpdesk project "
+             "as notfication. The deadline of this "
+             "task is set to appointment date.",
         required=True,
     )
+
     threshold = fields.Integer(
-        'Threshold',
+        string="Threshold",
+        help="This is the threshold value that has be "
+             "reached to make the appointment necessary "
+             "and thereby to create the task in the "
+             "helpdesk project. This value is automatically "
+             "incremented by the interval value as soon as "
+             "the current threshold is reached.",
     )
+
     interval = fields.Integer(
-        'Interval',
+        string="Interval",
+        help="This is the interval which defines the "
+             "repetition of this appointment. As soon "
+             "as the current appointment threshold is "
+             "reached, the threshold is incremented by "
+             "this interval.",
         required=True,
     )
+
     daily_increase = fields.Integer(
-        'Daily Increase',
+        string="Daily Increase",
+        help="This is the value that defines how the "
+             "operating data are increased day by day. "
+             "The default value is 1 but is automatically "
+             "updated and computed after adding new "
+             "operating data.",
         default=1,
     )
+
     operating_uom = fields.Selection(
         selection=[
             ('km', 'Kilometer'),
             ('hour', 'Operating Hours'),
         ],
-        string='Operating UoM',
+        string="Operating UoM",
         related="product_id.show_instance_condition_type",
     )
+
     product_id = fields.Many2one(
         'product.product',
         string="Instance",
         domain=[('product_instance', '=', True)],
     )
+
     create_task = fields.Boolean(
-        'Create Task',
+        string="Create Task",
         compute="_compute_create_task",
     )
+
     last_task_id = fields.Many2one(
         'project.task',
         string="Last Ticket",
+        help="This is last created task in the "
+             "helpdesk project related to this "
+             "appointment.",
     )
 
     @api.multi
@@ -100,7 +139,8 @@ class ProductOperatingAppointment(models.Model):
         elif self.operating_uom == 'hour':
             hour = self.product_id.instance_condition_hour and float(self.product_id.instance_condition_hour) or 0.0
             diff = self.threshold - hour
-        days = diff / self.daily_increase
+        increase = self.daily_increase if self.daily_increase != 0 else 1
+        days = diff / increase
         self.date_next_appointment = today + relativedelta(days=days)
 
     @api.multi

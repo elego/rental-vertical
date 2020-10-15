@@ -68,7 +68,11 @@ class ProductProduct(models.Model):
             date_od_last = False
             od_last_2 = False
             date_od_last_2 = False
-            for od in sorted(product.instance_operating_data_ids, key=lambda d: d.date, reverse=True):
+            for od in sorted(
+                    product.instance_operating_data_ids.filtered('date'),
+                    key=lambda d: d.date,
+                    reverse=True
+            ):
                 if not od_last:
                     od_last = od.operating_data
                     date_od_last = od.date
@@ -87,4 +91,4 @@ class ProductProduct(models.Model):
             if daily_increase_list:
                 avg_daily_increase = sum(daily_increase_list) / len(daily_increase_list)
             for oa in product.operating_appointment_ids:
-                oa.daily_increase = int(avg_daily_increase)
+                oa.daily_increase = int(avg_daily_increase) if int(avg_daily_increase) != 0 else 1

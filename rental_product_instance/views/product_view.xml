@@ -70,13 +70,13 @@
                         <label for="instance_condition_hour"
                                attrs="{'invisible': [('show_instance_condition_type', '!=', 'hour')]}" />
                         <div attrs="{'invisible': [('show_instance_condition_type', '!=', 'hour')]}">
-                            <field name="instance_condition_hour" class="oe_inline" />   -
+                            <field name="instance_condition_hour" class="oe_inline" /> <span>h on</span>
                             <field name="instance_condition_date" class="oe_inline oe_no_button" />
                         </div>
                         <label for="instance_condition_km"
                                attrs="{'invisible': [('show_instance_condition_type', '!=', 'km')]}" />
                         <div attrs="{'invisible': [('show_instance_condition_type', '!=', 'km')]}">
-                            <field name="instance_condition_km" class="oe_inline" />   -
+                            <field name="instance_condition_km" class="oe_inline" /> <span>km on</span>
                             <field name="instance_condition_date" class="oe_inline oe_no_button" />
                         </div>
                         <field name="instance_next_service_date" />

@@ -6,14 +6,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-10 08:57+0000\n"
-"PO-Revision-Date: 2020-09-10 08:57+0000\n"
+"POT-Creation-Date: 2020-10-15 11:52+0000\n"
+"PO-Revision-Date: 2020-10-15 11:52+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: rental_product_instance
+#: model_terms:ir.ui.view,arch_db:rental_product_instance.product_normal_form_view
+msgid "<span>h on</span>"
+msgstr "<span>Std. am</span>"
+
+#. module: rental_product_instance
+#: model_terms:ir.ui.view,arch_db:rental_product_instance.product_normal_form_view
+msgid "<span>km on</span>"
+msgstr "<span>km am</span>"
 
 #. module: rental_product_instance
 #: selection:product.product,instance_state:0
@@ -204,7 +214,7 @@ msgstr "Seriennummer"
 #: model:ir.model.fields,field_description:rental_product_instance.field_product_category__show_instance_condition_type
 #: model:ir.model.fields,field_description:rental_product_instance.field_product_product__show_instance_condition_type
 msgid "Show Instance Condition Type"
-msgstr ""
+msgstr "Betriebsdaten-Typ anzeigen"
 
 #. module: rental_product_instance
 #: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_state

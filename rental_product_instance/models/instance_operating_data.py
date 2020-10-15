@@ -19,7 +19,9 @@ class InstanceOperatingData(models.Model):
         required=True,
     )
 
-    date = fields.Date(
+    date = fields.Datetime(
         string='Date',
         required=True,
     )
+
+
