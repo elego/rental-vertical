@@ -1,4 +1,4 @@
 1234567890;Kfz-Kennz.;Datum;Start;Buchungsnummer;Art;Auffahrt;über;Abfahrt;Kostenstelle;Tarifmodell;Achsklasse;Gewichtsklasse;Schadstoffklasse;Straßenbetreiber;Abfahrt;km;EUR
-;BNA 1830;01.08.2020;08:37;100000000000051;Maut;Saarbrücken-Malstatter Brücke;A620, A620, Saarbrücken-Westspangenbrücke, B268;B268 Saarbrücken, L127;0;114;2;4;7;1;AV;1,6;0,27
-;BNA 1830;01.08.2020;17:13;100000000000052;Maut;Saarbrücken-Ludwigsberg;A623, Friedrichsthal, Dreieck, A8, Neunkirchen-Spiesen, Dreieck, B41;B41 Neunkirchen, Westspange;0;114;2;4;7;1;AV;16,9;2,93
-;BNA 1830;01.08.2020;18:19;100000000000053;Maut;Neunkirchen-Wellesweiler;A8, Neunkirchen, Kreuz, A6, Saarbrücken-Fechingen, Saarbrücken, Dreieck, A620;Völklingen-Wehrden;0;114;2;4;7;1;AV;39,9;6,91
+;BNA 1830;01.08.2020;08:37;100000000000051;Toll;Saarbrücken-Malstatter Brücke;A620, A620, Saarbrücken-Westspangenbrücke, B268;B268 Saarbrücken, L127;0;114;2;4;7;1;AV;1,6;0,27
+;BNA 1830;01.08.2020;17:13;100000000000052;Toll;Saarbrücken-Ludwigsberg;A623, Friedrichsthal, Dreieck, A8, Neunkirchen-Spiesen, Dreieck, B41;B41 Neunkirchen, Westspange;0;114;2;4;7;1;AV;16,9;2,93
+;BNA 1830;01.08.2020;18:19;100000000000053;Toll;Neunkirchen-Wellesweiler;A8, Neunkirchen, Kreuz, A6, Saarbrücken-Fechingen, Saarbrücken, Dreieck, A620;Völklingen-Wehrden;0;114;2;4;7;1;AV;39,9;6,91
