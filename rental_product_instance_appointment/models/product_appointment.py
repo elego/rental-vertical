@@ -10,46 +10,67 @@ class ProductAppointment(models.Model):
     _order = 'date_next_appointment desc'
 
     name = fields.Char(
-        'Name',
+        string="Name",
         required=True,
     )
+
     date_next_appointment = fields.Date(
-        'Date',
+        string="Date",
+        help="This is the appointment date "
+             "for this time dependent appointment.",
         required=True,
     )
+
     date_last_appointment = fields.Date(
-        'Last Date',
+        string="Last Appointment Date",
         related="last_task_id.date_deadline",
     )
+
     leads_of_notification = fields.Integer(
-        'Leads of Notification',
+        string="Leads of Notification",
+        help="This is the number of days previous "
+             "to the appointment date in order to "
+             "create a task in the helpdesk project "
+             "as notfication. The deadline of this "
+             "task is set to appointment date.",
         required=True,
     )
+
     time_interval = fields.Integer(
-        'Time Interval',
+        string="Time Interval",
+        help="This is the interval which defines the "
+             "repetition of this appointment. Be aware "
+             "of the used unit of measure.",
         required=True,
     )
+
     time_uom = fields.Selection(
         selection=[
             ('day', 'Day(s)'),
             ('month', 'Month(s)'),
         ],
-        string='Time UoM',
+        string="Time UoM",
         required=True,
         default="day",
     )
+
     product_id = fields.Many2one(
         'product.product',
         string="Instance",
         domain=[('product_instance', '=', True)],
     )
+
     create_task = fields.Boolean(
-        'Create Task',
+        string="Create Task",
         compute="_compute_create_task",
     )
+
     last_task_id = fields.Many2one(
         'project.task',
         string="Last Ticket",
+        help="This is last created task in the "
+             "helpdesk project related to this "
+             "appointment.",
     )
 
     @api.multi

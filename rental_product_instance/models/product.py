@@ -77,22 +77,22 @@ class ProductProduct(models.Model):
         store=True,
     )
 
-    instance_condition_hour = fields.Char(
+    instance_condition_hour = fields.Float(
         string="Current Hours",
         compute="_compute_instance_condition",
     )
 
-    instance_condition_km = fields.Char(
+    instance_condition_km = fields.Float(
         string="Current Kilometers",
         compute="_compute_instance_condition",
     )
 
-    instance_condition_in_tree = fields.Char(
+    instance_condition_in_tree = fields.Float(
         string="Current Operating Data",
         compute="_compute_instance_condition",
     )
 
-    instance_condition_date = fields.Date(
+    instance_condition_date = fields.Datetime(
         string="Condition Date",
         compute="_compute_instance_condition",
     )
@@ -129,24 +129,22 @@ class ProductProduct(models.Model):
 
     @api.multi
     def _compute_instance_condition(self):
-        for record in self:
-            record.instance_condition_km = ''
-            record.instance_condition_hour = ''
-            record.instance_condition_in_tree = ''
-            record.instance_condition_date = False
-            for o_data in record.instance_operating_data_ids:
-                if not record.instance_condition_date:
-                    record.instance_condition_date = o_data.date
-                    record.instance_condition_in_tree = str(o_data.operating_data)
-                if o_data.date > record.instance_condition_date:
-                    record.instance_condition_date = o_data.date
-                    record.instance_condition_in_tree = str(o_data.operating_data)
-            if record.show_instance_condition_type == 'hour':
-                record.instance_condition_hour = \
-                    record.instance_condition_in_tree
-            elif record.show_instance_condition_type == 'km':
-                record.instance_condition_km = \
-                    record.instance_condition_in_tree
+        for product in self:
+            product.instance_condition_km = 0.0
+            product.instance_condition_hour = 0.0
+            product.instance_condition_in_tree = 0.0
+            product.instance_condition_date = False
+            for o_data in product.instance_operating_data_ids:
+                if not product.instance_condition_date:
+                    product.instance_condition_date = o_data.date
+                    product.instance_condition_in_tree = o_data.operating_data
+                if o_data.date > product.instance_condition_date:
+                    product.instance_condition_date = o_data.date
+                    product.instance_condition_in_tree = o_data.operating_data
+            if product.show_instance_condition_type == 'hour':
+                product.instance_condition_hour = product.instance_condition_in_tree
+            elif product.show_instance_condition_type == 'km':
+                product.instance_condition_km = product.instance_condition_in_tree
 
     def _compute_instance_state(self):
         timeline_obj = self.env['product.timeline']
