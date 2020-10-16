@@ -141,7 +141,9 @@ class ProductOperatingAppointment(models.Model):
             diff = self.threshold - hour
         increase = self.daily_increase if self.daily_increase != 0 else 1
         days = diff / increase
-        self.date_next_appointment = today + relativedelta(days=days)
+        origin_date = self.product_id.instance_condition_date.date() \
+            if self.product_id.instance_condition_date else today
+        self.date_next_appointment = origin_date + relativedelta(days=days)
 
     @api.multi
     def action_create_project_tasks(self):
