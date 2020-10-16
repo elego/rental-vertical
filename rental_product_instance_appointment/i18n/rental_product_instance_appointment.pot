@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-15 10:54+0000\n"
-"PO-Revision-Date: 2020-10-15 10:54+0000\n"
+"POT-Creation-Date: 2020-10-16 08:52+0000\n"
+"PO-Revision-Date: 2020-10-16 08:52+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -204,7 +204,7 @@ msgstr ""
 
 #. module: rental_product_instance_appointment
 #: model:ir.model.fields,help:rental_product_instance_appointment.field_product_operating_appointment__threshold
-msgid "This is the threshold value that has be reached to make the appointment necessary and thereby to create the task in the helpdesk project. This value is automatically incremented by the interval value as soon as the current threshold is reached."
+msgid "This is the threshold value that has be reached to make the appointment necessary and thereby to create the task in the helpdesk project. This value is automatically incremented by the interval value as soon as a project task is created for the current threshold."
 msgstr ""
 
 #. module: rental_product_instance_appointment
