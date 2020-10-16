@@ -85,7 +85,7 @@ class ProductProduct(models.Model):
                         days = datetime_diff.days + datetime_diff.seconds / 86400
                         od_last = od_last_2
                         date_od_last = date_od_last_2
-                        if days == 0:
+                        if days == 0 or value_diff == 0:
                             continue
                         daily_increase = value_diff / days
                         if daily_increase:
