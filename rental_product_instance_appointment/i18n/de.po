@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-15 10:55+0000\n"
-"PO-Revision-Date: 2020-10-15 10:55+0000\n"
+"POT-Creation-Date: 2020-10-16 08:52+0000\n"
+"PO-Revision-Date: 2020-10-16 08:52+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -204,8 +204,8 @@ msgstr "Dies ist das geplante Datum für diesen nutzungsabhängigen Termin. Er w
 
 #. module: rental_product_instance_appointment
 #: model:ir.model.fields,help:rental_product_instance_appointment.field_product_operating_appointment__threshold
-msgid "This is the threshold value that has be reached to make the appointment necessary and thereby to create the task in the helpdesk project. This value is automatically incremented by the interval value as soon as the current threshold is reached."
-msgstr "Die Schwelle ist der Wert, der erreicht werden muss, um den Termin notwendig zu machen und damit ein Ticket im Helpdesk zu erstellen. Der Wert wird automatisch durch den Wert im Intervall erhöht, sobald die Schwelle erreicht wurde."
+msgid "This is the threshold value that has be reached to make the appointment necessary and thereby to create the task in the helpdesk project. This value is automatically incremented by the interval value as soon as a project task is created for the current threshold."
+msgstr "Die Schwelle ist der Wert, der erreicht werden muss, um den Termin notwendig zu machen und damit ein Ticket im Helpdesk zu erstellen. Der Wert wird automatisch durch den Wert im Intervall erhöht, sobald das Ticket für die aktuelle Schwelle erstellt wurde."
 
 #. module: rental_product_instance_appointment
 #: model:ir.model.fields,help:rental_product_instance_appointment.field_product_operating_appointment__daily_increase

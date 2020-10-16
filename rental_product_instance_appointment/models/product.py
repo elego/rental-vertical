@@ -62,33 +62,39 @@ class ProductProduct(models.Model):
     @api.multi
     def update_operating_data_daily_increase(self):
         for product in self:
-            i = 20  # take last 20 operating data
-            daily_increase_list = []
-            od_last = False
-            date_od_last = False
-            od_last_2 = False
-            date_od_last_2 = False
-            for od in sorted(
-                    product.instance_operating_data_ids.filtered('date'),
-                    key=lambda d: d.date,
-                    reverse=True
-            ):
-                if not od_last:
-                    od_last = od.operating_data
-                    date_od_last = od.date
-                else:
-                    od_last_2 = od.operating_data
-                    date_od_last_2 = od.date
-                    daily_increase = (od_last - od_last_2) / (date_od_last - date_od_last_2).days
-                    if daily_increase:
-                        daily_increase_list.append(daily_increase)
-                    od_last = od_last_2
-                    date_od_last = date_od_last_2
-                i -= 1
-                if i == 0:
-                    break
-            avg_daily_increase = 1  # default value 1
-            if daily_increase_list:
-                avg_daily_increase = sum(daily_increase_list) / len(daily_increase_list)
-            for oa in product.operating_appointment_ids:
-                oa.daily_increase = int(avg_daily_increase) if int(avg_daily_increase) != 0 else 1
+            if product.operating_appointment_ids:
+                i = 20  # take last 20 operating data
+                daily_increase_list = []
+                od_last = False
+                date_od_last = False
+                od_last_2 = False
+                date_od_last_2 = False
+                for od in sorted(
+                        product.instance_operating_data_ids.filtered('date'),
+                        key=lambda d: d.date,
+                        reverse=True
+                ):
+                    if not od_last:
+                        od_last = od.operating_data
+                        date_od_last = od.date
+                    else:
+                        od_last_2 = od.operating_data
+                        date_od_last_2 = od.date
+                        value_diff = od_last - od_last_2
+                        datetime_diff = date_od_last - date_od_last_2
+                        days = datetime_diff.days + datetime_diff.seconds / 86400
+                        od_last = od_last_2
+                        date_od_last = date_od_last_2
+                        if days == 0 or value_diff == 0:
+                            continue
+                        daily_increase = value_diff / days
+                        if daily_increase:
+                            daily_increase_list.append(daily_increase)
+                    i -= 1
+                    if i == 0:
+                        break
+                avg_daily_increase = 1  # default value 1
+                if daily_increase_list:
+                    avg_daily_increase = sum(daily_increase_list) / len(daily_increase_list)
+                for oa in product.operating_appointment_ids:
+                    oa.daily_increase = int(avg_daily_increase) if int(avg_daily_increase) != 0 else 1

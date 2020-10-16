@@ -46,7 +46,7 @@ class ProductOperatingAppointment(models.Model):
              "and thereby to create the task in the "
              "helpdesk project. This value is automatically "
              "incremented by the interval value as soon as "
-             "the current threshold is reached.",
+             "a project task is created for the current threshold.",
     )
 
     interval = fields.Integer(
@@ -141,7 +141,9 @@ class ProductOperatingAppointment(models.Model):
             diff = self.threshold - hour
         increase = self.daily_increase if self.daily_increase != 0 else 1
         days = diff / increase
-        self.date_next_appointment = today + relativedelta(days=days)
+        origin_date = self.product_id.instance_condition_date.date() \
+            if self.product_id.instance_condition_date else today
+        self.date_next_appointment = origin_date + relativedelta(days=days)
 
     @api.multi
     def action_create_project_tasks(self):
@@ -160,3 +162,9 @@ class ProductOperatingAppointment(models.Model):
     def _cron_gen_update_appointment(self):
         all_appointments = self.search([])
         all_appointments.action_create_project_tasks()
+
+    @api.model
+    def create(self, vals):
+        res = super().create(vals)
+        res.product_id.update_operating_data_daily_increase()
+        return res
