@@ -100,7 +100,7 @@
                 </xpath>
                 <xpath expr="//notebook//page[@name='general_information']" position="after">
                     <page string="Specification" name="add_info">
-                        <field name="additional_info" no_label="1" options="{'style-inline':'true'}"/>
+                        <field name="additional_info" no_label="1"/>
                     </page>
                 </xpath>
 
