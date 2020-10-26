@@ -170,6 +170,8 @@ class RepairOrder(models.Model):
         """ Create expense account analytic lines for operations and fees
         """
         for repair in self:
+            if not repair.expense_analytic_account_id:
+                continue
             for obj_line in repair.operations:
                 vals_line = repair._prepare_expense_analytic_line(obj_line)
                 self.env['account.analytic.line'].create(vals_line)
