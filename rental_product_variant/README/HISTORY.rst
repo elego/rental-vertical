@@ -2,6 +2,7 @@
 Changelog
 ---------
 
+- d02ea5d 2020-10-27 14:41:06 +0100 wagner@elegosoft.com  (HEAD -> fix_3339_blp840_extend_documentation_v12, origin/rental_v12_integration, rental_v12_integration) update doc generation script (issue #3339)
 - 20bb1bb 2020-10-20 16:23:04 +0200 maria.sparenberg@elegosoft.com  (origin/fix_3783_blp835_remove_style_inline_option_rental_v12) issue #3783 remove option because it might cause the insertion of styles to html texts
 - 2f16ca3 2020-10-16 15:46:12 +0200 maria.sparenberg@elegosoft.com  (origin/defect_3873_blp833_html_code_button_v12) issue #3873 show code-view-button in html fields
 - 7580ae8 2020-10-05 22:19:25 +0200 wagner@elegosoft.com  (origin/fix_3884_blp819_fix_application_status_and_deps_v12, fix_3884_blp819_fix_application_status_and_deps_v12) set application to false for all modules except rental_base (issue #3884, issue #3339)

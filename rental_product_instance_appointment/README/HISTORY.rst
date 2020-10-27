@@ -2,6 +2,7 @@
 Changelog
 ---------
 
+- d02ea5d 2020-10-27 14:41:06 +0100 wagner@elegosoft.com  (HEAD -> fix_3339_blp840_extend_documentation_v12, origin/rental_v12_integration, rental_v12_integration) update doc generation script (issue #3339)
 - 6cabea0 2020-10-16 13:01:37 +0200 maria.sparenberg@elegosoft.com  (origin/feature_3641_blp833_usage_dependent_appointments_v12) issue #3641 skip operating data for calculation if their value has not changed
 - 48b24a2 2020-10-16 12:52:26 +0200 maria.sparenberg@elegosoft.com  issue #3641 fix calculation for next appointment by using the most current date of operating data (not today)
 - 215794a 2020-10-16 10:56:58 +0200 maria.sparenberg@elegosoft.com  issue #3641 fix calculation for daily increase in case of several newly created operating data daily
