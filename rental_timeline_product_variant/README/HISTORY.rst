@@ -2,6 +2,7 @@
 Changelog
 ---------
 
+- d02ea5d 2020-10-27 14:41:06 +0100 wagner@elegosoft.com  (HEAD -> fix_3339_blp840_extend_documentation_v12, origin/rental_v12_integration, rental_v12_integration) update doc generation script (issue #3339)
 - fcbe600 2020-09-11 11:38:51 +0200 maria.sparenberg@elegosoft.com  issue #3602 fix duplicated labels in module rental_timeline_product_variant
 - eee2472 2020-06-26 19:24:51 +0200 wagner@elegosoft.com  (origin/fix_3339_blp669_extend_documentation_v12, origin/fix_3339_blp666_extend_documentation_v12, fix_3339_blp669_extend_documentation_v12, fix_3339_blp666_extend_documentation_v12) update documentation (issue #3339)
 - 57b29fa 2020-05-24 12:58:49 +0200 wagner@elegosoft.com  (origin/fix_3339_blp622_extend_documentation_v12, origin/fix_3339_bl616_extend_documentation_v12, fix_3339_blp622_extend_documentation_v12, fix_3339_bl616_extend_documentation_v12) update documentation for fix release (issue #3339)

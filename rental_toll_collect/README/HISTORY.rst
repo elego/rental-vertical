@@ -2,6 +2,7 @@
 Changelog
 ---------
 
+- d02ea5d 2020-10-27 14:41:06 +0100 wagner@elegosoft.com  (HEAD -> fix_3339_blp840_extend_documentation_v12, origin/rental_v12_integration, rental_v12_integration) update doc generation script (issue #3339)
 - 2ab176f 2020-10-15 11:13:24 +0200 cpatel@elegosoft.com  (origin/feature_3478_blp831_toll_collect_unittest_v12) [IMP] correct data to csv file,csv import unitest,issue#3478
 - 5468f7b 2020-10-14 14:35:31 +0200 cpatel@elegosoft.com  [IMP] improve coverage in unittest,issue#3478
 - 810939c 2020-10-13 15:37:40 +0200 cpatel@elegosoft.com  (origin/feature_3478_blp824_toll_collect_v12) [IMP] add unittest for modules rental_toll_collect,rental_contract_toll_collect,issue#3478

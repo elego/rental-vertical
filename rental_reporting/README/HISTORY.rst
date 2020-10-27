@@ -2,6 +2,7 @@
 Changelog
 ---------
 
+- d02ea5d 2020-10-27 14:41:06 +0100 wagner@elegosoft.com  (HEAD -> fix_3339_blp840_extend_documentation_v12, origin/rental_v12_integration, rental_v12_integration) update doc generation script (issue #3339)
 - eee2472 2020-06-26 19:24:51 +0200 wagner@elegosoft.com  (origin/fix_3339_blp669_extend_documentation_v12, origin/fix_3339_blp666_extend_documentation_v12, fix_3339_blp669_extend_documentation_v12, fix_3339_blp666_extend_documentation_v12) update documentation (issue #3339)
 - 57b29fa 2020-05-24 12:58:49 +0200 wagner@elegosoft.com  (origin/fix_3339_blp622_extend_documentation_v12, origin/fix_3339_bl616_extend_documentation_v12, fix_3339_blp622_extend_documentation_v12, fix_3339_bl616_extend_documentation_v12) update documentation for fix release (issue #3339)
 - 3188aa7 2020-05-20 11:15:34 +0200 cpatel@elegosoft.com  (origin/fix_3339_blp602_refactor_menu_view_v12) [FIX] remove ref of mis_builder from rental_base and moved menu items to rental_reporting module

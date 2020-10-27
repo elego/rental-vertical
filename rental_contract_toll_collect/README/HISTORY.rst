@@ -2,6 +2,7 @@
 Changelog
 ---------
 
+- d02ea5d 2020-10-27 14:41:06 +0100 wagner@elegosoft.com  (HEAD -> fix_3339_blp840_extend_documentation_v12, origin/rental_v12_integration, rental_v12_integration) update doc generation script (issue #3339)
 - 08ed05c 2020-10-15 14:31:48 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_3627_blp831_correction_unittest_v12: addons-rental-vertical remotes/origin/feature_3627_blp831_correction_unittest_v12 - a32f3cf469a9259957ef47bcd0fa8b64a0c8be2d [IMP] correct unitest errors, module:rockbird_product_description,issue#3627
 - a32f3cf 2020-10-14 18:06:26 +0200 cpatel@elegosoft.com  (origin/feature_3627_blp831_correction_unittest_v12) [IMP] correct unitest errors, module:rockbird_product_description,issue#3627
 - 5468f7b 2020-10-14 14:35:31 +0200 cpatel@elegosoft.com  [IMP] improve coverage in unittest,issue#3478

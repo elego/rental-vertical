@@ -2,6 +2,7 @@
 Changelog
 ---------
 
+- d02ea5d 2020-10-27 14:41:06 +0100 wagner@elegosoft.com  (HEAD -> fix_3339_blp840_extend_documentation_v12, origin/rental_v12_integration, rental_v12_integration) update doc generation script (issue #3339)
 - 01f2cdd 2020-10-13 14:37:04 +0200 maria.sparenberg@elegosoft.com  (origin/feature_3477_blp824_insurance_v12) issue #3477 replace product_id with insurance_product_id due to previous renaming of the field
 - 836a14b 2020-10-06 15:33:55 +0200 maria.sparenberg@elegosoft.com  (origin/feature_3477_blp819_rental_product_insurance_v12) issue #3884 rename product_id to insurance_product_id for insurances on sale order lines
 - 5a5d213 2020-09-29 10:03:51 +0200 yweng@elegosoft.com  [FIX] delete uom_id and uom_po_id for demo insurance product

@@ -2,6 +2,7 @@
 Changelog
 ---------
 
+- d02ea5d 2020-10-27 14:41:06 +0100 wagner@elegosoft.com  (HEAD -> fix_3339_blp840_extend_documentation_v12, origin/rental_v12_integration, rental_v12_integration) update doc generation script (issue #3339)
 - 1117c2c 2020-09-11 11:35:14 +0200 maria.sparenberg@elegosoft.com  issue #3602 fix duplicated labels in module rental_repair
 - 6a33358 2020-09-08 16:17:25 +0200 maria.sparenberg@elegosoft.com  issue #3824 add some new fields to repair order and rearrange the view
 - 470ce25 2020-09-08 14:39:38 +0200 yweng@elegosoft.com  (origin/feature_3477_blp776_rental_product_insurance_v12) [IMP] corrects some translations (issue 3766)

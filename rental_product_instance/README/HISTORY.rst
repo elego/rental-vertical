@@ -2,6 +2,7 @@
 Changelog
 ---------
 
+- d02ea5d 2020-10-27 14:41:06 +0100 wagner@elegosoft.com  (HEAD -> fix_3339_blp840_extend_documentation_v12, origin/rental_v12_integration, rental_v12_integration) update doc generation script (issue #3339)
 - 1674a05 2020-10-15 14:02:04 +0200 maria.sparenberg@elegosoft.com  (origin/feature_3641_blp831_appointment_v12) issue #3641 change field types for operating data
 - 10b5ea7 2020-10-13 17:12:33 +0200 maria.sparenberg@elegosoft.com  (origin/feature_3641_blp824_rental_product_instance_appointment_v12) issue #3641 fix calculation of next service appointment
 - 3ebccf6 2020-10-07 14:52:41 +0200 yweng@elegosoft.com  [IMP] product_instance_appointment (issue 3641)

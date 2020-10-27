@@ -1,0 +1,61 @@
+Rental Pricelist
+====================================================
+
+*This file has been generated on 2020-10-27-14-49-15. Changes to it will be overwritten.*
+
+Summary
+-------
+
+Enables the user to define different rental prices with time uom ("Month", "Day" and "Hour").
+
+Description
+-----------
+
+Rental prices are usually scaled prices based on a time unit, typically day, sometimes months or hour.
+This modules integrates the standard Odoo pricelists into rental use cases and allows the user an
+easy way to specify the prices in a product tab as well as to use all the enhanced pricelist features.
+
+
+Changelog
+---------
+
+- d02ea5d 2020-10-27 14:41:06 +0100 wagner@elegosoft.com  (HEAD -> fix_3339_blp840_extend_documentation_v12, origin/rental_v12_integration, rental_v12_integration) update doc generation script (issue #3339)
+- b7dad08 2020-10-06 13:48:11 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_3884_blp819_fix_application_status_and_deps_v12: addons-rental-vertical remotes/origin/fix_3884_blp819_fix_application_status_and_deps_v12 - 7580ae8936652f96fb11ac212867967458a4e127 set application to false for all modules except rental_base (issue #3884, issue #3339)
+- 836a14b 2020-10-06 15:33:55 +0200 maria.sparenberg@elegosoft.com  (origin/feature_3477_blp819_rental_product_insurance_v12) issue #3884 rename product_id to insurance_product_id for insurances on sale order lines
+- 7580ae8 2020-10-05 22:19:25 +0200 wagner@elegosoft.com  (origin/fix_3884_blp819_fix_application_status_and_deps_v12, fix_3884_blp819_fix_application_status_and_deps_v12) set application to false for all modules except rental_base (issue #3884, issue #3339)
+- 1be4b54 2020-09-15 12:08:18 +0200 yweng@elegosoft.com  (origin/feature_3866_blp804_rename_sale_rental_v12) [MIG] Rename Module sale_rental and rental_sale (update dependence and xml_id)
+- 114c04c 2020-09-11 15:36:33 +0200 yweng@elegosoft.com  (origin/feature_3822_blp790_duplicated_fields_v12) [MIG] Model 'product.template': replace rental_ok with rental
+- 3e884f8 2020-08-25 12:20:33 +0200 yweng@elegosoft.com  (origin/feature_3826_blp753_check_rental_order_line_v12) [IMP] add funtions to check the rental order line before Confirm of the Order
+- 9656774 2020-08-24 10:30:24 +0200 yweng@elegosoft.com  (origin/feature_3795_blp740_search_product_in_rental_order_v12) [IMP] improves searching on field display_product_id in search view of sale.order
+- 1f1c56b 2020-08-07 18:20:49 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/defect_3782_blp721_contract_date_start_end_v12: addons-rental-vertical remotes/origin/defect_3782_blp721_contract_date_start_end_v12 - df1d31f48e3af1b19c358847178bb19dca77dcbb [FIX] adjust date_start and date_end of sale.order.line for contract
+- df1d31f 2020-08-04 20:30:01 +0200 yweng@elegosoft.com  (origin/defect_3782_blp721_contract_date_start_end_v12) [FIX] adjust date_start and date_end of sale.order.line for contract
+- 5e92913 2020-08-04 11:41:38 +0200 yweng@elegosoft.com  [FIX] warning message for no enough quantity for rental
+- 3f9eb75 2020-07-28 09:54:28 +0200 cpatel@elegosoft.com  (origin/fix_3785_blp712_sol_add_section_note_v12) [FIX] fix on add section/note on sale order line,issue#3785
+- eee2472 2020-06-26 19:24:51 +0200 wagner@elegosoft.com  (origin/fix_3339_blp669_extend_documentation_v12, origin/fix_3339_blp666_extend_documentation_v12, fix_3339_blp669_extend_documentation_v12, fix_3339_blp666_extend_documentation_v12) update documentation (issue #3339)
+- 7fcb746 2020-06-26 11:50:09 +0200 yweng@elegosoft.com  [IMP] adjust function _get_product_domain to sell normal service (without rental service) in rental order (issue 3729)
+- e52be41 2020-06-24 12:33:36 +0200 yweng@elegosoft.com  (origin/defect_3729_blp662_sell_service_in_rental_order_v12) [IMP] adjust function _get_product_domain to sell normal service in rental order (issue 3729)
+- d244988 2020-06-10 17:32:49 +0200 yweng@elegosoft.com  [IMP] set invisible for field instance_serial_number_id and Pricelist Items before creating the product
+- 57b29fa 2020-05-24 12:58:49 +0200 wagner@elegosoft.com  (origin/fix_3339_blp622_extend_documentation_v12, origin/fix_3339_bl616_extend_documentation_v12, fix_3339_blp622_extend_documentation_v12, fix_3339_bl616_extend_documentation_v12) update documentation for fix release (issue #3339)
+- 3266c20 2020-05-22 13:33:18 +0200 yweng@elegosoft.com  (origin/defect_3627_blp612_update_analytic_account_v12) [FIX] corrects function _update_rental_service_analytic_account()
+- 94dc79c 2020-05-16 18:10:44 +0200 wagner@elegosoft.com  (origin/fix_3339_blp559_extend_documentation_v12, fix_3339_blp559_extend_documentation_v12) update module documentation (issue #3339)
+- 89adaaf 2020-05-16 14:54:03 +0200 wagner@elegosoft.com  fixup categories and regenerate documentation (issue #3339)
+- 134218b 2020-05-03 18:34:51 +0200 wagner@elegosoft.com  (origin/feature_3339_blp541_update_doc_v12, feature_3339_blp541_update_doc_v12) unify license and author and regenerate documentation (issue #3613, issue #3339)
+- 6f03cfa 2020-04-30 13:20:49 +0200 cpatel@elegosoft.com  (origin/feature_3589_blp521_rental_pricelist_v12) [IMP] rental_pricelist : stop update of start_date,end_date while changing UOM, issue#3589
+- 795b1b6 2020-04-24 20:58:26 +0200 wagner@elegosoft.com  (tag: bp_rental_v12_integration-cep-521, tag: bp_rental_v12_integration-cep-520, tag: bp_rental_v12_integration-cep-519, tag: bp_rental_v12_integration-cep-518, tag: bp_rental_v12_integration-cep-517, tag: bp_rental_v12_integration-cep-516, tag: bp_rental_v12_integration-cep-514, tag: bp_rental_v12_integration-cep-513, tag: bp_rental_v12_integration-cep-512, tag: bp_rental_v12_integration-cep-511, tag: bp_rental_v12_integration-cep-510, tag: bp_rental_v12_integration-cep-509, tag: bp_rental_v12_integration-cep-508, tag: bp_rental_v12_integration-cep-507, tag: bp_rental_v12_integration-cep-506, tag: bp_rental_v12_integration-cep-505, tag: bp_humanilog_v12_integration-cep-322, tag: bp_humanilog_v12_integration-cep-321, tag: bp_humanilog_v12_integration-cep-320, tag: baseline_rental-vertical_v12_swrent_daily_build-503, origin/rental_v12_integration-cep-503, rental_v12_integration-cep-503) regenerate documentation (issue #3613)
+- 7fac932 2020-04-13 14:13:09 +0200 wagner@elegosoft.com  (origin/fix_3339_blp455_extend_documentation_v12, fix_3339_blp455_extend_documentation_v12) regenerate documentation (issue #3339)
+- 2da340d 2020-04-13 14:11:24 +0200 wagner@elegosoft.com  change license for rental-vertical to AGPL (issue #3339)
+- 6d3410b 2020-04-13 13:28:20 +0200 wagner@elegosoft.com  regenerate documentation (issue #3339)
+- 0bab92d 2020-04-09 12:41:12 +0200 wagner@elegosoft.com  (origin/fix_3339_blp355_extend_documentation_v12, fix_3339_blp355_extend_documentation_v12) update/regenerate addon documentation (issue #3339)
+- eff3bc0 2020-04-02 13:01:43 +0200 cpatel@elegosoft.com  (origin/feature_3467_blp420_rental_todo_points_v12) [IMP] set start ,end date on sale order line automatically
+- ff31876 2020-03-30 17:55:07 +0200 cpatel@elegosoft.com  [IMP] renatl_contract,rental_pricelist todo points(ticket#3467,ticket#3589) 1. ticket#3467, set the code of automatically created contracts from sale order to the sale order number if the contract subtype has no sequence 2. ticket#3589, The computation of number_of_time_unit is not correct when using the uom Month(s)
+- ae99508 2020-03-18 11:50:27 +0100 maria.sparenberg@elegosoft.com  issue #3589 move fields to correct groups in module rental_pricelist
+- 3119cfd 2020-03-18 10:07:48 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_3339_blp384_extend_documentation_v12: addons-rental-vertical remotes/origin/fix_3339_blp384_extend_documentation_v12 - b49c01dabbc653a42b77f82bd3c44a8759721359 regenerate doc (issue #3339)
+- c71ec77 2020-03-18 10:31:23 +0100 yweng@elegosoft.com  (origin/feature_3576_blp384_unittest_instance_appointment_v12) [IMP] delete debug functions in unittests
+- fa3d632 2020-03-18 02:13:25 +0100 yweng@elegosoft.com  [IMP] unittests for module rental_pricelist
+- 1833995 2020-03-18 02:12:39 +0100 yweng@elegosoft.com  [FIX] onchange events
+- a8e3385 2020-03-16 22:30:45 +0100 yweng@elegosoft.com  [IMP] move product_uom_month from rental_pricelist into rental_base
+- b49c01d 2020-03-15 10:12:53 +0100 wagner@elegosoft.com  (origin/fix_3339_blp384_extend_documentation_v12) regenerate doc (issue #3339)
+- cea0e94 2020-03-13 20:38:19 +0100 wagner@elegosoft.com  update documentation to build 380 (issue #3339)
+- 804dc44 2020-03-07 21:06:12 +0100 wagner@elegosoft.com  regenerate module documentation (issue #3339)
+- 6fd1771 2020-03-06 20:32:25 +0100 kay.haeusler@elego.de  (origin/feature_3462_blp333_renaming_addons_v12) rename and split some addons; issue #3462
+
