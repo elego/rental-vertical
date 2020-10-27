@@ -2,6 +2,14 @@
 Changelog
 ---------
 
+- 20bb1bb 2020-10-20 16:23:04 +0200 maria.sparenberg@elegosoft.com  (origin/fix_3783_blp835_remove_style_inline_option_rental_v12) issue #3783 remove option because it might cause the insertion of styles to html texts
+- 2f16ca3 2020-10-16 15:46:12 +0200 maria.sparenberg@elegosoft.com  (origin/defect_3873_blp833_html_code_button_v12) issue #3873 show code-view-button in html fields
+- 7580ae8 2020-10-05 22:19:25 +0200 wagner@elegosoft.com  (origin/fix_3884_blp819_fix_application_status_and_deps_v12, fix_3884_blp819_fix_application_status_and_deps_v12) set application to false for all modules except rental_base (issue #3884, issue #3339)
+- a9d31ee 2020-08-11 16:05:11 +0200 yweng@elegosoft.com  (origin/feature_3765_blp732_rental_product_smartbutton_v12) [IMP] split smartbutton action_view_all_invoice for in invoice and out invoice
+- 48b7e28 2020-08-05 12:05:53 +0200 yweng@elegosoft.com  (origin/feature_3816_blp721_quotation_order_menu_v12) [IMP] do not use sale_order_type.normal_sale_type to search the sale.order
+- 4153ab5 2020-07-14 22:11:26 +0200 yweng@elegosoft.com  (origin/defect_3765_blp700_product_smartbuttons_v12) [IMP] Adjust smartbutton of product
+- d0f0a58 2020-07-10 13:44:37 +0200 cpatel@elegosoft.com  (origin/fix_3765_blp689_rental_product_smartbuttons_count_v12) [FIX] smartbuttons count,Rental,C-Contract,issue#3765
+- eee2472 2020-06-26 19:24:51 +0200 wagner@elegosoft.com  (origin/fix_3339_blp669_extend_documentation_v12, origin/fix_3339_blp666_extend_documentation_v12, fix_3339_blp669_extend_documentation_v12, fix_3339_blp666_extend_documentation_v12) update documentation (issue #3339)
 - f40add6 2020-06-26 10:15:20 +0200 maria.sparenberg@elegosoft.com  (origin/fix_3637_blp666_add_product_identification_number_v12) issue #3637 update German translation and pot-file
 - c0f4831 2020-06-26 06:37:53 +0200 wagner@elegosoft.com  (origin/fix_2637_add_product_identification_number_v12, fix_2637_add_product_identification_number_v12) add product_identification_number, show_product_identification_number and change german translation for vehicle number (issue #3637)
 - 2619f8f 2020-06-10 17:56:51 +0200 yweng@elegosoft.com  (origin/feature_3668_blp636_set_option_invisible_before_creating_product_v12) [IMP] set translatable for field name of fleet.type

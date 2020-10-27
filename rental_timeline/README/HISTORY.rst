@@ -2,6 +2,15 @@
 Changelog
 ---------
 
+- adcc40f 2020-10-07 10:19:08 +0200 maria.sparenberg@elegosoft.com  (origin/defect_3878_blp824_update_times_v12) issue #3878 fix arguments for update times because start date was also written as end date
+- b7dad08 2020-10-06 13:48:11 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_3884_blp819_fix_application_status_and_deps_v12: addons-rental-vertical remotes/origin/fix_3884_blp819_fix_application_status_and_deps_v12 - 7580ae8936652f96fb11ac212867967458a4e127 set application to false for all modules except rental_base (issue #3884, issue #3339)
+- 7580ae8 2020-10-05 22:19:25 +0200 wagner@elegosoft.com  (origin/fix_3884_blp819_fix_application_status_and_deps_v12, fix_3884_blp819_fix_application_status_and_deps_v12) set application to false for all modules except rental_base (issue #3884, issue #3339)
+- b4743f7 2020-10-05 16:13:02 +0200 maria.sparenberg@elegosoft.com  (origin/defect_3880_blp819_timeline_confirmed_so_v12) issue #3880 allow updating confirmed order lines and corresponding timeline entries and contract lines
+- 79d9f43 2020-10-02 14:02:24 +0200 maria.sparenberg@elegosoft.com  issue #3880 create timeline object for sale order lines in state 'sale'
+- 1be4b54 2020-09-15 12:08:18 +0200 yweng@elegosoft.com  (origin/feature_3866_blp804_rename_sale_rental_v12) [MIG] Rename Module sale_rental and rental_sale (update dependence and xml_id)
+- 8cc4c7a 2020-09-08 13:11:20 +0200 kay.haeusler@elego.de  (origin/defect_3863_blp776_recreating_timeline_items_v12) recreating the timeline items when the order is setting from cancel to draft; issue #3863
+- a196d00 2020-07-13 09:22:09 +0200 yweng@elegosoft.com  (origin/feature_3760_blp695_rental_menu_dashboard_v12) [IMP] add menu dashboard
+- eee2472 2020-06-26 19:24:51 +0200 wagner@elegosoft.com  (origin/fix_3339_blp669_extend_documentation_v12, origin/fix_3339_blp666_extend_documentation_v12, fix_3339_blp669_extend_documentation_v12, fix_3339_blp666_extend_documentation_v12) update documentation (issue #3339)
 - e52be41 2020-06-24 12:33:36 +0200 yweng@elegosoft.com  (origin/defect_3729_blp662_sell_service_in_rental_order_v12) [IMP] adjust function _get_product_domain to sell normal service in rental order (issue 3729)
 - 57b29fa 2020-05-24 12:58:49 +0200 wagner@elegosoft.com  (origin/fix_3339_blp622_extend_documentation_v12, origin/fix_3339_bl616_extend_documentation_v12, fix_3339_blp622_extend_documentation_v12, fix_3339_bl616_extend_documentation_v12) update documentation for fix release (issue #3339)
 - 94dc79c 2020-05-16 18:10:44 +0200 wagner@elegosoft.com  (origin/fix_3339_blp559_extend_documentation_v12, fix_3339_blp559_extend_documentation_v12) update module documentation (issue #3339)

@@ -2,6 +2,18 @@
 Changelog
 ---------
 
+- 2ab176f 2020-10-15 11:13:24 +0200 cpatel@elegosoft.com  (origin/feature_3478_blp831_toll_collect_unittest_v12) [IMP] correct data to csv file,csv import unitest,issue#3478
+- 5468f7b 2020-10-14 14:35:31 +0200 cpatel@elegosoft.com  [IMP] improve coverage in unittest,issue#3478
+- 810939c 2020-10-13 15:37:40 +0200 cpatel@elegosoft.com  (origin/feature_3478_blp824_toll_collect_v12) [IMP] add unittest for modules rental_toll_collect,rental_contract_toll_collect,issue#3478
+- eb83afb 2020-10-13 13:43:26 +0200 maria.sparenberg@elegosoft.com  issue #3478 fix German translation and make product data not updateable
+- 1f208a7 2020-10-08 16:57:10 +0200 cpatel@elegosoft.com  [IMP] webtour added for rental_toll_collect,rental_contract_toll_collect module,issue#3478
+- a96c78a 2020-10-06 12:29:54 +0200 cpatel@elegosoft.com  (origin/feature_3478_blp819_toll_collect_v12) [IMP] fix rounding problem,change uom to Unit(s) of Toll Charges product,issue#3478
+- e5a88c6 2020-10-01 14:57:22 +0200 maria.sparenberg@elegosoft.com  issue #3478 fix write method in sale order line to avoid endless recursion
+- 854fde2 2020-09-18 14:58:02 +0200 maria.sparenberg@elegosoft.com  (origin/feature_3478_blp790_toll_collect_v12) issue #3478 update toll product invoice line when changing toll charge line
+- f9354fd 2020-09-17 17:03:22 +0200 maria.sparenberg@elegosoft.com  issue #3478 simplify invoicing of toll charge lines
+- 3077707 2020-09-16 16:37:06 +0200 maria.sparenberg@elegosoft.com  issue #3478 save toll line ids on sale order line and invoice line
+- 0ba71cb 2020-09-15 13:37:57 +0200 maria.sparenberg@elegosoft.com  issue #3478 sort toll charge lines by toll_date and fix translation
+- eee2472 2020-06-26 19:24:51 +0200 wagner@elegosoft.com  (origin/fix_3339_blp669_extend_documentation_v12, origin/fix_3339_blp666_extend_documentation_v12, fix_3339_blp669_extend_documentation_v12, fix_3339_blp666_extend_documentation_v12) update documentation (issue #3339)
 - cf19f22 2020-05-27 16:37:15 +0200 maria.sparenberg@elegosoft.com  issue #3478 fix some strings and update German translation
 - 886e9b0 2020-05-26 11:38:44 +0200 maria.sparenberg@elegosoft.com  issue #3478 show exception when more products are found with given license plate
 - 2ceec0c 2020-05-26 10:33:03 +0200 maria.sparenberg@elegosoft.com  issue #3478 fix toll charge line smartbutton in sale order and invoice

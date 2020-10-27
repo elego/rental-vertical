@@ -2,6 +2,18 @@
 Changelog
 ---------
 
+- b7dad08 2020-10-06 13:48:11 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_3884_blp819_fix_application_status_and_deps_v12: addons-rental-vertical remotes/origin/fix_3884_blp819_fix_application_status_and_deps_v12 - 7580ae8936652f96fb11ac212867967458a4e127 set application to false for all modules except rental_base (issue #3884, issue #3339)
+- 836a14b 2020-10-06 15:33:55 +0200 maria.sparenberg@elegosoft.com  (origin/feature_3477_blp819_rental_product_insurance_v12) issue #3884 rename product_id to insurance_product_id for insurances on sale order lines
+- 7580ae8 2020-10-05 22:19:25 +0200 wagner@elegosoft.com  (origin/fix_3884_blp819_fix_application_status_and_deps_v12, fix_3884_blp819_fix_application_status_and_deps_v12) set application to false for all modules except rental_base (issue #3884, issue #3339)
+- 1be4b54 2020-09-15 12:08:18 +0200 yweng@elegosoft.com  (origin/feature_3866_blp804_rename_sale_rental_v12) [MIG] Rename Module sale_rental and rental_sale (update dependence and xml_id)
+- 114c04c 2020-09-11 15:36:33 +0200 yweng@elegosoft.com  (origin/feature_3822_blp790_duplicated_fields_v12) [MIG] Model 'product.template': replace rental_ok with rental
+- 3e884f8 2020-08-25 12:20:33 +0200 yweng@elegosoft.com  (origin/feature_3826_blp753_check_rental_order_line_v12) [IMP] add funtions to check the rental order line before Confirm of the Order
+- 9656774 2020-08-24 10:30:24 +0200 yweng@elegosoft.com  (origin/feature_3795_blp740_search_product_in_rental_order_v12) [IMP] improves searching on field display_product_id in search view of sale.order
+- 1f1c56b 2020-08-07 18:20:49 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/defect_3782_blp721_contract_date_start_end_v12: addons-rental-vertical remotes/origin/defect_3782_blp721_contract_date_start_end_v12 - df1d31f48e3af1b19c358847178bb19dca77dcbb [FIX] adjust date_start and date_end of sale.order.line for contract
+- df1d31f 2020-08-04 20:30:01 +0200 yweng@elegosoft.com  (origin/defect_3782_blp721_contract_date_start_end_v12) [FIX] adjust date_start and date_end of sale.order.line for contract
+- 5e92913 2020-08-04 11:41:38 +0200 yweng@elegosoft.com  [FIX] warning message for no enough quantity for rental
+- 3f9eb75 2020-07-28 09:54:28 +0200 cpatel@elegosoft.com  (origin/fix_3785_blp712_sol_add_section_note_v12) [FIX] fix on add section/note on sale order line,issue#3785
+- eee2472 2020-06-26 19:24:51 +0200 wagner@elegosoft.com  (origin/fix_3339_blp669_extend_documentation_v12, origin/fix_3339_blp666_extend_documentation_v12, fix_3339_blp669_extend_documentation_v12, fix_3339_blp666_extend_documentation_v12) update documentation (issue #3339)
 - 7fcb746 2020-06-26 11:50:09 +0200 yweng@elegosoft.com  [IMP] adjust function _get_product_domain to sell normal service (without rental service) in rental order (issue 3729)
 - e52be41 2020-06-24 12:33:36 +0200 yweng@elegosoft.com  (origin/defect_3729_blp662_sell_service_in_rental_order_v12) [IMP] adjust function _get_product_domain to sell normal service in rental order (issue 3729)
 - d244988 2020-06-10 17:32:49 +0200 yweng@elegosoft.com  [IMP] set invisible for field instance_serial_number_id and Pricelist Items before creating the product

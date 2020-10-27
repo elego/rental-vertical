@@ -2,6 +2,13 @@
 Changelog
 ---------
 
+- 01f2cdd 2020-10-13 14:37:04 +0200 maria.sparenberg@elegosoft.com  (origin/feature_3477_blp824_insurance_v12) issue #3477 replace product_id with insurance_product_id due to previous renaming of the field
+- 836a14b 2020-10-06 15:33:55 +0200 maria.sparenberg@elegosoft.com  (origin/feature_3477_blp819_rental_product_insurance_v12) issue #3884 rename product_id to insurance_product_id for insurances on sale order lines
+- 5a5d213 2020-09-29 10:03:51 +0200 yweng@elegosoft.com  [FIX] delete uom_id and uom_po_id for demo insurance product
+- 98d44b6 2020-09-28 02:15:47 +0200 yweng@elegosoft.com  [IMP] improve module for insurance
+- 114c04c 2020-09-11 15:36:33 +0200 yweng@elegosoft.com  (origin/feature_3822_blp790_duplicated_fields_v12) [MIG] Model 'product.template': replace rental_ok with rental
+- 6944ff4 2020-08-13 12:10:54 +0200 yweng@elegosoft.com  (origin/feature_3477_blp732_rental_product_insurance_v12) [IMP] improves insurance module for creating/updating more insurance lines (sale.order.line)
+- eee2472 2020-06-26 19:24:51 +0200 wagner@elegosoft.com  (origin/fix_3339_blp669_extend_documentation_v12, origin/fix_3339_blp666_extend_documentation_v12, fix_3339_blp669_extend_documentation_v12, fix_3339_blp666_extend_documentation_v12) update documentation (issue #3339)
 - 85703c8 2020-06-11 14:46:38 +0200 yweng@elegosoft.com  [IMP] delete field insurance_amount of sale.order.line and change function _compute_insurance_amount to onchange_insurance_amount
 - 8d86931 2020-05-25 17:47:16 +0200 yweng@elegosoft.com  (origin/feature_3477_blp623_rental_product_insurance_v12) [IMP] add some translations for module rental_product_insurance and rental_contract_insurance
 - 157939b 2020-05-25 16:58:30 +0200 yweng@elegosoft.com  [IMP] improves unittests of module rental_contract_insurance and rental_product_insurance

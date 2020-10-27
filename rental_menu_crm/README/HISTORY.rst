@@ -2,6 +2,8 @@
 Changelog
 ---------
 
+- 32165b2 2020-07-27 17:05:39 +0200 cpatel@elegosoft.com  (origin/fix_3790_blp712_rental_menu_translation_v12) [IMP] add missing german translation,issue#3790
+- eee2472 2020-06-26 19:24:51 +0200 wagner@elegosoft.com  (origin/fix_3339_blp669_extend_documentation_v12, origin/fix_3339_blp666_extend_documentation_v12, fix_3339_blp669_extend_documentation_v12, fix_3339_blp666_extend_documentation_v12) update documentation (issue #3339)
 - 57b29fa 2020-05-24 12:58:49 +0200 wagner@elegosoft.com  (origin/fix_3339_blp622_extend_documentation_v12, origin/fix_3339_bl616_extend_documentation_v12, fix_3339_blp622_extend_documentation_v12, fix_3339_bl616_extend_documentation_v12) update documentation for fix release (issue #3339)
 - c3fca02 2020-05-18 04:12:06 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_3339_blp559_refactor_menu_view_v12: addons-rental-vertical remotes/origin/fix_3339_blp559_refactor_menu_view_v12 - 52726c52c6641f84449cd74826e1c9d4cbdd8d5a add missing dependency to rental_base (issue #3339)
 - 52726c5 2020-05-16 22:32:14 +0200 wagner@elegosoft.com  (origin/fix_3339_blp559_refactor_menu_view_v12, fix_3339_blp559_refactor_menu_view_v12) add missing dependency to rental_base (issue #3339)

@@ -100,10 +100,13 @@ for p in ${@:-rental_* sale_rental*}; do
       echo ""
     } > ${contribfn}
   fi
-  allfn=all$$.txt
+  if [[ ${p} == 'rental_sale' ]]; then
+    allfn=${p}/README2.rst
+  else
+    allfn=${p}/README.rst
+  fi
   cat ${descfn} ${usagefn} ${historyfn} > ${allfn}
   rst2html.py ${allfn} ${shtmlfn}
-  rm -f ${allfn}
   git add ${docdir}
   git add ${shtmldir}
 done

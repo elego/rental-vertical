@@ -2,6 +2,13 @@
 Changelog
 ---------
 
+- b7dad08 2020-10-06 13:48:11 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_3884_blp819_fix_application_status_and_deps_v12: addons-rental-vertical remotes/origin/fix_3884_blp819_fix_application_status_and_deps_v12 - 7580ae8936652f96fb11ac212867967458a4e127 set application to false for all modules except rental_base (issue #3884, issue #3339)
+- 5a5d213 2020-09-29 10:03:51 +0200 yweng@elegosoft.com  [FIX] delete uom_id and uom_po_id for demo insurance product
+- 98d44b6 2020-09-28 02:15:47 +0200 yweng@elegosoft.com  [IMP] improve module for insurance
+- 7580ae8 2020-10-05 22:19:25 +0200 wagner@elegosoft.com  (origin/fix_3884_blp819_fix_application_status_and_deps_v12, fix_3884_blp819_fix_application_status_and_deps_v12) set application to false for all modules except rental_base (issue #3884, issue #3339)
+- e42d23e 2020-09-08 09:01:57 +0200 yweng@elegosoft.com  [IMP] adjust pot for Module rental_product_insurance
+- 6944ff4 2020-08-13 12:10:54 +0200 yweng@elegosoft.com  (origin/feature_3477_blp732_rental_product_insurance_v12) [IMP] improves insurance module for creating/updating more insurance lines (sale.order.line)
+- eee2472 2020-06-26 19:24:51 +0200 wagner@elegosoft.com  (origin/fix_3339_blp669_extend_documentation_v12, origin/fix_3339_blp666_extend_documentation_v12, fix_3339_blp669_extend_documentation_v12, fix_3339_blp666_extend_documentation_v12) update documentation (issue #3339)
 - 03dc336 2020-06-12 15:32:00 +0200 yweng@elegosoft.com  (origin/feature_3477_blp636_rental_product_insurance_v12) [IMP] add dummy field insurance_amount to due with the update error of module rockbird_sale
 - 85703c8 2020-06-11 14:46:38 +0200 yweng@elegosoft.com  [IMP] delete field insurance_amount of sale.order.line and change function _compute_insurance_amount to onchange_insurance_amount
 - 8d86931 2020-05-25 17:47:16 +0200 yweng@elegosoft.com  (origin/feature_3477_blp623_rental_product_insurance_v12) [IMP] add some translations for module rental_product_insurance and rental_contract_insurance

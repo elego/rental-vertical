@@ -2,6 +2,10 @@
 Changelog
 ---------
 
+- 7580ae8 2020-10-05 22:19:25 +0200 wagner@elegosoft.com  (origin/fix_3884_blp819_fix_application_status_and_deps_v12, fix_3884_blp819_fix_application_status_and_deps_v12) set application to false for all modules except rental_base (issue #3884, issue #3339)
+- 63e22e6 2020-09-10 14:38:42 +0200 yweng@elegosoft.com  (origin/fix_3856_blp778_duplicated_in_pickings_of_reconfirmed_sale_order_v12) [FIX] (#3856) the canceled pickings or moves of a canceled sale order should not be set into state 'confirmed' again, if the user confirm the canceled sale order again. It works with FIX feature_3856_blp778_rockbird_terminate_contract_v12 together
+- 17d4b8a 2020-07-01 12:56:29 +0200 yweng@elegosoft.com  (origin/feature_3745_blp677_rental_product_pack_access_v12) [IMP] override access rights of model product.pack.line for normal user
+- eee2472 2020-06-26 19:24:51 +0200 wagner@elegosoft.com  (origin/fix_3339_blp669_extend_documentation_v12, origin/fix_3339_blp666_extend_documentation_v12, fix_3339_blp669_extend_documentation_v12, fix_3339_blp666_extend_documentation_v12) update documentation (issue #3339)
 - 57b29fa 2020-05-24 12:58:49 +0200 wagner@elegosoft.com  (origin/fix_3339_blp622_extend_documentation_v12, origin/fix_3339_bl616_extend_documentation_v12, fix_3339_blp622_extend_documentation_v12, fix_3339_bl616_extend_documentation_v12) update documentation for fix release (issue #3339)
 - 94dc79c 2020-05-16 18:10:44 +0200 wagner@elegosoft.com  (origin/fix_3339_blp559_extend_documentation_v12, fix_3339_blp559_extend_documentation_v12) update module documentation (issue #3339)
 - 89adaaf 2020-05-16 14:54:03 +0200 wagner@elegosoft.com  fixup categories and regenerate documentation (issue #3339)

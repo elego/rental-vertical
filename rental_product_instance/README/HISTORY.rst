@@ -2,6 +2,16 @@
 Changelog
 ---------
 
+- 1674a05 2020-10-15 14:02:04 +0200 maria.sparenberg@elegosoft.com  (origin/feature_3641_blp831_appointment_v12) issue #3641 change field types for operating data
+- 10b5ea7 2020-10-13 17:12:33 +0200 maria.sparenberg@elegosoft.com  (origin/feature_3641_blp824_rental_product_instance_appointment_v12) issue #3641 fix calculation of next service appointment
+- 3ebccf6 2020-10-07 14:52:41 +0200 yweng@elegosoft.com  [IMP] product_instance_appointment (issue 3641)
+- 7580ae8 2020-10-05 22:19:25 +0200 wagner@elegosoft.com  (origin/fix_3884_blp819_fix_application_status_and_deps_v12, fix_3884_blp819_fix_application_status_and_deps_v12) set application to false for all modules except rental_base (issue #3884, issue #3339)
+- ad40ef4 2020-09-10 11:15:32 +0200 maria.sparenberg@elegosoft.com  issue #3641 format and update German translations for rental_product_instance
+- eb47576 2020-09-10 09:33:41 +0200 yweng@elegosoft.com  [IMP] Product Instance Appointment
+- abf3a98 2020-09-07 14:16:44 +0200 yweng@elegosoft.com  (origin/feature_3641_blp753_instance_operating_data_v12) [IMP] implements new model instance.operating.data to save the instance condition kg / hour (Issue 3641)
+- f56f113 2020-08-04 14:06:40 +0200 yweng@elegosoft.com  (origin/feature_3817_blp721_action_view_product_tasks_v12) [IMP] set readonly for field instance_current_location_id of product.product
+- d7ac5f5 2020-07-14 10:48:10 +0200 yweng@elegosoft.com  (origin/defect_3771_blp700_action_view_po_v12) [FIX] View Definition of button action_view_po for product.product
+- eee2472 2020-06-26 19:24:51 +0200 wagner@elegosoft.com  (origin/fix_3339_blp669_extend_documentation_v12, origin/fix_3339_blp666_extend_documentation_v12, fix_3339_blp669_extend_documentation_v12, fix_3339_blp666_extend_documentation_v12) update documentation (issue #3339)
 - d244988 2020-06-10 17:32:49 +0200 yweng@elegosoft.com  [IMP] set invisible for field instance_serial_number_id and Pricelist Items before creating the product
 - 57b29fa 2020-05-24 12:58:49 +0200 wagner@elegosoft.com  (origin/fix_3339_blp622_extend_documentation_v12, origin/fix_3339_bl616_extend_documentation_v12, fix_3339_blp622_extend_documentation_v12, fix_3339_bl616_extend_documentation_v12) update documentation for fix release (issue #3339)
 - 94dc79c 2020-05-16 18:10:44 +0200 wagner@elegosoft.com  (origin/fix_3339_blp559_extend_documentation_v12, fix_3339_blp559_extend_documentation_v12) update module documentation (issue #3339)

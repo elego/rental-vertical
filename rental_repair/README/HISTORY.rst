@@ -2,6 +2,16 @@
 Changelog
 ---------
 
+- 1117c2c 2020-09-11 11:35:14 +0200 maria.sparenberg@elegosoft.com  issue #3602 fix duplicated labels in module rental_repair
+- 6a33358 2020-09-08 16:17:25 +0200 maria.sparenberg@elegosoft.com  issue #3824 add some new fields to repair order and rearrange the view
+- 470ce25 2020-09-08 14:39:38 +0200 yweng@elegosoft.com  (origin/feature_3477_blp776_rental_product_insurance_v12) [IMP] corrects some translations (issue 3766)
+- 74abd2c 2020-09-02 13:27:59 +0200 yweng@elegosoft.com  (origin/feature_3766_blp753_rental_partner_contract_smartbutton_v12) [IMP] adjust Menus for contracts
+- 39b7224 2020-08-07 18:20:48 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/defect_3781_blp721_rental_repair_v12: addons-rental-vertical remotes/origin/defect_3781_blp721_rental_repair_v12 - 2a33c676b5108851e0fb73b9d99b12f18bee33be pass the partner_id on project task to the repair order; issue #3781
+- 2a33c67 2020-08-04 22:24:51 +0200 kay.haeusler@elego.de  (origin/defect_3781_blp721_rental_repair_v12) pass the partner_id on project task to the repair order; issue #3781
+- 255108a 2020-08-03 23:01:18 +0200 yweng@elegosoft.com  [FIX] action_view_project_tasks to show all tickets
+- d239c3e 2020-07-31 11:35:33 +0200 yweng@elegosoft.com  (origin/defect_3813_blp712_project_task_repair_v12) [FIX] Access right to repair.order from project.task
+- 94ed09e 2020-07-16 15:37:45 +0200 yweng@elegosoft.com  (origin/defect_3692_blp700_rental_repair_v12) [IMP] rename field expense_analytic_tag_ids to analytic_tag_ids for model repair.line and repair.fee
+- eee2472 2020-06-26 19:24:51 +0200 wagner@elegosoft.com  (origin/fix_3339_blp669_extend_documentation_v12, origin/fix_3339_blp666_extend_documentation_v12, fix_3339_blp669_extend_documentation_v12, fix_3339_blp666_extend_documentation_v12) update documentation (issue #3339)
 - 85f3c74 2020-06-26 14:39:53 +0200 yweng@elegosoft.com  (origin/defect_3692_blp666_rental_repair_v12) [IMP] bypass the analytic_tag_ids by creating invoice from repair.order
 - 57b29fa 2020-05-24 12:58:49 +0200 wagner@elegosoft.com  (origin/fix_3339_blp622_extend_documentation_v12, origin/fix_3339_bl616_extend_documentation_v12, fix_3339_blp622_extend_documentation_v12, fix_3339_bl616_extend_documentation_v12) update documentation for fix release (issue #3339)
 - 94dc79c 2020-05-16 18:10:44 +0200 wagner@elegosoft.com  (origin/fix_3339_blp559_extend_documentation_v12, fix_3339_blp559_extend_documentation_v12) update module documentation (issue #3339)

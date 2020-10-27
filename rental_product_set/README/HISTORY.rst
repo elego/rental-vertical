@@ -2,6 +2,13 @@
 Changelog
 ---------
 
+- 7580ae8 2020-10-05 22:19:25 +0200 wagner@elegosoft.com  (origin/fix_3884_blp819_fix_application_status_and_deps_v12, fix_3884_blp819_fix_application_status_and_deps_v12) set application to false for all modules except rental_base (issue #3884, issue #3339)
+- 114c04c 2020-09-11 15:36:33 +0200 yweng@elegosoft.com  (origin/feature_3822_blp790_duplicated_fields_v12) [MIG] Model 'product.template': replace rental_ok with rental
+- 4d5d64d 2020-07-08 14:11:28 +0200 cpatel@elegosoft.com  (origin/feature_3753_blp689_rental_product_set_v12) [IMP] update unittest for two months ,rental_product_set,issue#3753
+- 5ddde45 2020-07-07 15:22:30 +0200 cpatel@elegosoft.com  (origin/feature_3753_blp677_rental_product_set_v12) [IMP] update unit test to rental_product_set module, issue#3753
+- 6c6b23c 2020-07-06 14:38:51 +0200 cpatel@elegosoft.com  [IMP] small correction
+- b847f3e 2020-07-03 13:50:14 +0200 cpatel@elegosoft.com  [IMP] improves add product set wizard method
+- eee2472 2020-06-26 19:24:51 +0200 wagner@elegosoft.com  (origin/fix_3339_blp669_extend_documentation_v12, origin/fix_3339_blp666_extend_documentation_v12, fix_3339_blp669_extend_documentation_v12, fix_3339_blp666_extend_documentation_v12) update documentation (issue #3339)
 - 57b29fa 2020-05-24 12:58:49 +0200 wagner@elegosoft.com  (origin/fix_3339_blp622_extend_documentation_v12, origin/fix_3339_bl616_extend_documentation_v12, fix_3339_blp622_extend_documentation_v12, fix_3339_bl616_extend_documentation_v12) update documentation for fix release (issue #3339)
 - 94dc79c 2020-05-16 18:10:44 +0200 wagner@elegosoft.com  (origin/fix_3339_blp559_extend_documentation_v12, fix_3339_blp559_extend_documentation_v12) update module documentation (issue #3339)
 - 89adaaf 2020-05-16 14:54:03 +0200 wagner@elegosoft.com  fixup categories and regenerate documentation (issue #3339)

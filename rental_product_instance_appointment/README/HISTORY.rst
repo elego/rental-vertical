@@ -2,6 +2,18 @@
 Changelog
 ---------
 
+- 6cabea0 2020-10-16 13:01:37 +0200 maria.sparenberg@elegosoft.com  (origin/feature_3641_blp833_usage_dependent_appointments_v12) issue #3641 skip operating data for calculation if their value has not changed
+- 48b24a2 2020-10-16 12:52:26 +0200 maria.sparenberg@elegosoft.com  issue #3641 fix calculation for next appointment by using the most current date of operating data (not today)
+- 215794a 2020-10-16 10:56:58 +0200 maria.sparenberg@elegosoft.com  issue #3641 fix calculation for daily increase in case of several newly created operating data daily
+- 1674a05 2020-10-15 14:02:04 +0200 maria.sparenberg@elegosoft.com  (origin/feature_3641_blp831_appointment_v12) issue #3641 change field types for operating data
+- 10b5ea7 2020-10-13 17:12:33 +0200 maria.sparenberg@elegosoft.com  (origin/feature_3641_blp824_rental_product_instance_appointment_v12) issue #3641 fix calculation of next service appointment
+- 3aa58fa 2020-10-13 16:30:45 +0200 cpatel@elegosoft.com  [IMP] fix error: product.appointment has no attribute date_last_appointment while rental click tour,issue#3641
+- 3ebccf6 2020-10-07 14:52:41 +0200 yweng@elegosoft.com  [IMP] product_instance_appointment (issue 3641)
+- 28d8db3 2020-09-24 13:44:11 +0200 yweng@elegosoft.com  (origin/feature_3641_blp790_rental_product_instance_appointment_v12) [IMP] set default value for field daily_increase of product.operating.appointment
+- 3505813 2020-09-10 12:04:31 +0200 yweng@elegosoft.com  (origin/feature_3641_blp778_rental_product_instance_appointment_v12) [IMP] add cron job to update the operating appointments and create project tasks
+- 413b638 2020-09-10 11:16:08 +0200 maria.sparenberg@elegosoft.com  issue #3641 update German translations for rental_product_instance_appointment
+- eb47576 2020-09-10 09:33:41 +0200 yweng@elegosoft.com  [IMP] Product Instance Appointment
+- eee2472 2020-06-26 19:24:51 +0200 wagner@elegosoft.com  (origin/fix_3339_blp669_extend_documentation_v12, origin/fix_3339_blp666_extend_documentation_v12, fix_3339_blp669_extend_documentation_v12, fix_3339_blp666_extend_documentation_v12) update documentation (issue #3339)
 - 57b29fa 2020-05-24 12:58:49 +0200 wagner@elegosoft.com  (origin/fix_3339_blp622_extend_documentation_v12, origin/fix_3339_bl616_extend_documentation_v12, fix_3339_blp622_extend_documentation_v12, fix_3339_bl616_extend_documentation_v12) update documentation for fix release (issue #3339)
 - 94dc79c 2020-05-16 18:10:44 +0200 wagner@elegosoft.com  (origin/fix_3339_blp559_extend_documentation_v12, fix_3339_blp559_extend_documentation_v12) update module documentation (issue #3339)
 - 89adaaf 2020-05-16 14:54:03 +0200 wagner@elegosoft.com  fixup categories and regenerate documentation (issue #3339)

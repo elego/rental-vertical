@@ -2,6 +2,22 @@
 Changelog
 ---------
 
+- adcc40f 2020-10-07 10:19:08 +0200 maria.sparenberg@elegosoft.com  (origin/defect_3878_blp824_update_times_v12) issue #3878 fix arguments for update times because start date was also written as end date
+- b4743f7 2020-10-05 16:13:02 +0200 maria.sparenberg@elegosoft.com  (origin/defect_3880_blp819_timeline_confirmed_so_v12) issue #3880 allow updating confirmed order lines and corresponding timeline entries and contract lines
+- 354454e 2020-10-05 11:44:44 +0200 maria.sparenberg@elegosoft.com  issue #3880 create contract line for sale order line that are created in order state 'sale'
+- 1be4b54 2020-09-15 12:08:18 +0200 yweng@elegosoft.com  (origin/feature_3866_blp804_rename_sale_rental_v12) [MIG] Rename Module sale_rental and rental_sale (update dependence and xml_id)
+- 114c04c 2020-09-11 15:36:33 +0200 yweng@elegosoft.com  (origin/feature_3822_blp790_duplicated_fields_v12) [MIG] Model 'product.template': replace rental_ok with rental
+- 74abd2c 2020-09-02 13:27:59 +0200 yweng@elegosoft.com  (origin/feature_3766_blp753_rental_partner_contract_smartbutton_v12) [IMP] adjust Menus for contracts
+- 1f1c56b 2020-08-07 18:20:49 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/defect_3782_blp721_contract_date_start_end_v12: addons-rental-vertical remotes/origin/defect_3782_blp721_contract_date_start_end_v12 - df1d31f48e3af1b19c358847178bb19dca77dcbb [FIX] adjust date_start and date_end of sale.order.line for contract
+- 48b7e28 2020-08-05 12:05:53 +0200 yweng@elegosoft.com  (origin/feature_3816_blp721_quotation_order_menu_v12) [IMP] do not use sale_order_type.normal_sale_type to search the sale.order
+- df1d31f 2020-08-04 20:30:01 +0200 yweng@elegosoft.com  (origin/defect_3782_blp721_contract_date_start_end_v12) [FIX] adjust date_start and date_end of sale.order.line for contract
+- 4153ab5 2020-07-14 22:11:26 +0200 yweng@elegosoft.com  (origin/defect_3765_blp700_product_smartbuttons_v12) [IMP] Adjust smartbutton of product
+- d0f0a58 2020-07-10 13:44:37 +0200 cpatel@elegosoft.com  (origin/fix_3765_blp689_rental_product_smartbuttons_count_v12) [FIX] smartbuttons count,Rental,C-Contract,issue#3765
+- 8f8aff9 2020-07-07 18:22:30 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/defect_3748_blp677_related_date_start_date_end_v12: addons-rental-vertical remotes/origin/defect_3748_blp677_related_date_start_date_end_v12 - 8861135e68a74179e3ac3feff23a016fc9950df9 [IMP] fixes tour test rental_contract_tour
+- 42fc9eb 2020-07-02 15:08:31 +0200 yweng@elegosoft.com  [IMP] overwrite field date_start and date_end als related fields
+- 3737cf9 2020-07-01 14:42:54 +0200 maria.sparenberg@elegosoft.com  (origin/fix_3747_blp677_fix_contract_creation_v12) issue #3747 remove readonly attribute for contract types
+- 511d200 2020-07-01 13:58:08 +0200 maria.sparenberg@elegosoft.com  (origin/fix_3747_blp760_fix_contract_creation_v12) issue #3747 fix exception when confirming a sale order with new sale / contract type
+- eee2472 2020-06-26 19:24:51 +0200 wagner@elegosoft.com  (origin/fix_3339_blp669_extend_documentation_v12, origin/fix_3339_blp666_extend_documentation_v12, fix_3339_blp669_extend_documentation_v12, fix_3339_blp666_extend_documentation_v12) update documentation (issue #3339)
 - 57b29fa 2020-05-24 12:58:49 +0200 wagner@elegosoft.com  (origin/fix_3339_blp622_extend_documentation_v12, origin/fix_3339_bl616_extend_documentation_v12, fix_3339_blp622_extend_documentation_v12, fix_3339_bl616_extend_documentation_v12) update documentation for fix release (issue #3339)
 - 94dc79c 2020-05-16 18:10:44 +0200 wagner@elegosoft.com  (origin/fix_3339_blp559_extend_documentation_v12, fix_3339_blp559_extend_documentation_v12) update module documentation (issue #3339)
 - 89adaaf 2020-05-16 14:54:03 +0200 wagner@elegosoft.com  fixup categories and regenerate documentation (issue #3339)

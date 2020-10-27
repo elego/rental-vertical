@@ -2,6 +2,27 @@
 Changelog
 ---------
 
+- 836a14b 2020-10-06 15:33:55 +0200 maria.sparenberg@elegosoft.com  (origin/feature_3477_blp819_rental_product_insurance_v12) issue #3884 rename product_id to insurance_product_id for insurances on sale order lines
+- b4743f7 2020-10-05 16:13:02 +0200 maria.sparenberg@elegosoft.com  (origin/defect_3880_blp819_timeline_confirmed_so_v12) issue #3880 allow updating confirmed order lines and corresponding timeline entries and contract lines
+- 7614f12 2020-10-05 11:36:43 +0200 maria.sparenberg@elegosoft.com  issue #3880 allow creation of new order lines with start and end date in order state 'sale'
+- 1be4b54 2020-09-15 12:08:18 +0200 yweng@elegosoft.com  (origin/feature_3866_blp804_rename_sale_rental_v12) [MIG] Rename Module sale_rental and rental_sale (update dependence and xml_id)
+- 3583d36 2020-09-10 12:51:56 +0200 cpatel@elegosoft.com  (origin/fix_3785_blp778_rental_base_v12) [IMP] rental_base module:small correction,set max to end_date
+- 46fc194 2020-09-09 16:23:11 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_3785_blp776_sol_add_section_note_v12: addons-rental-vertical remotes/origin/fix_3785_blp776_sol_add_section_note_v12 - 5b6bde7e843f5aafbcdd009f46989c2966901118 [FIX] made fix to rental_base,when you add section line or note in sale order line,issue#3785
+- fd924f1 2020-09-09 11:41:46 +0200 maria.sparenberg@elegosoft.com  (origin/feature_3824_blp776_rental_repair_v12) issue #3824 fix German translation
+- 5b6bde7 2020-09-09 11:40:49 +0200 cpatel@elegosoft.com  (origin/fix_3785_blp776_sol_add_section_note_v12) [FIX] made fix to rental_base,when you add section line or note in sale order line,issue#3785
+- 470ce25 2020-09-08 14:39:38 +0200 yweng@elegosoft.com  (origin/feature_3477_blp776_rental_product_insurance_v12) [IMP] corrects some translations (issue 3766)
+- eb33ba5 2020-09-07 18:19:32 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_3627_blp753_rental_config_menu_group_v12: addons-rental-vertical remotes/origin/fix_3627_blp753_rental_config_menu_group_v12 - 09ac7b8c8b810851b2792b6ce2c3ccf397980042 [IMP] add group to Rental/Config menu, to avoid error when click everywhere will run,issue#3627
+- 74abd2c 2020-09-02 13:27:59 +0200 yweng@elegosoft.com  (origin/feature_3766_blp753_rental_partner_contract_smartbutton_v12) [IMP] adjust Menus for contracts
+- 09ac7b8 2020-09-02 12:39:59 +0200 cpatel@elegosoft.com  (origin/fix_3627_blp753_rental_config_menu_group_v12) [IMP] add group to Rental/Config menu, to avoid error when click everywhere will run,issue#3627
+- 1f1c56b 2020-08-07 18:20:49 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/defect_3782_blp721_contract_date_start_end_v12: addons-rental-vertical remotes/origin/defect_3782_blp721_contract_date_start_end_v12 - df1d31f48e3af1b19c358847178bb19dca77dcbb [FIX] adjust date_start and date_end of sale.order.line for contract
+- 8965975 2020-08-07 18:20:47 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_3785_blp721_sol_inv_add_section_note_v12: addons-rental-vertical remotes/origin/fix_3785_blp721_sol_inv_add_section_note_v12 - 64e6d5c21633d21cc5030fddd8d8c9a99062f448 [IMP] improve service period dates compute functions,issue3785
+- 64e6d5c 2020-08-06 18:47:01 +0200 cpatel@elegosoft.com  (origin/fix_3785_blp721_sol_inv_add_section_note_v12) [IMP] improve service period dates compute functions,issue3785
+- df1d31f 2020-08-04 20:30:01 +0200 yweng@elegosoft.com  (origin/defect_3782_blp721_contract_date_start_end_v12) [FIX] adjust date_start and date_end of sale.order.line for contract
+- 5d551a0 2020-08-03 18:30:41 +0200 yweng@elegosoft.com  [IMP] adjusts domain of menu action to show quotations and orders for sales/rentals
+- 1dc93f5 2020-07-15 13:51:42 +0200 yweng@elegosoft.com  (origin/feature_3752_blp700_view_canceled_rental_order_v12) [IMP] show canceled rental orders in action_rental_orders and action_rental_quotations
+- a196d00 2020-07-13 09:22:09 +0200 yweng@elegosoft.com  (origin/feature_3760_blp695_rental_menu_dashboard_v12) [IMP] add menu dashboard
+- 0121f5c 2020-07-03 11:22:21 +0200 yweng@elegosoft.com  (origin/defect_3751_blp677_delete_rental_order_v12) [IMP] extends unlink function of sale.order to delete the linked sale.rental record at first.
+- eee2472 2020-06-26 19:24:51 +0200 wagner@elegosoft.com  (origin/fix_3339_blp669_extend_documentation_v12, origin/fix_3339_blp666_extend_documentation_v12, fix_3339_blp669_extend_documentation_v12, fix_3339_blp666_extend_documentation_v12) update documentation (issue #3339)
 - 57b29fa 2020-05-24 12:58:49 +0200 wagner@elegosoft.com  (origin/fix_3339_blp622_extend_documentation_v12, origin/fix_3339_bl616_extend_documentation_v12, fix_3339_blp622_extend_documentation_v12, fix_3339_bl616_extend_documentation_v12) update documentation for fix release (issue #3339)
 - 3188aa7 2020-05-20 11:15:34 +0200 cpatel@elegosoft.com  (origin/fix_3339_blp602_refactor_menu_view_v12) [FIX] remove ref of mis_builder from rental_base and moved menu items to rental_reporting module
 - 94dc79c 2020-05-16 18:10:44 +0200 wagner@elegosoft.com  (origin/fix_3339_blp559_extend_documentation_v12, fix_3339_blp559_extend_documentation_v12) update module documentation (issue #3339)
