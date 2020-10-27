@@ -18,9 +18,6 @@
         <field name="mode">primary</field>
         <field name="inherit_id" ref="project.view_task_tree2" />
         <field name="arch" type="xml">
-            <field name="project_id" position="attributes">
-                <attribute name="invisible">1</attribute>
-            </field>
             <tree position="inside">
                 <field name="tag_ids" widget="many2many_tags" />
             </tree>
@@ -66,9 +63,6 @@
         <field name="mode">primary</field>
         <field name="inherit_id" ref="view_task_form2" />
         <field name="arch" type="xml">
-            <field name="project_id" position="attributes">
-                <attribute name="invisible">1</attribute>
-            </field>
             <field name="lot_id" position="after">
                 <field name="total_stagnation_time" />
             </field>
@@ -110,13 +104,23 @@
         </field>
     </record>
 
+    <record id="view_task_search_form" model="ir.ui.view">
+        <field name="name">view.project.task.search</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_search_form" />
+        <field name="arch" type="xml">
+            <filter name="my_tasks" position="before">
+                <filter string="Service Tickets" name="service_tickets" domain="[('project_id.name','ilike','service')]"/>
+            </filter>
+        </field>
+    </record>
+
     <record id="action_project_helpdesk_tasks" model="ir.actions.act_window">
         <field name="name">Helpdesk Tickets</field>
         <field name="res_model">project.task</field>
         <field name="view_mode">kanban,tree,form,calendar,pivot,graph,activity</field>
-        <field name="context" eval="{'default_project_id': ref('project_project_helpdesk')}" />
-        <field name="domain" eval="[('project_id','=', ref('project_project_helpdesk'))]" />
-        <field name="search_view_id" ref="project.view_task_search_form" />
+        <field name="context" eval="{'search_default_service_tickets': 1}" />
+        <field name="search_view_id" ref="view_task_search_form" />
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Click <i>Create</i> to start a new ticket.
