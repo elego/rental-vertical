@@ -6,6 +6,12 @@
     "category": "Rental",
     'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
     "license": "AGPL-3",
+    "usage": """
+This module is automatically installed when all of the following modules are installed in a database:
+
+- rental_routing
+- shipment_plan_rental
+    """,
     "depends": [
         "rental_routing",
         "shipment_plan_rental",

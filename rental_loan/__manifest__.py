@@ -7,6 +7,12 @@
     'version': '12.0.1.0.0',
     'category': 'Rental',
     'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
+    'usage': """
+This module is automatically installed when all of the following modules are installed in a database:
+
+- account_loan
+- rental_base
+    """,
     'depends': [
         'account_loan',
         'rental_base',

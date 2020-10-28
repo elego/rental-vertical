@@ -19,6 +19,14 @@ You can add new contract subtypes here:
 
  - Invoicing > Configuration > Contract > Contract Subtypes
  - Rentals > Configuration > Contract > Contract Subtypes
+
+This module is automatically installed when all of the following modules are installed in a database:
+
+ - contract
+ - product_contract
+ - sale_start_end_dates
+ - rental_sale
+ - rental_base
 ''',
     'version': '12.0.1.0.0',
     'category': 'Rental',
