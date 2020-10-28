@@ -1,7 +1,7 @@
 Sale Shipment Plan
 ====================================================
 
-*This file has been generated on 2020-10-28-17-36-51. Changes to it will be overwritten.*
+*This file has been generated on 2020-10-28-20-41-16. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -17,6 +17,8 @@ TODO
 Changelog
 ---------
 
+- d39f57e 2020-10-28 20:18:47 +0100 wagner@elegosoft.com  (HEAD -> v12, origin/v12) add links to the index in README.md (issue #3613)
+- b1039c8 2020-10-28 17:39:27 +0100 wagner@elegosoft.com  add index generation and add index to README.md (issue #3613)
 - 363cb50 2020-10-28 16:59:43 +0100 wagner@elegosoft.com  change quotes in manifests of rental_forward_shipment_plan and rental_routing and add some draft information about routing; regenerate (issue #3613)
 - f1affe5 2020-10-28 12:45:28 +0100 wagner@elegosoft.com  regenerate doc (issue #3613)
 - 5244748 2020-10-27 14:52:26 +0100 wagner@elegosoft.com  regenerate documentation and add README.rst files (issue #3339)

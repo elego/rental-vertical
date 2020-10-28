@@ -363,18 +363,46 @@ ul.auto-toc {
 <div class="document" id="rental-sale">
 <h1 class="title">Rental Sale</h1>
 
-<p><em>This file has been generated on 2020-10-28-17-36-51. Changes to it will be overwritten.</em></p>
+<p><em>This file has been generated on 2020-10-28-20-56-22. Changes to it will be overwritten.</em></p>
 <div class="section" id="summary">
 <h1>Summary</h1>
 <p>Manage Rental of Products</p>
 </div>
 <div class="section" id="description">
 <h1>Description</h1>
-<p>TODO</p>
+<p>With this module, you can rent products with Odoo. This module supports:</p>
+<ul class="simple">
+<li>regular rentals.</li>
+<li>rental extensions.</li>
+<li>sale of rented products.</li>
+</ul>
+</div>
+<div class="section" id="configuration">
+<h1>Configuration</h1>
+<p>In the menu <em>Sales &gt; Products &gt; Product Variants</em>, on the form view of a stockable product or consumable, in the <em>Rental</em> tab, there is a button <em>Create Rental Service</em> which starts a wizard to generate the corresponding rental service.</p>
+<p>In the menu <em>Warehouse &gt; Configuration &gt; Warehouses</em>, on the form view of the warehouse, in the <em>Technical Information</em> tab, you will see two additional stock locations: <em>Rental In</em> (stock of products to rent) and <em>Rental Out</em> (products currently rented). In the <em>Warehouse Configuration</em> tab, make sure that the option <em>Rental Allowed</em> is checked.</p>
+<p>To use the module, you need to have access to the form view of sale order lines. For that, you must add your user to one of these groups:</p>
+<ul class="simple">
+<li>Manage Product Packaging</li>
+<li>Properties on lines</li>
+</ul>
+<p>Upon module installation, all users are automatically added to the group <em>Manage Product Packaging</em>.</p>
+</div>
+<div class="section" id="usage">
+<h1>Usage</h1>
+<p>In a sale order line (form view, not tree view), if you select a rental service, you can :</p>
+<ul class="simple">
+<li>create a new rental with a start date and an end date: when the sale order is confirmed, it will generate a delivery order and an incoming shipment.</li>
+<li>extend an existing rental: the incoming shipment will be postponed to the end date of the extension.</li>
+</ul>
+<p>In a sale order line, if you select a product that has a corresponding rental service, you can decide to sell the rented product that the customer already has. If the sale order is confirmed, the incoming shipment will be cancelled and a new delivery order will be created with a stock move from <em>Rental Out</em> to <em>Customers</em>.</p>
+<p>Please refer to this screencast <a class="reference external" href="https://www.youtube.com/watch?v=9o0QrGryBn8">https://www.youtube.com/watch?v=9o0QrGryBn8</a> to get a demo of the installation, configuration and use of this module (note that this screencast is for Odoo v7).</p>
 </div>
 <div class="section" id="changelog">
 <h1>Changelog</h1>
 <ul class="simple">
+<li>d39f57e 2020-10-28 20:18:47 +0100 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  (HEAD -&gt; v12, origin/v12) add links to the index in README.md (issue #3613)</li>
+<li>b1039c8 2020-10-28 17:39:27 +0100 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  add index generation and add index to README.md (issue #3613)</li>
 <li>363cb50 2020-10-28 16:59:43 +0100 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  change quotes in manifests of rental_forward_shipment_plan and rental_routing and add some draft information about routing; regenerate (issue #3613)</li>
 <li>fb94de5 2020-10-28 16:20:59 +0100 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  add descriptions to rental_timeline modules and regenerate (issue #3613)</li>
 <li>f1affe5 2020-10-28 12:45:28 +0100 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  regenerate doc (issue #3613)</li>

@@ -1,7 +1,7 @@
 Rental Product Pack
 ====================================================
 
-*This file has been generated on 2020-10-28-17-36-51. Changes to it will be overwritten.*
+*This file has been generated on 2020-10-28-20-41-16. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -11,12 +11,27 @@ Allow use of product packs as in rental use cases
 Description
 -----------
 
-With this module, product packs can be rented as one compound product.
+With this module, product packs can be rented as one compound product. Throughout the
+renting process, this compound product will be handled as one entity.
+
+
+Usage
+-----
+
+Refer to the usage information of the OCA module product_pack to learn how to
+define product packs.
+
+This module extends the sale and stock functionality to enable the renting of
+OCA product packs. In order to do that, just install the module.
+
+No further configuration is needed.
 
 
 Changelog
 ---------
 
+- d39f57e 2020-10-28 20:18:47 +0100 wagner@elegosoft.com  (HEAD -> v12, origin/v12) add links to the index in README.md (issue #3613)
+- b1039c8 2020-10-28 17:39:27 +0100 wagner@elegosoft.com  add index generation and add index to README.md (issue #3613)
 - 363cb50 2020-10-28 16:59:43 +0100 wagner@elegosoft.com  change quotes in manifests of rental_forward_shipment_plan and rental_routing and add some draft information about routing; regenerate (issue #3613)
 - fb94de5 2020-10-28 16:20:59 +0100 wagner@elegosoft.com  add descriptions to rental_timeline modules and regenerate (issue #3613)
 - f1affe5 2020-10-28 12:45:28 +0100 wagner@elegosoft.com  regenerate doc (issue #3613)
