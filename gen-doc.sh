@@ -107,7 +107,7 @@ for p in ${@:-rental_* shipment*}; do
     allfn=${p}/README.rst
   fi
   cat ${descfn} ${usagefn} ${historyfn} > ${allfn}
-  echo "* ${name}: ${summary}" >> index.txt
+  echo "* [${p} (${name})](${p}/README.rst): ${summary}" >> index.txt
   rst2html.py ${allfn} ${shtmlfn}
   git add ${docdir}
   git add ${shtmldir}
