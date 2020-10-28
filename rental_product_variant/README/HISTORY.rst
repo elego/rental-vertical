@@ -2,6 +2,7 @@
 Changelog
 ---------
 
+- f1affe5 2020-10-28 12:45:28 +0100 wagner@elegosoft.com  (HEAD -> v12, origin/v12) regenerate doc (issue #3613)
 - 5244748 2020-10-27 14:52:26 +0100 wagner@elegosoft.com  regenerate documentation and add README.rst files (issue #3339)
 - d02ea5d 2020-10-27 14:41:06 +0100 wagner@elegosoft.com  (tag: bp_rental_v12_integration-cep-849) update doc generation script (issue #3339)
 - 20bb1bb 2020-10-20 16:23:04 +0200 maria.sparenberg@elegosoft.com  (origin/fix_3783_blp835_remove_style_inline_option_rental_v12) issue #3783 remove option because it might cause the insertion of styles to html texts

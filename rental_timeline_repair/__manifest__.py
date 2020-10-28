@@ -6,6 +6,9 @@
     'version': '12.0.1.0.0',
     'category': 'Rental/Service',
     'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
+    'description': """
+This module adds the display of repair orders related to rental products to the rental timeline view.
+    """,
     'usage': """
 This module is automatically installed when all of the following modules are installed in a database:
 

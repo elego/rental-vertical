@@ -1,7 +1,7 @@
 Rental Repair
 ====================================================
 
-*This file has been generated on 2020-10-28-12-43-24. Changes to it will be overwritten.*
+*This file has been generated on 2020-10-28-16-15-18. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -17,6 +17,7 @@ _empty_
 Changelog
 ---------
 
+- f1affe5 2020-10-28 12:45:28 +0100 wagner@elegosoft.com  (HEAD -> v12, origin/v12) regenerate doc (issue #3613)
 - 3553154 2020-10-27 19:23:33 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_3575_blp840_unittest_errors_v12: addons-rental-vertical remotes/origin/fix_3575_blp840_unittest_errors_v12 - a5294368058ec127a4ca6206890d52d5a8f9d877 [FIX] module: rental_repair, two unittest errors from repair module, null value to account_id, issue#3575
 - 3f5b659 2020-10-27 19:23:32 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_3339_blp840_extend_documentation_v12: addons-rental-vertical remotes/origin/fix_3339_blp840_extend_documentation_v12 - fb44c5c43422e18d278488a0c58efc388e905f90 generate doc for shipment modules, too (issue #3339)
 - 71f3f94 2020-10-27 19:23:31 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_3791_blp840_rental_service_ticket_menu_v12: addons-rental-vertical remotes/origin/feature_3791_blp840_rental_service_ticket_menu_v12 - ddbadb0d22887c83249cf08b33a9dcfa3d7c10af [IMP] adjust action view of project.task and set default search of service tickets. (issue 3791)

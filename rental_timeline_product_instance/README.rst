@@ -1,7 +1,7 @@
 Rental Timeline Product Instance
 ====================================================
 
-*This file has been generated on 2020-10-28-12-43-24. Changes to it will be overwritten.*
+*This file has been generated on 2020-10-28-16-15-18. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -11,7 +11,9 @@ Extends the rental_timeline module to show the product instance fields in the ti
 Description
 -----------
 
-TODO
+The rental modules may be used to rent arbitrary products or individual product instances identified by serial number.
+In the latter case, product instance-specific information should be displayed in the timeline view, too, which is
+added by this module.
 
 
 Usage
@@ -26,6 +28,7 @@ This module is automatically installed when all of the following modules are ins
 Changelog
 ---------
 
+- f1affe5 2020-10-28 12:45:28 +0100 wagner@elegosoft.com  (HEAD -> v12, origin/v12) regenerate doc (issue #3613)
 - 5d1c106 2020-10-28 11:51:40 +0100 wagner@elegosoft.com  add several usage notes for auto-installing modules (issue #3613)
 - 5244748 2020-10-27 14:52:26 +0100 wagner@elegosoft.com  regenerate documentation and add README.rst files (issue #3339)
 - d02ea5d 2020-10-27 14:41:06 +0100 wagner@elegosoft.com  (tag: bp_rental_v12_integration-cep-849) update doc generation script (issue #3339)

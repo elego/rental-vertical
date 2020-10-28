@@ -1,7 +1,7 @@
 Rental Timeline Repair
 ====================================================
 
-*This file has been generated on 2020-10-28-12-43-24. Changes to it will be overwritten.*
+*This file has been generated on 2020-10-28-16-15-18. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -11,7 +11,7 @@ extends the rental_timeline module to show the repair orders in the timeline.
 Description
 -----------
 
-TODO
+This module adds the display of repair orders related to rental products to the rental timeline view.
 
 
 Usage
@@ -26,6 +26,7 @@ This module is automatically installed when all of the following modules are ins
 Changelog
 ---------
 
+- f1affe5 2020-10-28 12:45:28 +0100 wagner@elegosoft.com  (HEAD -> v12, origin/v12) regenerate doc (issue #3613)
 - 5d1c106 2020-10-28 11:51:40 +0100 wagner@elegosoft.com  add several usage notes for auto-installing modules (issue #3613)
 - 5244748 2020-10-27 14:52:26 +0100 wagner@elegosoft.com  regenerate documentation and add README.rst files (issue #3339)
 - d02ea5d 2020-10-27 14:41:06 +0100 wagner@elegosoft.com  (tag: bp_rental_v12_integration-cep-849) update doc generation script (issue #3339)

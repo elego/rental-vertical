@@ -1,7 +1,7 @@
 Rental Timeline Product Variant
 ====================================================
 
-*This file has been generated on 2020-10-28-12-43-24. Changes to it will be overwritten.*
+*This file has been generated on 2020-10-28-16-15-18. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -11,5 +11,5 @@ Extends the rental_timeline module to show the product variant fields in the tim
 Description
 -----------
 
-TODO
+This module adds the display of product variant-specific fields to the rental timeline view.
 

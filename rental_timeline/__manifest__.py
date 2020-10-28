@@ -6,7 +6,7 @@
     'description': '''
 This module extends the rental_sale module to create and change the timeline objects
 for the rented product instances automatically.
-A complete timeline view will be generated for all rentable products.''',
+A complete timeline view containing all rental orders will be generated for all rentable products.''',
     'version': '12.0.1.0.1',
     'category': 'Rental',
     'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
