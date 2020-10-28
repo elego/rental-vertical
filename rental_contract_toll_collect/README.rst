@@ -1,7 +1,7 @@
 Rental Contract Toll Collect
 ====================================================
 
-*This file has been generated on 2020-10-28-16-15-18. Changes to it will be overwritten.*
+*This file has been generated on 2020-10-28-16-58-04. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -36,7 +36,8 @@ This module is automatically installed when all of the following modules are ins
 Changelog
 ---------
 
-- f1affe5 2020-10-28 12:45:28 +0100 wagner@elegosoft.com  (HEAD -> v12, origin/v12) regenerate doc (issue #3613)
+- fb94de5 2020-10-28 16:20:59 +0100 wagner@elegosoft.com  (HEAD -> v12, origin/v12) add descriptions to rental_timeline modules and regenerate (issue #3613)
+- f1affe5 2020-10-28 12:45:28 +0100 wagner@elegosoft.com  regenerate doc (issue #3613)
 - 81de96e 2020-10-28 12:42:53 +0100 wagner@elegosoft.com  resolve conflicts (issue #3613)
 - 86e7c1a 2020-10-28 12:35:56 +0100 maria.sparenberg@elegosoft.com  issue #3613 add manifest description and usage for several rental modules
 - 5d1c106 2020-10-28 11:51:40 +0100 wagner@elegosoft.com  add several usage notes for auto-installing modules (issue #3613)
