@@ -4,6 +4,7 @@ TOOLS=${TOOLS:-~/work/odoo-dev/tools}
 ds=$(date "+%Y-%m-%d-%H-%M-%S")
 GET_MANIFEST_INFO=${GET_MANIFEST_INFO:-${TOOLS}/get_openerp_info.py}
 
+cp /dev/null index.txt
 for p in ${@:-rental_* shipment*}; do
   echo "processing ${p}..."
   m=${p}/__manifest__.py
@@ -106,6 +107,7 @@ for p in ${@:-rental_* shipment*}; do
     allfn=${p}/README.rst
   fi
   cat ${descfn} ${usagefn} ${historyfn} > ${allfn}
+  echo "* ${name}: ${summary}" >> index.txt
   rst2html.py ${allfn} ${shtmlfn}
   git add ${docdir}
   git add ${shtmldir}

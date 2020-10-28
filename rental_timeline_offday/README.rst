@@ -1,7 +1,7 @@
 Rental Timeline Offday
 ====================================================
 
-*This file has been generated on 2020-10-28-17-10-34. Changes to it will be overwritten.*
+*This file has been generated on 2020-10-28-17-36-51. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -29,6 +29,7 @@ No further configuration is needed.
 Changelog
 ---------
 
+- 412ee81 2020-10-28 17:11:36 +0100 wagner@elegosoft.com  (HEAD -> v12, origin/v12) extend usage for rental_timeline modules (issue #3613)
 - 363cb50 2020-10-28 16:59:43 +0100 wagner@elegosoft.com  change quotes in manifests of rental_forward_shipment_plan and rental_routing and add some draft information about routing; regenerate (issue #3613)
 - fb94de5 2020-10-28 16:20:59 +0100 wagner@elegosoft.com  add descriptions to rental_timeline modules and regenerate (issue #3613)
 - f1affe5 2020-10-28 12:45:28 +0100 wagner@elegosoft.com  regenerate doc (issue #3613)

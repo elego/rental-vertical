@@ -1,7 +1,7 @@
 Rental Contract Toll Collect
 ====================================================
 
-*This file has been generated on 2020-10-28-16-58-04. Changes to it will be overwritten.*
+*This file has been generated on 2020-10-28-17-36-51. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -36,7 +36,8 @@ This module is automatically installed when all of the following modules are ins
 Changelog
 ---------
 
-- fb94de5 2020-10-28 16:20:59 +0100 wagner@elegosoft.com  (HEAD -> v12, origin/v12) add descriptions to rental_timeline modules and regenerate (issue #3613)
+- 363cb50 2020-10-28 16:59:43 +0100 wagner@elegosoft.com  change quotes in manifests of rental_forward_shipment_plan and rental_routing and add some draft information about routing; regenerate (issue #3613)
+- fb94de5 2020-10-28 16:20:59 +0100 wagner@elegosoft.com  add descriptions to rental_timeline modules and regenerate (issue #3613)
 - f1affe5 2020-10-28 12:45:28 +0100 wagner@elegosoft.com  regenerate doc (issue #3613)
 - 81de96e 2020-10-28 12:42:53 +0100 wagner@elegosoft.com  resolve conflicts (issue #3613)
 - 86e7c1a 2020-10-28 12:35:56 +0100 maria.sparenberg@elegosoft.com  issue #3613 add manifest description and usage for several rental modules

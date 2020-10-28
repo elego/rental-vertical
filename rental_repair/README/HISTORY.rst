@@ -2,7 +2,8 @@
 Changelog
 ---------
 
-- fb94de5 2020-10-28 16:20:59 +0100 wagner@elegosoft.com  (HEAD -> v12, origin/v12) add descriptions to rental_timeline modules and regenerate (issue #3613)
+- 363cb50 2020-10-28 16:59:43 +0100 wagner@elegosoft.com  change quotes in manifests of rental_forward_shipment_plan and rental_routing and add some draft information about routing; regenerate (issue #3613)
+- fb94de5 2020-10-28 16:20:59 +0100 wagner@elegosoft.com  add descriptions to rental_timeline modules and regenerate (issue #3613)
 - f1affe5 2020-10-28 12:45:28 +0100 wagner@elegosoft.com  regenerate doc (issue #3613)
 - 3553154 2020-10-27 19:23:33 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_3575_blp840_unittest_errors_v12: addons-rental-vertical remotes/origin/fix_3575_blp840_unittest_errors_v12 - a5294368058ec127a4ca6206890d52d5a8f9d877 [FIX] module: rental_repair, two unittest errors from repair module, null value to account_id, issue#3575
 - 3f5b659 2020-10-27 19:23:32 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_3339_blp840_extend_documentation_v12: addons-rental-vertical remotes/origin/fix_3339_blp840_extend_documentation_v12 - fb44c5c43422e18d278488a0c58efc388e905f90 generate doc for shipment modules, too (issue #3339)

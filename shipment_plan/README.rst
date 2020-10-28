@@ -1,7 +1,7 @@
 Shipment Management
 ====================================================
 
-*This file has been generated on 2020-10-28-16-58-04. Changes to it will be overwritten.*
+*This file has been generated on 2020-10-28-17-36-51. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -17,6 +17,7 @@ TODO
 Changelog
 ---------
 
+- 363cb50 2020-10-28 16:59:43 +0100 wagner@elegosoft.com  change quotes in manifests of rental_forward_shipment_plan and rental_routing and add some draft information about routing; regenerate (issue #3613)
 - f1affe5 2020-10-28 12:45:28 +0100 wagner@elegosoft.com  regenerate doc (issue #3613)
 - 5244748 2020-10-27 14:52:26 +0100 wagner@elegosoft.com  regenerate documentation and add README.rst files (issue #3339)
 - eee2472 2020-06-26 19:24:51 +0200 wagner@elegosoft.com  (origin/fix_3339_blp669_extend_documentation_v12, origin/fix_3339_blp666_extend_documentation_v12, fix_3339_blp669_extend_documentation_v12, fix_3339_blp666_extend_documentation_v12) update documentation (issue #3339)
