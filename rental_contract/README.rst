@@ -1,7 +1,7 @@
 Rental Contract
 ====================================================
 
-*This file has been generated on 2020-10-27-14-49-15. Changes to it will be overwritten.*
+*This file has been generated on 2020-10-28-12-43-24. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -19,7 +19,11 @@ The module adds subtypes for contracts in order to distinguish between customer 
 customer rental contracts, vendor contracts and vendor rental contracts. 
 It is possible to add more subtypes with own sequence, which automatically sets the contract's code.
 
-If a contract is automatically created from sale order, it passes the sale order type to the contract subtype.
+- If a contract is automatically created from sale order, it passes the sale order type to the contract subtype.
+- The analytic account of a product is automatically set on the contract line.
+- The start and end date of invoice lines are automatically set when creating the invoice from a contract.
+- Both fields date_start and date_end that are used for contract lines are now hidden and related to the given 
+  start and end date of sale order line.
 
 
 Usage
@@ -29,12 +33,32 @@ You can add new contract subtypes here:
 
  - Invoicing > Configuration > Contract > Contract Subtypes
  - Rentals > Configuration > Contract > Contract Subtypes
+ 
+ - Create a sale order.
+ - Choose a sale type.
+ - Add a rental product that has a rental service marked as contract with a contract template 
+   and an analytic income account.
+ - Choose a service period by setting start and end date.
+ - Confirm the order.
+ - Check the automatically created contract for contract type, analytic accounts, ...
+
+This module is automatically installed when all of the following modules are installed in a database:
+
+ - contract
+ - product_contract
+ - sale_start_end_dates
+ - rental_sale
+ - rental_base
 
 
 Changelog
 ---------
 
-- d02ea5d 2020-10-27 14:41:06 +0100 wagner@elegosoft.com  (HEAD -> fix_3339_blp840_extend_documentation_v12, origin/rental_v12_integration, rental_v12_integration) update doc generation script (issue #3339)
+- 81de96e 2020-10-28 12:42:53 +0100 wagner@elegosoft.com  (HEAD -> v12) resolve conflicts (issue #3613)
+- 86e7c1a 2020-10-28 12:35:56 +0100 maria.sparenberg@elegosoft.com  (origin/v12) issue #3613 add manifest description and usage for several rental modules
+- 5d1c106 2020-10-28 11:51:40 +0100 wagner@elegosoft.com  add several usage notes for auto-installing modules (issue #3613)
+- 5244748 2020-10-27 14:52:26 +0100 wagner@elegosoft.com  regenerate documentation and add README.rst files (issue #3339)
+- d02ea5d 2020-10-27 14:41:06 +0100 wagner@elegosoft.com  (tag: bp_rental_v12_integration-cep-849) update doc generation script (issue #3339)
 - adcc40f 2020-10-07 10:19:08 +0200 maria.sparenberg@elegosoft.com  (origin/defect_3878_blp824_update_times_v12) issue #3878 fix arguments for update times because start date was also written as end date
 - b4743f7 2020-10-05 16:13:02 +0200 maria.sparenberg@elegosoft.com  (origin/defect_3880_blp819_timeline_confirmed_so_v12) issue #3880 allow updating confirmed order lines and corresponding timeline entries and contract lines
 - 354454e 2020-10-05 11:44:44 +0200 maria.sparenberg@elegosoft.com  issue #3880 create contract line for sale order line that are created in order state 'sale'

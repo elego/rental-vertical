@@ -2,6 +2,7 @@
 Changelog
 ---------
 
+- 5244748 2020-10-27 14:52:26 +0100 wagner@elegosoft.com  regenerate documentation and add README.rst files (issue #3339)
 - 0320759 2020-09-15 10:29:02 +0200 yweng@elegosoft.com  (origin/defect_3602_blp790_duplicated_labels_v12) issue #3602 fix duplicated labels in module shipment_plan_sale and shipment_plan_rental
 - 471f540 2020-06-30 20:31:19 +0200 yweng@elegosoft.com  (origin/feature_3293_blp677_internal_picking_shipment_plan_v12) [IMP] create shipment plan from internal stock picking
 - eee2472 2020-06-26 19:24:51 +0200 wagner@elegosoft.com  (origin/fix_3339_blp669_extend_documentation_v12, origin/fix_3339_blp666_extend_documentation_v12, fix_3339_blp669_extend_documentation_v12, fix_3339_blp666_extend_documentation_v12) update documentation (issue #3339)

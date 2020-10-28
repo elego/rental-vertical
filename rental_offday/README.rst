@@ -1,7 +1,7 @@
 Rental Off Day
 ====================================================
 
-*This file has been generated on 2020-10-27-14-49-15. Changes to it will be overwritten.*
+*This file has been generated on 2020-10-28-12-43-24. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -30,15 +30,18 @@ The off-days can only be used for products rentable in days.
 - Create a sale order and rent out the product in days.
 - Set a start and end date, e.g. for 3 weeks.
 - On sale order line you will see a page 'Off-Days'.
-  - Choose the type 'Weekend' in order to create 'Fixed Off-Days' and you get a list with all saturdays and sundays withing the rental period.   
-  - Add some additional off-days.
-  - The number of off-days reduces the rental quantity and is therefore not included in price calculation.
+- Choose the type 'Weekend' in order to create 'Fixed Off-Days' and you get a list with all saturdays 
+  and sundays within the rental period.   
+- Add some additional off-days.
+- The number of off-days reduces the rental quantity and is therefore not included in price calculation.
 
 
 Changelog
 ---------
 
-- d02ea5d 2020-10-27 14:41:06 +0100 wagner@elegosoft.com  (HEAD -> fix_3339_blp840_extend_documentation_v12, origin/rental_v12_integration, rental_v12_integration) update doc generation script (issue #3339)
+- 86e7c1a 2020-10-28 12:35:56 +0100 maria.sparenberg@elegosoft.com  (origin/v12) issue #3613 add manifest description and usage for several rental modules
+- 5244748 2020-10-27 14:52:26 +0100 wagner@elegosoft.com  regenerate documentation and add README.rst files (issue #3339)
+- d02ea5d 2020-10-27 14:41:06 +0100 wagner@elegosoft.com  (tag: bp_rental_v12_integration-cep-849) update doc generation script (issue #3339)
 - 1be4b54 2020-09-15 12:08:18 +0200 yweng@elegosoft.com  (origin/feature_3866_blp804_rename_sale_rental_v12) [MIG] Rename Module sale_rental and rental_sale (update dependence and xml_id)
 - 114c04c 2020-09-11 15:36:33 +0200 yweng@elegosoft.com  (origin/feature_3822_blp790_duplicated_fields_v12) [MIG] Model 'product.template': replace rental_ok with rental
 - 7a4cfcb 2020-09-11 11:28:47 +0200 maria.sparenberg@elegosoft.com  issue #3602 fix duplicated labels in module rental_offday

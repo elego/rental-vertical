@@ -1,7 +1,7 @@
 Rental Pricelist
 ====================================================
 
-*This file has been generated on 2020-10-27-14-49-15. Changes to it will be overwritten.*
+*This file has been generated on 2020-10-28-12-43-24. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -16,10 +16,26 @@ This modules integrates the standard Odoo pricelists into rental use cases and a
 easy way to specify the prices in a product tab as well as to use all the enhanced pricelist features.
 
 
+Usage
+-----
+
+- Create a product and mark it as rentable by setting rental = True.
+- Go to page 'Rental Price'.
+- Activate the required boolean fields for hourly, daily or monthly rental.
+- Save the product.
+- Add a usual price for one hour, one day or one month.
+- Add bulk prices, e.g. one day costs 300 €, 7 days 290 €, 21 days 250 €, and so on.
+
+Hint: The bulk prices are added in the product form view of the stockable, rentable product 
+but are actually used for its related rental service!
+
+
 Changelog
 ---------
 
-- d02ea5d 2020-10-27 14:41:06 +0100 wagner@elegosoft.com  (HEAD -> fix_3339_blp840_extend_documentation_v12, origin/rental_v12_integration, rental_v12_integration) update doc generation script (issue #3339)
+- 86e7c1a 2020-10-28 12:35:56 +0100 maria.sparenberg@elegosoft.com  (origin/v12) issue #3613 add manifest description and usage for several rental modules
+- 5244748 2020-10-27 14:52:26 +0100 wagner@elegosoft.com  regenerate documentation and add README.rst files (issue #3339)
+- d02ea5d 2020-10-27 14:41:06 +0100 wagner@elegosoft.com  (tag: bp_rental_v12_integration-cep-849) update doc generation script (issue #3339)
 - b7dad08 2020-10-06 13:48:11 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_3884_blp819_fix_application_status_and_deps_v12: addons-rental-vertical remotes/origin/fix_3884_blp819_fix_application_status_and_deps_v12 - 7580ae8936652f96fb11ac212867967458a4e127 set application to false for all modules except rental_base (issue #3884, issue #3339)
 - 836a14b 2020-10-06 15:33:55 +0200 maria.sparenberg@elegosoft.com  (origin/feature_3477_blp819_rental_product_insurance_v12) issue #3884 rename product_id to insurance_product_id for insurances on sale order lines
 - 7580ae8 2020-10-05 22:19:25 +0200 wagner@elegosoft.com  (origin/fix_3884_blp819_fix_application_status_and_deps_v12, fix_3884_blp819_fix_application_status_and_deps_v12) set application to false for all modules except rental_base (issue #3884, issue #3339)

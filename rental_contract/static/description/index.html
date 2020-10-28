@@ -363,7 +363,7 @@ ul.auto-toc {
 <div class="document" id="rental-contract">
 <h1 class="title">Rental Contract</h1>
 
-<p><em>This file has been generated on 2020-10-27-14-49-15. Changes to it will be overwritten.</em></p>
+<p><em>This file has been generated on 2020-10-28-12-43-24. Changes to it will be overwritten.</em></p>
 <div class="section" id="summary">
 <h1>Summary</h1>
 <p>Extension of module contract for rental use cases</p>
@@ -376,7 +376,13 @@ use cases in extension to purchase and sale use cases.</p>
 <p>The module adds subtypes for contracts in order to distinguish between customer contracts,
 customer rental contracts, vendor contracts and vendor rental contracts.
 It is possible to add more subtypes with own sequence, which automatically sets the contract's code.</p>
-<p>If a contract is automatically created from sale order, it passes the sale order type to the contract subtype.</p>
+<ul class="simple">
+<li>If a contract is automatically created from sale order, it passes the sale order type to the contract subtype.</li>
+<li>The analytic account of a product is automatically set on the contract line.</li>
+<li>The start and end date of invoice lines are automatically set when creating the invoice from a contract.</li>
+<li>Both fields date_start and date_end that are used for contract lines are now hidden and related to the given
+start and end date of sale order line.</li>
+</ul>
 </div>
 <div class="section" id="usage">
 <h1>Usage</h1>
@@ -385,13 +391,34 @@ It is possible to add more subtypes with own sequence, which automatically sets 
 <ul class="simple">
 <li>Invoicing &gt; Configuration &gt; Contract &gt; Contract Subtypes</li>
 <li>Rentals &gt; Configuration &gt; Contract &gt; Contract Subtypes</li>
+<li>Create a sale order.</li>
+<li>Choose a sale type.</li>
+<li>Add a rental product that has a rental service marked as contract with a contract template
+and an analytic income account.</li>
+<li>Choose a service period by setting start and end date.</li>
+<li>Confirm the order.</li>
+<li>Check the automatically created contract for contract type, analytic accounts, ...</li>
+</ul>
+</blockquote>
+<p>This module is automatically installed when all of the following modules are installed in a database:</p>
+<blockquote>
+<ul class="simple">
+<li>contract</li>
+<li>product_contract</li>
+<li>sale_start_end_dates</li>
+<li>rental_sale</li>
+<li>rental_base</li>
 </ul>
 </blockquote>
 </div>
 <div class="section" id="changelog">
 <h1>Changelog</h1>
 <ul class="simple">
-<li>d02ea5d 2020-10-27 14:41:06 +0100 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  (HEAD -&gt; fix_3339_blp840_extend_documentation_v12, origin/rental_v12_integration, rental_v12_integration) update doc generation script (issue #3339)</li>
+<li>81de96e 2020-10-28 12:42:53 +0100 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  (HEAD -&gt; v12) resolve conflicts (issue #3613)</li>
+<li>86e7c1a 2020-10-28 12:35:56 +0100 <a class="reference external" href="mailto:maria.sparenberg&#64;elegosoft.com">maria.sparenberg&#64;elegosoft.com</a>  (origin/v12) issue #3613 add manifest description and usage for several rental modules</li>
+<li>5d1c106 2020-10-28 11:51:40 +0100 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  add several usage notes for auto-installing modules (issue #3613)</li>
+<li>5244748 2020-10-27 14:52:26 +0100 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  regenerate documentation and add README.rst files (issue #3339)</li>
+<li>d02ea5d 2020-10-27 14:41:06 +0100 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  (tag: bp_rental_v12_integration-cep-849) update doc generation script (issue #3339)</li>
 <li>adcc40f 2020-10-07 10:19:08 +0200 <a class="reference external" href="mailto:maria.sparenberg&#64;elegosoft.com">maria.sparenberg&#64;elegosoft.com</a>  (origin/defect_3878_blp824_update_times_v12) issue #3878 fix arguments for update times because start date was also written as end date</li>
 <li>b4743f7 2020-10-05 16:13:02 +0200 <a class="reference external" href="mailto:maria.sparenberg&#64;elegosoft.com">maria.sparenberg&#64;elegosoft.com</a>  (origin/defect_3880_blp819_timeline_confirmed_so_v12) issue #3880 allow updating confirmed order lines and corresponding timeline entries and contract lines</li>
 <li>354454e 2020-10-05 11:44:44 +0200 <a class="reference external" href="mailto:maria.sparenberg&#64;elegosoft.com">maria.sparenberg&#64;elegosoft.com</a>  issue #3880 create contract line for sale order line that are created in order state 'sale'</li>

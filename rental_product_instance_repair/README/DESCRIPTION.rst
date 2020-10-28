@@ -1,7 +1,7 @@
 Rental Product Instance Repair
 ====================================================
 
-*This file has been generated on 2020-10-27-14-49-15. Changes to it will be overwritten.*
+*This file has been generated on 2020-10-28-12-43-24. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -11,5 +11,8 @@ Extension of module rental_product_instance and rental_repair
 Description
 -----------
 
-TODO
+This module extends the modules rental_repair and rental_product_instance.
+It adds a smartbutton to the product form view of product instances to get 
+an overview of all related project tasks.
+It automatically sets the serial number of a product instance in project tasks and repair orders.
 

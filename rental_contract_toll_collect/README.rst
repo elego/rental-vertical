@@ -1,7 +1,7 @@
 Rental Contract Toll Collect
 ====================================================
 
-*This file has been generated on 2020-10-27-14-49-15. Changes to it will be overwritten.*
+*This file has been generated on 2020-10-28-12-43-24. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -27,11 +27,20 @@ Usage
 - If the date of the imported toll charge lines match the service period of invoice lines to be created, 
   a new invoice line with the toll product is additionally added for each vehicle product with distance and amount.
 
+This module is automatically installed when all of the following modules are installed in a database:
+
+- rental_toll_collect
+- rental_contract_month
+
 
 Changelog
 ---------
 
-- d02ea5d 2020-10-27 14:41:06 +0100 wagner@elegosoft.com  (HEAD -> fix_3339_blp840_extend_documentation_v12, origin/rental_v12_integration, rental_v12_integration) update doc generation script (issue #3339)
+- 81de96e 2020-10-28 12:42:53 +0100 wagner@elegosoft.com  (HEAD -> v12) resolve conflicts (issue #3613)
+- 86e7c1a 2020-10-28 12:35:56 +0100 maria.sparenberg@elegosoft.com  (origin/v12) issue #3613 add manifest description and usage for several rental modules
+- 5d1c106 2020-10-28 11:51:40 +0100 wagner@elegosoft.com  add several usage notes for auto-installing modules (issue #3613)
+- 5244748 2020-10-27 14:52:26 +0100 wagner@elegosoft.com  regenerate documentation and add README.rst files (issue #3339)
+- d02ea5d 2020-10-27 14:41:06 +0100 wagner@elegosoft.com  (tag: bp_rental_v12_integration-cep-849) update doc generation script (issue #3339)
 - 08ed05c 2020-10-15 14:31:48 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_3627_blp831_correction_unittest_v12: addons-rental-vertical remotes/origin/feature_3627_blp831_correction_unittest_v12 - a32f3cf469a9259957ef47bcd0fa8b64a0c8be2d [IMP] correct unitest errors, module:rockbird_product_description,issue#3627
 - a32f3cf 2020-10-14 18:06:26 +0200 cpatel@elegosoft.com  (origin/feature_3627_blp831_correction_unittest_v12) [IMP] correct unitest errors, module:rockbird_product_description,issue#3627
 - 5468f7b 2020-10-14 14:35:31 +0200 cpatel@elegosoft.com  [IMP] improve coverage in unittest,issue#3478

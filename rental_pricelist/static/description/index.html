@@ -363,7 +363,7 @@ ul.auto-toc {
 <div class="document" id="rental-pricelist">
 <h1 class="title">Rental Pricelist</h1>
 
-<p><em>This file has been generated on 2020-10-27-14-49-15. Changes to it will be overwritten.</em></p>
+<p><em>This file has been generated on 2020-10-28-12-43-24. Changes to it will be overwritten.</em></p>
 <div class="section" id="summary">
 <h1>Summary</h1>
 <p>Enables the user to define different rental prices with time uom (&quot;Month&quot;, &quot;Day&quot; and &quot;Hour&quot;).</p>
@@ -374,10 +374,25 @@ ul.auto-toc {
 This modules integrates the standard Odoo pricelists into rental use cases and allows the user an
 easy way to specify the prices in a product tab as well as to use all the enhanced pricelist features.</p>
 </div>
+<div class="section" id="usage">
+<h1>Usage</h1>
+<ul class="simple">
+<li>Create a product and mark it as rentable by setting rental = True.</li>
+<li>Go to page 'Rental Price'.</li>
+<li>Activate the required boolean fields for hourly, daily or monthly rental.</li>
+<li>Save the product.</li>
+<li>Add a usual price for one hour, one day or one month.</li>
+<li>Add bulk prices, e.g. one day costs 300 €, 7 days 290 €, 21 days 250 €, and so on.</li>
+</ul>
+<p>Hint: The bulk prices are added in the product form view of the stockable, rentable product
+but are actually used for its related rental service!</p>
+</div>
 <div class="section" id="changelog">
 <h1>Changelog</h1>
 <ul class="simple">
-<li>d02ea5d 2020-10-27 14:41:06 +0100 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  (HEAD -&gt; fix_3339_blp840_extend_documentation_v12, origin/rental_v12_integration, rental_v12_integration) update doc generation script (issue #3339)</li>
+<li>86e7c1a 2020-10-28 12:35:56 +0100 <a class="reference external" href="mailto:maria.sparenberg&#64;elegosoft.com">maria.sparenberg&#64;elegosoft.com</a>  (origin/v12) issue #3613 add manifest description and usage for several rental modules</li>
+<li>5244748 2020-10-27 14:52:26 +0100 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  regenerate documentation and add README.rst files (issue #3339)</li>
+<li>d02ea5d 2020-10-27 14:41:06 +0100 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  (tag: bp_rental_v12_integration-cep-849) update doc generation script (issue #3339)</li>
 <li>b7dad08 2020-10-06 13:48:11 +0000 <a class="reference external" href="mailto:jenkins-ci&#64;elegosoft.com">jenkins-ci&#64;elegosoft.com</a>  [MERGE] remotes/origin/fix_3884_blp819_fix_application_status_and_deps_v12: addons-rental-vertical remotes/origin/fix_3884_blp819_fix_application_status_and_deps_v12 - 7580ae8936652f96fb11ac212867967458a4e127 set application to false for all modules except rental_base (issue #3884, issue #3339)</li>
 <li>836a14b 2020-10-06 15:33:55 +0200 <a class="reference external" href="mailto:maria.sparenberg&#64;elegosoft.com">maria.sparenberg&#64;elegosoft.com</a>  (origin/feature_3477_blp819_rental_product_insurance_v12) issue #3884 rename product_id to insurance_product_id for insurances on sale order lines</li>
 <li>7580ae8 2020-10-05 22:19:25 +0200 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  (origin/fix_3884_blp819_fix_application_status_and_deps_v12, fix_3884_blp819_fix_application_status_and_deps_v12) set application to false for all modules except rental_base (issue #3884, issue #3339)</li>

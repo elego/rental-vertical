@@ -1,7 +1,7 @@
 Rental Toll Collect
 ====================================================
 
-*This file has been generated on 2020-10-27-14-49-15. Changes to it will be overwritten.*
+*This file has been generated on 2020-10-28-12-43-24. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -17,6 +17,7 @@ The toll charge lines can be invoiced to a customer manually or by creating an i
 sale/rental order containing a vehicle product as sale/rental order line.
 
 The csv should contain the following columns:
+
 - Account number ("Mautaufstellungs-Nr.")
 - license plate ("Kfz-Kennz.")
 - Date ("Datum")

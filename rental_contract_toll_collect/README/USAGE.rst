@@ -10,3 +10,8 @@ Usage
 - If the date of the imported toll charge lines match the service period of invoice lines to be created, 
   a new invoice line with the toll product is additionally added for each vehicle product with distance and amount.
 
+This module is automatically installed when all of the following modules are installed in a database:
+
+- rental_toll_collect
+- rental_contract_month
+

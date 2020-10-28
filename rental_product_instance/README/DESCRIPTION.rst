@@ -1,7 +1,7 @@
 Rental Product Instance
 ====================================================
 
-*This file has been generated on 2020-10-27-14-49-15. Changes to it will be overwritten.*
+*This file has been generated on 2020-10-28-12-43-24. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -11,7 +11,10 @@ Add product instances identified by serial number as unique rented objects
 Description
 -----------
 
-Model product is extended as an instance that can be traced by serial number.
-An instance can only have one serial number, so that it is unique in the system.
-It can be used in rental orders, repair orders and maintenance orders.
+This module extends the product data model in order to mark them as unique product instances 
+that are traced by serial number. You might have several instances of a product but they are 
+in different conditions or are somehow unique like machines, vehicles or maybe 'used' products.
+
+In order to track the condition history of a product instance you can add operating data, e.g.
+you can save the mileage of vehicles or the operating hours of machines.
 
