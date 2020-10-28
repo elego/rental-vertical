@@ -1,7 +1,7 @@
 Rental Timeline
 ====================================================
 
-*This file has been generated on 2020-10-28-16-58-04. Changes to it will be overwritten.*
+*This file has been generated on 2020-10-28-17-07-37. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -15,11 +15,20 @@ This module extends the rental_sale module to create and change the timeline obj
 for the rented product instances automatically.
 A complete timeline view containing all rental orders will be generated for all rentable products.
 
+This module adds the basic rental timeline view as well as an extension to the product form view.
+
+
+Usage
+-----
+
+Just install this module to add the rental timeline view to your system. No further configuration is necessary.
+
 
 Changelog
 ---------
 
-- fb94de5 2020-10-28 16:20:59 +0100 wagner@elegosoft.com  (HEAD -> v12, origin/v12) add descriptions to rental_timeline modules and regenerate (issue #3613)
+- 363cb50 2020-10-28 16:59:43 +0100 wagner@elegosoft.com  (HEAD -> v12, origin/v12) change quotes in manifests of rental_forward_shipment_plan and rental_routing and add some draft information about routing; regenerate (issue #3613)
+- fb94de5 2020-10-28 16:20:59 +0100 wagner@elegosoft.com  add descriptions to rental_timeline modules and regenerate (issue #3613)
 - f1affe5 2020-10-28 12:45:28 +0100 wagner@elegosoft.com  regenerate doc (issue #3613)
 - 5244748 2020-10-27 14:52:26 +0100 wagner@elegosoft.com  regenerate documentation and add README.rst files (issue #3339)
 - d02ea5d 2020-10-27 14:41:06 +0100 wagner@elegosoft.com  (tag: bp_rental_v12_integration-cep-849) update doc generation script (issue #3339)
