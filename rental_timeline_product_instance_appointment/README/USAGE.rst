@@ -7,3 +7,5 @@ This module is automatically installed when all of the following modules are ins
 - rental_timeline
 - rental_product_instance_appointment
 
+No further configuration is needed.
+
