@@ -3,7 +3,16 @@
 {
     'name': 'Rental Loan',
     'summary': 'Extension of module action_loan for rental use cases',
-    'description': '',
+    'description': '''
+This module adds a smartbutton to the product form view to get an overview of all loans 
+(from module account_loan in repository account_financial_tools) that are linked to this 
+specific product.
+    ''',
+    'usage': '''
+- Install the module.
+- Add a loan with is_leasing = True and link a product.
+- Go to the product form view and see the smartbutton for loans.
+    ''',
     'version': '12.0.1.0.0',
     'category': 'Rental',
     'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',

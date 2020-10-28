@@ -14,10 +14,10 @@ If you add this monthly rental service in a sale order and confirm it, a contrac
 is automatically created.
 ''',
     'usage': '''
-Create a stockable product and mark it as rentable in months.
-The automatically created rental service has the flag 'Is a contract' = True.
-Create a sale order, add the rental service and confirm the order.
-A contract is automatically created.
+- Create a stockable product and mark it as rentable in months.
+  The automatically created rental service has the flag 'Is a contract' = True.
+- Create a sale order, add the rental service and confirm the order.
+  A contract is automatically created.
 ''',
     'version': '12.0.1.0.0',
     'category': 'Rental',

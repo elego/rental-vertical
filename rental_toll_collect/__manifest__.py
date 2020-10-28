@@ -10,6 +10,7 @@ The toll charge lines can be invoiced to a customer manually or by creating an i
 sale/rental order containing a vehicle product as sale/rental order line.
 
 The csv should contain the following columns:
+
 - Account number ("Mautaufstellungs-Nr.")
 - license plate ("Kfz-Kennz.")
 - Date ("Datum")
