@@ -67,6 +67,9 @@ for p in ${@:-rental_* shipment*}; do
     echo "---------"
     echo ""
     git log --pretty=format:'%h %ad %ae %d %s' --date=iso -- ${p} | sed -e 's/^/- /'
+    if [[ "${p}" == rental_sale ]]; then
+      git log --pretty=format:'%h %ad %ae %d %s' --date=iso -- sale_rental | sed -e 's/^/- /'
+    fi
     echo ""
   } > ${historyfn}
   {
