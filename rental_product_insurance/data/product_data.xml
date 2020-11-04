@@ -7,6 +7,7 @@
             <field name="type">service</field>
             <field name="categ_id" ref="product.product_category_1"/>
             <field name="sale_ok" eval="True"/>
+            <field name="is_insurance" eval="True"/>
             <field name="list_price">0.0</field>
         </record>
     </data>
