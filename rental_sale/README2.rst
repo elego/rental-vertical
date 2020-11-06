@@ -1,7 +1,7 @@
 Rental Sale
 ====================================================
 
-*This file has been generated on 2020-10-29-16-59-08. Changes to it will be overwritten.*
+*This file has been generated on 2020-11-06-09-57-10. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -49,7 +49,8 @@ Please refer to this screencast https://www.youtube.com/watch?v=9o0QrGryBn8 to g
 Changelog
 ---------
 
-- 391ef2a 2020-10-28 20:59:58 +0100 wagner@elegosoft.com  (HEAD -> v12, origin/v12) add usage information for product sets and product packs; add configuration and usage information for rental_sale and extend gen-doc for configuration (issue #3613)
+- f3ca50c 2020-10-29 16:59:48 +0100 wagner@elegosoft.com  add old history of renamed sale_rental (issue #3613)
+- 391ef2a 2020-10-28 20:59:58 +0100 wagner@elegosoft.com  add usage information for product sets and product packs; add configuration and usage information for rental_sale and extend gen-doc for configuration (issue #3613)
 - d39f57e 2020-10-28 20:18:47 +0100 wagner@elegosoft.com  add links to the index in README.md (issue #3613)
 - b1039c8 2020-10-28 17:39:27 +0100 wagner@elegosoft.com  add index generation and add index to README.md (issue #3613)
 - 363cb50 2020-10-28 16:59:43 +0100 wagner@elegosoft.com  change quotes in manifests of rental_forward_shipment_plan and rental_routing and add some draft information about routing; regenerate (issue #3613)
