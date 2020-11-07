@@ -145,13 +145,6 @@ class InsuranceProductSolInfo(models.Model):
             percent = r.insurance_percent
             if r.insurance_type == 'product':
                 price = r.sol_id.product_id.rented_product_id.standard_price
-                insurance_amount = price * percent / 100
+                r.insurance_price_unit = price * r.sol_id.rental_qty * percent / 100
             elif r.insurance_type == 'rental':
-                insurance_amount = r.sol_id.price_subtotal * percent / 100
-            if r.sol_id.rental and r.sol_id.product_uom_qty:
-                if r.sol_id.insurance_entire_time and r.sol_id.number_of_time_unit:
-                    r.insurance_price_unit = insurance_amount / r.sol_id.number_of_time_unit
-                else:
-                    r.insurance_price_unit = \
-                        r.sol_id.rental_qty * insurance_amount / r.sol_id.product_uom_qty
-
+                r.insurance_price_unit = r.sol_id.price_unit * r.sol_id.rental_qty * percent / 100
