@@ -1,7 +1,7 @@
 Rental Quality Control
 ====================================================
 
-*This file has been generated on 2020-10-27-14-49-15. Changes to it will be overwritten.*
+*This file has been generated on 2020-11-06-09-57-10. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -11,13 +11,33 @@ New text field to define the reason for quality failure.
 Description
 -----------
 
-TODO
+This module extends the quality_control_stock module to add a reason
+for failure during quality control, Inspections count smart button on Product form view
+and two Quality Control menus under Rental/Customers/Delivery for Customers and
+Rental/Vendor/Delivery for the Vendors.
 
+
+Usage
+-----
+
+- Install the module.
+- During the quality control workflow,you can define reason for failure in inspection line.
+- You can see Inspections count on Product.
+- You can see two Quality Control menus under Rental/Customers/Delivery for Customers and
+  Rental/Vendor/Delivery for the Vendors.
 
 Changelog
 ---------
 
-- d02ea5d 2020-10-27 14:41:06 +0100 wagner@elegosoft.com  (HEAD -> fix_3339_blp840_extend_documentation_v12, origin/rental_v12_integration, rental_v12_integration) update doc generation script (issue #3339)
+- 8281e1a 2020-11-05 11:28:32 +0100 cpatel@elegosoft.com  (HEAD -> v12, origin/v12) [IMP] add missing usage details,rental_quality_control
+- 391ef2a 2020-10-28 20:59:58 +0100 wagner@elegosoft.com  add usage information for product sets and product packs; add configuration and usage information for rental_sale and extend gen-doc for configuration (issue #3613)
+- d39f57e 2020-10-28 20:18:47 +0100 wagner@elegosoft.com  add links to the index in README.md (issue #3613)
+- b1039c8 2020-10-28 17:39:27 +0100 wagner@elegosoft.com  add index generation and add index to README.md (issue #3613)
+- 363cb50 2020-10-28 16:59:43 +0100 wagner@elegosoft.com  change quotes in manifests of rental_forward_shipment_plan and rental_routing and add some draft information about routing; regenerate (issue #3613)
+- fb94de5 2020-10-28 16:20:59 +0100 wagner@elegosoft.com  add descriptions to rental_timeline modules and regenerate (issue #3613)
+- f1affe5 2020-10-28 12:45:28 +0100 wagner@elegosoft.com  regenerate doc (issue #3613)
+- 5244748 2020-10-27 14:52:26 +0100 wagner@elegosoft.com  regenerate documentation and add README.rst files (issue #3339)
+- d02ea5d 2020-10-27 14:41:06 +0100 wagner@elegosoft.com  (tag: bp_rental_v12_integration-cep-849) update doc generation script (issue #3339)
 - 7580ae8 2020-10-05 22:19:25 +0200 wagner@elegosoft.com  (origin/fix_3884_blp819_fix_application_status_and_deps_v12, fix_3884_blp819_fix_application_status_and_deps_v12) set application to false for all modules except rental_base (issue #3884, issue #3339)
 - 1be4b54 2020-09-15 12:08:18 +0200 yweng@elegosoft.com  (origin/feature_3866_blp804_rename_sale_rental_v12) [MIG] Rename Module sale_rental and rental_sale (update dependence and xml_id)
 - eee2472 2020-06-26 19:24:51 +0200 wagner@elegosoft.com  (origin/fix_3339_blp669_extend_documentation_v12, origin/fix_3339_blp666_extend_documentation_v12, fix_3339_blp669_extend_documentation_v12, fix_3339_blp666_extend_documentation_v12) update documentation (issue #3339)

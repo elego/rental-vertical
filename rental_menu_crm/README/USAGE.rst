@@ -2,5 +2,6 @@
 Usage
 -----
 
-just install
+- Install the module.
+- See new menu entries for CRM in rental application.
 

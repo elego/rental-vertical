@@ -2,7 +2,19 @@
 Changelog
 ---------
 
-- d02ea5d 2020-10-27 14:41:06 +0100 wagner@elegosoft.com  (HEAD -> fix_3339_blp840_extend_documentation_v12, origin/rental_v12_integration, rental_v12_integration) update doc generation script (issue #3339)
+- 391ef2a 2020-10-28 20:59:58 +0100 wagner@elegosoft.com  add usage information for product sets and product packs; add configuration and usage information for rental_sale and extend gen-doc for configuration (issue #3613)
+- d39f57e 2020-10-28 20:18:47 +0100 wagner@elegosoft.com  add links to the index in README.md (issue #3613)
+- b1039c8 2020-10-28 17:39:27 +0100 wagner@elegosoft.com  add index generation and add index to README.md (issue #3613)
+- 363cb50 2020-10-28 16:59:43 +0100 wagner@elegosoft.com  change quotes in manifests of rental_forward_shipment_plan and rental_routing and add some draft information about routing; regenerate (issue #3613)
+- fb94de5 2020-10-28 16:20:59 +0100 wagner@elegosoft.com  add descriptions to rental_timeline modules and regenerate (issue #3613)
+- f1affe5 2020-10-28 12:45:28 +0100 wagner@elegosoft.com  regenerate doc (issue #3613)
+- 3553154 2020-10-27 19:23:33 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_3575_blp840_unittest_errors_v12: addons-rental-vertical remotes/origin/fix_3575_blp840_unittest_errors_v12 - a5294368058ec127a4ca6206890d52d5a8f9d877 [FIX] module: rental_repair, two unittest errors from repair module, null value to account_id, issue#3575
+- 3f5b659 2020-10-27 19:23:32 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_3339_blp840_extend_documentation_v12: addons-rental-vertical remotes/origin/fix_3339_blp840_extend_documentation_v12 - fb44c5c43422e18d278488a0c58efc388e905f90 generate doc for shipment modules, too (issue #3339)
+- 71f3f94 2020-10-27 19:23:31 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_3791_blp840_rental_service_ticket_menu_v12: addons-rental-vertical remotes/origin/feature_3791_blp840_rental_service_ticket_menu_v12 - ddbadb0d22887c83249cf08b33a9dcfa3d7c10af [IMP] adjust action view of project.task and set default search of service tickets. (issue 3791)
+- 5244748 2020-10-27 14:52:26 +0100 wagner@elegosoft.com  regenerate documentation and add README.rst files (issue #3339)
+- d02ea5d 2020-10-27 14:41:06 +0100 wagner@elegosoft.com  (tag: bp_rental_v12_integration-cep-849) update doc generation script (issue #3339)
+- ddbadb0 2020-10-26 14:07:16 +0100 yweng@elegosoft.com  (origin/feature_3791_blp840_rental_service_ticket_menu_v12) [IMP] adjust action view of project.task and set default search of service tickets. (issue 3791)
+- a529436 2020-10-26 13:38:36 +0100 cpatel@elegosoft.com  (origin/fix_3575_blp840_unittest_errors_v12) [FIX] module: rental_repair, two unittest errors from repair module, null value to account_id, issue#3575
 - 1117c2c 2020-09-11 11:35:14 +0200 maria.sparenberg@elegosoft.com  issue #3602 fix duplicated labels in module rental_repair
 - 6a33358 2020-09-08 16:17:25 +0200 maria.sparenberg@elegosoft.com  issue #3824 add some new fields to repair order and rearrange the view
 - 470ce25 2020-09-08 14:39:38 +0200 yweng@elegosoft.com  (origin/feature_3477_blp776_rental_product_insurance_v12) [IMP] corrects some translations (issue 3766)

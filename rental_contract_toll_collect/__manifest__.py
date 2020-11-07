@@ -3,12 +3,12 @@
 {
     'name': 'Rental Contract Toll Collect',
     'summary': "Invoice toll charge lines to customers periodically by contract usage.",
-    'description': """
+    'description': '''
 This module is an extension of rental_toll_collect. When using contracts for periodic 
 invoicing of rental orders, this module provides the opportunity to also invoice the 
 toll charges for the given time period.
-    """,
-    'usage': """
+    ''',
+    'usage': '''
 - Create a rental order with vehicle products as rental order lines.
 - The products needs to be rented out in months in order to automatically create the contract.
 - Confirm the rental order and see the newly created contract.
@@ -16,7 +16,13 @@ toll charges for the given time period.
 - The cronjob will automatically create invoices for this contract.
 - If the date of the imported toll charge lines match the service period of invoice lines to be created, 
   a new invoice line with the toll product is additionally added for each vehicle product with distance and amount.
-    """,
+
+This module is automatically installed when all of the following modules are installed in a database:
+
+- rental_toll_collect
+- rental_contract_month
+
+    ''',
     'version': '12.0.1.0.0',
     'category': 'Rental',
     'author': 'Odoo Community Association (OCA) / elego Software Solutions GmbH',

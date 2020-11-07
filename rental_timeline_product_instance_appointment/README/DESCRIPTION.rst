@@ -1,7 +1,7 @@
 Rental Timeline Product Instance Appointment
 ====================================================
 
-*This file has been generated on 2020-10-27-14-49-15. Changes to it will be overwritten.*
+*This file has been generated on 2020-11-06-09-57-10. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -11,5 +11,5 @@ Extends the rental_timeline module to display an appointment icon in the mouse o
 Description
 -----------
 
-TODO
+This module adds the display of appointments related to rental products to the rental timeline view.
 

@@ -1,7 +1,7 @@
 Rental Product Instance Appointment
 ====================================================
 
-*This file has been generated on 2020-10-27-14-49-15. Changes to it will be overwritten.*
+*This file has been generated on 2020-11-06-09-57-10. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -15,22 +15,44 @@ Product instances are unique products in a current state and some tasks needs to
 This module provides the possibility to add single or recurrent appointments for a product which automatically
 create project tasks a defined time before the actual appointment date.
 
+You can distinguish between time dependent and usage dependent appointments.
+Time dependent appointments are due on a specific date.
+Usage dependent appointments are due if a specific condition is reached, 
+like a certain mileage or amount of operating hours.
+
 
 Usage
 -----
 
 - Create a product instance.
-- Add one or several appointments in 'Appointments' page on product view.
-- Set a name, date, a notification lead time and a time interval for each appointment.
 
-The cron job 'Update product appointments daily' will check all product instances, 
-create related project tasks in helpdesk project and update the due date for the next appointments.
+- Add one or several time dependent appointments in 'Appointments' page on product view.
+- Set a name, date, a notification lead time (in days) and a time interval for each appointment.
+- Before the appointment is due a project task will be created automatically by a cronjob using the lead time.
+- If the appointment date is today, the next appointment is calculated by the intervall.
+
+- Add one or several usage dependent appointments in 'Appointments' page on product view.
+  The product instance therefore need a condition type configured by its product category.
+- Set a name, a threshold, an intervall, a notification lead time (in days) and a daily increase.
+- If there are no existing operating data yet, the daily increase is by default 1 and the appointment 
+  date is calculated using 'today' as a reference until the threshold is reached.
+- If there are operating data, the daily increase is calculated from the value and date difference, 
+  using the last 20 operating data that differ in value and time.
+- A project task is automatically created before the calculated appointment date using the lead time.
 
 
 Changelog
 ---------
 
-- d02ea5d 2020-10-27 14:41:06 +0100 wagner@elegosoft.com  (HEAD -> fix_3339_blp840_extend_documentation_v12, origin/rental_v12_integration, rental_v12_integration) update doc generation script (issue #3339)
+- 391ef2a 2020-10-28 20:59:58 +0100 wagner@elegosoft.com  add usage information for product sets and product packs; add configuration and usage information for rental_sale and extend gen-doc for configuration (issue #3613)
+- d39f57e 2020-10-28 20:18:47 +0100 wagner@elegosoft.com  add links to the index in README.md (issue #3613)
+- b1039c8 2020-10-28 17:39:27 +0100 wagner@elegosoft.com  add index generation and add index to README.md (issue #3613)
+- 363cb50 2020-10-28 16:59:43 +0100 wagner@elegosoft.com  change quotes in manifests of rental_forward_shipment_plan and rental_routing and add some draft information about routing; regenerate (issue #3613)
+- fb94de5 2020-10-28 16:20:59 +0100 wagner@elegosoft.com  add descriptions to rental_timeline modules and regenerate (issue #3613)
+- f1affe5 2020-10-28 12:45:28 +0100 wagner@elegosoft.com  regenerate doc (issue #3613)
+- 86e7c1a 2020-10-28 12:35:56 +0100 maria.sparenberg@elegosoft.com  issue #3613 add manifest description and usage for several rental modules
+- 5244748 2020-10-27 14:52:26 +0100 wagner@elegosoft.com  regenerate documentation and add README.rst files (issue #3339)
+- d02ea5d 2020-10-27 14:41:06 +0100 wagner@elegosoft.com  (tag: bp_rental_v12_integration-cep-849) update doc generation script (issue #3339)
 - 6cabea0 2020-10-16 13:01:37 +0200 maria.sparenberg@elegosoft.com  (origin/feature_3641_blp833_usage_dependent_appointments_v12) issue #3641 skip operating data for calculation if their value has not changed
 - 48b24a2 2020-10-16 12:52:26 +0200 maria.sparenberg@elegosoft.com  issue #3641 fix calculation for next appointment by using the most current date of operating data (not today)
 - 215794a 2020-10-16 10:56:58 +0200 maria.sparenberg@elegosoft.com  issue #3641 fix calculation for daily increase in case of several newly created operating data daily

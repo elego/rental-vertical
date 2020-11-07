@@ -1,7 +1,7 @@
 Rental Product Instance
 ====================================================
 
-*This file has been generated on 2020-10-27-14-49-15. Changes to it will be overwritten.*
+*This file has been generated on 2020-11-06-09-57-10. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -11,15 +11,38 @@ Add product instances identified by serial number as unique rented objects
 Description
 -----------
 
-Model product is extended as an instance that can be traced by serial number.
-An instance can only have one serial number, so that it is unique in the system.
-It can be used in rental orders, repair orders and maintenance orders.
+This module extends the product data model in order to mark them as unique product instances 
+that are traced by serial number. You might have several instances of a product but they are 
+in different conditions or are somehow unique like machines, vehicles or maybe 'used' products.
+
+In order to track the condition history of a product instance you can add operating data, e.g.
+you can save the mileage of vehicles or the operating hours of machines.
+
+
+Usage
+-----
+
+- Install the module.
+- Create a stockable product.
+- Mark the product as product instance.
+- Save the product and set an unique serial number.
+  Hint: Make an inventory adjustment, if needed.
+- Set a product category that can be configured to either use mileage or operating hours as condition.
+- Go to the smartbutton for operating data, create the current condition and update it regularly.
 
 
 Changelog
 ---------
 
-- d02ea5d 2020-10-27 14:41:06 +0100 wagner@elegosoft.com  (HEAD -> fix_3339_blp840_extend_documentation_v12, origin/rental_v12_integration, rental_v12_integration) update doc generation script (issue #3339)
+- 391ef2a 2020-10-28 20:59:58 +0100 wagner@elegosoft.com  add usage information for product sets and product packs; add configuration and usage information for rental_sale and extend gen-doc for configuration (issue #3613)
+- d39f57e 2020-10-28 20:18:47 +0100 wagner@elegosoft.com  add links to the index in README.md (issue #3613)
+- b1039c8 2020-10-28 17:39:27 +0100 wagner@elegosoft.com  add index generation and add index to README.md (issue #3613)
+- 363cb50 2020-10-28 16:59:43 +0100 wagner@elegosoft.com  change quotes in manifests of rental_forward_shipment_plan and rental_routing and add some draft information about routing; regenerate (issue #3613)
+- fb94de5 2020-10-28 16:20:59 +0100 wagner@elegosoft.com  add descriptions to rental_timeline modules and regenerate (issue #3613)
+- f1affe5 2020-10-28 12:45:28 +0100 wagner@elegosoft.com  regenerate doc (issue #3613)
+- 86e7c1a 2020-10-28 12:35:56 +0100 maria.sparenberg@elegosoft.com  issue #3613 add manifest description and usage for several rental modules
+- 5244748 2020-10-27 14:52:26 +0100 wagner@elegosoft.com  regenerate documentation and add README.rst files (issue #3339)
+- d02ea5d 2020-10-27 14:41:06 +0100 wagner@elegosoft.com  (tag: bp_rental_v12_integration-cep-849) update doc generation script (issue #3339)
 - 1674a05 2020-10-15 14:02:04 +0200 maria.sparenberg@elegosoft.com  (origin/feature_3641_blp831_appointment_v12) issue #3641 change field types for operating data
 - 10b5ea7 2020-10-13 17:12:33 +0200 maria.sparenberg@elegosoft.com  (origin/feature_3641_blp824_rental_product_instance_appointment_v12) issue #3641 fix calculation of next service appointment
 - 3ebccf6 2020-10-07 14:52:41 +0200 yweng@elegosoft.com  [IMP] product_instance_appointment (issue 3641)

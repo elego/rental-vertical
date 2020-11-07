@@ -363,7 +363,7 @@ ul.auto-toc {
 <div class="document" id="rental-product-instance-appointment">
 <h1 class="title">Rental Product Instance Appointment</h1>
 
-<p><em>This file has been generated on 2020-10-27-14-49-15. Changes to it will be overwritten.</em></p>
+<p><em>This file has been generated on 2020-11-06-09-57-10. Changes to it will be overwritten.</em></p>
 <div class="section" id="summary">
 <h1>Summary</h1>
 <p>Rental Product Instance Appointment</p>
@@ -373,21 +373,41 @@ ul.auto-toc {
 <p>Product instances are unique products in a current state and some tasks needs to be regularly done with them.
 This module provides the possibility to add single or recurrent appointments for a product which automatically
 create project tasks a defined time before the actual appointment date.</p>
+<p>You can distinguish between time dependent and usage dependent appointments.
+Time dependent appointments are due on a specific date.
+Usage dependent appointments are due if a specific condition is reached,
+like a certain mileage or amount of operating hours.</p>
 </div>
 <div class="section" id="usage">
 <h1>Usage</h1>
 <ul class="simple">
 <li>Create a product instance.</li>
-<li>Add one or several appointments in 'Appointments' page on product view.</li>
-<li>Set a name, date, a notification lead time and a time interval for each appointment.</li>
+<li>Add one or several time dependent appointments in 'Appointments' page on product view.</li>
+<li>Set a name, date, a notification lead time (in days) and a time interval for each appointment.</li>
+<li>Before the appointment is due a project task will be created automatically by a cronjob using the lead time.</li>
+<li>If the appointment date is today, the next appointment is calculated by the intervall.</li>
+<li>Add one or several usage dependent appointments in 'Appointments' page on product view.
+The product instance therefore need a condition type configured by its product category.</li>
+<li>Set a name, a threshold, an intervall, a notification lead time (in days) and a daily increase.</li>
+<li>If there are no existing operating data yet, the daily increase is by default 1 and the appointment
+date is calculated using 'today' as a reference until the threshold is reached.</li>
+<li>If there are operating data, the daily increase is calculated from the value and date difference,
+using the last 20 operating data that differ in value and time.</li>
+<li>A project task is automatically created before the calculated appointment date using the lead time.</li>
 </ul>
-<p>The cron job 'Update product appointments daily' will check all product instances,
-create related project tasks in helpdesk project and update the due date for the next appointments.</p>
 </div>
 <div class="section" id="changelog">
 <h1>Changelog</h1>
 <ul class="simple">
-<li>d02ea5d 2020-10-27 14:41:06 +0100 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  (HEAD -&gt; fix_3339_blp840_extend_documentation_v12, origin/rental_v12_integration, rental_v12_integration) update doc generation script (issue #3339)</li>
+<li>391ef2a 2020-10-28 20:59:58 +0100 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  add usage information for product sets and product packs; add configuration and usage information for rental_sale and extend gen-doc for configuration (issue #3613)</li>
+<li>d39f57e 2020-10-28 20:18:47 +0100 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  add links to the index in README.md (issue #3613)</li>
+<li>b1039c8 2020-10-28 17:39:27 +0100 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  add index generation and add index to README.md (issue #3613)</li>
+<li>363cb50 2020-10-28 16:59:43 +0100 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  change quotes in manifests of rental_forward_shipment_plan and rental_routing and add some draft information about routing; regenerate (issue #3613)</li>
+<li>fb94de5 2020-10-28 16:20:59 +0100 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  add descriptions to rental_timeline modules and regenerate (issue #3613)</li>
+<li>f1affe5 2020-10-28 12:45:28 +0100 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  regenerate doc (issue #3613)</li>
+<li>86e7c1a 2020-10-28 12:35:56 +0100 <a class="reference external" href="mailto:maria.sparenberg&#64;elegosoft.com">maria.sparenberg&#64;elegosoft.com</a>  issue #3613 add manifest description and usage for several rental modules</li>
+<li>5244748 2020-10-27 14:52:26 +0100 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  regenerate documentation and add README.rst files (issue #3339)</li>
+<li>d02ea5d 2020-10-27 14:41:06 +0100 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  (tag: bp_rental_v12_integration-cep-849) update doc generation script (issue #3339)</li>
 <li>6cabea0 2020-10-16 13:01:37 +0200 <a class="reference external" href="mailto:maria.sparenberg&#64;elegosoft.com">maria.sparenberg&#64;elegosoft.com</a>  (origin/feature_3641_blp833_usage_dependent_appointments_v12) issue #3641 skip operating data for calculation if their value has not changed</li>
 <li>48b24a2 2020-10-16 12:52:26 +0200 <a class="reference external" href="mailto:maria.sparenberg&#64;elegosoft.com">maria.sparenberg&#64;elegosoft.com</a>  issue #3641 fix calculation for next appointment by using the most current date of operating data (not today)</li>
 <li>215794a 2020-10-16 10:56:58 +0200 <a class="reference external" href="mailto:maria.sparenberg&#64;elegosoft.com">maria.sparenberg&#64;elegosoft.com</a>  issue #3641 fix calculation for daily increase in case of several newly created operating data daily</li>

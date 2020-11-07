@@ -4,6 +4,7 @@ TOOLS=${TOOLS:-~/work/odoo-dev/tools}
 ds=$(date "+%Y-%m-%d-%H-%M-%S")
 GET_MANIFEST_INFO=${GET_MANIFEST_INFO:-${TOOLS}/get_openerp_info.py}
 
+cp /dev/null index.txt
 for p in ${@:-rental_* shipment*}; do
   echo "processing ${p}..."
   m=${p}/__manifest__.py
@@ -12,6 +13,7 @@ for p in ${@:-rental_* shipment*}; do
   shtmlfn=${shtmldir}/index.html
   descfn=${docdir}/DESCRIPTION.rst
   historyfn=${docdir}/HISTORY.rst
+  configfn=${docdir}/CONFIGURATION.rst
   usagefn=${docdir}/USAGE.rst
   contribfn=${docdir}/CONTRIBUTORS.rst
   mkdir -p ${docdir} || {
@@ -44,6 +46,11 @@ for p in ${@:-rental_* shipment*}; do
   else
     usage=''
   fi
+  if grep -q "'configuration'" ${m}; then
+    configuration=$(${GET_MANIFEST_INFO} -f ${m} -a configuration -p '' | sed -e 's/^\.$//' -e 's/|//g')
+  else
+    configuration=''
+  fi
   if grep -q "'contributors'" ${m}; then
     contributors=$(${GET_MANIFEST_INFO} -f ${m} -a contributors -p '' | sed -e 's/^\.$//' -e 's/|//g')
   else
@@ -60,6 +67,9 @@ for p in ${@:-rental_* shipment*}; do
     echo "---------"
     echo ""
     git log --pretty=format:'%h %ad %ae %d %s' --date=iso -- ${p} | sed -e 's/^/- /'
+    if [[ "${p}" == rental_sale ]]; then
+      git log --pretty=format:'%h %ad %ae %d %s' --date=iso -- sale_rental | sed -e 's/^/- /'
+    fi
     echo ""
   } > ${historyfn}
   {
@@ -79,6 +89,18 @@ for p in ${@:-rental_* shipment*}; do
     echo "${description}"
     echo ""
   } > ${descfn}
+  if [[ -n "${configuration}" ]]; then
+    {
+      echo ""
+      echo "Configuration"
+      echo "-------------"
+      echo ""
+      echo "${configuration}"
+      echo ""
+    } > ${configfn}
+  else
+    configfn=''
+  fi
   if [[ -n "${usage}" ]]; then
     {
       echo ""
@@ -105,7 +127,8 @@ for p in ${@:-rental_* shipment*}; do
   else
     allfn=${p}/README.rst
   fi
-  cat ${descfn} ${usagefn} ${historyfn} > ${allfn}
+  cat ${descfn} ${configfn} ${usagefn} ${historyfn} > ${allfn}
+  echo "* [${p} (${name})](${p}/README.rst): ${summary}" >> index.txt
   rst2html.py ${allfn} ${shtmlfn}
   git add ${docdir}
   git add ${shtmldir}
