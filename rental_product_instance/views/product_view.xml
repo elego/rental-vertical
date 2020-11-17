@@ -117,8 +117,10 @@
                     <field name="instance_serial_number_id" />
                     <field name="instance_current_location_id" />
                 </search>
+                <field name="name" position="replace">
+                    <field name="name" string="Product" filter_domain="['|', '|', '|', '|', ('default_code', 'ilike', self), ('name', 'ilike', self), ('barcode', 'ilike', self), ('instance_serial_number_id.name', 'ilike', self), ('license_plate', 'ilike', self)]"/>
+                </field>
             </field>
         </record>
-
     </data>
 </odoo>
