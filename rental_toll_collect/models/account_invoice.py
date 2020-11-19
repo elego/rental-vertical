@@ -101,7 +101,7 @@ class AccountInvoiceLine(models.Model):
     )
 
     @api.onchange(
-        'product_id'
+        'product_id',
         'start_date',
         'end_date',
     )
