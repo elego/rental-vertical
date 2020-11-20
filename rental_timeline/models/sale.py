@@ -62,12 +62,18 @@ class SaleOrderLine(models.Model):
             if line.product_id.rented_product_id:
                 if not line.timeline_ids:
                     raise exceptions.UserError(_('No found timelines.'))
-                if vals.get('start_date', False):
-                    timelines = sorted(line.timeline_ids, key=lambda l: l.date_start)
-                    timelines[0].date_start = vals['start_date']
+                update_date_start_later = False
+                start_timelines = sorted(line.timeline_ids, key=lambda l: l.date_start)
+                end_timelines = sorted(line.timeline_ids, key=lambda l: l.date_end, reverse=True)
+                if vals.get('start_date', False) and start_timelines:
+                    if start_timelines[0].date_end < fields.Datetime.to_datetime(vals.get('start_date')):
+                        update_date_start_later = True
+                    else:
+                        start_timelines[0].date_start = vals['start_date']
                 if vals.get('end_date', False):
-                    timelines = sorted(line.timeline_ids, key=lambda l: l.date_end, reverse=True)
-                    timelines[0].date_end = vals['end_date']
+                    end_timelines[0].date_end = vals['end_date']
+                if update_date_start_later:
+                    start_timelines[0].date_start = vals['start_date']
                 if vals.get('product_id', False):
                     timelines = sorted(line.timeline_ids, key=lambda l: l.product_id)
                     product = self.env['product.product'].browse(vals['product_id'])
