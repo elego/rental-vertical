@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-13 11:23+0000\n"
-"PO-Revision-Date: 2020-10-13 11:23+0000\n"
+"POT-Creation-Date: 2020-11-24 15:49+0000\n"
+"PO-Revision-Date: 2020-11-24 15:49+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,13 +16,15 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: rental_toll_collect
-#: code:addons/rental_toll_collect/models/account_invoice.py:130
+#: code:addons/rental_toll_collect/models/account_invoice.py:150
+#: code:addons/rental_toll_collect/wizard/toll_charge_line_invoicing.py:152
 #, python-format
 msgid " Total Distance: "
 msgstr ""
 
 #. module: rental_toll_collect
-#: code:addons/rental_toll_collect/models/account_invoice.py:130
+#: code:addons/rental_toll_collect/models/account_invoice.py:150
+#: code:addons/rental_toll_collect/wizard/toll_charge_line_invoicing.py:152
 #, python-format
 msgid " for "
 msgstr ""
@@ -60,6 +62,15 @@ msgid "<span class=\"o_stat_text\">Toll Lines:</span>\n"
 msgstr ""
 
 #. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_res_partner__administrative_charge
+#: model:ir.model.fields,field_description:rental_toll_collect.field_res_users__administrative_charge
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line_invoicing__administrative_charge
+#: model:product.product,name:rental_toll_collect.product_administrative_charge
+#: model:product.template,name:rental_toll_collect.product_administrative_charge_product_template
+msgid "Administrative Charge"
+msgstr ""
+
+#. module: rental_toll_collect
 #: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__analytic_account
 msgid "Analytic Account"
 msgstr ""
@@ -67,6 +78,17 @@ msgstr ""
 #. module: rental_toll_collect
 #: selection:toll.charge.line,procedure:0
 msgid "Automatic Procedure"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_res_company__automatic_toll_charge_invoicing
+#: model:ir.model.fields,field_description:rental_toll_collect.field_res_config_settings__automatic_toll_charge_invoicing
+msgid "Automatic Toll Charges Invoicing"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line_invoicing__automatic_invoicing
+msgid "Automatic invoicing"
 msgstr ""
 
 #. module: rental_toll_collect
@@ -86,7 +108,15 @@ msgstr ""
 
 #. module: rental_toll_collect
 #: model_terms:ir.ui.view,arch_db:rental_toll_collect.toll_charge_line_import_view
+#: model_terms:ir.ui.view,arch_db:rental_toll_collect.toll_charge_line_invoicing_view
 msgid "Cancel"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_res_partner__administrative_charge_product
+#: model:ir.model.fields,field_description:rental_toll_collect.field_res_users__administrative_charge_product
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line_invoicing__administrative_charge_product
+msgid "Charge Product"
 msgstr ""
 
 #. module: rental_toll_collect
@@ -105,20 +135,47 @@ msgid "Click to create new toll charge line."
 msgstr ""
 
 #. module: rental_toll_collect
+#: model:ir.model,name:rental_toll_collect.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model:ir.model,name:rental_toll_collect.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model:ir.model,name:rental_toll_collect.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model_terms:ir.ui.view,arch_db:rental_toll_collect.toll_charge_line_invoicing_view
+msgid "Create Invoice"
+msgstr ""
+
+#. module: rental_toll_collect
 #: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__create_uid
 #: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line_import__create_uid
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line_invoicing__create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: rental_toll_collect
 #: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__create_date
 #: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line_import__create_date
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line_invoicing__create_date
 msgid "Created on"
 msgstr ""
 
 #. module: rental_toll_collect
 #: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__company_currency_id
 msgid "Currency"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line_invoicing__partner_id
+msgid "Customer"
 msgstr ""
 
 #. module: rental_toll_collect
@@ -134,6 +191,7 @@ msgstr ""
 #. module: rental_toll_collect
 #: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__display_name
 #: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line_import__display_name
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line_invoicing__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -175,7 +233,27 @@ msgstr ""
 #. module: rental_toll_collect
 #: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__id
 #: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line_import__id
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line_invoicing__id
 msgid "ID"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,help:rental_toll_collect.field_res_partner__administrative_charge
+#: model:ir.model.fields,help:rental_toll_collect.field_res_users__administrative_charge
+#: model:ir.model.fields,help:rental_toll_collect.field_toll_charge_line_invoicing__administrative_charge
+msgid "If activated, an invoice line with the administrative charge product is added to the invoice when invoicing toll charge lines."
+msgstr ""
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,help:rental_toll_collect.field_toll_charge_line_invoicing__automatic_invoicing
+msgid "If activated, draft invoices are created automatically for the selected toll charge lines using the partner of the associated sale or rental order.\n"
+"The correct order line is found by comparing its start and end date with the toll charge line's date."
+msgstr ""
+
+#. module: rental_toll_collect
+#: model:ir.model.fields,help:rental_toll_collect.field_res_company__automatic_toll_charge_invoicing
+#: model:ir.model.fields,help:rental_toll_collect.field_res_config_settings__automatic_toll_charge_invoicing
+msgid "If activated, imported toll charge lines are automatically invoiced when invoicing a sale or rental order or contract."
 msgstr ""
 
 #. module: rental_toll_collect
@@ -201,6 +279,23 @@ msgid "Invoice Line"
 msgstr ""
 
 #. module: rental_toll_collect
+#: model_terms:ir.ui.view,arch_db:rental_toll_collect.toll_charge_line_invoicing_view
+msgid "Invoice Toll Charge Lines"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model_terms:ir.ui.view,arch_db:rental_toll_collect.res_config_settings_view_form
+msgid "Invoice the imported toll charge lines together\n"
+"                                    with rental services when invoicing a sale / rental\n"
+"                                    order or contract."
+msgstr ""
+
+#. module: rental_toll_collect
+#: model:ir.actions.act_window,name:rental_toll_collect.action_toll_charge_line_invoicing
+msgid "Invoice toll charges"
+msgstr ""
+
+#. module: rental_toll_collect
 #: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__invoiced
 msgid "Invoiced?"
 msgstr ""
@@ -213,18 +308,21 @@ msgstr ""
 #. module: rental_toll_collect
 #: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line____last_update
 #: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line_import____last_update
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line_invoicing____last_update
 msgid "Last Modified on"
 msgstr ""
 
 #. module: rental_toll_collect
 #: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__write_uid
 #: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line_import__write_uid
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line_invoicing__write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: rental_toll_collect
 #: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__write_date
 #: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line_import__write_date
+#: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line_invoicing__write_date
 msgid "Last Updated on"
 msgstr ""
 
@@ -261,6 +359,11 @@ msgstr ""
 #. module: rental_toll_collect
 #: model:ir.model.fields,field_description:rental_toll_collect.field_account_invoice_line__toll_product_origin_line_id
 msgid "Origin for toll product invoice line"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model_terms:ir.ui.view,arch_db:rental_toll_collect.toll_charge_line_invoicing_view
+msgid "Please define how to create draft invoices for the selected toll charge lines."
 msgstr ""
 
 #. module: rental_toll_collect
@@ -321,7 +424,7 @@ msgid "Tariff Model"
 msgstr ""
 
 #. module: rental_toll_collect
-#: code:addons/rental_toll_collect/models/toll_charge_line.py:175
+#: code:addons/rental_toll_collect/models/toll_charge_line.py:188
 #, python-format
 msgid "There are %s vehicles with the license plate '%s'."
 msgstr ""
@@ -386,7 +489,7 @@ msgstr ""
 
 #. module: rental_toll_collect
 #: code:addons/rental_toll_collect/models/account_invoice.py:54
-#: code:addons/rental_toll_collect/models/sale.py:51
+#: code:addons/rental_toll_collect/models/sale.py:49
 #: model:ir.ui.menu,name:rental_toll_collect.menu_toll_charges
 #: model_terms:ir.ui.view,arch_db:rental_toll_collect.product_normal_form_view
 #: model_terms:ir.ui.view,arch_db:rental_toll_collect.view_invoice_line_form
@@ -394,6 +497,14 @@ msgstr ""
 #: model:product.template,name:rental_toll_collect.product_toll_product_template
 #, python-format
 msgid "Toll Charges"
+msgstr ""
+
+#. module: rental_toll_collect
+#: code:addons/rental_toll_collect/wizard/toll_charge_line_invoicing.py:130
+#: model_terms:ir.ui.view,arch_db:rental_toll_collect.res_config_settings_view_form
+#: model_terms:ir.ui.view,arch_db:rental_toll_collect.res_partner_contract_type_form_view
+#, python-format
+msgid "Toll Collect"
 msgstr ""
 
 #. module: rental_toll_collect
@@ -425,7 +536,9 @@ msgid "Type"
 msgstr ""
 
 #. module: rental_toll_collect
+#: model:product.product,uom_name:rental_toll_collect.product_administrative_charge
 #: model:product.product,uom_name:rental_toll_collect.product_toll
+#: model:product.template,uom_name:rental_toll_collect.product_administrative_charge_product_template
 #: model:product.template,uom_name:rental_toll_collect.product_toll_product_template
 msgid "Unit(s)"
 msgstr ""
@@ -455,12 +568,40 @@ msgid "Weight Class"
 msgstr ""
 
 #. module: rental_toll_collect
+#: model_terms:ir.ui.view,arch_db:rental_toll_collect.toll_charge_line_invoicing_view
+msgid "When not using the automatic invoicing option you can choose a partner and invoice\n"
+"                        the given lines independent of any sales or rentals.<br/>\n"
+"                        You can also choose to add administrative charges."
+msgstr ""
+
+#. module: rental_toll_collect
+#: model_terms:ir.ui.view,arch_db:rental_toll_collect.toll_charge_line_invoicing_view
+msgid "With the automatic invoicing option only those lines that are related to a sale\n"
+"                        or rental are invoiced because otherwise the partner cannot be guessed correctly.\n"
+"                        The associated sale or rental is automatically found by comparing the start and\n"
+"                        end date with the toll charge line's date.<br/>\n"
+"                        Administrative charges are added according to the partner's configuration."
+msgstr ""
+
+#. module: rental_toll_collect
+#: model:ir.model,name:rental_toll_collect.model_toll_charge_line_create_invoice
+msgid "Wizard for creating an invoice from toll charge line(s)"
+msgstr ""
+
+#. module: rental_toll_collect
 #: model:ir.model,name:rental_toll_collect.model_toll_charge_line_import
 msgid "Wizard for importing csv-file containing toll collect data"
 msgstr ""
 
 #. module: rental_toll_collect
+#: model:ir.model,name:rental_toll_collect.model_toll_charge_line_invoicing
+msgid "Wizard for invoicing toll charge lines"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model:product.product,weight_uom_name:rental_toll_collect.product_administrative_charge
 #: model:product.product,weight_uom_name:rental_toll_collect.product_toll
+#: model:product.template,weight_uom_name:rental_toll_collect.product_administrative_charge_product_template
 #: model:product.template,weight_uom_name:rental_toll_collect.product_toll_product_template
 msgid "kg"
 msgstr ""

@@ -108,3 +108,5 @@ class TollChargeLineImport(models.TransientModel):
                 err_msg = err_fmt % (len(errors), errors[0]['message'])
                 raise Warning(err_msg)
                 # raise RedirectWarning(err_msg , action_id, go_msg)
+        action = self.env.ref('rental_toll_collect.toll_charge_line_action')
+        return action.read()[0]

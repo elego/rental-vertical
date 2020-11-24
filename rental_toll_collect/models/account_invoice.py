@@ -69,7 +69,20 @@ class AccountInvoice(models.Model):
                         vals = line._prepare_toll_product_line(line.toll_line_ids.filtered('chargeable'))
                         line.toll_product_line_ids.write(vals)
                     else:
-                        line._create_toll_product_line()
+                        # When manually invoicing toll charge lines,
+                        # the 'toll charge' is linked as invoice_line_id.
+                        # The 'toll charge' position does not have toll_product_line_ids
+                        # and no toll_product_origin_line_id!
+                        if line.product_id == self.env.ref('rental_toll_collect.product_toll') \
+                                and not line.toll_product_origin_line_id:
+                            vals = self.env['toll.charge.line.invoicing']._prepare_toll_product_line(
+                                invoice=invoice,
+                                product=line.toll_line_ids.mapped('product_id'),
+                                chargeable_toll_lines=line.toll_line_ids.filtered('chargeable')
+                            )
+                            line.write(vals)
+                        else:
+                            line._create_toll_product_line()
                 line.update_toll_lines = False
         return True
 
@@ -122,12 +135,18 @@ class AccountInvoiceLine(models.Model):
             self.invoice_id.fiscal_position_id,
             self.company_id
         )
+        # create invoice line name in partner language
+        partner_lang = self.invoice_id.partner_id.lang
+        self.env = api.Environment(self.env.cr, self.env.uid, dict(self.env.context, lang=partner_lang))
+        name = toll_charge_product.with_context(lang=partner_lang).display_name + \
+            _(" for ") + license_plate + _(" Total Distance: ") + str(round(distance, 2)) + " " + uom_km.name
+
         vals = {
             'product_id': toll_charge_product.id,
             'quantity': 1.0,
             'uom_id': toll_charge_product.uom_id.id,
             'price_unit': round(total_amount, 2),
-            'name': toll_charge_product.display_name + _(" for ") + license_plate + _(" Total Distance: ") + str(round(distance, 2)) + " " + uom_km.name,
+            'name': name,
             'toll_product_origin_line_id': self.id,
             'invoice_id': self.invoice_id.id,
             'start_date': self.start_date,
@@ -140,42 +159,75 @@ class AccountInvoiceLine(models.Model):
     def _create_toll_product_line(self):
         self.ensure_one()
         chargeable_toll_lines = self.toll_line_ids.filtered('chargeable')
-        vals = self._prepare_toll_product_line(chargeable_toll_lines)
-        toll_product_line = self.env['account.invoice.line'].create(vals)
+        values = self._prepare_toll_product_line(chargeable_toll_lines)
+        toll_product_line = self.env['account.invoice.line'].create(values)
+        toll_product_line._set_taxes()
+        toll_product_line.write({
+            'price_unit': values.get('price_unit', toll_product_line.product_id.list_price)
+        })
         return toll_product_line
+
+    def _prepare_administrative_product_line(self, invoice, product):
+        account_id = self.env['account.invoice.line'].get_invoice_line_account(
+            invoice.type,
+            product,
+            invoice.fiscal_position_id,
+            invoice.company_id
+        )
+        vals = {
+            'product_id': product.id,
+            'quantity': 1.0,
+            'uom_id': product.uom_id.id,
+            'price_unit': product.list_price,
+            'name': product.with_context(lang=invoice.partner_id.lang).display_name,
+            'invoice_id': invoice.id,
+            'account_id': account_id.id,
+            'account_analytic_id': product.income_analytic_account_id and product.income_analytic_account_id.id,
+        }
+        return vals
+
+    def _create_administrative_product_line(self, invoice, charge_product):
+        values = self._prepare_administrative_product_line(invoice, charge_product)
+        invoice_line = self.env['account.invoice.line'].create(values)
+        invoice_line._set_taxes()
+        invoice_line.write({
+            'price_unit': values.get('price_unit', invoice_line.product_id.list_price)
+        })
 
     @api.multi
     def update_toll_charge_lines(self):
         self.ensure_one()
         if not self.display_type:
-            rented_product_id = self.env['product.product'].browse(self.product_id.id).rented_product_id
-            products = [self.product_id.id]
-            if rented_product_id:
-                products.append(rented_product_id.id)
-            toll_charge_lines = self.env['toll.charge.line'].search([
-                ('product_id', 'in', products),
-                ('toll_date', '>=', self.start_date),
-                ('toll_date', '<=', self.end_date),
-                '|',
-                ('invoice_id', '=', False),
-                ('invoice_id', '=', self.invoice_id.id),
-            ])
-            self.write({
-                'toll_line_ids': [(6, 0, toll_charge_lines.ids)],
-                'update_toll_lines': False,
-            })
+            if self.product_id != self.env.ref('rental_toll_collect.product_toll'):
+                rented_product_id = self.env['product.product'].browse(self.product_id.id).rented_product_id
+                products = [self.product_id.id]
+                if rented_product_id:
+                    products.append(rented_product_id.id)
+                toll_charge_lines = self.env['toll.charge.line'].search([
+                    ('product_id', 'in', products),
+                    ('toll_date', '>=', self.start_date),
+                    ('toll_date', '<=', self.end_date),
+                    '|',
+                    ('invoice_line_id', '=', False),
+                    ('invoice_line_id', '=', self.id),
+                ])
+                self.write({
+                    'toll_line_ids': [(6, 0, toll_charge_lines.ids)],
+                    'update_toll_lines': False,
+                })
 
     @api.model
     def create(self, vals):
         i_lines = super().create(vals)
-        toll_product_lines = self.env['account.invoice.line']
-        for line in i_lines:
-            if not vals.get('toll_line_ids', False):
-                line.update_toll_charge_lines()
-            if line.toll_line_ids:
-                toll_product_lines |= line._create_toll_product_line()
-                line.update_toll_lines = False
-        i_lines |= toll_product_lines
+        if self.env.user.company_id.automatic_toll_charge_invoicing:
+            toll_product_lines = self.env['account.invoice.line']
+            for line in i_lines:
+                if not vals.get('toll_line_ids', False):
+                    line.update_toll_charge_lines()
+                if line.toll_line_ids:
+                    toll_product_lines |= line._create_toll_product_line()
+                    line.update_toll_lines = False
+            i_lines |= toll_product_lines
         return i_lines
 
     @api.multi

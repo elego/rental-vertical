@@ -59,8 +59,11 @@ The csv should contain the following columns:
         'views/toll_charge_line_view.xml',
         'views/account_invoice_view.xml',
         'views/product_view.xml',
+        'views/res_config_settings_view.xml',
+        'views/res_partner_view.xml',
         'views/sale_view.xml',
         'wizard/toll_charge_line_import_view.xml',
+        'wizard/toll_charge_line_invoicing_view.xml',
     ],
     'demo': [
     ],
