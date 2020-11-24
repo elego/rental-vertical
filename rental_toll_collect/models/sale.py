@@ -52,7 +52,7 @@ class SaleOrder(models.Model):
             'view_ids': [tree_view_id, form_view_id],
             'res_model': 'toll.charge.line',
             'domain': "[('id','in',[" + ','.join(map(str, record_ids)) + "])]",
-            }
+        }
 
     @api.multi
     def action_update_toll_charges(self):
@@ -65,7 +65,9 @@ class SaleOrder(models.Model):
     def _finalize_invoices(self, invoices, references):
         res = super()._finalize_invoices(invoices, references)
         for invoice in invoices.values():
-            if invoice.partner_id.administrative_charge:
+            if invoice.partner_id.administrative_charge and invoice.invoice_line_ids.filtered(
+                lambda l: l.product_id == self.env.ref('rental_toll_collect.product_toll')
+            ):
                 product = invoice.partner_id.administrative_charge_product
                 self.env['account.invoice.line']._create_administrative_product_line(invoice, product)
         return res
