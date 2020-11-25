@@ -50,16 +50,16 @@ class ProductTimeline(models.Model):
                 line.product_instance_state_formated = str(line.product_instance_state)
 
     @api.multi
-    @api.constrains('date_start', 'date_end')
+    @api.constrains('date_start', 'date_end', 'type')
     def _check_date(self):
         for line in self:
-            if line.type in ['rental', 'reserved']:
+            if line.type == 'rental':
                 domain = [
                     ('date_start', '<', line.date_end),
                     ('date_end', '>', line.date_start),
                     ('product_id', '=', line.product_id.id),
                     ('product_id.product_instance', '=', True),
-                    ('type', 'in', ['rental', 'reserved']),
+                    ('type', '=', 'rental'),
                     ('id', '!=', line.id),
                 ]
                 lines = self.search_count(domain)
