@@ -15,6 +15,9 @@ class ResPartner(models.Model):
     administrative_charge_product = fields.Many2one(
         comodel_name="product.product",
         string='Charge Product',
-        default=lambda self: self.env.ref('rental_toll_collect.product_administrative_charge'),
+        default=lambda self: self.env.ref(
+            'rental_toll_collect.product_administrative_charge',
+            raise_if_not_found=False
+        ),
         domain=[('type', '=', 'service')],
     )
