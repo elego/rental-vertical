@@ -32,6 +32,7 @@ odoo.define('contract_toll_collect.tour', function (require) {
             run: function (){
                 $('div.o_field_boolean[name="automatic_toll_charge_invoicing"] input[type="checkbox"]').prop("checked", true);
                 $('div.o_field_boolean[name="automatic_toll_charge_invoicing"] input[type="checkbox"]').trigger('change');
+                }
         },
         {
             content: _t('Save settings'),
