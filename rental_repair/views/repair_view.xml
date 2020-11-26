@@ -109,4 +109,11 @@
         parent="rental_base.menu_customer_orders"
         action="rental_repair.action_repair_quotation_tree"
         sequence="11" />
+
+    <menuitem name="Service Quotations"
+        id="menu_customer_repair_orders"
+        parent="rental_base.menu_customer_quotations"
+        action="repair.action_repair_order_tree"
+        sequence="15" />
+
 </odoo>
