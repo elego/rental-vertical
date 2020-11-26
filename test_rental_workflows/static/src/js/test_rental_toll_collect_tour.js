@@ -36,7 +36,7 @@ odoo.define('toll_collect.tour', function (require) {
         },
         {
             content: _t('Save settings'),
-            trigger: '.o_form_button_save',
+            trigger: '.btn-primary',
             position: 'bottom',
         },
         {
