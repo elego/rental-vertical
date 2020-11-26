@@ -9,6 +9,7 @@
     "depends": [
         "shipment_plan_sale",
         "rental_base",
+        "rental_purchase_order_type",
     ],
     "data": [
         "views/menu_view.xml",
