@@ -16,6 +16,29 @@ odoo.define('contract_toll_collect.tour', function (require) {
             width: 200
         },
         {
+            content: _t('Go to top menu of configuration'),
+            trigger: 'li a[data-menu-xmlid="rental_base.menu_config"]',
+            position: 'bottom'
+        },
+        {
+            content: _t('Go to menu of settings'),
+            trigger: 'li a[data-menu-xmlid="rental_base.menu_settings"]',
+            position: 'bottom'
+        },
+        {
+            content: _t('Set automatic invoicing of toll charges to True'),
+            trigger: 'div.o_field_boolean[name="automatic_toll_charge_invoicing"] input[type="checkbox"]',
+            extra_trigger: '.o_form_editable',
+            run: function (){
+                $('div.o_field_boolean[name="automatic_toll_charge_invoicing"] input[type="checkbox"]').prop("checked", true);
+                $('div.o_field_boolean[name="automatic_toll_charge_invoicing"] input[type="checkbox"]').trigger('change');
+        },
+        {
+            content: _t('Save settings'),
+            trigger: '.o_form_button_save',
+            position: 'bottom',
+        },
+        {
             content: _t('Go to top menu of Customer'),
             trigger: 'li a[data-menu-xmlid="rental_base.menu_top_customer"]',
             position: 'bottom',

@@ -20,7 +20,9 @@ Test Rental Workflows
         'rental_product_variant',
         'rental_offday',
         'rental_contract_month',
+        'rental_contract_toll_collect',
         'rental_timeline',
+        'rental_toll_collect',
         'quality_control_stock',
     ],
     'data': [
