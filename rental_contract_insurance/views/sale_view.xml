@@ -20,7 +20,8 @@
                     >
                         <tree editable="bottom">
                             <field name="insurance_product_id"
-                                   options="{'no_create': True, 'no_open': True}"/>
+                                   options="{'no_create': True, 'no_open': True}"
+                                   domain="[('is_insurance', '=', True), ('uom_id', '=', parent.product_uom)]"/>
                             <field name="insurance_type"
                                    string="Type"
                             />
