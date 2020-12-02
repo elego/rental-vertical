@@ -99,7 +99,7 @@ class SaleOrderLine(models.Model):
                     reset_lines |= line
                 if end_Date and line.end_date != end_Date:
                     reset_lines |= line
-                if product_id and line.product_id != product_id:
+                if product_id and line.product_id.id != product_id:
                     reset_lines |= line
                 if name and line.name != name:
                     reset_lines |= line
