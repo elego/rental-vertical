@@ -89,12 +89,20 @@ class SaleOrderLine(models.Model):
         res = super(SaleOrderLine, self).write(vals)
         keys = {'start_date', 'end_date', 'product_id', 'name'}
         if keys.intersection(vals.keys()):
+            rental = vals.get('rental', False)
             reset_lines = self.browse([])
             start_date = vals.get('start_date', False)
             end_Date = vals.get('end_date', False)
             product_id = vals.get('product_id', False)
             name = vals.get('name', False)
             for line in self:
+                if rental:
+                    search = [
+                        ('res_model', '=', self._name),
+                        ('res_id', '=', self.id),
+                    ]
+                    if not self.env['product.timeline'].search(search):
+                        line._create_product_timeline()
                 if start_date and line.start_date != start_date:
                     reset_lines |= line
                 if end_Date and line.end_date != end_Date:
