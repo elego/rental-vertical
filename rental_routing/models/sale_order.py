@@ -64,7 +64,7 @@ class SaleOrder(models.Model):
         for sale in self:
             if sale.type_id.id == rental_order_type.id:
                 if sale.partner_shipping_id and not sale.partner_shipping_id.rental_onsite_location_id:
-                    self.create_and_set_rental_onsite_location_route()
+                    sale.create_and_set_rental_onsite_location_route()
         res = super(SaleOrder, self).action_confirm()
         for sale in self:
             for line in sale.order_line:
