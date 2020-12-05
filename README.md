@@ -39,3 +39,6 @@ Currently we have these modules to support rental business:
 
 The shipment_plan modules should probably be moved to OCA/stock-logistics-transport.
 
+There is a presentation video at Youtube: https://www.youtube.com/watch?v=CzO5NqgJWD0
+
+
