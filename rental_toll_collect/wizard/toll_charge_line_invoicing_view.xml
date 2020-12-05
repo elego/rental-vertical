@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="toll_charge_line_invoicing_view" model="ir.ui.view">
+            <field name="name">toll.charge.line.invoicing.view</field>
+            <field name="model">toll.charge.line.invoicing</field>
+            <field name="arch" type="xml">
+                <form string="Invoice Toll Charge Lines">
+                    <p>Please define how to create draft invoices for the selected toll charge lines.</p>
+                    <p>
+                        With the automatic invoicing option only those lines that are related to a sale
+                        or rental are invoiced because otherwise the partner cannot be guessed correctly.
+                        The associated sale or rental is automatically found by comparing the start and
+                        end date with the toll charge line's date.<br/>
+                        Administrative charges are added according to the partner's configuration.
+                    </p>
+                    <p>
+                        When not using the automatic invoicing option you can choose a partner and invoice
+                        the given lines independent of any sales or rentals.<br/>
+                        You can also choose to add administrative charges.
+                    </p>
+                    <group>
+                        <field name="automatic_invoicing"/>
+                        <field name="partner_id"
+                               options="{'no_create':True}"
+                               attrs="{'invisible': [('automatic_invoicing', '=', True)]}"
+                       />
+                        <field name="administrative_charge"
+                               attrs="{'invisible': [('automatic_invoicing', '=', True)]}"
+                        />
+                        <field name="administrative_charge_product"
+                               attrs="{
+                               'invisible': [
+                                    '|',
+                                    ('automatic_invoicing', '=', True),
+                                    ('administrative_charge', '=', False),
+                               ],
+                               'required': [('administrative_charge', '=', True)],
+                               }"
+                        />
+                    </group>
+                    <footer>
+                        <button string="Create Invoice"
+                                name="action_create_invoice"
+                                type="object"
+                                class="oe_highlight"
+                        />
+                        <button string="Cancel"
+                                class="btn btn-default"
+                                special="cancel"
+                        />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="action_toll_charge_line_invoicing"
+                    multi="True"
+                    key2="client_action_multi"
+                    name="Invoice toll charges"
+                    res_model="toll.charge.line.invoicing"
+                    src_model="toll.charge.line"
+                    view_type="form"
+                    view_mode="form"
+                    view_id="rental_toll_collect.toll_charge_line_invoicing_view"
+                    target="new"
+        />
+
+    </data>
+</odoo>

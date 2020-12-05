@@ -19,7 +19,7 @@ odoo.define('toll_collect.tour', function (require) {
             content: _t('Go to top menu of Customer'),
             trigger: 'li a[data-menu-xmlid="rental_base.menu_top_customer"]',
             position: 'bottom',
-            // extra_trigger: '.o_main_navbar a:contains("Rental")',
+            extra_trigger: 'a.o_menu_brand:contains("Rentals")',
         },
         {
             content: _t('Go to menu Rental Orders'),
@@ -201,9 +201,89 @@ odoo.define('toll_collect.tour', function (require) {
             extra_trigger: '.o_form_view',
             position: "bottom"
         },
+        // START: set automatic_toll_charge_invoicing = True
+        // {
+        //     content: _t('Go to menu of Rental > Configuration'),
+        //     trigger: 'li a[data-menu-xmlid="rental_base.menu_config"]',
+        //     extra_trigger: 'a.o_menu_brand:contains("Rentals")',
+        //     position: 'bottom'
+        // },
+        // {
+        //     content: _t('Go to menu of Rental > Configuration > Settings'),
+        //     trigger: 'li a[data-menu-xmlid="rental_base.menu_settings"]',
+        //     position: 'bottom',
+        // },
+        // {
+        //     content: _t('Set automatic invoicing of toll charges to True'),
+        //     trigger: 'div.o_field_boolean[name="automatic_toll_charge_invoicing"] input[type="checkbox"]',
+        //     extra_trigger: 'button[name="execute"]:visible:not(:disabled)',
+        //     run: function (){
+        //           var check_value = $('div.o_field_boolean[name="automatic_toll_charge_invoicing"] input[type="checkbox"]').prop("checked");
+        //           if (!check_value){
+        //             $('div.o_field_boolean[name="automatic_toll_charge_invoicing"] input[type="checkbox"]').prop("checked", true);
+        //             $('div.o_field_boolean[name="automatic_toll_charge_invoicing"] input[type="checkbox"]').trigger('change');
+        //           }
+        //         },
+        // },
+        // {
+        //     content: _t('Click on Save'),
+        //     trigger: '.o_statusbar_buttons button[name="execute"]',
+        //     position: 'bottom',
+        //     extra_trigger: 'button[name="execute"]:visible:not(:disabled)',
+        // },
+        // {
+        //     content: "Save complete and Redirect to /web",
+        //     trigger: '.o_control_panel:contains("Settings")',
+        //     extra_trigger: 'button[name="execute"]:visible:not(:disabled)',
+        //     run: function () {
+        //         window.location.href = '/web';
+        //     },
+        // },
+        // {
+        //     content: "Wait page loaded",
+        //     trigger: '.o_main_navbar a:contains("Discuss")',
+        //     in_modal: false,
+        //     extra_trigger: '.o_main_navbar a:contains("Discuss")',
+        //     timeout: 30000,
+        //     run: function () {}, // it's a check
+        // },
+        // {
+        //     content: _t('Go to main menu Rental'),
+        //     trigger: '.mk_apps_sidebar [data-menu-xmlid="rental_base.menu_rental_root"] > .mk_apps_sidebar_name',
+        //     extra_trigger: 'a.o_menu_brand:contains("Discuss")',
+        //     position: 'bottom',
+        //     width: 200,
+        //     timeout: 30000,
+        // },
+        // {
+        //     content: _t('Go to main menu of Rental'),
+        //     trigger: '.mk_apps_sidebar li a[data-menu-xmlid="rental_base.menu_rental_root"]',
+        //     extra_trigger: 'a.o_menu_brand:contains("Discuss")',
+        //     position: 'bottom',
+        // },
+        // {
+        //     content: _t('Go to top menu of Customer'),
+        //     trigger: 'li a[data-menu-xmlid="rental_base.menu_top_customer"]',
+        //     extra_trigger: 'a.o_menu_brand:contains("Rentals")',
+        //     position: 'bottom'
+        // },
+        // {
+        //     content: _t('Go to menu Rental Orders'),
+        //     trigger: 'a[data-menu-xmlid="rental_base.menu_rental_orders"]',
+        //     position: 'bottom'
+        // },
+        // {
+        //     content: _t('Click on Rental Order who has 09/01/2020'),
+        //     trigger: 'table.o_list_view tbody tr:first-child',
+        //     extra_trigger: '.o_list_view',
+        //     position: 'bottom',
+        //     run: 'click',
+        // },
+        // END
         {
             content: _t("Click on Create Invoice"),
             trigger: '.o_statusbar_buttons button span:contains("Create Invoice")',
+            extra_trigger: '.o_form_view',
         },
         {
             content: _t('Click on Create and View Invoice'),

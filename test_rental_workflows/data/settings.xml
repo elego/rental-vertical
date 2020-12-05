@@ -35,6 +35,7 @@
         <field name="use_po_lead" eval="True" />
         <field name="po_lead">2</field>
         <field name="use_sale_note">2</field>
+        <field name="automatic_toll_charge_invoicing" eval="True"/>
         <!-- <field name="chart_template_id" ref="l10n_de_skr03.l10n_de_chart_template" />
         <field name="paperformat_id" ref="l10n_de.paperformat_euro_din" />
         <field name="external_report_layout_id" ref="rockbird_report_base.external_layout_rental" /> -->

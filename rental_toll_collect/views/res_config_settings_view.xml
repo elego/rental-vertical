@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="10"/>
+            <field name="inherit_id" ref="rental_base.res_config_settings_view_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//div[@data-key='rental_base']" positition="inside">
+                    <h2>Toll Collect</h2>
+                    <div class="row mt16 o_settings_container" name="rental_toll_collect_container">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="automatic_toll_charge_invoicing"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="automatic_toll_charge_invoicing"/>
+                                <div class="text-muted">
+                                    Invoice the imported toll charge lines together
+                                    with rental services when invoicing a sale / rental
+                                    order or contract.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
