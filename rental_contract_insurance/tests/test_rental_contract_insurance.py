@@ -31,6 +31,8 @@ class TestRentalContractInsurance(RentalStockCommon):
             'rental_price_day': 100,
             'income_analytic_account_id': self.analytic_account.id,
         })
+        self.contract_template = self.env.ref(
+            'rental_contract.rental_contract_template')
         # P - Productcost, R - Rentalcost, D - Day, M - Month
         self.insurancePD = ProductObj.create({
             'name': 'Insurance P D',
@@ -43,6 +45,8 @@ class TestRentalContractInsurance(RentalStockCommon):
             'name': 'Insurance P M',
             'type': 'service',
             'is_insurance': True,
+            'is_contract': True,
+            'property_contract_template_id': self.contract_template.id,
             'uom_id': self.uom_month.id,
             'uom_po_id': self.uom_month.id,
         })
@@ -57,6 +61,8 @@ class TestRentalContractInsurance(RentalStockCommon):
             'name': 'Insurance R M',
             'type': 'service',
             'is_insurance': True,
+            'is_contract': True,
+            'property_contract_template_id': self.contract_template.id,
             'uom_id': self.uom_month.id,
             'uom_po_id': self.uom_month.id,
         })
@@ -211,14 +217,16 @@ class TestRentalContractInsurance(RentalStockCommon):
             'end_date': self.date_three_month_later,
         })
         self._run_sol_onchange_display_product_id(line)
+        line.insurance_product_ids.unlink()
+        self._run_sol_onchange_product_uom(line, self.uom_month)
         line.onchange_insurance_product_id()
         line.onchange_insurance_params()
+        self.assertEqual(len(line.insurance_product_ids), 2)
         vals = line._convert_to_write(line._cache)
         vals['order_id'] = self.rental_order.id
         line  = self.env['sale.order.line'].create(vals)
         self.rental_order.action_confirm()
         self.assertEqual(self.rental_order.contract_count, 1)
-
         check_insurance_line = False
         for line in self.rental_order.order_line:
             if line.product_id == self.insurancePM:
@@ -230,7 +238,7 @@ class TestRentalContractInsurance(RentalStockCommon):
                 self.assertEqual(contract_line.analytic_account_id, self.analytic_account)
                 invoice_line_vals = line._prepare_invoice_line(1)
                 self.assertEqual(invoice_line_vals['account_analytic_id'], self.analytic_account.id)
-                check_insurance_line = True
+                check_insurance_linePM = True
             if line.product_id == self.insuranceRM:
                 self.assertEqual(line.date_start, self.today)
                 self.assertEqual(line.date_end, self.date_three_month_later)
@@ -240,7 +248,7 @@ class TestRentalContractInsurance(RentalStockCommon):
                 self.assertEqual(contract_line.analytic_account_id, self.analytic_account)
                 invoice_line_vals = line._prepare_invoice_line(1)
                 self.assertEqual(invoice_line_vals['account_analytic_id'], self.analytic_account.id)
-                check_insurance_line = True
+                check_insurance_lineRM = True
         self.assertTrue(check_insurance_linePM, 'No found expected insurance line')
         self.assertTrue(check_insurance_lineRM, 'No found expected insurance line')
 
