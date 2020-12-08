@@ -22,6 +22,23 @@
                                     order or contract.
                                 </div>
                             </div>
+                            <div class="o_setting_left_pane">
+                                <field name="administrative_charge"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="administrative_charge"/>
+                                <span class="fa fa-lg fa-building-o" title="Values set here are company-specific." aria-label="Values set here are company-specific." groups="base.group_multi_company" role="img"/>
+                                <div class="text-muted">
+                                  If activated,you can set your own Default
+                                  Administrative Charge Product for the partners.
+                                </div>
+                                <div class="content-group" attrs="{'invisible': [('administrative_charge', '=', False)]}">
+                                    <div class="row mt16">
+                                        <label string="Administrative Charge Product" for="administrative_charge_product" class="col-lg-3 o_light_label"/>
+                                        <field name="administrative_charge_product"/>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </xpath>
