@@ -133,6 +133,10 @@ class ShipmentPlan(models.Model):
     )
 
     @api.multi
+    @api.depends(
+        'trans_purchase_line_ids',
+        'trans_requisition_line_ids',
+    )
     def _compute_trans_pos_prs(self):
         for order in self:
             trans_prs = self.env['purchase.requisition'].browse()

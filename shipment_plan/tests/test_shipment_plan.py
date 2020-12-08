@@ -26,6 +26,7 @@ class TestShipmentPlan(ShipmentPlanCommon):
             Create PO and PR
             Check PO and PR
         """
+        PurchaseObj = self.env['purchase.order']
         self.shipment_plan.action_confirm()
         self.assertEqual(self.shipment_plan.state, 'confirmed')
         self.shipment_plan.action_cancel_draft()
@@ -56,7 +57,6 @@ class TestShipmentPlan(ShipmentPlanCommon):
         self.assertTrue(self.shipment_plan.trans_po_ids[1].selected_in_order)
         pr_1 = self.shipment_plan.trans_pr_ids[0]
         pr_1.action_in_progress()
-        PurchaseObj = self.env['purchase.order']
         # create po_1 from pr_1
         po_1 = PurchaseObj.with_context(
             {"default_requisition_id": pr_1.id}
@@ -71,7 +71,7 @@ class TestShipmentPlan(ShipmentPlanCommon):
         po_2._onchange_requisition_id()
         po_3 = PurchaseObj.with_context(
             {"default_requisition_id": pr_2.id}
-        ).create({'partner_id': self.partnerA.id})
+        ).create({'partner_id': self.partnerB.id})
         po_3._onchange_requisition_id()
         # only one po can be confirmed
         po_2.action_transport_confirm()
@@ -79,16 +79,20 @@ class TestShipmentPlan(ShipmentPlanCommon):
             po_3.action_transport_confirm()
         po_2.button_confirm()
         self.assertEqual(po_2.state, 'purchase')
+        #import wdb; wdb.set_trace()
         self.shipment_plan.action_done()
         self.assertEqual(self.shipment_plan.state, 'done')
         self.shipment_plan.action_cancel()
         self.assertEqual(self.shipment_plan.state, 'cancel')
         self.assertEqual(self.shipment_plan.trans_po_count, 5)
         self.assertEqual(self.shipment_plan.trans_pr_count, 2)
-        self.assertEqual(po_1.state, 'cancel')
-        self.assertEqual(po_2.state, 'cancel')
-        self.assertEqual(po_3.state, 'cancel')
-        self.assertEqual(po_A.state, 'cancel')
-        self.assertEqual(po_B.state, 'cancel')
-        self.assertEqual(pr_1.state, 'cancel')
-        self.assertEqual(pr_2.state, 'cancel')
+        self.assertTrue(
+            all(o.state=='cancel' for o in self.shipment_plan.trans_po_ids)
+        )
+        self.assertTrue(
+            all(o.state=='cancel' for o in self.shipment_plan.trans_pr_ids)
+        )
+        # Test Smartbutton
+        self.shipment_plan.action_view_trans_prs()
+        self.shipment_plan.action_view_trans_pos()
+

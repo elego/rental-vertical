@@ -14,6 +14,7 @@ class StockMove(models.Model):
         'shipment.plan',
         'Shipment Plan',
         ondelete="set null",
+        copy=False,
     )
 
     @api.constrains('shipment_plan_id')
@@ -30,7 +31,7 @@ class StockMove(models.Model):
             ])
             if res > 0:
                 raise exceptions.ValidationError(_(
-                    'Requested by must be equal to the order'
+                    'One Picking can only have one Shipment Plan'
                 ))
 
 
@@ -44,6 +45,7 @@ class StockPicking(models.Model):
     )
 
     @api.multi
+    @api.depends('move_lines', 'move_lines.shipment_plan_id')
     def _compute_shipment_plan_id(self):
         for picking in self:
             picking.shipment_plan_id = False

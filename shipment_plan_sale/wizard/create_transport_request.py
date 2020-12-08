@@ -99,6 +99,7 @@ class CreateSaleTransRequest(models.TransientModel):
         }
         return res
 
+    @api.multi
     def action_confirm(self):
         self.ensure_one()
         shipment_plan = False
@@ -114,6 +115,7 @@ class CreateSaleTransRequest(models.TransientModel):
         else:
             raise execptions.UserError(_('No found suitable Shipment Plan.'))
         shipment_plan.create_purchase_request(self.service_product_ids)   
+        return shipment_plan
 
 class CreateSaleTransOriginLine(models.TransientModel):
     _name = "create.sale.trans.origin.line"

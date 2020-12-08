@@ -67,10 +67,16 @@ class SaleOrderLine(models.Model):
 
     def _prepare_procurement_values(self, group_id=False):
         res = super()._prepare_procurement_values(group_id=group_id)
+        import wdb; wdb.set_trace()
         if self.trans_shipment_plan_id:
             res['shipment_plan_id'] = self.trans_shipment_plan_id.id
         return res
 
+    def _get_custom_move_fields(self):
+        res = super()._get_custom_move_fields()
+        import wdb; wdb.set_trace()
+        res.append('shipment_plan_id')
+        return res
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
@@ -110,6 +116,12 @@ class SaleOrder(models.Model):
     )
 
     @api.multi
+    @api.depends(
+        'order_line',
+        'order_line.trans_shipment_plan_id',
+        'order_line.trans_shipment_plan_id.trans_purchase_line_ids',
+        'order_line.trans_shipment_plan_id.trans_requisition_line_ids',
+    )
     def _compute_shipment_plans(self):
         for order in self:
             trans_sps = self.env['shipment.plan'].browse()
@@ -117,9 +129,9 @@ class SaleOrder(models.Model):
             trans_pos = self.env['purchase.order'].browse()
             for line in order.order_line:
                 trans_sps |= line.trans_shipment_plan_id
-                for pr_line in line.trans_requisition_line_ids:
+                for pr_line in line.trans_shipment_plan_id.trans_requisition_line_ids:
                     trans_prs |= pr_line.requisition_id
-                for po_line in line.trans_purchase_line_ids:
+                for po_line in line.trans_shipment_plan_id.trans_purchase_line_ids:
                     trans_pos |= po_line.order_id
             order.trans_shipment_plan_ids = trans_sps
             order.trans_pr_ids = trans_prs
@@ -151,11 +163,13 @@ class SaleOrder(models.Model):
                 _('You need to select a transport purchase RFQ for this sale order first'))
         if self.transport_cost_type == "single":
             cost = 0
+            name = ''
             for p in self.trans_po_ids:
                 if p.selected_in_order:
                     for pol in p.order_line:
                         margin = pol.product_id.transport_sales_margin
                         cost += pol.price_unit * (1 + (margin/100))
+                        name += '%s\n' %pol.product_id.name
             product_id = self.env['ir.config_parameter'].sudo().get_param(
                 'sale.transport_cost_product_id')
             product_transport_cost = self.env['product.product'].browse(
@@ -165,6 +179,7 @@ class SaleOrder(models.Model):
                 'product_uom_qty': 1,
                 'product_uom': self.env.ref('uom.product_uom_unit').id,
                 'price_unit': cost,
+                'name': name,
             })]})
         elif self.transport_cost_type == "multi":
             order_line_vals = []
