@@ -91,3 +91,14 @@ class StockPicking(models.Model):
         action = self.env.ref('shipment_plan.action_shipment_plan').read()[0]
         action['domain'] = [('id', '=', self.shipment_plan_id.id)]
         return action
+
+
+class StockRule(models.Model):
+    _inherit = 'stock.rule'
+
+    def _get_custom_move_fields(self):
+        res = super()._get_custom_move_fields()
+        res.append('shipment_plan_id')
+        return res
+
+

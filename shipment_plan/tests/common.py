@@ -4,11 +4,11 @@ from dateutil.relativedelta import relativedelta
 
 from odoo.tests import common
 from odoo import fields, exceptions
-
 class ShipmentPlanCommon(common.TransactionCase):
 
     def setUp(self):
         super().setUp()
+        self.uom_unit = self.env.ref('uom.product_uom_unit')
         # Create Transport Product
         ProductObj = self.env['product.product']
         SupplierObj = self.env['product.supplierinfo']
@@ -22,18 +22,15 @@ class ShipmentPlanCommon(common.TransactionCase):
             'name': 'Partner A',
             'customer': True,
             'supplier': True,
-            'country_id': self.env.ref('base.de').id,
         })
         self.partnerB = PartnerObj.create({
             'name': 'Partner B',
             'customer': True,
             'supplier': True,
-            'country_id': self.env.ref('base.de').id,
         })
         self.partnerC = PartnerObj.create({
             'name': 'Partner C',
             'customer': True,
-            'country_id': self.env.ref('base.de').id,
         })
         self.product_cost = ProductObj.create({
             'name': 'Single Transport Cost',

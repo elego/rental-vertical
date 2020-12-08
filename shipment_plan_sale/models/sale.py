@@ -67,16 +67,10 @@ class SaleOrderLine(models.Model):
 
     def _prepare_procurement_values(self, group_id=False):
         res = super()._prepare_procurement_values(group_id=group_id)
-        import wdb; wdb.set_trace()
         if self.trans_shipment_plan_id:
             res['shipment_plan_id'] = self.trans_shipment_plan_id.id
         return res
 
-    def _get_custom_move_fields(self):
-        res = super()._get_custom_move_fields()
-        import wdb; wdb.set_trace()
-        res.append('shipment_plan_id')
-        return res
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
