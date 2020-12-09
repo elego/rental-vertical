@@ -24,11 +24,14 @@ class PurchaseRequisitionLine(models.Model):
     def _prepare_purchase_order_line(self, name, product_qty=0.0, price_unit=0.0, taxes_ids=False):
         res = super(PurchaseRequisitionLine, self)._prepare_purchase_order_line(
             name=name, product_qty=product_qty, price_unit=price_unit, taxes_ids=taxes_ids)
-        res['shipment_plan_ids'] = [
-            (6, 0, self.shipment_plan_ids.ids)
-        ]
-        res['name'] = self.name
-        res['date_planned'] = fields.Datetime.to_datetime(self.schedule_date)
+        if self.shipment_plan_ids:
+            res['shipment_plan_ids'] = [
+                (6, 0, self.shipment_plan_ids.ids)
+            ]
+        if self.name:
+            res['name'] = self.name
+        if self.schedule_date:
+            res['date_planned'] = fields.Datetime.to_datetime(self.schedule_date)
         return res
 
 

@@ -10,6 +10,7 @@
         'shipment_plan',
     ],
     'data': [
+        'data/res_config_settings_data.xml',
         'wizard/create_transport_request_view.xml',
         'views/product_view.xml',
         'views/sale_view.xml',

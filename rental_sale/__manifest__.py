@@ -48,6 +48,7 @@ Please refer to this screencast https://www.youtube.com/watch?v=9o0QrGryBn8 to g
     'data': [
         'security/ir.model.access.csv',
         'security/sale_rental_security.xml',
+        'data/res_config_settings_data.xml',
         'data/rental_data.xml',
         'views/sale_order.xml',
         'views/stock_warehouse.xml',
