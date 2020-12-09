@@ -3,8 +3,26 @@
 from dateutil.relativedelta import relativedelta
 
 from odoo.addons.shipment_plan.tests.common import ShipmentPlanCommon
-from odoo.tests import common
 from odoo import fields, exceptions
+
+def confirm_shipment_plan_pos(self, shipment_plan):
+    # Confirm all origin POs
+    for po in shipment_plan.trans_po_ids:
+        po.action_transport_confirm()
+    # Create POs (po_1 und po_2) from PR
+    for pr in shipment_plan.trans_pr_ids:
+        pr.action_in_progress()
+        pr.line_ids.price_unit = 330
+        po_1 = self.PurchaseObj.new({'partner_id': self.partnerA.id, "requisition_id": pr.id})
+        po_1._onchange_requisition_id()
+        vals = po_1._convert_to_write(po_1._cache)
+        po_1 = self.env['purchase.order'].create(vals)
+        po_2 = self.PurchaseObj.new({'partner_id': self.partnerB.id, "requisition_id": pr.id})
+        po_2._onchange_requisition_id()
+        vals = po_2._convert_to_write(po_2._cache)
+        po_2 = self.env['purchase.order'].create(vals)
+        # Confirm only po_2
+        po_2.action_transport_confirm()
 
 
 class TestShipmentPlanSale(ShipmentPlanCommon):
@@ -43,36 +61,16 @@ class TestShipmentPlanSale(ShipmentPlanCommon):
         self.assertEqual(sale_order.state, 'draft')
         return sale_order
 
-    def _confirm_shipment_plan_pos(self, shipment_plan):
-        # Confirm all origin POs
-        shipment_plan.trans_po_ids[0].action_transport_confirm()
-        shipment_plan.trans_po_ids[1].action_transport_confirm()
-        # Create POs (po_1 und po_2) from PR
-        pr = shipment_plan.trans_pr_ids[0]
-        pr.action_in_progress()
-        pr.line_ids.price_unit = 330
-        po_1 = self.PurchaseObj.new({'partner_id': self.partnerA.id, "requisition_id": pr.id})
-        po_1._onchange_requisition_id()
-        vals = po_1._convert_to_write(po_1._cache)
-        po_1 = self.env['purchase.order'].create(vals)
-        po_2 = self.PurchaseObj.new({'partner_id': self.partnerB.id, "requisition_id": pr.id})
-        po_2._onchange_requisition_id()
-        vals = po_2._convert_to_write(po_2._cache)
-        po_2 = self.env['purchase.order'].create(vals)
-        # Confirm only po_2
-        po_2.action_transport_confirm()
-
     def test_00_shipment_plan_sale_multi_cost(self):
         """
             1. Set Product for Transport Cost
             2. Create SO for product_sale
             3. Run wizard create.sale.trans.request:
-                To Create PO and PR from Delivery Order
+                To Create PO, PR and Shipment Plan
             4. Create PO from PR and Confirm all POs
             5. Run action_create_trans_cost
                 To Create SOL for Transport Cost
             6. action_cancel
-            
         """
         #TODO Check Problem after execute the config on picking will be created after confriming the sale order
         # Set cost type 'multi'
@@ -95,9 +93,13 @@ class TestShipmentPlanSale(ShipmentPlanCommon):
         shipment_plan = wizard.action_confirm()
         self.assertEqual(shipment_plan.trans_po_count, 2)
         self.assertEqual(shipment_plan.trans_pr_count, 1)
-        self._confirm_shipment_plan_pos(shipment_plan)
+        confirm_shipment_plan_pos(self, shipment_plan)
         #TODO Check why the field 'trans_shipment_plan_id' of
         #sale order line was not set.
+        self.assertEqual(sale_order.order_line, shipment_plan.origin_sale_line_ids)
+        #print(shipment_plan.origin_sale_line_ids)
+        #print(sale_order.order_line)
+        #print(sale_order.order_line.trans_shipment_plan_id)
         #It works correctly, if we do this in Web Client.
         # So I have to set it here manually
         sale_order.order_line.trans_shipment_plan_id = shipment_plan
@@ -130,7 +132,7 @@ class TestShipmentPlanSale(ShipmentPlanCommon):
         sale_order.action_view_trans_prs()
         sale_order.action_view_trans_pos()
         sale_order.action_view_shipment_plans()
-        #import wdb; wdb.set_trace()
+        # Confirm Sale Order
         sale_order.action_confirm()
         self.assertEqual(len(sale_order.picking_ids), 1)
         self.assertEqual(
@@ -143,7 +145,7 @@ class TestShipmentPlanSale(ShipmentPlanCommon):
             1. Change Config with Single Cost ans Set Product for Transport Cost
             2. Create SO for product_sale
             3. Run wizard create.sale.trans.request:
-                To Create PO and PR from Delivery Order
+                To Create PO, PR and Shipment Plan
             4. Confirm the 2 POs
             5. Run action_create_trans_cost
                 To Create SOL for Transport Cost
@@ -169,9 +171,10 @@ class TestShipmentPlanSale(ShipmentPlanCommon):
         shipment_plan = wizard.action_confirm()
         self.assertEqual(shipment_plan.trans_po_count, 2)
         self.assertEqual(shipment_plan.trans_pr_count, 1)
-        self._confirm_shipment_plan_pos(shipment_plan)
+        confirm_shipment_plan_pos(self, shipment_plan)
         #TODO Check why the field 'trans_shipment_plan_id' of
         #sale order line was not set.
+        self.assertEqual(sale_order.order_line, shipment_plan.origin_sale_line_ids)
         #It works correctly, if we do this in Web Client.
         # So I have to set it here manually
         sale_order.order_line.trans_shipment_plan_id = shipment_plan

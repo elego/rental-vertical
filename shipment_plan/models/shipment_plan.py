@@ -158,7 +158,7 @@ class ShipmentPlan(models.Model):
         requisition_line_obj = self.env['purchase.requisition.line']
         uom_id = self.env.ref('uom.product_uom_unit').id
         description = self.note
-        for p in service_products:
+        for p in service_products: 
             if p.transport_service_type == 'po':
                 if not p.seller_ids:
                     raise exceptions.UserError(
@@ -180,7 +180,7 @@ class ShipmentPlan(models.Model):
                 new_line.onchange_product_id()
                 vals = new_line._convert_to_write(new_line._cache)
                 if description:
-                    vals['name'] = description
+                    vals['name'] = p.display_name + '\n' +description
                 if self.initial_etd:
                     vals['date_planned'] = self.initial_etd
                 new_line = order_line_obj.create(vals)
@@ -197,7 +197,7 @@ class ShipmentPlan(models.Model):
                 new_line = requisition_line_obj.create({
                     'requisition_id': new_requisition.id,
                     'product_id': p.id,
-                    'name': description,
+                    'name': p.display_name + '\n' +description,
                     'schedule_date': self.initial_etd,
                     'product_qty': 1,
                     'product_uom_id': uom_id,
