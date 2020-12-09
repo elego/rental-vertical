@@ -8,7 +8,11 @@ from odoo.api import Environment, SUPERUSER_ID
 
 def post_init_hook(cr, registry):
     env = Environment(cr, SUPERUSER_ID, {})
-    customers = env['res.partner'].search([])
-    customers.write({
-        'administrative_charge_product': env.ref('rental_toll_collect.product_administrative_charge').id,
-    })
+    companies = env['res.company'].search([('administrative_charge_product', '=', False)])
+    if companies:
+        for company in companies:
+            company._set_administrative_charge_product()
+            customers = env['res.partner'].search([('company_id', '=', company.id)])
+            customers.write({
+                'administrative_charge_product': company.administrative_charge_product.id,
+            })
