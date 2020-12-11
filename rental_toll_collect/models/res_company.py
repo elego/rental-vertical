@@ -15,7 +15,7 @@ class ResCompany(models.Model):
         string="Administrative Charge",
         help="If activated,you can set your own default "
         "administrative charge product for the partners.",
-        default=True,
+        default=False,
     )
     administrative_charge_product = fields.Many2one(
         comodel_name="product.product",
