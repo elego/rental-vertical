@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_add_offday">
+            <field name="name">Add Off Days</field>
+            <field name="model">add.offday</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Add Off Days">
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                        <field name="order_line_id" invisible="1"/>
+                    </group>
+                    <footer>
+                        <button name="action_done" string="Ok" type="object"/>
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_add_offday">
+            <field name="name">Add additional Off Days</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">add.offday</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

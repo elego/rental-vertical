@@ -34,6 +34,7 @@ The off-days can only be used for products rentable in days.
     ],
     'data': [
         'security/ir.model.access.csv',
+        'wizard/add_offday_view.xml',
         'views/sale_view.xml',
     ],
     'demo': [
