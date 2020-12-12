@@ -6,6 +6,12 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="rental_base.view_order_form"/>
         <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/tree//field[@name='end_date']" position="after">
+                <button name="rental_offday.action_add_offday"
+                        string="Add additional Off Days"
+                        icon="fa-pencil-square-o"
+                        type="action"/>
+            </xpath>
             <xpath expr="//group[@id='rental_times']//label[@for='product_uom_qty']" position="before">
                 <label for="offday_number" string="Off-Time"  attrs="{'invisible': [('show_offday', '=', False)]}"/>
                 <div attrs="{'invisible': [('show_offday', '=', False)]}">
