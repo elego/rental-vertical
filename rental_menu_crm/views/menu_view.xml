@@ -4,6 +4,8 @@
         id="menu_opportunities"
         parent="rental_base.menu_rental_root"
         action="crm.action_your_pipeline"
-        sequence="5" />
+        sequence="5"
+        groups="sales_team.group_sale_salesman,sales_team.group_sale_manager"
+    />
 
 </odoo>
