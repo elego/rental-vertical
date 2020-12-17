@@ -120,8 +120,14 @@ class SaleOrderLine(models.Model):
     def update_start_end_date(self, date_start, date_end):
         for line in self:
             # update sale order lines
-            line.with_context(allow_write=True).start_date = date_start
+            update_date_start_later = False
+            if date_start > line.end_date:
+                update_date_start_later = True
+            else:
+                line.with_context(allow_write=True).start_date = date_start
             line.with_context(allow_write=True).end_date = date_end
+            if update_date_start_later:
+                line.with_context(allow_write=True).start_date = date_start
             datetime_start = fields.Datetime.to_datetime(date_start)
             datetime_end = fields.Datetime.to_datetime(date_end)
             # update rental
