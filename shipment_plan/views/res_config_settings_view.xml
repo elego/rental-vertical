@@ -15,19 +15,19 @@
                                 <div class="o_setting_left_pane">
                                 </div>
                                 <div class="o_setting_right_pane">
-                                    <label for="tranport_cost_type"/>
+                                    <label for="transport_cost_type"/>
                                     <div class="text-muted">
                                         Configure default Transport Cost Type
                                     </div>
                                     <div class="mt8">
-                                        <field name="tranport_cost_type" class="o_light_label" widget="radio" required="True"/>
+                                        <field name="transport_cost_type" class="o_light_label" widget="radio" required="True"/>
                                     </div>
                                 </div>
                                 <div class="o_setting_left_pane"
-                                     attrs="{'invisible': [('tranport_cost_type', '!=', 'single')]}">
+                                     attrs="{'invisible': [('transport_cost_type', '!=', 'single')]}">
                                 </div>
                                 <div class="o_setting_right_pane"
-                                     attrs="{'invisible': [('tranport_cost_type', '!=', 'single')]}">
+                                     attrs="{'invisible': [('transport_cost_type', '!=', 'single')]}">
                                     <label for="transport_cost_product_id"/>
                                     <field name="transport_cost_product_id"/>
                                     <div class="text-muted">

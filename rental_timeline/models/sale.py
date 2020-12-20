@@ -62,12 +62,18 @@ class SaleOrderLine(models.Model):
             if line.product_id.rented_product_id:
                 if not line.timeline_ids:
                     raise exceptions.UserError(_('No found timelines.'))
-                if vals.get('start_date', False):
-                    timelines = sorted(line.timeline_ids, key=lambda l: l.date_start)
-                    timelines[0].date_start = vals['start_date']
+                update_date_start_later = False
+                start_timelines = sorted(line.timeline_ids, key=lambda l: l.date_start)
+                end_timelines = sorted(line.timeline_ids, key=lambda l: l.date_end, reverse=True)
+                if vals.get('start_date', False) and start_timelines:
+                    if start_timelines[0].date_end < fields.Datetime.to_datetime(vals.get('start_date')):
+                        update_date_start_later = True
+                    else:
+                        start_timelines[0].date_start = vals['start_date']
                 if vals.get('end_date', False):
-                    timelines = sorted(line.timeline_ids, key=lambda l: l.date_end, reverse=True)
-                    timelines[0].date_end = vals['end_date']
+                    end_timelines[0].date_end = vals['end_date']
+                if update_date_start_later:
+                    start_timelines[0].date_start = vals['start_date']
                 if vals.get('product_id', False):
                     timelines = sorted(line.timeline_ids, key=lambda l: l.product_id)
                     product = self.env['product.product'].browse(vals['product_id'])
@@ -89,17 +95,25 @@ class SaleOrderLine(models.Model):
         res = super(SaleOrderLine, self).write(vals)
         keys = {'start_date', 'end_date', 'product_id', 'name'}
         if keys.intersection(vals.keys()):
+            rental = vals.get('rental', False)
             reset_lines = self.browse([])
             start_date = vals.get('start_date', False)
             end_Date = vals.get('end_date', False)
             product_id = vals.get('product_id', False)
             name = vals.get('name', False)
             for line in self:
+                if rental:
+                    search = [
+                        ('res_model', '=', self._name),
+                        ('res_id', '=', self.id),
+                    ]
+                    if not self.env['product.timeline'].search(search):
+                        line._create_product_timeline()
                 if start_date and line.start_date != start_date:
                     reset_lines |= line
                 if end_Date and line.end_date != end_Date:
                     reset_lines |= line
-                if product_id and line.product_id != product_id:
+                if product_id and line.product_id.id != product_id:
                     reset_lines |= line
                 if name and line.name != name:
                     reset_lines |= line

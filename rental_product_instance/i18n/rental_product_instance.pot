@@ -145,6 +145,7 @@ msgstr ""
 
 #. module: rental_product_instance
 #: model:ir.model,name:rental_product_instance.model_product_product
+#: model_terms:ir.ui.view,arch_db:rental_product_instance.product_search_form_view
 msgid "Product"
 msgstr ""
 

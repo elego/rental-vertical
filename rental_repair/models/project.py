@@ -63,7 +63,7 @@ class ProjectTask(models.Model):
 
     total_stagnation_time_sec = fields.Float(
         string="Total stagnation (seconds)",
-        compute='_compute_total_stagnation_time',
+        compute='_compute_stagnation_time',
     )
 
     total_stagnation_time = fields.Char(

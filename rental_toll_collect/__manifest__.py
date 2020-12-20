@@ -31,6 +31,8 @@ The csv should contain the following columns:
 - Amount ("EUR")
     """,
     'usage': """
+-  Go to Rentals > Configuration > Settings
+- Activate the automatic invoicing of toll charges if toll charges should be automatically invoiced together with rental services.
 - Create a rental order with vehicle products as rental order lines.
 - Confirm the rental order.
 - Go to Rentals > Product > Toll Charges > Import Toll Charges.
@@ -59,8 +61,11 @@ The csv should contain the following columns:
         'views/toll_charge_line_view.xml',
         'views/account_invoice_view.xml',
         'views/product_view.xml',
+        'views/res_config_settings_view.xml',
+        'views/res_partner_view.xml',
         'views/sale_view.xml',
         'wizard/toll_charge_line_import_view.xml',
+        'wizard/toll_charge_line_invoicing_view.xml',
     ],
     'demo': [
     ],
@@ -68,4 +73,5 @@ The csv should contain the following columns:
     ],
     'auto_install': False,
     'license': 'AGPL-3',
+    'post_init_hook': 'post_init_hook',
 }

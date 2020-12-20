@@ -17,6 +17,7 @@ class ShipmentPlan(models.Model):
         'sale.order.line',
         'trans_shipment_plan_id',
         'Origin Sale Order Lines',
+        copy=False,
     )
     sale_id = fields.Many2one(
         'sale.order',
@@ -26,6 +27,7 @@ class ShipmentPlan(models.Model):
     move_ids = fields.One2many(
         'stock.move',
         'shipment_plan_id',
+        copy=False,
     )
     picking_ids = fields.Many2many(
         'stock.picking',
@@ -35,11 +37,13 @@ class ShipmentPlan(models.Model):
         compute="_compute_picking_ids"
     )
 
+    @api.depends('origin_sale_line_ids')
     def _compute_sale_id(self):
         for record in self:
             if record.origin_sale_line_ids:
                 record.sale_id = record.origin_sale_line_ids[0].order_id
 
+    @api.depends('move_ids')
     def _compute_picking_ids(self):
         for record in self:
             pickings = self.env['stock.picking'].browse()

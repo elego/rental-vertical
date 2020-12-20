@@ -22,9 +22,9 @@ class ContractContract(models.Model):
     @api.multi
     def _compute_toll_charged_count(self):
         for rec in self:
-            rec.toll_line_charged_count = sum([
-                len(invoice.toll_line_ids.filtered('invoiced')) for invoice in self._get_related_invoices()
-            ])
+            rec.toll_line_charged_count = len(
+                rec.contract_line_ids.mapped('sale_order_line_id').mapped('toll_line_ids').filtered('invoiced')
+            )
 
     @api.multi
     def _compute_toll_line_count(self):
@@ -47,6 +47,17 @@ class ContractContract(models.Model):
             'domain': "[('id','in',[" + ','.join(map(str, record_ids.ids)) + "])]",
             }
 
+    @api.model
+    def _finalize_invoice_creation(self, invoices):
+        res = super()._finalize_invoice_creation(invoices)
+        for invoice in invoices:
+            if invoice.partner_id.administrative_charge and invoice.invoice_line_ids.filtered(
+                lambda l: l.product_id == self.env.ref('rental_toll_collect.product_toll')
+            ):
+                product = invoice.partner_id.administrative_charge_product
+                self.env['account.invoice.line']._create_administrative_product_line(invoice, product)
+        return res
+
 
 class ContractLine(models.Model):
     _inherit = 'contract.line'
@@ -62,6 +73,6 @@ class ContractLine(models.Model):
                 lambda l: end_date >= l.toll_date.date() >= start_date
             )
             res.update({
-                'toll_line_ids': [(6, 0, toll_charge_lines.ids)],
+                'toll_line_ids': [(6, 0, toll_charge_lines.filtered(lambda l: not l.invoiced).ids)],
             })
         return res

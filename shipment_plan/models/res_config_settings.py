@@ -6,7 +6,7 @@ from odoo import api, fields, models
 class ResConfigSettings(models.TransientModel):
     _inherit = 'res.config.settings'
 
-    tranport_cost_type = fields.Selection(
+    transport_cost_type = fields.Selection(
         [
             ('single', 'Single Position'),
             ('multi', 'Multi Positions')

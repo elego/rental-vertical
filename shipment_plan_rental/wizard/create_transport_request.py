@@ -76,7 +76,7 @@ class CreateSaleTransRequest(models.TransientModel):
         if return_shipment_plan:
             vals['trans_return_shipment_plan_id'] = return_shipment_plan.id
         self.origin_line_ids.mapped('order_line_id').write(vals)
-
+        return shipment_plan, return_shipment_plan
 
 
 class CreateSaleTransOriginLine(models.TransientModel):

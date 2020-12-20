@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="res_partner_contract_type_form_view" model="ir.ui.view" >
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <page name="sales_purchases" position="inside">
+                    <group name="toll_collect" string="Toll Collect"
+                           attrs="{'invisible':[('customer', '=', False)]}"
+                    >
+                        <field name="administrative_charge"/>
+                        <field name="administrative_charge_product"
+                               attrs="{
+                               'invisible': [('administrative_charge', '=', False)],
+                               'required': [('administrative_charge', '=', True)],
+                               }"
+                        />
+                    </group>
+                </page>
+            </field>
+        </record>
+    </data>
+</odoo>

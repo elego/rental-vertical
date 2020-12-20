@@ -5,6 +5,9 @@ import odoo.tests
 @odoo.tests.tagged('post_install', '-at_install')
 class TestUi(odoo.tests.HttpCase):
 
+    # def test_00_activate_automatic_toll_charge_invoicing_tour(self):
+        # self.phantom_js("/web", "odoo.__DEBUG__.services['web_tour.tour'].run('activate_toll_charge_invoicing_tour')", "odoo.__DEBUG__.services['web_tour.tour'].tours.activate_toll_charge_invoicing_tour.ready", login="admin")
+
     def test_01_rental_tour(self):
         self.phantom_js("/web", "odoo.__DEBUG__.services['web_tour.tour'].run('rental_tour')", "odoo.__DEBUG__.services['web_tour.tour'].tours.rental_tour.ready", login="admin")
 

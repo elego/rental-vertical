@@ -15,7 +15,3 @@ class ResPartner(models.Model):
         "Rental Onsite Location Route",
         ondelete="set null",
     )
-
-    @api.onchange("rental_onsite_location_id")
-    def onchange_rental_onsite_location_id(self):
-        self.property_stock_customer = self.rental_onsite_location_id

@@ -151,10 +151,23 @@ class TollChargeLine(models.Model):
             cl.editable = cl.invoice_id.state == 'draft' if cl.invoice_id else True
 
     @api.multi
-    @api.depends('invoice_line_id', 'invoice_line_id.toll_product_line_ids', 'chargeable')
+    @api.depends(
+        'invoice_line_id',
+        'invoice_line_id.toll_product_line_ids',
+        'invoice_line_id.product_id',
+        'chargeable',
+    )
     def _compute_invoiced(self):
         for cl in self:
-            cl.invoiced = cl.chargeable and cl.invoice_line_id and cl.invoice_line_id.toll_product_line_ids
+            # When automatically invoicing toll charge lines,
+            # the invoice line with the 'rental service' is linked as invoice_line_id.
+            # But when when manually invoicing toll charge lines,
+            # the line with 'toll charge' product is linked as invoice_line_id.
+            # The 'toll charge' position does not have toll_product_line_ids!
+            if cl.invoice_line_id.product_id == self.env.ref('rental_toll_collect.product_toll'):
+                cl.invoiced = cl.chargeable and cl.invoice_line_id
+            else:
+                cl.invoiced = cl.chargeable and cl.invoice_line_id and cl.invoice_line_id.toll_product_line_ids
 
     @api.multi
     @api.depends('license_plate', 'toll_date')
@@ -191,3 +204,23 @@ class TollChargeLine(models.Model):
                     cl.toll_date = cl.start_date
             else:
                 cl.toll_date = False
+
+    @api.multi
+    def update_toll_charge_lines(self):
+        for line in self:
+            sol = self.env['sale.order.line'].search([
+                ('start_date', '<=', line.toll_date.date()),
+                ('end_date', '>=', line.toll_date.date()),
+                '|',
+                ('display_product_id', '=', line.product_id.id),
+                ('product_id', '=', line.product_id.id),
+            ])
+            line.write({
+                'sale_line_id': sol.id if len(sol) == 1 else False,
+            })
+
+    @api.model_create_multi
+    def create(self, values):
+        res = super().create(values)
+        res.update_toll_charge_lines()
+        return res
