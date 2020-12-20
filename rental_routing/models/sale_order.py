@@ -31,9 +31,7 @@ class SaleOrder(models.Model):
                 else []
             )
             res[sale.id] = list(
-                set(res[sale.id])
-                | set(group_picking)
-                | set(sale.picking_ids.ids)
+                set(res[sale.id]) | set(group_picking) | set(sale.picking_ids.ids)
             )
         return res
 
@@ -52,18 +50,19 @@ class SaleOrder(models.Model):
         if len(picking_ids) > 1:
             action["domain"] = [("id", "in", picking_ids)]
         elif picking_ids:
-            action["views"] = [
-                (self.env.ref("stock.view_picking_form").id, "form")
-            ]
+            action["views"] = [(self.env.ref("stock.view_picking_form").id, "form")]
             action["res_id"] = picking_ids[0]
         return action
 
     @api.multi
     def action_confirm(self):
-        rental_order_type = self.env.ref('rental_base.rental_sale_type')
+        rental_order_type = self.env.ref("rental_base.rental_sale_type")
         for sale in self:
             if sale.type_id.id == rental_order_type.id:
-                if sale.partner_shipping_id and not sale.partner_shipping_id.rental_onsite_location_id:
+                if (
+                    sale.partner_shipping_id
+                    and not sale.partner_shipping_id.rental_onsite_location_id
+                ):
                     sale.create_and_set_rental_onsite_location_route()
         res = super(SaleOrder, self).action_confirm()
         for sale in self:
@@ -83,8 +82,8 @@ class SaleOrder(models.Model):
     @api.multi
     def create_and_set_rental_onsite_location_route(self):
         """
-            This function create the onsite location for the selected
-            partner address and its rental route automatically.
+        This function create the onsite location for the selected
+        partner address and its rental route automatically.
         """
         self.ensure_one()
         # create a intenal location for partner_shipping_id
@@ -92,28 +91,18 @@ class SaleOrder(models.Model):
             raise UserError(_("No found partner address"))
         partner = self.partner_shipping_id
         if not self.warehouse_id.rental_allowed:
-            raise UserError(
-                _("The selected warehouse is not allowed for rental.")
-            )
+            raise UserError(_("The selected warehouse is not allowed for rental."))
         if not self.warehouse_id.rental_route_id:
-            raise UserError(
-                _("No found default Route of the selected warehouse.")
-            )
+            raise UserError(_("No found default Route of the selected warehouse."))
         rental_route = self.warehouse_id.rental_route_id
         if not self.warehouse_id.rental_out_location_id:
-            raise UserError(
-                _("No found default Route out location of warehouse.")
-            )
+            raise UserError(_("No found default Route out location of warehouse."))
         rental_out_location = self.warehouse_id.rental_out_location_id
         if not self.warehouse_id.rental_in_location_id:
-            raise UserError(
-                _("No found default Route in location of warehouse.")
-            )
+            raise UserError(_("No found default Route in location of warehouse."))
         rental_in_location = self.warehouse_id.rental_in_location_id
         if not self.warehouse_id.int_type_id:
-            raise UserError(
-                _('No found default picking type "internal" of warehouse.')
-            )
+            raise UserError(_('No found default picking type "internal" of warehouse.'))
         location_name = "Location [%s]" % self.partner_shipping_id.display_name
         new_location = rental_out_location.copy({"name": location_name})
 
@@ -122,24 +111,22 @@ class SaleOrder(models.Model):
 
         # Create a new route for the new location
         route_name = "Rent [%s]" % self.partner_shipping_id.display_name
-        new_route = self.warehouse_id.rental_route_id.copy(
-            {"name": route_name}
-        )
-        #new_push_rule = new_route.push_ids[0]
-        #new_pull_rule = new_route.pull_ids[0]
+        new_route = self.warehouse_id.rental_route_id.copy({"name": route_name})
+        # new_push_rule = new_route.push_ids[0]
+        # new_pull_rule = new_route.pull_ids[0]
         for rule in new_route.rule_ids:
             if rule.location_src_id == self.warehouse_id.rental_out_location_id:
                 rule.write(
                     {
                         "location_src_id": new_location.id,
-                        #"picking_type_id": self.warehouse_id.int_type_id.id,
+                        # "picking_type_id": self.warehouse_id.int_type_id.id,
                     }
                 )
             if rule.location_id == self.warehouse_id.rental_out_location_id:
                 rule.write(
                     {
                         "location_id": new_location.id,
-                        #"picking_type_id": self.warehouse_id.int_type_id.id,
+                        # "picking_type_id": self.warehouse_id.int_type_id.id,
                     }
                 )
         self.partner_shipping_id.rental_onsite_location_route = new_route

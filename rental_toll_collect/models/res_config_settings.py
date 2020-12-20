@@ -3,13 +3,13 @@ from odoo import api, fields, models
 
 
 class ResConfigSettings(models.TransientModel):
-    _inherit = 'res.config.settings'
+    _inherit = "res.config.settings"
 
     automatic_toll_charge_invoicing = fields.Boolean(
         string="Automatic Toll Charges Invoicing",
         help="If activated, imported toll charge lines are "
-             "automatically invoiced when invoicing a sale "
-             "or rental order or contract.",
+        "automatically invoiced when invoicing a sale "
+        "or rental order or contract.",
         related="company_id.automatic_toll_charge_invoicing",
         readonly=False,
     )
@@ -35,8 +35,12 @@ class ResConfigSettings(models.TransientModel):
         res = super(ResConfigSettings, self).set_values()
         if self.administrative_charge_product and self.administrative_charge:
             company = self.env.user.company_id
-            customers = self.env['res.partner'].search([('company_id', '=', company.id)])
-            customers.write({
-                'administrative_charge_product': self.administrative_charge_product.id,
-            })
+            customers = self.env["res.partner"].search(
+                [("company_id", "=", company.id)]
+            )
+            customers.write(
+                {
+                    "administrative_charge_product": self.administrative_charge_product.id,
+                }
+            )
         return res

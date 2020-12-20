@@ -4,7 +4,6 @@ from odoo import fields, models
 
 
 class StockMove(models.Model):
-    _inherit = 'stock.move'
+    _inherit = "stock.move"
 
-    rental_pack_move_id = fields.Many2one(
-        'stock.move', 'Rental Main Pack Move')
+    rental_pack_move_id = fields.Many2one("stock.move", "Rental Main Pack Move")

@@ -22,12 +22,8 @@ class SaleRental(models.Model):
         copy=False,
         help="Moves that are splited from in_move_id",
     )
-    out_move_id_bk = fields.Many2one(
-        "stock.move", string="Outgoing Stock Moves BK"
-    )
-    in_move_id_bk = fields.Many2one(
-        "stock.move", string="Return Stock Moves BK"
-    )
+    out_move_id_bk = fields.Many2one("stock.move", string="Outgoing Stock Moves BK")
+    in_move_id_bk = fields.Many2one("stock.move", string="Return Stock Moves BK")
     rental_onsite_location_id = fields.Many2one(
         "stock.location",
         string="Onsite location",
@@ -95,8 +91,7 @@ class SaleRental(models.Model):
                         and in_move.state == "done"
                         and out_moves_done_qty
                         == rental.rental_qty - out_move.product_qty
-                        and in_moves_done_qty
-                        == rental.rental_qty - in_move.product_qty
+                        and in_moves_done_qty == rental.rental_qty - in_move.product_qty
                     ):
                         state = "in"
                     if sell_move:

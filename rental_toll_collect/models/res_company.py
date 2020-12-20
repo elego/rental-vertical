@@ -8,8 +8,8 @@ class ResCompany(models.Model):
     automatic_toll_charge_invoicing = fields.Boolean(
         string="Automatic Toll Charges Invoicing",
         help="If activated, imported toll charge lines are "
-             "automatically invoiced when invoicing a sale "
-             "or rental order or contract.",
+        "automatically invoiced when invoicing a sale "
+        "or rental order or contract.",
     )
     administrative_charge = fields.Boolean(
         string="Administrative Charge",
@@ -21,10 +21,10 @@ class ResCompany(models.Model):
         comodel_name="product.product",
         string="Administrative Charge Product",
         default=lambda self: self.env.ref(
-            'rental_toll_collect.product_administrative_charge',
-            raise_if_not_found=False
+            "rental_toll_collect.product_administrative_charge",
+            raise_if_not_found=False,
         ),
-        domain=[('type', '=', 'service')],
+        domain=[("type", "=", "service")],
         help="Product that can be used as default "
         "administrative charge product for the partners.",
     )
@@ -38,7 +38,11 @@ class ResCompany(models.Model):
     def _set_administrative_charge_product(self):
         for company in self:
             if not company.administrative_charge_product:
-                product = self.env.ref('rental_toll_collect.product_administrative_charge')
-                company.write({
-                    'administrative_charge_product': product.id,
-                })
+                product = self.env.ref(
+                    "rental_toll_collect.product_administrative_charge"
+                )
+                company.write(
+                    {
+                        "administrative_charge_product": product.id,
+                    }
+                )

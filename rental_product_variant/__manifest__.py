@@ -1,9 +1,9 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
 {
-    'name': 'Rental Product Variant',
-    'summary': 'Extends model product with several fields for rental use cases.',
-    'description': '''
+    "name": "Rental Product Variant",
+    "summary": "Extends model product with several fields for rental use cases.",
+    "description": """
 This module adds several fields to the product form.
 
 Additional fields:
@@ -23,27 +23,25 @@ Additional fields configured and added by product category:
  - Show Vehicle Identification Number -> vehicle_number [Char]: vehicle identification number
  - Show License Plate -> license_plate [Char]: license plate
  - Show Initial Registration -> init_regist [Date]: date of initial registration
-''',
-    'usage': '''
+""",
+    "usage": """
 In order to get vehicle related fields, open the product category and activate the desired checkboxes.
-''',
-    'version': '12.0.1.1.0',
-    'category': 'Rental',
-    'author': 'Odoo Community Association (OCA)/Elego Software Solutions GmbH',
-    'depends': [
-        'rental_base',
-        'purchase_order_type',
+""",
+    "version": "12.0.1.1.0",
+    "category": "Rental",
+    "author": "Odoo Community Association (OCA)/Elego Software Solutions GmbH",
+    "depends": [
+        "rental_base",
+        "purchase_order_type",
     ],
-    'data': [
-        'security/ir.model.access.csv',
-        'views/product_view.xml',
-        'views/account_invoice_view.xml',
-        'views/purchase_order_view.xml',
+    "data": [
+        "security/ir.model.access.csv",
+        "views/product_view.xml",
+        "views/account_invoice_view.xml",
+        "views/purchase_order_view.xml",
     ],
-    'demo': [
-    ],
-    'qweb': [
-    ],
-    'application': False,
-    'license': 'AGPL-3',
+    "demo": [],
+    "qweb": [],
+    "application": False,
+    "license": "AGPL-3",
 }

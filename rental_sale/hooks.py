@@ -8,6 +8,6 @@ from odoo.api import Environment
 
 def add_to_group_stock_packaging(cr, registry):
     env = Environment(cr, SUPERUSER_ID, {})
-    conf_page = env['res.config.settings'].create({})
+    conf_page = env["res.config.settings"].create({})
     conf_page.group_stock_packaging = True
     conf_page.execute()

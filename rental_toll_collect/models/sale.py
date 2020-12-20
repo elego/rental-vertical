@@ -4,54 +4,55 @@ from odoo import api, fields, models, _
 
 
 class SaleOrder(models.Model):
-    _inherit = 'sale.order'
+    _inherit = "sale.order"
 
     toll_line_count = fields.Integer(
-        compute='_compute_toll_line_count',
+        compute="_compute_toll_line_count",
         string="# Toll Charge Lines",
-        type='integer',
+        type="integer",
     )
 
     toll_line_charged_count = fields.Integer(
-        compute='_compute_toll_charged_count',
+        compute="_compute_toll_charged_count",
         string="# Invoiced Toll Charge Lines",
-        type='integer',
+        type="integer",
     )
 
     update_toll_lines = fields.Boolean(
-        string="Update Toll Charge Lines",
-        compute="_compute_update_toll_lines"
+        string="Update Toll Charge Lines", compute="_compute_update_toll_lines"
     )
 
     @api.multi
     def _compute_toll_charged_count(self):
         for rec in self:
-            rec.toll_line_charged_count = len(rec.order_line.mapped('toll_line_ids').filtered('invoiced'))
+            rec.toll_line_charged_count = len(
+                rec.order_line.mapped("toll_line_ids").filtered("invoiced")
+            )
 
     @api.multi
     def _compute_toll_line_count(self):
         for rec in self:
-            rec.toll_line_count = len(rec.order_line.mapped('toll_line_ids'))
+            rec.toll_line_count = len(rec.order_line.mapped("toll_line_ids"))
 
     @api.multi
     def _compute_update_toll_lines(self):
         for rec in self:
-            rec.update_toll_lines = any(rec.order_line.mapped('update_toll_lines'))
+            rec.update_toll_lines = any(rec.order_line.mapped("update_toll_lines"))
 
     @api.multi
     def action_view_product_toll_charges(self):
         self.ensure_one()
-        record_ids = self.order_line.mapped('toll_line_ids').ids
+        record_ids = self.order_line.mapped("toll_line_ids").ids
         tree_view_id = self.env.ref("rental_toll_collect.toll_charge_line_tree_view").id
         form_view_id = self.env.ref("rental_toll_collect.toll_charge_line_form_view").id
         return {
-            'type': 'ir.actions.act_window',
-            'name': _('Toll Charges'),
-            'target': 'current',
-            'view_mode': 'tree,form',
-            'view_ids': [tree_view_id, form_view_id],
-            'res_model': 'toll.charge.line',
-            'domain': "[('id','in',[" + ','.join(map(str, record_ids)) + "])]",
+            "type": "ir.actions.act_window",
+            "name": _("Toll Charges"),
+            "target": "current",
+            "view_mode": "tree,form",
+            "view_ids": [tree_view_id, form_view_id],
+            "res_model": "toll.charge.line",
+            "domain": "[('id','in',[" + ",".join(map(str, record_ids)) + "])]",
         }
 
     @api.multi
@@ -65,32 +66,38 @@ class SaleOrder(models.Model):
     def _finalize_invoices(self, invoices, references):
         res = super()._finalize_invoices(invoices, references)
         for invoice in invoices.values():
-            if invoice.partner_id.administrative_charge and invoice.invoice_line_ids.filtered(
-                lambda l: l.product_id == self.env.ref('rental_toll_collect.product_toll')
+            if (
+                invoice.partner_id.administrative_charge
+                and invoice.invoice_line_ids.filtered(
+                    lambda l: l.product_id
+                    == self.env.ref("rental_toll_collect.product_toll")
+                )
             ):
                 product = invoice.partner_id.administrative_charge_product
-                self.env['account.invoice.line']._create_administrative_product_line(invoice, product)
+                self.env["account.invoice.line"]._create_administrative_product_line(
+                    invoice, product
+                )
         return res
 
 
 class SaleOrderLine(models.Model):
-    _inherit = 'sale.order.line'
+    _inherit = "sale.order.line"
 
     toll_line_ids = fields.One2many(
-        comodel_name='toll.charge.line',
-        inverse_name='sale_line_id',
+        comodel_name="toll.charge.line",
+        inverse_name="sale_line_id",
         string="Toll Charge Lines",
     )
 
     update_toll_lines = fields.Boolean(
-        string='Update Toll Charge Lines',
+        string="Update Toll Charge Lines",
         default=False,
     )
 
     @api.onchange(
-        'product_id',
-        'start_date',
-        'end_date',
+        "product_id",
+        "start_date",
+        "end_date",
     )
     def onchange_toll_lines_params(self):
         self.update_toll_lines = True
@@ -106,24 +113,36 @@ class SaleOrderLine(models.Model):
     def update_toll_charge_lines(self):
         self.ensure_one()
         if not self.display_type:
-            toll_charge_lines = self.env['toll.charge.line'].search([
-                ('product_id', 'in', [self.product_id.id, self.display_product_id.id]),
-                ('toll_date', '>=', self.start_date),
-                ('toll_date', '<=', self.end_date),
-                '|',
-                ('sale_line_id', '=', False),
-                ('sale_line_id', '=', self.id),
-            ])
-            self.write({
-                'toll_line_ids': [(6, 0, toll_charge_lines.ids)],
-                'update_toll_lines': False,
-            })
+            toll_charge_lines = self.env["toll.charge.line"].search(
+                [
+                    (
+                        "product_id",
+                        "in",
+                        [self.product_id.id, self.display_product_id.id],
+                    ),
+                    ("toll_date", ">=", self.start_date),
+                    ("toll_date", "<=", self.end_date),
+                    "|",
+                    ("sale_line_id", "=", False),
+                    ("sale_line_id", "=", self.id),
+                ]
+            )
+            self.write(
+                {
+                    "toll_line_ids": [(6, 0, toll_charge_lines.ids)],
+                    "update_toll_lines": False,
+                }
+            )
 
     @api.multi
     def _prepare_invoice_line(self, qty):
         self.update_toll_charge_lines()
         res = super(SaleOrderLine, self)._prepare_invoice_line(qty)
-        res.update({
-            'toll_line_ids': [(6, 0, self.toll_line_ids.filtered(lambda l: not l.invoiced).ids)],
-        })
+        res.update(
+            {
+                "toll_line_ids": [
+                    (6, 0, self.toll_line_ids.filtered(lambda l: not l.invoiced).ids)
+                ],
+            }
+        )
         return res

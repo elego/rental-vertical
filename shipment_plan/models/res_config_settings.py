@@ -4,21 +4,18 @@ from odoo import api, fields, models
 
 
 class ResConfigSettings(models.TransientModel):
-    _inherit = 'res.config.settings'
+    _inherit = "res.config.settings"
 
     transport_cost_type = fields.Selection(
-        [
-            ('single', 'Single Position'),
-            ('multi', 'Multi Positions')
-        ],
-        default='multi',
+        [("single", "Single Position"), ("multi", "Multi Positions")],
+        default="multi",
         string="Transport Cost Type",
-        config_parameter='sale.sale_transport_cost_type',
+        config_parameter="sale.sale_transport_cost_type",
     )
     transport_cost_product_id = fields.Many2one(
-        'product.product',
-        'Transport Cost Product',
+        "product.product",
+        "Transport Cost Product",
         domain="[('type', '=', 'service'), ('is_transport', '=', True)]",
-        config_parameter='sale.transport_cost_product_id',
-        help='Default product used for Transport Cost'
+        config_parameter="sale.transport_cost_product_id",
+        help="Default product used for Transport Cost",
     )

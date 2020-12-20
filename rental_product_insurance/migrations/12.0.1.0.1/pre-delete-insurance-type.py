@@ -1,5 +1,6 @@
 from openupgradelib import openupgrade
 
+
 def delete_insurance_type(cr):
     query = """DELETE FROM ir_ui_view WHERE arch_db ILIKE '%insurance_type%' AND arch_fs ILIKE 'rockbird_%'"""
     openupgrade.logged_query(cr, query)
@@ -9,6 +10,7 @@ def delete_insurance_type(cr):
     openupgrade.logged_query(cr, query)
     query = """DELETE FROM ir_ui_view WHERE arch_db ILIKE '%insurance_type%' AND arch_fs ILIKE 'rental_product_insurance%'"""
     openupgrade.logged_query(cr, query)
+
 
 @openupgrade.migrate()
 def migrate(env, version):
