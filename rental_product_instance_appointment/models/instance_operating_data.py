@@ -4,7 +4,7 @@ from odoo import api, fields, models, _
 
 
 class InstanceOperatingData(models.Model):
-    _inherit = 'instance.operating.data'
+    _inherit = "instance.operating.data"
 
     @api.model
     def create(self, vals):
@@ -15,5 +15,5 @@ class InstanceOperatingData(models.Model):
     @api.multi
     def write(self, values):
         res = super().write(values)
-        self.mapped('instance_id').update_operating_data_daily_increase()
+        self.mapped("instance_id").update_operating_data_daily_increase()
         return res

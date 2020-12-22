@@ -7,18 +7,18 @@ from odoo import api, fields, models, exceptions, _
 
 
 class SaleOrderLine(models.Model):
-    _inherit = 'sale.order.line'
+    _inherit = "sale.order.line"
 
     timeline_ids = fields.One2many(
-        'product.timeline',
-        compute='_compute_timeline_ids',
+        "product.timeline",
+        compute="_compute_timeline_ids",
     )
 
     rental_type = fields.Selection(
         states={
-            'draft': [('readonly', False)],
-            'sent': [('readonly', False)],
-            'sale': [('readonly', False)],
+            "draft": [("readonly", False)],
+            "sent": [("readonly", False)],
+            "sale": [("readonly", False)],
         }
     )
 
@@ -26,33 +26,33 @@ class SaleOrderLine(models.Model):
     def _compute_timeline_ids(self):
         for line in self:
             domain = [
-                ('res_model', '=', line._name),
-                ('res_id', '=', line.id),
+                ("res_model", "=", line._name),
+                ("res_id", "=", line.id),
             ]
-            line.timeline_ids = self.env['product.timeline'].search(domain)
+            line.timeline_ids = self.env["product.timeline"].search(domain)
 
     @api.multi
     def _prepare_timeline_vals(self):
         self.ensure_one()
         return {
-            'type': 'rental' if self.state == 'sale' else 'reserved',
-            'date_start': self.start_date,
-            'date_end': self.end_date,
-            'product_id': self.product_id.rented_product_id.id,
-            'order_name': self.order_id.name,
-            'res_model': self._name,
-            'res_id': self.id,
-            'click_res_model': self.order_id._name,
-            'click_res_id': self.order_id.id,
+            "type": "rental" if self.state == "sale" else "reserved",
+            "date_start": self.start_date,
+            "date_end": self.end_date,
+            "product_id": self.product_id.rented_product_id.id,
+            "order_name": self.order_id.name,
+            "res_model": self._name,
+            "res_id": self.id,
+            "click_res_model": self.order_id._name,
+            "click_res_id": self.order_id.id,
         }
 
     @api.multi
     def _create_product_timeline(self):
         self.ensure_one()
         if self.product_id.rented_product_id:
-            if self.rental_type in ['new_rental', 'rental_extension']:
+            if self.rental_type in ["new_rental", "rental_extension"]:
                 vals = self._prepare_timeline_vals()
-                self.env['product.timeline'].create(vals)
+                self.env["product.timeline"].create(vals)
 
     @api.multi
     def _reset_timeline(self, vals):
@@ -61,28 +61,32 @@ class SaleOrderLine(models.Model):
                 continue
             if line.product_id.rented_product_id:
                 if not line.timeline_ids:
-                    raise exceptions.UserError(_('No found timelines.'))
+                    raise exceptions.UserError(_("No found timelines."))
                 update_date_start_later = False
                 start_timelines = sorted(line.timeline_ids, key=lambda l: l.date_start)
-                end_timelines = sorted(line.timeline_ids, key=lambda l: l.date_end, reverse=True)
-                if vals.get('start_date', False) and start_timelines:
-                    if start_timelines[0].date_end < fields.Datetime.to_datetime(vals.get('start_date')):
+                end_timelines = sorted(
+                    line.timeline_ids, key=lambda l: l.date_end, reverse=True
+                )
+                if vals.get("start_date", False) and start_timelines:
+                    if start_timelines[0].date_end < fields.Datetime.to_datetime(
+                        vals.get("start_date")
+                    ):
                         update_date_start_later = True
                     else:
-                        start_timelines[0].date_start = vals['start_date']
-                if vals.get('end_date', False):
-                    end_timelines[0].date_end = vals['end_date']
+                        start_timelines[0].date_start = vals["start_date"]
+                if vals.get("end_date", False):
+                    end_timelines[0].date_end = vals["end_date"]
                 if update_date_start_later:
-                    start_timelines[0].date_start = vals['start_date']
-                if vals.get('product_id', False):
+                    start_timelines[0].date_start = vals["start_date"]
+                if vals.get("product_id", False):
                     timelines = sorted(line.timeline_ids, key=lambda l: l.product_id)
-                    product = self.env['product.product'].browse(vals['product_id'])
+                    product = self.env["product.product"].browse(vals["product_id"])
                     timelines[0].product_id = product.rented_product_id.id
-                if vals.get('name', False):
+                if vals.get("name", False):
                     timelines = sorted(line.timeline_ids, key=lambda l: l.name)
-                    timelines[0].order_name = vals['name']
+                    timelines[0].order_name = vals["name"]
             else:
-                raise exceptions.UserError(_('No found rented product.'))
+                raise exceptions.UserError(_("No found rented product."))
 
     @api.model
     def create(self, vals):
@@ -93,21 +97,21 @@ class SaleOrderLine(models.Model):
     @api.multi
     def write(self, vals):
         res = super(SaleOrderLine, self).write(vals)
-        keys = {'start_date', 'end_date', 'product_id', 'name'}
+        keys = {"start_date", "end_date", "product_id", "name"}
         if keys.intersection(vals.keys()):
-            rental = vals.get('rental', False)
+            rental = vals.get("rental", False)
             reset_lines = self.browse([])
-            start_date = vals.get('start_date', False)
-            end_Date = vals.get('end_date', False)
-            product_id = vals.get('product_id', False)
-            name = vals.get('name', False)
+            start_date = vals.get("start_date", False)
+            end_Date = vals.get("end_date", False)
+            product_id = vals.get("product_id", False)
+            name = vals.get("name", False)
             for line in self:
                 if rental:
                     search = [
-                        ('res_model', '=', self._name),
-                        ('res_id', '=', self.id),
+                        ("res_model", "=", self._name),
+                        ("res_id", "=", self.id),
                     ]
-                    if not self.env['product.timeline'].search(search):
+                    if not self.env["product.timeline"].search(search):
                         line._create_product_timeline()
                 if start_date and line.start_date != start_date:
                     reset_lines |= line
@@ -120,14 +124,18 @@ class SaleOrderLine(models.Model):
                 # Since rental_type needed to be editable in state 'sent' and 'sale
                 # to create new order lines in these states it is here forbidden to
                 # change it on existing sale order lines.
-                if line.order_id.state not in ("draft", "sent") and "rental_type" in vals:
+                if (
+                    line.order_id.state not in ("draft", "sent")
+                    and "rental_type" in vals
+                ):
                     raise exceptions.UserError(
                         _(
                             "You are not allowed to change the 'rental type' "
                             "in an order line of a confirmed order.\n\n"
                             "Order: %s\n"
                             "Line with product: '%s'"
-                        ) % (line.order_id.name, line.product_id.display_name)
+                        )
+                        % (line.order_id.name, line.product_id.display_name)
                     )
             reset_lines._reset_timeline(vals)
         return res
@@ -136,43 +144,46 @@ class SaleOrderLine(models.Model):
     def unlink(self):
         res = super(SaleOrderLine, self).unlink()
         domain = [
-            ('res_model', '=', self._name),
-            ('res_id', 'in', self.ids),
+            ("res_model", "=", self._name),
+            ("res_id", "in", self.ids),
         ]
-        self.env['product.timeline'].search(domain).unlink()
+        self.env["product.timeline"].search(domain).unlink()
         return res
 
     @api.multi
     def update_start_end_date(self, date_start, date_end):
         super(SaleOrderLine, self).update_start_end_date(date_start, date_end)
         for line in self:
-            line._reset_timeline({
-                'start_date': fields.Datetime.to_datetime(date_start),
-                'end_date': fields.Datetime.to_datetime(date_end),
-            })
+            line._reset_timeline(
+                {
+                    "start_date": fields.Datetime.to_datetime(date_start),
+                    "end_date": fields.Datetime.to_datetime(date_end),
+                }
+            )
 
 
 class SaleOrder(models.Model):
-    _inherit = 'sale.order'
+    _inherit = "sale.order"
 
     @api.multi
     def action_cancel(self):
-        '''
-            delete all time lines
-        '''
+        """
+        delete all time lines
+        """
         for order in self:
             for line in order.order_line.filtered(
-                    lambda l: l.rental_type == 'rental_extension' or
-                    l.rental_type == 'new_rental'):
+                lambda l: l.rental_type == "rental_extension"
+                or l.rental_type == "new_rental"
+            ):
                 line.timeline_ids.unlink()
         res = super(SaleOrder, self).action_cancel()
         return res
 
     @api.multi
     def action_draft(self):
-        '''
-            recreate the timeline items
-        '''
+        """
+        recreate the timeline items
+        """
         res = super(SaleOrder, self).action_draft()
         for order in self:
             for line in order.order_line:
@@ -181,16 +192,17 @@ class SaleOrder(models.Model):
 
     @api.multi
     def action_confirm(self):
-        '''
-            change type of time lines
-        '''
+        """
+        change type of time lines
+        """
         values = {
-            'type': 'rental',
+            "type": "rental",
         }
         for order in self:
             for line in order.order_line.filtered(
-                    lambda l: l.rental_type == 'rental_extension' or
-                    l.rental_type == 'new_rental'):
+                lambda l: l.rental_type == "rental_extension"
+                or l.rental_type == "new_rental"
+            ):
                 line.timeline_ids.write(values)
         res = super(SaleOrder, self).action_confirm()
         return res
@@ -200,8 +212,8 @@ class SaleOrder(models.Model):
         ids = functools.reduce(operator.iconcat, [i.order_line.ids for i in self], [])
         if ids:
             domain = [
-                ('res_model', '=', 'sale.order.line'),
-                ('res_id', 'in', ids),
+                ("res_model", "=", "sale.order.line"),
+                ("res_id", "in", ids),
             ]
-            self.env['product.timeline'].search(domain).unlink()
+            self.env["product.timeline"].search(domain).unlink()
         return super(SaleOrder, self).unlink()

@@ -3,47 +3,45 @@ from odoo import api, fields, models
 
 
 class RentalPriceIntervalItem(models.Model):
-    _name = 'rental.price.interval.item'
-    _description = 'Rental Price Interval Item'
+    _name = "rental.price.interval.item"
+    _description = "Rental Price Interval Item"
 
     name = fields.Char(
-        'Name',
+        "Name",
     )
 
     price = fields.Float(
-        'Price',
+        "Price",
     )
 
     min_quantity = fields.Integer(
-        'Interval (days)',
+        "Interval (days)",
     )
 
-    product_id = fields.Many2one(
-        'product.product',
-        'Product'
-    )
+    product_id = fields.Many2one("product.product", "Product")
+
 
 class ProductProduct(models.Model):
-    _inherit = 'product.product'
+    _inherit = "product.product"
 
     rental_of_interval = fields.Boolean(
-        'Rented in interval',
+        "Rented in interval",
         copy=False,
     )
 
     rental_interval_max = fields.Integer(
-        'Interval days (Max)',
+        "Interval days (Max)",
         copy=False,
     )
 
     rental_price_interval = fields.Float(
-        string='Interval Price',
+        string="Interval Price",
     )
 
     rental_price_interval_item_ids = fields.One2many(
-        'rental.price.interval.item',
-        'product_id',
-        string='Interval Scale Pricelist Items',
+        "rental.price.interval.item",
+        "product_id",
+        string="Interval Scale Pricelist Items",
         copy=False,
     )
 
@@ -54,9 +52,15 @@ class ProductProduct(models.Model):
         self.rental_price_interval_item_ids.unlink()
         values = []
         for rule in company.rental_price_interval_rule_ids:
-            values.append((0, 0, {
-                'name': rule.name,
-                'price': self.rental_price_interval * rule.factor,
-                'min_quantity': rule.min_quantity
-            }))
+            values.append(
+                (
+                    0,
+                    0,
+                    {
+                        "name": rule.name,
+                        "price": self.rental_price_interval * rule.factor,
+                        "min_quantity": rule.min_quantity,
+                    },
+                )
+            )
         self.rental_price_interval_item_ids = values

@@ -4,9 +4,9 @@ from odoo import api, fields, models, _
 
 
 class RepairOrder(models.Model):
-    _inherit = 'repair.order'
+    _inherit = "repair.order"
 
-    @api.onchange('product_id')
+    @api.onchange("product_id")
     def onchange_product_id(self):
         super(RepairOrder, self).onchange_product_id()
         if self.product_id and self.product_id.instance_serial_number_id:

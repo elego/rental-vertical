@@ -13,9 +13,7 @@ class SaleRentalRouteOutLine(models.TransientModel):
 
     parent_id = fields.Many2one("sale.rental.route", "Parent")
     rental_id = fields.Many2one("sale.rental", "Rental", required=True)
-    move_id = fields.Many2one(
-        "stock.move", "Move", related="rental_id.out_move_id"
-    )
+    move_id = fields.Many2one("stock.move", "Move", related="rental_id.out_move_id")
     product_id = fields.Many2one(
         "product.product",
         "Product",
@@ -50,9 +48,7 @@ class SaleRentalRouteOutLine(models.TransientModel):
             return False
         rounding = self.product_id.uom_id.rounding
         if (
-            float_compare(
-                self.rental_avail_qty, self.qty, precision_rounding=rounding
-            )
+            float_compare(self.rental_avail_qty, self.qty, precision_rounding=rounding)
             < 0
         ):
             raise UserError(
@@ -113,9 +109,7 @@ class SaleRentalRouteOutLine(models.TransientModel):
                     )
                 )
             self.rental_avail_qty = self.rental_in_id.in_move_id.product_qty
-            self.rental_onsite_location_id = (
-                self.rental_in_id.rental_onsite_location_id
-            )
+            self.rental_onsite_location_id = self.rental_in_id.rental_onsite_location_id
 
     @api.onchange("rental_onsite_location_id")
     def onchange_rental_onsite_location_id(self):
@@ -145,9 +139,7 @@ class SaleRentalRouteInLine(models.TransientModel):
 
     parent_id = fields.Many2one("sale.rental.route", "Parent")
     rental_id = fields.Many2one("sale.rental", "Rental", required=True)
-    move_id = fields.Many2one(
-        "stock.move", "Move", related="rental_id.in_move_id"
-    )
+    move_id = fields.Many2one("stock.move", "Move", related="rental_id.in_move_id")
     product_id = fields.Many2one(
         "product.product", "Product", related="rental_id.in_move_id.product_id"
     )
@@ -180,9 +172,7 @@ class SaleRentalRouteInLine(models.TransientModel):
             return False
         rounding = self.product_id.uom_id.rounding
         if (
-            float_compare(
-                self.rental_avail_qty, self.qty, precision_rounding=rounding
-            )
+            float_compare(self.rental_avail_qty, self.qty, precision_rounding=rounding)
             < 0
         ):
             raise UserError(
@@ -307,10 +297,7 @@ class SaleRentalRoute(models.TransientModel):
                     )
                 )
             res["rental_id"] = rentals[0].id
-            if (
-                rentals[0].out_move_id
-                and rentals[0].out_move_id.product_qty > 0
-            ):
+            if rentals[0].out_move_id and rentals[0].out_move_id.product_qty > 0:
                 res["out_lines"].append(
                     (
                         0,

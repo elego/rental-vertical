@@ -4,24 +4,22 @@ from odoo import api, fields, models, _
 
 
 class InstanceOperatingData(models.Model):
-    _name = 'instance.operating.data'
-    _description = 'Instance Operating Data'
-    _order = 'date desc'
+    _name = "instance.operating.data"
+    _description = "Instance Operating Data"
+    _order = "date desc"
 
     instance_id = fields.Many2one(
-        'product.product',
+        "product.product",
         string="Product Instance",
         required=True,
     )
 
     operating_data = fields.Float(
-        string='Operating Data',
+        string="Operating Data",
         required=True,
     )
 
     date = fields.Datetime(
-        string='Date',
+        string="Date",
         required=True,
     )
-
-

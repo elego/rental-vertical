@@ -4,7 +4,7 @@ from odoo import fields, models
 
 
 class QcInspectionLine(models.Model):
-    _inherit = 'qc.inspection.line'
+    _inherit = "qc.inspection.line"
 
     reason = fields.Text(
         string="Reason for failure",

@@ -5,9 +5,9 @@ from odoo import api, fields, models, _
 
 
 class ProductAppointment(models.Model):
-    _name = 'product.appointment'
-    _description = 'Appointment'
-    _order = 'date_next_appointment desc'
+    _name = "product.appointment"
+    _description = "Appointment"
+    _order = "date_next_appointment desc"
 
     name = fields.Char(
         string="Name",
@@ -16,8 +16,7 @@ class ProductAppointment(models.Model):
 
     date_next_appointment = fields.Date(
         string="Date",
-        help="This is the appointment date "
-             "for this time dependent appointment.",
+        help="This is the appointment date " "for this time dependent appointment.",
         required=True,
     )
 
@@ -29,25 +28,25 @@ class ProductAppointment(models.Model):
     leads_of_notification = fields.Integer(
         string="Leads of Notification",
         help="This is the number of days previous "
-             "to the appointment date in order to "
-             "create a task in the helpdesk project "
-             "as notfication. The deadline of this "
-             "task is set to appointment date.",
+        "to the appointment date in order to "
+        "create a task in the helpdesk project "
+        "as notfication. The deadline of this "
+        "task is set to appointment date.",
         required=True,
     )
 
     time_interval = fields.Integer(
         string="Time Interval",
         help="This is the interval which defines the "
-             "repetition of this appointment. Be aware "
-             "of the used unit of measure.",
+        "repetition of this appointment. Be aware "
+        "of the used unit of measure.",
         required=True,
     )
 
     time_uom = fields.Selection(
         selection=[
-            ('day', 'Day(s)'),
-            ('month', 'Month(s)'),
+            ("day", "Day(s)"),
+            ("month", "Month(s)"),
         ],
         string="Time UoM",
         required=True,
@@ -55,9 +54,9 @@ class ProductAppointment(models.Model):
     )
 
     product_id = fields.Many2one(
-        'product.product',
+        "product.product",
         string="Instance",
-        domain=[('product_instance', '=', True)],
+        domain=[("product_instance", "=", True)],
     )
 
     create_task = fields.Boolean(
@@ -66,11 +65,11 @@ class ProductAppointment(models.Model):
     )
 
     last_task_id = fields.Many2one(
-        'project.task',
+        "project.task",
         string="Last Ticket",
         help="This is last created task in the "
-             "helpdesk project related to this "
-             "appointment.",
+        "helpdesk project related to this "
+        "appointment.",
     )
 
     @api.multi
@@ -78,33 +77,38 @@ class ProductAppointment(models.Model):
         today = fields.Date.from_string(fields.Date.today())
         for record in self:
             record.create_task = False
-            if record.date_next_appointment - relativedelta(
-                days=record.leads_of_notification) == today:
+            if (
+                record.date_next_appointment
+                - relativedelta(days=record.leads_of_notification)
+                == today
+            ):
                 record.create_task = True
 
     def _prepare_task_vals(self):
         self.ensure_one()
-        helpdesk = self.env.ref('rental_repair.project_project_helpdesk')
+        helpdesk = self.env.ref("rental_repair.project_project_helpdesk")
         res = {
-            'product_id': self.product_id.id,
-            'lot_id': self.product_id.instance_serial_number_id.id,
-            'date_deadline': self.date_next_appointment,
-            'project_id': helpdesk.id,
-            'name': "%s: %s" %(self.name, self.product_id.name),
+            "product_id": self.product_id.id,
+            "lot_id": self.product_id.instance_serial_number_id.id,
+            "date_deadline": self.date_next_appointment,
+            "project_id": helpdesk.id,
+            "name": "%s: %s" % (self.name, self.product_id.name),
         }
         return res
 
     def _update_next_appointment(self):
         self.ensure_one()
         today = fields.Date.from_string(fields.Date.today())
-        if self.time_uom == 'day':
+        if self.time_uom == "day":
             self.date_next_appointment = today + relativedelta(days=self.time_interval)
-        if self.time_uom == 'month':
-            self.date_next_appointment = today + relativedelta(months=self.time_interval)
+        if self.time_uom == "month":
+            self.date_next_appointment = today + relativedelta(
+                months=self.time_interval
+            )
 
     @api.multi
     def action_create_project_tasks(self):
-        task_obj = self.env['project.task']
+        task_obj = self.env["project.task"]
         today = fields.Date.from_string(fields.Date.today())
         for record in self:
             if record.create_task:

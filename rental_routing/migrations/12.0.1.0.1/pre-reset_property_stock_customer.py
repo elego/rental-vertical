@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+
 def migrate(cr, version):
     sql = """UPDATE ir_property
                SET value_reference = 'stock.location,9'

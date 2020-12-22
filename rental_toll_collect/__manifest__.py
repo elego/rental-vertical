@@ -1,9 +1,9 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
 {
-    'name': 'Rental Toll Collect',
-    'summary': "Import a CSV file from Toll Collect and invoice the costs to customers.",
-    'description': """
+    "name": "Rental Toll Collect",
+    "summary": "Import a CSV file from Toll Collect and invoice the costs to customers.",
+    "description": """
 This module provides the opportunity to import csv files downloaded from toll collect portal.
 During import it matches the given license plate in csv file with a vehicle product.
 The toll charge lines can be invoiced to a customer manually or by creating an invoice from a 
@@ -30,7 +30,7 @@ The csv should contain the following columns:
 - Distance ("km")
 - Amount ("EUR")
     """,
-    'usage': """
+    "usage": """
 -  Go to Rentals > Configuration > Settings
 - Activate the automatic invoicing of toll charges if toll charges should be automatically invoiced together with rental services.
 - Create a rental order with vehicle products as rental order lines.
@@ -45,33 +45,31 @@ The csv should contain the following columns:
 
 - Mark one or several toll charge lines in tree view and create an invoice via action wizard to invoice them manually.
     """,
-    'version': '12.0.1.0.0',
-    'category': 'Rental',
-    'author': 'Odoo Community Association (OCA) / elego Software Solutions GmbH',
-    'depends': [
-        'product',
-        'account',
-        'product_analytic',
-        'rental_base',
-        'rental_product_instance',
+    "version": "12.0.1.0.0",
+    "category": "Rental",
+    "author": "Odoo Community Association (OCA) / elego Software Solutions GmbH",
+    "depends": [
+        "product",
+        "account",
+        "product_analytic",
+        "rental_base",
+        "rental_product_instance",
     ],
-    'data': [
-        'security/ir.model.access.csv',
-        'data/product_data.xml',
-        'views/toll_charge_line_view.xml',
-        'views/account_invoice_view.xml',
-        'views/product_view.xml',
-        'views/res_config_settings_view.xml',
-        'views/res_partner_view.xml',
-        'views/sale_view.xml',
-        'wizard/toll_charge_line_import_view.xml',
-        'wizard/toll_charge_line_invoicing_view.xml',
+    "data": [
+        "security/ir.model.access.csv",
+        "data/product_data.xml",
+        "views/toll_charge_line_view.xml",
+        "views/account_invoice_view.xml",
+        "views/product_view.xml",
+        "views/res_config_settings_view.xml",
+        "views/res_partner_view.xml",
+        "views/sale_view.xml",
+        "wizard/toll_charge_line_import_view.xml",
+        "wizard/toll_charge_line_invoicing_view.xml",
     ],
-    'demo': [
-    ],
-    'qweb': [
-    ],
-    'auto_install': False,
-    'license': 'AGPL-3',
-    'post_init_hook': 'post_init_hook',
+    "demo": [],
+    "qweb": [],
+    "auto_install": False,
+    "license": "AGPL-3",
+    "post_init_hook": "post_init_hook",
 }

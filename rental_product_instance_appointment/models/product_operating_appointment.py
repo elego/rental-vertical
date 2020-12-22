@@ -5,9 +5,9 @@ from odoo import api, fields, models, _
 
 
 class ProductOperatingAppointment(models.Model):
-    _name = 'product.operating.appointment'
-    _description = 'Operating Appointment'
-    _order = 'date_next_appointment desc'
+    _name = "product.operating.appointment"
+    _description = "Operating Appointment"
+    _order = "date_next_appointment desc"
 
     name = fields.Char(
         string="Name",
@@ -17,10 +17,10 @@ class ProductOperatingAppointment(models.Model):
     date_next_appointment = fields.Date(
         string="Date",
         help="This is the planned appointment date "
-             "for this usage dependent appointment. "
-             "It is computed by the difference of "
-             "threshold and current operating data "
-             "divided by the daily increase.",
+        "for this usage dependent appointment. "
+        "It is computed by the difference of "
+        "threshold and current operating data "
+        "divided by the daily increase.",
         compute="_compute_date_next_appointment",
     )
 
@@ -32,56 +32,56 @@ class ProductOperatingAppointment(models.Model):
     leads_of_notification = fields.Integer(
         string="Leads of Notification",
         help="This is the number of days previous "
-             "to the appointment date in order to "
-             "create a task in the helpdesk project "
-             "as notfication. The deadline of this "
-             "task is set to appointment date.",
+        "to the appointment date in order to "
+        "create a task in the helpdesk project "
+        "as notfication. The deadline of this "
+        "task is set to appointment date.",
         required=True,
     )
 
     threshold = fields.Integer(
         string="Threshold",
         help="This is the threshold value that has be "
-             "reached to make the appointment necessary "
-             "and thereby to create the task in the "
-             "helpdesk project. This value is automatically "
-             "incremented by the interval value as soon as "
-             "a project task is created for the current threshold.",
+        "reached to make the appointment necessary "
+        "and thereby to create the task in the "
+        "helpdesk project. This value is automatically "
+        "incremented by the interval value as soon as "
+        "a project task is created for the current threshold.",
     )
 
     interval = fields.Integer(
         string="Interval",
         help="This is the interval which defines the "
-             "repetition of this appointment. As soon "
-             "as the current appointment threshold is "
-             "reached, the threshold is incremented by "
-             "this interval.",
+        "repetition of this appointment. As soon "
+        "as the current appointment threshold is "
+        "reached, the threshold is incremented by "
+        "this interval.",
         required=True,
     )
 
     daily_increase = fields.Integer(
         string="Daily Increase",
         help="This is the value that defines how the "
-             "operating data are increased day by day. "
-             "The default value is 1 but is automatically "
-             "updated and computed after adding new "
-             "operating data.",
+        "operating data are increased day by day. "
+        "The default value is 1 but is automatically "
+        "updated and computed after adding new "
+        "operating data.",
         default=1,
     )
 
     operating_uom = fields.Selection(
         selection=[
-            ('km', 'Kilometer'),
-            ('hour', 'Operating Hours'),
+            ("km", "Kilometer"),
+            ("hour", "Operating Hours"),
         ],
         string="Operating UoM",
         related="product_id.show_instance_condition_type",
     )
 
     product_id = fields.Many2one(
-        'product.product',
+        "product.product",
         string="Instance",
-        domain=[('product_instance', '=', True)],
+        domain=[("product_instance", "=", True)],
     )
 
     create_task = fields.Boolean(
@@ -90,11 +90,11 @@ class ProductOperatingAppointment(models.Model):
     )
 
     last_task_id = fields.Many2one(
-        'project.task',
+        "project.task",
         string="Last Ticket",
         help="This is last created task in the "
-             "helpdesk project related to this "
-             "appointment.",
+        "helpdesk project related to this "
+        "appointment.",
     )
 
     @api.multi
@@ -102,14 +102,16 @@ class ProductOperatingAppointment(models.Model):
         today = fields.Date.from_string(fields.Date.today())
         for record in self:
             record.create_task = False
-            if record.product_id.show_instance_condition_type not in ('km', 'hour'):
+            if record.product_id.show_instance_condition_type not in ("km", "hour"):
                 continue
             date_notification = record.date_next_appointment - relativedelta(
                 days=record.leads_of_notification
-            ) 
-            if date_notification == today \
-                    or (date_notification < today and not record.date_last_appointment) \
-                    or (date_notification < today and record.date_last_appointment < today):
+            )
+            if (
+                date_notification == today
+                or (date_notification < today and not record.date_last_appointment)
+                or (date_notification < today and record.date_last_appointment < today)
+            ):
                 record.create_task = True
 
     @api.multi
@@ -119,13 +121,13 @@ class ProductOperatingAppointment(models.Model):
 
     def _prepare_task_vals(self):
         self.ensure_one()
-        helpdesk = self.env.ref('rental_repair.project_project_helpdesk')
+        helpdesk = self.env.ref("rental_repair.project_project_helpdesk")
         res = {
-            'product_id': self.product_id.id,
-            'lot_id': self.product_id.instance_serial_number_id.id,
-            'date_deadline': self.date_next_appointment,
-            'project_id': helpdesk.id,
-            'name': "%s: %s" %(self.name, self.product_id.name),
+            "product_id": self.product_id.id,
+            "lot_id": self.product_id.instance_serial_number_id.id,
+            "date_deadline": self.date_next_appointment,
+            "project_id": helpdesk.id,
+            "name": "%s: %s" % (self.name, self.product_id.name),
         }
         return res
 
@@ -133,21 +135,32 @@ class ProductOperatingAppointment(models.Model):
         self.ensure_one()
         today = fields.Date.from_string(fields.Date.today())
         diff = 0
-        if self.operating_uom == 'km':
-            km = self.product_id.instance_condition_km and float(self.product_id.instance_condition_km) or 0.0
+        if self.operating_uom == "km":
+            km = (
+                self.product_id.instance_condition_km
+                and float(self.product_id.instance_condition_km)
+                or 0.0
+            )
             diff = self.threshold - km
-        elif self.operating_uom == 'hour':
-            hour = self.product_id.instance_condition_hour and float(self.product_id.instance_condition_hour) or 0.0
+        elif self.operating_uom == "hour":
+            hour = (
+                self.product_id.instance_condition_hour
+                and float(self.product_id.instance_condition_hour)
+                or 0.0
+            )
             diff = self.threshold - hour
         increase = self.daily_increase if self.daily_increase != 0 else 1
         days = diff / increase
-        origin_date = self.product_id.instance_condition_date.date() \
-            if self.product_id.instance_condition_date else today
+        origin_date = (
+            self.product_id.instance_condition_date.date()
+            if self.product_id.instance_condition_date
+            else today
+        )
         self.date_next_appointment = origin_date + relativedelta(days=days)
 
     @api.multi
     def action_create_project_tasks(self):
-        task_obj = self.env['project.task']
+        task_obj = self.env["project.task"]
         today = fields.Date.from_string(fields.Date.today())
         for record in self:
             if record.create_task:
