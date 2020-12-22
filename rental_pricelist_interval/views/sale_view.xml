@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">view_order_interval_price_form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="rental_base.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@id='rental_settings']//field[@name='rental']" position="after">
+                <field name="show_rental_interval_price" invisible="1"/>
+                <field name="rental_interval_price" attrs="{'invisible': [('show_rental_interval_price', '=', False)]}"/>
+                <field name="rental_interval_name" attrs="{'invisible': ['|', ('show_rental_interval_price', '=', False), ('rental_interval_price', '=', False)]}"/>
+            </xpath>
+            <xpath expr="//group[@id='rental_times']//label[@for='product_uom_qty']" position="attributes">
+                <attribute name="attrs">{'invisible': [('rental_interval_price', '=', True)]}</attribute>
+            </xpath>
+            <xpath expr="//group[@id='rental_times']//field[@name='product_uom_qty']/.." position="attributes">
+                <attribute name="attrs">{'invisible': [('rental_interval_price', '=', True)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

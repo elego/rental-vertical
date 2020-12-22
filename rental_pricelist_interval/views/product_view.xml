@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- ProductProduct -->
+        <record id="product_normal_form_view" model="ir.ui.view">
+            <field name="name">view.product.product.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="rental_pricelist.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='rental_price']/group" position='inside'>
+                    <group name='interval_price' string='Interval Basis'>
+                        <field name="rental_of_interval"/>
+                        <field name="rental_price_interval"
+                               attrs="{'invisible': [('rental_of_interval','=',False)]}"/>
+                        <field name="rental_interval_max"
+                               attrs="{'invisible': [('rental_of_interval','=',False)]}"/>
+                        <!-- <field name="product_rental_interval_id" groups="base.group_no_one"/> -->
+                        <strong colspan="1" class="oe_inline">Interval Prices</strong>
+                        <button name="action_reset_rental_price_interval_items"
+                                type="object" string="Reset Interval Prices" class="oe_inline"/>
+                        <field name="rental_price_interval_item_ids"
+                               nolabel="1" colspan="2"
+                               attrs="{'invisible': [('rental_of_interval','=',False)]}">
+                            <tree name="interval_price" editable="bottom">
+                                <field name="name"/>
+                                <field name="min_quantity"/>
+                                <field name="price"/>
+                            </tree>
+                        </field>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

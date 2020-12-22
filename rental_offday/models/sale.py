@@ -113,16 +113,19 @@ class SaleOrderLine(models.Model):
                 if day.date < self.start_date or day.date > self.end_date:
                     raise exceptions.UserError(_('The off-day "%s" is not between %s and %s.') % (day.date, self.start_date, self.end_date))
 
-
     #Override function in rental_sale
     #replace number_of_days with number_of_time_unit
-    @api.onchange('offday_number', 'rental_qty', 'number_of_time_unit', 'product_id')
+    @api.onchange('rental_qty', 'number_of_time_unit', 'product_id')
     def rental_qty_number_of_days_change(self):
         if self.product_id.rented_product_id:
             qty = self.rental_qty * self.number_of_time_unit
             if self.show_offday:
                 qty = self.rental_qty * (self.number_of_time_unit - self.offday_number)
             self.product_uom_qty = qty
+
+    @api.onchange('offday_number')
+    def onchange_offday_number(self):
+        return self.rental_qty_number_of_days_change()
 
     @api.onchange('add_offday_ids', 'start_date', 'end_date')
     def onchange_add_offday_ids(self):
