@@ -49,7 +49,7 @@
                     <field name="repair_ids"
                            context="{'default_product_id': product_id, 'default_lot_id': lot_id, 'default_partner_id': partner_id}" />
                 </page>
-                <page name="repair" string="Vendor Repair Orders">
+                <page name="repair" string="Vendor Repair Orders" groups="purchase.group_purchase_user">
                     <field name="vendor_repair_ids"
                            context="{'default_order_type': %(rental_purchase_order_type.po_type_repair_order)d}" />
                 </page>
