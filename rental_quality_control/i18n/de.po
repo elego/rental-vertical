@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-23 19:51+0000\n"
-"PO-Revision-Date: 2020-02-23 19:51+0000\n"
+"POT-Creation-Date: 2020-12-22 21:11+0000\n"
+"PO-Revision-Date: 2020-12-22 21:11+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -42,9 +42,19 @@ msgid "Quality Control"
 msgstr "Qualitätskontrolle"
 
 #. module: rental_quality_control
+#: model_terms:ir.ui.view,arch_db:rental_quality_control.product_normal_form_view_rental
+msgid "Quality control"
+msgstr "Qualitätskontrolle"
+
+#. module: rental_quality_control
 #: model:ir.model,name:rental_quality_control.model_qc_inspection_line
 msgid "Quality control inspection line"
 msgstr "Qualitätskontroll-Prüfposition"
+
+#. module: rental_quality_control
+#: model_terms:ir.ui.view,arch_db:rental_quality_control.product_normal_form_view_rental
+msgid "Quality control triggers"
+msgstr "Auslöser der Qualitätskontrolle"
 
 #. module: rental_quality_control
 #: model:ir.model.fields,field_description:rental_quality_control.field_qc_inspection_line__reason

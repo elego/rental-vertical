@@ -19,15 +19,15 @@ msgstr ""
 #: model:ir.model.fields,field_description:rental_loan.field_product_product__loan_count
 #: model:ir.ui.menu,name:rental_loan.account_loan_menu
 msgid "Loans"
-msgstr "Darlehen"
+msgstr ""
 
 #. module: rental_loan
 #: model:ir.model,name:rental_loan.model_product_product
 msgid "Product"
-msgstr "Produkt"
+msgstr ""
 
 #. module: rental_loan
 #: model:ir.model.fields,help:rental_loan.field_product_product__loan_count
 msgid "Total number of Loans"
-msgstr "Anzahl der Darlehen"
+msgstr ""
 

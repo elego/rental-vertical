@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-12 12:39+0000\n"
-"PO-Revision-Date: 2020-12-12 12:39+0000\n"
+"POT-Creation-Date: 2020-12-22 21:08+0000\n"
+"PO-Revision-Date: 2020-12-22 21:08+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr ""
 #. module: rental_offday
 #: model:ir.actions.act_window,name:rental_offday.action_add_offday
 #: model_terms:ir.ui.view,arch_db:rental_offday.view_order_form
-msgid "Additional Off Days"
+msgid "Add additional Off Days"
 msgstr ""
 
 #. module: rental_offday
@@ -69,7 +69,7 @@ msgid "Date From"
 msgstr ""
 
 #. module: rental_offday
-#: code:addons/rental_offday/wizard/add_offday.py:61
+#: code:addons/rental_offday/wizard/add_offday.py:56
 #, python-format
 msgid "Date From must be earlier than Date To"
 msgstr ""
@@ -152,7 +152,7 @@ msgstr ""
 #. module: rental_offday
 #: model:ir.model,name:rental_offday.model_rental_offday
 msgid "Off-days for daily rentals"
-msgstr "Standtage für Vermietungen auf Tagesbasis"
+msgstr ""
 
 #. module: rental_offday
 #: model_terms:ir.ui.view,arch_db:rental_offday.view_add_offday
@@ -185,22 +185,22 @@ msgid "Show Off-Days"
 msgstr ""
 
 #. module: rental_offday
-#: code:addons/rental_offday/models/sale.py:114
-#: code:addons/rental_offday/models/sale.py:135
-#: code:addons/rental_offday/tests/test_rental_offday.py:108
+#: code:addons/rental_offday/models/sale.py:117
+#: code:addons/rental_offday/models/sale.py:144
+#: code:addons/rental_offday/tests/test_rental_offday.py:137
 #, python-format
 msgid "The off-day \"%s\" is not between %s and %s."
 msgstr ""
 
 #. module: rental_offday
-#: code:addons/rental_offday/models/sale.py:137
-#: code:addons/rental_offday/tests/test_rental_offday.py:92
+#: code:addons/rental_offday/models/sale.py:149
+#: code:addons/rental_offday/tests/test_rental_offday.py:112
 #, python-format
 msgid "The off-day \"%s\" was already created as fixed off-day."
 msgstr ""
 
 #. module: rental_offday
-#: code:addons/rental_offday/models/sale.py:84
+#: code:addons/rental_offday/models/sale.py:85
 #, python-format
 msgid "The start date must be anterior to the end date."
 msgstr ""
@@ -217,20 +217,20 @@ msgid "Weekend"
 msgstr ""
 
 #. module: rental_offday
-#: code:addons/rental_offday/wizard/add_offday.py:53
+#: code:addons/rental_offday/wizard/add_offday.py:52
 #, python-format
 msgid "You can not add off day earlier than %s"
 msgstr ""
 
 #. module: rental_offday
-#: code:addons/rental_offday/wizard/add_offday.py:57
+#: code:addons/rental_offday/wizard/add_offday.py:54
 #, python-format
 msgid "You can not add off day later than %s"
 msgstr ""
 
 #. module: rental_offday
-#: code:addons/rental_offday/models/rental_offday.py:53
-#: code:addons/rental_offday/models/sale.py:141
+#: code:addons/rental_offday/models/rental_offday.py:51
+#: code:addons/rental_offday/models/sale.py:156
 #, python-format
 msgid "You have already created the off-day \"%s\"."
 msgstr ""

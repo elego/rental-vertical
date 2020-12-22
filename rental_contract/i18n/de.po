@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-02 10:58+0000\n"
-"PO-Revision-Date: 2020-09-02 10:58+0000\n"
+"POT-Creation-Date: 2020-12-22 21:22+0000\n"
+"PO-Revision-Date: 2020-12-22 21:22+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -103,8 +103,8 @@ msgstr "Kundenvertrag"
 
 #. module: rental_contract
 #: model:ir.ui.menu,name:rental_contract.menu_customer_contracts
-msgid "Customer Subscriptions"
-msgstr "Periodische Rechnungen"
+msgid "Customer Contracts"
+msgstr "Kundenverträge"
 
 #. module: rental_contract
 #: model:ir.model.fields,field_description:rental_contract.field_sale_order_line__date_end
@@ -220,6 +220,11 @@ msgid "Sub Type"
 msgstr "Subtyp"
 
 #. module: rental_contract
+#: model_terms:ir.ui.view,arch_db:rental_contract.contract_contract_search_view
+msgid "Subscription Subtype"
+msgstr ""
+
+#. module: rental_contract
 #: selection:contract.order.type,contract_type:0
 msgid "Supplier"
 msgstr "Lieferant"
@@ -260,3 +265,4 @@ msgstr "Lieferantenvertrag"
 #: model:contract.order.type,name:rental_contract.vendor_rental_contract_type
 msgid "Vendor Rental Contract"
 msgstr "Lieferanten-Mietvertrag"
+
