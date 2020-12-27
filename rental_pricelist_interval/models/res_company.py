@@ -3,31 +3,32 @@ from odoo import fields, models
 
 
 class ResCompany(models.Model):
-    _inherit = 'res.company'
+    _inherit = "res.company"
 
     rental_price_interval_rule_ids = fields.One2many(
-        'rental.price.interval.rule',
-        'company_id',
+        "rental.price.interval.rule",
+        "company_id",
         string="Rental Interval Price Rules",
     )
 
+
 class RentalPriceIntervalRule(models.Model):
-    _name = 'rental.price.interval.rule'
-    _description = 'Rental Price Interval Rule'
+    _name = "rental.price.interval.rule"
+    _description = "Rental Price Interval Rule"
 
     name = fields.Char(
-        'Name',
+        "Name",
     )
 
     factor = fields.Float(
-        'Factor',
+        "Factor",
     )
 
     min_quantity = fields.Integer(
-        'Interval (days)',
+        "Interval (days)",
     )
 
     company_id = fields.Many2one(
-        'res.company',
-        'Company',
+        "res.company",
+        "Company",
     )

@@ -4,10 +4,10 @@ from odoo import api, fields, models, _
 
 
 class ProductProduct(models.Model):
-    _inherit = 'product.product'
+    _inherit = "product.product"
 
     product_timeline_ids = fields.One2many(
-        'product.timeline',
-        'product_id',
-        'Time Lines',
+        "product.timeline",
+        "product_id",
+        "Time Lines",
     )

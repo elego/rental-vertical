@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-06 13:25+0000\n"
-"PO-Revision-Date: 2020-10-06 13:25+0000\n"
+"POT-Creation-Date: 2020-12-22 21:04+0000\n"
+"PO-Revision-Date: 2020-12-22 21:04+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -74,8 +74,6 @@ msgstr ""
 
 #. module: rental_contract_insurance
 #: model_terms:ir.ui.view,arch_db:rental_contract_insurance.view_order_form
-#: model:product.product,name:rental_contract_insurance.product_product_contract_insurance
-#: model:product.template,name:rental_contract_insurance.product_product_contract_insurance_product_template
 msgid "Insurance"
 msgstr ""
 
@@ -97,6 +95,12 @@ msgstr ""
 #. module: rental_contract_insurance
 #: model:ir.model.fields,field_description:rental_contract_insurance.field_sale_order_line__insurance_line_ids
 msgid "Insurance Line"
+msgstr ""
+
+#. module: rental_contract_insurance
+#: model:product.product,name:rental_contract_insurance.product_product_contract_insurance
+#: model:product.template,name:rental_contract_insurance.product_product_contract_insurance_product_template
+msgid "Insurance Month"
 msgstr ""
 
 #. module: rental_contract_insurance
@@ -210,13 +214,13 @@ msgid "Unit(s)"
 msgstr ""
 
 #. module: rental_contract_insurance
-#: code:addons/rental_contract_insurance/models/product.py:28
+#: code:addons/rental_contract_insurance/models/product.py:30
 #, python-format
 msgid "Uom of Insurance product should be in Category Time."
 msgstr ""
 
 #. module: rental_contract_insurance
-#: code:addons/rental_contract_insurance/models/sale.py:36
+#: code:addons/rental_contract_insurance/models/sale.py:38
 #, python-format
 msgid "Uom of the selected Insurance product should be same as the sale order line"
 msgstr ""

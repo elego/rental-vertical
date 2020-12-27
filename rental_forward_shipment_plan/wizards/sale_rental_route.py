@@ -8,7 +8,7 @@ from odoo.tools.float_utils import float_compare
 class SaleRentalRouteOutLine(models.TransientModel):
     _inherit = "sale.rental.route.out.line"
 
-    #(override)
+    # (override)
     @api.multi
     def _split_rental_move(self):
         self.ensure_one()
@@ -16,9 +16,7 @@ class SaleRentalRouteOutLine(models.TransientModel):
             return False
         rounding = self.product_id.uom_id.rounding
         if (
-            float_compare(
-                self.rental_avail_qty, self.qty, precision_rounding=rounding
-            )
+            float_compare(self.rental_avail_qty, self.qty, precision_rounding=rounding)
             < 0
         ):
             raise UserError(
@@ -57,14 +55,13 @@ class SaleRentalRouteOutLine(models.TransientModel):
             self.rental_in_move_id.product_uom_qty -= 1
         new_move = self.env["stock.move"].browse(new_move_id)
         # (Extension) Create Forward Shipment Plan
-        order_lines = self.env['sale.order.line'].browse()
+        order_lines = self.env["sale.order.line"].browse()
         order_lines |= self.rental_id.start_order_line_id
         order_lines |= self.rental_in_id.start_order_line_id
-        fsp_vals = self.env['shipment.plan']._prepare_forward_shipment_plan_values(
-            self.rental_in_move_id.shipment_plan_id,
-            self.move_id.shipment_plan_id
+        fsp_vals = self.env["shipment.plan"]._prepare_forward_shipment_plan_values(
+            self.rental_in_move_id.shipment_plan_id, self.move_id.shipment_plan_id
         )
-        forward_shipment_plan = self.env['shipment.plan'].create(fsp_vals)
+        forward_shipment_plan = self.env["shipment.plan"].create(fsp_vals)
         new_move.write(
             {
                 "location_id": self.rental_in_move_id.location_id.id,
@@ -83,7 +80,7 @@ class SaleRentalRouteOutLine(models.TransientModel):
 class SaleRentalRouteInLine(models.TransientModel):
     _inherit = "sale.rental.route.in.line"
 
-    #(override)
+    # (override)
     @api.multi
     def _split_rental_move(self):
         self.ensure_one()
@@ -91,9 +88,7 @@ class SaleRentalRouteInLine(models.TransientModel):
             return False
         rounding = self.product_id.uom_id.rounding
         if (
-            float_compare(
-                self.rental_avail_qty, self.qty, precision_rounding=rounding
-            )
+            float_compare(self.rental_avail_qty, self.qty, precision_rounding=rounding)
             < 0
         ):
             raise UserError(
@@ -132,14 +127,13 @@ class SaleRentalRouteInLine(models.TransientModel):
             self.rental_out_move_id.product_uom_qty -= 1
         new_move = self.env["stock.move"].browse(new_move_id)
         # (Extension) Create Forward Shipment Plan
-        order_lines = self.env['sale.order.line'].browse()
+        order_lines = self.env["sale.order.line"].browse()
         order_lines |= self.rental_id.start_order_line_id
         order_lines |= self.rental_out_id.start_order_line_id
-        fsp_vals = self.env['shipment.plan']._prepare_forward_shipment_plan_values(
-            self.move_id.shipment_plan_id,
-            self.rental_out_move_id.shipment_plan_id
+        fsp_vals = self.env["shipment.plan"]._prepare_forward_shipment_plan_values(
+            self.move_id.shipment_plan_id, self.rental_out_move_id.shipment_plan_id
         )
-        forward_shipment_plan = self.env['shipment.plan'].create(fsp_vals)
+        forward_shipment_plan = self.env["shipment.plan"].create(fsp_vals)
         new_move.write(
             {
                 "location_id": self.move_id.location_id.id,

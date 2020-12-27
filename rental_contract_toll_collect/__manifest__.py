@@ -1,14 +1,14 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
 {
-    'name': 'Rental Contract Toll Collect',
-    'summary': "Invoice toll charge lines to customers periodically by contract usage.",
-    'description': '''
+    "name": "Rental Contract Toll Collect",
+    "summary": "Invoice toll charge lines to customers periodically by contract usage.",
+    "description": """
 This module is an extension of rental_toll_collect. When using contracts for periodic 
 invoicing of rental orders, this module provides the opportunity to also invoice the 
 toll charges for the given time period.
-    ''',
-    'usage': '''
+    """,
+    "usage": """
 - Create a rental order with vehicle products as rental order lines.
 - The products needs to be rented out in months in order to automatically create the contract.
 - Confirm the rental order and see the newly created contract.
@@ -22,21 +22,19 @@ This module is automatically installed when all of the following modules are ins
 - rental_toll_collect
 - rental_contract_month
 
-    ''',
-    'version': '12.0.1.0.0',
-    'category': 'Rental',
-    'author': 'Odoo Community Association (OCA) / elego Software Solutions GmbH',
-    'depends': [
-        'rental_toll_collect',
-        'rental_contract_month',
+    """,
+    "version": "12.0.1.0.0",
+    "category": "Rental",
+    "author": "Odoo Community Association (OCA) / elego Software Solutions GmbH",
+    "depends": [
+        "rental_toll_collect",
+        "rental_contract_month",
     ],
-    'data': [
-        'views/contract_views.xml',
+    "data": [
+        "views/contract_views.xml",
     ],
-    'demo': [
-    ],
-    'qweb': [
-    ],
-    'auto_install': True,
-    'license': 'AGPL-3',
+    "demo": [],
+    "qweb": [],
+    "auto_install": True,
+    "license": "AGPL-3",
 }

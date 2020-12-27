@@ -4,13 +4,13 @@ from odoo import api, fields, models, _
 
 
 class ProjectTask(models.Model):
-    _inherit = 'project.task'
+    _inherit = "project.task"
 
     product_instance = fields.Boolean(
-        'Product Instance',
-        related="product_id.product_instance")
+        "Product Instance", related="product_id.product_instance"
+    )
 
-    @api.onchange('product_id')
+    @api.onchange("product_id")
     def onchange_product_id(self):
         if self.product_id:
             self.lot_id = self.product_id.instance_serial_number_id

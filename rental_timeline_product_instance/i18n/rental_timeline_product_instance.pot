@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-21 10:11+0000\n"
-"PO-Revision-Date: 2020-03-21 10:11+0000\n"
+"POT-Creation-Date: 2020-12-22 21:11+0000\n"
+"PO-Revision-Date: 2020-12-22 21:11+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -76,7 +76,7 @@ msgid "State:"
 msgstr ""
 
 #. module: rental_timeline_product_instance
-#: code:addons/rental_timeline_product_instance/models/product_timeline.py:67
+#: code:addons/rental_timeline_product_instance/models/product_timeline.py:73
 #, python-format
 msgid "You can not have 2 timelines that overlaps on the same day."
 msgstr ""

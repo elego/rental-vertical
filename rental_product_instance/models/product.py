@@ -5,64 +5,66 @@ from odoo.osv import expression
 
 
 class ProductCategory(models.Model):
-    _inherit = 'product.category'
+    _inherit = "product.category"
 
     show_instance_condition_type = fields.Selection(
         string="Show Instance Condition Type",
         selection=[
-            ('hour', 'Hours'),
-            ('km', 'Kilometers'),
+            ("hour", "Hours"),
+            ("km", "Kilometers"),
         ],
     )
 
 
 class ProductTemplate(models.Model):
-    _inherit = 'product.template'
+    _inherit = "product.template"
 
     product_instance = fields.Boolean(
-        string='Product Instance',
+        string="Product Instance",
         default=False,
-        help='This product is a product instance, which can only have one unit in stock.',
+        help="This product is a product instance, which can only have one unit in stock.",
     )
 
-    @api.onchange('product_instance')
+    @api.onchange("product_instance")
     def onchange_product_instance(self):
         if self.product_instance:
-            self.tracking = 'serial'
-            self.type = 'product'
+            self.tracking = "serial"
+            self.type = "product"
 
-    @api.onchange('tracking')
+    @api.onchange("tracking")
     def onchange_tracking(self):
         res = super(ProductTemplate, self).onchange_tracking()
-        products = self.filtered(lambda self: self.tracking and self.tracking != 'serial')
+        products = self.filtered(
+            lambda self: self.tracking and self.tracking != "serial"
+        )
         if products:
             products.product_instance = False
         return res
 
 
 class ProductProduct(models.Model):
-    _inherit = 'product.product'
+    _inherit = "product.product"
 
     instance_serial_number_id = fields.Many2one(
-        'stock.production.lot',
-        'Serial Number',
-        ondelete='set null',
+        "stock.production.lot",
+        "Serial Number",
+        ondelete="set null",
         domain="[('product_id', '=', id)]",
     )
 
     instance_current_location_id = fields.Many2one(
-        'stock.location',
+        "stock.location",
         string="Current Location",
     )
     instance_state = fields.Selection(
         string="State",
         selection=[
-            ('available', 'Available'),
-            ('rental', 'Rental'),
-            ('reserved', 'Reserved'),
-            ('maintenance', 'Maintenance'),
-            ('repair', 'Repair'),
-            ('delivery', 'Delivery'),
+            ("available", "Available"),
+            ("rental", "Rental"),
+            ("reserved", "Reserved"),
+            ("maintenance", "Maintenance"),
+            ("repair", "Repair"),
+            ("delivery", "Delivery"),
         ],
         compute="_compute_instance_state",
     )
@@ -70,8 +72,8 @@ class ProductProduct(models.Model):
     show_instance_condition_type = fields.Selection(
         string="Show Instance Condition Type",
         selection=[
-            ('hour', 'Hours'),
-            ('km', 'Kilometers'),
+            ("hour", "Hours"),
+            ("km", "Kilometers"),
         ],
         related="categ_id.show_instance_condition_type",
         store=True,
@@ -102,29 +104,27 @@ class ProductProduct(models.Model):
     )
 
     real_sale_price = fields.Float(
-        string='Real Sale Price',
-        help='This is the price at which the product instance was actually sold.'
+        string="Real Sale Price",
+        help="This is the price at which the product instance was actually sold.",
     )
 
     real_total_kilometers = fields.Float(
-        string='Real Total Kilometers',
-        help='This is the mileage the product instance had on sale.'
+        string="Real Total Kilometers",
+        help="This is the mileage the product instance had on sale.",
     )
 
     real_total_hours = fields.Float(
-        string='Real Total Hours',
-        help='These are the total operating hours that the product instance had on sale.'
+        string="Real Total Hours",
+        help="These are the total operating hours that the product instance had on sale.",
     )
 
     real_total_rental_time = fields.Float(
-        string='Real Total Rental Time',
-        help='This is the total rental time for this product instance.'
+        string="Real Total Rental Time",
+        help="This is the total rental time for this product instance.",
     )
 
     instance_operating_data_ids = fields.One2many(
-        'instance.operating.data',
-        'instance_id',
-        string="Operating Data"
+        "instance.operating.data", "instance_id", string="Operating Data"
     )
 
     @api.multi
@@ -141,60 +141,66 @@ class ProductProduct(models.Model):
                 if o_data.date > product.instance_condition_date:
                     product.instance_condition_date = o_data.date
                     product.instance_condition_in_tree = o_data.operating_data
-            if product.show_instance_condition_type == 'hour':
+            if product.show_instance_condition_type == "hour":
                 product.instance_condition_hour = product.instance_condition_in_tree
-            elif product.show_instance_condition_type == 'km':
+            elif product.show_instance_condition_type == "km":
                 product.instance_condition_km = product.instance_condition_in_tree
 
     def _compute_instance_state(self):
-        timeline_obj = self.env['product.timeline']
+        timeline_obj = self.env["product.timeline"]
         today = fields.Date.today()
         for product in self:
-            product.instance_state = 'available'
-            timelines = timeline_obj.search([
-                ('product_id', '=', product.id),
-                ('date_start', '<=', today),
-                ('date_end', '>=', today),
-            ])
+            product.instance_state = "available"
+            timelines = timeline_obj.search(
+                [
+                    ("product_id", "=", product.id),
+                    ("date_start", "<=", today),
+                    ("date_end", ">=", today),
+                ]
+            )
             if timelines:
                 product.instance_state = timelines[0].type
 
     @api.model
-    def _name_search(self, name, args=None, operator='ilike', limit=100, name_get_uid=None):
+    def _name_search(
+        self, name, args=None, operator="ilike", limit=100, name_get_uid=None
+    ):
         res = super()._name_search(
             name=name,
             args=args,
             operator=operator,
             limit=limit,
-            name_get_uid=name_get_uid
+            name_get_uid=name_get_uid,
         )
         args = args or []
         if name:
             domain = [
-                '|',
-                ('instance_serial_number_id.name', operator, name),
-                ('license_plate', operator, name),
+                "|",
+                ("instance_serial_number_id.name", operator, name),
+                ("license_plate", operator, name),
             ]
             record_ids = self._search(
                 expression.AND([domain, args]),
                 limit=limit,
-                access_rights_uid=name_get_uid
+                access_rights_uid=name_get_uid,
             )
             if record_ids:
                 res2 = self.browse(record_ids).name_get()
                 return list(set(res + res2))
         return res
 
-    @api.onchange('product_instance')
+    @api.onchange("product_instance")
     def onchange_product_instance(self):
         if self.product_instance:
-            self.tracking = 'serial'
-            self.type = 'product'
+            self.tracking = "serial"
+            self.type = "product"
 
-    @api.onchange('tracking')
+    @api.onchange("tracking")
     def onchange_tracking(self):
         res = super(ProductProduct, self).onchange_tracking()
-        products = self.filtered(lambda self: self.tracking and self.tracking != 'serial')
+        products = self.filtered(
+            lambda self: self.tracking and self.tracking != "serial"
+        )
         if products:
             products.product_instance = False
         return res
@@ -202,6 +208,11 @@ class ProductProduct(models.Model):
     @api.multi
     def action_view_operating_data(self):
         self.ensure_one()
-        action = self.env.ref('rental_product_instance.action_instance_operating_data').read([])[0]
-        action['context'] = {'default_instance_id': self.id, 'search_default_instance_id': self.id}
+        action = self.env.ref(
+            "rental_product_instance.action_instance_operating_data"
+        ).read([])[0]
+        action["context"] = {
+            "default_instance_id": self.id,
+            "search_default_instance_id": self.id,
+        }
         return action

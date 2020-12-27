@@ -4,7 +4,7 @@ from odoo import api, fields, models, exceptions, _
 
 
 class SaleOrderLine(models.Model):
-    _inherit = 'sale.order.line'
+    _inherit = "sale.order.line"
 
     @api.model
     def create(self, vals):

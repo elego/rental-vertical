@@ -7,6 +7,6 @@ logger = logging.getLogger(__name__)
 
 
 class AccountIncoterms(models.Model):
-    _inherit = 'account.incoterms'
+    _inherit = "account.incoterms"
 
-    trans_pr_needed = fields.Boolean('Transport PR Needed')
+    trans_pr_needed = fields.Boolean("Transport PR Needed")

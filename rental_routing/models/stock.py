@@ -9,6 +9,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 class StockMove(models.Model):
     _inherit = "stock.move"
 
@@ -46,9 +47,7 @@ class StockMove(models.Model):
                         )
                     )
                 else:
-                    move.rental_in_id.in_move_id.product_uom_qty += (
-                        move.product_uom_qty
-                    )
+                    move.rental_in_id.in_move_id.product_uom_qty += move.product_uom_qty
         return super(StockMove, self)._action_cancel()
 
     def _push_apply(self):
@@ -71,19 +70,22 @@ class StockPicking(models.Model):
 
 
 class StockRule(models.Model):
-    _inherit = 'stock.rule'
+    _inherit = "stock.rule"
 
     def _push_prepare_move_copy_values(self, move_to_copy, new_date):
         """Inherit to write the end date of the rental on the return move"""
         res = super(StockRule, self)._push_prepare_move_copy_values(
-            move_to_copy, new_date)
-        location_id = res.get('location_id', False)
-        if location_id and\
-            move_to_copy.sale_line_id and\
-            move_to_copy.sale_line_id.order_id.partner_shipping_id.rental_onsite_location_id and\
-            location_id ==\
-            move_to_copy.sale_line_id.order_id.partner_shipping_id.rental_onsite_location_id.id and\
-            move_to_copy.sale_line_id.rental_type == 'new_rental':
+            move_to_copy, new_date
+        )
+        location_id = res.get("location_id", False)
+        if (
+            location_id
+            and move_to_copy.sale_line_id
+            and move_to_copy.sale_line_id.order_id.partner_shipping_id.rental_onsite_location_id
+            and location_id
+            == move_to_copy.sale_line_id.order_id.partner_shipping_id.rental_onsite_location_id.id
+            and move_to_copy.sale_line_id.rental_type == "new_rental"
+        ):
             rental_end_date = move_to_copy.sale_line_id.end_date
-            res['date_expected'] = fields.Datetime.to_datetime(rental_end_date)
+            res["date_expected"] = fields.Datetime.to_datetime(rental_end_date)
         return res

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-05 14:08+0000\n"
-"PO-Revision-Date: 2020-10-05 14:08+0000\n"
+"POT-Creation-Date: 2020-12-22 21:24+0000\n"
+"PO-Revision-Date: 2020-12-22 21:24+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -197,7 +197,7 @@ msgid "New Rental"
 msgstr ""
 
 #. module: rental_timeline
-#: code:addons/rental_timeline/models/sale.py:79
+#: code:addons/rental_timeline/models/sale.py:89
 #, python-format
 msgid "No found rented product."
 msgstr ""
@@ -287,7 +287,7 @@ msgid "QWeb"
 msgstr ""
 
 #. module: rental_timeline
-#: code:addons/rental_timeline/models/product_timeline.py:168
+#: code:addons/rental_timeline/models/product_timeline.py:171
 #, python-format
 msgid "R: %s"
 msgstr ""
@@ -329,6 +329,11 @@ msgstr ""
 #. module: rental_timeline
 #: model_terms:ir.ui.view,arch_db:rental_timeline.view_product_timeline_timeline
 msgid "Rental period:"
+msgstr ""
+
+#. module: rental_timeline
+#: selection:product.timeline,type:0
+msgid "Repair"
 msgstr ""
 
 #. module: rental_timeline
@@ -466,10 +471,11 @@ msgid "Warehouse:"
 msgstr ""
 
 #. module: rental_timeline
-#: code:addons/rental_timeline/models/sale.py:111
+#: code:addons/rental_timeline/models/sale.py:132
 #, python-format
 msgid "You are not allowed to change the 'rental type' in an order line of a confirmed order.\n"
 "\n"
 "Order: %s\n"
 "Line with product: '%s'"
 msgstr ""
+

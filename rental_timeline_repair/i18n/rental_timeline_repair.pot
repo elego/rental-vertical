@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-20 14:45+0000\n"
-"PO-Revision-Date: 2020-03-20 14:45+0000\n"
+"POT-Creation-Date: 2020-12-22 21:22+0000\n"
+"PO-Revision-Date: 2020-12-22 21:22+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,18 +16,13 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: rental_timeline_repair
-#: selection:product.timeline,type:0
-msgid "Delivery"
-msgstr ""
-
-#. module: rental_timeline_repair
-#: code:addons/rental_timeline_repair/models/repair.py:66
+#: code:addons/rental_timeline_repair/models/repair.py:67
 #, python-format
 msgid "No found repaired product."
 msgstr ""
 
 #. module: rental_timeline_repair
-#: code:addons/rental_timeline_repair/models/repair.py:51
+#: code:addons/rental_timeline_repair/models/repair.py:50
 #, python-format
 msgid "No found timelines."
 msgstr ""
@@ -69,7 +64,7 @@ msgid "Type"
 msgstr ""
 
 #. module: rental_timeline_repair
-#: code:addons/rental_timeline_repair/models/product_timeline.py:27
+#: code:addons/rental_timeline_repair/models/product_timeline.py:28
 #, python-format
 msgid "r: %s"
 msgstr ""
