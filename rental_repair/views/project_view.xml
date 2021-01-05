@@ -49,11 +49,22 @@
                     <field name="repair_ids"
                            context="{'default_product_id': product_id, 'default_lot_id': lot_id, 'default_partner_id': partner_id}" />
                 </page>
-                <page name="repair" string="Vendor Repair Orders" groups="purchase.group_purchase_user">
+            </notebook>
+        </field>
+    </record>
+
+    <record id="view_task_form3" model="ir.ui.view">
+        <field name="name">view.project.task.form</field>
+        <field name="model">project.task</field>
+        <field name="groups_id" eval="[(4, ref('purchase.group_purchase_user'))]"/>
+        <field name="inherit_id" ref="view_task_form2" />
+        <field name="arch" type="xml">
+            <page name="repair" position="after">
+                <page name="vendor" string="Vendor Repair Orders">
                     <field name="vendor_repair_ids"
                            context="{'default_order_type': %(rental_purchase_order_type.po_type_repair_order)d}" />
                 </page>
-            </notebook>
+            </page>
         </field>
     </record>
 
