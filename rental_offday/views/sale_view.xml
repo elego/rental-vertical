@@ -6,12 +6,6 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="rental_base.view_order_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='order_line']/tree//field[@name='end_date']" position="after">
-                <button name="rental_offday.action_add_offday"
-                        string="Add additional Off Days"
-                        icon="fa-pencil-square-o"
-                        type="action"/>
-            </xpath>
             <xpath expr="//group[@id='rental_times']//label[@for='product_uom_qty']" position="before">
                 <label for="offday_number" string="Off-Time"  attrs="{'invisible': [('show_offday', '=', False)]}"/>
                 <div attrs="{'invisible': [('show_offday', '=', False)]}">
@@ -21,13 +15,11 @@
             <xpath expr="//field[@name='order_line']//form" position="inside">
                 <notebook>
                     <page name="offdays" string="Off-Days" attrs="{'invisible': [('show_offday', '=', False)]}">
-                        <group>
-                            <field name="show_offday" invisible="1"/>
-                            <field name="fixed_offday_type"/>
-                        </group>
+                        <field name="show_offday" invisible="1"/>
                         <group>
                             <group string="Fixed Off Days">
-                                <field name="fixed_offday_ids" nolabel="1">
+                                <field name="fixed_offday_type"/>
+                                <field name="fixed_offday_ids" nolabel="1" colspan="3">
                                     <tree>
                                         <field name="date"/>
                                         <field name="name"/>
@@ -35,6 +27,18 @@
                                 </field>
                             </group>
                             <group string="Additional Off Days">
+                                <div name="additional_offday_period" colspan="3">
+                                    <span class="oe_edit_only">From &amp;nbsp;</span>
+                                    <field class="oe_inline" name="offday_date_start" nolabel="1"/>
+                                    <span class="oe_edit_only">&amp;nbsp; to &amp;nbsp;</span>
+                                    <field class="oe_inline" name="offday_date_end" nolabel="1"/>
+                                    &amp;nbsp;
+                                    <button name="action_add_several_offdays"
+                                            icon="fa-plus-square"
+                                            type="object"
+                                            class="oe_edit_only"
+                                    />
+                                </div>
                                 <field name="add_offday_ids" nolabel="1">
                                     <tree editable="bottom">
                                         <field name="date"/>
