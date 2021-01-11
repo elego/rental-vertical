@@ -170,7 +170,7 @@ class TestRentalOffDay(TransactionCase):
         self.assertEqual(self.sale_order_line.number_of_time_unit, 29.0)
         self.assertEqual(len(self.sale_order_line.add_offday_ids), 1.0)
 
-    def test_03_wizard_add_offday(self):
+    def test_03_add_several_additional_offdays(self):
         date_start = fields.Date.from_string("2020-12-01")
         date_end = fields.Date.from_string("2020-12-31")
         self.sale_order_line.write(
@@ -188,24 +188,9 @@ class TestRentalOffDay(TransactionCase):
         self.sale_order_line.onchange_fixed_offday_type()
         self.sale_order_line.rental_qty_number_of_days_change()
         # Add additional off days
-        date_from = fields.Date.from_string("2020-12-18")
-        date_to = fields.Date.from_string("2020-12-28")
-        wizard = (
-            self.env["add.offday"]
-            .with_context(
-                {
-                    "active_id": self.sale_order_line.id,
-                }
-            )
-            .create(
-                {
-                    "order_line_id": self.sale_order_line.id,
-                    "date_from": date_from,
-                    "date_to": date_to,
-                }
-            )
-        )
-        wizard.action_done()
+        self.offday_date_start = fields.Date.from_string("2020-12-18")
+        self.offday_date_end = fields.Date.from_string("2020-12-28")
+        self.action_add_several_offdays()
         # 31 - 8 - 7 = 16
         self.assertEqual(len(self.sale_order_line.fixed_offday_ids), 8)
         self.assertEqual(len(self.sale_order_line.add_offday_ids), 7)
