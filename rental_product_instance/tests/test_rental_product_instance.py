@@ -59,31 +59,6 @@ class TestRentalProductInstance(RentalStockCommon):
         self.productA.onchange_tracking()
         self.assertEqual(self.productA.product_instance, False)
 
-    def test_02_instance_state(self):
-        self.productA.write(
-            {
-                "product_instance": True,
-                "product_timeline_ids": [
-                    (
-                        0,
-                        0,
-                        {
-                            "order_name": "Dummy",
-                            "res_model": "sale.order",
-                            "res_id": 1,
-                            "click_res_model": "sale.order",
-                            "click_res_id": 1,
-                            "date_start": self.date_start,
-                            "date_end": self.date_end,
-                            "product_id": self.productA.id,
-                            "type": "rental",
-                        },
-                    ),
-                ],
-            }
-        )
-        self.assertEqual(self.productA.instance_state, "rental")
-
     def test_02_instance_current_location(self):
         self.productA.write(
             {
