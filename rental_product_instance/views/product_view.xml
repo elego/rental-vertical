@@ -120,13 +120,8 @@
                 <field name="name" position="replace">
                     <field name="name" string="Product" filter_domain="['|', '|', '|', '|', ('default_code', 'ilike', self), ('name', 'ilike', self), ('barcode', 'ilike', self), ('instance_serial_number_id.name', 'ilike', self), ('license_plate', 'ilike', self)]"/>
                 </field>
-                <xpath expr="//filter[@name='inactive']" position="after">
-                    <separator/>
-                    <filter name="state_available" string="Available" domain="[('instance_state','=','available')]"/>
-                    <filter name="state_reserved" string="Reserved" domain="[('instance_state','=','reserved')]"/>
-                    <filter name="state_rental" string="Rental" domain="[('instance_state','=','rental')]"/>
-                </xpath>
             </field>
         </record>
+
     </data>
 </odoo>

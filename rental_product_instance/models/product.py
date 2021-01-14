@@ -135,24 +135,12 @@ class ProductProduct(models.Model):
                 product.instance_condition_km = product.instance_condition_in_tree
 
     def _compute_instance_state(self):
-        timeline_obj = self.env["product.timeline"]
-        today = fields.Date.today()
+        # This function can be extended in other module
         for product in self:
             product.instance_state = "available"
-            timelines = timeline_obj.search(
-                [
-                    ("product_id", "=", product.id),
-                    ("date_start", "<=", today),
-                    ("date_end", ">=", today),
-                ]
-            )
-            if timelines:
-                if any(line.type == "rental" for line in timelines):
-                    product.instance_state = "rental"
-                elif any(line.type == "reserved" for line in timelines):
-                    product.instance_state = "reserved"
 
     def _search_instance_state(self, operator, value):
+        # This function can be extended in other module
         negative = operator in expression.NEGATIVE_TERM_OPERATORS
 
         # In case we have no value
@@ -161,29 +149,7 @@ class ProductProduct(models.Model):
 
         if operator in ["in", "not in", "!="]:
             # Do not support for 'in' and 'not in' and '!='
-            return expression.FALSE_DOMAIN
-
-        if operator in ["="]:
-            domains = [
-                ("product_timeline_ids.date_start", "<=", "today"),
-                ("product_timeline_ids.date_end", ">=", "today"),
-            ]
-            if value == "available":
-                domains = [
-                    "|",
-                    ("product_timeline_ids", "=", False),
-                    "!",
-                    "&",
-                    ("product_timeline_ids.date_start", "<=", "today"),
-                    ("product_timeline_ids.date_end", ">=", "today"),
-                ]
-            elif value == "reserved":
-                domains.append(("product_timeline_ids.type", "=", "reserved"))
-            elif value == "rental":
-                domains.append(("product_timeline_ids.type", "=", "rental"))
-            else:
-                return expression.FALSE_DOMAIN
-            return domains
+            return expression.TRUE_DOMAIN
 
         return expression.TRUE_DOMAIN
 
