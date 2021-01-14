@@ -2,6 +2,11 @@
 Changelog
 ---------
 
+- a35a62d 2020-12-22 22:59:30 +0100 kay.haeusler@elego.de  regenerate all de.po and \*.pot files; issue #4016
+- 83ed8f7 2020-12-22 18:06:08 +0100 wagner@elegosoft.com  all Python code reformatted by black code formatter (issue #4016)
+- 37ff1d6 2020-11-25 09:42:48 +0100 yweng@elegosoft.com  (origin/feature_3899_blp862_search_product_v12) [IMP] add translations
+- e12ce34 2020-11-17 19:28:23 +0100 yweng@elegosoft.com  [IMP] improve filter_domain for seaching on instance_serial_number_id and license_plate
+- c7e3b59 2020-11-06 09:59:46 +0100 wagner@elegosoft.com  regenerate doc from manifests (issue #3613)
 - 391ef2a 2020-10-28 20:59:58 +0100 wagner@elegosoft.com  add usage information for product sets and product packs; add configuration and usage information for rental_sale and extend gen-doc for configuration (issue #3613)
 - d39f57e 2020-10-28 20:18:47 +0100 wagner@elegosoft.com  add links to the index in README.md (issue #3613)
 - b1039c8 2020-10-28 17:39:27 +0100 wagner@elegosoft.com  add index generation and add index to README.md (issue #3613)

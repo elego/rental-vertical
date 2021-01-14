@@ -1,7 +1,7 @@
 Rental Off Day
 ====================================================
 
-*This file has been generated on 2020-11-06-09-57-10. Changes to it will be overwritten.*
+*This file has been generated on 2021-01-14-13-44-51. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -11,12 +11,12 @@ Calculate off-days in rentals on daily basis
 Description
 -----------
 
-During short-term rentals over several days or weeks, the customer and the salesman 
-agree on so called off-days. On these days the customer still have the rented products 
-but usually doesn't use them and, therefore, does not pay the daily price. This is often 
-the case for weekends and holidays, since there might be some legal limitations in using 
+During short-term rentals over several days or weeks, the customer and the salesman
+agree on so called off-days. On these days the customer still have the rented products
+but usually doesn't use them and, therefore, does not pay the daily price. This is often
+the case for weekends and holidays, since there might be some legal limitations in using
 the products on these days.
-In order to meet this requirement, the salesman can add off-days on sale order lines for 
+In order to meet this requirement, the salesman can add off-days on sale order lines for
 products that are rentable in days. These days will not be included in price calculation.
 
 
@@ -30,8 +30,8 @@ The off-days can only be used for products rentable in days.
 - Create a sale order and rent out the product in days.
 - Set a start and end date, e.g. for 3 weeks.
 - On sale order line you will see a page 'Off-Days'.
-- Choose the type 'Weekend' in order to create 'Fixed Off-Days' and you get a list with all saturdays 
-  and sundays within the rental period.   
+- Choose the type 'Weekend' in order to create 'Fixed Off-Days' and you get a list with all saturdays
+  and sundays within the rental period.
 - Add some additional off-days.
 - The number of off-days reduces the rental quantity and is therefore not included in price calculation.
 
@@ -39,6 +39,13 @@ The off-days can only be used for products rentable in days.
 Changelog
 ---------
 
+- 78a189b 2021-01-12 09:11:44 +0100 maria.sparenberg@elegosoft.com  (origin/feature_3978_blp961_offdays_unittest_v12) issue #3978 fix unittest
+- eb2e57b 2021-01-11 14:03:33 +0100 maria.sparenberg@elegosoft.com  (origin/feature_3978_blp954_several_offdays_v12) issue #3978 add several additional off days in sale order line form view (not tree view)
+- a35a62d 2020-12-22 22:59:30 +0100 kay.haeusler@elego.de  regenerate all de.po and \*.pot files; issue #4016
+- 83ed8f7 2020-12-22 18:06:08 +0100 wagner@elegosoft.com  all Python code reformatted by black code formatter (issue #4016)
+- afbe85d 2020-12-21 19:10:41 +0100 kay.haeusler@elego.de  (origin/feature_3979_blp925_rental_pricelist_interval_v12) fix an onchange problem; issue #3979
+- 32d50e5 2020-12-12 13:24:47 +0100 yweng@elegosoft.com  (origin/feature_3978_blp924_rental_offday_v12) [IMP] Wizard add.offday (issue #3978)
+- c7e3b59 2020-11-06 09:59:46 +0100 wagner@elegosoft.com  regenerate doc from manifests (issue #3613)
 - 391ef2a 2020-10-28 20:59:58 +0100 wagner@elegosoft.com  add usage information for product sets and product packs; add configuration and usage information for rental_sale and extend gen-doc for configuration (issue #3613)
 - d39f57e 2020-10-28 20:18:47 +0100 wagner@elegosoft.com  add links to the index in README.md (issue #3613)
 - b1039c8 2020-10-28 17:39:27 +0100 wagner@elegosoft.com  add index generation and add index to README.md (issue #3613)

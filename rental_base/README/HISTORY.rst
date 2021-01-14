@@ -2,6 +2,13 @@
 Changelog
 ---------
 
+- a35a62d 2020-12-22 22:59:30 +0100 kay.haeusler@elego.de  regenerate all de.po and \*.pot files; issue #4016
+- 83ed8f7 2020-12-22 18:06:08 +0100 wagner@elegosoft.com  all Python code reformatted by black code formatter (issue #4016)
+- 32ebf04 2020-12-17 14:01:20 +0100 yweng@elegosoft.com  (origin/defect_3953_blp925_update_date_in_sale_order_line_v12) [FIX] update_start_end_date() of sale.order.line to update the start_date later (issue 3953)
+- 8101749 2020-11-25 13:13:07 +0100 yweng@elegosoft.com  (origin/defect_3722_blp862_rental_timeline_product_instance_v12) [IMP] fixes conflict between sale_order_revision and sale_order_type
+- 1b3f485 2020-11-07 19:21:05 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_3339_blp849_rental_icon_v12: addons-rental-vertical remotes/origin/feature_3339_blp849_rental_icon_v12 - 89aa2125126c4a3599bd6c3e58ff0a788bf8019d issue #3339 change rental icon (not perfect yet but better)
+- c7e3b59 2020-11-06 09:59:46 +0100 wagner@elegosoft.com  regenerate doc from manifests (issue #3613)
+- 89aa212 2020-11-05 13:40:17 +0100 maria.sparenberg@elegosoft.com  (origin/feature_3339_blp849_rental_icon_v12) issue #3339 change rental icon (not perfect yet but better)
 - 391ef2a 2020-10-28 20:59:58 +0100 wagner@elegosoft.com  add usage information for product sets and product packs; add configuration and usage information for rental_sale and extend gen-doc for configuration (issue #3613)
 - d39f57e 2020-10-28 20:18:47 +0100 wagner@elegosoft.com  add links to the index in README.md (issue #3613)
 - b1039c8 2020-10-28 17:39:27 +0100 wagner@elegosoft.com  add index generation and add index to README.md (issue #3613)

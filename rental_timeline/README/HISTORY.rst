@@ -2,6 +2,13 @@
 Changelog
 ---------
 
+- a35a62d 2020-12-22 22:59:30 +0100 kay.haeusler@elego.de  regenerate all de.po and \*.pot files; issue #4016
+- 83ed8f7 2020-12-22 18:06:08 +0100 wagner@elegosoft.com  all Python code reformatted by black code formatter (issue #4016)
+- 1bd390d 2020-12-05 19:21:06 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/defect_3961_blp862_rental_timeline_v12: addons-rental-vertical remotes/origin/defect_3961_blp862_rental_timeline_v12 - 5b368fda8e6b6ecc26a6da20265e04fd3777f384 create timeline object if the option retal was set afterwards; issue #3961
+- 5b368fd 2020-12-02 10:47:04 +0100 kay.haeusler@elego.de  (origin/defect_3961_blp862_rental_timeline_v12) create timeline object if the option retal was set afterwards; issue #3961
+- 91434a6 2020-12-02 10:43:47 +0100 kay.haeusler@elego.de  fix a wrong compare (apples and oranges); issue #3961
+- 28fa995 2020-11-20 13:43:46 +0100 yweng@elegosoft.com  (origin/defect_3953_blp862_update_date_in_sale_order_line_v12) [FIX] fixs function _reset_timeline to update the date_start later.
+- c7e3b59 2020-11-06 09:59:46 +0100 wagner@elegosoft.com  regenerate doc from manifests (issue #3613)
 - 391ef2a 2020-10-28 20:59:58 +0100 wagner@elegosoft.com  add usage information for product sets and product packs; add configuration and usage information for rental_sale and extend gen-doc for configuration (issue #3613)
 - d39f57e 2020-10-28 20:18:47 +0100 wagner@elegosoft.com  add links to the index in README.md (issue #3613)
 - b1039c8 2020-10-28 17:39:27 +0100 wagner@elegosoft.com  add index generation and add index to README.md (issue #3613)

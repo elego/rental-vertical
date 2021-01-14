@@ -2,6 +2,8 @@
 Changelog
 ---------
 
+- b8d343d 2020-12-09 12:07:43 +0100 yweng@elegosoft.com  [ADD] auto settings for module rental_sale
+- c7e3b59 2020-11-06 09:59:46 +0100 wagner@elegosoft.com  regenerate doc from manifests (issue #3613)
 - f3ca50c 2020-10-29 16:59:48 +0100 wagner@elegosoft.com  add old history of renamed sale_rental (issue #3613)
 - 391ef2a 2020-10-28 20:59:58 +0100 wagner@elegosoft.com  add usage information for product sets and product packs; add configuration and usage information for rental_sale and extend gen-doc for configuration (issue #3613)
 - d39f57e 2020-10-28 20:18:47 +0100 wagner@elegosoft.com  add links to the index in README.md (issue #3613)

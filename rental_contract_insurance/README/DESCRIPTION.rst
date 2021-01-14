@@ -1,7 +1,7 @@
 Rental Contract Insurance
 ====================================================
 
-*This file has been generated on 2020-11-06-09-57-10. Changes to it will be overwritten.*
+*This file has been generated on 2021-01-14-13-44-51. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -11,5 +11,6 @@ Rental Contract Insurance
 Description
 -----------
 
-TODO
+This module provides the opportunity to sell and invoice insurances related to the selled and invoiced rentable products.
+The insurance price is either based on the product's costs or the order's amount and given as percentage.
 

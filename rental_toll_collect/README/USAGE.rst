@@ -2,6 +2,8 @@
 Usage
 -----
 
+-  Go to Rentals > Configuration > Settings
+- Activate the automatic invoicing of toll charges if toll charges should be automatically invoiced together with rental services.
 - Create a rental order with vehicle products as rental order lines.
 - Confirm the rental order.
 - Go to Rentals > Product > Toll Charges > Import Toll Charges.
