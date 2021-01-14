@@ -9,10 +9,7 @@ class ProductCategory(models.Model):
 
     show_instance_condition_type = fields.Selection(
         string="Show Instance Condition Type",
-        selection=[
-            ("hour", "Hours"),
-            ("km", "Kilometers"),
-        ],
+        selection=[("hour", "Hours"), ("km", "Kilometers")],
     )
 
 
@@ -53,8 +50,7 @@ class ProductProduct(models.Model):
     )
 
     instance_current_location_id = fields.Many2one(
-        "stock.location",
-        string="Current Location",
+        "stock.location", string="Current Location"
     )
     instance_state = fields.Selection(
         string="State",
@@ -67,41 +63,33 @@ class ProductProduct(models.Model):
             ("delivery", "Delivery"),
         ],
         compute="_compute_instance_state",
+        search="_search_instance_state",
     )
 
     show_instance_condition_type = fields.Selection(
         string="Show Instance Condition Type",
-        selection=[
-            ("hour", "Hours"),
-            ("km", "Kilometers"),
-        ],
+        selection=[("hour", "Hours"), ("km", "Kilometers")],
         related="categ_id.show_instance_condition_type",
         store=True,
     )
 
     instance_condition_hour = fields.Float(
-        string="Current Hours",
-        compute="_compute_instance_condition",
+        string="Current Hours", compute="_compute_instance_condition"
     )
 
     instance_condition_km = fields.Float(
-        string="Current Kilometers",
-        compute="_compute_instance_condition",
+        string="Current Kilometers", compute="_compute_instance_condition"
     )
 
     instance_condition_in_tree = fields.Float(
-        string="Current Operating Data",
-        compute="_compute_instance_condition",
+        string="Current Operating Data", compute="_compute_instance_condition"
     )
 
     instance_condition_date = fields.Datetime(
-        string="Condition Date",
-        compute="_compute_instance_condition",
+        string="Condition Date", compute="_compute_instance_condition"
     )
 
-    instance_next_service_date = fields.Date(
-        string="Next Service",
-    )
+    instance_next_service_date = fields.Date(string="Next Service")
 
     real_sale_price = fields.Float(
         string="Real Sale Price",
@@ -159,7 +147,45 @@ class ProductProduct(models.Model):
                 ]
             )
             if timelines:
-                product.instance_state = timelines[0].type
+                if any(line.type == "rental" for line in timelines):
+                    product.instance_state = "rental"
+                elif any(line.type == "reserved" for line in timelines):
+                    product.instance_state = "reserved"
+
+    def _search_instance_state(self, operator, value):
+        negative = operator in expression.NEGATIVE_TERM_OPERATORS
+
+        # In case we have no value
+        if not value:
+            return expression.TRUE_DOMAIN if negative else expression.FALSE_DOMAIN
+
+        if operator in ["in", "not in", "!="]:
+            # Do not support for 'in' and 'not in' and '!='
+            return expression.FALSE_DOMAIN
+
+        if operator in ["="]:
+            domains = [
+                ("product_timeline_ids.date_start", "<=", "today"),
+                ("product_timeline_ids.date_end", ">=", "today"),
+            ]
+            if value == "available":
+                domains = [
+                    "|",
+                    ("product_timeline_ids", "=", False),
+                    "!",
+                    "&",
+                    ("product_timeline_ids.date_start", "<=", "today"),
+                    ("product_timeline_ids.date_end", ">=", "today"),
+                ]
+            elif value == "reserved":
+                domains.append(("product_timeline_ids.type", "=", "reserved"))
+            elif value == "rental":
+                domains.append(("product_timeline_ids.type", "=", "rental"))
+            else:
+                return expression.FALSE_DOMAIN
+            return domains
+
+        return expression.TRUE_DOMAIN
 
     @api.model
     def _name_search(
