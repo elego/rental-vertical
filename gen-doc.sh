@@ -42,7 +42,7 @@ for p in ${@:-rental_* shipment*}; do
   else
     description='TODO'
   fi
-  if egrep -q '"usage"'"'usage'" ${m}; then
+  if egrep -q '"usage"|'"'usage'" ${m}; then
     usage=$(${GET_MANIFEST_INFO} -f ${m} -a usage -p '' | sed -e 's/^\.$//' -e 's/|//g')
   else
     usage=''

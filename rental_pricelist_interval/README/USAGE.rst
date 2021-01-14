@@ -14,14 +14,14 @@ Example for price items:
 ::
 Max Days for interval 21 days
 min (days)     price
- 1               100
- 8               175
+1                100
+8                175
 15               225
 
 that means:
 ::
- 1 -  7 days for 100 EURO
- 8 - 14 days for 175 EURO
+1  -  7 days for 100 EURO
+8  - 14 days for 175 EURO
 15 - 21 days for 225 EURO.
 
 - Alternative you can define the rule in form view of company
@@ -30,9 +30,8 @@ that means:
 Example for rules:
 ::
 min (days)     factor
- 1               1
- 8               1.75
+1                1
+8                1.75
 15               2.25
-
 - Activate the interval price in sale order line (Use Interval Price)
 
