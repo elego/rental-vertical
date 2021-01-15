@@ -2,6 +2,13 @@
 Changelog
 ---------
 
+- 8729f32 2021-01-05 20:51:20 +0100 yweng@elegosoft.com  (origin/defect_3999_blp954_rental_repair_v12) [Fix] view definition for field vendor_repair_ids of project.task (issue 3999)
+- a35a62d 2020-12-22 22:59:30 +0100 kay.haeusler@elego.de  regenerate all de.po and \*.pot files; issue #4016
+- 83ed8f7 2020-12-22 18:06:08 +0100 wagner@elegosoft.com  all Python code reformatted by black code formatter (issue #4016)
+- 07c0589 2020-12-15 12:37:31 +0100 maria.sparenberg@elegosoft.com  (origin/defect_3999_blp925_fix_purchase_crm_access_v12) issue #3999 fix purchase and crm access in project tasks / rental menu
+- 68947af 2020-11-07 19:21:06 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/defect_3594_blp849_rental_repair_v12: addons-rental-vertical remotes/origin/defect_3594_blp849_rental_repair_v12 - 77820e823e4b4045727376451957c4fed481580c fix the wrong compute method name from _compute_total_stagnation_time to _compute_stagnation_time; issue #3594
+- c7e3b59 2020-11-06 09:59:46 +0100 wagner@elegosoft.com  regenerate doc from manifests (issue #3613)
+- 77820e8 2020-11-02 13:10:34 +0100 kay.haeusler@elego.de  (origin/defect_3594_blp849_rental_repair_v12) fix the wrong compute method name from _compute_total_stagnation_time to _compute_stagnation_time; issue #3594
 - 391ef2a 2020-10-28 20:59:58 +0100 wagner@elegosoft.com  add usage information for product sets and product packs; add configuration and usage information for rental_sale and extend gen-doc for configuration (issue #3613)
 - d39f57e 2020-10-28 20:18:47 +0100 wagner@elegosoft.com  add links to the index in README.md (issue #3613)
 - b1039c8 2020-10-28 17:39:27 +0100 wagner@elegosoft.com  add index generation and add index to README.md (issue #3613)

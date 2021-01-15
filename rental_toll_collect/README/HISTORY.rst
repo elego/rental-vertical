@@ -2,6 +2,17 @@
 Changelog
 ---------
 
+- a35a62d 2020-12-22 22:59:30 +0100 kay.haeusler@elego.de  regenerate all de.po and \*.pot files; issue #4016
+- 83ed8f7 2020-12-22 18:06:08 +0100 wagner@elegosoft.com  all Python code reformatted by black code formatter (issue #4016)
+- e1bdbc8 2020-12-10 15:10:08 +0100 cpatel@elegosoft.com  (origin/fix_3950_blp918_rental_toll_collect_v12) [FIX] set administrative_charge field default value to False for Company,(issue#3950)
+- 363aa9b 2020-12-08 17:47:46 +0100 cpatel@elegosoft.com  (origin/feature_3950_blp906_rental_toll_collect_v12) [IMP] manage Administrative Charge product for rental_toll_collect, (issue#3950)
+- 4be58b6 2020-11-27 13:45:12 +0100 maria.sparenberg@elegosoft.com  (defect_3950_blp862_rental_toll_collect_v12) issue #3950 set the charge product for all partners
+- 6d611e7 2020-11-25 14:56:17 +0100 maria.sparenberg@elegosoft.com  issue #3950 add post_init_hook to set the administrative charge product to existing customers
+- f2f4980 2020-11-24 17:27:51 +0100 maria.sparenberg@elegosoft.com  issue #3950 add invoicing of administrative charge in toll charge invoices
+- 65da51f 2020-11-24 17:22:39 +0100 maria.sparenberg@elegosoft.com  issue #3950 only invoice administrative charge if the invoice contains toll charge invoicing
+- 0fb164b 2020-11-24 16:58:35 +0100 maria.sparenberg@elegosoft.com  issue #3950 allow invoicing of toll charges from toll charge lines
+- 3fb4883 2020-11-19 17:01:56 +0100 kay.haeusler@elego.de  fix the missing comma in the onchange definition; issue #3950
+- c7e3b59 2020-11-06 09:59:46 +0100 wagner@elegosoft.com  regenerate doc from manifests (issue #3613)
 - 391ef2a 2020-10-28 20:59:58 +0100 wagner@elegosoft.com  add usage information for product sets and product packs; add configuration and usage information for rental_sale and extend gen-doc for configuration (issue #3613)
 - d39f57e 2020-10-28 20:18:47 +0100 wagner@elegosoft.com  add links to the index in README.md (issue #3613)
 - b1039c8 2020-10-28 17:39:27 +0100 wagner@elegosoft.com  add index generation and add index to README.md (issue #3613)

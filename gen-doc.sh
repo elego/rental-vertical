@@ -5,6 +5,7 @@ ds=$(date "+%Y-%m-%d-%H-%M-%S")
 GET_MANIFEST_INFO=${GET_MANIFEST_INFO:-${TOOLS}/get_openerp_info.py}
 
 cp /dev/null index.txt
+#set -x
 for p in ${@:-rental_* shipment*}; do
   echo "processing ${p}..."
   m=${p}/__manifest__.py
@@ -24,39 +25,39 @@ for p in ${@:-rental_* shipment*}; do
     echo "error: cannot create ${shtmldir}, continuing with next package..."
     continue
   }
-  if grep -q "'name'" ${m}; then
+  if egrep -q '"name"|'"'name'" ${m}; then
     name=$(${GET_MANIFEST_INFO} -f ${m} -a name -p '' | sed -e 's/^\.$//' -e 's/|//g')
   else
     echo "error: module name not found, continuing with next package..."
     continue
   fi
-  if grep -q "'summary'" ${m}; then
+  if egrep -q '"summary"|'"'summary'" ${m}; then
     summary=$(${GET_MANIFEST_INFO} -f ${m} -a summary -p '' | sed -e 's/^\.$//' -e 's/|//g')
   else
     echo "error: module summary not found, continuing with next package..."
     continue
   fi
-  if grep -q "'description'" ${m}; then
+  if egrep -q '"description"|'"'description'" ${m}; then
     description=$(${GET_MANIFEST_INFO} -f ${m} -a description -p '' | sed -e 's/^\.$//' -e 's/|//g')
   else
     description='TODO'
   fi
-  if grep -q "'usage'" ${m}; then
+  if egrep -q '"usage"|'"'usage'" ${m}; then
     usage=$(${GET_MANIFEST_INFO} -f ${m} -a usage -p '' | sed -e 's/^\.$//' -e 's/|//g')
   else
     usage=''
   fi
-  if grep -q "'configuration'" ${m}; then
+  if egrep -q '"configuration"|'"'configuration'" ${m}; then
     configuration=$(${GET_MANIFEST_INFO} -f ${m} -a configuration -p '' | sed -e 's/^\.$//' -e 's/|//g')
   else
     configuration=''
   fi
-  if grep -q "'contributors'" ${m}; then
+  if egrep -q '"contributors"|'"'contributors'" ${m}; then
     contributors=$(${GET_MANIFEST_INFO} -f ${m} -a contributors -p '' | sed -e 's/^\.$//' -e 's/|//g')
   else
     contributors=''
   fi
-  if grep -q "'author'" ${m}; then
+  if egrep -q '"author"|'"'author'" ${m}; then
     author=$(${GET_MANIFEST_INFO} -f ${m} -a author -p '' | sed -e 's/^\.$//' -e 's/|//g')
   else
     author=''
@@ -66,9 +67,9 @@ for p in ${@:-rental_* shipment*}; do
     echo "Changelog"
     echo "---------"
     echo ""
-    git log --pretty=format:'%h %ad %ae %d %s' --date=iso -- ${p} | sed -e 's/^/- /'
+    git log --pretty=format:'%h %ad %ae %d %s' --date=iso -- ${p} | sed -e 's/^/- /' -e 's/\*/\\*/g'
     if [[ "${p}" == rental_sale ]]; then
-      git log --pretty=format:'%h %ad %ae %d %s' --date=iso -- sale_rental | sed -e 's/^/- /'
+      git log --pretty=format:'%h %ad %ae %d %s' --date=iso -- sale_rental | sed -e 's/^/- /' -e 's/\*/\\*/g'
     fi
     echo ""
   } > ${historyfn}
