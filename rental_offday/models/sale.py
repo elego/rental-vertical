@@ -53,6 +53,10 @@ class SaleOrderLine(models.Model):
         string="Offday End Date"
     )
 
+    add_additional_offdays = fields.Boolean(
+        string="Add",
+    )
+
     @api.depends("product_uom")
     def _compute_show_offday(self):
         uom_day = self.env.ref("uom.product_uom_day")
@@ -165,35 +169,33 @@ class SaleOrderLine(models.Model):
                         _('You have already created the off-day "%s".') % day.date
                     )
 
-    @api.multi
-    def action_add_several_offdays(self):
-        self.ensure_one()
-        additional_offdays = self.add_offday_ids.mapped("date")
-        fixed_offdays = self.fixed_offday_ids.mapped("date")
+    @api.onchange("add_additional_offdays")
+    def onchange_add_additional_offdays(self):
+        if self.add_additional_offdays and self.offday_date_start and self.offday_date_end:
+            additional_offdays = self.add_offday_ids.mapped("date")
+            fixed_offdays = self.fixed_offday_ids.mapped("date")
 
-        if self.offday_date_start < self.start_date:
-            date_min_str = fields.Date.to_string(self.start_date)
-            raise exceptions.UserError(_("You cannot add an off day earlier than %s.") % date_min_str)
-        if self.offday_date_end > self.end_date:
-            date_max_str = fields.Date.to_string(self.end_date)
-            raise exceptions.UserError(_("You cannot add an off day later than %s.") % date_max_str)
-        if self.offday_date_end < self.offday_date_start:
-            raise exceptions.UserError(_("Off days' start date must be earlier than end date."))
+            if self.offday_date_start < self.start_date:
+                date_min_str = fields.Date.to_string(self.start_date)
+                raise exceptions.UserError(_("You cannot add an off day earlier than %s.") % date_min_str)
+            if self.offday_date_end > self.end_date:
+                date_max_str = fields.Date.to_string(self.end_date)
+                raise exceptions.UserError(_("You cannot add an off day later than %s.") % date_max_str)
+            if self.offday_date_end < self.offday_date_start:
+                raise exceptions.UserError(_("Off days' start date must be earlier than end date."))
 
-        current_date = self.offday_date_start
-        values = []
-        while current_date <= self.offday_date_end:
-            if current_date not in additional_offdays and current_date not in fixed_offdays:
-                additional_offdays.append(current_date)
-                values.append((0, 0, {"date": current_date}))
-
-            current_date = current_date + relativedelta(days=1)
-        if values:
-            self.add_offday_ids = values
-            self.onchange_add_offday_ids()
-            self.rental_qty_number_of_days_change()
+            current_date = self.offday_date_start
+            values = []
+            while current_date <= self.offday_date_end:
+                if current_date not in additional_offdays and current_date not in fixed_offdays:
+                    additional_offdays.append(current_date)
+                    values.append((0, 0, {"date": current_date}))
+                current_date = current_date + relativedelta(days=1)
+            if values:
+                self.add_offday_ids = values
             self.offday_date_start = False
             self.offday_date_end = False
+            self.add_additional_offdays = False
 
     @api.onchange("product_uom", "product_uom_qty")
     def product_uom_change(self):

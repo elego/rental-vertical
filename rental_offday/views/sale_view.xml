@@ -27,17 +27,13 @@
                                 </field>
                             </group>
                             <group string="Additional Off Days">
-                                <div name="additional_offday_period" colspan="3">
-                                    <span class="oe_edit_only">From &amp;nbsp;</span>
+                                <div name="additional_offday_period" colspan="3" class="oe_edit_only">
+                                    <span>From &amp;nbsp;</span>
                                     <field class="oe_inline" name="offday_date_start" nolabel="1"/>
-                                    <span class="oe_edit_only">&amp;nbsp; to &amp;nbsp;</span>
+                                    <span>&amp;nbsp; to &amp;nbsp;</span>
                                     <field class="oe_inline" name="offday_date_end" nolabel="1"/>
-                                    &amp;nbsp;
-                                    <button name="action_add_several_offdays"
-                                            icon="fa-plus-square"
-                                            type="object"
-                                            class="oe_edit_only"
-                                    />
+                                    <strong>&amp;nbsp; OK? &amp;nbsp;</strong>
+                                    <field class="oe_inline" name="add_additional_offdays"/>
                                 </div>
                                 <field name="add_offday_ids" nolabel="1">
                                     <tree editable="bottom">
