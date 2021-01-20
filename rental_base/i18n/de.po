@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-22 21:15+0000\n"
-"PO-Revision-Date: 2020-12-22 21:15+0000\n"
+"POT-Creation-Date: 2021-01-20 12:06+0000\n"
+"PO-Revision-Date: 2021-01-20 12:06+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -373,7 +373,6 @@ msgstr "Mietzeit"
 
 #. module: rental_base
 #: model:ir.ui.menu,name:rental_base.menu_customer_orders
-#: model:ir.ui.menu,name:rental_base.menu_vendor_orders
 msgid "Orders"
 msgstr "Aufträge"
 
@@ -410,11 +409,6 @@ msgstr "Produktvarianten"
 #: model:ir.ui.menu,name:rental_base.menu_master_data
 msgid "Products"
 msgstr "Produkte"
-
-#. module: rental_base
-#: model:ir.ui.menu,name:rental_base.menu_vendor_orders_purchase_form_action
-msgid "Purchase Orders"
-msgstr "Einkaufsbestellungen"
 
 #. module: rental_base
 #: model:ir.ui.menu,name:rental_base.menu_customer_quotations
@@ -504,16 +498,6 @@ msgid "Repair Orders for Product Instances"
 msgstr "Reparaturaufträge für Produktinstanzen"
 
 #. module: rental_base
-#: model:ir.ui.menu,name:rental_base.menu_vendors_quotations
-msgid "Request for Quotations"
-msgstr "Angebotsanfragen"
-
-#. module: rental_base
-#: model:ir.ui.menu,name:rental_base.menu_vendor_requests
-msgid "Requests"
-msgstr "Anfragen"
-
-#. module: rental_base
 #: model:ir.model,name:rental_base.model_sale_order
 #: model:ir.model.fields,field_description:rental_base.field_update_sale_line_date__order_id
 msgid "Sale Order"
@@ -525,16 +509,6 @@ msgid "Sales Order Line"
 msgstr "Auftragsposition"
 
 #. module: rental_base
-#: model:ir.ui.menu,name:rental_base.menu_sales_orders
-msgid "Sales Orders"
-msgstr "Verkaufsaufträge"
-
-#. module: rental_base
-#: model:ir.ui.menu,name:rental_base.menu_sales_quotations
-msgid "Sales Quotations"
-msgstr "Verkaufsangebote"
-
-#. module: rental_base
 #: model:ir.model,name:rental_base.model_ir_sequence
 msgid "Sequence"
 msgstr "Nummernfolge"
@@ -543,11 +517,6 @@ msgstr "Nummernfolge"
 #: model_terms:ir.ui.view,arch_db:rental_base.sale_start_end_dates
 msgid "Service Period"
 msgstr "Leistungszeitraum"
-
-#. module: rental_base
-#: model:ir.ui.menu,name:rental_base.menu_customer_repair_orders
-msgid "Service Quotations"
-msgstr "Service-Angebote"
 
 #. module: rental_base
 #: model:ir.actions.act_window,name:rental_base.action_rental_configuration

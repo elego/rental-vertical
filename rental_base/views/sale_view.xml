@@ -66,6 +66,8 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='type_id']" position="attributes">
                 <attribute name="attrs">{'invisible': 1}</attribute>
+                <attribute name="widget">radio</attribute>
+                <attribute name="options">{'horizontal': true}</attribute>
             </xpath>
         </field>
     </record>
@@ -94,8 +96,12 @@
             </xpath>
 
             <!-- Sheet -->
-            <xpath expr="//field[@name='validity_date']" position="before">
-                <field name="type_id" string="Order Type" required="1"
+            <xpath expr="//field[@name='partner_id']" position="before">
+                <field name="type_id"
+                       string="Order Type"
+                       required="1"
+                       widget="radio"
+                       options="{'horizontal': true}"
                 />
             </xpath>
             <xpath expr="//field[@name='partner_shipping_id']" position="after">
