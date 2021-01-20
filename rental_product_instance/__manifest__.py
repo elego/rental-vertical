@@ -25,7 +25,6 @@ you can save the mileage of vehicles or the operating hours of machines.
     "author": "Odoo Community Association (OCA)/Elego Software Solutions GmbH",
     "depends": [
         "rental_product_variant",
-        "rental_timeline",
     ],
     "data": [
         "security/ir.model.access.csv",

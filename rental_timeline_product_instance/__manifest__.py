@@ -24,6 +24,7 @@ No further configuration is needed.
         "rental_product_instance",
     ],
     "data": [
+        "views/product_view.xml",
         "views/product_timeline_view.xml",
     ],
     "demo": [],

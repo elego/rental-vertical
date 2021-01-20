@@ -190,7 +190,9 @@ class TestRentalOffDay(TransactionCase):
         # Add additional off days
         self.sale_order_line.offday_date_start = fields.Date.from_string("2020-12-18")
         self.sale_order_line.offday_date_end = fields.Date.from_string("2020-12-28")
-        self.sale_order_line.action_add_several_offdays()
+        self.sale_order_line.add_additional_offdays = True
+        self.sale_order_line.onchange_add_additional_offdays()
+        self.sale_order_line.rental_qty_number_of_days_change()
         # 31 - 8 - 7 = 16
         self.assertEqual(len(self.sale_order_line.fixed_offday_ids), 8)
         self.assertEqual(len(self.sale_order_line.add_offday_ids), 7)
