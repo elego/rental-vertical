@@ -340,6 +340,11 @@ msgid "Service Orders"
 msgstr "Service-Aufträge"
 
 #. module: rental_repair
+#: model:ir.ui.menu,name:rental_repair.menu_customer_repair_orders
+msgid "Service Quotations"
+msgstr "Service-Angebote"
+
+#. module: rental_repair
 #: model_terms:ir.ui.view,arch_db:rental_repair.view_task_search_form
 msgid "Service Tickets"
 msgstr "Service Tickets"

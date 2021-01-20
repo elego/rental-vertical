@@ -73,7 +73,7 @@
                 id="menu_customer_quotations"
                 parent="menu_top_customer"
                 sequence="5" />
-                <menuitem name="Quotations"
+                <menuitem name="Rental Quotations"
                     id="menu_rental_quotations"
                     parent="menu_customer_quotations"
                     action="action_rental_quotations"
@@ -82,7 +82,7 @@
                 id="menu_customer_orders"
                 parent="menu_top_customer"
                 sequence="10" />
-                <menuitem name="Orders"
+                <menuitem name="Rental Orders"
                     id="menu_rental_orders"
                     parent="menu_customer_orders"
                     action="action_rental_orders"
