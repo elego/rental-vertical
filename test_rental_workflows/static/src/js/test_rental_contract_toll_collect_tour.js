@@ -140,7 +140,7 @@ odoo.define('contract_toll_collect.tour', function (require) {
         },
         {
             content: _t('Click Button Close'),
-            trigger: 'i.fa-close',
+            trigger: '.o_form_button_cancel',
             in_modal: false,
         },
         {
@@ -194,8 +194,8 @@ odoo.define('contract_toll_collect.tour', function (require) {
             run: function (){} //check Contract: Contract Subtype = Rental Contract
         },
         {
-            content: _t('Check Analytic Account on Invoice'),
-            trigger: '.o_form_view span[name="analytic_account_id"]:contains("[01535] Volvo L80H")',
+            content: _t('Check Analytic Account on Contract'),
+            trigger: 'td.o_data_cell:contains("[01535] Volvo L80H")',
             extra_trigger: 'div[name="contract_line_ids"]',
             in_modal: false,
             position: 'bottom',
@@ -369,6 +369,7 @@ odoo.define('contract_toll_collect.tour', function (require) {
             trigger: 'button[name="action_show_contracts"]',
             extra_trigger: '.o_statusbar_status .btn-primary:contains("Sales Order")',
         },
+        tour.STEPS.SHOW_APPS_MENU_ITEM,
         {
             content: _t('Go to menu of Settings'),
             trigger: 'li a[data-menu-xmlid="base.menu_administration"]',
@@ -381,11 +382,24 @@ odoo.define('contract_toll_collect.tour', function (require) {
             position: 'bottom',
         },
         {
+            content: _t('Go to main menu'),
+            trigger: '.o_menu_apps a',
+            extra_trigger: '.o_main_navbar a.o_menu_brand:contains("Discuss")',
+            auto: true,
+            position: "bottom",
+        },
+        {
             content: _t('Go to main menu of Rental'),
-            trigger: '.mk_apps_sidebar li a[data-menu-xmlid="rental_base.menu_rental_root"]',
-            extra_trigger: 'a.o_menu_brand:contains("Discuss")',
+            trigger: '.o_app:contains("Rentals")',
+            trigger: '.o_app[data-menu-xmlid="rental_base.menu_rental_root"]',
             position: 'bottom',
         },
+        // {
+        //     content: _t('Go to main menu of Rental'),
+        //     trigger: '.mk_apps_sidebar li a[data-menu-xmlid="rental_base.menu_rental_root"]',
+        //     extra_trigger: 'a.o_menu_brand:contains("Discuss")',
+        //     position: 'bottom',
+        // },
         {
             content: _t('Go to top menu of Customer'),
             trigger: 'li a[data-menu-xmlid="rental_base.menu_top_customer"]',
@@ -500,7 +514,7 @@ odoo.define('contract_toll_collect.tour', function (require) {
         },
         {
             content: _t('Check Analytic Account on Invoice Line'),
-            trigger: 'td.o_data_cell span[name="account_analytic_id"]:contains("[01535] Volvo L80H")',
+            trigger: 'td.o_data_cell:contains("[01535] Volvo L80H")',
             extra_trigger: 'div[name="invoice_line_ids"]',
             in_modal: false,
             position: 'bottom',
@@ -508,7 +522,7 @@ odoo.define('contract_toll_collect.tour', function (require) {
         },
         {
             content: _t('Check Toll Charge Product on Invoice Line'),
-            trigger: '.o_data_row:nth-child(2) > .o_data_cell span[name="product_id"]:contains("Toll Charges")',
+            trigger: '.o_data_row:nth-child(2) > .o_data_cell:contains("Toll Charges")',
             extra_trigger: 'div[name="invoice_line_ids"]',
             in_modal: false,
             position: 'bottom',
@@ -524,7 +538,7 @@ odoo.define('contract_toll_collect.tour', function (require) {
         },
         {
             content: _t('Check Analytic Account of Toll Charge Product on Invoice Line'),
-            trigger: '.o_data_row:nth-child(2) > .o_data_cell span[name="account_analytic_id"]:contains("[01535] Volvo L80H")',
+            trigger: '.o_data_row:nth-child(2) > .o_data_cell:contains("[01535] Volvo L80H")',
             extra_trigger: 'div[name="invoice_line_ids"]',
             in_modal: false,
             position: 'bottom',

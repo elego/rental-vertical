@@ -24,6 +24,7 @@ Test Rental Workflows
         'rental_timeline',
         'rental_toll_collect',
         'quality_control_stock',
+        'rental_routing',
     ],
     'data': [
         'data/settings.xml',
