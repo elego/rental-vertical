@@ -11,6 +11,7 @@
         "purchase",
         "purchase_requisition",
         "sale_management",
+        "rental_base",
     ],
     "data": [
         "security/ir.model.access.csv",
