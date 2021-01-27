@@ -17,3 +17,4 @@ class ProductProduct(models.Model):
                     p.product_rental_month_id.property_contract_template_id = (
                         template.id
                     )
+        return res
