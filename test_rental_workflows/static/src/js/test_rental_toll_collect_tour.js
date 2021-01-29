@@ -355,7 +355,7 @@ odoo.define('toll_collect.tour', function (require) {
         },
         {
             content: _t('Check Analytic Account on Invoice Line'),
-            trigger: 'td.o_data_cell span[name="account_analytic_id"]:contains("[01534] Volvo L011H")',
+            trigger: 'td.o_data_cell:contains("[01534] Volvo L011H")',
             extra_trigger: 'div[name="invoice_line_ids"]',
             in_modal: false,
             position: 'bottom',
@@ -363,7 +363,7 @@ odoo.define('toll_collect.tour', function (require) {
         },
         {
             content: _t('Check Toll Charge Product on Invoice Line'),
-            trigger: '.o_data_row:nth-child(2) > .o_data_cell span[name="product_id"]:contains("Toll Charges")',
+            trigger: '.o_data_row:nth-child(2) > .o_data_cell:contains("Toll Charges")',
             extra_trigger: 'div[name="invoice_line_ids"]',
             in_modal: false,
             position: 'bottom',
@@ -379,7 +379,7 @@ odoo.define('toll_collect.tour', function (require) {
         },
         {
             content: _t('Check Analytic Account of Toll Charge Product on Invoice Line'),
-            trigger: '.o_data_row:nth-child(2) > .o_data_cell span[name="account_analytic_id"]:contains("[01534] Volvo L011H")',
+            trigger: '.o_data_row:nth-child(2) > .o_data_cell:contains("[01534] Volvo L011H")',
             extra_trigger: 'div[name="invoice_line_ids"]',
             in_modal: false,
             position: 'bottom',
