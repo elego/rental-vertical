@@ -8,33 +8,40 @@ class ProductTimeline(models.Model):
 
     product_instance_state = fields.Selection(
         related="product_id.instance_state",
+        store=True,
     )
 
     product_instance_state_formated = fields.Char(
         compute="_compute_fields",
+        store=True,
     )
 
     product_instance_next_service_date = fields.Date(
         related="product_id.instance_next_service_date",
+        store=True,
     )
 
     product_instance_current_location_id = fields.Many2one(
         related="product_id.instance_current_location_id",
+        store=True,
     )
 
     product_instance_current_location_name = fields.Char(
         compute="_compute_fields",
+        store=True,
     )
 
     product_instance_serial_number_id = fields.Many2one(
         related="product_id.instance_serial_number_id",
+        store=True,
     )
 
     product_instance_serial_number_name = fields.Char(
         compute="_compute_fields",
+        store=True,
     )
 
-    @api.multi
+    @api.depends('res_id', 'res_model')
     def _compute_fields(self):
         super(ProductTimeline, self)._compute_fields()
         for line in self:

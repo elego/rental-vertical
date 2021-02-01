@@ -66,6 +66,9 @@ class PurchaseOrderLine(models.Model):
                     timelines[0].order_name = vals["name"]
             else:
                 raise exceptions.UserError(_("No found transport product."))
+            # Since function _compute_fields() is defined for all computed fields
+            # with option store=True.
+            line.timelines_ids._compute_fields()
 
     @api.model
     def create(self, vals):

@@ -2,6 +2,7 @@
 
 import logging
 from datetime import datetime
+from odoo.tools.misc import profile
 
 from odoo import api, fields, models, _
 
@@ -35,6 +36,7 @@ class ProductTimeline(models.Model):
 
     date_start_formated = fields.Char(
         compute="_compute_fields",
+        store=True,
     )
 
     date_end = fields.Datetime(
@@ -44,6 +46,7 @@ class ProductTimeline(models.Model):
 
     date_end_formated = fields.Char(
         compute="_compute_fields",
+        store=True,
     )
 
     product_id = fields.Many2one(
@@ -55,6 +58,7 @@ class ProductTimeline(models.Model):
 
     product_name = fields.Char(
         compute="_compute_fields",
+        store=True,
     )
 
     order_name = fields.Char(
@@ -72,30 +76,38 @@ class ProductTimeline(models.Model):
 
     type_formated = fields.Char(
         compute="_compute_fields",
+        store=True,
     )
 
     has_clues = fields.Char(
         "Has Clues",
         compute="_compute_fields",
+        store=True,
     )
 
     redline = fields.Boolean(
         "Redline",
     )
 
-    product_tmpl_id = fields.Many2one(related="product_id.product_tmpl_id")
+    product_tmpl_id = fields.Many2one(
+        related="product_id.product_tmpl_id",
+        store=True,
+    )
 
     product_categ_id = fields.Many2one(
         related="product_id.categ_id",
+        store=True,
     )
 
     product_categ_name = fields.Char(
         compute="_compute_fields",
+        store=True,
     )
 
     name = fields.Char(
         "Name",
         compute="_compute_fields",
+        store=True,
     )
 
     partner_id = fields.Many2one(
@@ -103,53 +115,64 @@ class ProductTimeline(models.Model):
         "Partner",
         ondelete="set null",
         compute="_compute_fields",
+        store=True,
     )
 
     partner_shipping_address = fields.Char(
         "Shipping address",
         compute="_compute_fields",
+        store=True,
     )
 
     currency_id = fields.Many2one(
         "res.currency",
         compute="_compute_fields",
+        store=True,
     )
 
     price_subtotal = fields.Monetary(
         currency_field="currency_id",
         field_digits=True,
         compute="_compute_fields",
+        store=True,
     )
 
     number_of_days = fields.Integer(
         "Total days",
         compute="_compute_fields",
+        store=True,
     )
 
     rental_period = fields.Char(
         compute="_compute_fields",
+        store=True,
     )
 
     amount = fields.Char(
         compute="_compute_fields",
+        store=True,
     )
 
     warehouse_id = fields.Many2one(
         "stock.warehouse",
         string="Warehouse",
         compute="_compute_fields",
+        store=True,
     )
 
     warehouse_name = fields.Char(
         compute="_compute_fields",
+        store=True,
     )
 
     action_id = fields.Integer(
         compute="_compute_fields",
+        store=True,
     )
 
     menu_id = fields.Integer(
         compute="_compute_fields",
+        store=True,
     )
 
     _sql_constraints = [
@@ -160,8 +183,12 @@ class ProductTimeline(models.Model):
         ),
     ]
 
-    @api.multi
+    @api.depends('res_id', 'res_model')
     def _compute_fields(self):
+        """ This function should be called for example in _reset_timeline
+            of the related res_model, since it will only be triggered, if
+            res_id or res_model is changed.
+        """
         lang = self.env["res.lang"].search([("code", "=", self.env.user.lang)])
         for line in self:
             date_with_time = False
@@ -220,3 +247,14 @@ class ProductTimeline(models.Model):
 
             line.action_id = self.env.ref("rental_base.action_rental_orders").id
             line.menu_id = self.env.ref("rental_base.menu_rental_root").id
+
+    @api.model
+    @profile('/var/lib/odoo/data/timeline.profile')
+    def my_search_read(self):
+        my_fields = ["display_name","date_start","date_end","product_id","type","type_formated","has_clues","redline","date_start_formated","date_end_formated","partner_id","partner_shipping_address","currency_id","amount","price_subtotal","number_of_days","rental_period","offday_number","warehouse_id","warehouse_name","product_instance_state","product_instance_state_formated","product_instance_next_service_date","product_instance_current_location_id","product_instance_current_location_name","product_instance_serial_number_id","product_instance_serial_number_name","product_manu_name","product_manu_type_name","product_fleet_type_name","product_name","product_categ_id","product_categ_name","action_id","menu_id","res_model","res_id","click_res_model","click_res_id","order_name","repair","appointment"]
+        start = fields.Datetime.now()
+        res = self.search_read(fields=my_fields, domain=[])
+        end = fields.Datetime.now()
+        print(start.strftime('%Y-%m-%d %H:%M:%S.%f'))
+        print(end.strftime('%Y-%m-%d %H:%M:%S.%f'))
+        #return res

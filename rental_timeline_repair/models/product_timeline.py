@@ -15,9 +15,10 @@ class ProductTimeline(models.Model):
     repair = fields.Boolean(
         "Repair",
         compute="_compute_fields",
+        store=True,
     )
 
-    @api.multi
+    @api.depends('res_id', 'res_model')
     def _compute_fields(self):
         super(ProductTimeline, self)._compute_fields()
         lang = self.env["res.lang"].search([("code", "=", self.env.user.lang)])

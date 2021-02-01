@@ -8,33 +8,40 @@ class ProductTimeline(models.Model):
 
     product_manu_id = fields.Many2one(
         related="product_id.manu_id",
+        store=True,
     )
     product_manu_name = fields.Char(
         compute="_compute_fields",
+        store=True,
     )
 
     product_manu_type_id = fields.Many2one(
         string="Product Type of Manufacturer",
         related="product_id.manu_type_id",
+        store=True,
     )
 
     product_manu_type_name = fields.Char(
         compute="_compute_fields",
+        store=True,
     )
 
     product_fleet_type_id = fields.Many2one(
         related="product_id.fleet_type_id",
+        store=True,
     )
 
     product_fleet_type_name = fields.Char(
         compute="_compute_fields",
+        store=True,
     )
 
     product_license_plate = fields.Char(
         related="product_id.license_plate",
+        store=True,
     )
 
-    @api.multi
+    @api.depends('res_id', 'res_model')
     def _compute_fields(self):
         super(ProductTimeline, self)._compute_fields()
         for line in self:

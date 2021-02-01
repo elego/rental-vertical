@@ -9,9 +9,10 @@ class ProductTimeline(models.Model):
     offday_number = fields.Float(
         "Off-Days",
         compute="_compute_fields",
+        store=True,
     )
 
-    @api.multi
+    @api.depends('res_id', 'res_model')
     def _compute_fields(self):
         super(ProductTimeline, self)._compute_fields()
         for line in self:

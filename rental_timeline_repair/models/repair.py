@@ -65,6 +65,9 @@ class RepairOrder(models.Model):
                     timelines[0].order_name = vals["name"]
             else:
                 raise exceptions.UserError(_("No found repaired product."))
+            # Since function _compute_fields() is defined for all computed fields
+            # with option store=True.
+            order.timeline_ids._compute_fields()
 
     @api.model
     def create(self, vals):

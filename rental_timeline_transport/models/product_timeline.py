@@ -17,23 +17,27 @@ class ProductTimeline(models.Model):
         "Freight forwarder",
         ondelete="set null",
         compute="_compute_fields",
+        store=True,
     )
 
     freight_forwarder_name = fields.Char(
         compute="_compute_fields",
+        store=True,
     )
 
     source_address = fields.Char(
         "Shipping address",
         compute="_compute_fields",
+        store=True,
     )
 
     destination_address = fields.Char(
         "Shipping address",
         compute="_compute_fields",
+        store=True,
     )
 
-    @api.multi
+    @api.depends('res_id', 'res_model')
     def _compute_fields(self):
         super(ProductTimeline, self)._compute_fields()
         lang = self.env["res.lang"].search([("code", "=", self.env.user.lang)])

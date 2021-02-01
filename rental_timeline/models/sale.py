@@ -87,6 +87,9 @@ class SaleOrderLine(models.Model):
                     timelines[0].order_name = vals["name"]
             else:
                 raise exceptions.UserError(_("No found rented product."))
+            # Since function _compute_fields() is defined for all computed fields
+            # with option store=True.
+            line.timeline_ids._compute_fields()
 
     @api.model
     def create(self, vals):
@@ -204,6 +207,7 @@ class SaleOrder(models.Model):
                 or l.rental_type == "new_rental"
             ):
                 line.timeline_ids.write(values)
+                line.timeline_ids._compute_fields()
         res = super(SaleOrder, self).action_confirm()
         return res
 
