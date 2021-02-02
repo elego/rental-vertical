@@ -19,3 +19,10 @@ class ProductTimeline(models.Model):
             if line.res_model == "sale.order.line":
                 obj = self.env[line.res_model].browse(line.res_id)
                 line.offday_number = obj.offday_number
+
+    @api.model
+    def _get_depends_fields(self, model):
+        res = super()._get_depends_fields(model)
+        if model == "sale.order.line":
+            res.append('offday_number')
+        return res

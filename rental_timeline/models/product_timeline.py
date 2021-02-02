@@ -35,7 +35,7 @@ class ProductTimeline(models.Model):
     )
 
     date_start_formated = fields.Char(
-        compute="_compute_fields",
+        compute="_compute_required_fields",
         store=True,
     )
 
@@ -45,7 +45,7 @@ class ProductTimeline(models.Model):
     )
 
     date_end_formated = fields.Char(
-        compute="_compute_fields",
+        compute="_compute_required_fields",
         store=True,
     )
 
@@ -57,8 +57,14 @@ class ProductTimeline(models.Model):
     )
 
     product_name = fields.Char(
-        compute="_compute_fields",
+        compute="_compute_required_fields",
         store=True,
+    )
+
+    time_uom = fields.Many2one(
+        "uom.uom",
+        compute="_compute_fields",
+        store=True
     )
 
     order_name = fields.Char(
@@ -75,7 +81,7 @@ class ProductTimeline(models.Model):
     )
 
     type_formated = fields.Char(
-        compute="_compute_fields",
+        compute="_compute_required_fields",
         store=True,
     )
 
@@ -100,7 +106,7 @@ class ProductTimeline(models.Model):
     )
 
     product_categ_name = fields.Char(
-        compute="_compute_fields",
+        compute="_compute_required_fields",
         store=True,
     )
 
@@ -161,7 +167,7 @@ class ProductTimeline(models.Model):
     )
 
     warehouse_name = fields.Char(
-        compute="_compute_fields",
+        compute="_compute_warehouse_name",
         store=True,
     )
 
@@ -185,13 +191,13 @@ class ProductTimeline(models.Model):
 
     @api.depends('res_id', 'res_model')
     def _compute_fields(self):
-        """ This function should be called for example in _reset_timeline
-            of the related res_model, since it will only be triggered, if
-            res_id or res_model is changed.
+        """ This function calculates the computed fields for model sale.order.line
+            Since It will only be triggered, if res_id or res_model is changed.
+            For updating of further infos of the related model it should be called 
+            for example in _reset_timeline of the related res_model.
         """
         lang = self.env["res.lang"].search([("code", "=", self.env.user.lang)])
         for line in self:
-            date_with_time = False
             if line.res_model == "sale.order.line":
                 obj = self.env[line.res_model].browse(line.res_id)
                 order_obj = obj.order_id
@@ -205,6 +211,7 @@ class ProductTimeline(models.Model):
                 line.currency_id = obj.currency_id.id
                 line.price_subtotal = obj.price_subtotal
                 line.number_of_days = obj.number_of_days
+                line.time_uom = obj.product_uom
                 line.rental_period = "{product_uom_qty} {product_uom}".format(
                     product_uom_qty=int(obj.product_uom_qty),
                     product_uom=obj.product_uom.name,
@@ -218,13 +225,48 @@ class ProductTimeline(models.Model):
                 )
                 line.has_clues = False
 
-                if obj.product_uom == self.env.ref("uom.product_uom_hour"):
-                    date_with_time = True
+            line.action_id = self.env.ref("rental_base.action_rental_orders").id
+            line.menu_id = self.env.ref("rental_base.menu_rental_root").id
 
+    @api.model
+    def _get_depends_fields(self, model):
+        """ get depends fields of related model function _compute_fields should 
+            be called, if these fields of the related model are changed,
+        """
+        res = []
+        if model == "sale.order.line":
+            res += [
+                'order_id',
+                'currency_id',
+                'price_subtotal',
+                'number_of_days',
+                'product_uom_qty'
+                'product_uom',
+            ]
+        return res
+
+    @api.depends('warehouse_id', 'warehouse_id.name')
+    def _compute_warehouse_name(self):
+        for line in self:
+            if line.warehouse_id:
+                line.warehouse_name = line.warehouse_id.display_name
+
+    @api.depends(
+        'date_start',
+        'date_end',
+        'product_id',
+        'product_id.name',
+        'type',
+        'product_categ_id',
+        'product_categ_id.name',
+        'time_uom',
+    )
+    def _compute_required_fields(self):
+        lang = self.env["res.lang"].search([("code", "=", self.env.user.lang)])
+        for line in self:
+            date_with_time = False
             line.product_name = line.product_id.display_name
-            line.warehouse_name = line.warehouse_id.display_name
             line.product_categ_name = line.product_categ_id.display_name
-
             try:
                 selections = self.fields_get()["type"]["selection"]
                 selection = [s for s in selections if s[0] == line.type][0]
@@ -233,6 +275,9 @@ class ProductTimeline(models.Model):
                 _logger.exception(e)
                 line.type_formated = str(line.type)
 
+            if line.res_model == "sale.order.line":
+                if line.time_uom == self.env.ref("uom.product_uom_hour"):
+                    date_with_time = True
             datetime_format = lang.date_format
             if date_with_time:
                 datetime_format += " " + time.date_format
@@ -244,17 +289,3 @@ class ProductTimeline(models.Model):
                 line.date_end_formated = line.date_end.strftime(datetime_format)
             else:
                 line.date_end_formated = str(line.date_end)
-
-            line.action_id = self.env.ref("rental_base.action_rental_orders").id
-            line.menu_id = self.env.ref("rental_base.menu_rental_root").id
-
-    @api.model
-    @profile('/var/lib/odoo/data/timeline.profile')
-    def my_search_read(self):
-        my_fields = ["display_name","date_start","date_end","product_id","type","type_formated","has_clues","redline","date_start_formated","date_end_formated","partner_id","partner_shipping_address","currency_id","amount","price_subtotal","number_of_days","rental_period","offday_number","warehouse_id","warehouse_name","product_instance_state","product_instance_state_formated","product_instance_next_service_date","product_instance_current_location_id","product_instance_current_location_name","product_instance_serial_number_id","product_instance_serial_number_name","product_manu_name","product_manu_type_name","product_fleet_type_name","product_name","product_categ_id","product_categ_name","action_id","menu_id","res_model","res_id","click_res_model","click_res_id","order_name","repair","appointment"]
-        start = fields.Datetime.now()
-        res = self.search_read(fields=my_fields, domain=[])
-        end = fields.Datetime.now()
-        print(start.strftime('%Y-%m-%d %H:%M:%S.%f'))
-        print(end.strftime('%Y-%m-%d %H:%M:%S.%f'))
-        #return res

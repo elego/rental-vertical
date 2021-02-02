@@ -66,9 +66,11 @@ class PurchaseOrderLine(models.Model):
                     timelines[0].order_name = vals["name"]
             else:
                 raise exceptions.UserError(_("No found transport product."))
-            # Since function _compute_fields() is defined for all computed fields
-            # with option store=True.
-            line.timelines_ids._compute_fields()
+
+    @api.multi
+    def _timeline_recompute_fields(self):
+        for line in self:
+            line.timeline_ids._compute_fields()
 
     @api.model
     def create(self, vals):
@@ -90,6 +92,9 @@ class PurchaseOrderLine(models.Model):
                 if name and line.name != name:
                     reset_lines |= line
             reset_lines._reset_timeline(vals)
+        keys = set(self.env['product.timeline']._get_depends_fields('purchase.order.line'))
+        if keys.intersection(vals.keys()):
+            self._timeline_recompute_fields()
         return res
 
     @api.multi
@@ -118,6 +123,11 @@ class PurchaseOrder(models.Model):
                 for line in order.order_line:
                     line.timeline_ids.unlink()
         res = super(PurchaseOrder, self).write(vals)
+        keys = {"partner_id", "name"}
+        if keys.intersection(vals.keys()):
+            for order in self:
+                if order.order_type == transport_type:
+                    order.order_line._timeline_recompute_fields()
         return res
 
     @api.multi

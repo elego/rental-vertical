@@ -53,6 +53,7 @@ class ProductTimeline(models.Model):
                 )
                 line.order_name = order_obj.name
                 line.freight_forwarder_id = order_obj.partner_id.id
+                line.freight_forwarder_name = line.freight_forwarder_id.display_name
                 line.source_address = (
                     obj.trans_origin_sale_line_id.planned_source_address_id._display_address()
                 )
@@ -68,4 +69,13 @@ class ProductTimeline(models.Model):
                     currency=line.currency_id.symbol,
                 )
 
-            line.freight_forwarder_name = line.freight_forwarder_id.display_name
+    @api.model
+    def _get_depends_fields(self, model):
+        res = super()._get_depends_fields(model)
+        if model == "purchase.order.line":
+            res += [
+                'order_id',
+                'currency_id',
+                'price_subtotal',
+            ]
+        return res
