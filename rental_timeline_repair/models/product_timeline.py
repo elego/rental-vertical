@@ -30,6 +30,7 @@ class ProductTimeline(models.Model):
                 )
                 line.order_name = obj.name
                 line.partner_id = obj.partner_id.id
+                line.partner_shipping_id = obj.address_id.id
                 line.partner_shipping_address = (
                     obj.address_id._display_address()
                 )

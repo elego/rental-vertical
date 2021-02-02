@@ -8,6 +8,24 @@ from odoo import api, fields, models, _
 
 _logger = logging.getLogger(__name__)
 
+class ResPartner(models.Model):
+    _inherit = "res.partner"
+
+    @api.multi
+    def write(self, vals):
+        res = super().write(vals)
+        address_fields = self._address_fields()
+        address_fields.append('name')
+        if any(field in vals for field in address_fields):
+            keys = set(self.env['product.timeline']._get_partner_fields())
+            domain = [(field, 'in', self.ids) for field in keys]
+            i = 1
+            while i < len(keys):
+                domain.insert(0, '|')
+                i += 1
+            timelines = self.env['product.timeline'].search(domain)
+            timelines._compute_fields()
+        return res
 
 class ProductTimeline(models.Model):
     _name = "product.timeline"
@@ -124,6 +142,21 @@ class ProductTimeline(models.Model):
         store=True,
     )
 
+    partner_id = fields.Many2one(
+        "res.partner",
+        "Partner",
+        ondelete="set null",
+        compute="_compute_fields",
+        store=True,
+    )
+
+    partner_shipping_id = fields.Many2one(
+        "res.partner",
+        ondelete="set null",
+        compute="_compute_fields",
+        store=True,
+    )
+
     partner_shipping_address = fields.Char(
         "Shipping address",
         compute="_compute_fields",
@@ -193,7 +226,7 @@ class ProductTimeline(models.Model):
     def _compute_fields(self):
         """ This function calculates the computed fields for model sale.order.line
             Since It will only be triggered, if res_id or res_model is changed.
-            For updating of further infos of the related model it should be called 
+            For updating of further infos of the related model it should be called
             for example in _reset_timeline of the related res_model.
         """
         lang = self.env["res.lang"].search([("code", "=", self.env.user.lang)])
@@ -203,6 +236,7 @@ class ProductTimeline(models.Model):
                 order_obj = obj.order_id
                 line.name = _("R: %s") % order_obj.partner_id.name
                 line.partner_id = order_obj.partner_id.id
+                line.partner_shipping_id = order_obj.partner_shipping_id.id
                 line.partner_shipping_address = (
                     order_obj.partner_shipping_id._display_address()
                 )
@@ -230,8 +264,8 @@ class ProductTimeline(models.Model):
 
     @api.model
     def _get_depends_fields(self, model):
-        """ get depends fields of related model function _compute_fields should 
-            be called, if these fields of the related model are changed,
+        """ Get depends fields of related model. Function _compute_fields should
+            be called, if these fields of the related model are changed.
         """
         res = []
         if model == "sale.order.line":
@@ -244,6 +278,19 @@ class ProductTimeline(models.Model):
                 'product_uom',
             ]
         return res
+
+    @api.model
+    def _get_partner_fields(self):
+        """ get all many2one fields that are related to res.partner
+            it can be used for triggering the _compute_fields to update
+            the partner or address infomations
+        """
+        res = [
+            'partner_id',
+            'partner_shipping_id',
+        ]
+        return res
+
 
     @api.depends('warehouse_id', 'warehouse_id.name')
     def _compute_warehouse_name(self):
