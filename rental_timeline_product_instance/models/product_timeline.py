@@ -42,9 +42,9 @@ class ProductTimeline(models.Model):
     )
 
     @api.depends(
-        'product_instance_serial_number_id',
-        'product_instance_current_location_id',
-        'product_instance_state',
+        "product_instance_serial_number_id",
+        "product_instance_current_location_id",
+        "product_instance_state",
     )
     def _compute_instance_fields(self):
         for line in self:

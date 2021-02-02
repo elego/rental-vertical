@@ -143,7 +143,7 @@ class SaleOrderLine(models.Model):
                         % (line.order_id.name, line.product_id.display_name)
                     )
             reset_lines._reset_timeline(vals)
-        keys = set(self.env['product.timeline']._get_depends_fields('sale.order.line'))
+        keys = set(self.env["product.timeline"]._get_depends_fields("sale.order.line"))
         if keys.intersection(vals.keys()):
             self._timeline_recompute_fields()
         return res

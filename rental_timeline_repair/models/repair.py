@@ -97,7 +97,7 @@ class RepairOrder(models.Model):
                 if name and order.name != name:
                     reset_lines |= order
             reset_orders._reset_timeline(vals)
-        keys = set(self.env['product.timeline']._get_depends_fields('repair.order'))
+        keys = set(self.env["product.timeline"]._get_depends_fields("repair.order"))
         if keys.intersection(vals.keys()):
             self._timeline_recompute_fields()
         return res

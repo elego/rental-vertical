@@ -12,7 +12,7 @@ class ProductTimeline(models.Model):
         store=True,
     )
 
-    @api.depends('res_id', 'res_model')
+    @api.depends("res_id", "res_model")
     def _compute_fields(self):
         super(ProductTimeline, self)._compute_fields()
         for line in self:
@@ -24,5 +24,5 @@ class ProductTimeline(models.Model):
     def _get_depends_fields(self, model):
         res = super()._get_depends_fields(model)
         if model == "sale.order.line":
-            res.append('offday_number')
+            res.append("offday_number")
         return res

@@ -18,7 +18,7 @@ class ProductTimeline(models.Model):
         store=True,
     )
 
-    @api.depends('res_id', 'res_model')
+    @api.depends("res_id", "res_model")
     def _compute_fields(self):
         super(ProductTimeline, self)._compute_fields()
         lang = self.env["res.lang"].search([("code", "=", self.env.user.lang)])
@@ -31,9 +31,7 @@ class ProductTimeline(models.Model):
                 line.order_name = obj.name
                 line.partner_id = obj.partner_id.id
                 line.partner_shipping_id = obj.address_id.id
-                line.partner_shipping_address = (
-                    obj.address_id._display_address()
-                )
+                line.partner_shipping_address = obj.address_id._display_address()
                 currency = self.env.user.company_id.currency_id
                 line.amount = "{total} {currency}".format(
                     total=lang.format("%.2f", obj.amount_untaxed, grouping=True),
@@ -56,9 +54,9 @@ class ProductTimeline(models.Model):
         res = super()._get_depends_fields(model)
         if model == "repair.order":
             res += [
-                'name',
-                'partner_id',
-                'address_id',
-                'amount_untaxed',
+                "name",
+                "partner_id",
+                "address_id",
+                "amount_untaxed",
             ]
         return res

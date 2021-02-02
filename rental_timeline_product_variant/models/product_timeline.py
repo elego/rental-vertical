@@ -42,14 +42,14 @@ class ProductTimeline(models.Model):
     )
 
     @api.depends(
-        'product_id',
-        'product_id.license_plate',
-        'product_manu_id',
-        'product_manu_id.name',
-        'product_manu_type_id',
-        'product_manu_type_id.name',
-        'product_fleet_type_id',
-        'product_fleet_type_id.name',
+        "product_id",
+        "product_id.license_plate",
+        "product_manu_id",
+        "product_manu_id.name",
+        "product_manu_type_id",
+        "product_manu_type_id.name",
+        "product_fleet_type_id",
+        "product_fleet_type_id.name",
     )
     def _compute_variant_fields(self):
         for line in self:

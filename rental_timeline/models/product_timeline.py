@@ -2,30 +2,11 @@
 
 import logging
 from datetime import datetime
-from odoo.tools.misc import profile
 
 from odoo import api, fields, models, _
 
 _logger = logging.getLogger(__name__)
 
-class ResPartner(models.Model):
-    _inherit = "res.partner"
-
-    @api.multi
-    def write(self, vals):
-        res = super().write(vals)
-        address_fields = self._address_fields()
-        address_fields.append('name')
-        if any(field in vals for field in address_fields):
-            keys = set(self.env['product.timeline']._get_partner_fields())
-            domain = [(field, 'in', self.ids) for field in keys]
-            i = 1
-            while i < len(keys):
-                domain.insert(0, '|')
-                i += 1
-            timelines = self.env['product.timeline'].search(domain)
-            timelines._compute_fields()
-        return res
 
 class ProductTimeline(models.Model):
     _name = "product.timeline"
@@ -82,7 +63,7 @@ class ProductTimeline(models.Model):
     time_uom = fields.Many2one(
         "uom.uom",
         compute="_compute_fields",
-        store=True
+        store=True,
     )
 
     order_name = fields.Char(
@@ -222,12 +203,12 @@ class ProductTimeline(models.Model):
         ),
     ]
 
-    @api.depends('res_id', 'res_model')
+    @api.depends("res_id", "res_model")
     def _compute_fields(self):
-        """ This function calculates the computed fields for model sale.order.line
-            Since It will only be triggered, if res_id or res_model is changed.
-            For updating of further infos of the related model it should be called
-            for example in _reset_timeline of the related res_model.
+        """This function calculates the computed fields for model sale.order.line
+        Since It will only be triggered, if res_id or res_model is changed.
+        For updating of further infos of the related model it should be called
+        for example in _reset_timeline of the related res_model.
         """
         lang = self.env["res.lang"].search([("code", "=", self.env.user.lang)])
         for line in self:
@@ -264,49 +245,48 @@ class ProductTimeline(models.Model):
 
     @api.model
     def _get_depends_fields(self, model):
-        """ Get depends fields of related model. Function _compute_fields should
-            be called, if these fields of the related model are changed.
+        """Get depends fields of related model. Function _compute_fields should
+        be called, if these fields of the related model are changed.
         """
         res = []
         if model == "sale.order.line":
             res += [
-                'order_id',
-                'currency_id',
-                'price_subtotal',
-                'number_of_days',
-                'product_uom_qty'
-                'product_uom',
+                "order_id",
+                "currency_id",
+                "price_subtotal",
+                "number_of_days",
+                "product_uom_qty",
+                "product_uom",
             ]
         return res
 
     @api.model
     def _get_partner_fields(self):
-        """ get all many2one fields that are related to res.partner
-            it can be used for triggering the _compute_fields to update
-            the partner or address infomations
+        """get all many2one fields that are related to res.partner
+        it can be used for triggering the _compute_fields to update
+        the partner or address infomations
         """
         res = [
-            'partner_id',
-            'partner_shipping_id',
+            "partner_id",
+            "partner_shipping_id",
         ]
         return res
 
-
-    @api.depends('warehouse_id', 'warehouse_id.name')
+    @api.depends("warehouse_id", "warehouse_id.name")
     def _compute_warehouse_name(self):
         for line in self:
             if line.warehouse_id:
                 line.warehouse_name = line.warehouse_id.display_name
 
     @api.depends(
-        'date_start',
-        'date_end',
-        'product_id',
-        'product_id.name',
-        'type',
-        'product_categ_id',
-        'product_categ_id.name',
-        'time_uom',
+        "date_start",
+        "date_end",
+        "product_id",
+        "product_id.name",
+        "type",
+        "product_categ_id",
+        "product_categ_id.name",
+        "time_uom",
     )
     def _compute_required_fields(self):
         lang = self.env["res.lang"].search([("code", "=", self.env.user.lang)])

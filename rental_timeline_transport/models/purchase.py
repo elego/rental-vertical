@@ -92,7 +92,9 @@ class PurchaseOrderLine(models.Model):
                 if name and line.name != name:
                     reset_lines |= line
             reset_lines._reset_timeline(vals)
-        keys = set(self.env['product.timeline']._get_depends_fields('purchase.order.line'))
+        keys = set(
+            self.env["product.timeline"]._get_depends_fields("purchase.order.line")
+        )
         if keys.intersection(vals.keys()):
             self._timeline_recompute_fields()
         return res
