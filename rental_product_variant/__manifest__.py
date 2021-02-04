@@ -33,6 +33,7 @@ In order to get vehicle related fields, open the product category and activate t
     "depends": [
         "rental_base",
         "purchase_order_type",
+        "product_dimension",
     ],
     "data": [
         "security/ir.model.access.csv",

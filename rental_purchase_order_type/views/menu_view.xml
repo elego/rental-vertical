@@ -33,15 +33,35 @@
         </field>
     </record>
 
-    <menuitem name="Transport Orders"
-        id="menu_vendor_transport_order"
-        parent="rental_base.menu_vendor_orders"
-        action="action_transport_orders"
+    <menuitem name="Orders"
+        id="menu_vendor_orders"
+        parent="rental_base.menu_top_vendor"
+        action="purchase.purchase_form_action"
         sequence="10" />
+        <menuitem name="Purchase Orders"
+            id="menu_vendor_orders_purchase_form_action"
+            parent="menu_vendor_orders"
+            action="purchase.purchase_form_action"
+            sequence="5" />
+        <menuitem name="Transport Orders"
+            id="menu_vendor_transport_order"
+            parent="menu_vendor_orders"
+            action="action_transport_orders"
+            sequence="10" />
+        <menuitem name="Repair Orders"
+            id="menu_vendor_repair_order"
+            parent="menu_vendor_orders"
+            action="action_repair_orders"
+            sequence="15" />
 
-    <menuitem name="Repair Orders"
-        id="menu_vendor_repair_order"
-        parent="rental_base.menu_vendor_orders"
-        action="action_repair_orders"
-        sequence="15" />
+    <menuitem name="Requests"
+        id="menu_vendor_requests"
+        parent="rental_base.menu_top_vendor"
+        sequence="5" />
+        <menuitem name="Request for Quotations"
+            id="menu_vendors_quotations"
+            parent="menu_vendor_requests"
+            action="purchase.purchase_rfq"
+            sequence="5" />
+
 </odoo>

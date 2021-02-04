@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-22 21:14+0000\n"
-"PO-Revision-Date: 2020-12-22 21:14+0000\n"
+"POT-Creation-Date: 2021-01-20 12:06+0000\n"
+"PO-Revision-Date: 2021-01-20 12:06+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -366,7 +366,6 @@ msgstr ""
 
 #. module: rental_base
 #: model:ir.ui.menu,name:rental_base.menu_customer_orders
-#: model:ir.ui.menu,name:rental_base.menu_vendor_orders
 msgid "Orders"
 msgstr ""
 
@@ -402,11 +401,6 @@ msgstr ""
 #: model:ir.ui.menu,name:rental_base.menu_config_products
 #: model:ir.ui.menu,name:rental_base.menu_master_data
 msgid "Products"
-msgstr ""
-
-#. module: rental_base
-#: model:ir.ui.menu,name:rental_base.menu_vendor_orders_purchase_form_action
-msgid "Purchase Orders"
 msgstr ""
 
 #. module: rental_base
@@ -497,16 +491,6 @@ msgid "Repair Orders for Product Instances"
 msgstr ""
 
 #. module: rental_base
-#: model:ir.ui.menu,name:rental_base.menu_vendors_quotations
-msgid "Request for Quotations"
-msgstr ""
-
-#. module: rental_base
-#: model:ir.ui.menu,name:rental_base.menu_vendor_requests
-msgid "Requests"
-msgstr ""
-
-#. module: rental_base
 #: model:ir.model,name:rental_base.model_sale_order
 #: model:ir.model.fields,field_description:rental_base.field_update_sale_line_date__order_id
 msgid "Sale Order"
@@ -518,16 +502,6 @@ msgid "Sales Order Line"
 msgstr ""
 
 #. module: rental_base
-#: model:ir.ui.menu,name:rental_base.menu_sales_orders
-msgid "Sales Orders"
-msgstr ""
-
-#. module: rental_base
-#: model:ir.ui.menu,name:rental_base.menu_sales_quotations
-msgid "Sales Quotations"
-msgstr ""
-
-#. module: rental_base
 #: model:ir.model,name:rental_base.model_ir_sequence
 msgid "Sequence"
 msgstr ""
@@ -535,11 +509,6 @@ msgstr ""
 #. module: rental_base
 #: model_terms:ir.ui.view,arch_db:rental_base.sale_start_end_dates
 msgid "Service Period"
-msgstr ""
-
-#. module: rental_base
-#: model:ir.ui.menu,name:rental_base.menu_customer_repair_orders
-msgid "Service Quotations"
 msgstr ""
 
 #. module: rental_base

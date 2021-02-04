@@ -118,7 +118,7 @@ odoo.define('rental.contract', function (require) {
         } //check End Date = Date End 08/01/2020 (#3748)
     }, {
         content: _t('Click Button Close'),
-        trigger: 'i.fa-close',
+        trigger: '.o_form_button_cancel',
         in_modal: false,
     }, {
         content: _t("Click Print"),
@@ -157,7 +157,7 @@ odoo.define('rental.contract', function (require) {
         run: function (){}
     }, {
         content: _t('Click Button Close'),
-        trigger: 'i.fa-close',
+        trigger: '.o_form_button_cancel',
         in_modal: false,
     }, /*{
         content: _t('Check Analytic Account on Invoice'),
@@ -244,7 +244,7 @@ odoo.define('rental.contract', function (require) {
         content: _t("Click on Contracts"),
         trigger: 'button[name="action_show_contracts"]',
         extra_trigger: '.o_statusbar_status .btn-primary:contains("Sales Order")',
-    }, {
+    }, tour.STEPS.SHOW_APPS_MENU_ITEM,{
         content: _t('Go to menu of Settings'),
         trigger: 'li a[data-menu-xmlid="base.menu_administration"]',
         position: 'bottom',
@@ -253,9 +253,14 @@ odoo.define('rental.contract', function (require) {
         trigger: 'div.form-row a:contains("Activate the developer mode")',
         position: 'bottom',
     }, {
+        content: _t('Go to main menu'),
+        trigger: '.o_menu_apps a',
+        extra_trigger: '.o_main_navbar a.o_menu_brand:contains("Discuss")',
+        auto: true,
+        position: "bottom",
+    }, {
         content: _t('Go to main menu of Rental'),
-        trigger: '.mk_apps_sidebar li a[data-menu-xmlid="rental_base.menu_rental_root"]',
-        extra_trigger: 'a.o_menu_brand:contains("Discuss")',
+        trigger: '.o_app:contains("Rentals")',
         position: 'bottom',
     }, {
         content: _t('Go to top menu of Customer'),
@@ -343,7 +348,7 @@ odoo.define('rental.contract', function (require) {
         run: function (){} //check Invoice: (Unit Price : 4,500.00)
     }, {
         content: _t('Check Analytic Account on Invoice'),
-        trigger: 'td.o_data_cell span[name="account_analytic_id"]:contains("[01532] Cat 930M")',
+        trigger: 'td.o_data_cell:contains("[01532] Cat 930M")',
         extra_trigger: 'div[name="invoice_line_ids"]',
         in_modal: false,
         position: 'bottom',
