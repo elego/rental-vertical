@@ -8,12 +8,10 @@ class ProductTimeline(models.Model):
 
     appointment = fields.Boolean(
         "Appointment",
-        compute="_compute_fields",
+        compute="_compute_appointment",
     )
 
-    @api.multi
-    def _compute_fields(self):
-        super(ProductTimeline, self)._compute_fields()
+    def _compute_appointment(self):
         for line in self:
             domain = [
                 ("product_id", "=", line.product_id.id),

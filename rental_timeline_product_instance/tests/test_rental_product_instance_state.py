@@ -84,16 +84,15 @@ class TestRentalProductInstanceState(RentalStockCommon):
         self.assertEqual(self.productC.instance_state, "available")
 
         # check function _search_instance_state
-        res = self.ProductObj.search([('instance_state', '=', 'available')])
+        res = self.ProductObj.search([("instance_state", "=", "available")])
         self.assertTrue(self.productA not in res)
         self.assertTrue(self.productB not in res)
         self.assertTrue(self.productC in res)
-        res = self.ProductObj.search([('instance_state', '=', 'reserved')])
+        res = self.ProductObj.search([("instance_state", "=", "reserved")])
         self.assertTrue(self.productA not in res)
         self.assertTrue(self.productB in res)
         self.assertTrue(self.productC not in res)
-        res = self.ProductObj.search([('instance_state', '=', 'rental')])
+        res = self.ProductObj.search([("instance_state", "=", "rental")])
         self.assertTrue(self.productA in res)
         self.assertTrue(self.productB not in res)
         self.assertTrue(self.productC not in res)
-

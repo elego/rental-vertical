@@ -88,6 +88,11 @@ class SaleOrderLine(models.Model):
             else:
                 raise exceptions.UserError(_("No found rented product."))
 
+    @api.multi
+    def _timeline_recompute_fields(self):
+        for line in self:
+            line.timeline_ids._compute_fields()
+
     @api.model
     def create(self, vals):
         res = super().create(vals)
@@ -138,6 +143,9 @@ class SaleOrderLine(models.Model):
                         % (line.order_id.name, line.product_id.display_name)
                     )
             reset_lines._reset_timeline(vals)
+        keys = set(self.env["product.timeline"]._get_depends_fields("sale.order.line"))
+        if keys.intersection(vals.keys()):
+            self._timeline_recompute_fields()
         return res
 
     @api.multi
@@ -164,6 +172,16 @@ class SaleOrderLine(models.Model):
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
+
+    @api.multi
+    def write(self, vals):
+        res = super().write(vals)
+        keys = {"partner_id", "partner_shipping_id", "name"}
+        if keys.intersection(vals.keys()):
+            for order in self:
+                for line in order.order_line:
+                    line._timeline_recompute_fields()
+        return res
 
     @api.multi
     def action_cancel(self):
@@ -204,6 +222,7 @@ class SaleOrder(models.Model):
                 or l.rental_type == "new_rental"
             ):
                 line.timeline_ids.write(values)
+                line.timeline_ids._compute_fields()
         res = super(SaleOrder, self).action_confirm()
         return res
 

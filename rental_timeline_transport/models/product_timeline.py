@@ -17,23 +17,41 @@ class ProductTimeline(models.Model):
         "Freight forwarder",
         ondelete="set null",
         compute="_compute_fields",
+        store=True,
     )
 
     freight_forwarder_name = fields.Char(
         compute="_compute_fields",
+        store=True,
+    )
+
+    source_address_id = fields.Many2one(
+        "res.partner",
+        ondelete="set null",
+        compute="_compute_fields",
+        store=True,
     )
 
     source_address = fields.Char(
         "Shipping address",
         compute="_compute_fields",
+        store=True,
+    )
+
+    destination_address_id = fields.Many2one(
+        "res.partner",
+        ondelete="set null",
+        compute="_compute_fields",
+        store=True,
     )
 
     destination_address = fields.Char(
         "Shipping address",
         compute="_compute_fields",
+        store=True,
     )
 
-    @api.multi
+    @api.depends("res_id", "res_model")
     def _compute_fields(self):
         super(ProductTimeline, self)._compute_fields()
         lang = self.env["res.lang"].search([("code", "=", self.env.user.lang)])
@@ -49,8 +67,15 @@ class ProductTimeline(models.Model):
                 )
                 line.order_name = order_obj.name
                 line.freight_forwarder_id = order_obj.partner_id.id
+                line.freight_forwarder_name = line.freight_forwarder_id.display_name
+                line.source_address_id = (
+                    obj.trans_origin_sale_line_id.planned_source_address_id.id
+                )
                 line.source_address = (
                     obj.trans_origin_sale_line_id.planned_source_address_id._display_address()
+                )
+                line.destination_address_id = (
+                    obj.trans_origin_sale_line_id.order_id.partner_shipping_id.id
                 )
                 line.destination_address = (
                     obj.trans_origin_sale_line_id.order_id.partner_shipping_id._display_address()
@@ -64,4 +89,23 @@ class ProductTimeline(models.Model):
                     currency=line.currency_id.symbol,
                 )
 
-            line.freight_forwarder_name = line.freight_forwarder_id.display_name
+    @api.model
+    def _get_depends_fields(self, model):
+        res = super()._get_depends_fields(model)
+        if model == "purchase.order.line":
+            res += [
+                "order_id",
+                "currency_id",
+                "price_subtotal",
+            ]
+        return res
+
+    @api.model
+    def _get_partner_fields(self):
+        res = super()._get_partner_fields()
+        res += [
+            "freight_forwarder_id",
+            "source_address_id",
+            "destination_address_id",
+        ]
+        return res
