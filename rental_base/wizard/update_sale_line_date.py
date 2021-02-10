@@ -6,6 +6,35 @@ import logging
 logger = logging.getLogger(__name__)
 
 
+class UpdateSaleLineDateLine(models.TransientModel):
+    _name = "update.sale.line.date.line"
+
+    wizard_id = fields.Many2one(
+        comodel_name="update.sale.line.date",
+        required=True,
+    )
+    sequence = fields.Integer(
+        string="Sequence",
+    )
+    order_line_id = fields.Many2one(
+        comodel_name="sale.order.line",
+        required=True,
+    )
+    date_start = fields.Date(
+        string="Date Start",
+    )
+    date_end = fields.Date(
+        string="Date End",
+    )
+    product_id = fields.Many2one(
+        comodel_name="product.product",
+        string="Product",
+    )
+    change = fields.Boolean(
+        string="Change",
+    )
+
+
 class UpdateSaleLineDate(models.TransientModel):
     _name = "update.sale.line.date"
     _description = "Update Times"
@@ -23,6 +52,11 @@ class UpdateSaleLineDate(models.TransientModel):
     order_id = fields.Many2one(
         "sale.order",
         string="Sale Order",
+    )
+
+    date_in_line = fields.Boolean(
+        string="Date in Lines",
+        help="If set, you can set individual date in every selected positions"
     )
 
     all_line = fields.Boolean(
@@ -48,19 +82,58 @@ class UpdateSaleLineDate(models.TransientModel):
         "of order lines minus 1.",
     )
 
+    line_ids = fields.One2many(
+        comodel_name="update.sale.line.date.line",
+        inverse_name="wizard_id",
+        string="Positions",
+    )
+
+    @api.onchange("date_in_line")
+    def onchange_date_in_line(self):
+        if self.date_in_line:
+            self.all_line = True
+
+    @api.onchange("from_line", "to_line", "all_line")
+    def onchange_line(self):
+        if self.all_line:
+            for line in self.line_ids:
+                line.change = True
+        elif self.from_line and self.to_line:
+            for line in self.line_ids:
+                if line.sequence >= self.from_line and line.sequence <= self.to_line:
+                    line.change = True
+                else:
+                    line.change = False
+
     @api.model
     def default_get(self, fields):
         res = {}
         active_id = self.env.context.get("active_id")
         order = self.env["sale.order"].browse(active_id)
+        seq = 1
+        line_ids_value = []
+        for line in order.order_line:
+            if not line.date_start or not line.end_date:
+                continue
+            line_ids_value.append((0, 0, {
+                "sequence": seq,
+                "order_line_id": line.id,
+                "change": False,
+                "date_start": line.start_date,
+                "date_end": line.end_date,
+                "product_id": line.product_id.id,
+            }))
+            seq += 1
         res.update(
             {
                 "order_id": order.id,
                 "date_start": order.default_start_date,
                 "date_end": order.default_end_date,
+                "date_in_line": False,
                 "all_line": True,
-                "from_line": 0,
-                "to_line": len(order.order_line) - 1,
+                "from_line": 1,
+                "to_line": len(line_ids_value),
+                "line_ids": line_ids_value,
             }
         )
         return res
@@ -71,9 +144,9 @@ class UpdateSaleLineDate(models.TransientModel):
         message_body = ""
         message_body += subject
         if self.all_line:
-            self.order_id.order_line.update_start_end_date(
-                self.date_start, self.date_end
-            )
+            self.order_id.order_line.filtered(
+                lambda x: x.start_date and x.end_date
+            ).update_start_end_date(self.date_start, self.date_end)
             message_body += _(" (All lines): %s - %s") % (
                 self.date_start,
                 self.date_end,
@@ -83,17 +156,24 @@ class UpdateSaleLineDate(models.TransientModel):
                 raise exceptions.UserError(
                     _("The value in 'To' is less then the value in 'From'.")
                 )
-            i = 0
-            for line in self.order_id.order_line:
-                if self.from_line <= i <= self.to_line:
-                    line.update_start_end_date(self.date_start, self.date_end)
-                i += 1
-            message_body += _(" (Lines: %s - %s): %s - %s") % (
-                self.from_line,
-                self.to_line,
-                self.date_start,
-                self.date_end,
-            )
+            if self.date_in_line:
+                for line in self.line_ids:
+                    if line.sequence >= self.from_line and line.sequence <= self.to_line:
+                        line.order_line_id.update_start_end_date(line.date_start, line.date_end)
+                message_body += _(" (Lines: %s - %s)") % (
+                    self.from_line,
+                    self.to_line,
+                )
+            else:
+                for line in self.line_ids:
+                    if line.sequence >= self.from_line and line.sequence <= self.to_line:
+                        line.order_line_id.update_start_end_date(self.date_start, self.date_end)
+                message_body += _(" (Lines: %s - %s): %s - %s") % (
+                    self.from_line,
+                    self.to_line,
+                    self.date_start,
+                    self.date_end,
+                )
         self.order_id.message_post(
             body=message_body, subject=subject, message_type="comment"
         )
