@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-20 12:06+0000\n"
-"PO-Revision-Date: 2021-01-20 12:06+0000\n"
+"POT-Creation-Date: 2021-02-10 18:56+0000\n"
+"PO-Revision-Date: 2021-02-10 18:56+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,13 @@ msgid " (All lines): %s - %s"
 msgstr ""
 
 #. module: rental_base
-#: code:addons/rental_base/wizard/update_sale_line_date.py:91
+#: code:addons/rental_base/wizard/update_sale_line_date.py:163
+#, python-format
+msgid " (Lines: %s - %s)"
+msgstr ""
+
+#. module: rental_base
+#: code:addons/rental_base/wizard/update_sale_line_date.py:171
 #, python-format
 msgid " (Lines: %s - %s): %s - %s"
 msgstr ""
@@ -61,6 +67,11 @@ msgstr ""
 #. module: rental_base
 #: model_terms:ir.ui.view,arch_db:rental_base.update_sale_line_date_form
 msgid "Cancel"
+msgstr ""
+
+#. module: rental_base
+#: model:ir.model.fields,field_description:rental_base.field_update_sale_line_date_line__change
+msgid "Change"
 msgstr ""
 
 #. module: rental_base
@@ -111,11 +122,13 @@ msgstr ""
 
 #. module: rental_base
 #: model:ir.model.fields,field_description:rental_base.field_update_sale_line_date__create_uid
+#: model:ir.model.fields,field_description:rental_base.field_update_sale_line_date_line__create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: rental_base
 #: model:ir.model.fields,field_description:rental_base.field_update_sale_line_date__create_date
+#: model:ir.model.fields,field_description:rental_base.field_update_sale_line_date_line__create_date
 msgid "Created on"
 msgstr ""
 
@@ -142,12 +155,19 @@ msgstr ""
 
 #. module: rental_base
 #: model:ir.model.fields,field_description:rental_base.field_update_sale_line_date__date_end
+#: model:ir.model.fields,field_description:rental_base.field_update_sale_line_date_line__date_end
 msgid "Date End"
 msgstr ""
 
 #. module: rental_base
 #: model:ir.model.fields,field_description:rental_base.field_update_sale_line_date__date_start
+#: model:ir.model.fields,field_description:rental_base.field_update_sale_line_date_line__date_start
 msgid "Date Start"
+msgstr ""
+
+#. module: rental_base
+#: model:ir.model.fields,field_description:rental_base.field_update_sale_line_date__date_in_line
+msgid "Date in Lines"
 msgstr ""
 
 #. module: rental_base
@@ -194,6 +214,7 @@ msgstr ""
 
 #. module: rental_base
 #: model:ir.model.fields,field_description:rental_base.field_update_sale_line_date__display_name
+#: model:ir.model.fields,field_description:rental_base.field_update_sale_line_date_line__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -273,6 +294,11 @@ msgid "If set, all order lines of this order are updated with the given dates."
 msgstr ""
 
 #. module: rental_base
+#: model:ir.model.fields,help:rental_base.field_update_sale_line_date__date_in_line
+msgid "If set, you can set individual date in every selected positions"
+msgstr ""
+
+#. module: rental_base
 #: model:ir.model.fields,help:rental_base.field_update_sale_line_date__from_line
 msgid "In order to update one or several order lines, please set a number referring to the first order line that should to be changed.\n"
 "The first line is referenced by 0."
@@ -315,16 +341,19 @@ msgstr ""
 
 #. module: rental_base
 #: model:ir.model.fields,field_description:rental_base.field_update_sale_line_date____last_update
+#: model:ir.model.fields,field_description:rental_base.field_update_sale_line_date_line____last_update
 msgid "Last Modified on"
 msgstr ""
 
 #. module: rental_base
 #: model:ir.model.fields,field_description:rental_base.field_update_sale_line_date__write_uid
+#: model:ir.model.fields,field_description:rental_base.field_update_sale_line_date_line__write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: rental_base
 #: model:ir.model.fields,field_description:rental_base.field_update_sale_line_date__write_date
+#: model:ir.model.fields,field_description:rental_base.field_update_sale_line_date_line__write_date
 msgid "Last Updated on"
 msgstr ""
 
@@ -347,6 +376,11 @@ msgstr ""
 #. module: rental_base
 #: model_terms:ir.ui.view,arch_db:rental_base.view_order_form
 msgid "Order Information"
+msgstr ""
+
+#. module: rental_base
+#: model:ir.model.fields,field_description:rental_base.field_update_sale_line_date_line__order_line_id
+msgid "Order Line"
 msgstr ""
 
 #. module: rental_base
@@ -380,6 +414,16 @@ msgstr ""
 #: code:addons/rental_base/models/sale.py:158
 #, python-format
 msgid "Outgoing Shipment is in state %s. You can not change the Date Start anymore."
+msgstr ""
+
+#. module: rental_base
+#: model:ir.model.fields,field_description:rental_base.field_update_sale_line_date__line_ids
+msgid "Positions"
+msgstr ""
+
+#. module: rental_base
+#: model:ir.model.fields,field_description:rental_base.field_update_sale_line_date_line__product_id
+msgid "Product"
 msgstr ""
 
 #. module: rental_base
@@ -503,6 +547,7 @@ msgstr ""
 
 #. module: rental_base
 #: model:ir.model,name:rental_base.model_ir_sequence
+#: model:ir.model.fields,field_description:rental_base.field_update_sale_line_date_line__sequence
 msgid "Sequence"
 msgstr ""
 
@@ -523,7 +568,7 @@ msgid "Start Date"
 msgstr ""
 
 #. module: rental_base
-#: code:addons/rental_base/wizard/update_sale_line_date.py:84
+#: code:addons/rental_base/wizard/update_sale_line_date.py:157
 #, python-format
 msgid "The value in 'To' is less then the value in 'From'."
 msgstr ""
@@ -549,7 +594,7 @@ msgid "Update"
 msgstr ""
 
 #. module: rental_base
-#: code:addons/rental_base/wizard/update_sale_line_date.py:70
+#: code:addons/rental_base/wizard/update_sale_line_date.py:143
 #, python-format
 msgid "Update Date of Sale Order Lines"
 msgstr ""
@@ -603,5 +648,10 @@ msgstr ""
 #. module: rental_base
 #: model_terms:ir.ui.view,arch_db:rental_base.sale_start_end_dates
 msgid "to"
+msgstr ""
+
+#. module: rental_base
+#: model:ir.model,name:rental_base.model_update_sale_line_date_line
+msgid "update.sale.line.date.line"
 msgstr ""
 
