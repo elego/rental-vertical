@@ -66,6 +66,11 @@ class RepairOrder(models.Model):
             else:
                 raise exceptions.UserError(_("No found repaired product."))
 
+    @api.multi
+    def _timeline_recompute_fields(self):
+        for repair in self:
+            repair.timeline_ids._compute_fields()
+
     @api.model
     def create(self, vals):
         res = super().create(vals)
@@ -92,6 +97,9 @@ class RepairOrder(models.Model):
                 if name and order.name != name:
                     reset_lines |= order
             reset_orders._reset_timeline(vals)
+        keys = set(self.env["product.timeline"]._get_depends_fields("repair.order"))
+        if keys.intersection(vals.keys()):
+            self._timeline_recompute_fields()
         return res
 
     @api.multi

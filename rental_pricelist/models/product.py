@@ -154,18 +154,16 @@ class ProductProduct(models.Model):
     @api.multi
     def _update_rental_service_analytic_account(self, vals):
         self.ensure_one()
-        income_analytic_account_id = self.income_analytic_account_id.id
-        expense_analytic_account_id = self.expense_analytic_account_id.id
+        analytic_vals = {}
         if "income_analytic_account_id" in vals:
-            income_analytic_account_id = vals.get("income_analytic_account_id", False)
+            analytic_vals["income_analytic_account_id"] = vals.get(
+                "income_analytic_account_id", False
+            )
         if "expense_analytic_account_id" in vals:
-            expense_analytic_account_id = vals.get("expense_analytic_account_id", False)
-        self.rental_service_ids.write(
-            {
-                "income_analytic_account_id": income_analytic_account_id,
-                "expense_analytic_account_id": expense_analytic_account_id,
-            }
-        )
+            analytic_vals["expense_analytic_account_id"] = vals.get(
+                "expense_analytic_account_id", False
+            )
+        self.rental_service_ids.write(analytic_vals)
 
     @api.multi
     def write(self, vals):
@@ -191,7 +189,12 @@ class ProductProduct(models.Model):
                     )
                     p.product_rental_hour_id = service_product
             # update analytic account for service product
-            p._update_rental_service_analytic_account(vals)
+            if (
+                "income_analytic_account_id" in vals
+                or "expense_analytic_account_id" in vals
+            ):
+                p._update_rental_service_analytic_account(vals)
+        return res
 
     @api.model
     def create(self, vals):
@@ -215,5 +218,17 @@ class ProductProduct(models.Model):
             if "rental_price_hour" in vals:
                 del vals["rental_price_hour"]
         res = super().create(vals)
+        if "income_analytic_account_id" in vals:
+            ext_vals["income_analytic_account_id"] = vals.get(
+                "income_analytic_account_id", False
+            )
+        else:
+            ext_vals["income_analytic_account_id"] = res.income_analytic_account_id.id
+        if "expense_analytic_account_id" in vals:
+            ext_vals["expense_analytic_account_id"] = vals.get(
+                "expense_analytic_account_id", False
+            )
+        else:
+            ext_vals["expense_analytic_account_id"] = res.expense_analytic_account_id.id
         res.write(ext_vals)
         return res
