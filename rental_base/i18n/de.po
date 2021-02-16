@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-10 18:56+0000\n"
-"PO-Revision-Date: 2021-02-10 18:56+0000\n"
+"POT-Creation-Date: 2021-02-16 18:54+0000\n"
+"PO-Revision-Date: 2021-02-16 18:54+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -30,22 +30,23 @@ msgstr "\n"
 "Bitte stattdessen den Button 'Zeitraum ändern' verwenden, um die Zeiten in den Auftragszeilen, den dazugehörigen Zeitachsen-Eintrag, den Vertrag und die Lagerbewegungen bzw. Lieferscheinen (wenn nötig) korrekt zu aktualisieren."
 
 #. module: rental_base
-#: code:addons/rental_base/wizard/update_sale_line_date.py:150
+#: code:addons/rental_base/wizard/update_sale_line_date.py:149
+#: code:addons/rental_base/wizard/update_sale_line_date.py:175
 #, python-format
-msgid " (All lines): %s - %s"
-msgstr " (Alle Positionen): %s - %s"
+msgid "<li>%s: %s - %s -> %s - %s</li>"
+msgstr ""
 
 #. module: rental_base
-#: code:addons/rental_base/wizard/update_sale_line_date.py:163
+#: code:addons/rental_base/wizard/update_sale_line_date.py:158
 #, python-format
-msgid " (Lines: %s - %s)"
-msgstr " (Positionen: %s - %s): %s - %s"
+msgid "<li>(All lines): %s - %s -> %s - %s</li>"
+msgstr "<li>(Alle Positionen): %s - %s -> %s - %s</li>"
 
 #. module: rental_base
-#: code:addons/rental_base/wizard/update_sale_line_date.py:171
+#: code:addons/rental_base/wizard/update_sale_line_date.py:184
 #, python-format
-msgid " (Lines: %s - %s): %s - %s"
-msgstr " (Positionen: %s - %s): %s - %s"
+msgid "<li>(Lines: %s - %s): %s - %s -> %s - %s</li>"
+msgstr "<li>(Positionen: %s - %s): %s - %s -> %s - %s</li>"
 
 #. module: rental_base
 #: model_terms:ir.ui.view,arch_db:rental_base.view_order_form
@@ -576,7 +577,7 @@ msgid "Start Date"
 msgstr "Startdatum"
 
 #. module: rental_base
-#: code:addons/rental_base/wizard/update_sale_line_date.py:157
+#: code:addons/rental_base/wizard/update_sale_line_date.py:170
 #, python-format
 msgid "The value in 'To' is less then the value in 'From'."
 msgstr "Der Wert im Feld 'Bis' ist kleiner als der Wert im Feld 'Von'."
@@ -604,8 +605,8 @@ msgstr "Aktualisieren"
 #. module: rental_base
 #: code:addons/rental_base/wizard/update_sale_line_date.py:143
 #, python-format
-msgid "Update Date of Sale Order Lines"
-msgstr "Zeitraum der Auftragszeilen aktualisieren"
+msgid "Update Date of Sale Order Lines<lu>"
+msgstr "Zeitraum der Auftragszeilen aktualisieren<lu>"
 
 #. module: rental_base
 #: model:ir.actions.act_window,name:rental_base.action_update_sale_line_date

@@ -140,17 +140,30 @@ class UpdateSaleLineDate(models.TransientModel):
 
     def action_confirm(self):
         self.ensure_one()
-        subject = _("Update Date of Sale Order Lines")
+        subject = _("Update Date of Sale Order Lines<lu>")
         message_body = ""
         message_body += subject
         if self.all_line:
-            self.order_id.order_line.filtered(
-                lambda x: x.start_date and x.end_date
-            ).update_start_end_date(self.date_start, self.date_end)
-            message_body += _(" (All lines): %s - %s") % (
-                self.date_start,
-                self.date_end,
-            )
+            if self.date_in_line:
+                for line in self.line_ids:
+                    message_body += _("<li>%s: %s - %s -> %s - %s</li>") % (
+                        line.order_line_id.product_id.name,
+                        line.order_line_id.date_start,
+                        line.order_line_id.date_end,
+                        line.date_start,
+                        line.date_end,
+                    )
+                    line.order_line_id.update_start_end_date(line.date_start, line.date_end)
+            else:
+                message_body += _("<li>(All lines): %s - %s -> %s - %s</li>") % (
+                    self.order_id.default_start_date,
+                    self.order_id.default_end_date,
+                    self.date_start,
+                    self.date_end,
+                )
+                self.order_id.order_line.filtered(
+                    lambda x: x.start_date and x.end_date
+                ).update_start_end_date(self.date_start, self.date_end)
         else:
             if self.from_line > self.to_line:
                 raise exceptions.UserError(
@@ -159,21 +172,27 @@ class UpdateSaleLineDate(models.TransientModel):
             if self.date_in_line:
                 for line in self.line_ids:
                     if line.sequence >= self.from_line and line.sequence <= self.to_line:
+                        message_body += _("<li>%s: %s - %s -> %s - %s</li>") % (
+                            line.order_line_id.product_id.name,
+                            line.order_line_id.date_start,
+                            line.order_line_id.date_end,
+                            line.date_start,
+                            line.date_end,
+                        )
                         line.order_line_id.update_start_end_date(line.date_start, line.date_end)
-                message_body += _(" (Lines: %s - %s)") % (
-                    self.from_line,
-                    self.to_line,
-                )
             else:
-                for line in self.line_ids:
-                    if line.sequence >= self.from_line and line.sequence <= self.to_line:
-                        line.order_line_id.update_start_end_date(self.date_start, self.date_end)
-                message_body += _(" (Lines: %s - %s): %s - %s") % (
+                message_body += _("<li>(Lines: %s - %s): %s - %s -> %s - %s</li>") % (
                     self.from_line,
                     self.to_line,
+                    self.order_id.default_start_date,
+                    self.order_id.default_end_date,
                     self.date_start,
                     self.date_end,
                 )
+                for line in self.line_ids:
+                    if line.sequence >= self.from_line and line.sequence <= self.to_line:
+                        line.order_line_id.update_start_end_date(self.date_start, self.date_end)
+        message_body += "</lu>"
         self.order_id.message_post(
             body=message_body, subject=subject, message_type="comment"
         )
