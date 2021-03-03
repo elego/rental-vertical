@@ -28,7 +28,7 @@ Part of rental-vertical See LICENSE file for full copyright and licensing detail
                 </group>
                 <field name="line_ids" no_label="1">
                     <tree decoration-danger="change==True" create="0" delete="0" editable="top">
-                        <field name="sequence" readonly="1"/>
+                        <field name="sequence"/>
                         <field name="product_id" readonly="1"/>
                         <field name="date_start"/>
                         <field name="date_end"/>

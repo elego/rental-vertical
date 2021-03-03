@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-10 18:56+0000\n"
-"PO-Revision-Date: 2021-02-10 18:56+0000\n"
+"POT-Creation-Date: 2021-02-16 18:54+0000\n"
+"PO-Revision-Date: 2021-02-16 18:54+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,21 +26,22 @@ msgid "\n"
 msgstr ""
 
 #. module: rental_base
-#: code:addons/rental_base/wizard/update_sale_line_date.py:77
+#: code:addons/rental_base/wizard/update_sale_line_date.py:149
+#: code:addons/rental_base/wizard/update_sale_line_date.py:175
 #, python-format
-msgid " (All lines): %s - %s"
+msgid "<li>%s: %s - %s -> %s - %s</li>"
 msgstr ""
 
 #. module: rental_base
-#: code:addons/rental_base/wizard/update_sale_line_date.py:163
+#: code:addons/rental_base/wizard/update_sale_line_date.py:158
 #, python-format
-msgid " (Lines: %s - %s)"
+msgid "<li>(All lines): %s - %s -> %s - %s</li>"
 msgstr ""
 
 #. module: rental_base
-#: code:addons/rental_base/wizard/update_sale_line_date.py:171
+#: code:addons/rental_base/wizard/update_sale_line_date.py:184
 #, python-format
-msgid " (Lines: %s - %s): %s - %s"
+msgid "<li>(Lines: %s - %s): %s - %s -> %s - %s</li>"
 msgstr ""
 
 #. module: rental_base
@@ -235,6 +236,7 @@ msgstr ""
 
 #. module: rental_base
 #: model:ir.model.fields,field_description:rental_base.field_update_sale_line_date__id
+#: model:ir.model.fields,field_description:rental_base.field_update_sale_line_date_line__id
 msgid "ID"
 msgstr ""
 
@@ -568,7 +570,7 @@ msgid "Start Date"
 msgstr ""
 
 #. module: rental_base
-#: code:addons/rental_base/wizard/update_sale_line_date.py:157
+#: code:addons/rental_base/wizard/update_sale_line_date.py:170
 #, python-format
 msgid "The value in 'To' is less then the value in 'From'."
 msgstr ""
@@ -596,7 +598,7 @@ msgstr ""
 #. module: rental_base
 #: code:addons/rental_base/wizard/update_sale_line_date.py:143
 #, python-format
-msgid "Update Date of Sale Order Lines"
+msgid "Update Date of Sale Order Lines<lu>"
 msgstr ""
 
 #. module: rental_base
