@@ -20,6 +20,7 @@
         <field name="arch" type="xml">
             <tree position="inside">
                 <field name="tag_ids" widget="many2many_tags" />
+                <field name="product_id" invisible="1"/>
             </tree>
         </field>
     </record>
@@ -123,6 +124,9 @@
             <filter name="my_tasks" position="before">
                 <filter string="Service Tickets" name="service_tickets" domain="[('project_id.name','ilike','service')]"/>
             </filter>
+            <xpath expr="//field[@name='stage_id']" position="after">
+                <field name="product_id" string="Product"/>
+            </xpath>
         </field>
     </record>
 
