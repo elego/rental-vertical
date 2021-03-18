@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-22 21:12+0000\n"
-"PO-Revision-Date: 2020-12-22 21:12+0000\n"
+"POT-Creation-Date: 2021-03-18 23:35+0000\n"
+"PO-Revision-Date: 2021-03-18 23:35+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 
 #. module: rental_pricelist_interval
 #: model_terms:ir.ui.view,arch_db:rental_pricelist_interval.product_normal_form_view
-msgid "<strong colspan=\"1\" class=\"oe_inline\">Interval Prices</strong>"
+msgid "<strong colspan=\"1\" class=\"oe_inline\">Bulk Prices</strong>"
 msgstr ""
 
 #. module: rental_pricelist_interval
@@ -31,19 +31,21 @@ msgid "Company"
 msgstr "Unternehmen"
 
 #. module: rental_pricelist_interval
-#: model:ir.model.fields,field_description:rental_pricelist_interval.field_rental_price_interval_item__create_uid
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_rental_price_interval_rule__create_uid
 msgid "Created by"
 msgstr "Erstellt von"
 
 #. module: rental_pricelist_interval
-#: model:ir.model.fields,field_description:rental_pricelist_interval.field_rental_price_interval_item__create_date
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_rental_price_interval_rule__create_date
 msgid "Created on"
 msgstr "Erstellt am"
 
 #. module: rental_pricelist_interval
-#: model:ir.model.fields,field_description:rental_pricelist_interval.field_rental_price_interval_item__display_name
+#: model:ir.model.fields,field_description:rental_pricelist_interval.field_product_product__def_interval_pricelist_id
+msgid "Default Interval Pricelist"
+msgstr ""
+
+#. module: rental_pricelist_interval
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_rental_price_interval_rule__display_name
 msgid "Display Name"
 msgstr "Anzeigename"
@@ -54,13 +56,11 @@ msgid "Factor"
 msgstr "Faktor"
 
 #. module: rental_pricelist_interval
-#: model:ir.model.fields,field_description:rental_pricelist_interval.field_rental_price_interval_item__id
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_rental_price_interval_rule__id
 msgid "ID"
 msgstr "ID"
 
 #. module: rental_pricelist_interval
-#: model:ir.model.fields,field_description:rental_pricelist_interval.field_rental_price_interval_item__min_quantity
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_rental_price_interval_rule__min_quantity
 msgid "Interval (days)"
 msgstr "Intervall (Tage)"
@@ -76,7 +76,12 @@ msgid "Interval Price"
 msgstr "Intervall Price"
 
 #. module: rental_pricelist_interval
-#: model:ir.model.fields,field_description:rental_pricelist_interval.field_product_product__rental_price_interval_item_ids
+#: model:ir.model.fields,field_description:rental_pricelist_interval.field_product_pricelist__is_interval_pricelist
+msgid "Interval Pricelist"
+msgstr "Intervall Preise"
+
+#. module: rental_pricelist_interval
+#: model:ir.model.fields,field_description:rental_pricelist_interval.field_product_product__interval_scale_pricelist_item_ids
 msgid "Interval Scale Pricelist Items"
 msgstr "Staffelpreise"
 
@@ -86,56 +91,71 @@ msgid "Interval days (Max)"
 msgstr "Intervall Tage (Max)"
 
 #. module: rental_pricelist_interval
-#: model:ir.model.fields,field_description:rental_pricelist_interval.field_rental_price_interval_item____last_update
+#: model:uom.uom,name:rental_pricelist_interval.product_uom_interval
+msgid "Interval(s)"
+msgstr "Intervall"
+
+#. module: rental_pricelist_interval
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_rental_price_interval_rule____last_update
 msgid "Last Modified on"
 msgstr "Zuletzt geändert am"
 
 #. module: rental_pricelist_interval
-#: model:ir.model.fields,field_description:rental_pricelist_interval.field_rental_price_interval_item__write_uid
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_rental_price_interval_rule__write_uid
 msgid "Last Updated by"
 msgstr "Zuletzt aktualisiert von"
 
 #. module: rental_pricelist_interval
-#: model:ir.model.fields,field_description:rental_pricelist_interval.field_rental_price_interval_item__write_date
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_rental_price_interval_rule__write_date
 msgid "Last Updated on"
 msgstr "Zuletzt aktualisiert am"
 
 #. module: rental_pricelist_interval
-#: code:addons/rental_pricelist_interval/models/sale.py:42
+#: code:addons/rental_pricelist_interval/models/sale.py:61
 #, python-format
 msgid "Max rental interval (%s days) is exceeded."
 msgstr "Das Max Intervall (%s Tage) ist überschritten."
 
 #. module: rental_pricelist_interval
-#: model:ir.model.fields,field_description:rental_pricelist_interval.field_rental_price_interval_item__name
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_rental_price_interval_rule__name
 msgid "Name"
 msgstr "Name"
 
 #. module: rental_pricelist_interval
-#: code:addons/rental_pricelist_interval/models/sale.py:49
+#: code:addons/rental_pricelist_interval/models/sale.py:137
 #, python-format
-msgid "No found suitable interval price."
+msgid "No interval price was defined for this product."
 msgstr "Kein Intervall Preis ist gefunden."
 
 #. module: rental_pricelist_interval
-#: model:ir.model.fields,field_description:rental_pricelist_interval.field_rental_price_interval_item__price
+#: model_terms:ir.ui.view,arch_db:rental_pricelist_interval.product_normal_form_view
 msgid "Price"
 msgstr "Preis"
 
 #. module: rental_pricelist_interval
+#: model:ir.model,name:rental_pricelist_interval.model_product_pricelist
+msgid "Pricelist"
+msgstr "Preisliste"
+
+#. module: rental_pricelist_interval
+#: model:ir.model,name:rental_pricelist_interval.model_product_pricelist_item
+msgid "Pricelist Item"
+msgstr "Preislistenposition"
+
+#. module: rental_pricelist_interval
+#: model_terms:ir.ui.view,arch_db:rental_pricelist_interval.product_normal_form_view
+msgid "Pricelist Items"
+msgstr "Preislisten-Positionen"
+
+#. module: rental_pricelist_interval
 #: model:ir.model,name:rental_pricelist_interval.model_product_product
-#: model:ir.model.fields,field_description:rental_pricelist_interval.field_rental_price_interval_item__product_id
 msgid "Product"
 msgstr "Produkt"
 
 #. module: rental_pricelist_interval
-#: model:ir.model.fields,field_description:rental_pricelist_interval.field_sale_order_line__rental_interval_name
-msgid "Rental Interval"
-msgstr "MietIntervall"
+#: model:product.pricelist,name:rental_pricelist_interval.pricelist_interval
+msgid "Public Pricelist (Interval)"
+msgstr "Allgemeiner Preisliste (Intervall)"
 
 #. module: rental_pricelist_interval
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_res_company__rental_price_interval_rule_ids
@@ -158,6 +178,12 @@ msgid "Rental Price Interval Rule"
 msgstr "MietIntervall Preisregel"
 
 #. module: rental_pricelist_interval
+#: model:ir.model.fields,field_description:rental_pricelist_interval.field_product_pricelist_item__interval_item_id
+#: model:ir.model.fields,field_description:rental_pricelist_interval.field_product_product__product_rental_interval_id
+msgid "Rental Service (Interval)"
+msgstr "Mietservice (Intervall)"
+
+#. module: rental_pricelist_interval
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_product_product__rental_of_interval
 msgid "Rented in interval"
 msgstr "Vermietbar in Intervall"
@@ -171,14 +197,4 @@ msgstr "Intervallpreis zurücksetzen"
 #: model:ir.model,name:rental_pricelist_interval.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Auftragsposition"
-
-#. module: rental_pricelist_interval
-#: model:ir.model.fields,field_description:rental_pricelist_interval.field_sale_order_line__show_rental_interval_price
-msgid "Show Option Interval Price"
-msgstr "Option Intervallpreis anzeigen"
-
-#. module: rental_pricelist_interval
-#: model:ir.model.fields,field_description:rental_pricelist_interval.field_sale_order_line__rental_interval_price
-msgid "Use Interval Price"
-msgstr "Verwenden Intervalpreis"
 

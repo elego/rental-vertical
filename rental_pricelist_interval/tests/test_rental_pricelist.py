@@ -10,7 +10,14 @@ class TestRentalPricelist(RentalStockCommon):
     def setUp(self):
         super().setUp()
 
-        # Product Created A, B, C
+        self.uom_interval = self.env.ref(
+            "rental_pricelist_interval.product_uom_interval"
+        )
+        self.pricelist0 = self.env.ref("product.list0")
+        self.pricelist_interval = self.env.ref(
+            "rental_pricelist_interval.pricelist_interval"
+        )
+        # Product Created A and B
         ProductObj = self.env["product.product"]
         self.productA = ProductObj.create(
             {
@@ -22,6 +29,15 @@ class TestRentalPricelist(RentalStockCommon):
                 "rental_of_interval": True,
                 "rental_price_interval": 1000,
                 "rental_interval_max": 21,
+            }
+        )
+        self.productB = ProductObj.create(
+            {
+                "name": "Product B",
+                "type": "product",
+                "rental": True,
+                "rental_of_day": True,
+                "rental_price_day": 200,
             }
         )
         self.today = fields.Date.from_string(fields.Date.today())
@@ -39,7 +55,7 @@ class TestRentalPricelist(RentalStockCommon):
             .create(
                 {
                     "partner_id": self.partnerA.id,
-                    "pricelist_id": self.env.ref("product.list0").id,
+                    "pricelist_id": self.pricelist_interval.id,
                 }
             )
         )
@@ -68,6 +84,7 @@ class TestRentalPricelist(RentalStockCommon):
         Change End Date and rental_qty
         Reset field rental_interval_price
         """
+        self.assertEqual(self.productA.rental_price_interval, 1000)
         # Create Interval Prices for productA
         self.env.user.company_id.write(
             {
@@ -88,18 +105,18 @@ class TestRentalPricelist(RentalStockCommon):
         )
         self.productA.action_reset_rental_price_interval_items()
         check_p1 = check_p2 = check_p3 = False
-        for price in self.productA.rental_price_interval_item_ids:
+        for price in self.productA.interval_scale_pricelist_item_ids:
+            # 0-7 interval
             if price.min_quantity == 0:
-                self.assertEqual(price.price, 1000)
-                self.assertEqual(price.name, "0-7 interval")
+                self.assertEqual(price.fixed_price, 1000)
                 check_p1 = True
+            # 8-14 interval
             elif price.min_quantity == 8:
-                self.assertEqual(price.price, 1750)
-                self.assertEqual(price.name, "8-14 interval")
+                self.assertEqual(price.fixed_price, 1750)
                 check_p2 = True
+            # 15-21 interval
             elif price.min_quantity == 15:
-                self.assertEqual(price.price, 2250)
-                self.assertEqual(price.name, "15-21 interval")
+                self.assertEqual(price.fixed_price, 2250)
                 check_p3 = True
         self.assertTrue(check_p1)
         self.assertTrue(check_p2)
@@ -124,37 +141,36 @@ class TestRentalPricelist(RentalStockCommon):
         self._run_sol_onchange_display_product_id(line)
         self._run_sol_onchange_date(line)
         self.assertEqual(line.rental, True)
-        self.assertEqual(line.rental_interval_price, True)
         self.assertEqual(line.rental_type, "new_rental")
         self.assertEqual(line.can_sell_rental, False)
-        self.assertEqual(line.product_id, self.productA.product_rental_day_id)
+        self.assertEqual(line.product_id, self.productA.product_rental_interval_id)
         self.assertEqual(line.display_product_id, self.productA)
-        self.assertEqual(line.product_uom, self.uom_day)
+        self.assertEqual(line.product_uom, self.uom_interval)
         self.assertEqual(line.product_uom_qty, 1)
         self.assertEqual(line.rental_qty, 1)
         self.assertEqual(line.number_of_time_unit, 18)
         self.assertEqual(line.price_unit, 2250)
         self.assertEqual(line.price_subtotal, 2250)
-        self.assertEqual(line.rental_interval_name, "15-21 interval")
         # Change End Date and rental_qty
         line.rental_qty = 2
         self._run_sol_onchange_date(line, end_date=self.date_12_day_later)
         self.assertEqual(line.rental_qty, 2)
-        self.assertEqual(line.price_unit, 3500)  # 2 * 1750
-        self.assertEqual(line.price_subtotal, 3500)
-        self.assertEqual(line.rental_interval_name, "8-14 interval")
-        # Reset field rental_interval_price
-        line.rental_interval_price = False
-        line.onchange_rental_interval_price()
-        self.assertEqual(line.price_unit, 200)
-        line.rental_interval_price = True
-        self.assertEqual(line.rental_interval_price, True)
-        line.onchange_rental_interval_price()
-        self.assertEqual(line.price_unit, 3500)  # 2 * 1750
+        self.assertEqual(line.product_uom_qty, 2)
+        self.assertEqual(line.price_unit, 1750)
+        self.assertEqual(line.price_subtotal, 3500)  # 2 * 1750
+        # Change End Date again
         self._run_sol_onchange_date(line, end_date=self.date_4_day_later)
-        self.assertEqual(line.price_unit, 2000)  # 2 * 1000
-        self.assertEqual(line.price_subtotal, 2000)
-        self.assertEqual(line.rental_interval_name, "0-7 interval")
+        self.assertEqual(line.price_unit, 1000)
+        self.assertEqual(line.price_subtotal, 2000)  # 2 * 1000
+        # Change Pricelist
+        self.rental_order.pricelist_id = self.pricelist0
+        self._run_sol_onchange_display_product_id(line)
+        self._run_sol_onchange_date(line, end_date=self.date_12_day_later)
+        self.assertEqual(line.price_unit, 200)
+        self.rental_order.pricelist_id = self.pricelist_interval
+        self._run_sol_onchange_display_product_id(line)
+        self._run_sol_onchange_date(line, end_date=self.date_12_day_later)
+        self.assertEqual(line.price_unit, 1750)
         with self.assertRaises(exceptions.UserError) as e:
             self._run_sol_onchange_date(line, end_date=self.date_24_day_later)
         self.assertEqual("Max rental interval (21 days) is exceeded.", e.exception.name)
@@ -173,7 +189,7 @@ class TestRentalPricelist(RentalStockCommon):
             .new(
                 {
                     "order_id": self.rental_order.id,
-                    "display_product_id": self.productA.id,
+                    "display_product_id": self.productB.id,
                     "start_date": self.today,
                     "end_date": self.date_17_day_later,
                 }
@@ -182,4 +198,4 @@ class TestRentalPricelist(RentalStockCommon):
         with self.assertRaises(exceptions.UserError) as e:
             self._run_sol_onchange_display_product_id(line)
             self._run_sol_onchange_date(line)
-        self.assertEqual("No found suitable interval price.", e.exception.name)
+        self.assertEqual("No interval price was defined for this product.", e.exception.name)

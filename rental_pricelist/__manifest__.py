@@ -31,6 +31,7 @@ but are actually used for its related rental service!
     ],
     "demo": [],
     "qweb": [],
+    "post_init_hook": "set_multi_sales_price",
     "application": False,
     "license": "AGPL-3",
 }

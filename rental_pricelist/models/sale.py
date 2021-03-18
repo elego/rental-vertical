@@ -267,22 +267,28 @@ class SaleOrderLine(models.Model):
             self.product_uom_qty = qty
 
     @api.multi
+    def _get_product_rental_uom_ids(self):
+        self.ensure_one()
+        time_uoms = self._get_time_uom()
+        uom_ids = []
+        if self.display_product_id.rental_of_month:
+            uom_ids.append(time_uoms["month"].id)
+        if self.display_product_id.rental_of_day:
+            uom_ids.append(time_uoms["day"].id)
+        if self.display_product_id.rental_of_hour:
+            uom_ids.append(time_uoms["hour"].id)
+        return uom_ids
+
+    @api.multi
     @api.onchange("product_id")
     def product_id_change(self):
         res = super(SaleOrderLine, self).product_id_change()
         if self.rental and "domain" in res and "product_uom" in res["domain"]:
             del res["domain"]["product_uom"]
             if self.display_product_id.rental:
-                time_uoms = self._get_time_uom()
-                uom_ids = []
-                if self.display_product_id.rental_of_month:
-                    uom_ids.append(time_uoms["month"].id)
-                if self.display_product_id.rental_of_day:
-                    uom_ids.append(time_uoms["day"].id)
-                if self.display_product_id.rental_of_hour:
-                    uom_ids.append(time_uoms["hour"].id)
+                uom_ids = self._get_product_rental_uom_ids()
                 res["domain"]["product_uom"] = [("id", "in", uom_ids)]
-                if self.product_uom.id not in uom_ids:
+                if uom_ids and self.product_uom.id not in uom_ids:
                     self.product_uom = uom_ids[0]
         return res
 

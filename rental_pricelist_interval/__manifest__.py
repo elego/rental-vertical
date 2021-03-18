@@ -40,7 +40,7 @@ min (days)     factor
 15               2.25
 - Activate the interval price in sale order line (Use Interval Price)
     """,
-    "version": "12.0.1.0.1",
+    "version": "12.0.1.0.2",
     "category": "Rental",
     "author": "Odoo Community Association (OCA)/Elego Software Solutions GmbH",
     "depends": [
@@ -48,12 +48,15 @@ min (days)     factor
     ],
     "data": [
         "security/ir.model.access.csv",
+        "data/product_uom_data.xml",
+        "data/product_pricelist_data.xml",
         "views/sale_view.xml",
         "views/product_view.xml",
         "views/res_company_view.xml",
     ],
     "demo": [],
     "qweb": [],
+    "post_init_hook": "set_product_def_interval_pricelist_id",
     "application": False,
     "license": "AGPL-3",
 }
