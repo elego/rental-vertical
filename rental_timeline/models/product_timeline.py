@@ -215,6 +215,7 @@ class ProductTimeline(models.Model):
             if line.res_model == "sale.order.line":
                 obj = self.env[line.res_model].browse(line.res_id)
                 order_obj = obj.order_id
+                line.order_name = order_obj.name
                 line.name = _("R: %s") % order_obj.partner_id.name
                 line.partner_id = order_obj.partner_id.id
                 line.partner_shipping_id = order_obj.partner_shipping_id.id
