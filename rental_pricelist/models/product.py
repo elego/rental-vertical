@@ -168,12 +168,14 @@ class ProductProduct(models.Model):
     @api.multi
     def _update_rental_service_default_code(self, vals):
         self.ensure_one()
-        dc_vals = {}
         if "default_code" in vals:
             rental_product_dc = vals.get("default_code", False)
-            rental_service_dc = _("RENT-%s") % rental_product_dc
-            dc_vals["default_code"] = rental_service_dc
-        self.rental_service_ids.write(dc_vals)
+            for rental_service in self.rental_service_ids:
+                rental_service_dc = _("RENT-%s-%s") % (
+                    rental_service.id,
+                    rental_product_dc,
+                )
+                rental_service.default_code = rental_service_dc
 
     @api.multi
     def write(self, vals):
