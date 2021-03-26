@@ -136,6 +136,7 @@ class ProductProduct(models.Model):
             "name": _("Rental of %s (%s)") % (product.name, uom.name),
             "categ_id": product.categ_id.id,
             "copy_image": True,
+            "default_code": "RENT-%s-%s" %(rental_type.upper(), product.default_code),
         }
         res = (
             self.env["create.rental.product"]
@@ -152,6 +153,10 @@ class ProductProduct(models.Model):
                 "income_analytic_account_id": product.income_analytic_account_id.id,
                 "expense_analytic_account_id": product.expense_analytic_account_id.id,
                 "list_price": price,
+                "default_code": "RENT-%s-%s" %(
+                    rental_service.id,
+                    product.default_code,
+                ),
             }
         )
         return rental_service

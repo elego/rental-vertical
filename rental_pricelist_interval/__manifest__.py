@@ -40,7 +40,7 @@ min (days)     factor
 15               2.25
 - Activate the interval price in sale order line (Use Interval Price)
     """,
-    "version": "12.0.1.0.2",
+    "version": "12.0.1.0.3",
     "category": "Rental",
     "author": "Odoo Community Association (OCA)/Elego Software Solutions GmbH",
     "depends": [

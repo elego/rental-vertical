@@ -198,4 +198,6 @@ class TestRentalPricelist(RentalStockCommon):
         with self.assertRaises(exceptions.UserError) as e:
             self._run_sol_onchange_display_product_id(line)
             self._run_sol_onchange_date(line)
-        self.assertEqual("No interval price was defined for this product.", e.exception.name)
+        self.assertEqual(
+            "No interval price was defined for this product.", e.exception.name
+        )

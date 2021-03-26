@@ -8,6 +8,18 @@ from odoo.exceptions import ValidationError, UserError
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
+    # TODO Delete fields rental_interval_price,
+    # show_rental_interval_price and rental_interval_name
+    rental_interval_price = fields.Boolean(
+        string="Use Interval Price",
+    )
+    show_rental_interval_price = fields.Boolean(
+        string="Show Option Interval Price",
+    )
+    rental_interval_name = fields.Char(
+        string="Rental Interval",
+    )
+
     @api.multi
     def _get_number_of_time_unit(self):
         res = super()._get_number_of_time_unit()
@@ -29,22 +41,24 @@ class SaleOrderLine(models.Model):
         self.ensure_one()
         if self.rental and self.display_product_id:
             time_uoms = self._get_time_uom()
-            if self.display_product_id.rental_of_day:
-                self.product_uom = time_uoms["day"]
-                self.product_id = self.display_product_id.product_rental_day_id
-            elif self.display_product_id.rental_of_month:
-                self.product_uom = time_uoms["month"]
-                self.product_id = self.display_product_id.product_rental_month_id
-            elif self.display_product_id.rental_of_hour:
-                self.product_uom = time_uoms["hour"]
-                self.product_id = self.display_product_id.product_rental_hour_id
-            elif self.display_product_id.rental_of_interval:
-                self.product_uom = time_uoms["interval"]
-                self.product_id = self.display_product_id.product_rental_interval_id
+            if self.order_id.pricelist_id.is_interval_pricelist:
+                if self.display_product_id.rental_of_interval:
+                    self.product_uom = time_uoms["interval"]
+                    self.product_id = self.display_product_id.product_rental_interval_id
             else:
-                self.rental = False
-                self.product_id = self.display_product_id
-                # raise exceptions.UserError(_('The product has no related rental services.'))
+                if self.display_product_id.rental_of_day:
+                    self.product_uom = time_uoms["day"]
+                    self.product_id = self.display_product_id.product_rental_day_id
+                elif self.display_product_id.rental_of_month:
+                    self.product_uom = time_uoms["month"]
+                    self.product_id = self.display_product_id.product_rental_month_id
+                elif self.display_product_id.rental_of_hour:
+                    self.product_uom = time_uoms["hour"]
+                    self.product_id = self.display_product_id.product_rental_hour_id
+                else:
+                    self.rental = False
+                    self.product_id = self.display_product_id
+                    # raise exceptions.UserError(_('The product has no related rental services.'))
         elif not self.rental and self.display_product_id:
             self.product_id = self.display_product_id
 
@@ -107,7 +121,11 @@ class SaleOrderLine(models.Model):
     def product_id_change(self):
         uom_interval = self.env.ref("rental_pricelist_interval.product_uom_interval")
         res = super().product_id_change()
-        if self.order_id.pricelist_id.is_interval_pricelist:
+        if (
+            self.order_id.pricelist_id.is_interval_pricelist
+            and self.product_id
+            and self.product_id.rented_product_id
+        ):
             if not self.product_id.rented_product_id.rental_of_interval:
                 raise exceptions.UserError(
                     _("No interval price was defined for this product.")

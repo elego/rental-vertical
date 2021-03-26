@@ -24,7 +24,8 @@ class ProductPricelist(models.Model):
 
     is_interval_pricelist = fields.Boolean("Interval Pricelist")
 
-#TODO delete class RentalPriceIntervalItem after migration of price
+
+# TODO delete class RentalPriceIntervalItem after migration of price
 class RentalPriceIntervalItem(models.Model):
     _name = "rental.price.interval.item"
     _description = "Rental Price Interval Item"
