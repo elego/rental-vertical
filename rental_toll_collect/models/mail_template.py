@@ -25,8 +25,16 @@ class MailTemplate(models.Model):
                     template.report_name, template.model, res_id
                 )
                 new_attachments = []
-                # check Customer Invoice and has Toll Charge Lines
-                if related_model.type == "out_invoice" and related_model.toll_line_ids:
+                # check Customer Invoice and has Toll Charge Lines(having invoiced=True)
+                if (
+                    related_model.type == "out_invoice"
+                    and related_model.toll_line_ids
+                    and any(
+                        related_model.toll_line_ids.filtered(
+                            lambda l: l.invoiced == True
+                        )
+                    )
+                ):
                     # We add an attachment for Toll Collect
                     toll_report_name = "TOLL-" + inv_print_name + ".pdf"
                     toll_pdf = self.env.ref(
