@@ -108,6 +108,46 @@ class SaleOrderLine(models.Model):
             self.sell_rental_id = False
             self._set_product_id()
 
+    @api.multi
+    def _check_rental_availability(self):
+        res = {}
+        self.ensure_one()
+        product_uom = self.product_id.rented_product_id.uom_id
+        warehouse = self.order_id.warehouse_id
+        rental_in_location = warehouse.rental_in_location_id
+        rented_product_ctx = self.with_context(
+            location=rental_in_location.id
+        ).product_id.rented_product_id
+        in_location_available_qty = (
+            rented_product_ctx.qty_available
+            - rented_product_ctx.outgoing_qty
+        )
+        compare_qty = float_compare(
+            in_location_available_qty,
+            self.rental_qty,
+            precision_rounding=product_uom.rounding,
+        )
+        if compare_qty == -1:
+            res["warning"] = {
+                "title": _("Not enough stock!"),
+                "message": _(
+                    "You want to rent %.2f %s but you only "
+                    "have %.2f %s currently available on the "
+                    'stock location "%s"! Make sure that you '
+                    "get some units back in the meantime or "
+                    're-supply the stock location "%s".'
+                )
+                % (
+                    self.rental_qty,
+                    self.product_id.rented_product_id.uom_id.name,
+                    in_location_available_qty,
+                    self.product_id.rented_product_id.uom_id.name,
+                    rental_in_location.name,
+                    rental_in_location.name,
+                ),
+            }
+        return res
+
     # Override function in rental_sale
     @api.onchange("product_id", "rental_qty")
     def rental_product_id_change(self):
@@ -124,46 +164,9 @@ class SaleOrderLine(models.Model):
                     and self.rental_qty
                     and self.order_id.warehouse_id
                 ):
-                    product_uom = self.product_id.rented_product_id.uom_id
-                    time_uoms = self._get_time_uom()
-                    uom_ids = []
-                    for key in time_uoms:
-                        uom_ids.append(time_uoms[key].id)
-                    if uom_ids and product_uom.id not in uom_ids:
-                        product_uom = self.env["uom.uom"].browse(uom_ids[0])
-                    warehouse = self.order_id.warehouse_id
-                    rental_in_location = warehouse.rental_in_location_id
-                    rented_product_ctx = self.with_context(
-                        location=rental_in_location.id
-                    ).product_id.rented_product_id
-                    in_location_available_qty = (
-                        rented_product_ctx.qty_available
-                        - rented_product_ctx.outgoing_qty
-                    )
-                    compare_qty = float_compare(
-                        in_location_available_qty,
-                        self.rental_qty,
-                        precision_rounding=product_uom.rounding,
-                    )
-                    if compare_qty == -1:
-                        res["warning"] = {
-                            "title": _("Not enough stock!"),
-                            "message": _(
-                                "You want to rent %.2f %s but you only "
-                                "have %.2f %s currently available on the "
-                                'stock location "%s"! Make sure that you '
-                                "get some units back in the meantime or "
-                                're-supply the stock location "%s".'
-                            )
-                            % (
-                                self.rental_qty,
-                                self.product_id.rented_product_id.uom_id.name,
-                                in_location_available_qty,
-                                self.product_id.rented_product_id.uom_id.name,
-                                rental_in_location.name,
-                                rental_in_location.name,
-                            ),
-                        }
+                    avail = self._check_rental_availability()
+                    if avail.get("warning", False):
+                        res["warning"] = avail["warning"]
             elif self.product_id.rental_service_ids:
                 # self.can_sell_rental = True
                 # self.rental = False
