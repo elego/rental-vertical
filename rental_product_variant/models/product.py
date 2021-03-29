@@ -136,7 +136,7 @@ class ProductProduct(models.Model):
     )
 
     @api.multi
-    def _get_sale_order_ids(self, rental=True):
+    def _get_sale_order_ids(self, rental=False):
         self.ensure_one()
         type_id = self.env.ref("rental_base.rental_sale_type")
         sols = self.env["sale.order.line"].search(
