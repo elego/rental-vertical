@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-22 21:18+0000\n"
-"PO-Revision-Date: 2020-12-22 21:18+0000\n"
+"POT-Creation-Date: 2021-03-25 13:21+0000\n"
+"PO-Revision-Date: 2021-03-25 13:21+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -64,6 +64,91 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:rental_toll_collect.view_order_form
 msgid "<span class=\"o_stat_text\">Toll Lines:</span>\n"
 "                            <span class=\"o_stat_text\">Invoiced:</span>"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model_terms:ir.ui.view,arch_db:rental_toll_collect.report_toll_collect_document
+msgid "<span style=\"color: rgb(0, 172, 169);\">TOLL STATEMENT</span>"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model_terms:ir.ui.view,arch_db:rental_toll_collect.report_toll_collect_document
+msgid "<span>Analytic Account</span>"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model_terms:ir.ui.view,arch_db:rental_toll_collect.report_toll_collect_document
+msgid "<span>Axle Class</span>"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model_terms:ir.ui.view,arch_db:rental_toll_collect.report_toll_collect_document
+msgid "<span>Booking Number</span>"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model_terms:ir.ui.view,arch_db:rental_toll_collect.report_toll_collect_document
+msgid "<span>Date</span>"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model_terms:ir.ui.view,arch_db:rental_toll_collect.report_toll_collect_document
+msgid "<span>Distance (km)</span>"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model_terms:ir.ui.view,arch_db:rental_toll_collect.report_toll_collect_document
+msgid "<span>Drive via</span>"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model_terms:ir.ui.view,arch_db:rental_toll_collect.report_toll_collect_document
+msgid "<span>Exit</span>"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model_terms:ir.ui.view,arch_db:rental_toll_collect.report_toll_collect_document
+msgid "<span>License Plate</span>"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model_terms:ir.ui.view,arch_db:rental_toll_collect.report_toll_collect_document
+msgid "<span>Pollution Class</span>"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model_terms:ir.ui.view,arch_db:rental_toll_collect.report_toll_collect_document
+msgid "<span>Procedure</span>"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model_terms:ir.ui.view,arch_db:rental_toll_collect.report_toll_collect_document
+msgid "<span>Ramp</span>"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model_terms:ir.ui.view,arch_db:rental_toll_collect.report_toll_collect_document
+msgid "<span>Tariff Model</span>"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model_terms:ir.ui.view,arch_db:rental_toll_collect.report_toll_collect_document
+msgid "<span>Time</span>"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model_terms:ir.ui.view,arch_db:rental_toll_collect.report_toll_collect_document
+msgid "<span>Toll Charge Amount (EUR)</span>"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model_terms:ir.ui.view,arch_db:rental_toll_collect.report_toll_collect_document
+msgid "<span>Type</span>"
+msgstr ""
+
+#. module: rental_toll_collect
+#: model_terms:ir.ui.view,arch_db:rental_toll_collect.report_toll_collect_document
+msgid "<span>Weight Class</span>"
 msgstr ""
 
 #. module: rental_toll_collect
@@ -225,6 +310,11 @@ msgid "Editable"
 msgstr ""
 
 #. module: rental_toll_collect
+#: model:ir.model,name:rental_toll_collect.model_mail_template
+msgid "Email Templates"
+msgstr ""
+
+#. module: rental_toll_collect
 #: model:ir.model.fields,field_description:rental_toll_collect.field_toll_charge_line__route_exit
 msgid "Exit"
 msgstr ""
@@ -358,6 +448,14 @@ msgid "License Plate"
 msgstr ""
 
 #. module: rental_toll_collect
+#: model:product.product,volume_uom_name:rental_toll_collect.product_administrative_charge
+#: model:product.product,volume_uom_name:rental_toll_collect.product_toll
+#: model:product.template,volume_uom_name:rental_toll_collect.product_administrative_charge_product_template
+#: model:product.template,volume_uom_name:rental_toll_collect.product_toll_product_template
+msgid "Liter(s)"
+msgstr ""
+
+#. module: rental_toll_collect
 #: selection:toll.charge.line,procedure:0
 msgid "Manual Procedure App"
 msgstr ""
@@ -487,8 +585,16 @@ msgid "Time"
 msgstr ""
 
 #. module: rental_toll_collect
+#: code:addons/rental_toll_collect/models/account_invoice.py:105
 #: selection:toll.charge.line,toll_type:0
+#, python-format
 msgid "Toll"
+msgstr ""
+
+#. module: rental_toll_collect
+#: code:addons/rental_toll_collect/models/account_invoice.py:107
+#, python-format
+msgid "Toll - %s"
 msgstr ""
 
 #. module: rental_toll_collect
@@ -511,6 +617,7 @@ msgstr ""
 
 #. module: rental_toll_collect
 #: model:ir.actions.act_window,name:rental_toll_collect.toll_charge_line_action
+#: model:ir.actions.report,name:rental_toll_collect.toll_charge_lines
 #: model:ir.model.fields,field_description:rental_toll_collect.field_account_invoice__toll_line_ids
 #: model:ir.model.fields,field_description:rental_toll_collect.field_account_invoice_line__toll_line_ids
 #: model:ir.model.fields,field_description:rental_toll_collect.field_product_product__toll_line_ids
@@ -613,6 +720,11 @@ msgid "With the automatic invoicing option only those lines that are related to 
 "                        The associated sale or rental is automatically found by comparing the start and\n"
 "                        end date with the toll charge line's date.<br/>\n"
 "                        Administrative charges are added according to the partner's configuration."
+msgstr ""
+
+#. module: rental_toll_collect
+#: model:ir.model,name:rental_toll_collect.model_toll_charge_line_create_invoice
+msgid "Wizard for creating an invoice from toll charge line(s)"
 msgstr ""
 
 #. module: rental_toll_collect

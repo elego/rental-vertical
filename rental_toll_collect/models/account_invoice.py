@@ -98,6 +98,14 @@ class AccountInvoice(models.Model):
                 line.update_toll_lines = False
         return True
 
+    @api.multi
+    def _get_toll_report_filename(self):
+        self.ensure_one()
+        if self.state == 'draft':
+            return _('Toll')
+        else:
+            return _('Toll - %s') % (self.number)
+
 
 class AccountInvoiceLine(models.Model):
     _inherit = "account.invoice.line"

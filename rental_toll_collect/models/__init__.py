@@ -7,3 +7,4 @@ from . import res_config_settings
 from . import res_partner
 from . import sale
 from . import toll_charge_line
+from . import mail_template
