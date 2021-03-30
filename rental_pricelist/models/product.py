@@ -115,7 +115,7 @@ class ProductProduct(models.Model):
             )
 
     @api.model
-    def _create_rental_service(self, rental_type, product, price=0):
+    def _get_rental_service_uom(self, rental_type):
         time_uoms = self.env["sale.order.line"]._get_time_uom()
         uom = False
         if rental_type == "month":
@@ -126,11 +126,17 @@ class ProductProduct(models.Model):
             uom = time_uoms["hour"]
         else:
             raise exceptions.ValidationError(_("No found expected Rental Type."))
+        return uom
+
+    @api.model
+    def _create_rental_service(self, rental_type, product, price=0):
+        uom = self._get_rental_service_uom(rental_type)
         values = {
             "hw_product_id": product.id,
             "name": _("Rental of %s (%s)") % (product.name, uom.name),
             "categ_id": product.categ_id.id,
             "copy_image": True,
+            "default_code": "RENT-%s-%s" %(rental_type.upper(), product.default_code),
         }
         res = (
             self.env["create.rental.product"]
@@ -147,6 +153,10 @@ class ProductProduct(models.Model):
                 "income_analytic_account_id": product.income_analytic_account_id.id,
                 "expense_analytic_account_id": product.expense_analytic_account_id.id,
                 "list_price": price,
+                "default_code": "RENT-%s-%s" %(
+                    rental_service.id,
+                    product.default_code,
+                ),
             }
         )
         return rental_service

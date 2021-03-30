@@ -27,7 +27,9 @@ This module is automatically installed when all of the following modules are ins
         "rental_repair",
         "rental_product_instance",
     ],
-    "data": [],
+    "data": [
+        'views/project_view.xml',
+    ],
     "demo": [],
     "qweb": [],
     "auto_install": True,
