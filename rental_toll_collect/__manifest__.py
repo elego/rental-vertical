@@ -58,6 +58,7 @@ The csv should contain the following columns:
     "data": [
         "security/ir.model.access.csv",
         "data/product_data.xml",
+        "data/report_paperformat.xml",
         "views/toll_charge_line_view.xml",
         "views/account_invoice_view.xml",
         "views/product_view.xml",
@@ -66,6 +67,8 @@ The csv should contain the following columns:
         "views/sale_view.xml",
         "wizard/toll_charge_line_import_view.xml",
         "wizard/toll_charge_line_invoicing_view.xml",
+        "report/toll_collect_report.xml",
+        "report/toll_report_templates.xml",
     ],
     "demo": [],
     "qweb": [],

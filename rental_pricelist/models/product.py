@@ -176,6 +176,18 @@ class ProductProduct(models.Model):
         self.rental_service_ids.write(analytic_vals)
 
     @api.multi
+    def _update_rental_service_default_code(self, vals):
+        self.ensure_one()
+        if "default_code" in vals:
+            rental_product_dc = vals.get("default_code", False)
+            for rental_service in self.rental_service_ids:
+                rental_service_dc = _("RENT-%s-%s") % (
+                    rental_service.id,
+                    rental_product_dc,
+                )
+                rental_service.default_code = rental_service_dc
+
+    @api.multi
     def write(self, vals):
         res = super(ProductProduct, self).write(vals)
         for p in self:
@@ -204,6 +216,9 @@ class ProductProduct(models.Model):
                 or "expense_analytic_account_id" in vals
             ):
                 p._update_rental_service_analytic_account(vals)
+            # update defaul_code of related rental services
+            if vals.get("default_code", False) and p.rental_service_ids:
+                p._update_rental_service_default_code(vals)
         return res
 
     @api.model

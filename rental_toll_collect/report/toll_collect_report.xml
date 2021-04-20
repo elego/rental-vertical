@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- QWeb Reports -->
+        <report
+            id="toll_charge_lines"
+            model="account.invoice"
+            string="Toll Charge Lines"
+            report_type="qweb-pdf"
+            name="rental_toll_collect.report_toll_collect"
+            file="rental_toll_collect.report_toll_collect"
+            attachment="(object.state in ('open','in_payment','paid') and object.type in ('out_invoice')) and ('TOLL-' + object.number + '.pdf')"
+            print_report_name="(object._get_toll_report_filename())"
+            groups="account.group_account_invoice"
+            paperformat="paperformat_toll_charge_lines"
+        />
+    </data>
+</odoo>
