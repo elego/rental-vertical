@@ -38,7 +38,9 @@ class SaleOrderLine(models.Model):
         avail_qty = total_qty - max_ol_qty
         if self.rental_qty > avail_qty:
             res = self._get_concurrent_orders()
-            if res["quotation"] and not res["order"]:
+            if total_qty == 0:
+                self.concurrent_orders = "none"
+            elif res["quotation"] and not res["order"]:
                 self.concurrent_orders = "quotation"
             else:
                 self.concurrent_orders = "order"
