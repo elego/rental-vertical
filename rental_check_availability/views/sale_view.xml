@@ -22,6 +22,20 @@
         </field>
     </record>
 
+    <record id="view_order_tree" model="ir.ui.view">
+        <field name="name">sale_rental.view_order_tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="before">
+                <field name="default_start_date" />
+                <field name="default_end_date" />
+            </field>
+        </field>
+    </record>
+
+
+
     <record id="view_order_form_order_line_tree_color" model="ir.ui.view">
         <field name="name">sale_rental.view_order_form</field>
         <field name="model">sale.order</field>
