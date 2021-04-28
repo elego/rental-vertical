@@ -188,6 +188,26 @@ class ProductProduct(models.Model):
                 rental_service.default_code = rental_service_dc
 
     @api.multi
+    def _update_rental_service_name(self, vals):
+        self.ensure_one()
+        if "name" in vals:
+            name = vals.get("name", False)
+            for rental_service in self.rental_service_ids:
+                service_name = _("Rental of %s (%s)") % (
+                    self.name, rental_service.uom_id.name
+                )
+                rental_service.name = service_name
+
+    @api.multi
+    def _update_rental_service_fields(self, vals, fields):
+        self.ensure_one()
+        service_vals = {}
+        for field in fields:
+            if field in vals:
+                service_vals[field] = vals.get(field, False)
+        self.rental_service_ids.write(service_vals)
+
+    @api.multi
     def write(self, vals):
         res = super(ProductProduct, self).write(vals)
         for p in self:
@@ -219,6 +239,13 @@ class ProductProduct(models.Model):
             # update defaul_code of related rental services
             if vals.get("default_code", False) and p.rental_service_ids:
                 p._update_rental_service_default_code(vals)
+            # update name for service product
+            if vals.get("name", False) and p.rental_service_ids:
+                p._update_rental_service_name(vals)
+            # update image and description for service product
+            update_fields = ["image_medium", "description_sale"]
+            if (vals.keys() & update_fields) and p.rental_service_ids:
+                p._update_rental_service_fields(vals, update_fields)
         return res
 
     @api.model
