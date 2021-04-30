@@ -28,6 +28,7 @@ but are actually used for its related rental service!
     "data": [
         "views/sale_view.xml",
         "views/product_view.xml",
+        "views/res_company_view.xml",
     ],
     "demo": [],
     "qweb": [],
