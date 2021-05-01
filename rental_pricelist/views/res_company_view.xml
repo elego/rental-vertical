@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_company_rental_service_form" model="ir.ui.view">
+            <field name="name">res.company.form</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="RS (Prefix and Suffix)">
+                        <group>
+                            <group name="serivce_month">
+                                <field name="rental_service_name_prefix_month"/>
+                                <field name="rental_service_name_suffix_month"/>
+                                <field name="rental_service_default_code_prefix_month"/>
+                                <field name="rental_service_default_code_suffix_month"/>
+                            </group>
+                            <group name="serivce_day">
+                                <field name="rental_service_name_prefix_day"/>
+                                <field name="rental_service_name_suffix_day"/>
+                                <field name="rental_service_default_code_prefix_day"/>
+                                <field name="rental_service_default_code_suffix_day"/>
+                            </group>
+                            <group name="service_hour">
+                                <field name="rental_service_name_prefix_hour"/>
+                                <field name="rental_service_name_suffix_hour"/>
+                                <field name="rental_service_default_code_prefix_hour"/>
+                                <field name="rental_service_default_code_suffix_hour"/>
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+    </data>
+</odoo>
