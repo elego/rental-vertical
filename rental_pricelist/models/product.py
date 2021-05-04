@@ -293,7 +293,13 @@ class ProductProduct(models.Model):
             if vals.get("name", False) and p.rental_service_ids:
                 p._update_rental_service_name(vals)
             # update image and description for service product
-            update_fields = ["image_medium", "description_sale"]
+            update_fields = [
+                "image_medium",
+                "description_sale",
+                "categ_id",
+                "rental",
+                "active",
+            ]
             if (vals.keys() & update_fields) and p.rental_service_ids:
                 p._update_rental_service_fields(vals, update_fields)
         return res
