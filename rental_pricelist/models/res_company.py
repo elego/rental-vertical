@@ -7,15 +7,15 @@ class ResCompany(models.Model):
 
     rental_service_name_prefix_day = fields.Char(
         "Prefix of Rental Service Name (Day)",
-        default="Rental of ",
+        default="Rental of",
     )
     rental_service_name_prefix_month = fields.Char(
         "Prefix of Rental Service Name (Month)",
-        default="Rental of ",
+        default="Rental of",
     )
     rental_service_name_prefix_hour = fields.Char(
         "Prefix of Rental Service Name (Hour)",
-        default="Rental of ",
+        default="Rental of",
     )
     rental_service_name_suffix_day = fields.Char(
         "Suffix of Rental Service Name (Day)",
