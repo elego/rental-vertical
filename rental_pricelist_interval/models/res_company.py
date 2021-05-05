@@ -12,15 +12,15 @@ class ResCompany(models.Model):
     )
     rental_service_name_prefix_interval = fields.Char(
         "Prefix of Rental Service Name (Interval)",
-        default="Rental of ",
+        default="Rental of",
     )
     rental_service_name_suffix_interval = fields.Char(
         "Suffix of Rental Service Name (Interval)",
-        default="(Day(s))",
+        default="(Interval(s))",
     )
     rental_service_default_code_prefix_interval = fields.Char(
         "Prefix of Rental Service Internal Reference (Interval)",
-        default="RENT-D",
+        default="RENT-I",
     )
     rental_service_default_code_suffix_interval = fields.Char(
         "Suffix of Rental Service Internal Reference (Interval)",
