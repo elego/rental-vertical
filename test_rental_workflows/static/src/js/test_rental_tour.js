@@ -111,7 +111,7 @@ odoo.define('rental.tour', function (require) {
         run: function (){} //check Unit Price : 4500.00
     }, {
         content: _t("Click on line to edit"),
-        trigger: "div[name='order_line'] tr.o_data_row td.o_data_cell:contains('[RENT-01531] Rental of Volvo L110H (Month(s))')",
+        trigger: "div[name='order_line'] tr.o_data_row td.o_data_cell:contains('[RENT-M-01531] Rental of Volvo L110H (Month(s))')",
         extra_trigger: 'div[name="order_line"]',
         run: 'click',
         position: "bottom",
@@ -156,7 +156,7 @@ odoo.define('rental.tour', function (require) {
     //    >=80    70
     {
         content: _t("Click on line to edit"),
-        trigger: "div[name='order_line'] tr.o_data_row td.o_data_cell:contains('[RENT-01531] Rental of Volvo L110H (Month(s))')",
+        trigger: "div[name='order_line'] tr.o_data_row td.o_data_cell:contains('[RENT-M-01531] Rental of Volvo L110H (Month(s))')",
         extra_trigger: 'div[name="order_line"]',
         run: 'click',
         position: "bottom",
@@ -199,7 +199,7 @@ odoo.define('rental.tour', function (require) {
         run: function (){} //check Unit Price : 70.00
     }, {
         content: _t("Click on line to edit"),
-        trigger: "div[name='order_line'] tr.o_data_row td.o_data_cell:contains('[RENT-01531] Rental of Volvo L110H (Day(s))')",
+        trigger: "div[name='order_line'] tr.o_data_row td.o_data_cell:contains('[RENT-D-01531] Rental of Volvo L110H (Day(s))')",
         extra_trigger: 'div[name="order_line"]',
         run: 'click',
         position: "bottom",
@@ -240,7 +240,7 @@ odoo.define('rental.tour', function (require) {
     // check validation with Off-Days (Off-Day Type : Weekend)
     {
         content: _t("Click on line to edit"),
-        trigger: "div[name='order_line'] tr.o_data_row td.o_data_cell:contains('[RENT-01531] Rental of Volvo L110H (Day(s))')",
+        trigger: "div[name='order_line'] tr.o_data_row td.o_data_cell:contains('[RENT-D-01531] Rental of Volvo L110H (Day(s))')",
         extra_trigger: 'div[name="order_line"]',
         run: 'click',
         position: "bottom",
@@ -326,7 +326,7 @@ odoo.define('rental.tour', function (require) {
     // check validation without Off-Days (Off-Day Type : None)
     {
         content: _t("Click on line to edit"),
-        trigger: "div[name='order_line'] tr.o_data_row td.o_data_cell:contains('[RENT-01531] Rental of Volvo L110H (Day(s))')",
+        trigger: "div[name='order_line'] tr.o_data_row td.o_data_cell:contains('[RENT-D-01531] Rental of Volvo L110H (Day(s))')",
         extra_trigger: 'div[name="order_line"]',
         run: 'click',
         position: "bottom",
