@@ -12,7 +12,7 @@ Rental/Vendor/Delivery for the Vendors.""",
     "category": "Rental",
     "author": "Odoo Community Association (OCA)/Elego Software Solutions GmbH",
     "depends": [
-        "rental_sale",
+        "sale_rental",
         "quality_control_stock",
     ],
     "data": [

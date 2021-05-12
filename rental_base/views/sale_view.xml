@@ -5,7 +5,7 @@
     <record id="sale_rental" model="ir.ui.view">
         <field name="name">rental_base.sale_rental</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="rental_sale.view_order_form" />
+        <field name="inherit_id" ref="sale_rental.view_order_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='rental_type']" position="attributes">
                 <attribute name="attrs">{'invisible': 1}</attribute>

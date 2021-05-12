@@ -34,7 +34,7 @@ Otherwise you can not deal with rental orders.
         "product_analytic",
         "sale",
         "sale_order_type",
-        "rental_sale",
+        "sale_rental",
         "sale_start_end_dates",
         "sale_stock",
         "sales_team",
