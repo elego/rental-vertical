@@ -58,5 +58,5 @@ Please refer to this screencast https://www.youtube.com/watch?v=9o0QrGryBn8 to g
     ],
     'post_init_hook': 'add_to_group_stock_packaging',
     'demo': ['demo/rental_demo.xml'],
-    'installable': True,
+    'installable': False,
 }
