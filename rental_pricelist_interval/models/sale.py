@@ -125,9 +125,10 @@ class SaleOrderLine(models.Model):
             self.order_id.pricelist_id.is_interval_pricelist
             and self.product_id
         ):
-            if (
+            if ((
                 not self.product_id.rented_product_id
-                or not self.product_id.rented_product_id.rental_of_interval
+                or not self.product_id.rented_product_id.rental_of_interval)
+                and not self.env.context.get("skipped_check_interval_price")
             ):
                 raise exceptions.UserError(
                     _("No interval price was defined for this product.")
