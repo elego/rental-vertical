@@ -6,16 +6,6 @@ from odoo import api, exceptions, fields, models, _
 class ProductTimeline(models.Model):
     _inherit = "product.timeline"
 
-    product_instance_state = fields.Selection(
-        related="product_id.instance_state",
-        store=True,
-    )
-
-    product_instance_state_formated = fields.Char(
-        compute="_compute_instance_fields",
-        store=True,
-    )
-
     product_instance_next_service_date = fields.Date(
         related="product_id.instance_next_service_date",
         store=True,
@@ -44,7 +34,6 @@ class ProductTimeline(models.Model):
     @api.depends(
         "product_instance_serial_number_id",
         "product_instance_current_location_id",
-        "product_instance_state",
     )
     def _compute_instance_fields(self):
         for line in self:
@@ -54,16 +43,6 @@ class ProductTimeline(models.Model):
             line.product_instance_current_location_name = (
                 line.product_instance_current_location_id.display_name
             )
-
-            try:
-                selections = self.fields_get()["product_instance_state"]["selection"]
-                selection = [
-                    s for s in selections if s[0] == line.product_instance_state
-                ][0]
-                line.product_instance_state_formated = selection[1]
-            except Exception as e:
-                _logger.exception(e)
-                line.product_instance_state_formated = str(line.product_instance_state)
 
     @api.multi
     @api.constrains("date_start", "date_end", "type")
