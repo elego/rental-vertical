@@ -8,26 +8,32 @@ class ResCompany(models.Model):
     rental_service_name_prefix_day = fields.Char(
         "Prefix of Rental Service Name (Day)",
         default="Rental of",
+        translate=True,
     )
     rental_service_name_prefix_month = fields.Char(
         "Prefix of Rental Service Name (Month)",
         default="Rental of",
+        translate=True,
     )
     rental_service_name_prefix_hour = fields.Char(
         "Prefix of Rental Service Name (Hour)",
         default="Rental of",
+        translate=True,
     )
     rental_service_name_suffix_day = fields.Char(
         "Suffix of Rental Service Name (Day)",
         default="(Day(s))",
+        translate=True,
     )
     rental_service_name_suffix_month = fields.Char(
         "Suffix of Rental Service Name (Month)",
         default="(Month(s))",
+        translate=True,
     )
     rental_service_name_suffix_hour = fields.Char(
         "Suffix of Rental Service Name (Hour)",
         default="(Hour(s))",
+        translate=True,
     )
     rental_service_default_code_prefix_day = fields.Char(
         "Prefix of Rental Service Internal Reference (Day)",
