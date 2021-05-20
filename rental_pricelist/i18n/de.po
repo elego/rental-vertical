@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-22 21:20+0000\n"
-"PO-Revision-Date: 2020-12-22 21:20+0000\n"
+"POT-Creation-Date: 2021-04-30 17:36+0000\n"
+"PO-Revision-Date: 2021-04-30 17:36+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: rental_pricelist
-#: code:addons/rental_pricelist/models/sale.py:336
+#: code:addons/rental_pricelist/models/sale.py:345
 #, python-format
 msgid "%s is not correctly configured."
 msgstr "%s ist nicht korrect konfiguriert."
@@ -24,7 +24,7 @@ msgstr "%s ist nicht korrect konfiguriert."
 #. module: rental_pricelist
 #: model_terms:ir.ui.view,arch_db:rental_pricelist.view_order_form
 msgid "<span>&amp;nbsp;</span>"
-msgstr "<span>&amp;nbsp;</span>"
+msgstr ""
 
 #. module: rental_pricelist
 #: model_terms:ir.ui.view,arch_db:rental_pricelist.product_normal_form_view
@@ -36,6 +36,11 @@ msgstr "<strong colspan=\"2\">Staffelpreise</strong>"
 #: model_terms:ir.ui.view,arch_db:rental_pricelist.rental_product_search_view
 msgid "Can be rented"
 msgstr "Kann vermietet werden"
+
+#. module: rental_pricelist
+#: model:ir.model,name:rental_pricelist.model_res_company
+msgid "Companies"
+msgstr "Unternehmen"
 
 #. module: rental_pricelist
 #: model_terms:ir.ui.view,arch_db:rental_pricelist.product_normal_form_view
@@ -63,7 +68,7 @@ msgid "Hourly Basis"
 msgstr "Stundenbasis"
 
 #. module: rental_pricelist
-#: code:addons/rental_pricelist/models/sale.py:204
+#: code:addons/rental_pricelist/models/sale.py:207
 #, python-format
 msgid "Missing \"Rental to Extend\" on the sale order line with rental service %s."
 msgstr "Es wurde kein Auftrag für die \"Mietverlängerung\" auf der Auftragszeile für das Produkt %s angegeben."
@@ -79,13 +84,14 @@ msgid "Monthly Basis"
 msgstr "Monatsbasis"
 
 #. module: rental_pricelist
-#: code:addons/rental_pricelist/models/product.py:128
+#: code:addons/rental_pricelist/models/product.py:134
+#: code:addons/rental_pricelist/models/product.py:145
 #, python-format
 msgid "No found expected Rental Type."
 msgstr "Es wurde kein Vermietungstyp (Mengeneinheit) gefunden."
 
 #. module: rental_pricelist
-#: code:addons/rental_pricelist/models/sale.py:150
+#: code:addons/rental_pricelist/models/sale.py:132
 #, python-format
 msgid "Not enough stock!"
 msgstr "Lagerbestand nicht ausreichend!"
@@ -96,22 +102,52 @@ msgid "Number of TU"
 msgstr "Anzahl der Zeiteinheiten"
 
 #. module: rental_pricelist
-#: code:addons/rental_pricelist/models/sale.py:228
+#: code:addons/rental_pricelist/models/sale.py:231
 #, python-format
 msgid "On the \"new rental\" sale order line with product \"%s\", we should have a rental service product!"
 msgstr "In der Auftragszeile mit dem Typ \"Neue Vermietung\" und dem Produkt \"%s\" sollte ein Mietservice eingetragen sein!"
 
 #. module: rental_pricelist
-#: code:addons/rental_pricelist/models/sale.py:248
+#: code:addons/rental_pricelist/models/sale.py:251
 #, python-format
 msgid "On the sale order line with product %s you are trying to sell a rented product with a quantity (%s) that is different from the rented quantity (%s). This is not supported."
 msgstr "In der Auftragszeile mit dem Mietserviceprodukt %s versuchen Sie das Produkt in einer Menge (%s) zu verkaufen die von der vermieteten Menge (%s) abweicht. Diese Funktionalität wird nicht unterstützt."
 
 #. module: rental_pricelist
-#: code:addons/rental_pricelist/models/sale.py:213
+#: code:addons/rental_pricelist/models/sale.py:216
 #, python-format
 msgid "On the sale order line with rental service %s, you are trying to extend a rental with a rental quantity (%s) that is different from the quantity of the original rental (%s). This is not supported."
 msgstr "In der Auftragszeile mit dem Produkt %s wird versucht, eine bestehende Miete mit einer anderen Menge (%s) zu verlängern als ursprünglich vermietet wurde (%s). Dieser Vorgang wird nicht unterstützt."
+
+#. module: rental_pricelist
+#: model:ir.model.fields,field_description:rental_pricelist.field_res_company__rental_service_default_code_prefix_day
+msgid "Prefix of Rental Service Internal Reference (Day)"
+msgstr ""
+
+#. module: rental_pricelist
+#: model:ir.model.fields,field_description:rental_pricelist.field_res_company__rental_service_default_code_prefix_hour
+msgid "Prefix of Rental Service Internal Reference (Hour)"
+msgstr ""
+
+#. module: rental_pricelist
+#: model:ir.model.fields,field_description:rental_pricelist.field_res_company__rental_service_default_code_prefix_month
+msgid "Prefix of Rental Service Internal Reference (Month)"
+msgstr ""
+
+#. module: rental_pricelist
+#: model:ir.model.fields,field_description:rental_pricelist.field_res_company__rental_service_name_prefix_day
+msgid "Prefix of Rental Service Name (Day)"
+msgstr ""
+
+#. module: rental_pricelist
+#: model:ir.model.fields,field_description:rental_pricelist.field_res_company__rental_service_name_prefix_hour
+msgid "Prefix of Rental Service Name (Hour)"
+msgstr ""
+
+#. module: rental_pricelist
+#: model:ir.model.fields,field_description:rental_pricelist.field_res_company__rental_service_name_prefix_month
+msgid "Prefix of Rental Service Name (Month)"
+msgstr ""
 
 #. module: rental_pricelist
 #: model_terms:ir.ui.view,arch_db:rental_pricelist.product_normal_form_view
@@ -162,6 +198,11 @@ msgid "Products"
 msgstr "Produkte"
 
 #. module: rental_pricelist
+#: model_terms:ir.ui.view,arch_db:rental_pricelist.view_company_rental_service_form
+msgid "RS (Prefix and Suffix)"
+msgstr ""
+
+#. module: rental_pricelist
 #: model_terms:ir.ui.view,arch_db:rental_pricelist.product_normal_form_view
 msgid "Rental Price"
 msgstr "Mietpreis"
@@ -190,7 +231,7 @@ msgid "Rental Service (Month)"
 msgstr "Mietservice (Monat)"
 
 #. module: rental_pricelist
-#: code:addons/rental_pricelist/models/product.py:131
+#: code:addons/rental_pricelist/models/product.py:177
 #, python-format
 msgid "Rental of %s (%s)"
 msgstr "Miete von %s (%s)"
@@ -221,7 +262,37 @@ msgid "Sales Order Line"
 msgstr "Auftragsposition"
 
 #. module: rental_pricelist
-#: code:addons/rental_pricelist/models/product.py:114
+#: model:ir.model.fields,field_description:rental_pricelist.field_res_company__rental_service_default_code_suffix_day
+msgid "Suffix of Rental Service Internal Reference (Day)"
+msgstr ""
+
+#. module: rental_pricelist
+#: model:ir.model.fields,field_description:rental_pricelist.field_res_company__rental_service_default_code_suffix_hour
+msgid "Suffix of Rental Service Internal Reference (Hour)"
+msgstr ""
+
+#. module: rental_pricelist
+#: model:ir.model.fields,field_description:rental_pricelist.field_res_company__rental_service_default_code_suffix_month
+msgid "Suffix of Rental Service Internal Reference (Month)"
+msgstr ""
+
+#. module: rental_pricelist
+#: model:ir.model.fields,field_description:rental_pricelist.field_res_company__rental_service_name_suffix_day
+msgid "Suffix of Rental Service Name (Day)"
+msgstr ""
+
+#. module: rental_pricelist
+#: model:ir.model.fields,field_description:rental_pricelist.field_res_company__rental_service_name_suffix_hour
+msgid "Suffix of Rental Service Name (Hour)"
+msgstr ""
+
+#. module: rental_pricelist
+#: model:ir.model.fields,field_description:rental_pricelist.field_res_company__rental_service_name_suffix_month
+msgid "Suffix of Rental Service Name (Month)"
+msgstr ""
+
+#. module: rental_pricelist
+#: code:addons/rental_pricelist/models/product.py:120
 #, python-format
 msgid "The product has no related rental services."
 msgstr "Das Produkt hat keine zugehörigen Mietservices."
@@ -237,7 +308,7 @@ msgid "Time"
 msgstr "Zeit"
 
 #. module: rental_pricelist
-#: code:addons/rental_pricelist/models/sale.py:151
+#: code:addons/rental_pricelist/models/sale.py:133
 #, python-format
 msgid "You want to rent %.2f %s but you only have %.2f %s currently available on the stock location \"%s\"! Make sure that you get some units back in the meantime or re-supply the stock location \"%s\"."
 msgstr "Es wird versucht, %.2f %s zu vermieten, aber es ist/sind aktuell nur %.2f %s auf dem Lagerplatz \"%s\" verfügbar! Es müssen in der Zwischenzeit entweder Einheiten zurück ins Lager kommen oder der Bestand auf dem Lagerplatz \"%s\" muss anderweitig erhöht werden."

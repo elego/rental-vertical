@@ -108,6 +108,46 @@ class SaleOrderLine(models.Model):
             self.sell_rental_id = False
             self._set_product_id()
 
+    @api.multi
+    def _check_rental_availability(self):
+        res = {}
+        self.ensure_one()
+        product_uom = self.product_id.rented_product_id.uom_id
+        warehouse = self.order_id.warehouse_id
+        rental_in_location = warehouse.rental_in_location_id
+        rented_product_ctx = self.with_context(
+            location=rental_in_location.id
+        ).product_id.rented_product_id
+        in_location_available_qty = (
+            rented_product_ctx.qty_available
+            - rented_product_ctx.outgoing_qty
+        )
+        compare_qty = float_compare(
+            in_location_available_qty,
+            self.rental_qty,
+            precision_rounding=product_uom.rounding,
+        )
+        if compare_qty == -1:
+            res["warning"] = {
+                "title": _("Not enough stock!"),
+                "message": _(
+                    "You want to rent %.2f %s but you only "
+                    "have %.2f %s currently available on the "
+                    'stock location "%s"! Make sure that you '
+                    "get some units back in the meantime or "
+                    're-supply the stock location "%s".'
+                )
+                % (
+                    self.rental_qty,
+                    self.product_id.rented_product_id.uom_id.name,
+                    in_location_available_qty,
+                    self.product_id.rented_product_id.uom_id.name,
+                    rental_in_location.name,
+                    rental_in_location.name,
+                ),
+            }
+        return res
+
     # Override function in rental_sale
     @api.onchange("product_id", "rental_qty")
     def rental_product_id_change(self):
@@ -124,46 +164,9 @@ class SaleOrderLine(models.Model):
                     and self.rental_qty
                     and self.order_id.warehouse_id
                 ):
-                    product_uom = self.product_id.rented_product_id.uom_id
-                    time_uoms = self._get_time_uom()
-                    uom_ids = []
-                    for key in time_uoms:
-                        uom_ids.append(time_uoms[key].id)
-                    if uom_ids and product_uom.id not in uom_ids:
-                        product_uom = self.env["uom.uom"].browse(uom_ids[0])
-                    warehouse = self.order_id.warehouse_id
-                    rental_in_location = warehouse.rental_in_location_id
-                    rented_product_ctx = self.with_context(
-                        location=rental_in_location.id
-                    ).product_id.rented_product_id
-                    in_location_available_qty = (
-                        rented_product_ctx.qty_available
-                        - rented_product_ctx.outgoing_qty
-                    )
-                    compare_qty = float_compare(
-                        in_location_available_qty,
-                        self.rental_qty,
-                        precision_rounding=product_uom.rounding,
-                    )
-                    if compare_qty == -1:
-                        res["warning"] = {
-                            "title": _("Not enough stock!"),
-                            "message": _(
-                                "You want to rent %.2f %s but you only "
-                                "have %.2f %s currently available on the "
-                                'stock location "%s"! Make sure that you '
-                                "get some units back in the meantime or "
-                                're-supply the stock location "%s".'
-                            )
-                            % (
-                                self.rental_qty,
-                                self.product_id.rented_product_id.uom_id.name,
-                                in_location_available_qty,
-                                self.product_id.rented_product_id.uom_id.name,
-                                rental_in_location.name,
-                                rental_in_location.name,
-                            ),
-                        }
+                    avail = self._check_rental_availability()
+                    if avail.get("warning", False):
+                        res["warning"] = avail["warning"]
             elif self.product_id.rental_service_ids:
                 # self.can_sell_rental = True
                 # self.rental = False
@@ -267,22 +270,28 @@ class SaleOrderLine(models.Model):
             self.product_uom_qty = qty
 
     @api.multi
+    def _get_product_rental_uom_ids(self):
+        self.ensure_one()
+        time_uoms = self._get_time_uom()
+        uom_ids = []
+        if self.display_product_id.rental_of_month:
+            uom_ids.append(time_uoms["month"].id)
+        if self.display_product_id.rental_of_day:
+            uom_ids.append(time_uoms["day"].id)
+        if self.display_product_id.rental_of_hour:
+            uom_ids.append(time_uoms["hour"].id)
+        return uom_ids
+
+    @api.multi
     @api.onchange("product_id")
     def product_id_change(self):
         res = super(SaleOrderLine, self).product_id_change()
         if self.rental and "domain" in res and "product_uom" in res["domain"]:
             del res["domain"]["product_uom"]
             if self.display_product_id.rental:
-                time_uoms = self._get_time_uom()
-                uom_ids = []
-                if self.display_product_id.rental_of_month:
-                    uom_ids.append(time_uoms["month"].id)
-                if self.display_product_id.rental_of_day:
-                    uom_ids.append(time_uoms["day"].id)
-                if self.display_product_id.rental_of_hour:
-                    uom_ids.append(time_uoms["hour"].id)
+                uom_ids = self._get_product_rental_uom_ids()
                 res["domain"]["product_uom"] = [("id", "in", uom_ids)]
-                if self.product_uom.id not in uom_ids:
+                if uom_ids and self.product_uom.id not in uom_ids:
                     self.product_uom = uom_ids[0]
         return res
 

@@ -100,6 +100,12 @@ class ProductProduct(models.Model):
         default=lambda self: self._default_pricelist(),
     )
 
+    @api.model
+    def _get_rental_service_prefix_suffix(self, field, str_type, rental_type):
+        field_name = "rental_service_%s_%s_%s" %(field, str_type, rental_type)
+        res = getattr(self.env.user.company_id, field_name)
+        return res
+
     @api.multi
     def _get_rental_service(self, rental_type):
         self.ensure_one()
@@ -115,7 +121,7 @@ class ProductProduct(models.Model):
             )
 
     @api.model
-    def _create_rental_service(self, rental_type, product, price=0):
+    def _get_rental_service_uom(self, rental_type):
         time_uoms = self.env["sale.order.line"]._get_time_uom()
         uom = False
         if rental_type == "month":
@@ -126,11 +132,52 @@ class ProductProduct(models.Model):
             uom = time_uoms["hour"]
         else:
             raise exceptions.ValidationError(_("No found expected Rental Type."))
+        return uom
+
+    @api.model
+    def _get_rental_service_type(self, uom):
+        time_uoms = self.env["sale.order.line"]._get_time_uom()
+        rental_type = False
+        for key, val in time_uoms.items():
+            if uom.id == val.id:
+                rental_type = key
+        if not rental_type:
+            raise exceptions.ValidationError(_("No found expected Rental Type."))
+        return rental_type
+
+    @api.multi
+    def _get_rental_service_name(self, rental_type, sp_name):
+        self.ensure_one()
+        prefix = self._get_rental_service_prefix_suffix("name", "prefix", rental_type)
+        suffix = self._get_rental_service_prefix_suffix("name", "suffix", rental_type)
+        name = sp_name
+        if prefix:
+            name = "%s %s" %(prefix, name)
+        if suffix:
+            name = "%s %s" %(name, suffix)
+        return name
+
+    @api.multi
+    def _get_rental_service_default_code(self, rental_type, sp_code):
+        self.ensure_one()
+        prefix = self._get_rental_service_prefix_suffix("default_code", "prefix", rental_type)
+        suffix = self._get_rental_service_prefix_suffix("default_code", "suffix", rental_type)
+        default_code = sp_code
+        if prefix:
+            default_code = "%s-%s" %(prefix, default_code)
+        if suffix:
+            default_code = "%s-%s" %(default_code, suffix)
+        return default_code
+
+    @api.model
+    def _create_rental_service(self, rental_type, product, price=0):
+        uom = self._get_rental_service_uom(rental_type)
         values = {
             "hw_product_id": product.id,
             "name": _("Rental of %s (%s)") % (product.name, uom.name),
             "categ_id": product.categ_id.id,
             "copy_image": True,
+            "default_code": "RENT-%s-%s" %(rental_type.upper(), product.default_code),
         }
         res = (
             self.env["create.rental.product"]
@@ -139,6 +186,14 @@ class ProductProduct(models.Model):
             .create_rental_product()
         )
         rental_service = self.browse(res["res_id"])
+        name = rental_service._get_rental_service_name(
+            rental_type,
+            product.name,
+        )
+        default_code = rental_service._get_rental_service_default_code(
+            rental_type,
+            product.default_code,
+        )
         rental_service.write(
             {
                 "uom_id": uom.id,
@@ -147,6 +202,8 @@ class ProductProduct(models.Model):
                 "income_analytic_account_id": product.income_analytic_account_id.id,
                 "expense_analytic_account_id": product.expense_analytic_account_id.id,
                 "list_price": price,
+                "name": name,
+                "default_code": default_code,
             }
         )
         return rental_service
@@ -169,13 +226,36 @@ class ProductProduct(models.Model):
     def _update_rental_service_default_code(self, vals):
         self.ensure_one()
         if "default_code" in vals:
-            rental_product_dc = vals.get("default_code", False)
+            default_code = vals.get("default_code", False)
             for rental_service in self.rental_service_ids:
-                rental_service_dc = _("RENT-%s-%s") % (
-                    rental_service.id,
-                    rental_product_dc,
+                rental_type = self._get_rental_service_type(rental_service.uom_id)
+                rental_service_dc = rental_service._get_rental_service_default_code(
+                    rental_type,
+                    default_code,
                 )
                 rental_service.default_code = rental_service_dc
+
+    @api.multi
+    def _update_rental_service_name(self, vals):
+        self.ensure_one()
+        if "name" in vals:
+            name = vals.get("name", False)
+            for rental_service in self.rental_service_ids:
+                rental_type = self._get_rental_service_type(rental_service.uom_id)
+                service_name = rental_service._get_rental_service_name(
+                    rental_type,
+                    name,
+                )
+                rental_service.name = service_name
+
+    @api.multi
+    def _update_rental_service_fields(self, vals, fields):
+        self.ensure_one()
+        service_vals = {}
+        for field in fields:
+            if field in vals:
+                service_vals[field] = vals.get(field, False)
+        self.rental_service_ids.write(service_vals)
 
     @api.multi
     def write(self, vals):
@@ -209,6 +289,19 @@ class ProductProduct(models.Model):
             # update defaul_code of related rental services
             if vals.get("default_code", False) and p.rental_service_ids:
                 p._update_rental_service_default_code(vals)
+            # update name for service product
+            if vals.get("name", False) and p.rental_service_ids:
+                p._update_rental_service_name(vals)
+            # update image and description for service product
+            update_fields = [
+                "image_medium",
+                "description_sale",
+                "categ_id",
+                "rental",
+                "active",
+            ]
+            if (vals.keys() & update_fields) and p.rental_service_ids:
+                p._update_rental_service_fields(vals, update_fields)
         return res
 
     @api.model
