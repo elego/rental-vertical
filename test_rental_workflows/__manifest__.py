@@ -12,7 +12,7 @@ Test Rental Workflows
     'depends': [
         'web',
         'web_tour',
-        'rental_sale',
+        'sale_rental',
         'rental_base',
         'rental_pricelist',
         'rental_product_set',

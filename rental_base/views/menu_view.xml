@@ -176,7 +176,7 @@
             <menuitem name="Rental Positions"
                 id="menu_rental_positions"
                 parent="menu_config"
-                action="rental_sale.sale_rental_action"
+                action="sale_rental.sale_rental_action"
                 groups="base.group_no_one"
                 sequence="100" />
 
