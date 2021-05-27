@@ -190,11 +190,14 @@ class ShipmentPlan(models.Model):
                         "description": "",
                     }
                 )
+                line_name = p.display_name
+                if description:
+                    line_name = p.display_name + "\n" + description
                 new_line = requisition_line_obj.create(
                     {
                         "requisition_id": new_requisition.id,
                         "product_id": p.id,
-                        "name": p.display_name + "\n" + description,
+                        "name": line_name,
                         "schedule_date": self.initial_etd,
                         "product_qty": 1,
                         "product_uom_id": uom_id,
