@@ -1,7 +1,7 @@
 Rental Menu CRM
 ====================================================
 
-*This file has been generated on 2021-01-14-13-44-51. Changes to it will be overwritten.*
+*This file has been generated on 2021-06-09-12-38-09. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -24,6 +24,7 @@ Usage
 Changelog
 ---------
 
+- bbd5cb2 2021-01-14 13:55:22 +0100 wagner@elegosoft.com  adapt gen-doc and update (issue #3613)
 - 83ed8f7 2020-12-22 18:06:08 +0100 wagner@elegosoft.com  all Python code reformatted by black code formatter (issue #4016)
 - 07c0589 2020-12-15 12:37:31 +0100 maria.sparenberg@elegosoft.com  (origin/defect_3999_blp925_fix_purchase_crm_access_v12) issue #3999 fix purchase and crm access in project tasks / rental menu
 - c7e3b59 2020-11-06 09:59:46 +0100 wagner@elegosoft.com  regenerate doc from manifests (issue #3613)

@@ -1,7 +1,7 @@
 Rental Off Day
 ====================================================
 
-*This file has been generated on 2021-01-14-13-44-51. Changes to it will be overwritten.*
+*This file has been generated on 2021-06-09-12-38-09. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -39,6 +39,10 @@ The off-days can only be used for products rentable in days.
 Changelog
 ---------
 
+- 1abc79f 2021-05-12 18:08:04 +0200 yweng@elegosoft.com  (origin/wip_4168_sale_rental_v12, wip_4168_sale_rental_v12) [IMP] adjust dependence of rental modules: replace rental_sale with sale_rental
+- 4218464 2021-01-15 13:20:07 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_3978_blp963_additional_offdays_v12: addons-rental-vertical remotes/origin/feature_3978_blp963_additional_offdays_v12 - 51af4f6ee418b45af29dde84a394dfe2035bb930 issue #3978 add additional off days by onchange event
+- 51af4f6 2021-01-14 16:06:40 +0100 maria.sparenberg@elegosoft.com  (origin/feature_3978_blp963_additional_offdays_v12) issue #3978 add additional off days by onchange event
+- bbd5cb2 2021-01-14 13:55:22 +0100 wagner@elegosoft.com  adapt gen-doc and update (issue #3613)
 - 78a189b 2021-01-12 09:11:44 +0100 maria.sparenberg@elegosoft.com  (origin/feature_3978_blp961_offdays_unittest_v12) issue #3978 fix unittest
 - eb2e57b 2021-01-11 14:03:33 +0100 maria.sparenberg@elegosoft.com  (origin/feature_3978_blp954_several_offdays_v12) issue #3978 add several additional off days in sale order line form view (not tree view)
 - a35a62d 2020-12-22 22:59:30 +0100 kay.haeusler@elego.de  regenerate all de.po and \*.pot files; issue #4016

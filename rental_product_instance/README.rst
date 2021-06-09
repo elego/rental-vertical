@@ -1,7 +1,7 @@
 Rental Product Instance
 ====================================================
 
-*This file has been generated on 2021-01-14-13-44-51. Changes to it will be overwritten.*
+*This file has been generated on 2021-06-09-12-38-09. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -34,6 +34,11 @@ Usage
 Changelog
 ---------
 
+- a3dbbc3 2021-01-15 13:20:08 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_4041_blp963_filter_instance_state_v12: addons-rental-vertical remotes/origin/feature_4041_blp963_filter_instance_state_v12 - 3d72d4dce46aade56e9ec43c2bad5722c82ccdbc [IMP] add unittest for module rental_timeline_product_instance (issue 4041)
+- 3d72d4d 2021-01-14 17:34:01 +0100 yweng@elegosoft.com  (origin/feature_4041_blp963_filter_instance_state_v12) [IMP] add unittest for module rental_timeline_product_instance (issue 4041)
+- 139b564 2021-01-14 16:04:18 +0100 yweng@elegosoft.com  [IMP] Refactoring of modules rental_product_instance and rental_timeline_product_instance (issue 4041)
+- df1ba55 2021-01-14 14:33:41 +0100 yweng@elegosoft.com  [IMP] add filter for field instance_state and fix the function _compute_instance_state (issue 4041)
+- bbd5cb2 2021-01-14 13:55:22 +0100 wagner@elegosoft.com  adapt gen-doc and update (issue #3613)
 - a35a62d 2020-12-22 22:59:30 +0100 kay.haeusler@elego.de  regenerate all de.po and \*.pot files; issue #4016
 - 83ed8f7 2020-12-22 18:06:08 +0100 wagner@elegosoft.com  all Python code reformatted by black code formatter (issue #4016)
 - 37ff1d6 2020-11-25 09:42:48 +0100 yweng@elegosoft.com  (origin/feature_3899_blp862_search_product_v12) [IMP] add translations

@@ -1,7 +1,7 @@
 Rental Product Variant
 ====================================================
 
-*This file has been generated on 2021-01-14-13-44-51. Changes to it will be overwritten.*
+*This file has been generated on 2021-06-09-12-38-09. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -41,6 +41,9 @@ In order to get vehicle related fields, open the product category and activate t
 Changelog
 ---------
 
+- 104b890 2021-03-29 13:19:52 +0200 maria.sparenberg@elegosoft.com  (origin/fix_4176_blp1043_sales_smartbutton_v12) issue #4176 fix default argument because otherwise calling this method for sale orders you would need to call it with rental=False
+- 7516e2d 2020-11-26 21:13:46 +0100 yweng@elegosoft.com  [IMP] remove some depends of rental_base
+- bbd5cb2 2021-01-14 13:55:22 +0100 wagner@elegosoft.com  adapt gen-doc and update (issue #3613)
 - 98e0d97 2021-01-13 14:59:56 +0100 yweng@elegosoft.com  (origin/feature_4035_blp961_manufacturer_type_v12) [IMP] improve views of manufacturer type (issue 4035)
 - a35a62d 2020-12-22 22:59:30 +0100 kay.haeusler@elego.de  regenerate all de.po and \*.pot files; issue #4016
 - 83ed8f7 2020-12-22 18:06:08 +0100 wagner@elegosoft.com  all Python code reformatted by black code formatter (issue #4016)

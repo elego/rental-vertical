@@ -1,7 +1,7 @@
 Rental Pricelist
 ====================================================
 
-*This file has been generated on 2021-01-14-13-44-51. Changes to it will be overwritten.*
+*This file has been generated on 2021-06-09-12-38-09. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -33,6 +33,20 @@ but are actually used for its related rental service!
 Changelog
 ---------
 
+- c8a57b3 2021-05-18 17:17:23 +0200 yweng@elegosoft.com  (origin/feature_4222_blp654_update_rental_service_products_v12) [IMP] add option 'translate' in fields prefix und suffix for rental service
+- 0cb2ef2 2021-05-04 14:57:25 +0200 yweng@elegosoft.com  (origin/feature_4222_blp635_update_rental_service_products_v12) [IMP] adjust unittest rental tour and fixes the default value of name prefix fields.
+- bb4d2f7 2021-05-03 11:57:13 +0200 yweng@elegosoft.com  [IMP] add update_fields (categ_id, rental, active) for updating fields of rental service (issue 3901)
+- 7070c03 2021-04-30 19:43:52 +0200 yweng@elegosoft.com  (origin/feature_4222_blp631_update_rental_service_products_v12, feature_4222_blp631_update_rental_service_products_v12, feature_4222_blp622_update_rental_service_products_v12) [IMP] add function to set prefix and suffix of field name and default_code of rental services
+- 84a4d15 2021-04-28 02:18:56 +0200 yweng@elegosoft.com  [IMP] Update fields name, description_sale and image_medium of rental service products after changing of the stockable rental product
+- 8dcfb90 2021-04-20 14:48:46 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/v12: addons-rental-vertical remotes/origin/v12 - d1773a45efc72f8191f45e782d492e3f2624a9a5 rental-vertical one time integration of rental-vertical branches by swrent_daily_build-1050
+- eac35ae 2021-03-30 09:03:22 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_4110_blp564_refactoring_rental_pricelist_interval_v12: addons-rental-vertical remotes/origin/feature_4110_blp564_refactoring_rental_pricelist_interval_v12 - 0d3a2e4922b5374bb90bf9e835b2addc1eb92dba [IMP] Interval Pricelist
+- 0cc27ac 2021-03-28 21:45:23 +0200 yweng@elegosoft.com  (origin/feature_4046_blp564_rental_check_availability_v12) [ADD] Module rental_check_availability (issue 4046)
+- 0d3a2e4 2021-03-26 14:47:41 +0100 yweng@elegosoft.com  (origin/feature_4110_blp564_refactoring_rental_pricelist_interval_v12, feature_4110_blp564_refactoring_rental_pricelist_interval_v12) [IMP] Interval Pricelist
+- caacd22 2021-03-26 17:02:17 +0100 cpatel@elegosoft.com  (origin/feature_3901_blp1043_rental_pricelist_v12) [IMP] defaul code changes, (issue#3901)
+- b111b86 2021-03-26 13:37:08 +0100 cpatel@elegosoft.com  [IMP] update related rental services if default code of the rental product changes, (issue#3901)
+- 3a04499 2021-03-19 00:12:08 +0100 yweng@elegosoft.com  (origin/feature_4110_blp1034_refactoring_rental_pricelist_interval_v12, feature_4110_blp1034_refactoring_rental_pricelist_interval_v12) [IMP] Refactoring of Module rental_pricelist_interval (issue 4110)
+- 37ef0a3 2021-01-27 22:48:39 +0100 yweng@elegosoft.com  (origin/defect_4075_blp969_rental_pricelist_v12) [FIX] function _update_rental_service_analytic_account (issue 4075)
+- bbd5cb2 2021-01-14 13:55:22 +0100 wagner@elegosoft.com  adapt gen-doc and update (issue #3613)
 - a35a62d 2020-12-22 22:59:30 +0100 kay.haeusler@elego.de  regenerate all de.po and \*.pot files; issue #4016
 - 83ed8f7 2020-12-22 18:06:08 +0100 wagner@elegosoft.com  all Python code reformatted by black code formatter (issue #4016)
 - c7e3b59 2020-11-06 09:59:46 +0100 wagner@elegosoft.com  regenerate doc from manifests (issue #3613)
