@@ -31,27 +31,30 @@ class SaleOrderLine(models.Model):
     def get_transport_details(self):
         order = self[0].order_id
         res = ""
-        src_address = self.env.user.company_id.with_context(
-            show_address=True
-        ).display_name
-        dest_address = order.partner_shipping_id.with_context(
-            show_address=True
-        ).display_name
+        src_address = self.env.user.company_id.partner_id._display_address(
+            without_company=True
+        )
+        dest_address = order.partner_shipping_id._display_address(
+            without_company=True
+        )
         res += "Incoterm: %s \n" % (order.incoterm.name)
         for line in self:
+            product_name = line.product_id.name
+            if line.product_id.rented_product_id:
+                product_name = line.product_id.rented_product_id.name
             res += "%s: %s %s \n" % (
-                line.product_id.name,
+                product_name,
                 line.product_uom_qty,
                 line.product_id.uom_id.name,
             )
         if self.env.context.get("shipment_plan_return", False):
             res += "Date: %s \n" % (order.default_end_date)
-            res += "Source Address: %s \n" % (dest_address)
-            res += "Destination Address: %s \n" % (src_address)
+            res += "Source Address: \n %s \n\n" % (dest_address)
+            res += "Destination Address:\n %s \n\n" % (src_address)
         else:
             res += "Date: %s \n" % (order.default_start_date)
-            res += "Source Address: %s \n" % (src_address)
-            res += "Destination Address: %s \n" % (dest_address)
+            res += "Source Address: \n %s \n\n" % (src_address)
+            res += "Destination Address: \n %s \n\n" % (dest_address)
         return res
 
     def _prepare_new_rental_procurement_values(self, group=False):

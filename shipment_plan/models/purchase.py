@@ -54,7 +54,10 @@ class PurchaseOrderLine(models.Model):
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
-    selected_in_order = fields.Boolean("Selected in Order")
+    selected_in_order = fields.Boolean(
+        "Selected in Order",
+        help="If set, this transport request can be used as basis for a quotation/order and the transport costs can be considered charging the customer."
+    )
 
     @api.multi
     def action_transport_confirm(self):

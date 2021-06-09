@@ -9,10 +9,10 @@
                 <field name="selected_in_order"/>
             </xpath>
             <xpath expr="//field[@name='order_line']//field[@name='date_planned']" position="after">
-                <field name="shipment_plan_ids" invisible="0" />
+                <field name="shipment_plan_ids" invisible="1" />
             </xpath>
             <xpath expr="//button[@name='button_confirm']" position="before">
-                <button name="action_transport_confirm" type="object" string="Use in Order"/>
+                <button name="action_transport_confirm" type="object" string="Use in Order" attrs="{'invisible': [('selected_in_order', '=', True)]}"/>
             </xpath>
         </field>
     </record>

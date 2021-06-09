@@ -33,7 +33,7 @@
                 </button>
             </xpath>
             <button name="print_quotation" position="after">
-                <button name="%(create_sale_trans_request_action)d" type="action" string="Create Transport PR"
+                <button name="%(create_sale_trans_request_action)d" type="action" string="Request Transport"
                         attrs="{'invisible': [('trans_pr_needed', '=', False)]}"/>
                 <button name="action_create_trans_cost" type="object" string="Get Transport Cost"
                         attrs="{'invisible': ['|', ('trans_pr_needed', '=', False), ('trans_po_count', '=', 0)]}"/>
@@ -49,6 +49,11 @@
                 <field name="trans_pr_needed"/>
                 <field name="transport_cost_type"/>
             </group>
+            <xpath expr="//field[@name='partner_shipping_id']" position="attributes">
+                <attribute name="context">{"show_address": 1}</attribute>
+                <attribute name="options">{"always_reload": True}</attribute>
+                <attribute name="widget">res_partner_many2one</attribute>
+            </xpath>
         </field>
     </record>
 

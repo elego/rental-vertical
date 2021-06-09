@@ -16,6 +16,12 @@ class ShipmentPlan(models.Model):
         "Origin Return Sale Order Lines",
     )
 
+    @api.multi
+    def _get_transport_pr_name(self):
+        self.ensure_one()
+        if self.env.context.get("rental_return", False):
+            return _("Inbound transport for %s") % (self.origin)
+        return _("Outbound transport for %s") % (self.origin)
 
 class StockRule(models.Model):
     _inherit = "stock.rule"

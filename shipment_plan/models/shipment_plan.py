@@ -143,7 +143,12 @@ class ShipmentPlan(models.Model):
             order.trans_po_count = len(trans_pos.ids)
 
     @api.multi
-    def create_purchase_request(self, service_products):
+    def _get_transport_pr_name(self):
+        self.ensure_one()
+        return _("Transport for %s") % (self.origin)
+
+    @api.multi
+    def create_purchase_request(self, service_products, transport_service_type):
         self.ensure_one()
         order_obj = self.env["purchase.order"]
         order_line_obj = self.env["purchase.order.line"]
@@ -151,7 +156,7 @@ class ShipmentPlan(models.Model):
         uom_id = self.env.ref("uom.product_uom_unit").id
         description = self.note
         for p in service_products:
-            if p.transport_service_type == "po":
+            if transport_service_type == "po":
                 if not p.seller_ids:
                     raise exceptions.UserError(
                         _("No found Supplier Info of %s") % p.name
@@ -181,10 +186,10 @@ class ShipmentPlan(models.Model):
                     vals["date_planned"] = self.initial_etd
                 new_line = order_line_obj.create(vals)
                 self.write({"trans_purchase_line_ids": [(4, new_line.id, 0)]})
-            elif p.transport_service_type == "pr":
+            elif transport_service_type == "pr":
                 new_requisition = self.env["purchase.requisition"].create(
                     {
-                        "name": _("Transport for %s") % (self.origin),
+                        "name": self.get_transport_pr_name(),
                         "origin": self.origin,
                         "schedule_date": self.initial_etd,
                         "description": "",

@@ -9,9 +9,15 @@ logger = logging.getLogger(__name__)
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    is_transport = fields.Boolean("Transport Service", copy=True)
-    trans_purchase_request = fields.Boolean("Transport Purchase Request", copy=True)
-
+    is_transport = fields.Boolean(
+        "Transport Service",
+        copy=True,
+        help="If set, it allows the user to create a transport request or call for tender in order to find a carrier delivering the chosen products.",
+    )
+    trans_purchase_request = fields.Boolean(
+        "Transport required",
+        copy=True,
+    )
 
 class ProductProduct(models.Model):
     _inherit = "product.product"

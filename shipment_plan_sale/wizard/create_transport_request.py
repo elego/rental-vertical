@@ -21,6 +21,15 @@ class CreateSaleTransRequest(models.TransientModel):
         string="Services",
         domain="[('is_transport', '=', True)]",
     )
+    transport_service_type = fields.Selection(
+        [
+            ("po", "Purchase Order"),
+            ("pr", "Purchase Requisition"),
+        ],
+        default="po",
+        string="Request type",
+        help="The transport request type defines if a purchase order or a call for tender is created when requesting a transport within an order.",
+    )
     order_id = fields.Many2one(
         "sale.order",
         "Sale Order",
@@ -62,6 +71,8 @@ class CreateSaleTransRequest(models.TransientModel):
             "product_id": line.product_id.id,
             "product_uom_qty": line.product_uom_qty,
             "product_uom": line.product_uom.id,
+            "start_date": line.start_date,
+            "end_date": line.end_date,
             "trans_shipment_plan_id": line.trans_shipment_plan_id.id,
         }
         return res
@@ -117,9 +128,15 @@ class CreateSaleTransRequest(models.TransientModel):
             )
         else:
             raise execptions.UserError(_("No found suitable Shipment Plan."))
-        shipment_plan.create_purchase_request(self.service_product_ids)
+        shipment_plan.create_purchase_request(
+            self.service_product_ids, self.transport_service_type
+        )
         return shipment_plan
 
+    @api.onchange("service_product_ids")
+    def onchange_service_product_ids(self):
+        if self.service_product_ids:
+            self.transport_service_type = self.service_product_ids[0].transport_service_type
 
 class CreateSaleTransOriginLine(models.TransientModel):
     _name = "create.sale.trans.origin.line"
@@ -141,6 +158,12 @@ class CreateSaleTransOriginLine(models.TransientModel):
         "uom.uom",
         string="UOM",
         related="order_line_id.product_uom",
+    )
+    start_date = fields.Date(
+        "Start Date",
+    )
+    end_date = fields.Date(
+        "End Date",
     )
     trans_shipment_plan_id = fields.Many2one(
         "shipment.plan",
