@@ -1,7 +1,7 @@
 Rental Contract
 ====================================================
 
-*This file has been generated on 2021-01-14-13-44-51. Changes to it will be overwritten.*
+*This file has been generated on 2021-06-09-12-38-09. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -47,13 +47,15 @@ This module is automatically installed when all of the following modules are ins
  - contract
  - product_contract
  - sale_start_end_dates
- - rental_sale
+ - sale_rental
  - rental_base
 
 
 Changelog
 ---------
 
+- 1abc79f 2021-05-12 18:08:04 +0200 yweng@elegosoft.com  (origin/wip_4168_sale_rental_v12, wip_4168_sale_rental_v12) [IMP] adjust dependence of rental modules: replace rental_sale with sale_rental
+- bbd5cb2 2021-01-14 13:55:22 +0100 wagner@elegosoft.com  adapt gen-doc and update (issue #3613)
 - a35a62d 2020-12-22 22:59:30 +0100 kay.haeusler@elego.de  regenerate all de.po and \*.pot files; issue #4016
 - 83ed8f7 2020-12-22 18:06:08 +0100 wagner@elegosoft.com  all Python code reformatted by black code formatter (issue #4016)
 - c7e3b59 2020-11-06 09:59:46 +0100 wagner@elegosoft.com  regenerate doc from manifests (issue #3613)

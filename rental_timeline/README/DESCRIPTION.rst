@@ -1,7 +1,7 @@
 Rental Timeline
 ====================================================
 
-*This file has been generated on 2021-01-14-13-44-51. Changes to it will be overwritten.*
+*This file has been generated on 2021-06-09-12-38-09. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -11,7 +11,7 @@ Adds a timeline to products as well as a timeline view as overview of all rental
 Description
 -----------
 
-This module extends the rental_sale module to create and change the timeline objects
+This module extends the sale_rental module to create and change the timeline objects
 for the rented product instances automatically.
 A complete timeline view containing all rental orders will be generated for all rentable products.
 

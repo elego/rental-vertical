@@ -124,12 +124,14 @@ class SaleOrderLine(models.Model):
             }
         return vals
 
-    def _run_rental_procurement(self, line, vals):
+    @api.multi
+    def _run_rental_procurement(self, vals):
+        self.ensure_one()
         self.env['procurement.group'].run(
-            line.product_id.rented_product_id, line.rental_qty,
-            line.product_id.rented_product_id.uom_id,
-            line.order_id.warehouse_id.rental_out_location_id,
-            line.name, line.order_id.name, vals)
+            self.product_id.rented_product_id, self.rental_qty,
+            self.product_id.rented_product_id.uom_id,
+            self.order_id.warehouse_id.rental_out_location_id,
+            self.name, self.order_id.name, vals)
 
     def _action_launch_stock_rule(self):
         errors = []
@@ -149,7 +151,7 @@ class SaleOrderLine(models.Model):
 
                 vals = line._prepare_new_rental_procurement_values(group)
                 try:
-                    self._run_rental_procurement(line, vals)
+                    line._run_rental_procurement(vals)
                 except UserError as error:
                     errors.append(error.name)
 

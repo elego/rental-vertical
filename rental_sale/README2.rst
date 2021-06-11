@@ -1,7 +1,7 @@
 Rental Sale
 ====================================================
 
-*This file has been generated on 2021-01-14-13-44-51. Changes to it will be overwritten.*
+*This file has been generated on 2021-06-09-12-38-09. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -49,6 +49,11 @@ Please refer to this screencast https://www.youtube.com/watch?v=9o0QrGryBn8 to g
 Changelog
 ---------
 
+- d638ed9 2021-05-20 18:20:51 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_4168_blp1050_rename_sale_rental_v12: addons-rental-vertical remotes/origin/fix_4168_blp1050_rename_sale_rental_v12 - db62236826dd7f75e7bdb5b2a345d049102e145c [IMP] improves function _run_rental_procurement of sale.order.line (issue 4168)
+- d9768bd 2021-05-13 09:27:50 +0200 wagner@elegosoft.com  (origin/feature_4168_blp1050_revert_to_sale_rental_deps_v12, feature_4168_blp1050_revert_to_sale_rental_deps_v12) revert to use sale_rental for OCA compatibility: disable installation of rental_sale (issue #4168)
+- 1abc79f 2021-05-12 18:08:04 +0200 yweng@elegosoft.com  (origin/wip_4168_sale_rental_v12, wip_4168_sale_rental_v12) [IMP] adjust dependence of rental modules: replace rental_sale with sale_rental
+- db62236 2021-04-01 15:19:32 +0200 yweng@elegosoft.com  (origin/fix_4168_blp1050_rename_sale_rental_v12) [IMP] improves function _run_rental_procurement of sale.order.line (issue 4168)
+- bbd5cb2 2021-01-14 13:55:22 +0100 wagner@elegosoft.com  adapt gen-doc and update (issue #3613)
 - b8d343d 2020-12-09 12:07:43 +0100 yweng@elegosoft.com  [ADD] auto settings for module rental_sale
 - c7e3b59 2020-11-06 09:59:46 +0100 wagner@elegosoft.com  regenerate doc from manifests (issue #3613)
 - f3ca50c 2020-10-29 16:59:48 +0100 wagner@elegosoft.com  add old history of renamed sale_rental (issue #3613)

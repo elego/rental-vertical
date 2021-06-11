@@ -91,17 +91,19 @@ class SaleOrderLine(models.Model):
         return res
 
     # (override)
-    def _run_rental_procurement(self, line, vals):
-        location = line.order_id.warehouse_id.rental_out_location_id
-        if line.order_id.partner_shipping_id.rental_onsite_location_id:
-            location = line.order_id.partner_shipping_id.rental_onsite_location_id
+    @api.multi
+    def _run_rental_procurement(self, vals):
+        self.ensure_one()
+        location = self.order_id.warehouse_id.rental_out_location_id
+        if self.order_id.partner_shipping_id.rental_onsite_location_id:
+            location = self.order_id.partner_shipping_id.rental_onsite_location_id
         self.env["procurement.group"].run(
-            line.product_id.rented_product_id,
-            line.rental_qty,
-            line.product_id.rented_product_id.uom_id,
+            self.product_id.rented_product_id,
+            self.rental_qty,
+            self.product_id.rented_product_id.uom_id,
             location,
-            line.name,
-            line.order_id.name,
+            self.name,
+            self.order_id.name,
             vals,
         )
 

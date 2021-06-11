@@ -37,7 +37,7 @@ This module is automatically installed when all of the following modules are ins
  - contract
  - product_contract
  - sale_start_end_dates
- - rental_sale
+ - sale_rental
  - rental_base
 """,
     "version": "12.0.1.0.0",
@@ -48,7 +48,7 @@ This module is automatically installed when all of the following modules are ins
         "product_contract",
         "product_analytic",
         "sale_start_end_dates",
-        "rental_sale",
+        "sale_rental",
         "rental_base",
     ],
     "data": [

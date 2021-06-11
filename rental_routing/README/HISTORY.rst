@@ -2,6 +2,10 @@
 Changelog
 ---------
 
+- d638ed9 2021-05-20 18:20:51 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_4168_blp1050_rename_sale_rental_v12: addons-rental-vertical remotes/origin/fix_4168_blp1050_rename_sale_rental_v12 - db62236826dd7f75e7bdb5b2a345d049102e145c [IMP] improves function _run_rental_procurement of sale.order.line (issue 4168)
+- 1abc79f 2021-05-12 18:08:04 +0200 yweng@elegosoft.com  (origin/wip_4168_sale_rental_v12, wip_4168_sale_rental_v12) [IMP] adjust dependence of rental modules: replace rental_sale with sale_rental
+- db62236 2021-04-01 15:19:32 +0200 yweng@elegosoft.com  (origin/fix_4168_blp1050_rename_sale_rental_v12) [IMP] improves function _run_rental_procurement of sale.order.line (issue 4168)
+- bbd5cb2 2021-01-14 13:55:22 +0100 wagner@elegosoft.com  adapt gen-doc and update (issue #3613)
 - 83ed8f7 2020-12-22 18:06:08 +0100 wagner@elegosoft.com  all Python code reformatted by black code formatter (issue #4016)
 - ed7dc16 2020-12-04 13:52:03 +0100 yweng@elegosoft.com  (origin/fix_3975_blp862_rental_routing_v12) [FIX] property_stock_customer of res.partner
 - c7e3b59 2020-11-06 09:59:46 +0100 wagner@elegosoft.com  regenerate doc from manifests (issue #3613)

@@ -2,6 +2,11 @@
 Changelog
 ---------
 
+- 5c575ce 2021-03-09 09:39:32 +0100 cpatel@elegosoft.com  (origin/feature_3941_blp1022_rental_product_instance_repair_v12) [IMP] product search on task : changes removed from rental_repair and added to module rental_product_instance_reapir, translation also added, (issue#3941)
+- 4e087f7 2021-03-04 13:11:22 +0100 cpatel@elegosoft.com  (origin/feature_3941_blp1020_rental_repair_v12) [IMP] add search for product on project.task, (issue#3941)
+- 976ad0c 2021-01-20 14:08:02 +0100 yweng@elegosoft.com  (origin/feature_3966_blp969_rental_base_v12) [IMP] change the name of menu back (issue 4048)
+- a9665a4 2020-11-26 21:13:46 +0100 yweng@elegosoft.com  [IMP] remove some depends of rental_base
+- bbd5cb2 2021-01-14 13:55:22 +0100 wagner@elegosoft.com  adapt gen-doc and update (issue #3613)
 - 8729f32 2021-01-05 20:51:20 +0100 yweng@elegosoft.com  (origin/defect_3999_blp954_rental_repair_v12) [Fix] view definition for field vendor_repair_ids of project.task (issue 3999)
 - a35a62d 2020-12-22 22:59:30 +0100 kay.haeusler@elego.de  regenerate all de.po and \*.pot files; issue #4016
 - 83ed8f7 2020-12-22 18:06:08 +0100 wagner@elegosoft.com  all Python code reformatted by black code formatter (issue #4016)

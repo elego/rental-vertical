@@ -1,7 +1,7 @@
 Rental Toll Collect
 ====================================================
 
-*This file has been generated on 2021-01-14-13-44-51. Changes to it will be overwritten.*
+*This file has been generated on 2021-06-09-12-38-09. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -59,6 +59,9 @@ Usage
 Changelog
 ---------
 
+- 5d777a6 2021-03-26 14:10:02 +0100 cpatel@elegosoft.com  (origin/feature_3903_blp1043_rental_toll_collect_v12) [IMP] add attachment only if any invoced toll charge lines, (issue#3903)
+- 623366e 2021-03-25 16:33:53 +0100 cpatel@elegosoft.com  [IMP] changes to rental_toll_collect, 1. added report for toll charge lines 2. add attachment only toll charge lines are available on account.invoice when user click on Send and Print ,(issue#3903)
+- bbd5cb2 2021-01-14 13:55:22 +0100 wagner@elegosoft.com  adapt gen-doc and update (issue #3613)
 - a35a62d 2020-12-22 22:59:30 +0100 kay.haeusler@elego.de  regenerate all de.po and \*.pot files; issue #4016
 - 83ed8f7 2020-12-22 18:06:08 +0100 wagner@elegosoft.com  all Python code reformatted by black code formatter (issue #4016)
 - e1bdbc8 2020-12-10 15:10:08 +0100 cpatel@elegosoft.com  (origin/fix_3950_blp918_rental_toll_collect_v12) [FIX] set administrative_charge field default value to False for Company,(issue#3950)
