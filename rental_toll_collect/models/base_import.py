@@ -16,7 +16,7 @@ class Import(models.TransientModel):
     @api.model
     def _convert_import_data(self, fields, options):
         # toll.charge .line import : remove rows who has only column
-        # same as base method code, additioanl one line only to filter rows
+        # same as base method code, additional one line only to filter rows
         if self.res_model == "toll.charge.line":
             # Get indices for non-empty fields
             indices = [index for index, field in enumerate(fields) if field]
@@ -32,6 +32,10 @@ class Import(models.TransientModel):
             import_fields = [f for f in fields if f]
 
             rows_to_import = self._read_file(options)
+            # fileter rows here
+            rows_to_import = itertools.filterfalse(
+                lambda row: len(row) < 2, rows_to_import
+            )
             if options.get("headers"):
                 rows_to_import = itertools.islice(rows_to_import, 1, None)
             data = [
