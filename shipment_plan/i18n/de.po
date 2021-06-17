@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-08 21:55+0000\n"
-"PO-Revision-Date: 2021-06-08 21:55+0000\n"
+"POT-Creation-Date: 2021-06-17 15:50+0000\n"
+"PO-Revision-Date: 2021-06-17 15:50+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -296,7 +296,7 @@ msgid "Name"
 msgstr ""
 
 #. module: shipment_plan
-#: code:addons/shipment_plan/models/shipment_plan.py:162
+#: code:addons/shipment_plan/models/shipment_plan.py:189
 #, python-format
 msgid "No found Supplier Info of %s"
 msgstr ""
@@ -433,6 +433,11 @@ msgstr ""
 #: model:ir.ui.menu,name:shipment_plan.menu_action_shipment
 #: model_terms:ir.ui.view,arch_db:shipment_plan.view_shipment_plan_tree
 msgid "Shipment Plans"
+msgstr ""
+
+#. module: shipment_plan
+#: model:ir.model.fields,field_description:shipment_plan.field_purchase_order__show_shipment_plan
+msgid "Show Shipment Plan"
 msgstr ""
 
 #. module: shipment_plan
@@ -585,7 +590,7 @@ msgid "Website communication history"
 msgstr "Website-Kommunikationshistorie"
 
 #. module: shipment_plan
-#: code:addons/shipment_plan/models/purchase.py:75
+#: code:addons/shipment_plan/models/purchase.py:85
 #, python-format
 msgid "You have already confirm the \"%s\" in Order \"%s\"."
 msgstr ""

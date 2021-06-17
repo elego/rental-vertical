@@ -147,6 +147,33 @@ class ShipmentPlan(models.Model):
         self.ensure_one()
         return _("Transport for %s") % (self.origin)
 
+    @api.model
+    def _prepare_sp_po_values(self, product):
+        "This function can be extended in other module"
+        self.ensure_one()
+        new_order = self.env["purchase.order"].new(
+            {
+                "company_id": self.env.user.company_id.id,
+                "partner_id": product.seller_ids[0].name.id,
+            }
+        )
+        new_order.onchange_partner_id()
+        res = new_order._convert_to_write(new_order._cache)
+        return res
+
+    @api.multi
+    def _prepare_sp_pr_values(self):
+        "This function can be extended in other module"
+        self.ensure_one()
+        res = {
+            "name": self._get_transport_pr_name(),
+            "origin": self.origin,
+            "schedule_date": self.initial_etd,
+            "description": "",
+        }
+
+        return res
+
     @api.multi
     def create_purchase_request(self, service_products, transport_service_type):
         self.ensure_one()
@@ -161,14 +188,7 @@ class ShipmentPlan(models.Model):
                     raise exceptions.UserError(
                         _("No found Supplier Info of %s") % p.name
                     )
-                new_order = order_obj.new(
-                    {
-                        "company_id": self.env.user.company_id.id,
-                        "partner_id": p.seller_ids[0].name.id,
-                    }
-                )
-                new_order.onchange_partner_id()
-                vals = new_order._convert_to_write(new_order._cache)
+                vals = self._prepare_sp_po_values(p)
                 new_order = order_obj.create(vals)
                 new_line = order_line_obj.new(
                     {
@@ -187,13 +207,9 @@ class ShipmentPlan(models.Model):
                 new_line = order_line_obj.create(vals)
                 self.write({"trans_purchase_line_ids": [(4, new_line.id, 0)]})
             elif transport_service_type == "pr":
+                vals = self._prepare_sp_pr_values()
                 new_requisition = self.env["purchase.requisition"].create(
-                    {
-                        "name": self.get_transport_pr_name(),
-                        "origin": self.origin,
-                        "schedule_date": self.initial_etd,
-                        "description": "",
-                    }
+                    vals
                 )
                 line_name = p.display_name
                 if description:
