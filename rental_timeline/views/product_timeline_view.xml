@@ -128,6 +128,9 @@
                     <field name="product_id" string="Product" filter_domain="['|', ('product_id','ilike', self), ('product_id.instance_serial_number_id', 'ilike', self)]" />
                     <field name="product_categ_id" />
                     <field name="type" />
+                    <separator/>
+                    <filter domain="[('type','=','rental')]" name="type_rental" string="Rental"/>
+                    <separator/>
                     <group expand="0" string="Group By">
                         <filter string="Product" name="product" context="{'group_by':'product_id'}" />
                     </group>
@@ -176,6 +179,7 @@
             <field name="view_type">form</field>
             <field name="view_mode">rental_timeline,form</field>
             <field name="search_view_id" ref="view_product_timeline_search" />
+            <field name="context">{"search_default_type_rental": 1}</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
                     Create a timeline for equipment first.
