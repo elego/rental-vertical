@@ -132,6 +132,8 @@
                     <separator/>
                     <filter domain="[('type','=','rental')]" name="type_rental" string="Rental"/>
                     <separator/>
+                    <filter domain="[('active','=',False)]" name="archived" string="Archived Products"/>
+                    <separator/>
                     <group expand="0" string="Group By">
                         <filter string="Product" name="product" context="{'group_by':'product_id'}" />
                     </group>

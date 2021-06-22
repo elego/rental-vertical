@@ -55,6 +55,11 @@ class ProductTimeline(models.Model):
         required=True,
     )
 
+    active = fields.Boolean(
+        compute="_compute_active",
+        store=True,
+    )
+
     product_name = fields.Char(
         compute="_compute_required_fields",
         store=True,
@@ -317,3 +322,10 @@ class ProductTimeline(models.Model):
                 line.date_end_formated = line.date_end.strftime(datetime_format)
             else:
                 line.date_end_formated = str(line.date_end)
+
+    @api.depends("product_id", "product_id.active")
+    def _compute_active(self):
+        for line in self:
+            line.active = False
+            if line.product_id and line.product_id.active:
+                line.active = True
