@@ -121,11 +121,12 @@
             <field name="model">product.timeline</field>
             <field name="arch" type="xml">
                <search string="Timeline">
-                    <field name="name" />
-<!--                     <field name="click_res_id" /> -->
+                    <field name="product_id"
+                        string="Product"
+                        filter_domain="['|', '|', '|', '|', ('product_id','ilike', self), ('product_id.product_identification_number', 'ilike', self), ('product_id.vehicle_number', 'ilike', self), ('product_id.license_plate', 'ilike', self), ('product_id.default_code', 'ilike', self)]"
+                    />
                     <field name="order_name" />
                     <field name="partner_id" />
-                    <field name="product_id" string="Product" filter_domain="['|', ('product_id','ilike', self), ('product_id.instance_serial_number_id', 'ilike', self)]" />
                     <field name="product_categ_id" />
                     <field name="type" />
                     <separator/>
