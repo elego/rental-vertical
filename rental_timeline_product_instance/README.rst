@@ -1,7 +1,7 @@
 Rental Timeline Product Instance
 ====================================================
 
-*This file has been generated on 2021-01-14-13-44-51. Changes to it will be overwritten.*
+*This file has been generated on 2021-06-09-12-38-09. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -30,6 +30,14 @@ No further configuration is needed.
 Changelog
 ---------
 
+- ce643a2 2021-05-20 00:17:54 +0200 yweng@elegosoft.com  (origin/fix_4215_blp1050_timeline_filter_v12) [FIX] product instance timeline
+- d4788dd 2021-02-02 20:04:59 +0100 yweng@elegosoft.com  (origin/feature_3760_blp969_rental_timeline_v12) [IMP] black formatted (issue 3760)
+- b92f94f 2021-02-02 17:36:38 +0100 yweng@elegosoft.com  [IMP] adjust trigger function to update infos in timeline (issue 3760)
+- f82eb5d 2021-02-01 17:07:51 +0100 yweng@elegosoft.com  [IMP] improves performance of timeline (issue 3760)
+- a3dbbc3 2021-01-15 13:20:08 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_4041_blp963_filter_instance_state_v12: addons-rental-vertical remotes/origin/feature_4041_blp963_filter_instance_state_v12 - 3d72d4dce46aade56e9ec43c2bad5722c82ccdbc [IMP] add unittest for module rental_timeline_product_instance (issue 4041)
+- 3d72d4d 2021-01-14 17:34:01 +0100 yweng@elegosoft.com  (origin/feature_4041_blp963_filter_instance_state_v12) [IMP] add unittest for module rental_timeline_product_instance (issue 4041)
+- 139b564 2021-01-14 16:04:18 +0100 yweng@elegosoft.com  [IMP] Refactoring of modules rental_product_instance and rental_timeline_product_instance (issue 4041)
+- bbd5cb2 2021-01-14 13:55:22 +0100 wagner@elegosoft.com  adapt gen-doc and update (issue #3613)
 - a35a62d 2020-12-22 22:59:30 +0100 kay.haeusler@elego.de  regenerate all de.po and \*.pot files; issue #4016
 - 83ed8f7 2020-12-22 18:06:08 +0100 wagner@elegosoft.com  all Python code reformatted by black code formatter (issue #4016)
 - 408c828 2020-11-25 10:17:03 +0100 kay.haeusler@elego.de  Fix the constraint for checking for multiple rentals (offers can exist side by side); issue #3722

@@ -2,6 +2,14 @@
 Changelog
 ---------
 
+- 965b09d 2021-05-27 23:13:35 +0200 yweng@elegosoft.com  (origin/fix_4257_blp1102_shipment_plan_v12) [FIX] function create_purchase_request (issue 4257)
+- d1c5b3d 2021-01-22 18:40:01 +0100 wagner@elegosoft.com  (origin/fix_3756_blp492_rental_tours_v12, fix_3756_blp492_rental_tours_v12) add dependency from shipment_plan to rental_base (issue #3756)
+- 83ed8f7 2020-12-22 18:06:08 +0100 wagner@elegosoft.com  all Python code reformatted by black code formatter (issue #4016)
+- c7f84e7 2020-12-09 12:10:15 +0100 yweng@elegosoft.com  (origin/feature_3432_blp906_shipment_plan_unittest_v12) [IMP] Unittest of module shipment_plan_rental
+- 075d2a0 2020-12-08 22:16:17 +0100 yweng@elegosoft.com  [IMP] Unittest of module shipment_plan_sale
+- 32041af 2020-12-08 22:15:37 +0100 yweng@elegosoft.com  [FIX] add some depends on functions of computed fields in module shipment_plan and shipment_plan_sale
+- ea3f3d4 2020-12-07 23:00:07 +0100 yweng@elegosoft.com  [IMP] Unittests of module shipment_plan
+- c7e3b59 2020-11-06 09:59:46 +0100 wagner@elegosoft.com  regenerate doc from manifests (issue #3613)
 - 391ef2a 2020-10-28 20:59:58 +0100 wagner@elegosoft.com  add usage information for product sets and product packs; add configuration and usage information for rental_sale and extend gen-doc for configuration (issue #3613)
 - d39f57e 2020-10-28 20:18:47 +0100 wagner@elegosoft.com  add links to the index in README.md (issue #3613)
 - b1039c8 2020-10-28 17:39:27 +0100 wagner@elegosoft.com  add index generation and add index to README.md (issue #3613)

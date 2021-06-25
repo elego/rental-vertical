@@ -2,6 +2,7 @@
 Changelog
 ---------
 
+- bbd5cb2 2021-01-14 13:55:22 +0100 wagner@elegosoft.com  adapt gen-doc and update (issue #3613)
 - a35a62d 2020-12-22 22:59:30 +0100 kay.haeusler@elego.de  regenerate all de.po and \*.pot files; issue #4016
 - 83ed8f7 2020-12-22 18:06:08 +0100 wagner@elegosoft.com  all Python code reformatted by black code formatter (issue #4016)
 - f2f4980 2020-11-24 17:27:51 +0100 maria.sparenberg@elegosoft.com  issue #3950 add invoicing of administrative charge in toll charge invoices

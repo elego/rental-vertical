@@ -2,6 +2,7 @@
 Changelog
 ---------
 
+- bbd5cb2 2021-01-14 13:55:22 +0100 wagner@elegosoft.com  adapt gen-doc and update (issue #3613)
 - a35a62d 2020-12-22 22:59:30 +0100 kay.haeusler@elego.de  regenerate all de.po and \*.pot files; issue #4016
 - 83ed8f7 2020-12-22 18:06:08 +0100 wagner@elegosoft.com  all Python code reformatted by black code formatter (issue #4016)
 - a158a98 2020-11-07 19:21:06 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_3477_blp849_rental_product_insurance_v12: addons-rental-vertical remotes/origin/feature_3477_blp849_rental_product_insurance_v12 - 62c3c1fdf9aed24e6bca69af849f84fc9868f6d1 [IMP] implements new tests for module rental_contract_insurance and delete old test of rental_product_insurance

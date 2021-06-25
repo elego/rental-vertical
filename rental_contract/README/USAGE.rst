@@ -20,6 +20,6 @@ This module is automatically installed when all of the following modules are ins
  - contract
  - product_contract
  - sale_start_end_dates
- - rental_sale
+ - sale_rental
  - rental_base
 

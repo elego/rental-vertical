@@ -2,6 +2,8 @@
 Changelog
 ---------
 
+- 5c575ce 2021-03-09 09:39:32 +0100 cpatel@elegosoft.com  (origin/feature_3941_blp1022_rental_product_instance_repair_v12) [IMP] product search on task : changes removed from rental_repair and added to module rental_product_instance_reapir, translation also added, (issue#3941)
+- bbd5cb2 2021-01-14 13:55:22 +0100 wagner@elegosoft.com  adapt gen-doc and update (issue #3613)
 - 83ed8f7 2020-12-22 18:06:08 +0100 wagner@elegosoft.com  all Python code reformatted by black code formatter (issue #4016)
 - c7e3b59 2020-11-06 09:59:46 +0100 wagner@elegosoft.com  regenerate doc from manifests (issue #3613)
 - 391ef2a 2020-10-28 20:59:58 +0100 wagner@elegosoft.com  add usage information for product sets and product packs; add configuration and usage information for rental_sale and extend gen-doc for configuration (issue #3613)

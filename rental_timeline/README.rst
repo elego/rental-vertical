@@ -1,7 +1,7 @@
 Rental Timeline
 ====================================================
 
-*This file has been generated on 2021-01-14-13-44-51. Changes to it will be overwritten.*
+*This file has been generated on 2021-06-09-12-38-09. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -11,7 +11,7 @@ Adds a timeline to products as well as a timeline view as overview of all rental
 Description
 -----------
 
-This module extends the rental_sale module to create and change the timeline objects
+This module extends the sale_rental module to create and change the timeline objects
 for the rented product instances automatically.
 A complete timeline view containing all rental orders will be generated for all rentable products.
 
@@ -27,6 +27,13 @@ Just install this module to add the rental timeline view to your system. No furt
 Changelog
 ---------
 
+- 1abc79f 2021-05-12 18:08:04 +0200 yweng@elegosoft.com  (origin/wip_4168_sale_rental_v12, wip_4168_sale_rental_v12) [IMP] adjust dependence of rental modules: replace rental_sale with sale_rental
+- d9f3440 2021-03-19 12:01:19 +0100 cpatel@elegosoft.com  (origin/feature_3954_blp1034_rental_timeline_v12) [IMP] update order name to timeline view, when order type is changed, (issue#3954)
+- d4788dd 2021-02-02 20:04:59 +0100 yweng@elegosoft.com  (origin/feature_3760_blp969_rental_timeline_v12) [IMP] black formatted (issue 3760)
+- 4ff061a 2021-02-02 20:00:30 +0100 yweng@elegosoft.com  [IMP] add trigger for updating of address fields of res.partner in product.timeline (issue 3760)
+- b92f94f 2021-02-02 17:36:38 +0100 yweng@elegosoft.com  [IMP] adjust trigger function to update infos in timeline (issue 3760)
+- f82eb5d 2021-02-01 17:07:51 +0100 yweng@elegosoft.com  [IMP] improves performance of timeline (issue 3760)
+- bbd5cb2 2021-01-14 13:55:22 +0100 wagner@elegosoft.com  adapt gen-doc and update (issue #3613)
 - a35a62d 2020-12-22 22:59:30 +0100 kay.haeusler@elego.de  regenerate all de.po and \*.pot files; issue #4016
 - 83ed8f7 2020-12-22 18:06:08 +0100 wagner@elegosoft.com  all Python code reformatted by black code formatter (issue #4016)
 - 1bd390d 2020-12-05 19:21:06 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/defect_3961_blp862_rental_timeline_v12: addons-rental-vertical remotes/origin/defect_3961_blp862_rental_timeline_v12 - 5b368fda8e6b6ecc26a6da20265e04fd3777f384 create timeline object if the option retal was set afterwards; issue #3961
