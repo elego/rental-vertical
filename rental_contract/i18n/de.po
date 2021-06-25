@@ -127,6 +127,11 @@ msgid "Display Name"
 msgstr "Anzeigename"
 
 #. module: rental_contract
+#: model_terms:ir.ui.view,arch_db:rental_contract.contract_contract_search_view
+msgid "End Date"
+msgstr "Enddatum"
+
+#. module: rental_contract
 #: model:ir.model.fields,field_description:rental_contract.field_contract_order_type__sequence_id
 #: model_terms:ir.ui.view,arch_db:rental_contract.contract_order_type_search_view
 msgid "Entry Sequence"
