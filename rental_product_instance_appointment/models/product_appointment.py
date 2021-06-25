@@ -25,6 +25,19 @@ class ProductAppointment(models.Model):
         related="last_task_id.date_deadline",
     )
 
+    last_appointment_stage_id = fields.Many2one(
+        "project.task.type",
+        string="Last Appointment Stage",
+        related="last_task_id.stage_id",
+        store=True,
+    )
+
+    last_appointment_closed = fields.Boolean(
+        string="Last Appointment Closed",
+        related="last_appointment_stage_id.closed",
+        store=True,
+    )
+
     leads_of_notification = fields.Integer(
         string="Leads of Notification",
         help="This is the number of days previous "
