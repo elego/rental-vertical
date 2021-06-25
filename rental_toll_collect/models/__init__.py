@@ -8,3 +8,4 @@ from . import res_partner
 from . import sale
 from . import toll_charge_line
 from . import mail_template
+from . import base_import
