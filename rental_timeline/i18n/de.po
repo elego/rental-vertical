@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-22 21:24+0000\n"
-"PO-Revision-Date: 2020-12-22 21:24+0000\n"
+"POT-Creation-Date: 2021-06-22 19:11+0000\n"
+"PO-Revision-Date: 2021-06-22 19:11+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -31,6 +31,11 @@ msgid "Action Window View"
 msgstr "Aktionsfenster-Ansicht"
 
 #. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__active
+msgid "Active"
+msgstr "Aktiv"
+
+#. module: rental_timeline
 #: selection:ir.actions.act_window.view,view_mode:0
 #: selection:ir.ui.view,type:0
 msgid "Activity"
@@ -40,6 +45,11 @@ msgstr "Aktivität"
 #: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__amount
 msgid "Amount"
 msgstr "Betrag"
+
+#. module: rental_timeline
+#: model_terms:ir.ui.view,arch_db:rental_timeline.view_product_timeline_search
+msgid "Archived Products"
+msgstr "Archivierte Produkte"
 
 #. module: rental_timeline
 #: selection:ir.actions.act_window.view,view_mode:0
@@ -287,7 +297,7 @@ msgid "QWeb"
 msgstr "QWeb"
 
 #. module: rental_timeline
-#: code:addons/rental_timeline/models/product_timeline.py:171
+#: code:addons/rental_timeline/models/product_timeline.py:224
 #, python-format
 msgid "R: %s"
 msgstr "V: %s"
@@ -296,6 +306,11 @@ msgstr "V: %s"
 #: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__redline
 msgid "Redline"
 msgstr "Rote Linie"
+
+#. module: rental_timeline
+#: model_terms:ir.ui.view,arch_db:rental_timeline.view_product_timeline_search
+msgid "Rental"
+msgstr "Vermieten"
 
 #. module: rental_timeline
 #: selection:product.timeline,type:0
@@ -471,7 +486,7 @@ msgid "Warehouse:"
 msgstr "Lager"
 
 #. module: rental_timeline
-#: code:addons/rental_timeline/models/sale.py:132
+#: code:addons/rental_timeline/models/sale.py:137
 #, python-format
 msgid "You are not allowed to change the 'rental type' in an order line of a confirmed order.\n"
 "\n"
