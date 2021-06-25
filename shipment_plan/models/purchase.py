@@ -54,7 +54,20 @@ class PurchaseOrderLine(models.Model):
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
-    selected_in_order = fields.Boolean("Selected in Order")
+    selected_in_order = fields.Boolean(
+        "Selected in Order",
+        help="If set, this transport request can be used as basis for a quotation/order and the transport costs can be considered charging the customer."
+    )
+    show_shipment_plan = fields.Boolean(
+        compute="_compute_show_shipment_plan",
+    )
+
+    @api.multi
+    def _compute_show_shipment_plan(self):
+        for rec in self:
+            rec.show_shipment_plan = False
+            if any(l.shipment_plan_ids for l in rec.order_line):
+                rec.show_shipment_plan = True
 
     @api.multi
     def action_transport_confirm(self):

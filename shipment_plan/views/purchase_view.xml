@@ -6,13 +6,14 @@
         <field name="inherit_id" ref="purchase.purchase_order_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='incoterm_id']" position="after">
-                <field name="selected_in_order"/>
+                <field name="selected_in_order" attrs="{'invisible': [('show_shipment_plan', '!=', True)]}"/>
+                <field name="show_shipment_plan" invisible="1" />
             </xpath>
             <xpath expr="//field[@name='order_line']//field[@name='date_planned']" position="after">
-                <field name="shipment_plan_ids" invisible="0" />
+                <field name="shipment_plan_ids" invisible="1" />
             </xpath>
             <xpath expr="//button[@name='button_confirm']" position="before">
-                <button name="action_transport_confirm" type="object" string="Use in Order"/>
+                <button name="action_transport_confirm" type="object" string="Use in Order" attrs="{'invisible': ['|', ('show_shipment_plan', '!=', True), ('selected_in_order', '=', True)]}"/>
             </xpath>
         </field>
     </record>
