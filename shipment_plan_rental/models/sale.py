@@ -40,12 +40,16 @@ class SaleOrderLine(models.Model):
         res += "Incoterm: %s \n" % (order.incoterm.name)
         for line in self:
             product_name = line.product_id.name
+            product_uom_name = line.product_id.uom_id.name
+            product_uom_qty = line.product_uom_qty
             if line.product_id.rented_product_id:
                 product_name = line.product_id.rented_product_id.name
+                product_uom_name = line.product_id.rented_product_id.uom_id.name
+                product_uom_qty = line.rental_qty
             res += "%s: %s %s \n" % (
                 product_name,
-                line.product_uom_qty,
-                line.product_id.uom_id.name,
+                product_uom_qty,
+                product_uom_name,
             )
         if self.env.context.get("shipment_plan_return", False):
             res += "Date: %s \n" % (order.default_end_date)
