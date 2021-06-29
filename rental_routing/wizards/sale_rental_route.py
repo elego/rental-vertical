@@ -97,6 +97,7 @@ class SaleRentalRouteOutLine(models.TransientModel):
                 "picking_id": new_picking.id,
             }
         )
+        return new_move
 
     @api.onchange("rental_in_id")
     def onchange_rental_in_id(self):
@@ -221,6 +222,7 @@ class SaleRentalRouteInLine(models.TransientModel):
                 "picking_id": new_picking.id,
             }
         )
+        return new_move
 
     @api.onchange("rental_out_id")
     def onchange_rental_out_id(self):
