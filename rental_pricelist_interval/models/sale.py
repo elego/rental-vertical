@@ -125,11 +125,8 @@ class SaleOrderLine(models.Model):
             self.order_id.pricelist_id.is_interval_pricelist
             and self.product_id
             and self.product_id.rented_product_id
+            and self.product_id.rented_product_id.rental_of_interval
         ):
-            if not self.product_id.rented_product_id.rental_of_interval:
-                raise exceptions.UserError(
-                    _("No interval price was defined for this product.")
-                )
             if self.rental and "domain" in res and "product_uom" in res["domain"]:
                 del res["domain"]["product_uom"]
                 if self.display_product_id.rental:
