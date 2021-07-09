@@ -24,7 +24,7 @@ class CreateSaleTransRequest(models.TransientModel):
             dest_address_id = res["to_address_id"]
             if self.env.context.get("shipment_plan_return", False):
                 order_lines = self.origin_line_ids.mapped("order_line_id")
-                return_note = order_lines.get_transport_details()
+                return_note = order_lines.filtered(lambda l: l.rental).get_transport_details()
                 res.update(
                     {
                         "plan_type": "rental",

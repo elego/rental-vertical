@@ -8,6 +8,7 @@ class RentalStockCommon(common.TransactionCase):
         super().setUp()
 
         # Rental Type, Picking Type, Locations and Uoms
+        self.category_all = self.env.ref("product.product_category_all")
         self.rental_sale_type = self.env.ref("rental_base.rental_sale_type")
         self.picking_type_in = self.env.ref("stock.picking_type_in")
         self.picking_type_out = self.env.ref("stock.picking_type_out")
@@ -19,7 +20,7 @@ class RentalStockCommon(common.TransactionCase):
         self.uom_month = self.env.ref("rental_base.product_uom_month")
         self.uom_unit = self.env.ref("uom.product_uom_unit")
         self.uom_kgm = self.env.ref("uom.product_uom_kgm")
-
+        self.warehouse0 = self.env.ref("stock.warehouse0")
         self.PartnerObj = self.env["res.partner"]
         self.partnerA = self.PartnerObj.create(
             {
@@ -69,3 +70,41 @@ class RentalStockCommon(common.TransactionCase):
         move_values = move._convert_to_write(move._cache)
         move_values.update(**values)
         return Move.create(move_values)
+
+    def _create_rental_order(self, partner_id, date_start, date_end, qty=1):
+        """
+        Create a Rental Order with Product (self.service_rental)
+        """
+        date_qty = (date_end - date_start).days + 1
+        rental_order = self.env["sale.order"].create(
+            {
+                "type_id": self.rental_sale_type.id,
+                "partner_id": partner_id,
+                "partner_invoice_id": partner_id,
+                "partner_shipping_id": partner_id,
+                "pricelist_id": self.env.ref("product.list0").id,
+                "picking_policy": "direct",
+                "warehouse_id": self.warehouse0.id,
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "Service for Rental",
+                            "product_id": self.service_rental.id,
+                            "rental": True,
+                            "rental_type": "new_rental",
+                            "rental_qty": qty,
+                            "product_uom_qty": date_qty * qty,
+                            "start_date": date_start,
+                            "end_date": date_end,
+                            "price_unit": 100,
+                            "product_uom": self.uom_day.id,
+                        },
+                    )
+                ],
+            }
+        )
+        self.assertEqual(rental_order.state, "draft")
+        return rental_order
+

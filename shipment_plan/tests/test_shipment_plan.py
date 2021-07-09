@@ -33,7 +33,7 @@ class TestShipmentPlan(ShipmentPlanCommon):
         self.shipment_plan.action_cancel_draft()
         self.assertEqual(self.shipment_plan.state, "draft")
         self.shipment_plan.action_confirm()
-        # Create PO and PR
+        # Create PR
         wizard = (
             self.env["create.trans.request"]
             .with_context(
@@ -53,6 +53,24 @@ class TestShipmentPlan(ShipmentPlanCommon):
                             4,
                             self.product_trans_pr_2.id,
                         ),
+                    ]
+                }
+            )
+        )
+        wizard.onchange_service_product_ids()
+        wizard.action_confirm()
+        # Create PO
+        wizard = (
+            self.env["create.trans.request"]
+            .with_context(
+                {
+                    "active_id": self.shipment_plan.id,
+                    "active_model": "shipment.plan",
+                }
+            )
+            .create(
+                {
+                    "service_product_ids": [
                         (
                             4,
                             self.product_trans_po_1.id,
@@ -65,10 +83,12 @@ class TestShipmentPlan(ShipmentPlanCommon):
                 }
             )
         )
+        wizard.onchange_service_product_ids()
         wizard.action_confirm()
         # Check PO and PR
         self.assertEqual(self.shipment_plan.trans_po_count, 2)
         self.assertEqual(self.shipment_plan.trans_pr_count, 2)
+
         po_A = self.shipment_plan.trans_po_ids[0]
         po_B = self.shipment_plan.trans_po_ids[1]
 

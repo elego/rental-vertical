@@ -139,7 +139,7 @@
       <field name="name">shipment.plan.tree</field>
       <field name="model">shipment.plan</field>
       <field name="arch" type="xml">
-        <tree colors="grey:state == 'done';" string="Shipment Plans">
+        <tree decoration-muted="state in ['cancel', 'done']" string="Shipment Plans">
           <field name="name"/>
           <field name="from_address_id"/>
           <field name="to_address_id"/>

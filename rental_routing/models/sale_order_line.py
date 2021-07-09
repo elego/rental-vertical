@@ -150,20 +150,21 @@ class SaleOrderLine(models.Model):
             out_line.onchange_rental_in_id()
             wizard.action_confirm()
 
-    @api.onchange("start_date", "rental_qty", "product_id")
+    @api.onchange("can_forward_rental", "start_date", "rental_qty", "product_id")
     def onchange_forward_rental(self):
         if self.rental and self.start_date and self.rental_qty and self.product_id:
             sols = self.search([('forward_rental_id', '!=', False)])
             forwarded_rental_ids = sols.mapped("forward_rental_id").ids
             domain=[
                 (
-                    'rental_product_id.rented_product_id',
+                    'rented_product_id',
                     '=',
                     self.product_id.rented_product_id.id,
                 ),
                 ('rental_qty', '=', self.rental_qty),
                 ('end_date', '<', self.start_date),
                 ('id', 'not in', forwarded_rental_ids),
+                ('state', '!=', 'cancel'),
             ]
             
             return {'domain': {'forward_rental_id': domain}}

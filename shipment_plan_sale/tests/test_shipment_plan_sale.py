@@ -109,6 +109,22 @@ class TestShipmentPlanSale(ShipmentPlanCommon):
                             4,
                             self.product_trans_pr_1.id,
                         ),
+                    ]
+                }
+            )
+        )
+        wizard.onchange_service_product_ids()
+        shipment_plan = wizard.action_confirm()
+        wizard = (
+            self.env["create.sale.trans.request"]
+            .with_context(
+                {
+                    "active_id": sale_order.id,
+                }
+            )
+            .create(
+                {
+                    "service_product_ids": [
                         (
                             4,
                             self.product_trans_po_1.id,
@@ -121,6 +137,7 @@ class TestShipmentPlanSale(ShipmentPlanCommon):
                 }
             )
         )
+        wizard.onchange_service_product_ids()
         shipment_plan = wizard.action_confirm()
         self.assertEqual(shipment_plan.trans_po_count, 2)
         self.assertEqual(shipment_plan.trans_pr_count, 1)
@@ -205,6 +222,22 @@ class TestShipmentPlanSale(ShipmentPlanCommon):
                             4,
                             self.product_trans_pr_1.id,
                         ),
+                    ]
+                }
+            )
+        )
+        wizard.onchange_service_product_ids()
+        shipment_plan = wizard.action_confirm()
+        wizard = (
+            self.env["create.sale.trans.request"]
+            .with_context(
+                {
+                    "active_id": sale_order.id,
+                }
+            )
+            .create(
+                {
+                    "service_product_ids": [
                         (
                             4,
                             self.product_trans_po_1.id,
@@ -217,6 +250,7 @@ class TestShipmentPlanSale(ShipmentPlanCommon):
                 }
             )
         )
+        wizard.onchange_service_product_ids()
         shipment_plan = wizard.action_confirm()
         self.assertEqual(shipment_plan.trans_po_count, 2)
         self.assertEqual(shipment_plan.trans_pr_count, 1)
