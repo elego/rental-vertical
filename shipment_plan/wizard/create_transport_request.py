@@ -19,6 +19,15 @@ class CreateTransRequest(models.TransientModel):
         "shipment.plan",
         string="Shipment Plan",
     )
+    transport_service_type = fields.Selection(
+        [
+            ("po", "Purchase Order"),
+            ("pr", "Purchase Requisition"),
+        ],
+        default="po",
+        string="Request type",
+        help="The transport request type defines if a purchase order or a call for tender is created when requesting a transport within an order.",
+    )
 
     @api.model
     def default_get(self, fields):
@@ -34,4 +43,11 @@ class CreateTransRequest(models.TransientModel):
 
     def action_confirm(self):
         self.ensure_one()
-        self.shipment_plan_id.create_purchase_request(self.service_product_ids)
+        self.shipment_plan_id.create_purchase_request(
+            self.service_product_ids, self.transport_service_type
+        )
+
+    @api.onchange("service_product_ids")
+    def onchange_service_product_ids(self):
+        if self.service_product_ids:
+            self.transport_service_type = self.service_product_ids[0].transport_service_type

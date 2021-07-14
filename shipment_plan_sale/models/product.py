@@ -12,4 +12,5 @@ class ProductProduct(models.Model):
     transport_sales_margin = fields.Float(
         "Transport Sales Margin (%)",
         default=0,
+        help="This percent value defines how much more the customer has to pay for the transportation costs you are charged by the carrier.",
     )

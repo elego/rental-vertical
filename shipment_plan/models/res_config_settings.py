@@ -11,6 +11,7 @@ class ResConfigSettings(models.TransientModel):
         default="multi",
         string="Transport Cost Type",
         config_parameter="sale.sale_transport_cost_type",
+        help="Choosing the cost type 'Multi Positions’ the transport purchase order or call for tender can contain several lines for the different costs related to the transport, e.g. the transport costs itself and several charges. You can define the appropriate transport services when creating a new transport request.\nChoosing the cost type 'Single Position’ the transport request will only consist of one line with all costs.",
     )
     transport_cost_product_id = fields.Many2one(
         "product.product",

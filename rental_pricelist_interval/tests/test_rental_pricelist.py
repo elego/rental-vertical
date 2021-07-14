@@ -174,30 +174,3 @@ class TestRentalPricelist(RentalStockCommon):
         with self.assertRaises(exceptions.UserError) as e:
             self._run_sol_onchange_date(line, end_date=self.date_24_day_later)
         self.assertEqual("Max rental interval (21 days) is exceeded.", e.exception.name)
-
-    def test_01_no_found_interval_price(self):
-        """
-        Activate interval price in sale order line
-        """
-        line = (
-            self.env["sale.order.line"]
-            .with_context(
-                {
-                    "type_id": self.rental_sale_type.id,
-                }
-            )
-            .new(
-                {
-                    "order_id": self.rental_order.id,
-                    "display_product_id": self.productB.id,
-                    "start_date": self.today,
-                    "end_date": self.date_17_day_later,
-                }
-            )
-        )
-        with self.assertRaises(exceptions.UserError) as e:
-            self._run_sol_onchange_display_product_id(line)
-            self._run_sol_onchange_date(line)
-        self.assertEqual(
-            "No interval price was defined for this product.", e.exception.name
-        )

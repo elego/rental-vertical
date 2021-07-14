@@ -12,12 +12,15 @@ Part of rental-vertical See LICENSE file for full copyright and licensing detail
             <form string="Create Transport Request">
                 <group name="main">
                     <field name="service_product_ids" widget="many2many_tags"/>
+                    <field name="transport_service_type"/>
                     <field name="origin_line_ids">
                         <tree>
                             <field name="order_line_id" invisible="1"/>
                             <field name="product_id" readonly="1"/>
                             <field name="product_uom_qty" readonly="1"/>
                             <field name="product_uom" readonly="1"/>
+                            <field name="start_date" readonly="1"/>
+                            <field name="end_date" readonly="1"/>
                             <field name="trans_shipment_plan_id" readonly="1"/>
                         </tree>
                     </field>

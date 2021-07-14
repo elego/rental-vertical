@@ -36,6 +36,9 @@
         <field name="model">product.timeline</field>
         <field name="inherit_id" ref="rental_timeline.view_product_timeline_search" />
         <field name="arch" type="xml">
+            <field name="product_id" position="attributes">
+                <attribute name="filter_domain">['|', '|', '|', '|', '|', ('product_id','ilike', self), ('product_id.instance_serial_number_id', 'ilike', self), ('product_id.product_identification_number', 'ilike', self), ('product_id.vehicle_number', 'ilike', self), ('product_id.license_plate', 'ilike', self), ('product_id.default_code', 'ilike', self)]</attribute>
+            </field>
             <field name="type" position="after">
                 <separator/>
                 <filter domain="[('product_id.instance_state','=','available')]" name="available" string="Available"/>

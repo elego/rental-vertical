@@ -1,0 +1,74 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* rental_forward_shipment_plan
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-06-08 21:54+0000\n"
+"PO-Revision-Date: 2021-06-08 21:54+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: rental_forward_shipment_plan
+#: model:ir.model.fields,field_description:rental_forward_shipment_plan.field_shipment_plan__dest_forward_shipment_plan_id
+msgid "Dest Forward Shipment Plan"
+msgstr ""
+
+#. module: rental_forward_shipment_plan
+#: model_terms:ir.ui.view,arch_db:rental_forward_shipment_plan.view_shipment_plan_form
+msgid "Forward SP"
+msgstr ""
+
+#. module: rental_forward_shipment_plan
+#: model:ir.model.fields,field_description:rental_forward_shipment_plan.field_shipment_plan__forward_shipment_plan_ids
+msgid "Forward Shipment Plan"
+msgstr ""
+
+#. module: rental_forward_shipment_plan
+#: model:ir.model.fields,field_description:rental_forward_shipment_plan.field_shipment_plan__forward_shipment_plan_count
+msgid "Forward Shipment Plan Count"
+msgstr ""
+
+#. module: rental_forward_shipment_plan
+#: model:ir.model,name:rental_forward_shipment_plan.model_sale_order
+msgid "Sale Order"
+msgstr "Verkaufsauftrag"
+
+#. module: rental_forward_shipment_plan
+#: model:ir.model,name:rental_forward_shipment_plan.model_sale_rental_route_in_line
+msgid "Sale Rental Route In Line"
+msgstr ""
+
+#. module: rental_forward_shipment_plan
+#: model:ir.model,name:rental_forward_shipment_plan.model_sale_rental_route_out_line
+msgid "Sale Rental Route Out Line"
+msgstr ""
+
+#. module: rental_forward_shipment_plan
+#: model:ir.model,name:rental_forward_shipment_plan.model_shipment_plan
+msgid "Shipment Plan"
+msgstr ""
+
+#. module: rental_forward_shipment_plan
+#: model:ir.model.fields,field_description:rental_forward_shipment_plan.field_shipment_plan__src_forward_shipment_plan_id
+msgid "Source Forward Shipment Plan"
+msgstr ""
+
+#. module: rental_forward_shipment_plan
+#: code:addons/rental_forward_shipment_plan/wizards/sale_rental_route.py:95
+#, python-format
+msgid "You can not reorder the Rental,                 available quantity is less then the required quantity."
+msgstr ""
+
+#. module: rental_forward_shipment_plan
+#: code:addons/rental_forward_shipment_plan/wizards/sale_rental_route.py:23
+#, python-format
+msgid "You can not reorder the Rental, available                 quantity is less then the required quantity."
+msgstr ""
+

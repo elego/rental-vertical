@@ -7,8 +7,15 @@ class SaleOrderLine(models.Model):
 
     # onchange_forword_rental_id -> set planned_source_address_id and planned_in_location_id
     # by confirmation of the rental order create wizard sale.rental.route automatically
-    can_forward_rental = fields.Boolean("Forward for Rental")
-    forward_rental_id = fields.Many2one("sale.rental", string="Rental to Forward")
+    can_forward_rental = fields.Boolean(
+        "Route from order",
+        help="If set, the product’s delivery is not planned from your own warehouse location but from an previous order and its used location.",
+    )
+    forward_rental_id = fields.Many2one(
+        "sale.rental",
+        string="Source",
+        help="Please choose a previous order whose delivery address is now used as the start address for this new order.",
+    )
 
     @api.constrains(
         "rental_type",
@@ -142,3 +149,25 @@ class SaleOrderLine(models.Model):
             out_line.rental_in_id = self.forward_rental_id
             out_line.onchange_rental_in_id()
             wizard.action_confirm()
+
+    @api.onchange("can_forward_rental", "start_date", "rental_qty", "product_id")
+    def onchange_forward_rental(self):
+        if self.rental and self.start_date and self.rental_qty and self.product_id:
+            sols = self.search([('forward_rental_id', '!=', False)])
+            forwarded_rental_ids = sols.mapped("forward_rental_id").ids
+            domain=[
+                (
+                    'rented_product_id',
+                    '=',
+                    self.product_id.rented_product_id.id,
+                ),
+                ('rental_qty', '=', self.rental_qty),
+                ('end_date', '<', self.start_date),
+                ('id', 'not in', forwarded_rental_ids),
+                ('state', '!=', 'cancel'),
+            ]
+            
+            return {'domain': {'forward_rental_id': domain}}
+        else:
+            self.forward_rental_id = False
+            return {'domain': {'forward_rental_id': [('id', '=', False)]}}

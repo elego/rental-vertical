@@ -12,13 +12,15 @@
                           attrs="{'invisible': [('product_instance','=',False)]}">
                         <separator name="appointment" string="Date Dependent Appointments"/>
                         <field name="appointment_ids">
-                            <tree default_order="date_next_appointment" editable="top">
+                            <tree default_order="date_next_appointment" editable="top" decoration-muted="last_appointment_closed">
                                 <field name="name"/>
                                 <field name="date_next_appointment"/>
                                 <field name="leads_of_notification"/>
                                 <field name="time_interval"/>
                                 <field name="time_uom"/>
                                 <field name="last_task_id" domain="[('product_id', '=', parent.id)]"/>
+                                <field name="last_appointment_stage_id"/>
+                                <field name="last_appointment_closed" invisible="1"/>
                             </tree>
                         </field>
                         <separator name="operating_appointment"
@@ -28,7 +30,7 @@
                         <field name="operating_appointment_ids"
                                context="{'default_product_id': active_id, 'default_operating_uom': show_instance_condition_type}"
                                attrs="{'invisible': [('show_instance_condition_type', 'not in', ('km', 'hour'))]}">
-                            <tree default_order="date_next_appointment" editable="top">
+                            <tree default_order="date_next_appointment" editable="top" decoration-muted="last_appointment_closed">
                                 <field name="product_id" invisible="1"/>
                                 <field name="name"/>
                                 <field name="date_next_appointment"/>
@@ -38,6 +40,8 @@
                                 <field name="daily_increase"/>
                                 <field name="leads_of_notification"/>
                                 <field name="last_task_id" domain="[('product_id', '=', parent.id)]"/>
+                                <field name="last_appointment_stage_id"/>
+                                <field name="last_appointment_closed" invisible="1"/>
                             </tree>
                         </field>
                     </page>

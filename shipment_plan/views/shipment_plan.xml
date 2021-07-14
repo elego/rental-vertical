@@ -10,7 +10,7 @@
           <header>
             <button name="%(create_trans_request_action)d"
                 type="action"
-                string="Create Transport PR"
+                string="Request Transport"
                 state="draft"
                 class="oe_highlight"/>
             <button name="action_confirm"
@@ -77,13 +77,10 @@
                 <field name="origin"/>
                 <field name="plan_type"/>
                 <field name="user_id"/>
-                <field name="from_address_id"/>
-                <label for="to_address_id"/>
-                <div>
-                  <field name="to_address_id" class="oe_inline"/>
-                </div>
-                <label for="consignee_id"/>
-                <div>
+                <field name="from_address_id" widget="res_partner_many2one" context="{'show_address': 1}" options='{"always_reload": True}'/>
+                <field name="to_address_id" widget="res_partner_many2one" context="{'show_address': 1}" options='{"always_reload": True}'/>
+                <label for="consignee_id" invisible="1"/>
+                <div invisible="1">
                   <field name="consignee_id" class="oe_inline"/>
                 </div>
                 <label for="dangerous_goods"/>
@@ -142,7 +139,7 @@
       <field name="name">shipment.plan.tree</field>
       <field name="model">shipment.plan</field>
       <field name="arch" type="xml">
-        <tree colors="grey:state == 'done';" string="Shipment Plans">
+        <tree decoration-muted="state in ['cancel', 'done']" string="Shipment Plans">
           <field name="name"/>
           <field name="from_address_id"/>
           <field name="to_address_id"/>

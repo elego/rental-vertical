@@ -17,7 +17,7 @@
                                 <div class="o_setting_right_pane">
                                     <label for="transport_cost_type"/>
                                     <div class="text-muted">
-                                        Configure default Transport Cost Type
+                                        Granularity of transport cost structure in transport requests
                                     </div>
                                     <div class="mt8">
                                         <field name="transport_cost_type" class="o_light_label" widget="radio" required="True"/>

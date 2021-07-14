@@ -25,6 +25,10 @@
                         context="{'group_by':'type_id'}"
                 />
             </filter>
+            <xpath expr="//filter[@name='finished']" position="after">
+                <separator/>
+                <filter name="date_end" string="End Date" date="date_end"/>
+            </xpath>
         </field>
     </record>
 

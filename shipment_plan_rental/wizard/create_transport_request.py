@@ -24,13 +24,13 @@ class CreateSaleTransRequest(models.TransientModel):
             dest_address_id = res["to_address_id"]
             if self.env.context.get("shipment_plan_return", False):
                 order_lines = self.origin_line_ids.mapped("order_line_id")
-                return_note = order_lines.get_transport_details()
+                return_note = order_lines.filtered(lambda l: l.rental).get_transport_details()
                 res.update(
                     {
                         "plan_type": "rental",
                         "name": "Return Shipment Plan for %s" % order.name,
-                        "initial_etd": order.default_end_date - timedelta(days=1),
-                        "initial_eta": order.default_end_date,
+                        "initial_etd": order.default_end_date + timedelta(days=1),
+                        "initial_eta": order.default_end_date + timedelta(days=2),
                         "from_address_id": dest_address_id,
                         "to_address_id": src_address_id,
                         "note": return_note,
@@ -59,7 +59,9 @@ class CreateSaleTransRequest(models.TransientModel):
             shipment_plan = self.env["shipment.plan"].create(vals)
         else:
             raise execptions.UserError(_("No found suitable Shipment Plan."))
-        shipment_plan.create_purchase_request(self.service_product_ids)
+        shipment_plan.create_purchase_request(
+            self.service_product_ids, self.transport_service_type
+        )
         rental_order_type = self.env.ref("rental_base.rental_sale_type")
         if self.order_id.type_id.id == rental_order_type.id:
             if all_set:
@@ -73,7 +75,9 @@ class CreateSaleTransRequest(models.TransientModel):
                 return_shipment_plan = self.env["shipment.plan"].create(vals_return)
             else:
                 raise execptions.UserError(_("No found suitable Shipment Plan."))
-            return_shipment_plan.create_purchase_request(self.service_product_ids)
+            return_shipment_plan.with_context(rental_return=True).create_purchase_request(
+                self.service_product_ids, self.transport_service_type
+            )
 
         vals = {}
         if shipment_plan:

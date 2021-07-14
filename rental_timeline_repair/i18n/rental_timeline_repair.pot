@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-22 21:22+0000\n"
-"PO-Revision-Date: 2020-12-22 21:22+0000\n"
+"POT-Creation-Date: 2021-06-22 09:52+0000\n"
+"PO-Revision-Date: 2021-06-22 09:52+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -40,6 +40,7 @@ msgstr ""
 #. module: rental_timeline_repair
 #: model:ir.model.fields,field_description:rental_timeline_repair.field_product_timeline__repair
 #: selection:product.timeline,type:0
+#: model_terms:ir.ui.view,arch_db:rental_timeline_repair.view_product_timeline_search_repair
 msgid "Repair"
 msgstr ""
 
@@ -64,7 +65,7 @@ msgid "Type"
 msgstr ""
 
 #. module: rental_timeline_repair
-#: code:addons/rental_timeline_repair/models/product_timeline.py:28
+#: code:addons/rental_timeline_repair/models/product_timeline.py:29
 #, python-format
 msgid "r: %s"
 msgstr ""
