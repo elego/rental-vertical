@@ -51,7 +51,7 @@
                     class="oe_stat_button"
                     icon="fa-shopping-cart"
                     attrs="{'invisible': [('trans_po_count', '=', 0)]}" groups="base.group_user">
-                    <field name="trans_po_count" widget="statinfo" string="Trans POs"/>
+                    <field name="trans_po_count" widget="statinfo" string="RFQs"/>
                 </button>
                 <field name="trans_pr_ids" invisible="1"/>
                 <button type="object"
@@ -59,7 +59,7 @@
                     class="oe_stat_button"
                     icon="fa-shopping-cart"
                     attrs="{'invisible': [('trans_pr_count', '=', 0)]}" groups="base.group_user">
-                    <field name="trans_pr_count" widget="statinfo" string="Trans PRs"/>
+                    <field name="trans_pr_count" widget="statinfo" string="Tenders"/>
                 </button>
               <!--
               <button class="oe_inline oe_stat_button" type="object" name="action_view_departure_picking"

@@ -10,22 +10,29 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     is_transport = fields.Boolean(
-        "Transport Service",
+        string="Transport Service",
         copy=True,
-        help="If set, it allows the user to create a transport request or call for tender in order to find a carrier delivering the chosen products.",
     )
+
     trans_purchase_request = fields.Boolean(
-        "Transport required",
+        string="Transport required",
         copy=True,
+        help="If set, it allows the user to create a transport "
+             "request or call for tender in order to find a carrier "
+             "delivering the chosen products.",
     )
+
 
 class ProductProduct(models.Model):
     _inherit = "product.product"
 
     transport_service_type = fields.Selection(
-        [
+        selection=[
             ("po", "Purchase Order"),
             ("pr", "Purchase Requisition"),
         ],
         default="po",
+        help="The transport request type defines if a purchase "
+             "order or a call for tender is created when requesting "
+             "a transport within an order.",
     )

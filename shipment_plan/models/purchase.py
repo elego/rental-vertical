@@ -16,8 +16,9 @@ class PurchaseRequisitionLine(models.Model):
         "plan_id",
         copy=False,
     )
+
     name = fields.Char(
-        "Name",
+        string="Name",
     )
 
     @api.multi
@@ -55,9 +56,12 @@ class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
     selected_in_order = fields.Boolean(
-        "Selected in Order",
-        help="If set, this transport request can be used as basis for a quotation/order and the transport costs can be considered charging the customer."
+        string="Selected in Order",
+        help="If set, this transport request can be used "
+             "as basis for a quotation/order and the transport "
+             "costs can be considered charging the customer."
     )
+
     show_shipment_plan = fields.Boolean(
         compute="_compute_show_shipment_plan",
     )
@@ -66,7 +70,7 @@ class PurchaseOrder(models.Model):
     def _compute_show_shipment_plan(self):
         for rec in self:
             rec.show_shipment_plan = False
-            if any(l.shipment_plan_ids for l in rec.order_line):
+            if any(line.shipment_plan_ids for line in rec.order_line):
                 rec.show_shipment_plan = True
 
     @api.multi
@@ -82,7 +86,7 @@ class PurchaseOrder(models.Model):
                         and pol.order_id.selected_in_order
                     ):
                         raise exceptions.UserError(
-                            _('You have already confirm the "%s" in Order "%s".')
+                            _('You have already confirmed the "%s" in order "%s".')
                             % (pol.product_id.name, pol.order_id.name)
                         )
         self.write({"selected_in_order": True})

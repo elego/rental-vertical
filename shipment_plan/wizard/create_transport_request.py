@@ -11,22 +11,25 @@ class CreateTransRequest(models.TransientModel):
     _description = "Create Transport Purchase Request"
 
     service_product_ids = fields.Many2many(
-        "product.product",
+        comodel_name="product.product",
         string="Services",
         domain="[('is_transport', '=', True)]",
     )
+
     shipment_plan_id = fields.Many2one(
-        "shipment.plan",
+        comodel_name="shipment.plan",
         string="Shipment Plan",
     )
+
     transport_service_type = fields.Selection(
-        [
+        selection=[
             ("po", "Purchase Order"),
             ("pr", "Purchase Requisition"),
         ],
-        default="po",
         string="Request type",
-        help="The transport request type defines if a purchase order or a call for tender is created when requesting a transport within an order.",
+        help="The transport request type defines if a purchase "
+             "order or a call for tender is created when requesting "
+             "a transport within an order.",
     )
 
     @api.model

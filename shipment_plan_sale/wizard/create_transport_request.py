@@ -12,27 +12,32 @@ class CreateSaleTransRequest(models.TransientModel):
     _description = "Create Transport Purchase Request for Sale Order"
 
     origin_line_ids = fields.One2many(
-        "create.sale.trans.origin.line",
-        "wizard_id",
+        comodel_name="create.sale.trans.origin.line",
+        inverse_name="wizard_id",
         string="Order Lines",
     )
+
     service_product_ids = fields.Many2many(
-        "product.product",
+        comodel_name="product.product",
         string="Services",
         domain="[('is_transport', '=', True)]",
     )
+
     transport_service_type = fields.Selection(
-        [
+        selection=[
             ("po", "Purchase Order"),
             ("pr", "Purchase Requisition"),
         ],
         default="po",
         string="Request type",
-        help="The transport request type defines if a purchase order or a call for tender is created when requesting a transport within an order.",
+        help="The transport request type defines if a purchase "
+             "order or a call for tender is created when requesting "
+             "a transport within an order.",
     )
+
     order_id = fields.Many2one(
-        "sale.order",
-        "Sale Order",
+        comodel_name="sale.order",
+        string="Sale Order",
     )
 
     @api.multi
@@ -43,7 +48,7 @@ class CreateSaleTransRequest(models.TransientModel):
         no_set = all([not l.trans_shipment_plan_id for l in order_lines])
         if not all_set and not no_set:
             raise exceptions.UserError(
-                _("Some of the selected sale order lines do not have a Shipment Plan.")
+                _("Some of the selected sale order lines do not have a shipment plan.")
             )
         elif all_set:
             # check if all the origin line was assigned to the same shipment plan
@@ -55,7 +60,8 @@ class CreateSaleTransRequest(models.TransientModel):
                 if shipment_plan.id != line.trans_shipment_plan_id.id:
                     raise exceptions.UserError(
                         _(
-                            "You can not create the purchase request for sale order lines with different Shipment Plan."
+                            "You can not create the purchase request for "
+                            "sale order lines with a different shipment plan."
                         )
                     )
             if len(shipment_plan.origin_sale_line_ids) != len(order_lines):
@@ -98,7 +104,7 @@ class CreateSaleTransRequest(models.TransientModel):
         note = order_lines.get_transport_details()
         dangerous_goods = any([l.dangerous_goods for l in order.order_line])
         res = {
-            "name": "Shipment Plan for %s" % order.name,
+            "name": _("Shipment Plan for %s") % order.name,
             "plan_type": "sale",
             "from_address_id": src_address_id,
             "to_address_id": dest_address_id,
@@ -127,7 +133,7 @@ class CreateSaleTransRequest(models.TransientModel):
                 }
             )
         else:
-            raise execptions.UserError(_("No found suitable Shipment Plan."))
+            raise exceptions.UserError(_("No suitable shipment plan found."))
         shipment_plan.create_purchase_request(
             self.service_product_ids, self.transport_service_type
         )
@@ -138,35 +144,45 @@ class CreateSaleTransRequest(models.TransientModel):
         if self.service_product_ids:
             self.transport_service_type = self.service_product_ids[0].transport_service_type
 
+
 class CreateSaleTransOriginLine(models.TransientModel):
     _name = "create.sale.trans.origin.line"
     _description = "Original Sale Order Line"
 
     wizard_id = fields.Many2one(
-        "create.sale.trans.request",
+        comodel_name="create.sale.trans.request",
     )
-    order_line_id = fields.Many2one("sale.order.line")
+
+    order_line_id = fields.Many2one(
+        comodel_name="sale.order.line",
+    )
+
     product_id = fields.Many2one(
-        "product.product",
+        comodel_name="product.product",
         related="order_line_id.product_id",
     )
+
     product_uom_qty = fields.Float(
-        "Quantity",
+        string="Quantity",
         related="order_line_id.product_uom_qty",
     )
+
     product_uom = fields.Many2one(
-        "uom.uom",
+        comodel_name="uom.uom",
         string="UOM",
         related="order_line_id.product_uom",
     )
+
     start_date = fields.Date(
-        "Start Date",
+        string="Start Date",
     )
+
     end_date = fields.Date(
-        "End Date",
+        string="End Date",
     )
+
     trans_shipment_plan_id = fields.Many2one(
-        "shipment.plan",
+        comodel_name="shipment.plan",
         string="Shipment Plan",
         related="order_line_id.trans_shipment_plan_id",
     )

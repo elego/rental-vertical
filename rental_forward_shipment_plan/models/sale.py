@@ -10,10 +10,10 @@ class SaleOrder(models.Model):
     @api.multi
     def _compute_shipment_plans(self):
         for order in self:
-            trans_sps = self.env["shipment.plan"].browse()
-            forward_trans_sps = self.env["shipment.plan"].browse()
-            trans_prs = self.env["purchase.requisition"].browse()
-            trans_pos = self.env["purchase.order"].browse()
+            trans_sps = self.env["shipment.plan"]
+            forward_trans_sps = self.env["shipment.plan"]
+            trans_prs = self.env["purchase.requisition"]
+            trans_pos = self.env["purchase.order"]
             for line in order.order_line:
                 if line.trans_shipment_plan_id:
                     trans_sps |= line.trans_shipment_plan_id

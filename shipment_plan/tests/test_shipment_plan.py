@@ -120,7 +120,6 @@ class TestShipmentPlan(ShipmentPlanCommon):
             po_3.action_transport_confirm()
         po_2.button_confirm()
         self.assertEqual(po_2.state, "purchase")
-        # import wdb; wdb.set_trace()
         self.shipment_plan.action_done()
         self.assertEqual(self.shipment_plan.state, "done")
         self.shipment_plan.action_cancel()

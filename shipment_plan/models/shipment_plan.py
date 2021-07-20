@@ -9,77 +9,91 @@ _logger = logging.getLogger(__name__)
 class ShipmentPlan(models.Model):
     _name = "shipment.plan"
     _inherit = ["mail.thread"]
-
     _description = "Shipment Plan"
 
     name = fields.Char(
-        "Reference",
+        string="Name",
         required=True,
         readonly=True,
         default="/",
         copy=False,
     )
+
     user_id = fields.Many2one(
-        "res.users",
-        "Responsible",
+        comodel_name="res.users",
+        string="Responsible User",
         readonly=True,
         states={"draft": [("readonly", False)]},
         default=lambda self: self.env.uid,
     )
+
     initial_etd = fields.Datetime(
-        "Initial ETD",
+        string="Initial ETD",
         readonly=True,
         states={"draft": [("readonly", False)]},
-        help="Initial Estimated Time of Departure",
+        help="This is the initial estimated time of departure.",
     )
+
     initial_eta = fields.Datetime(
-        "Initial ETA",
+        string="Initial ETA",
         readonly=True,
         states={"draft": [("readonly", False)]},
-        help="Initial Estimated Time of Arrival",
+        help="This is the  initial estimated time of arrival.",
     )
+
     etd = fields.Datetime(
-        "ETD",
+        string="ETD",
         track_visibility="onchange",
-        help="Up to date Estimated Time of Departure",
+        help="This is the up to date estimated time of departure.",
     )
+
     eta = fields.Datetime(
-        "ETA", track_visibility="onchange", help="Up to date Estimated Time of Arrival"
+        string="ETA",
+        track_visibility="onchange",
+        help="This is the up to date estimated time of arrival.",
     )
+
     from_address_id = fields.Many2one(
-        "res.partner",
-        "From Address",
+        comodel_name="res.partner",
+        string="From Address",
         readonly=True,
         states={"draft": [("readonly", False)]},
         required=True,
     )
+
     to_address_id = fields.Many2one(
-        "res.partner",
-        "To Address",
+        comodel_name="res.partner",
+        string="To Address",
         readonly=True,
         states={"draft": [("readonly", False)]},
         track_visibility="onchange",
         required=True,
     )
+
     consignee_id = fields.Many2one(
-        "res.partner",
-        "Consignee",
+        comodel_name="res.partner",
+        string="Consignee",
         readonly=True,
         states={"draft": [("readonly", False)]},
         track_visibility="onchange",
         domain=[("is_consignee", "=", True)],
     )
+
     carrier_tracking_ref = fields.Char(
-        "Tracking Ref.",
+        string="Tracking Ref.",
         readonly=True,  # updated by wizard
         states={"draft": [("readonly", False)]},
         track_visibility="onchange",
     )
+
     note = fields.Text(
-        "Description / Remarks", readonly=True, states={"draft": [("readonly", False)]}
+        string="Description / Remarks",
+        readonly=True,
+        states={"draft": [("readonly", False)]},
     )
+
     state = fields.Selection(
-        [
+        selection=[
             ("draft", "Draft"),
             ("confirmed", "Confirmed"),
             ("in_transit", "In Transit"),
@@ -91,14 +105,22 @@ class ShipmentPlan(models.Model):
         copy=False,
         track_visibility="onchange",
     )
+
     plan_type = fields.Selection(
         string="Type",
         selection=[],
         readonly=True,
         states={"draft": [("readonly", False)]},
     )
-    origin = fields.Char("Origin Ref")
-    dangerous_goods = fields.Boolean("Dangerous Goods")
+
+    origin = fields.Char(
+        string="Origin",
+    )
+
+    dangerous_goods = fields.Boolean(
+        string="Dangerous Goods",
+    )
+
     trans_requisition_line_ids = fields.Many2many(
         "purchase.requisition.line",
         "rel_shipment_plan_requisition_line",
@@ -106,6 +128,7 @@ class ShipmentPlan(models.Model):
         "requisition_line_id",
         copy=False,
     )
+
     trans_purchase_line_ids = fields.Many2many(
         "purchase.order.line",
         "rel_shipment_plan_purchase_line",
@@ -113,16 +136,26 @@ class ShipmentPlan(models.Model):
         "purchase_line_id",
         copy=False,
     )
+
     trans_pr_ids = fields.One2many(
-        "purchase.requisition",
+        string="Transport Requisitions",
+        comodel_name="purchase.requisition",
         compute="_compute_trans_pos_prs",
     )
+
     trans_po_ids = fields.One2many(
-        "purchase.order",
+        string="Transport Purchase Orders",
+        comodel_name="purchase.order",
         compute="_compute_trans_pos_prs",
     )
-    trans_pr_count = fields.Integer(compute="_compute_trans_pos_prs")
-    trans_po_count = fields.Integer(compute="_compute_trans_pos_prs")
+
+    trans_pr_count = fields.Integer(
+        compute="_compute_trans_pos_prs",
+    )
+
+    trans_po_count = fields.Integer(
+        compute="_compute_trans_pos_prs",
+    )
 
     @api.multi
     @api.depends(
@@ -131,8 +164,8 @@ class ShipmentPlan(models.Model):
     )
     def _compute_trans_pos_prs(self):
         for order in self:
-            trans_prs = self.env["purchase.requisition"].browse()
-            trans_pos = self.env["purchase.order"].browse()
+            trans_prs = self.env["purchase.requisition"]
+            trans_pos = self.env["purchase.order"]
             for pr_line in order.trans_requisition_line_ids:
                 trans_prs |= pr_line.requisition_id
             for po_line in order.trans_purchase_line_ids:
@@ -145,11 +178,11 @@ class ShipmentPlan(models.Model):
     @api.multi
     def _get_transport_pr_name(self):
         self.ensure_one()
-        return _("Transport for %s") % (self.origin)
+        return _("Transport for %s") % self.origin
 
     @api.model
     def _prepare_sp_po_values(self, product):
-        "This function can be extended in other module"
+        """This function can be extended in other module"""
         self.ensure_one()
         new_order = self.env["purchase.order"].new(
             {
@@ -163,7 +196,7 @@ class ShipmentPlan(models.Model):
 
     @api.multi
     def _prepare_sp_pr_values(self):
-        "This function can be extended in other module"
+        """This function can be extended in other module"""
         self.ensure_one()
         res = {
             "name": self._get_transport_pr_name(),

@@ -11,8 +11,8 @@ class StockMove(models.Model):
     _inherit = "stock.move"
 
     shipment_plan_id = fields.Many2one(
-        "shipment.plan",
-        "Shipment Plan",
+        comodel_name="shipment.plan",
+        string="Shipment Plan",
         ondelete="set null",
         copy=False,
     )
@@ -33,7 +33,7 @@ class StockMove(models.Model):
             )
             if res > 0:
                 raise exceptions.ValidationError(
-                    _("One Picking can only have one Shipment Plan")
+                    _("A Picking can only have one shipment plan.")
                 )
 
 
@@ -41,8 +41,8 @@ class StockPicking(models.Model):
     _inherit = "stock.picking"
 
     shipment_plan_id = fields.Many2one(
-        "shipment.plan",
-        "Shipment Plan",
+        comodel_name="shipment.plan",
+        string="Shipment Plan",
         compute="_compute_shipment_plan_id",
     )
 
@@ -61,7 +61,7 @@ class StockPicking(models.Model):
         self.ensure_one()
         address_id = self.env.user.company_id.with_context(show_address=True).id
         res = {
-            "name": "Shipment Plan for %s" % self.name,
+            "name": _("Shipment Plan for %s") % self.name,
             "plan_type": "internal",
             "from_address_id": address_id,
             "to_address_id": address_id,
@@ -83,7 +83,7 @@ class StockPicking(models.Model):
                 for move in picking.move_lines
             ):
                 raise exceptions.UserError(
-                    _("Internal Picking %s has already Shipment Plan.") % picking.name
+                    _("Internal picking %s has already a shipment plan.") % picking.name
                 )
             vals = picking._prepare_internal_picking_shipment_plan()
             new_shipment_plan = shipment_obj.create(vals)

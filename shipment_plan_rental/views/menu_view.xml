@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem name="Transport Requisition"
+    <menuitem name="Transport Requisitions"
         id="menu_trans_requisition"
         parent="rental_purchase_order_type.menu_vendor_requests"
         action="purchase_requisition.action_purchase_requisition"

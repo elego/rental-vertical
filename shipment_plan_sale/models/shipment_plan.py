@@ -11,24 +11,36 @@ class ShipmentPlan(models.Model):
     _inherit = "shipment.plan"
 
     plan_type = fields.Selection(
-        selection_add=[("internal", "Internal Picking"), ("sale", "Sale")]
+        selection_add=[("internal", "Internal Picking"), ("sale", "Sale")],
     )
+
     origin_sale_line_ids = fields.One2many(
-        "sale.order.line",
-        "trans_shipment_plan_id",
-        "Origin Sale Order Lines",
+        comodel_name="sale.order.line",
+        inverse_name="trans_shipment_plan_id",
+        string="Origin Sale Order Lines",
         copy=False,
     )
+
     sale_id = fields.Many2one(
-        "sale.order", "Origin Sale Order", compute="_compute_sale_id"
+        comodel_name="sale.order",
+        string="Origin Sale Order",
+        compute="_compute_sale_id",
     )
+
     move_ids = fields.One2many(
-        "stock.move",
-        "shipment_plan_id",
+        comodel_name="stock.move",
+        inverse_name="shipment_plan_id",
         copy=False,
     )
-    picking_ids = fields.Many2many("stock.picking", compute="_compute_picking_ids")
-    picking_count = fields.Integer(compute="_compute_picking_ids")
+
+    picking_ids = fields.Many2many(
+        comodel_name="stock.picking",
+        compute="_compute_picking_ids",
+    )
+
+    picking_count = fields.Integer(
+        compute="_compute_picking_ids",
+    )
 
     @api.depends("origin_sale_line_ids")
     def _compute_sale_id(self):
