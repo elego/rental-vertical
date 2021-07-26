@@ -63,6 +63,12 @@ class PurchaseOrder(models.Model):
     )
 
     show_shipment_plan = fields.Boolean(
+        string="Show shipment plans",
+        compute="_compute_show_shipment_plan",
+    )
+
+    shipment_plan_count = fields.Integer(
+        string="# Shipment Plans",
         compute="_compute_show_shipment_plan",
     )
 
@@ -72,6 +78,7 @@ class PurchaseOrder(models.Model):
             rec.show_shipment_plan = False
             if any(line.shipment_plan_ids for line in rec.order_line):
                 rec.show_shipment_plan = True
+            rec.shipment_plan_count = len(rec.order_line.mapped('shipment_plan_ids'))
 
     @api.multi
     def action_transport_confirm(self):
@@ -90,3 +97,20 @@ class PurchaseOrder(models.Model):
                             % (pol.product_id.name, pol.order_id.name)
                         )
         self.write({"selected_in_order": True})
+
+    @api.multi
+    def action_view_shipment_plans(self):
+        self.ensure_one()
+        tree_view_id = self.env.ref("shipment_plan.view_shipment_plan_tree").id
+        form_view_id = self.env.ref("shipment_plan.view_shipment_plan_form").id
+        return {
+            "type": "ir.actions.act_window",
+            "name": _("Shipment Plans"),
+            "target": "current",
+            "view_mode": "tree,form",
+            "view_ids": [tree_view_id, form_view_id],
+            "res_model": "shipment.plan",
+            "domain": "[('id','in',["
+            + ",".join(map(str, self.order_line.shipment_plan_ids.ids))
+            + "])]",
+        }
