@@ -83,7 +83,7 @@ class SaleOrder(models.Model):
         return (
             self.env["ir.config_parameter"]
             .sudo()
-            .get_param("sale.sale_transport_cost_type")
+            .get_param("stock.transport_cost_type")
         )
 
     trans_pr_needed = fields.Boolean(
@@ -200,7 +200,7 @@ class SaleOrder(models.Model):
             product_id = (
                 self.env["ir.config_parameter"]
                 .sudo()
-                .get_param("sale.transport_cost_product_id")
+                .get_param("stock.transport_cost_product_id")
             )
             product_transport_cost = self.env["product.product"].browse(int(product_id))
             self.write(

@@ -33,6 +33,13 @@ def confirm_shipment_plan_pos(self, shipment_plan):
 class TestShipmentPlanSale(ShipmentPlanCommon):
     def setUp(self):
         super().setUp()
+        self.incotermsA = self.env["account.incoterms"].create(
+            {
+                "name": "Incoterm External Shipment",
+                "trans_pr_needed": True,
+                "code": "ext_shipment",
+            }
+        )
         self.PurchaseObj = self.env["purchase.order"]
         # Create Product (need Trans PR) for Sale
         ProductObj = self.env["product.product"]

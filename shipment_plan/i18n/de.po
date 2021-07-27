@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-26 13:34+0000\n"
-"PO-Revision-Date: 2021-07-26 13:34+0000\n"
+"POT-Creation-Date: 2021-07-27 13:15+0000\n"
+"PO-Revision-Date: 2021-07-27 13:15+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -176,24 +176,6 @@ msgid "Granularity of transport cost structure in transport requests"
 msgstr "Granularität der Transportkosten-Struktur in Transportanfragen"
 
 #. module: shipment_plan
-#: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__hide_messages
-#: model:ir.model.fields,help:shipment_plan.field_shipment_plan__hide_messages
-msgid "Hide messages"
-msgstr "Nachrichten ausblenden"
-
-#. module: shipment_plan
-#: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__hide_notes
-#: model:ir.model.fields,help:shipment_plan.field_shipment_plan__hide_notes
-msgid "Hide notes"
-msgstr "Notizen ausblenden"
-
-#. module: shipment_plan
-#: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__hide_notifications
-#: model:ir.model.fields,help:shipment_plan.field_shipment_plan__hide_notifications
-msgid "Hide notifications"
-msgstr "Benachrichtigungen ausblenden"
-
-#. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_create_trans_request__id
 #: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__id
 msgid "ID"
@@ -221,11 +203,6 @@ msgid "If set, it allows the user to create a transport request or call for tend
 msgstr "Wenn das Häkchen gesetzt ist, ermöglicht dies dem Benutzer eine Transportanfrage oder - ausschreibung zu erstellen, um ein Transportunternehmen zu finden, dass die angebotenen Produkte ausliefert."
 
 #. module: shipment_plan
-#: model:ir.model.fields,help:shipment_plan.field_account_incoterms__trans_pr_needed
-msgid "If set, this incoterm allows the salesperson to create a transport request or call for tender from a sale order in order to find a carrier delivering the sold products."
-msgstr "Wenn das Häkchen gesetzt ist, ermöglicht diese Lieferbedingung dem Verkäufer eine Transportanfrage oder -auschreibung vom Verkaufsauftrag zu erstellen, um ein Transportunternehmen zu finden, das die angebotenen Produkte ausliefert."
-
-#. module: shipment_plan
 #: model:ir.model.fields,help:shipment_plan.field_purchase_order__selected_in_order
 msgid "If set, this transport request can be used as basis for a quotation/order and the transport costs can be considered charging the customer."
 msgstr "Wenn das Häkchen gesetzt ist, kann diese Transportanfrage als Grundlage für ein Angebot/Auftrag verwendet und die Transportkosten in der Weiterberechnung an den Kunden berücksichtigt werden."
@@ -241,11 +218,6 @@ msgid "In transit"
 msgstr "Unterwegs"
 
 #. module: shipment_plan
-#: model:ir.model,name:shipment_plan.model_account_incoterms
-msgid "Incoterms"
-msgstr "Lieferbedingungen"
-
-#. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__initial_eta
 msgid "Initial ETA"
 msgstr "Initiale ETA"
@@ -254,11 +226,6 @@ msgstr "Initiale ETA"
 #: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__initial_etd
 msgid "Initial ETD"
 msgstr "Initiale ETD"
-
-#. module: shipment_plan
-#: selection:shipment.plan,plan_type:0
-msgid "Internal Picking"
-msgstr "Interne Lieferung"
 
 #. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__message_is_follower
@@ -346,11 +313,6 @@ msgid "Origin"
 msgstr "Ursprung"
 
 #. module: shipment_plan
-#: model:ir.model.fields,field_description:shipment_plan.field_account_incoterms__trans_pr_needed
-msgid "Outbound transport required"
-msgstr "Ausgehender Transport nötig"
-
-#. module: shipment_plan
 #: model:ir.model,name:shipment_plan.model_product_product
 msgid "Product"
 msgstr "Produkt"
@@ -389,11 +351,6 @@ msgid "RFQs"
 msgstr "Anfragen"
 
 #. module: shipment_plan
-#: selection:shipment.plan,plan_type:0
-msgid "Rental"
-msgstr "Vermietung"
-
-#. module: shipment_plan
 #: model_terms:ir.ui.view,arch_db:shipment_plan.view_shipment_plan_form
 msgid "Request Transport"
 msgstr "Transport anfragen"
@@ -407,11 +364,6 @@ msgstr "Anfragetyp"
 #: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__user_id
 msgid "Responsible User"
 msgstr "Verantwortlicher Benutzer"
-
-#. module: shipment_plan
-#: selection:shipment.plan,plan_type:0
-msgid "Sale"
-msgstr "Verkauf"
 
 #. module: shipment_plan
 #: model_terms:ir.ui.view,arch_db:shipment_plan.view_shipment_plan_filter

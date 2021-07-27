@@ -13,7 +13,7 @@ class ResConfigSettings(models.TransientModel):
         ],
         default="multi",
         string="Transport Cost Type",
-        config_parameter="sale.sale_transport_cost_type",
+        config_parameter="stock.transport_cost_type",
         help="Choosing the cost type 'Multi Positions' the transport "
              "purchase order or call for tender can contain several "
              "lines for the different costs related to the transport, "
@@ -28,6 +28,6 @@ class ResConfigSettings(models.TransientModel):
         comodel_name="product.product",
         string="Transport Cost Product",
         domain="[('type', '=', 'service'), ('is_transport', '=', True)]",
-        config_parameter="sale.transport_cost_product_id",
+        config_parameter="stock.transport_cost_product_id",
         help="This is the default product used for transport costs.",
     )

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-20 13:24+0000\n"
-"PO-Revision-Date: 2021-07-20 13:24+0000\n"
+"POT-Creation-Date: 2021-07-27 13:35+0000\n"
+"PO-Revision-Date: 2021-07-27 13:35+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -131,12 +131,22 @@ msgid "If set, the salesperson can create a transport request or call for tender
 msgstr "Wenn das Häkchen gesetzt ist, kann der Verkäufer eine Transportanfrage oder -auschreibung erstellen, um ein Transportunternehmen zu finden, das die gewählten Produkte ausliefert."
 
 #. module: shipment_plan_sale
+#: model:ir.model.fields,help:shipment_plan_sale.field_account_incoterms__trans_pr_needed
+msgid "If set, this incoterm allows the salesperson to create a transport request or call for tender from a sale order in order to find a carrier delivering the sold products."
+msgstr "Wenn das Häkchen gesetzt ist, ermöglicht diese Lieferbedingung dem Verkäufer eine Transportanfrage oder -auschreibung vom Verkaufsauftrag zu erstellen, um ein Transportunternehmen zu finden, das die angebotenen Produkte ausliefert."
+
+#. module: shipment_plan_sale
 #: code:addons/shipment_plan_sale/models/sale.py:60
 #, python-format
 msgid "Incoterm: %s \n"
 ""
 msgstr "Lieferbedingung: %s \n"
 ""
+
+#. module: shipment_plan_sale
+#: model:ir.model,name:shipment_plan_sale.model_account_incoterms
+msgid "Incoterms"
+msgstr "Lieferbedingungen"
 
 #. module: shipment_plan_sale
 #: selection:shipment.plan,plan_type:0
@@ -214,6 +224,11 @@ msgid "Original Sale Order Line"
 msgstr "Ursprung (Auftragszeile)"
 
 #. module: shipment_plan_sale
+#: model:ir.model.fields,field_description:shipment_plan_sale.field_account_incoterms__trans_pr_needed
+msgid "Outbound transport required"
+msgstr "Ausgehender Transport nötig"
+
+#. module: shipment_plan_sale
 #: model:ir.model.fields,field_description:shipment_plan_sale.field_shipment_plan__picking_ids
 msgid "Picking"
 msgstr "Lieferschein"
@@ -254,11 +269,6 @@ msgstr "Menge"
 #: model_terms:ir.ui.view,arch_db:shipment_plan_sale.view_order_form
 msgid "RFQs"
 msgstr "Anfragen"
-
-#. module: shipment_plan_sale
-#: selection:shipment.plan,plan_type:0
-msgid "Rental"
-msgstr "Vermietung"
 
 #. module: shipment_plan_sale
 #: model_terms:ir.ui.view,arch_db:shipment_plan_sale.view_order_form
@@ -439,7 +449,7 @@ msgid "You can not create the purchase request for sale order lines with a diffe
 msgstr "Es kann keine Transportanfrage für Auftragszeilen mit unterschiedlichem Shipment-Plan erstellt werden."
 
 #. module: shipment_plan_sale
-#: code:addons/shipment_plan_sale/models/sale.py:189
+#: code:addons/shipment_plan_sale/models/sale.py:187
 #, python-format
 msgid "You need to select a transport purchase RFQ for this sale order first."
 msgstr "Es muss zuerst eine Transportanfrage für diesen Verkaufsauftrag gewählt werden."
