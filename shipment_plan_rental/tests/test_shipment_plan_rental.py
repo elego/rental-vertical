@@ -12,6 +12,7 @@ from odoo import fields, exceptions
 class TestShipmentPlanSale(ShipmentPlanCommon):
     def setUp(self):
         super().setUp()
+        self.rental_sale_type = self.env.ref("rental_base.rental_sale_type")
         self.PurchaseObj = self.env["purchase.order"]
         # Create Product (need Trans PR) for Sale
         ProductObj = self.env["product.product"]
@@ -176,40 +177,40 @@ class TestShipmentPlanSale(ShipmentPlanCommon):
         self.assertTrue(checkout_picking_sp_return)
         # Check Description of Cost Position
         desc_1 = """Transport PR 1
-Incoterm: Incoterm External Shipment 
-Service Rental: 2.0 Day(s) 
-Date: %s 
-Source Address: YourCompany 
+Incoterm: Incoterm External Shipment
+Service Rental: 2.0 Day(s)
+Date: %s
+Source Address: YourCompany
 Destination Address: Partner C
 """ % (
             fields.Date.to_string(self.today)
         )
         desc_2 = """
 Transport PO 1
-Incoterm: Incoterm External Shipment 
-Service Rental: 2.0 Day(s) 
-Date: %s 
-Source Address: YourCompany 
+Incoterm: Incoterm External Shipment
+Service Rental: 2.0 Day(s)
+Date: %s
+Source Address: YourCompany
 Destination Address: Partner C
 """ % (
             fields.Date.to_string(self.today)
         )
         desc_3 = """
 Transport PR 1
-Incoterm: Incoterm External Shipment 
-Service Rental: 2.0 Day(s) 
-Date: %s 
-Source Address: Partner C 
+Incoterm: Incoterm External Shipment
+Service Rental: 2.0 Day(s)
+Date: %s
+Source Address: Partner C
 Destination Address: YourCompany
 """ % (
             fields.Date.to_string(self.tomorrow)
         )
         desc_4 = """
 Transport PO 1
-Incoterm: Incoterm External Shipment 
-Service Rental: 2.0 Day(s) 
-Date: %s 
-Source Address: Partner C 
+Incoterm: Incoterm External Shipment
+Service Rental: 2.0 Day(s)
+Date: %s
+Source Address: Partner C
 Destination Address: YourCompany
 """ % (
             fields.Date.to_string(self.tomorrow)
