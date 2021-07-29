@@ -108,7 +108,9 @@ class ShipmentPlan(models.Model):
 
     plan_type = fields.Selection(
         string="Type",
-        selection=[],
+        selection=[
+            ("internal", "Internal Picking")
+        ],
         readonly=True,
         states={"draft": [("readonly", False)]},
     )
@@ -119,6 +121,21 @@ class ShipmentPlan(models.Model):
 
     dangerous_goods = fields.Boolean(
         string="Dangerous Goods",
+    )
+
+    move_ids = fields.One2many(
+        comodel_name="stock.move",
+        inverse_name="shipment_plan_id",
+        copy=False,
+    )
+
+    picking_ids = fields.Many2many(
+        comodel_name="stock.picking",
+        compute="_compute_picking_ids",
+    )
+
+    picking_count = fields.Integer(
+        compute="_compute_picking_ids",
     )
 
     trans_requisition_line_ids = fields.Many2many(
@@ -156,6 +173,16 @@ class ShipmentPlan(models.Model):
     trans_po_count = fields.Integer(
         compute="_compute_trans_pos_prs",
     )
+
+    @api.depends("move_ids")
+    def _compute_picking_ids(self):
+        for record in self:
+            pickings = self.env["stock.picking"].browse()
+            for move in record.move_ids:
+                if move.picking_id:
+                    pickings |= move.picking_id
+            record.picking_ids = pickings
+            record.picking_count = len(pickings)
 
     @api.multi
     @api.depends(
@@ -259,12 +286,15 @@ class ShipmentPlan(models.Model):
                 )
                 self.write({"trans_requisition_line_ids": [(4, new_line.id, 0)]})
 
+    def action_view_pickings(self):
+        action = self.env.ref("stock.action_picking_tree_all").read()[0]
+        action["domain"] = [("id", "in", self.picking_ids.ids)]
+        return action
+
     @api.multi
     def action_view_trans_prs(self):
         self.ensure_one()
-        action = self.env.ref("purchase_requisition.action_purchase_requisition").read(
-            []
-        )[0]
+        action = self.env.ref("purchase_requisition.action_purchase_requisition").read([])[0]
         action["domain"] = [("id", "in", self.trans_pr_ids.ids)]
         return action
 

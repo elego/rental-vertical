@@ -16,7 +16,7 @@ Configure the storable products that need transportation.
  - Set the product type to 'Storable Product'.
  - Set the flag 'Transport required' (trans_purchase_request) to True.
 
-Configure transport services that are can be purchased by delivery carriers.
+Configure transport services that can be purchased from delivery carriers.
  - Set the product type to 'Service'.
  - Set the flag 'Transport Service' (is_transport) to True.
  - Go to Page 'Purchase' amd add some suppliers that offer this transport service.
@@ -40,6 +40,12 @@ Create a new shipment plan and purchase requests.
  - Choose the request type to be either a purchase order or requisition (tender).
  - Create a purchase order or requistion.
  - Use these purchase orders as usual.
+
+ Create a shipment plan for internal pickings.
+  - Go to Inventory > Configuration > Settings and activate multiple storage locations.
+  - Go to Inventory > Operation > Transfers.
+  - Create a new stock picking with internal picking type.
+  - Create a shipment plan for this internal transfer, which is then linked in a smartbutton.
     """,
     "depends": [
         "purchase",
@@ -52,6 +58,7 @@ Create a new shipment plan and purchase requests.
         "views/shipment_plan.xml",
         "views/product_view.xml",
         "views/purchase_view.xml",
+        "views/stock_view.xml",
         "views/res_config_settings_view.xml",
     ],
     "demo": [],

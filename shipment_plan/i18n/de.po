@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-27 13:15+0000\n"
-"PO-Revision-Date: 2021-07-27 13:15+0000\n"
+"POT-Creation-Date: 2021-07-29 10:01+0000\n"
+"PO-Revision-Date: 2021-07-29 10:01+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -24,6 +24,17 @@ msgstr "# Shipment-Pläne"
 #: model_terms:ir.ui.view,arch_db:shipment_plan.purchase_order_form
 msgid "<span class=\"o_stat_text\"> Shipment Plans</span>"
 msgstr "<span class=\"o_stat_text\"> Shipment-Pläne</span>"
+
+#. module: shipment_plan
+#: model_terms:ir.ui.view,arch_db:shipment_plan.view_shipment_plan_internal_picking
+msgid "<span class=\"o_stat_text\">Shipment Plan</span>"
+msgstr "<span class=\"o_stat_text\">Shipment-Plan</span>"
+
+#. module: shipment_plan
+#: code:addons/shipment_plan/models/stock.py:36
+#, python-format
+msgid "A picking can only have one shipment plan."
+msgstr "Ein Lieferschein kann nur einen Shipment-Plan haben."
 
 #. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__message_needaction
@@ -84,6 +95,11 @@ msgstr "Empfänger"
 #: model_terms:ir.ui.view,arch_db:shipment_plan.create_trans_request_form
 msgid "Create"
 msgstr "Anlegen"
+
+#. module: shipment_plan
+#: model_terms:ir.ui.view,arch_db:shipment_plan.view_shipment_plan_internal_picking
+msgid "Create Shipment Plan"
+msgstr "Shipment-Plan erstellen"
 
 #. module: shipment_plan
 #: model:ir.model,name:shipment_plan.model_create_trans_request
@@ -228,6 +244,11 @@ msgid "Initial ETD"
 msgstr "Initiale ETD"
 
 #. module: shipment_plan
+#: selection:shipment.plan,plan_type:0
+msgid "Internal Picking"
+msgstr "Interne Lieferung"
+
+#. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__message_is_follower
 msgid "Is Follower"
 msgstr "Ist ein Abonnent"
@@ -266,6 +287,11 @@ msgid "Messages"
 msgstr "Nachrichten"
 
 #. module: shipment_plan
+#: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__move_ids
+msgid "Move"
+msgstr "Lagerbewegung"
+
+#. module: shipment_plan
 #: selection:res.config.settings,transport_cost_type:0
 msgid "Multi Positions"
 msgstr "Mehrere Positionen"
@@ -277,7 +303,7 @@ msgid "Name"
 msgstr "Bezeichnung"
 
 #. module: shipment_plan
-#: code:addons/shipment_plan/models/shipment_plan.py:222
+#: code:addons/shipment_plan/models/shipment_plan.py:249
 #, python-format
 msgid "No found Supplier Info of %s"
 msgstr "Es gibt keine Lieferanten-Information für %s"
@@ -311,6 +337,16 @@ msgstr "Anzahl ungelesener Nachrichten"
 #: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__origin
 msgid "Origin"
 msgstr "Ursprung"
+
+#. module: shipment_plan
+#: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__picking_ids
+msgid "Picking"
+msgstr "Lieferschein"
+
+#. module: shipment_plan
+#: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__picking_count
+msgid "Picking Count"
+msgstr "Anzahl der Lieferscheine"
 
 #. module: shipment_plan
 #: model:ir.model,name:shipment_plan.model_product_product
@@ -390,9 +426,17 @@ msgstr "Auf Entwurf setzen"
 #: model:ir.model.fields,field_description:shipment_plan.field_create_trans_request__shipment_plan_id
 #: model:ir.model.fields,field_description:shipment_plan.field_purchase_order_line__shipment_plan_ids
 #: model:ir.model.fields,field_description:shipment_plan.field_purchase_requisition_line__shipment_plan_ids
+#: model:ir.model.fields,field_description:shipment_plan.field_stock_move__shipment_plan_id
+#: model:ir.model.fields,field_description:shipment_plan.field_stock_picking__shipment_plan_id
 #: model_terms:ir.ui.view,arch_db:shipment_plan.view_shipment_plan_form
 msgid "Shipment Plan"
 msgstr "Shipment-Plan"
+
+#. module: shipment_plan
+#: code:addons/shipment_plan/models/stock.py:64
+#, python-format
+msgid "Shipment Plan for %s"
+msgstr "Shipment-Plan für %s"
 
 #. module: shipment_plan
 #: code:addons/shipment_plan/models/purchase.py:108
@@ -420,14 +464,30 @@ msgid "State"
 msgstr "Status"
 
 #. module: shipment_plan
+#: model:ir.model,name:shipment_plan.model_stock_move
+msgid "Stock Move"
+msgstr "Lagerbewegung"
+
+#. module: shipment_plan
 #: model:ir.actions.act_window,name:shipment_plan.shipment_open_picking
 msgid "Stock Pickings"
 msgstr "Lieferscheine"
 
 #. module: shipment_plan
+#: model:ir.model,name:shipment_plan.model_stock_rule
+msgid "Stock Rule"
+msgstr "Lagerregel"
+
+#. module: shipment_plan
 #: model_terms:ir.ui.view,arch_db:shipment_plan.view_shipment_plan_form
 msgid "Tenders"
 msgstr "Ausschreibungen"
+
+#. module: shipment_plan
+#: code:addons/shipment_plan/models/stock.py:86
+#, python-format
+msgid "The internal picking %s has already a shipment plan."
+msgstr "Die interne Lieferung %s hat bereits einen Shipment-Plan."
 
 #. module: shipment_plan
 #: model:ir.model.fields,help:shipment_plan.field_create_trans_request__transport_service_type
@@ -491,6 +551,11 @@ msgid "Trans Requisition Line"
 msgstr "Position der Transport-Ausschreibung"
 
 #. module: shipment_plan
+#: model:ir.model,name:shipment_plan.model_stock_picking
+msgid "Transfer"
+msgstr "Lieferung vornehmen"
+
+#. module: shipment_plan
 #: model_terms:ir.ui.view,arch_db:shipment_plan.product_normal_form_view
 #: model_terms:ir.ui.view,arch_db:shipment_plan.res_config_settings_view_form
 msgid "Transport"
@@ -528,7 +593,7 @@ msgid "Transport Service Type"
 msgstr "Anfragetyp"
 
 #. module: shipment_plan
-#: code:addons/shipment_plan/models/shipment_plan.py:181
+#: code:addons/shipment_plan/models/shipment_plan.py:208
 #, python-format
 msgid "Transport for %s"
 msgstr "Transport für %s"

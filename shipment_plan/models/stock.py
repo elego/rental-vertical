@@ -33,7 +33,7 @@ class StockMove(models.Model):
             )
             if res > 0:
                 raise exceptions.ValidationError(
-                    _("A Picking can only have one shipment plan.")
+                    _("A picking can only have one shipment plan.")
                 )
 
 
@@ -83,7 +83,7 @@ class StockPicking(models.Model):
                 for move in picking.move_lines
             ):
                 raise exceptions.UserError(
-                    _("Internal picking %s has already a shipment plan.") % picking.name
+                    _("The internal picking %s has already a shipment plan.") % picking.name
                 )
             vals = picking._prepare_internal_picking_shipment_plan()
             new_shipment_plan = shipment_obj.create(vals)

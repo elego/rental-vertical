@@ -7,10 +7,6 @@
     "category": "Sale/Transportation",
     "author": "Odoo Community Association (OCA)/Elego Software Solutions GmbH",
     "description": """
-This module provides the base of the shipment management in order to organize and manage transportation
-for products that are to voluminous or heavy or somehow dangerous, and therefore need special transport treatment.
-The shipment plans focus on the transport after leaving or before entering the internal stock locations.
-
 This module provides a sale extension for the shipment management.
 The combination of a storable product that needs transportation and the use of an incoterm configured for outbound
 transportation allows the salesmen to create a transport request (purchase order or requisition) directly from the
@@ -39,7 +35,6 @@ Create a sale order for a product that needs transportation.
         "shipment_plan",
         "sale_management",
         "sale_start_end_dates",
-        "stock",
     ],
     "data": [
         "data/res_config_settings_data.xml",
@@ -48,7 +43,6 @@ Create a sale order for a product that needs transportation.
         "views/product_view.xml",
         "views/sale_view.xml",
         "views/shipment_plan_view.xml",
-        "views/stock_view.xml",
     ],
     "demo": [],
     "qweb": [],
