@@ -9,10 +9,17 @@ from odoo.addons.shipment_plan_sale.tests.test_shipment_plan_sale import (
 from odoo import fields, exceptions
 
 
-class TestShipmentPlanSale(ShipmentPlanCommon):
+class TestShipmentPlanRental(ShipmentPlanCommon):
     def setUp(self):
         super().setUp()
         self.rental_sale_type = self.env.ref("rental_base.rental_sale_type")
+        self.incotermsA = self.env["account.incoterms"].create(
+            {
+                "name": "Incoterm External Shipment",
+                "trans_pr_needed": True,
+                "code": "ext_shipment",
+            }
+        )
         self.PurchaseObj = self.env["purchase.order"]
         # Create Product (need Trans PR) for Sale
         ProductObj = self.env["product.product"]
