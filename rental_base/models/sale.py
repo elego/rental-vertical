@@ -136,7 +136,7 @@ class SaleOrderLine(models.Model):
             datetime_end = fields.Datetime.to_datetime(date_end)
             # update rental
             if line.rental:
-                rental = self.env["sale.rental"].search(
+                rentals = self.env["sale.rental"].search(
                     [
                         ("start_order_line_id", "=", line.id),
                         ("state", "!=", "cancel"),
@@ -144,7 +144,8 @@ class SaleOrderLine(models.Model):
                         ("in_move_id.state", "!=", "cancel"),
                     ]
                 )
-                if rental and date_start:
+                if rentals and date_start:
+                    rental = rentals[0]
                     date_move_out = fields.Date.to_date(
                         rental.out_move_id.date_expected
                     )
@@ -161,7 +162,8 @@ class SaleOrderLine(models.Model):
                                 % rental.out_move_id.state
                             )
                         rental.out_move_id.date_expected = datetime_start
-                if rental and date_end:
+                if rentals and date_end:
+                    rental = rentals[0]
                     date_move_in = fields.Date.to_date(rental.in_move_id.date_expected)
                     if date_end != date_move_in:
                         if rental.in_move_id.state not in [
