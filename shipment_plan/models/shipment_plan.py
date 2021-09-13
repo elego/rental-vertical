@@ -70,6 +70,16 @@ class ShipmentPlan(models.Model):
         required=True,
     )
 
+    location_id = fields.Many2one(
+        "stock.location",
+        string="Source Location",
+    )
+
+    location_dest_id = fields.Many2one(
+        "stock.location",
+        string="Destination Location",
+    )
+
     consignee_id = fields.Many2one(
         comodel_name="res.partner",
         string="Consignee",

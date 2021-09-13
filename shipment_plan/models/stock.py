@@ -65,6 +65,8 @@ class StockPicking(models.Model):
             "plan_type": "internal",
             "from_address_id": address_id,
             "to_address_id": address_id,
+            "location_id": self.location_id.id,
+            "location_dest_id": self.location_dest_id.id,
             "note": self.note,
             "initial_etd": self.scheduled_date - timedelta(days=1),
             "initial_eta": self.scheduled_date,

@@ -78,7 +78,9 @@
                 <field name="plan_type"/>
                 <field name="user_id"/>
                 <field name="from_address_id" widget="res_partner_many2one" context="{'show_address': 1}" options='{"always_reload": True}'/>
+                <field name="location_id"/>
                 <field name="to_address_id" widget="res_partner_many2one" context="{'show_address': 1}" options='{"always_reload": True}'/>
+                <field name="location_dest_id"/>
                 <label for="consignee_id" invisible="1"/>
                 <div invisible="1">
                   <field name="consignee_id" class="oe_inline"/>
