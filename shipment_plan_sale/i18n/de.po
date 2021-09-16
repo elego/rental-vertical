@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-29 10:14+0000\n"
-"PO-Revision-Date: 2021-07-29 10:14+0000\n"
+"POT-Creation-Date: 2021-09-16 17:11+0000\n"
+"PO-Revision-Date: 2021-09-16 17:11+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: shipment_plan_sale
-#: code:addons/shipment_plan_sale/wizard/create_transport_request.py:69
+#: code:addons/shipment_plan_sale/wizard/create_transport_request.py:79
 #, python-format
 msgid "All the order lines in shipment plan should be selected."
 msgstr "Alle Auftragszeilen im Shipment-Plan sollten ausgewählt werden."
@@ -156,12 +156,17 @@ msgid "Last Updated on"
 msgstr "Zuletzt aktualisiert am"
 
 #. module: shipment_plan_sale
+#: model:ir.model.fields,field_description:shipment_plan_sale.field_create_sale_trans_request__multi
+msgid "Multi"
+msgstr ""
+
+#. module: shipment_plan_sale
 #: selection:sale.order,transport_cost_type:0
 msgid "Multi Positions"
 msgstr "Mehrere Positionen"
 
 #. module: shipment_plan_sale
-#: code:addons/shipment_plan_sale/wizard/create_transport_request.py:136
+#: code:addons/shipment_plan_sale/wizard/create_transport_request.py:146
 #, python-format
 msgid "No suitable shipment plan found."
 msgstr "Es wurde kein passender Shipment-Plan gefunden."
@@ -234,6 +239,11 @@ msgid "RFQs"
 msgstr "Anfragen"
 
 #. module: shipment_plan_sale
+#: selection:shipment.plan,plan_type:0
+msgid "Rental"
+msgstr "Vermietung"
+
+#. module: shipment_plan_sale
 #: model_terms:ir.ui.view,arch_db:shipment_plan_sale.view_order_form
 msgid "Request Transport"
 msgstr "Transport anfragen"
@@ -272,7 +282,7 @@ msgid "Shipment Plan"
 msgstr "Shipment-Plan"
 
 #. module: shipment_plan_sale
-#: code:addons/shipment_plan_sale/wizard/create_transport_request.py:107
+#: code:addons/shipment_plan_sale/wizard/create_transport_request.py:117
 #, python-format
 msgid "Shipment Plan for %s"
 msgstr "Shipment-Plan für %s"
@@ -288,7 +298,7 @@ msgid "Single Position"
 msgstr "Eine Position"
 
 #. module: shipment_plan_sale
-#: code:addons/shipment_plan_sale/wizard/create_transport_request.py:51
+#: code:addons/shipment_plan_sale/wizard/create_transport_request.py:61
 #, python-format
 msgid "Some of the selected sale order lines do not have a shipment plan."
 msgstr "Einige der gewählten Auftragszeilen haben keinen Shipment-Plan."
@@ -309,6 +319,21 @@ msgstr "Startadresse: \n"
 #: model:ir.model.fields,field_description:shipment_plan_sale.field_create_sale_trans_origin_line__start_date
 msgid "Start Date"
 msgstr "Startdatum"
+
+#. module: shipment_plan_sale
+#: model:ir.model,name:shipment_plan_sale.model_stock_move
+msgid "Stock Move"
+msgstr "Lagerbewegung"
+
+#. module: shipment_plan_sale
+#: model:ir.model,name:shipment_plan_sale.model_stock_rule
+msgid "Stock Rule"
+msgstr "Lagerregel"
+
+#. module: shipment_plan_sale
+#: model:ir.model.fields,field_description:shipment_plan_sale.field_create_sale_trans_request__partner_id
+msgid "Supplier"
+msgstr ""
 
 #. module: shipment_plan_sale
 #: model:ir.model.fields,field_description:shipment_plan_sale.field_sale_order__trans_pr_ids
@@ -345,6 +370,11 @@ msgstr "Transport-Shipment-Pläne"
 #: model:ir.model.fields,field_description:shipment_plan_sale.field_sale_order__trans_shipment_plan_count
 msgid "Trans Shipment Plan Count"
 msgstr "Anzahl der Transport-Shipment-Pläne"
+
+#. module: shipment_plan_sale
+#: model:ir.model,name:shipment_plan_sale.model_stock_picking
+msgid "Transfer"
+msgstr "Lieferung vornehmen"
 
 #. module: shipment_plan_sale
 #: model:ir.model.fields,field_description:shipment_plan_sale.field_sale_order_line__trans_purchase_line_ids
@@ -388,7 +418,7 @@ msgid "Wizard"
 msgstr "Assistent"
 
 #. module: shipment_plan_sale
-#: code:addons/shipment_plan_sale/wizard/create_transport_request.py:62
+#: code:addons/shipment_plan_sale/wizard/create_transport_request.py:72
 #, python-format
 msgid "You can not create the purchase request for sale order lines with a different shipment plan."
 msgstr "Es kann keine Transportanfrage für Auftragszeilen mit unterschiedlichem Shipment-Plan erstellt werden."

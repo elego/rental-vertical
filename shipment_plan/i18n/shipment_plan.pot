@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-29 10:01+0000\n"
-"PO-Revision-Date: 2021-07-29 10:01+0000\n"
+"POT-Creation-Date: 2021-09-16 17:04+0000\n"
+"PO-Revision-Date: 2021-09-16 17:04+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -134,6 +134,11 @@ msgid "Description / Remarks"
 msgstr ""
 
 #. module: shipment_plan
+#: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__location_dest_id
+msgid "Destination Location"
+msgstr ""
+
+#. module: shipment_plan
 #: model_terms:ir.ui.view,arch_db:shipment_plan.view_shipment_plan_form
 msgid "Details"
 msgstr ""
@@ -233,6 +238,11 @@ msgid "In transit"
 msgstr ""
 
 #. module: shipment_plan
+#: model:ir.model,name:shipment_plan.model_account_incoterms
+msgid "Incoterms"
+msgstr ""
+
+#. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__initial_eta
 msgid "Initial ETA"
 msgstr ""
@@ -291,6 +301,11 @@ msgid "Move"
 msgstr ""
 
 #. module: shipment_plan
+#: model:ir.model.fields,field_description:shipment_plan.field_create_trans_request__multi
+msgid "Multi"
+msgstr ""
+
+#. module: shipment_plan
 #: selection:res.config.settings,transport_cost_type:0
 msgid "Multi Positions"
 msgstr ""
@@ -302,7 +317,7 @@ msgid "Name"
 msgstr ""
 
 #. module: shipment_plan
-#: code:addons/shipment_plan/models/shipment_plan.py:249
+#: code:addons/shipment_plan/models/shipment_plan.py:323
 #, python-format
 msgid "No found Supplier Info of %s"
 msgstr ""
@@ -386,6 +401,11 @@ msgid "RFQs"
 msgstr ""
 
 #. module: shipment_plan
+#: selection:shipment.plan,plan_type:0
+msgid "Rental"
+msgstr ""
+
+#. module: shipment_plan
 #: model_terms:ir.ui.view,arch_db:shipment_plan.view_shipment_plan_form
 msgid "Request Transport"
 msgstr ""
@@ -398,6 +418,11 @@ msgstr ""
 #. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__user_id
 msgid "Responsible User"
+msgstr ""
+
+#. module: shipment_plan
+#: selection:shipment.plan,plan_type:0
+msgid "Sale"
 msgstr ""
 
 #. module: shipment_plan
@@ -458,6 +483,11 @@ msgid "Single Position"
 msgstr ""
 
 #. module: shipment_plan
+#: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__location_id
+msgid "Source Location"
+msgstr ""
+
+#. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__state
 msgid "State"
 msgstr ""
@@ -478,12 +508,17 @@ msgid "Stock Rule"
 msgstr ""
 
 #. module: shipment_plan
+#: model:ir.model.fields,field_description:shipment_plan.field_create_trans_request__partner_id
+msgid "Supplier"
+msgstr ""
+
+#. module: shipment_plan
 #: model_terms:ir.ui.view,arch_db:shipment_plan.view_shipment_plan_form
 msgid "Tenders"
 msgstr ""
 
 #. module: shipment_plan
-#: code:addons/shipment_plan/models/stock.py:86
+#: code:addons/shipment_plan/models/stock.py:88
 #, python-format
 msgid "The internal picking %s has already a shipment plan."
 msgstr ""
@@ -592,7 +627,7 @@ msgid "Transport Service Type"
 msgstr ""
 
 #. module: shipment_plan
-#: code:addons/shipment_plan/models/shipment_plan.py:208
+#: code:addons/shipment_plan/models/shipment_plan.py:218
 #, python-format
 msgid "Transport for %s"
 msgstr ""
