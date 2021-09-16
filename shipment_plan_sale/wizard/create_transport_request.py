@@ -40,6 +40,16 @@ class CreateSaleTransRequest(models.TransientModel):
         string="Sale Order",
     )
 
+    multi = fields.Boolean(
+        string="Multi",
+        default=True,
+    )
+
+    partner_id = fields.Many2one(
+        comodel_name="res.partner",
+        string="Supplier",
+    )
+
     @api.multi
     def _check_origin_lines(self):
         self.ensure_one()
@@ -135,7 +145,8 @@ class CreateSaleTransRequest(models.TransientModel):
         else:
             raise exceptions.UserError(_("No suitable shipment plan found."))
         shipment_plan.create_purchase_request(
-            self.service_product_ids, self.transport_service_type
+            self.service_product_ids, self.transport_service_type,
+            multi=self.multi, supplier=self.partner_id
         )
         return shipment_plan
 

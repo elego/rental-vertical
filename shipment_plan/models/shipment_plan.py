@@ -217,19 +217,44 @@ class ShipmentPlan(models.Model):
         self.ensure_one()
         return _("Transport for %s") % self.origin
 
-    @api.model
-    def _prepare_sp_po_values(self, product):
+    @api.multi
+    def _prepare_sp_po_values(self, product=False, supplier=False):
         """This function can be extended in other module"""
         self.ensure_one()
+        partner_id = False
+        if supplier:
+            partner_id = supplier.id
+        else:
+            partner_id = product.seller_ids[0].name.id
         new_order = self.env["purchase.order"].new(
             {
                 "company_id": self.env.user.company_id.id,
-                "partner_id": product.seller_ids[0].name.id,
+                "partner_id": partner_id,
             }
         )
         new_order.onchange_partner_id()
         res = new_order._convert_to_write(new_order._cache)
         return res
+
+    @api.multi
+    def _prepare_sp_pol_values(self, product, order):
+        """This function can be extended in other module"""
+        self.ensure_one()
+        new_line = self.env["purchase.order.line"].new(
+            {
+                "order_id": order.id,
+                "product_id": product.id,
+                "product_qty": 1,
+                "product_uom_id": product.uom_id.id,
+            }
+        )
+        new_line.onchange_product_id()
+        vals = new_line._convert_to_write(new_line._cache)
+        if self.note:
+            vals["name"] = product.display_name + "\n" + self.note
+        if self.initial_etd:
+            vals["date_planned"] = self.initial_etd
+        return vals
 
     @api.multi
     def _prepare_sp_pr_values(self):
@@ -241,60 +266,75 @@ class ShipmentPlan(models.Model):
             "schedule_date": self.initial_etd,
             "description": "",
         }
-
         return res
 
     @api.multi
-    def create_purchase_request(self, service_products, transport_service_type):
+    def _prepare_sp_prl_values(self, product, requisition):
+        """This function can be extended in other module"""
+        self.ensure_one()
+        line_name = product.display_name
+        if self.note:
+            line_name = product.display_name + "\n" + self.note
+        res = {
+            "requisition_id": requisition.id,
+            "product_id": product.id,
+            "name": line_name,
+            "schedule_date": self.initial_etd,
+            "product_qty": 1,
+            "product_uom_id": product.uom_id.id,
+        }
+        return res
+
+    @api.multi
+    def create_purchase_request(
+            self, service_products, transport_service_type,
+            multi=True, supplier=False
+        ):
         self.ensure_one()
         order_obj = self.env["purchase.order"]
         order_line_obj = self.env["purchase.order.line"]
         requisition_line_obj = self.env["purchase.requisition.line"]
-        uom_id = self.env.ref("uom.product_uom_unit").id
-        description = self.note
-        for p in service_products:
-            if transport_service_type == "po":
-                if not p.seller_ids:
-                    raise exceptions.UserError(
-                        _("No found Supplier Info of %s") % p.name
-                    )
-                vals = self._prepare_sp_po_values(p)
+        if not multi:
+            if transport_service_type == "po" and supplier:
+                vals = self._prepare_sp_po_values(supplier=supplier)
                 new_order = order_obj.create(vals)
-                new_line = order_line_obj.new(
-                    {
-                        "order_id": new_order.id,
-                        "product_id": p.id,
-                        "product_qty": 1,
-                        "product_uom_id": uom_id,
-                    }
-                )
-                new_line.onchange_product_id()
-                vals = new_line._convert_to_write(new_line._cache)
-                if description:
-                    vals["name"] = p.display_name + "\n" + description
-                if self.initial_etd:
-                    vals["date_planned"] = self.initial_etd
-                new_line = order_line_obj.create(vals)
-                self.write({"trans_purchase_line_ids": [(4, new_line.id, 0)]})
+                line_vals = []
+                for p in service_products:
+                    vals = self._prepare_sp_pol_values(p, new_order)
+                    new_line = order_line_obj.create(vals)
+                    line_vals.append((4, new_line.id, 0))
+                self.write({"trans_purchase_line_ids": line_vals})
             elif transport_service_type == "pr":
                 vals = self._prepare_sp_pr_values()
                 new_requisition = self.env["purchase.requisition"].create(
                     vals
                 )
-                line_name = p.display_name
-                if description:
-                    line_name = p.display_name + "\n" + description
-                new_line = requisition_line_obj.create(
-                    {
-                        "requisition_id": new_requisition.id,
-                        "product_id": p.id,
-                        "name": line_name,
-                        "schedule_date": self.initial_etd,
-                        "product_qty": 1,
-                        "product_uom_id": uom_id,
-                    }
-                )
-                self.write({"trans_requisition_line_ids": [(4, new_line.id, 0)]})
+                line_vals = []
+                for p in service_products:
+                    vals = self._prepare_sp_prl_values(p, new_requisition)
+                    new_line = requisition_line_obj.create(vals)
+                    line_vals.append((4, new_line.id, 0))
+                self.write({"trans_requisition_line_ids": line_vals})
+        else:
+            for p in service_products:
+                if transport_service_type == "po":
+                    if not p.seller_ids:
+                        raise exceptions.UserError(
+                            _("No found Supplier Info of %s") % p.name
+                        )
+                    vals = self._prepare_sp_po_values(product=p)
+                    new_order = order_obj.create(vals)
+                    vals = self._prepare_sp_pol_values(p, new_order)
+                    new_line = order_line_obj.create(vals)
+                    self.write({"trans_purchase_line_ids": [(4, new_line.id, 0)]})
+                elif transport_service_type == "pr":
+                    vals = self._prepare_sp_pr_values()
+                    new_requisition = self.env["purchase.requisition"].create(
+                        vals
+                    )
+                    vals = self._prepare_sp_prl_values(p, new_requisition)
+                    new_line = requisition_line_obj.create(vals)
+                    self.write({"trans_requisition_line_ids": [(4, new_line.id, 0)]})
 
     def action_view_pickings(self):
         action = self.env.ref("stock.action_picking_tree_all").read()[0]

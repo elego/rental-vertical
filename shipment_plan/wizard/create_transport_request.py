@@ -32,6 +32,16 @@ class CreateTransRequest(models.TransientModel):
              "a transport within an order.",
     )
 
+    multi = fields.Boolean(
+        string="Multi",
+        default=True,
+    )
+
+    partner_id = fields.Many2one(
+        comodel_name="res.partner",
+        string="Supplier",
+    )
+
     @api.model
     def default_get(self, fields):
         res = {}
@@ -47,7 +57,8 @@ class CreateTransRequest(models.TransientModel):
     def action_confirm(self):
         self.ensure_one()
         self.shipment_plan_id.create_purchase_request(
-            self.service_product_ids, self.transport_service_type
+            self.service_product_ids, self.transport_service_type,
+            multi=self.multi, supplier=self.partner_id
         )
 
     @api.onchange("service_product_ids")

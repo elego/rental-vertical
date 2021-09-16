@@ -60,7 +60,8 @@ class CreateSaleTransRequest(models.TransientModel):
         else:
             raise exceptions.UserError(_("No suitable shipment plan found."))
         shipment_plan.create_purchase_request(
-            self.service_product_ids, self.transport_service_type
+            self.service_product_ids, self.transport_service_type,
+            multi=self.multi, supplier=self.partner_id
         )
         rental_order_type = self.env.ref("rental_base.rental_sale_type")
         if self.order_id.type_id.id == rental_order_type.id:
@@ -76,7 +77,8 @@ class CreateSaleTransRequest(models.TransientModel):
             else:
                 raise exceptions.UserError(_("No suitable shipment plan found."))
             return_shipment_plan.with_context(rental_return=True).create_purchase_request(
-                self.service_product_ids, self.transport_service_type
+                self.service_product_ids, self.transport_service_type,
+                multi=self.multi, supplier=self.partner_id
             )
 
         vals = {}

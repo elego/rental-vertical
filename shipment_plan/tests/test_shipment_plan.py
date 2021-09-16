@@ -44,6 +44,7 @@ class TestShipmentPlan(ShipmentPlanCommon):
             )
             .create(
                 {
+                    "multi": True,
                     "service_product_ids": [
                         (
                             4,
@@ -70,6 +71,7 @@ class TestShipmentPlan(ShipmentPlanCommon):
             )
             .create(
                 {
+                    "multi": True,
                     "service_product_ids": [
                         (
                             4,
@@ -135,3 +137,76 @@ class TestShipmentPlan(ShipmentPlanCommon):
         # Test Smartbutton
         self.shipment_plan.action_view_trans_prs()
         self.shipment_plan.action_view_trans_pos()
+
+    def test_01_shipment_plan_not_multi_request(self):
+        """
+        Create PO and PR
+        Check PO and PR
+        """
+        PurchaseObj = self.env["purchase.order"]
+        self.shipment_plan.action_confirm()
+        self.assertEqual(self.shipment_plan.state, "confirmed")
+        self.shipment_plan.action_cancel_draft()
+        self.assertEqual(self.shipment_plan.state, "draft")
+        self.shipment_plan.action_confirm()
+        # Create PR
+        wizard = (
+            self.env["create.trans.request"]
+            .with_context(
+                {
+                    "active_id": self.shipment_plan.id,
+                    "active_model": "shipment.plan",
+                }
+            )
+            .create(
+                {
+                    "multi": False,
+                    "service_product_ids": [
+                        (
+                            4,
+                            self.product_trans_pr_1.id,
+                        ),
+                        (
+                            4,
+                            self.product_trans_pr_2.id,
+                        ),
+                    ]
+                }
+            )
+        )
+        wizard.onchange_service_product_ids()
+        wizard.action_confirm()
+        # Create PO
+        wizard = (
+            self.env["create.trans.request"]
+            .with_context(
+                {
+                    "active_id": self.shipment_plan.id,
+                    "active_model": "shipment.plan",
+                }
+            )
+            .create(
+                {
+                    "multi": False,
+                    "partner_id": self.partnerA.id,
+                    "service_product_ids": [
+                        (
+                            4,
+                            self.product_trans_po_1.id,
+                        ),
+                        (
+                            4,
+                            self.product_trans_po_2.id,
+                        ),
+                    ]
+                }
+            )
+        )
+        print(wizard.partner_id)
+        wizard.onchange_service_product_ids()
+        wizard.action_confirm()
+        # Check PO and PR
+        self.assertEqual(self.shipment_plan.trans_po_count, 1)
+        self.assertEqual(self.shipment_plan.trans_pr_count, 1)
+
+
