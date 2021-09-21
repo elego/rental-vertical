@@ -1,21 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <!-- ProductTemplate -->
-        <record id="view_template_property_form" model="ir.ui.view">
-            <field name="name">product.template.stock.property.form.inherit</field>
-            <field name="model">product.template</field>
-            <field name="inherit_id" ref="stock.view_template_property_form"/>
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='sale_ok']/.." position="before">
-                    <div>
-                        <field name="rental"/>
-                        <label for="rental"/>
-                    </div>
-                </xpath>
-            </field>
-        </record>
-
         <!-- ProductProduct -->
         <record id="product_normal_form_view" model="ir.ui.view">
             <field name="name">view.product.product.form</field>
@@ -24,7 +9,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//group[@name='rental-product']" position="replace"/>
                 <xpath expr="//notebook" position="inside">
-                    <page name="rental_price" string="Rental Price" 
+                    <page name="rental_price" string="Rental Price"
                           attrs="{'invisible': ['|', ('rental', '=', False), ('type', '!=', 'product')]}">
                         <group>
                             <group string="Monthly Basis">
@@ -120,36 +105,5 @@
                 </xpath>
             </field>
         </record>
-
-        <record id="rental_product_search_view" model="ir.ui.view">
-            <field name="name">product.product.search.stock.form</field>
-            <field name="model">product.product</field>
-            <field name="mode">primary</field>
-            <field name="inherit_id" ref="product.product_search_form_view"/>
-            <field name="arch" type="xml">
-                <xpath expr="//filter[@name='inactive']" position="after">
-                    <separator/>
-                    <filter name="rental" string="Can be rented"
-                            domain="[('rental','=',True), ('type','=','product')]"/>
-                </xpath>
-            </field>
-        </record>
-
-        <record id="view_rental_product_action" model="ir.actions.act_window">
-            <field name="name">Rental Product Variants</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">product.product</field>
-            <field name="view_mode">tree,form,kanban</field>
-            <field name="context">{'search_default_rental': 1}</field>
-            <field name="view_type">form</field>
-            <field name="search_view_id" ref="rental_product_search_view"/>
-        </record>
-
-        <menuitem name="Products"
-            id="menu_products"
-            parent="rental_base.menu_master_data"
-            action="view_rental_product_action"
-            sequence="0"/>
-
     </data>
 </odoo>

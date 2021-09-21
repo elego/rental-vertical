@@ -1,4 +1,3 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
-from . import sale
-from . import ir_sequence
+from . import res_config_settings
