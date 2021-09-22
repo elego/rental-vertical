@@ -17,7 +17,9 @@
                                 <field name="def_pricelist_id" invisible="1"/>
                                 <field name="rental_price_month" attrs="{'invisible': [('rental_of_month','=',False)]}"/>
                                 <field name="product_rental_month_id" groups="base.group_no_one"/>
-                                <strong colspan="2">Bulk Prices</strong>
+                                <strong colspan="2" attrs="{'invisible': [('product_rental_month_id', '=', False)]}">
+                                    Bulk Prices
+                                </strong>
                                 <field name="month_scale_pricelist_item_ids"
                                        position="inside"
                                        domain="[('product_id', '=', product_rental_month_id),
@@ -46,7 +48,9 @@
                                 <field name="rental_of_day"/>
                                 <field name="rental_price_day" attrs="{'invisible': [('rental_of_day','=',False)]}"/>
                                 <field name="product_rental_day_id" groups="base.group_no_one"/>
-                                <strong colspan="2">Bulk Prices</strong>
+                                <strong colspan="2" attrs="{'invisible': [('product_rental_day_id', '=', False)]}">
+                                    Bulk Prices
+                                </strong>
                                 <field name="day_scale_pricelist_item_ids"
                                        position="inside"
                                        domain="[('product_id', '=', product_rental_day_id),
@@ -75,7 +79,9 @@
                                 <field name="rental_of_hour"/>
                                 <field name="rental_price_hour" attrs="{'invisible': [('rental_of_hour','=',False)]}"/>
                                 <field name="product_rental_hour_id" groups="base.group_no_one"/>
-                                <strong colspan="2">Bulk Prices</strong>
+                                <strong colspan="2" attrs="{'invisible': [('product_rental_hour_id', '=', False)]}">
+                                    Bulk Prices
+                                </strong>
                                 <field name="hour_scale_pricelist_item_ids"
                                        position="inside"
                                        domain="[('product_id', '=', product_rental_hour_id),
