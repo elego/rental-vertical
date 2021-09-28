@@ -120,6 +120,18 @@ class ProductProduct(models.Model):
                 _("The product has no related rental services.")
             )
 
+    @api.multi
+    def _get_rental_service_list(self):
+        self.ensure_one()
+        rental_services = []
+        if self.product_rental_month_id:
+            rental_services.append(self.product_rental_month_id)
+        if self.product_rental_day_id:
+            rental_services.append(self.product_rental_day_id)
+        if self.product_rental_hour_id:
+            rental_services.append(self.product_rental_hour_id)
+        return rental_services
+
     @api.model
     def _get_rental_service_uom(self, rental_type):
         time_uoms = self.env["sale.order.line"]._get_time_uom()
@@ -249,12 +261,20 @@ class ProductProduct(models.Model):
                 rental_service.name = service_name
 
     @api.multi
-    def _update_rental_service_fields(self, vals, fields):
+    def _update_rental_service_fields(self, vals, fields, rental_services):
         self.ensure_one()
         service_vals = {}
         for field in fields:
             if field in vals:
                 service_vals[field] = vals.get(field, False)
+        # check 'active' becomes True from False
+        check_rental_services = (
+            service_vals.get('active', False) and
+            not self.rental_service_ids and
+            rental_services)
+        if check_rental_services:
+            for p in rental_services:
+                p.write(service_vals)
         self.rental_service_ids.write(service_vals)
 
     @api.multi
@@ -300,8 +320,14 @@ class ProductProduct(models.Model):
                 "rental",
                 "active",
             ]
-            if (vals.keys() & update_fields) and p.rental_service_ids:
-                p._update_rental_service_fields(vals, update_fields)
+            # when 'active' set to True from False,
+            # then 'rental_service_ids' set to Null, 
+            # need to find rental service products from main product
+            rental_services = []
+            if vals.get("active", False):
+                rental_services = p._get_rental_service_list()
+            if (vals.keys() & update_fields) and (p.rental_service_ids or rental_services):
+                p._update_rental_service_fields(vals, update_fields, rental_services)
         return res
 
     @api.model
