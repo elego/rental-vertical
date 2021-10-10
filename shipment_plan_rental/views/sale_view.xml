@@ -6,6 +6,7 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="shipment_plan_sale.view_order_form"/>
         <field name="arch" type="xml">
+            <!-- Hide the field until its function is established -->
             <xpath expr="//label[@for='dangerous_goods']" position="replace"/>
             <xpath expr="//field[@name='dangerous_goods']/.." position="replace"/>
         </field>

@@ -28,7 +28,7 @@ class CreateSaleTransRequest(models.TransientModel):
                 res.update(
                     {
                         "plan_type": "rental",
-                        "name": "Return Shipment Plan for %s" % order.name,
+                        "name": _("Return Shipment Plan for %s") % order.name,
                         "initial_etd": order.default_end_date + timedelta(days=1),
                         "initial_eta": order.default_end_date + timedelta(days=2),
                         "from_address_id": dest_address_id,
@@ -58,9 +58,10 @@ class CreateSaleTransRequest(models.TransientModel):
             vals = self._prepare_shipment_plan_values(self.order_id)
             shipment_plan = self.env["shipment.plan"].create(vals)
         else:
-            raise execptions.UserError(_("No found suitable Shipment Plan."))
+            raise exceptions.UserError(_("No suitable shipment plan found."))
         shipment_plan.create_purchase_request(
-            self.service_product_ids, self.transport_service_type
+            self.service_product_ids, self.transport_service_type,
+            multi=self.multi, supplier=self.partner_id
         )
         rental_order_type = self.env.ref("rental_base.rental_sale_type")
         if self.order_id.type_id.id == rental_order_type.id:
@@ -74,9 +75,10 @@ class CreateSaleTransRequest(models.TransientModel):
                 )._prepare_shipment_plan_values(self.order_id)
                 return_shipment_plan = self.env["shipment.plan"].create(vals_return)
             else:
-                raise execptions.UserError(_("No found suitable Shipment Plan."))
+                raise exceptions.UserError(_("No suitable shipment plan found."))
             return_shipment_plan.with_context(rental_return=True).create_purchase_request(
-                self.service_product_ids, self.transport_service_type
+                self.service_product_ids, self.transport_service_type,
+                multi=self.multi, supplier=self.partner_id
             )
 
         vals = {}
@@ -92,7 +94,7 @@ class CreateSaleTransOriginLine(models.TransientModel):
     _inherit = "create.sale.trans.origin.line"
 
     trans_return_shipment_plan_id = fields.Many2one(
-        "shipment.plan",
+        comodel_name="shipment.plan",
         string="Return Shipment Plan",
         related="order_line_id.trans_return_shipment_plan_id",
     )

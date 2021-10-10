@@ -33,6 +33,13 @@ def confirm_shipment_plan_pos(self, shipment_plan):
 class TestShipmentPlanSale(ShipmentPlanCommon):
     def setUp(self):
         super().setUp()
+        self.incotermsA = self.env["account.incoterms"].create(
+            {
+                "name": "Incoterm External Shipment",
+                "trans_pr_needed": True,
+                "code": "ext_shipment",
+            }
+        )
         self.PurchaseObj = self.env["purchase.order"]
         # Create Product (need Trans PR) for Sale
         ProductObj = self.env["product.product"]
@@ -278,3 +285,66 @@ class TestShipmentPlanSale(ShipmentPlanCommon):
         self.assertTrue(
             all(o.state == "cancel" for o in sale_order.trans_shipment_plan_ids)
         )
+
+    def test_02_shipment_plan_sale_singel_po(self):
+        """
+        2. Create SO for product_sale
+        3. Run wizard create.sale.trans.request:
+            To Create singel PO, Shipment Plan
+        """
+        sale_order = self._create_sale_order()
+        self.assertTrue(sale_order.trans_pr_needed)
+        wizard = (
+            self.env["create.sale.trans.request"]
+            .with_context(
+                {
+                    "active_id": sale_order.id,
+                }
+            )
+            .create(
+                {
+                    "multi": False,
+                    "partner_id": self.partnerA.id,
+                    "service_product_ids": [
+                        (
+                            4,
+                            self.product_trans_pr_1.id,
+                        ),
+                        (
+                            4,
+                            self.product_trans_pr_2.id,
+                        ),
+                    ]
+                }
+            )
+        )
+        wizard.onchange_service_product_ids()
+        shipment_plan = wizard.action_confirm()
+        wizard = (
+            self.env["create.sale.trans.request"]
+            .with_context(
+                {
+                    "active_id": sale_order.id,
+                }
+            )
+            .create(
+                {
+                    "multi": False,
+                    "partner_id": self.partnerA.id,
+                    "service_product_ids": [
+                        (
+                            4,
+                            self.product_trans_po_1.id,
+                        ),
+                        (
+                            4,
+                            self.product_trans_po_2.id,
+                        ),
+                    ]
+                }
+            )
+        )
+        wizard.onchange_service_product_ids()
+        shipment_plan = wizard.action_confirm()
+        self.assertEqual(shipment_plan.trans_po_count, 1)
+        self.assertEqual(shipment_plan.trans_pr_count, 1)

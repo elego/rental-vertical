@@ -10,26 +10,33 @@ logger = logging.getLogger(__name__)
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    dangerous_goods = fields.Boolean("Dangerous Goods")
+    dangerous_goods = fields.Boolean(
+        string="Dangerous Goods",
+    )
 
     trans_pr_needed = fields.Boolean(
-        "Transport Request",
+        string="Transport Request",
         compute="_compute_trans_pr_needed",
-        help="If set, the salesperson can create a transport request or call for tender for the chosen products in order to find a carrier delivering it.",
+        help="If set, the salesperson can create a transport "
+             "request or call for tender for the chosen products "
+             "in order to find a carrier delivering it.",
     )
+
     trans_shipment_plan_id = fields.Many2one(
-        "shipment.plan",
-        "Shipment Plan",
+        comodel_name="shipment.plan",
+        string="Shipment Plan",
         ondelete="set null",
         copy=False,
     )
+
     trans_requisition_line_ids = fields.Many2many(
-        "purchase.requisition.line",
+        comodel_name="purchase.requisition.line",
         related="trans_shipment_plan_id.trans_requisition_line_ids",
         string="Transfer Requisition Line",
     )
+
     trans_purchase_line_ids = fields.Many2many(
-        "purchase.order.line",
+        comodel_name="purchase.order.line",
         related="trans_shipment_plan_id.trans_purchase_line_ids",
         string="Transfer Purchase Line",
     )
@@ -48,22 +55,18 @@ class SaleOrderLine(models.Model):
     def get_transport_details(self):
         order = self[0].order_id
         res = ""
-        src_address = self.env.user.company_id.partner_id._display_address(
-            without_company=True
-        )
-        dest_address = order.partner_shipping_id._display_address(
-            without_company=True
-        )
-        res += "Incoterm: %s \n" % (order.incoterm.name)
+        src_address = self.env.user.company_id.partner_id._display_address()
+        dest_address = order.partner_shipping_id._display_address()
+        res += _("Incoterm: %s \n") % order.incoterm.name
         for line in self:
             res += "%s: %s %s \n" % (
                 line.product_id.name,
                 line.product_uom_qty,
                 line.product_id.uom_id.name,
             )
-        res += "Date: %s \n" % (order.date_order)
-        res += "Source Address: \n %s \n\n" % (src_address)
-        res += "Destination Address: \n %s \n\n" % (dest_address)
+        res += _("Date: %s \n") % order.date_order
+        res += _("Source Address: \n %s \n\n") % src_address
+        res += _("Destination Address: \n %s \n\n") % dest_address
         return res
 
     def _prepare_procurement_values(self, group_id=False):
@@ -80,39 +83,57 @@ class SaleOrder(models.Model):
         return (
             self.env["ir.config_parameter"]
             .sudo()
-            .get_param("sale.sale_transport_cost_type")
+            .get_param("stock.transport_cost_type")
         )
 
     trans_pr_needed = fields.Boolean(
-        "Transport Request",
+        string="Transport Request",
         compute="_compute_trans_pr_needed",
-        help="If set, the salesperson can create a transport request or call for tender for the chosen products in order to find a carrier delivering it.",
+        help="If set, the salesperson can create a transport "
+             "request or call for tender for the chosen products "
+             "in order to find a carrier delivering it.",
     )
+
     transport_cost_type = fields.Selection(
-        [("single", "Single Position"), ("multi", "Multi Positions")],
+        selection=[
+            ("single", "Single Position"),
+            ("multi", "Multi Positions")
+        ],
         default=_default_transport_cost_type,
-        help="Choosing the cost type 'Multi Positions’ the transport purchase order or call for tender can contain several lines for the different costs related to the transport, e.g. the transport costs itself and several charges. You can define the appropriate transport services when creating a new transport request.\nChoosing the cost type 'Single Position’ the transport request will only consist of one line with all costs.",
+        help="Choosing the cost type 'Multi Positions' the transport "
+             "purchase order or call for tender can contain several lines "
+             "for the different costs related to the transport, "
+             "e.g. the transport costs itself and several charges. "
+             "You can define the appropriate transport services when "
+             "creating a new transport request.\n"
+             "Choosing the cost type 'Single Position’ the transport "
+             "request will only consist of one line with all costs.",
     )
+
     trans_shipment_plan_ids = fields.Many2many(
-        "shipment.plan",
+        comodel_name="shipment.plan",
         compute="_compute_shipment_plans",
     )
+
     trans_pr_ids = fields.One2many(
-        "purchase.requisition",
+        comodel_name="purchase.requisition",
         string="Tenders",
         compute="_compute_shipment_plans",
     )
+
     trans_po_ids = fields.One2many(
-        "purchase.order",
+        comodel_name="purchase.order",
         string="RFQs",
         compute="_compute_shipment_plans",
     )
     trans_shipment_plan_count = fields.Integer(
         compute="_compute_shipment_plans",
     )
+
     trans_pr_count = fields.Integer(
         compute="_compute_shipment_plans",
     )
+
     trans_po_count = fields.Integer(
         compute="_compute_shipment_plans",
     )
@@ -126,9 +147,9 @@ class SaleOrder(models.Model):
     )
     def _compute_shipment_plans(self):
         for order in self:
-            trans_sps = self.env["shipment.plan"].browse()
-            trans_prs = self.env["purchase.requisition"].browse()
-            trans_pos = self.env["purchase.order"].browse()
+            trans_sps = self.env["shipment.plan"]
+            trans_prs = self.env["purchase.requisition"]
+            trans_pos = self.env["purchase.order"]
             for line in order.order_line:
                 trans_sps |= line.trans_shipment_plan_id
                 for pr_line in line.trans_shipment_plan_id.trans_requisition_line_ids:
@@ -164,7 +185,7 @@ class SaleOrder(models.Model):
         if price_unit == 0:
             raise exceptions.UserError(
                 _(
-                    "You need to select a transport purchase RFQ for this sale order first"
+                    "You need to select a transport purchase RFQ for this sale order first."
                 )
             )
         if self.transport_cost_type == "single":
@@ -179,7 +200,7 @@ class SaleOrder(models.Model):
             product_id = (
                 self.env["ir.config_parameter"]
                 .sudo()
-                .get_param("sale.transport_cost_product_id")
+                .get_param("stock.transport_cost_product_id")
             )
             product_transport_cost = self.env["product.product"].browse(int(product_id))
             self.write(

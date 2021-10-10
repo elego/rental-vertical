@@ -3,14 +3,13 @@
     <data>
 
         <record id="res_config_settings_view_form" model="ir.ui.view">
-            <field name="name">res.config.settings.view.form.inherit.sale</field>
             <field name="model">res.config.settings</field>
             <field name="priority" eval="10"/>
-            <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+            <field name="inherit_id" ref="stock.res_config_settings_view_form" />
             <field name="arch" type="xml">
-                    <div class="app_settings_block o_not_app" data-key="sale_management" position="inside">
+                    <div class="app_settings_block" data-key="stock" position="inside">
                         <h2>Transport</h2>
-                        <div class="row mt16 o_settings_container" name="rental_setting_container">
+                        <div class="row mt16 o_settings_container" name="shipment_plan_setting_container">
                             <div class="col-12 col-lg-6 o_setting_box">
                                 <div class="o_setting_left_pane">
                                 </div>

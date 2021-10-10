@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-29 11:15+0000\n"
-"PO-Revision-Date: 2021-07-29 11:15+0000\n"
+"POT-Creation-Date: 2021-07-29 11:14+0000\n"
+"PO-Revision-Date: 2021-07-29 11:14+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 #. module: shipment_plan_rental
 #: model:ir.model,name:shipment_plan_rental.model_create_sale_trans_request
 msgid "Create Transport Purchase Request for Sale Order"
-msgstr "Transportanfrage für Aufträge erstellen"
+msgstr ""
 
 #. module: shipment_plan_rental
 #: code:addons/shipment_plan_rental/models/sale.py:53
@@ -26,8 +26,7 @@ msgstr "Transportanfrage für Aufträge erstellen"
 #, python-format
 msgid "Date: %s \n"
 ""
-msgstr "Datum: %s \n"
-""
+msgstr ""
 
 #. module: shipment_plan_rental
 #: code:addons/shipment_plan_rental/models/sale.py:55
@@ -37,108 +36,104 @@ msgid "Destination Address: \n"
 " %s \n"
 "\n"
 ""
-msgstr "Zieladresse: \n"
-" %s \n"
-"\n"
-""
+msgstr ""
 
 #. module: shipment_plan_rental
 #: code:addons/shipment_plan_rental/models/shipment_plan.py:26
 #, python-format
 msgid "Inbound transport for %s"
-msgstr "Inbound-Transport für %s"
+msgstr ""
 
 #. module: shipment_plan_rental
 #: code:addons/shipment_plan_rental/models/sale.py:38
 #, python-format
 msgid "Incoterm: %s \n"
 ""
-msgstr "Lieferbedingung: %s \n"
-""
+msgstr ""
 
 #. module: shipment_plan_rental
 #: selection:shipment.plan,plan_type:0
 msgid "Internal Picking"
-msgstr "Interne Lieferung"
+msgstr ""
 
 #. module: shipment_plan_rental
 #: code:addons/shipment_plan_rental/wizard/create_transport_request.py:61
 #: code:addons/shipment_plan_rental/wizard/create_transport_request.py:77
 #, python-format
 msgid "No suitable shipment plan found."
-msgstr "Es wurde kein passender Shipment-Plan gefunden."
+msgstr ""
 
 #. module: shipment_plan_rental
 #: model:ir.model.fields,field_description:shipment_plan_rental.field_shipment_plan__origin_return_sale_line_ids
 msgid "Origin Return Sale Order Lines"
-msgstr "Ursprung für Rücklieferung (Auftragszeile)"
+msgstr ""
 
 #. module: shipment_plan_rental
 #: model:ir.model,name:shipment_plan_rental.model_create_sale_trans_origin_line
 msgid "Original Sale Order Line"
-msgstr "Ursprung (Auftragszeile)"
+msgstr ""
 
 #. module: shipment_plan_rental
 #: code:addons/shipment_plan_rental/models/shipment_plan.py:27
 #, python-format
 msgid "Outbound transport for %s"
-msgstr "Outbound-Transport für %s"
+msgstr ""
 
 #. module: shipment_plan_rental
 #: model:ir.model,name:shipment_plan_rental.model_product_product
 msgid "Product"
-msgstr "Produkt"
+msgstr ""
 
 #. module: shipment_plan_rental
 #: selection:shipment.plan,plan_type:0
 msgid "Rental"
-msgstr "Vermietung"
+msgstr ""
 
 #. module: shipment_plan_rental
 #: model:ir.ui.menu,name:shipment_plan_rental.menu_requisition
 msgid "Requisitions"
-msgstr "Ausschreibungen"
+msgstr ""
 
 #. module: shipment_plan_rental
 #: model:ir.model.fields,field_description:shipment_plan_rental.field_create_sale_trans_origin_line__trans_return_shipment_plan_id
 msgid "Return Shipment Plan"
-msgstr "Rückkehr-Shipment-Plan"
+msgstr ""
 
 #. module: shipment_plan_rental
 #: code:addons/shipment_plan_rental/wizard/create_transport_request.py:31
 #, python-format
 msgid "Return Shipment Plan for %s"
-msgstr "Rückkehr-Shipment-Plan für %s"
+msgstr ""
 
 #. module: shipment_plan_rental
 #: selection:shipment.plan,plan_type:0
 msgid "Sale"
-msgstr "Verkauf"
+msgstr ""
 
 #. module: shipment_plan_rental
 #: model:ir.model,name:shipment_plan_rental.model_sale_order
 msgid "Sale Order"
-msgstr "Verkaufsauftrag"
+msgstr ""
 
 #. module: shipment_plan_rental
 #: model:ir.model,name:shipment_plan_rental.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Auftragszeile"
+msgstr ""
 
 #. module: shipment_plan_rental
 #: model:ir.model,name:shipment_plan_rental.model_shipment_plan
 msgid "Shipment Plan"
-msgstr "Shipment-Plan"
+msgstr ""
 
 #. module: shipment_plan_rental
 #: model:ir.model.fields,field_description:shipment_plan_rental.field_sale_order_line__trans_return_shipment_plan_id
 msgid "Shipment Plan (Return)"
-msgstr "Shipment-Plan (Rücklieferung)"
+msgstr ""
 
 #. module: shipment_plan_rental
 #: model:ir.ui.menu,name:shipment_plan_rental.menu_rental_action_shipment
 msgid "Shipment Plans"
-msgstr "Shipment-Pläne"
+msgstr ""
 
 #. module: shipment_plan_rental
 #: code:addons/shipment_plan_rental/models/sale.py:54
@@ -148,28 +143,25 @@ msgid "Source Address: \n"
 " %s \n"
 "\n"
 ""
-msgstr "Startadresse: \n"
-" %s \n"
-"\n"
-""
+msgstr ""
 
 #. module: shipment_plan_rental
 #: model:ir.model,name:shipment_plan_rental.model_stock_rule
 msgid "Stock Rule"
-msgstr "Lagerregel"
+msgstr ""
 
 #. module: shipment_plan_rental
 #: model:ir.model.fields,field_description:shipment_plan_rental.field_sale_order_line__trans_return_purchase_line_ids
 msgid "Transfer Purchase Line (Return)"
-msgstr "Transport-Bestellzeile (Rücklieferung)"
+msgstr ""
 
 #. module: shipment_plan_rental
 #: model:ir.model.fields,field_description:shipment_plan_rental.field_sale_order_line__trans_return_requisition_line_ids
 msgid "Transfer Requisition Line (Return)"
-msgstr "Transport-Ausschreibungszeile (Rücklieferung)"
+msgstr ""
 
 #. module: shipment_plan_rental
 #: model:ir.model.fields,field_description:shipment_plan_rental.field_shipment_plan__plan_type
 msgid "Type"
-msgstr "Typ"
+msgstr ""
 

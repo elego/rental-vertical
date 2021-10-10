@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem name="Transport Requisition"
-        id="menu_trans_requisition"
+    <menuitem name="Requisitions"
+        id="menu_requisition"
         parent="rental_purchase_order_type.menu_vendor_requests"
         action="purchase_requisition.action_purchase_requisition"
         sequence="2" />

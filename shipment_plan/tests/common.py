@@ -9,23 +9,16 @@ from odoo import fields, exceptions
 class ShipmentPlanCommon(common.TransactionCase):
     def setUp(self):
         super().setUp()
-        self.rental_sale_type = self.env.ref("rental_base.rental_sale_type")
         self.category_all = self.env.ref("product.product_category_all")
         self.uom_unit = self.env.ref("uom.product_uom_unit")
         self.uom_day = self.env.ref("uom.product_uom_day")
         self.today = fields.Date.from_string(fields.Date.today())
         self.tomorrow = self.today + relativedelta(days=1)
+        self.date_one_month_later = self.today + relativedelta(months=1)
         # Create Transport Product
         ProductObj = self.env["product.product"]
         SupplierObj = self.env["product.supplierinfo"]
         PartnerObj = self.env["res.partner"]
-        self.incotermsA = self.env["account.incoterms"].create(
-            {
-                "name": "Incoterm External Shipment",
-                "trans_pr_needed": True,
-                "code": "ext_shipment",
-            }
-        )
         self.partnerA = PartnerObj.create(
             {
                 "name": "Partner A",
@@ -94,10 +87,9 @@ class ShipmentPlanCommon(common.TransactionCase):
                 "transport_service_type": "pr",
             }
         )
-
-        self.today = fields.Date.from_string(fields.Date.today())
-        self.date_one_month_later = self.today + relativedelta(months=1)
         self.from_address = PartnerObj.create(
             {"name": "From Address", "type": "delivery"}
         )
-        self.to_address = PartnerObj.create({"name": "To Address", "type": "delivery"})
+        self.to_address = PartnerObj.create(
+            {"name": "To Address", "type": "delivery"}
+        )
