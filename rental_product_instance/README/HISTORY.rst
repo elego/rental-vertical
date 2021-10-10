@@ -2,81 +2,82 @@
 Changelog
 ---------
 
-- a3dbbc3 2021-01-15 13:20:08 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_4041_blp963_filter_instance_state_v12: addons-rental-vertical remotes/origin/feature_4041_blp963_filter_instance_state_v12 - 3d72d4dce46aade56e9ec43c2bad5722c82ccdbc [IMP] add unittest for module rental_timeline_product_instance (issue 4041)
-- 3d72d4d 2021-01-14 17:34:01 +0100 yweng@elegosoft.com  (origin/feature_4041_blp963_filter_instance_state_v12) [IMP] add unittest for module rental_timeline_product_instance (issue 4041)
-- 139b564 2021-01-14 16:04:18 +0100 yweng@elegosoft.com  [IMP] Refactoring of modules rental_product_instance and rental_timeline_product_instance (issue 4041)
-- df1ba55 2021-01-14 14:33:41 +0100 yweng@elegosoft.com  [IMP] add filter for field instance_state and fix the function _compute_instance_state (issue 4041)
-- bbd5cb2 2021-01-14 13:55:22 +0100 wagner@elegosoft.com  adapt gen-doc and update (issue #3613)
-- a35a62d 2020-12-22 22:59:30 +0100 kay.haeusler@elego.de  regenerate all de.po and \*.pot files; issue #4016
-- 83ed8f7 2020-12-22 18:06:08 +0100 wagner@elegosoft.com  all Python code reformatted by black code formatter (issue #4016)
-- 37ff1d6 2020-11-25 09:42:48 +0100 yweng@elegosoft.com  (origin/feature_3899_blp862_search_product_v12) [IMP] add translations
-- e12ce34 2020-11-17 19:28:23 +0100 yweng@elegosoft.com  [IMP] improve filter_domain for seaching on instance_serial_number_id and license_plate
-- c7e3b59 2020-11-06 09:59:46 +0100 wagner@elegosoft.com  regenerate doc from manifests (issue #3613)
-- 391ef2a 2020-10-28 20:59:58 +0100 wagner@elegosoft.com  add usage information for product sets and product packs; add configuration and usage information for rental_sale and extend gen-doc for configuration (issue #3613)
-- d39f57e 2020-10-28 20:18:47 +0100 wagner@elegosoft.com  add links to the index in README.md (issue #3613)
-- b1039c8 2020-10-28 17:39:27 +0100 wagner@elegosoft.com  add index generation and add index to README.md (issue #3613)
-- 363cb50 2020-10-28 16:59:43 +0100 wagner@elegosoft.com  change quotes in manifests of rental_forward_shipment_plan and rental_routing and add some draft information about routing; regenerate (issue #3613)
-- fb94de5 2020-10-28 16:20:59 +0100 wagner@elegosoft.com  add descriptions to rental_timeline modules and regenerate (issue #3613)
-- f1affe5 2020-10-28 12:45:28 +0100 wagner@elegosoft.com  regenerate doc (issue #3613)
-- 86e7c1a 2020-10-28 12:35:56 +0100 maria.sparenberg@elegosoft.com  issue #3613 add manifest description and usage for several rental modules
-- 5244748 2020-10-27 14:52:26 +0100 wagner@elegosoft.com  regenerate documentation and add README.rst files (issue #3339)
-- d02ea5d 2020-10-27 14:41:06 +0100 wagner@elegosoft.com  (tag: bp_rental_v12_integration-cep-849) update doc generation script (issue #3339)
-- 1674a05 2020-10-15 14:02:04 +0200 maria.sparenberg@elegosoft.com  (origin/feature_3641_blp831_appointment_v12) issue #3641 change field types for operating data
-- 10b5ea7 2020-10-13 17:12:33 +0200 maria.sparenberg@elegosoft.com  (origin/feature_3641_blp824_rental_product_instance_appointment_v12) issue #3641 fix calculation of next service appointment
-- 3ebccf6 2020-10-07 14:52:41 +0200 yweng@elegosoft.com  [IMP] product_instance_appointment (issue 3641)
-- 7580ae8 2020-10-05 22:19:25 +0200 wagner@elegosoft.com  (origin/fix_3884_blp819_fix_application_status_and_deps_v12, fix_3884_blp819_fix_application_status_and_deps_v12) set application to false for all modules except rental_base (issue #3884, issue #3339)
-- ad40ef4 2020-09-10 11:15:32 +0200 maria.sparenberg@elegosoft.com  issue #3641 format and update German translations for rental_product_instance
-- eb47576 2020-09-10 09:33:41 +0200 yweng@elegosoft.com  [IMP] Product Instance Appointment
-- abf3a98 2020-09-07 14:16:44 +0200 yweng@elegosoft.com  (origin/feature_3641_blp753_instance_operating_data_v12) [IMP] implements new model instance.operating.data to save the instance condition kg / hour (Issue 3641)
-- f56f113 2020-08-04 14:06:40 +0200 yweng@elegosoft.com  (origin/feature_3817_blp721_action_view_product_tasks_v12) [IMP] set readonly for field instance_current_location_id of product.product
-- d7ac5f5 2020-07-14 10:48:10 +0200 yweng@elegosoft.com  (origin/defect_3771_blp700_action_view_po_v12) [FIX] View Definition of button action_view_po for product.product
-- eee2472 2020-06-26 19:24:51 +0200 wagner@elegosoft.com  (origin/fix_3339_blp669_extend_documentation_v12, origin/fix_3339_blp666_extend_documentation_v12, fix_3339_blp669_extend_documentation_v12, fix_3339_blp666_extend_documentation_v12) update documentation (issue #3339)
-- d244988 2020-06-10 17:32:49 +0200 yweng@elegosoft.com  [IMP] set invisible for field instance_serial_number_id and Pricelist Items before creating the product
-- 57b29fa 2020-05-24 12:58:49 +0200 wagner@elegosoft.com  (origin/fix_3339_blp622_extend_documentation_v12, origin/fix_3339_bl616_extend_documentation_v12, fix_3339_blp622_extend_documentation_v12, fix_3339_bl616_extend_documentation_v12) update documentation for fix release (issue #3339)
-- 94dc79c 2020-05-16 18:10:44 +0200 wagner@elegosoft.com  (origin/fix_3339_blp559_extend_documentation_v12, fix_3339_blp559_extend_documentation_v12) update module documentation (issue #3339)
-- 89adaaf 2020-05-16 14:54:03 +0200 wagner@elegosoft.com  fixup categories and regenerate documentation (issue #3339)
-- 134218b 2020-05-03 18:34:51 +0200 wagner@elegosoft.com  (origin/feature_3339_blp541_update_doc_v12, feature_3339_blp541_update_doc_v12) unify license and author and regenerate documentation (issue #3613, issue #3339)
-- d47c29f 2020-04-28 12:02:24 +0200 cpatel@elegosoft.com  (origin/feature_3615_blp503_test_rental_workflows_v12) [IMP] moved product demo data from rental_product_instance to test_rental_workflows module
-- 795b1b6 2020-04-24 20:58:26 +0200 wagner@elegosoft.com  (tag: bp_rental_v12_integration-cep-521, tag: bp_rental_v12_integration-cep-520, tag: bp_rental_v12_integration-cep-519, tag: bp_rental_v12_integration-cep-518, tag: bp_rental_v12_integration-cep-517, tag: bp_rental_v12_integration-cep-516, tag: bp_rental_v12_integration-cep-514, tag: bp_rental_v12_integration-cep-513, tag: bp_rental_v12_integration-cep-512, tag: bp_rental_v12_integration-cep-511, tag: bp_rental_v12_integration-cep-510, tag: bp_rental_v12_integration-cep-509, tag: bp_rental_v12_integration-cep-508, tag: bp_rental_v12_integration-cep-507, tag: bp_rental_v12_integration-cep-506, tag: bp_rental_v12_integration-cep-505, tag: bp_humanilog_v12_integration-cep-322, tag: bp_humanilog_v12_integration-cep-321, tag: bp_humanilog_v12_integration-cep-320, tag: baseline_rental-vertical_v12_swrent_daily_build-503, origin/rental_v12_integration-cep-503, rental_v12_integration-cep-503) regenerate documentation (issue #3613)
-- f0589c7 2020-04-22 10:28:00 +0200 cpatel@elegosoft.com  (origin/feature_3279_blp488_rental_product_todo_points_v12) [IMP] product form changes, issue#3279
-- fdcbbbc 2020-04-14 18:55:21 +0200 cpatel@elegosoft.com  [IMP] add stock for demo product instance data
-- 7fac932 2020-04-13 14:13:09 +0200 wagner@elegosoft.com  (origin/fix_3339_blp455_extend_documentation_v12, fix_3339_blp455_extend_documentation_v12) regenerate documentation (issue #3339)
-- 2da340d 2020-04-13 14:11:24 +0200 wagner@elegosoft.com  change license for rental-vertical to AGPL (issue #3339)
-- 6d3410b 2020-04-13 13:28:20 +0200 wagner@elegosoft.com  regenerate documentation (issue #3339)
-- 0bab92d 2020-04-09 12:41:12 +0200 wagner@elegosoft.com  (origin/fix_3339_blp355_extend_documentation_v12, fix_3339_blp355_extend_documentation_v12) update/regenerate addon documentation (issue #3339)
-- 73d3d13 2020-04-08 21:09:53 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_3615_blp435_test_rental_workflows_v12: addons-rental-vertical remotes/origin/feature_3615_blp435_test_rental_workflows_v12 - 871f83eb2d53a5a9dfc5f486aaa5acee6108d3fa [ADD] new module test_rental_workflows to manage integration tests
-- 871f83e 2020-04-08 14:52:58 +0200 cpatel@elegosoft.com  (origin/feature_3615_blp435_test_rental_workflows_v12) [ADD] new module test_rental_workflows to manage integration tests
-- 28dc119 2020-04-07 13:44:38 +0200 yweng@elegosoft.com  (origin/feature_3293_blp435_sale_transport_purchase_request_v12) [IMP] improves _name_search function of product to search product with serial number and license_plate
-- f1a193e 2020-03-27 12:29:28 +0100 cpatel@elegosoft.com  (origin/feature_3279_blp420_rental_product_todo_points_v12) [IMP] german translation rental_base,rental_product_instance, ticket#3286
-- fc0321b 2020-03-27 10:50:44 +0100 cpatel@elegosoft.com  [IMP] todo points rental_base and rental_product_instance , ticket#3286
-- 197443e 2020-03-22 16:48:33 +0100 yweng@elegosoft.com  [IMP] improves form-, tree- and search-view of products (issue 3593)
-- 3119cfd 2020-03-18 10:07:48 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_3339_blp384_extend_documentation_v12: addons-rental-vertical remotes/origin/fix_3339_blp384_extend_documentation_v12 - b49c01dabbc653a42b77f82bd3c44a8759721359 regenerate doc (issue #3339)
-- f883889 2020-03-16 22:31:35 +0100 yweng@elegosoft.com  [IMP] improves unittests of module rental_product_instance
-- b49c01d 2020-03-15 10:12:53 +0100 wagner@elegosoft.com  (origin/fix_3339_blp384_extend_documentation_v12) regenerate doc (issue #3339)
-- cea0e94 2020-03-13 20:38:19 +0100 wagner@elegosoft.com  update documentation to build 380 (issue #3339)
-- 977d224 2020-03-13 10:58:32 +0100 cpatel@elegosoft.com  (origin/feature_3279_blp371_todo_points_v12) [IMP] todo points issue # 3279
-- 705a197 2020-03-12 23:49:11 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_3576_blp355_rental_product_pack_v12: addons-rental-vertical remotes/origin/feature_3576_blp355_rental_product_pack_v12 - b367d1778430938c768f5ab84bd8e543f34f113f [IMP] Unittests of module rental_product_instance
-- b367d17 2020-03-11 22:02:43 +0100 yweng@elegosoft.com  (origin/feature_3576_blp355_rental_product_pack_v12) [IMP] Unittests of module rental_product_instance
-- a0aa278 2020-03-11 18:13:01 +0100 kay.haeusler@elego.de  (origin/feature_3477_blp355_rental_product_instance_v12) code formating; issue #3477
-- e371276 2020-03-10 18:14:07 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_3339_blp343_extend_documentation_v12: addons-rental-vertical remotes/origin/fix_3339_blp343_extend_documentation_v12 - 9576b54fbb0cbcbffb804587fd722df8a4057da0 allow cli overwrite of module arguments; regenerate doc for rental_product_instance_appointment rental_product_variant rental_offday rental_invoice rental_contract_month rental_contract (issue #3339)
-- c42b63f 2020-03-10 18:14:00 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_3409_blp343_rental_timeline_repair_v12: addons-rental-vertical remotes/origin/feature_3409_blp343_rental_timeline_repair_v12 - e21ca952a0db68ffd537b070f1d516f1c0fb50ba move the constrain _check_date from rental_product_instance to rental_timeline_product_instance; issue #3409
-- e21ca95 2020-03-09 18:13:39 +0100 kay.haeusler@elego.de  (origin/feature_3409_blp343_rental_timeline_repair_v12) move the constrain _check_date from rental_product_instance to rental_timeline_product_instance; issue #3409
-- 2907950 2020-03-09 10:26:14 +0100 cpatel@elegosoft.com  (origin/feature_3279_blp343_todo_points_v12) [IMP] todo points    1. move 'additional info' page behind 'general info' (so it is the second tab)    3. fix the order of smartbuttons       remove 'on hand' smartbutton if product ist product instance       remove 'forecastes' smartbutton if product ist product instance       remove 'routes' smartbutton if product ist product instance       remove 'purchased' smartbutton if product ist product instance       remove 'sold' smartbutton if product ist product instance    4. fix exception after clicking on smartbutton 'sale orders'       ValueError: External ID not found in the system: rental_base.action_normal_orders    5. fix problem that the invoice form view cannot be opend after clicking on smartbutton 'invoices'
-- 804dc44 2020-03-07 21:06:12 +0100 wagner@elegosoft.com  regenerate module documentation (issue #3339)
-- 6fd1771 2020-03-06 20:32:25 +0100 kay.haeusler@elego.de  (origin/feature_3462_blp333_renaming_addons_v12) rename and split some addons; issue #3462
-- 4c76ef2 2020-03-04 16:56:16 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_3339_blp311_extend_documentation_v12: addons-rental-vertical remotes/origin/fix_3339_blp311_extend_documentation_v12 - 7dde7fa1ec109919795e59198feb24fc96fcfeb1 add changelogs in HISTORY.rst and some minor improvements (issue #3339)
-- bf364e7 2020-03-03 19:35:44 +0100 kay.haeusler@elego.de  (origin/feature_3296_blp311_add_fields_to_search_v12) add some fields to the search view; issue #3296
-- 7dde7fa 2020-03-03 00:19:35 +0100 wagner@elegosoft.com  (origin/fix_3339_blp311_extend_documentation_v12, fix_3339_blp311_extend_documentation_v12) add changelogs in HISTORY.rst and some minor improvements (issue #3339)
-- 467665c 2020-03-01 15:50:45 +0100 wagner@elegosoft.com  (origin/feature_3339_blp297_add_some_module_descriptions_v12, feature_3339_blp297_add_some_module_descriptions_v12) add some generated reST and HTML documentation (issue #3339)
-- ec77333 2020-03-01 00:11:54 +0100 wagner@elegosoft.com  fix some minor mistakes (issue #3339)
-- 1db4760 2020-02-29 23:48:15 +0100 wagner@elegosoft.com  add some more simple module decsriptions (issue #3339)
-- 6965ed1 2020-02-29 22:46:34 +0100 wagner@elegosoft.com  fix some mistakes in author and license, make summaries one line, add some descriptions (issue #3339)
-- b314b6c 2020-02-27 23:00:29 +0100 kay.haeusler@elego.de  show repair and transport orders in the timeline view; issue #3409
-- 41ec0c4 2020-02-12 17:15:20 +0100 yweng@elegosoft.com  [IMP] redefine fields for instance current condition
-- 5e271b8 2020-02-11 13:01:07 +0100 maria.sparenberg@elegosoft.com  issue #3279 add German translations for rental_product_instance
-- 2f11b55 2020-01-29 17:46:18 +0100 yweng@elegosoft.com  [IMP] improves form view of products
-- b42fa76 2020-01-28 17:08:41 +0100 yweng@elegosoft.com  [IMP] add some product instance special fields
-- 94e76bb 2020-01-23 13:08:03 +0100 yweng@elegosoft.com  [IMP] set liscense, copyrights and author
-- b2e6d5c 2020-01-21 20:51:21 +0100 yweng@elegosoft.com  (origin/feature_3304_blp151_refactoring_swrent_product_extension_v12) [IMP] Add neu Module rental_base, rental_product_pack and Refactoring of module sale_rental_menu (deprecated)
-- 676c70b 2020-01-20 13:40:34 +0100 yweng@elegosoft.com  [IMP] Refactoring of module swrent_product_extension
+- dd988a2f 2021-06-09 12:42:47 +0200 wagner@elegosoft.com  update documentation (issue #3613)
+- a3dbbc3e 2021-01-15 13:20:08 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_4041_blp963_filter_instance_state_v12: addons-rental-vertical remotes/origin/feature_4041_blp963_filter_instance_state_v12 - 3d72d4dce46aade56e9ec43c2bad5722c82ccdbc [IMP] add unittest for module rental_timeline_product_instance (issue 4041)
+- 3d72d4dc 2021-01-14 17:34:01 +0100 yweng@elegosoft.com  (origin/feature_4041_blp963_filter_instance_state_v12) [IMP] add unittest for module rental_timeline_product_instance (issue 4041)
+- 139b5643 2021-01-14 16:04:18 +0100 yweng@elegosoft.com  [IMP] Refactoring of modules rental_product_instance and rental_timeline_product_instance (issue 4041)
+- df1ba55f 2021-01-14 14:33:41 +0100 yweng@elegosoft.com  [IMP] add filter for field instance_state and fix the function _compute_instance_state (issue 4041)
+- bbd5cb25 2021-01-14 13:55:22 +0100 wagner@elegosoft.com  adapt gen-doc and update (issue #3613)
+- a35a62d4 2020-12-22 22:59:30 +0100 kay.haeusler@elego.de  regenerate all de.po and \*.pot files; issue #4016
+- 83ed8f72 2020-12-22 18:06:08 +0100 wagner@elegosoft.com  all Python code reformatted by black code formatter (issue #4016)
+- 37ff1d69 2020-11-25 09:42:48 +0100 yweng@elegosoft.com  (origin/feature_3899_blp862_search_product_v12) [IMP] add translations
+- e12ce34c 2020-11-17 19:28:23 +0100 yweng@elegosoft.com  [IMP] improve filter_domain for seaching on instance_serial_number_id and license_plate
+- c7e3b592 2020-11-06 09:59:46 +0100 wagner@elegosoft.com  regenerate doc from manifests (issue #3613)
+- 391ef2af 2020-10-28 20:59:58 +0100 wagner@elegosoft.com  add usage information for product sets and product packs; add configuration and usage information for rental_sale and extend gen-doc for configuration (issue #3613)
+- d39f57e8 2020-10-28 20:18:47 +0100 wagner@elegosoft.com  add links to the index in README.md (issue #3613)
+- b1039c8c 2020-10-28 17:39:27 +0100 wagner@elegosoft.com  add index generation and add index to README.md (issue #3613)
+- 363cb502 2020-10-28 16:59:43 +0100 wagner@elegosoft.com  change quotes in manifests of rental_forward_shipment_plan and rental_routing and add some draft information about routing; regenerate (issue #3613)
+- fb94de5c 2020-10-28 16:20:59 +0100 wagner@elegosoft.com  add descriptions to rental_timeline modules and regenerate (issue #3613)
+- f1affe52 2020-10-28 12:45:28 +0100 wagner@elegosoft.com  regenerate doc (issue #3613)
+- 86e7c1a6 2020-10-28 12:35:56 +0100 maria.sparenberg@elegosoft.com  issue #3613 add manifest description and usage for several rental modules
+- 5244748e 2020-10-27 14:52:26 +0100 wagner@elegosoft.com  regenerate documentation and add README.rst files (issue #3339)
+- d02ea5d8 2020-10-27 14:41:06 +0100 wagner@elegosoft.com  (tag: bp_rental_v12_integration-cep-849) update doc generation script (issue #3339)
+- 1674a059 2020-10-15 14:02:04 +0200 maria.sparenberg@elegosoft.com  (origin/feature_3641_blp831_appointment_v12) issue #3641 change field types for operating data
+- 10b5ea79 2020-10-13 17:12:33 +0200 maria.sparenberg@elegosoft.com  (origin/feature_3641_blp824_rental_product_instance_appointment_v12) issue #3641 fix calculation of next service appointment
+- 3ebccf62 2020-10-07 14:52:41 +0200 yweng@elegosoft.com  [IMP] product_instance_appointment (issue 3641)
+- 7580ae89 2020-10-05 22:19:25 +0200 wagner@elegosoft.com  (origin/fix_3884_blp819_fix_application_status_and_deps_v12, fix_3884_blp819_fix_application_status_and_deps_v12) set application to false for all modules except rental_base (issue #3884, issue #3339)
+- ad40ef41 2020-09-10 11:15:32 +0200 maria.sparenberg@elegosoft.com  issue #3641 format and update German translations for rental_product_instance
+- eb475765 2020-09-10 09:33:41 +0200 yweng@elegosoft.com  [IMP] Product Instance Appointment
+- abf3a986 2020-09-07 14:16:44 +0200 yweng@elegosoft.com  (origin/feature_3641_blp753_instance_operating_data_v12) [IMP] implements new model instance.operating.data to save the instance condition kg / hour (Issue 3641)
+- f56f113e 2020-08-04 14:06:40 +0200 yweng@elegosoft.com  (origin/feature_3817_blp721_action_view_product_tasks_v12) [IMP] set readonly for field instance_current_location_id of product.product
+- d7ac5f51 2020-07-14 10:48:10 +0200 yweng@elegosoft.com  (origin/defect_3771_blp700_action_view_po_v12) [FIX] View Definition of button action_view_po for product.product
+- eee2472b 2020-06-26 19:24:51 +0200 wagner@elegosoft.com  (origin/fix_3339_blp669_extend_documentation_v12, origin/fix_3339_blp666_extend_documentation_v12, fix_3339_blp669_extend_documentation_v12, fix_3339_blp666_extend_documentation_v12) update documentation (issue #3339)
+- d244988c 2020-06-10 17:32:49 +0200 yweng@elegosoft.com  [IMP] set invisible for field instance_serial_number_id and Pricelist Items before creating the product
+- 57b29fa1 2020-05-24 12:58:49 +0200 wagner@elegosoft.com  (origin/fix_3339_blp622_extend_documentation_v12, origin/fix_3339_bl616_extend_documentation_v12, fix_3339_blp622_extend_documentation_v12, fix_3339_bl616_extend_documentation_v12) update documentation for fix release (issue #3339)
+- 94dc79ca 2020-05-16 18:10:44 +0200 wagner@elegosoft.com  (origin/fix_3339_blp559_extend_documentation_v12, fix_3339_blp559_extend_documentation_v12) update module documentation (issue #3339)
+- 89adaaf3 2020-05-16 14:54:03 +0200 wagner@elegosoft.com  fixup categories and regenerate documentation (issue #3339)
+- 134218b1 2020-05-03 18:34:51 +0200 wagner@elegosoft.com  (origin/feature_3339_blp541_update_doc_v12, feature_3339_blp541_update_doc_v12) unify license and author and regenerate documentation (issue #3613, issue #3339)
+- d47c29fb 2020-04-28 12:02:24 +0200 cpatel@elegosoft.com  (origin/feature_3615_blp503_test_rental_workflows_v12) [IMP] moved product demo data from rental_product_instance to test_rental_workflows module
+- 795b1b6a 2020-04-24 20:58:26 +0200 wagner@elegosoft.com  (tag: bp_rental_v12_integration-cep-521, tag: bp_rental_v12_integration-cep-520, tag: bp_rental_v12_integration-cep-519, tag: bp_rental_v12_integration-cep-518, tag: bp_rental_v12_integration-cep-517, tag: bp_rental_v12_integration-cep-516, tag: bp_rental_v12_integration-cep-514, tag: bp_rental_v12_integration-cep-513, tag: bp_rental_v12_integration-cep-512, tag: bp_rental_v12_integration-cep-511, tag: bp_rental_v12_integration-cep-510, tag: bp_rental_v12_integration-cep-509, tag: bp_rental_v12_integration-cep-508, tag: bp_rental_v12_integration-cep-507, tag: bp_rental_v12_integration-cep-506, tag: bp_rental_v12_integration-cep-505, tag: bp_humanilog_v12_integration-cep-322, tag: bp_humanilog_v12_integration-cep-321, tag: bp_humanilog_v12_integration-cep-320, tag: baseline_rental-vertical_v12_swrent_daily_build-503, origin/rental_v12_integration-cep-503, rental_v12_integration-cep-503) regenerate documentation (issue #3613)
+- f0589c73 2020-04-22 10:28:00 +0200 cpatel@elegosoft.com  (origin/feature_3279_blp488_rental_product_todo_points_v12) [IMP] product form changes, issue#3279
+- fdcbbbcf 2020-04-14 18:55:21 +0200 cpatel@elegosoft.com  [IMP] add stock for demo product instance data
+- 7fac932a 2020-04-13 14:13:09 +0200 wagner@elegosoft.com  (origin/fix_3339_blp455_extend_documentation_v12, fix_3339_blp455_extend_documentation_v12) regenerate documentation (issue #3339)
+- 2da340dc 2020-04-13 14:11:24 +0200 wagner@elegosoft.com  change license for rental-vertical to AGPL (issue #3339)
+- 6d3410b3 2020-04-13 13:28:20 +0200 wagner@elegosoft.com  regenerate documentation (issue #3339)
+- 0bab92d2 2020-04-09 12:41:12 +0200 wagner@elegosoft.com  (origin/fix_3339_blp355_extend_documentation_v12, fix_3339_blp355_extend_documentation_v12) update/regenerate addon documentation (issue #3339)
+- 73d3d137 2020-04-08 21:09:53 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_3615_blp435_test_rental_workflows_v12: addons-rental-vertical remotes/origin/feature_3615_blp435_test_rental_workflows_v12 - 871f83eb2d53a5a9dfc5f486aaa5acee6108d3fa [ADD] new module test_rental_workflows to manage integration tests
+- 871f83eb 2020-04-08 14:52:58 +0200 cpatel@elegosoft.com  (origin/feature_3615_blp435_test_rental_workflows_v12) [ADD] new module test_rental_workflows to manage integration tests
+- 28dc1195 2020-04-07 13:44:38 +0200 yweng@elegosoft.com  (origin/feature_3293_blp435_sale_transport_purchase_request_v12) [IMP] improves _name_search function of product to search product with serial number and license_plate
+- f1a193ef 2020-03-27 12:29:28 +0100 cpatel@elegosoft.com  (origin/feature_3279_blp420_rental_product_todo_points_v12) [IMP] german translation rental_base,rental_product_instance, ticket#3286
+- fc0321b9 2020-03-27 10:50:44 +0100 cpatel@elegosoft.com  [IMP] todo points rental_base and rental_product_instance , ticket#3286
+- 197443ee 2020-03-22 16:48:33 +0100 yweng@elegosoft.com  [IMP] improves form-, tree- and search-view of products (issue 3593)
+- 3119cfd8 2020-03-18 10:07:48 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_3339_blp384_extend_documentation_v12: addons-rental-vertical remotes/origin/fix_3339_blp384_extend_documentation_v12 - b49c01dabbc653a42b77f82bd3c44a8759721359 regenerate doc (issue #3339)
+- f8838897 2020-03-16 22:31:35 +0100 yweng@elegosoft.com  [IMP] improves unittests of module rental_product_instance
+- b49c01da 2020-03-15 10:12:53 +0100 wagner@elegosoft.com  (origin/fix_3339_blp384_extend_documentation_v12) regenerate doc (issue #3339)
+- cea0e942 2020-03-13 20:38:19 +0100 wagner@elegosoft.com  update documentation to build 380 (issue #3339)
+- 977d2245 2020-03-13 10:58:32 +0100 cpatel@elegosoft.com  (origin/feature_3279_blp371_todo_points_v12) [IMP] todo points issue # 3279
+- 705a1979 2020-03-12 23:49:11 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_3576_blp355_rental_product_pack_v12: addons-rental-vertical remotes/origin/feature_3576_blp355_rental_product_pack_v12 - b367d1778430938c768f5ab84bd8e543f34f113f [IMP] Unittests of module rental_product_instance
+- b367d177 2020-03-11 22:02:43 +0100 yweng@elegosoft.com  (origin/feature_3576_blp355_rental_product_pack_v12) [IMP] Unittests of module rental_product_instance
+- a0aa278a 2020-03-11 18:13:01 +0100 kay.haeusler@elego.de  (origin/feature_3477_blp355_rental_product_instance_v12) code formating; issue #3477
+- e371276d 2020-03-10 18:14:07 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_3339_blp343_extend_documentation_v12: addons-rental-vertical remotes/origin/fix_3339_blp343_extend_documentation_v12 - 9576b54fbb0cbcbffb804587fd722df8a4057da0 allow cli overwrite of module arguments; regenerate doc for rental_product_instance_appointment rental_product_variant rental_offday rental_invoice rental_contract_month rental_contract (issue #3339)
+- c42b63f0 2020-03-10 18:14:00 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_3409_blp343_rental_timeline_repair_v12: addons-rental-vertical remotes/origin/feature_3409_blp343_rental_timeline_repair_v12 - e21ca952a0db68ffd537b070f1d516f1c0fb50ba move the constrain _check_date from rental_product_instance to rental_timeline_product_instance; issue #3409
+- e21ca952 2020-03-09 18:13:39 +0100 kay.haeusler@elego.de  (origin/feature_3409_blp343_rental_timeline_repair_v12) move the constrain _check_date from rental_product_instance to rental_timeline_product_instance; issue #3409
+- 29079501 2020-03-09 10:26:14 +0100 cpatel@elegosoft.com  (origin/feature_3279_blp343_todo_points_v12) [IMP] todo points    1. move 'additional info' page behind 'general info' (so it is the second tab)    3. fix the order of smartbuttons       remove 'on hand' smartbutton if product ist product instance       remove 'forecastes' smartbutton if product ist product instance       remove 'routes' smartbutton if product ist product instance       remove 'purchased' smartbutton if product ist product instance       remove 'sold' smartbutton if product ist product instance    4. fix exception after clicking on smartbutton 'sale orders'       ValueError: External ID not found in the system: rental_base.action_normal_orders    5. fix problem that the invoice form view cannot be opend after clicking on smartbutton 'invoices'
+- 804dc443 2020-03-07 21:06:12 +0100 wagner@elegosoft.com  regenerate module documentation (issue #3339)
+- 6fd1771a 2020-03-06 20:32:25 +0100 kay.haeusler@elego.de  (origin/feature_3462_blp333_renaming_addons_v12) rename and split some addons; issue #3462
+- 4c76ef2b 2020-03-04 16:56:16 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_3339_blp311_extend_documentation_v12: addons-rental-vertical remotes/origin/fix_3339_blp311_extend_documentation_v12 - 7dde7fa1ec109919795e59198feb24fc96fcfeb1 add changelogs in HISTORY.rst and some minor improvements (issue #3339)
+- bf364e7c 2020-03-03 19:35:44 +0100 kay.haeusler@elego.de  (origin/feature_3296_blp311_add_fields_to_search_v12) add some fields to the search view; issue #3296
+- 7dde7fa1 2020-03-03 00:19:35 +0100 wagner@elegosoft.com  (origin/fix_3339_blp311_extend_documentation_v12, fix_3339_blp311_extend_documentation_v12) add changelogs in HISTORY.rst and some minor improvements (issue #3339)
+- 467665c9 2020-03-01 15:50:45 +0100 wagner@elegosoft.com  (origin/feature_3339_blp297_add_some_module_descriptions_v12, feature_3339_blp297_add_some_module_descriptions_v12) add some generated reST and HTML documentation (issue #3339)
+- ec77333a 2020-03-01 00:11:54 +0100 wagner@elegosoft.com  fix some minor mistakes (issue #3339)
+- 1db47608 2020-02-29 23:48:15 +0100 wagner@elegosoft.com  add some more simple module decsriptions (issue #3339)
+- 6965ed1c 2020-02-29 22:46:34 +0100 wagner@elegosoft.com  fix some mistakes in author and license, make summaries one line, add some descriptions (issue #3339)
+- b314b6cb 2020-02-27 23:00:29 +0100 kay.haeusler@elego.de  show repair and transport orders in the timeline view; issue #3409
+- 41ec0c46 2020-02-12 17:15:20 +0100 yweng@elegosoft.com  [IMP] redefine fields for instance current condition
+- 5e271b8a 2020-02-11 13:01:07 +0100 maria.sparenberg@elegosoft.com  issue #3279 add German translations for rental_product_instance
+- 2f11b55a 2020-01-29 17:46:18 +0100 yweng@elegosoft.com  [IMP] improves form view of products
+- b42fa76e 2020-01-28 17:08:41 +0100 yweng@elegosoft.com  [IMP] add some product instance special fields
+- 94e76bbb 2020-01-23 13:08:03 +0100 yweng@elegosoft.com  [IMP] set liscense, copyrights and author
+- b2e6d5ce 2020-01-21 20:51:21 +0100 yweng@elegosoft.com  (origin/feature_3304_blp151_refactoring_swrent_product_extension_v12) [IMP] Add neu Module rental_base, rental_product_pack and Refactoring of module sale_rental_menu (deprecated)
+- 676c70b5 2020-01-20 13:40:34 +0100 yweng@elegosoft.com  [IMP] Refactoring of module swrent_product_extension
 

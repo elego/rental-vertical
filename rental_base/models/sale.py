@@ -15,7 +15,9 @@ class SaleOrder(models.Model):
     )
 
     default_end_date = fields.Date(
-        string="Default End Date", compute="_compute_default_end_date", readonly=False
+        string="Default End Date",
+        compute="_compute_default_end_date",
+        readonly=False,
     )
 
     @api.depends("order_line.start_date")
@@ -59,7 +61,7 @@ class SaleOrder(models.Model):
                 ]
             )
             rentals.unlink()
-        res = super().unlink()
+        return super().unlink()
 
 
 class SaleOrderLine(models.Model):
@@ -88,7 +90,7 @@ class SaleOrderLine(models.Model):
 
     @api.multi
     def _prepare_invoice_line(self, qty):
-        res = super(SaleOrderLine, self)._prepare_invoice_line(qty)
+        res = super()._prepare_invoice_line(qty)
         if self.product_id.income_analytic_account_id:
             res["account_analytic_id"] = self.product_id.income_analytic_account_id.id
         return res
@@ -156,7 +158,7 @@ class SaleOrderLine(models.Model):
                         ]:
                             raise exceptions.UserError(
                                 _(
-                                    "Outgoing Shipment is in state %s. You can not change the Date Start anymore."
+                                    "Outgoing shipment is in state %s. You cannot change the start date anymore."
                                 )
                                 % rental.out_move_id.state
                             )
@@ -171,7 +173,7 @@ class SaleOrderLine(models.Model):
                         ]:
                             raise exceptions.UserError(
                                 _(
-                                    "Incoming Shipment is in state %s. You can not change the Date End anymore."
+                                    "Incoming shipment is in state %s. You cannot change the end date anymore."
                                 )
                                 % rental.in_move_id.state
                             )
