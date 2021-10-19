@@ -21,7 +21,9 @@ class RentalOffday(models.Model):
         ondelete="set null",
     )
 
-    name = fields.Char(string="Description")
+    name = fields.Char(
+        string="Description",
+    )
 
     date = fields.Date(
         string="Date",

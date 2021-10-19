@@ -17,21 +17,21 @@ class SaleOrderLine(models.Model):
     offday_number = fields.Float(
         string="Number of Off-Days",
         help="This is the number of days, the product is not used by the customer "
-        "during the rental period.\n"
-        "Fixed off-days, e.g. for the weekend, can be created automatically "
-        "but you can also add manually more off-days.",
+             "during the rental period.\n"
+             "Fixed off-days, e.g. for the weekend, can be created automatically "
+             "but you can also add manually more off-days.",
         compute="_compute_offday_number",
     )
 
     add_offday_ids = fields.One2many(
-        "rental.offday",
-        "add_order_line_id",
+        comodel_name="rental.offday",
+        inverse_name="add_order_line_id",
         string="Additional Off-Days",
     )
 
     fixed_offday_ids = fields.One2many(
-        "rental.offday",
-        "fixed_order_line_id",
+        comodel_name="rental.offday",
+        inverse_name="fixed_order_line_id",
         string="Fixed Off-Days",
     )
 
@@ -46,11 +46,11 @@ class SaleOrderLine(models.Model):
     )
 
     offday_date_start = fields.Date(
-        string="Offday Start Date"
+        string="Offday Start Date",
     )
 
     offday_date_end = fields.Date(
-        string="Offday End Date"
+        string="Offday End Date",
     )
 
     add_additional_offdays = fields.Boolean(
@@ -111,7 +111,6 @@ class SaleOrderLine(models.Model):
 
     @api.onchange("fixed_offday_type", "start_date", "end_date")
     def onchange_fixed_offday_type(self):
-        offday_obj = self.env["rental.offday"]
         # values of one2many field fixed_offday_ids
         values = [(5, 0, 0)]
         if self.fixed_offday_type == "none":
