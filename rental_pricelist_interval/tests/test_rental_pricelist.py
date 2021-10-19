@@ -3,6 +3,7 @@
 from dateutil.relativedelta import relativedelta
 
 from odoo.addons.rental_base.tests.stock_common import RentalStockCommon
+from odoo.addons.rental_pricelist.tests.test_rental_pricelist import _run_sol_onchange_display_product_id, _run_sol_onchange_date
 from odoo import fields, exceptions
 
 
@@ -59,23 +60,6 @@ class TestRentalPricelist(RentalStockCommon):
                 }
             )
         )
-
-    def _run_sol_onchange_display_product_id(self, line):
-        line.onchange_display_product_id()  # product_id, rental changed
-        line.product_id_change()
-        line.onchange_rental()  # product_id changed again
-        line.product_id_change()  # product_uom changed
-        line.product_uom_change()
-        line.rental_product_id_change()  # set start end date manually
-
-    def _run_sol_onchange_date(self, line, start_date=False, end_date=False):
-        if start_date:
-            line.start_date = start_date
-        if end_date:
-            line.end_date = end_date
-        line.onchange_start_end_date()  # number_of_time_unit changed
-        line.rental_qty_number_of_days_change()  # product_uom_qty changed
-        line.product_uom_change()
 
     def test_00_interval_price(self):
         """
@@ -138,8 +122,8 @@ class TestRentalPricelist(RentalStockCommon):
                 }
             )
         )
-        self._run_sol_onchange_display_product_id(line)
-        self._run_sol_onchange_date(line)
+        _run_sol_onchange_display_product_id(line)
+        _run_sol_onchange_date(line)
         self.assertEqual(line.rental, True)
         self.assertEqual(line.rental_type, "new_rental")
         self.assertEqual(line.can_sell_rental, False)
@@ -153,24 +137,24 @@ class TestRentalPricelist(RentalStockCommon):
         self.assertEqual(line.price_subtotal, 2250)
         # Change End Date and rental_qty
         line.rental_qty = 2
-        self._run_sol_onchange_date(line, end_date=self.date_12_day_later)
+        _run_sol_onchange_date(line, end_date=self.date_12_day_later)
         self.assertEqual(line.rental_qty, 2)
         self.assertEqual(line.product_uom_qty, 2)
         self.assertEqual(line.price_unit, 1750)
         self.assertEqual(line.price_subtotal, 3500)  # 2 * 1750
         # Change End Date again
-        self._run_sol_onchange_date(line, end_date=self.date_4_day_later)
+        _run_sol_onchange_date(line, end_date=self.date_4_day_later)
         self.assertEqual(line.price_unit, 1000)
         self.assertEqual(line.price_subtotal, 2000)  # 2 * 1000
         # Change Pricelist
         self.rental_order.pricelist_id = self.pricelist0
-        self._run_sol_onchange_display_product_id(line)
-        self._run_sol_onchange_date(line, end_date=self.date_12_day_later)
+        _run_sol_onchange_display_product_id(line)
+        _run_sol_onchange_date(line, end_date=self.date_12_day_later)
         self.assertEqual(line.price_unit, 200)
         self.rental_order.pricelist_id = self.pricelist_interval
-        self._run_sol_onchange_display_product_id(line)
-        self._run_sol_onchange_date(line, end_date=self.date_12_day_later)
+        _run_sol_onchange_display_product_id(line)
+        _run_sol_onchange_date(line, end_date=self.date_12_day_later)
         self.assertEqual(line.price_unit, 1750)
         with self.assertRaises(exceptions.UserError) as e:
-            self._run_sol_onchange_date(line, end_date=self.date_24_day_later)
+            _run_sol_onchange_date(line, end_date=self.date_24_day_later)
         self.assertEqual("Max rental interval (21 days) is exceeded.", e.exception.name)
