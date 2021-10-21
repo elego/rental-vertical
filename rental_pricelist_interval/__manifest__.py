@@ -4,42 +4,42 @@
     "name": "Rental Pricelist (Interval)",
     "summary": 'Enables the user to define different rental prices with time uom ("Month", "Day" and "Hour").',
     "description": """
-This modules enable a special interval price system, that are base on daily rental pricelist.
+This Module implements a new rental service product for interval pricing under consideration
+of odoo price lists. This enables to rent out products and charge for day interval ranges.
+
+These ranges can be configured freely on general and/or product level. In contrast to rentals
+on daily, monthly or yearly bases a different price computation is applied in sale order lines.
 """,
     "usage": """
-- Create a product and mark it as rentable by setting rental = True.
-- Go to page 'Rental Price'.
-- Activate the required boolean fields for daily rental.
-- Save the product.
-- Add a usual price for one day
-- Add Interval Price and pricelist items
-- Set Max Days for interval Price
+To use this module, you need to:
 
-Example for price items:
-::
-Max Days for interval 21 days
-min (days)     price
-1                100
-8                175
-15               225
+#. Create a new stockable product and define it as rental service or
+   go to an existing one.
 
-that means:
-::
-1  -  7 days for 100 EURO
-8  - 14 days for 175 EURO
-15 - 21 days for 225 EURO.
+#. On 'Rental Price' tab check the 'Rented in interval' option.
 
-- Alternative you can define the rule in form view of company
-- and click the button "reset interval prices" to create the price items automatically
+#. Set the interval base price and define the max amount of days the product
+   can be rented out.
 
-Example for rules:
-::
-min (days)     factor
-1                1
-8                1.75
-15               2.25
-- Activate the interval price in sale order line (Use Interval Price)
-    """,
+#. Push the 'Reset Interval Prices' button to compute interval ranges and prices.
+   from base price and interval ranges configured in company settings.
+
+#. Adapt interval min. quantities or prices for the selected product if desired.
+""",
+    "contributors": """
+* Ben Brich <b.brich@humanilog.org> (www.humanilog.org)
+* Yu Weng <yweng@elegosoft.com> (www.elegosoft.com)
+""",
+    "configuration": """
+To configure this module, you need to:
+
+#. Go to company settings and define the default interval ranges on 'Rental Interval Prices' tab.
+   These ranges will be applied for computation of price intervals for rental service products when interval pricing is activated
+   in stockable product.
+
+#. If desired go to 'RS (Prefix and Suffix)' tab an define how rental interval service product
+   names and reference numbers are created.
+""",
     "version": "12.0.1.0.3",
     "category": "Rental",
     "author": "Odoo Community Association (OCA)/Elego Software Solutions GmbH",
