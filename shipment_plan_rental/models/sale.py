@@ -10,18 +10,20 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     trans_return_shipment_plan_id = fields.Many2one(
-        "shipment.plan",
-        "Shipment Plan (Return)",
+        comodel_name="shipment.plan",
+        string="Shipment Plan (Return)",
         ondelete="set null",
         copy=False,
     )
+
     trans_return_requisition_line_ids = fields.Many2many(
-        "purchase.requisition.line",
+        comodel_name="purchase.requisition.line",
         related="trans_return_shipment_plan_id.trans_requisition_line_ids",
         string="Transfer Requisition Line (Return)",
     )
+
     trans_return_purchase_line_ids = fields.Many2many(
-        "purchase.order.line",
+        comodel_name="purchase.order.line",
         related="trans_return_shipment_plan_id.trans_purchase_line_ids",
         string="Transfer Purchase Line (Return)",
     )
@@ -31,13 +33,9 @@ class SaleOrderLine(models.Model):
     def get_transport_details(self):
         order = self[0].order_id
         res = ""
-        src_address = self.env.user.company_id.partner_id._display_address(
-            without_company=True
-        )
-        dest_address = order.partner_shipping_id._display_address(
-            without_company=True
-        )
-        res += "Incoterm: %s \n" % (order.incoterm.name)
+        src_address = self.env.user.company_id.partner_id._display_address()
+        dest_address = order.partner_shipping_id._display_address()
+        res += _("Incoterm: %s \n") % order.incoterm.name
         for line in self:
             product_name = line.product_id.name
             product_uom_name = line.product_id.uom_id.name
@@ -52,13 +50,13 @@ class SaleOrderLine(models.Model):
                 product_uom_name,
             )
         if self.env.context.get("shipment_plan_return", False):
-            res += "Date: %s \n" % (order.default_end_date)
-            res += "Source Address: \n %s \n\n" % (dest_address)
-            res += "Destination Address:\n %s \n\n" % (src_address)
+            res += _("Date: %s \n") % order.default_end_date
+            res += _("Source Address: \n %s \n\n") % dest_address
+            res += _("Destination Address: \n %s \n\n") % src_address
         else:
-            res += "Date: %s \n" % (order.default_start_date)
-            res += "Source Address: \n %s \n\n" % (src_address)
-            res += "Destination Address: \n %s \n\n" % (dest_address)
+            res += _("Date: %s \n") % order.default_start_date
+            res += _("Source Address: \n %s \n\n") % src_address
+            res += _("Destination Address: \n %s \n\n") % dest_address
         return res
 
     def _prepare_new_rental_procurement_values(self, group=False):
@@ -75,9 +73,9 @@ class SaleOrder(models.Model):
     @api.multi
     def _compute_shipment_plans(self):
         for order in self:
-            trans_sps = self.env["shipment.plan"].browse()
-            trans_prs = self.env["purchase.requisition"].browse()
-            trans_pos = self.env["purchase.order"].browse()
+            trans_sps = self.env["shipment.plan"]
+            trans_prs = self.env["purchase.requisition"]
+            trans_pos = self.env["purchase.order"]
             for line in order.order_line:
                 if line.trans_shipment_plan_id:
                     trans_sps |= line.trans_shipment_plan_id

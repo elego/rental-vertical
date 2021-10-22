@@ -8,28 +8,35 @@ logger = logging.getLogger(__name__)
 
 class UpdateSaleLineDateLine(models.TransientModel):
     _name = "update.sale.line.date.line"
+    _description = "Details for updating sale order line dates"
 
     wizard_id = fields.Many2one(
         comodel_name="update.sale.line.date",
         required=True,
     )
+
     sequence = fields.Integer(
         string="Sequence",
     )
+
     order_line_id = fields.Many2one(
         comodel_name="sale.order.line",
         required=True,
     )
+
     date_start = fields.Date(
         string="Date Start",
     )
+
     date_end = fields.Date(
         string="Date End",
     )
+
     product_id = fields.Many2one(
         comodel_name="product.product",
         string="Product",
     )
+
     change = fields.Boolean(
         string="Change",
     )
@@ -37,7 +44,7 @@ class UpdateSaleLineDateLine(models.TransientModel):
 
 class UpdateSaleLineDate(models.TransientModel):
     _name = "update.sale.line.date"
-    _description = "Update Times"
+    _description = "Wizard for updating sale order line dates"
 
     date_start = fields.Date(
         string="Date Start",
@@ -50,36 +57,34 @@ class UpdateSaleLineDate(models.TransientModel):
     )
 
     order_id = fields.Many2one(
-        "sale.order",
+        comodel_name="sale.order",
         string="Sale Order",
     )
 
     date_in_line = fields.Boolean(
         string="Date in Lines",
-        help="If set, you can set individual date in every selected positions"
+        help="If set, you can set an individual date in "
+             "every selected position."
     )
 
     all_line = fields.Boolean(
         string="All Lines",
         help="If set, all order lines of this order are "
-        "updated with the given dates.",
+             "updated with the given dates.",
     )
 
     from_line = fields.Integer(
         string="From",
         help="In order to update one or several order lines, "
-        "please set a number referring to the first order "
-        "line that should to be changed.\n"
-        "The first line is referenced by 0.",
+             "please set a number referring to the first order "
+             "line that should to be changed.",
     )
 
     to_line = fields.Integer(
         string="To",
         help="In order to update one or several order lines, "
-        "please set a number referring to the last order "
-        "line that should to be changed.\n"
-        "The last line is referenced by the total number "
-        "of order lines minus 1.",
+             "please set a number referring to the last order "
+             "line that should to be changed.",
     )
 
     line_ids = fields.One2many(
@@ -113,7 +118,7 @@ class UpdateSaleLineDate(models.TransientModel):
         seq = 1
         line_ids_value = []
         for line in order.order_line:
-            if not line.date_start or not line.end_date:
+            if not line.start_date or not line.end_date:
                 continue
             line_ids_value.append((0, 0, {
                 "sequence": seq,
@@ -171,7 +176,7 @@ class UpdateSaleLineDate(models.TransientModel):
                 )
             if self.date_in_line:
                 for line in self.line_ids:
-                    if line.sequence >= self.from_line and line.sequence <= self.to_line:
+                    if self.from_line <= line.sequence <= self.to_line:
                         message_body += _("<li>%s: %s - %s -> %s - %s</li>") % (
                             line.order_line_id.product_id.name,
                             line.order_line_id.date_start,
@@ -190,7 +195,7 @@ class UpdateSaleLineDate(models.TransientModel):
                     self.date_end,
                 )
                 for line in self.line_ids:
-                    if line.sequence >= self.from_line and line.sequence <= self.to_line:
+                    if self.from_line <= line.sequence <= self.to_line:
                         line.order_line_id.update_start_end_date(self.date_start, self.date_end)
         message_body += "</lu>"
         self.order_id.message_post(

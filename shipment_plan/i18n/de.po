@@ -6,14 +6,35 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-17 15:50+0000\n"
-"PO-Revision-Date: 2021-06-17 15:50+0000\n"
+"POT-Creation-Date: 2021-09-16 17:04+0000\n"
+"PO-Revision-Date: 2021-09-16 17:04+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: shipment_plan
+#: model:ir.model.fields,field_description:shipment_plan.field_purchase_order__shipment_plan_count
+msgid "# Shipment Plans"
+msgstr "# Shipment-Pläne"
+
+#. module: shipment_plan
+#: model_terms:ir.ui.view,arch_db:shipment_plan.purchase_order_form
+msgid "<span class=\"o_stat_text\"> Shipment Plans</span>"
+msgstr "<span class=\"o_stat_text\"> Shipment-Pläne</span>"
+
+#. module: shipment_plan
+#: model_terms:ir.ui.view,arch_db:shipment_plan.view_shipment_plan_internal_picking
+msgid "<span class=\"o_stat_text\">Shipment Plan</span>"
+msgstr "<span class=\"o_stat_text\">Shipment-Plan</span>"
+
+#. module: shipment_plan
+#: code:addons/shipment_plan/models/stock.py:36
+#, python-format
+msgid "A picking can only have one shipment plan."
+msgstr "Ein Lieferschein kann nur einen Shipment-Plan haben."
 
 #. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__message_needaction
@@ -28,7 +49,7 @@ msgstr "Weitere Anmerkungen..."
 #. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__message_attachment_count
 msgid "Attachment Count"
-msgstr "Anzahl Anhänge"
+msgstr "Anzahl der Anhänge"
 
 #. module: shipment_plan
 #: model_terms:ir.ui.view,arch_db:shipment_plan.create_trans_request_form
@@ -39,20 +60,20 @@ msgstr "Abbrechen"
 
 #. module: shipment_plan
 #: model:ir.model.fields,help:shipment_plan.field_res_config_settings__transport_cost_type
-msgid "Choosing the cost type 'Multi Positions’ the transport purchase order or call for tender can contain several lines for the different costs related to the transport, e.g. the transport costs itself and several charges. You can define the appropriate transport services when creating a new transport request.\n"
-"Choosing the cost type 'Single Position’ the transport request will only consist of one line with all costs."
-msgstr "Bei der Verwendung von 'Mehrere Positionen’ kann die Transportbestellung or - ausschreibung mehrere Zeilen für die verschiedenen Kosten enthalten, die den Transport betreffen, z.B. die Transportkosten an sich und verschiedene Gebühren. Die entsprechenden Transport-Services können beim Erstellen einer neuen Transportanfrage ausgewählt werden.\n"
-"Bei der Verwendung von 'Eine Position’ wird die Transportanfrage nur eine Zeile für alle Kosten enthalten."
+msgid "Choosing the cost type 'Multi Positions' the transport purchase order or call for tender can contain several lines for the different costs related to the transport, e.g. the transport costs itself and several charges. You can define the appropriate transport services when creating a new transport request.\n"
+"Choosing the cost type 'Single Position' the transport request will only consist of one line with all costs."
+msgstr "Bei der Verwendung von 'Mehrere Positionen' kann die Transportbestellung oder -ausschreibung mehrere Zeilen für die verschiedenen Kosten enthalten, die den Transport betreffen, z.B. die Transportkosten an sich und verschiedene Gebühren. Die entsprechenden Transport-Services können beim Erstellen einer neuen Transportanfrage ausgewählt werden.\n"
+"Bei der Verwendung von 'Eine Position' wird die Transportanfrage nur eine Zeile für alle Kosten enthalten."
 
 #. module: shipment_plan
 #: model:ir.model,name:shipment_plan.model_res_config_settings
 msgid "Config Settings"
-msgstr "Konfiguration "
+msgstr "Konfigurationseinstellungen"
 
 #. module: shipment_plan
 #: model_terms:ir.ui.view,arch_db:shipment_plan.res_config_settings_view_form
 msgid "Configure default Transport Cost Product"
-msgstr ""
+msgstr "Standard-Produkt für Transportkosten konfigurieren"
 
 #. module: shipment_plan
 #: model_terms:ir.ui.view,arch_db:shipment_plan.view_shipment_plan_form
@@ -68,7 +89,7 @@ msgstr "Bestätigt"
 #. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__consignee_id
 msgid "Consignee"
-msgstr ""
+msgstr "Empfänger"
 
 #. module: shipment_plan
 #: model_terms:ir.ui.view,arch_db:shipment_plan.create_trans_request_form
@@ -76,15 +97,20 @@ msgid "Create"
 msgstr "Anlegen"
 
 #. module: shipment_plan
+#: model_terms:ir.ui.view,arch_db:shipment_plan.view_shipment_plan_internal_picking
+msgid "Create Shipment Plan"
+msgstr "Shipment-Plan erstellen"
+
+#. module: shipment_plan
 #: model:ir.model,name:shipment_plan.model_create_trans_request
 msgid "Create Transport Purchase Request"
-msgstr ""
+msgstr "Transportanfrage erstellen"
 
 #. module: shipment_plan
 #: model:ir.actions.act_window,name:shipment_plan.create_trans_request_action
 #: model_terms:ir.ui.view,arch_db:shipment_plan.create_trans_request_form
 msgid "Create Transport Request"
-msgstr ""
+msgstr "Transportanfrage erstellen"
 
 #. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_create_trans_request__create_uid
@@ -101,17 +127,17 @@ msgstr "Erstellt am"
 #. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__dangerous_goods
 msgid "Dangerous Goods"
-msgstr ""
-
-#. module: shipment_plan
-#: model:ir.model.fields,help:shipment_plan.field_res_config_settings__transport_cost_product_id
-msgid "Default product used for Transport Cost"
-msgstr ""
+msgstr "Gefahrengüter"
 
 #. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__note
 msgid "Description / Remarks"
-msgstr ""
+msgstr "Beschreibung / Bemerkungen"
+
+#. module: shipment_plan
+#: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__location_dest_id
+msgid "Destination Location"
+msgstr "Lagerort (Ziel)"
 
 #. module: shipment_plan
 #: model_terms:ir.ui.view,arch_db:shipment_plan.view_shipment_plan_form
@@ -127,7 +153,7 @@ msgstr "Anzeigename"
 #. module: shipment_plan
 #: selection:shipment.plan,state:0
 msgid "Done"
-msgstr ""
+msgstr "Erledigt"
 
 #. module: shipment_plan
 #: model_terms:ir.ui.view,arch_db:shipment_plan.view_shipment_plan_filter
@@ -163,7 +189,7 @@ msgstr "Abonnenten (Partner)"
 #. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__from_address_id
 msgid "From Address"
-msgstr ""
+msgstr "Startadresse"
 
 #. module: shipment_plan
 #: model_terms:ir.ui.view,arch_db:shipment_plan.res_config_settings_view_form
@@ -192,15 +218,10 @@ msgid "If checked, some messages have a delivery error."
 msgstr "Das Senden mancher Nachrichten ist fehlgeschlagen wenn dieses Fenster angekreuzt ist."
 
 #. module: shipment_plan
-#: model:ir.model.fields,help:shipment_plan.field_product_product__is_transport
-#: model:ir.model.fields,help:shipment_plan.field_product_template__is_transport
+#: model:ir.model.fields,help:shipment_plan.field_product_product__trans_purchase_request
+#: model:ir.model.fields,help:shipment_plan.field_product_template__trans_purchase_request
 msgid "If set, it allows the user to create a transport request or call for tender in order to find a carrier delivering the chosen products."
 msgstr "Wenn das Häkchen gesetzt ist, ermöglicht dies dem Benutzer eine Transportanfrage oder - ausschreibung zu erstellen, um ein Transportunternehmen zu finden, dass die angebotenen Produkte ausliefert."
-
-#. module: shipment_plan
-#: model:ir.model.fields,help:shipment_plan.field_account_incoterms__trans_pr_needed
-msgid "If set, this incoterm allows the salesperson to create a transport request or call for tender from a sale order in order to find a carrier delivering the sold products."
-msgstr "Wenn das Häkchen gesetzt ist, ermöglicht diese Lieferbedingung dem Verkäufer eine Transportanfrage oder -auschreibung vom Verkaufsauftrag zu erstellen, um ein Transportunternehmen zu finden, das die angebotenen Produkte ausliefert."
 
 #. module: shipment_plan
 #: model:ir.model.fields,help:shipment_plan.field_purchase_order__selected_in_order
@@ -210,12 +231,12 @@ msgstr "Wenn das Häkchen gesetzt ist, kann diese Transportanfrage als Grundlage
 #. module: shipment_plan
 #: selection:shipment.plan,state:0
 msgid "In Transit"
-msgstr ""
+msgstr "Unterwegs"
 
 #. module: shipment_plan
 #: model_terms:ir.ui.view,arch_db:shipment_plan.view_shipment_plan_filter
 msgid "In transit"
-msgstr ""
+msgstr "Unterwegs"
 
 #. module: shipment_plan
 #: model:ir.model,name:shipment_plan.model_account_incoterms
@@ -225,27 +246,17 @@ msgstr "Lieferbedingungen"
 #. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__initial_eta
 msgid "Initial ETA"
-msgstr ""
+msgstr "Initiale ETA"
 
 #. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__initial_etd
 msgid "Initial ETD"
-msgstr ""
-
-#. module: shipment_plan
-#: model:ir.model.fields,help:shipment_plan.field_shipment_plan__initial_eta
-msgid "Initial Estimated Time of Arrival"
-msgstr ""
-
-#. module: shipment_plan
-#: model:ir.model.fields,help:shipment_plan.field_shipment_plan__initial_etd
-msgid "Initial Estimated Time of Departure"
-msgstr ""
+msgstr "Initiale ETD"
 
 #. module: shipment_plan
 #: selection:shipment.plan,plan_type:0
 msgid "Internal Picking"
-msgstr ""
+msgstr "Interne Lieferung"
 
 #. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__message_is_follower
@@ -262,7 +273,7 @@ msgstr "Zuletzt geändert am"
 #: model:ir.model.fields,field_description:shipment_plan.field_create_trans_request__write_uid
 #: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__write_uid
 msgid "Last Updated by"
-msgstr "Zuletzt aktualisiert durch"
+msgstr "Zuletzt aktualisiert von"
 
 #. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_create_trans_request__write_date
@@ -278,12 +289,22 @@ msgstr "Hauptanhänge"
 #. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__message_has_error
 msgid "Message Delivery error"
-msgstr "Error beim senden der Nachricht"
+msgstr "Fehler beim Senden der Nachricht"
 
 #. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__message_ids
 msgid "Messages"
 msgstr "Nachrichten"
+
+#. module: shipment_plan
+#: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__move_ids
+msgid "Move"
+msgstr "Lagerbewegung"
+
+#. module: shipment_plan
+#: model:ir.model.fields,field_description:shipment_plan.field_create_trans_request__multi
+msgid "Multi"
+msgstr ""
 
 #. module: shipment_plan
 #: selection:res.config.settings,transport_cost_type:0
@@ -292,14 +313,15 @@ msgstr "Mehrere Positionen"
 
 #. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_purchase_requisition_line__name
+#: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__name
 msgid "Name"
-msgstr ""
+msgstr "Bezeichnung"
 
 #. module: shipment_plan
-#: code:addons/shipment_plan/models/shipment_plan.py:189
+#: code:addons/shipment_plan/models/shipment_plan.py:323
 #, python-format
 msgid "No found Supplier Info of %s"
-msgstr ""
+msgstr "Es gibt keine Lieferanten-Information für %s"
 
 #. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__message_needaction_counter
@@ -328,13 +350,18 @@ msgstr "Anzahl ungelesener Nachrichten"
 
 #. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__origin
-msgid "Origin Ref"
-msgstr ""
+msgid "Origin"
+msgstr "Ursprung"
 
 #. module: shipment_plan
-#: model:ir.model.fields,field_description:shipment_plan.field_account_incoterms__trans_pr_needed
-msgid "Outbound transport required"
-msgstr "Ausgehender Transport nötig"
+#: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__picking_ids
+msgid "Picking"
+msgstr "Lieferschein"
+
+#. module: shipment_plan
+#: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__picking_count
+msgid "Picking Count"
+msgstr "Anzahl der Lieferscheine"
 
 #. module: shipment_plan
 #: model:ir.model,name:shipment_plan.model_product_product
@@ -351,7 +378,7 @@ msgstr "Produktvorlage"
 #: model:ir.model,name:shipment_plan.model_purchase_order
 #: selection:product.product,transport_service_type:0
 msgid "Purchase Order"
-msgstr "Beschaffungsauftrag"
+msgstr "Einkaufsbestellung"
 
 #. module: shipment_plan
 #: model:ir.model,name:shipment_plan.model_purchase_order_line
@@ -362,22 +389,22 @@ msgstr "Bestellposition"
 #: selection:create.trans.request,transport_service_type:0
 #: selection:product.product,transport_service_type:0
 msgid "Purchase Requisition"
-msgstr ""
+msgstr "Ausschreibung"
 
 #. module: shipment_plan
 #: model:ir.model,name:shipment_plan.model_purchase_requisition_line
 msgid "Purchase Requisition Line"
-msgstr "Bestellmeldung Positionen"
+msgstr "Ausschreibungsposition"
 
 #. module: shipment_plan
-#: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__name
-msgid "Reference"
-msgstr "Referenz"
+#: model_terms:ir.ui.view,arch_db:shipment_plan.view_shipment_plan_form
+msgid "RFQs"
+msgstr "Anfragen"
 
 #. module: shipment_plan
 #: selection:shipment.plan,plan_type:0
 msgid "Rental"
-msgstr ""
+msgstr "Vermietung"
 
 #. module: shipment_plan
 #: model_terms:ir.ui.view,arch_db:shipment_plan.view_shipment_plan_form
@@ -391,23 +418,23 @@ msgstr "Anfragetyp"
 
 #. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__user_id
-msgid "Responsible"
-msgstr "Verantwortlich"
+msgid "Responsible User"
+msgstr "Verantwortlicher Benutzer"
 
 #. module: shipment_plan
 #: selection:shipment.plan,plan_type:0
 msgid "Sale"
-msgstr ""
+msgstr "Verkauf"
 
 #. module: shipment_plan
 #: model_terms:ir.ui.view,arch_db:shipment_plan.view_shipment_plan_filter
 msgid "Search Shipment Plan"
-msgstr ""
+msgstr "Shipment-Plan suchen"
 
 #. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_purchase_order__selected_in_order
 msgid "Selected in Order"
-msgstr ""
+msgstr "Für Auftrag ausgewählt"
 
 #. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_create_trans_request__service_product_ids
@@ -424,21 +451,32 @@ msgstr "Auf Entwurf setzen"
 #: model:ir.model.fields,field_description:shipment_plan.field_create_trans_request__shipment_plan_id
 #: model:ir.model.fields,field_description:shipment_plan.field_purchase_order_line__shipment_plan_ids
 #: model:ir.model.fields,field_description:shipment_plan.field_purchase_requisition_line__shipment_plan_ids
+#: model:ir.model.fields,field_description:shipment_plan.field_stock_move__shipment_plan_id
+#: model:ir.model.fields,field_description:shipment_plan.field_stock_picking__shipment_plan_id
 #: model_terms:ir.ui.view,arch_db:shipment_plan.view_shipment_plan_form
 msgid "Shipment Plan"
-msgstr ""
+msgstr "Shipment-Plan"
 
 #. module: shipment_plan
+#: code:addons/shipment_plan/models/stock.py:64
+#, python-format
+msgid "Shipment Plan for %s"
+msgstr "Shipment-Plan für %s"
+
+#. module: shipment_plan
+#: code:addons/shipment_plan/models/purchase.py:108
 #: model:ir.actions.act_window,name:shipment_plan.action_shipment_plan
 #: model:ir.ui.menu,name:shipment_plan.menu_action_shipment
+#: model_terms:ir.ui.view,arch_db:shipment_plan.purchase_order_form
 #: model_terms:ir.ui.view,arch_db:shipment_plan.view_shipment_plan_tree
+#, python-format
 msgid "Shipment Plans"
-msgstr ""
+msgstr "Shipment-Pläne"
 
 #. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_purchase_order__show_shipment_plan
-msgid "Show Shipment Plan"
-msgstr ""
+msgid "Show shipment plans"
+msgstr "Shipment-Pläne anzeigen"
 
 #. module: shipment_plan
 #: selection:res.config.settings,transport_cost_type:0
@@ -446,69 +484,111 @@ msgid "Single Position"
 msgstr "Eine Position"
 
 #. module: shipment_plan
+#: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__location_id
+msgid "Source Location"
+msgstr "Lagerort (Quelle)"
+
+#. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__state
 msgid "State"
-msgstr "Bundesland"
+msgstr "Status"
+
+#. module: shipment_plan
+#: model:ir.model,name:shipment_plan.model_stock_move
+msgid "Stock Move"
+msgstr "Lagerbewegung"
 
 #. module: shipment_plan
 #: model:ir.actions.act_window,name:shipment_plan.shipment_open_picking
 msgid "Stock Pickings"
-msgstr ""
+msgstr "Lieferscheine"
+
+#. module: shipment_plan
+#: model:ir.model,name:shipment_plan.model_stock_rule
+msgid "Stock Rule"
+msgstr "Lagerregel"
+
+#. module: shipment_plan
+#: model:ir.model.fields,field_description:shipment_plan.field_create_trans_request__partner_id
+msgid "Supplier"
+msgstr "Lieferant"
+
+#. module: shipment_plan
+#: model_terms:ir.ui.view,arch_db:shipment_plan.view_shipment_plan_form
+msgid "Tenders"
+msgstr "Ausschreibungen"
+
+#. module: shipment_plan
+#: code:addons/shipment_plan/models/stock.py:88
+#, python-format
+msgid "The internal picking %s has already a shipment plan."
+msgstr "Die interne Lieferung %s hat bereits einen Shipment-Plan."
 
 #. module: shipment_plan
 #: model:ir.model.fields,help:shipment_plan.field_create_trans_request__transport_service_type
+#: model:ir.model.fields,help:shipment_plan.field_product_product__transport_service_type
 msgid "The transport request type defines if a purchase order or a call for tender is created when requesting a transport within an order."
 msgstr "Der Typ der Transportanfrage bestimmt, ob eine Angebotsanfrage oder eine Ausschreibung erstellt wird, wenn ein Transport innerhalb eines Auftrags angefragt wird."
 
 #. module: shipment_plan
+#: model:ir.model.fields,help:shipment_plan.field_shipment_plan__initial_eta
+msgid "This is the  initial estimated time of arrival."
+msgstr "Dies ist die anfänglich geschätzte Ankunftszeit (ETA = Estimated Time of Arrival)."
+
+#. module: shipment_plan
+#: model:ir.model.fields,help:shipment_plan.field_res_config_settings__transport_cost_product_id
+msgid "This is the default product used for transport costs."
+msgstr "Das ist das Standard-Produkt für die Berechnung der Transportkosten."
+
+#. module: shipment_plan
+#: model:ir.model.fields,help:shipment_plan.field_shipment_plan__initial_etd
+msgid "This is the initial estimated time of departure."
+msgstr "Dies ist die anfänglich geschätzte Abfahrtszeit (ETD = Estimated Time of Departure)."
+
+#. module: shipment_plan
+#: model:ir.model.fields,help:shipment_plan.field_shipment_plan__eta
+msgid "This is the up to date estimated time of arrival."
+msgstr "Dies ist die aktuell geschätzte Ankunftszeit (ETA = Estimated Time of Arrival)."
+
+#. module: shipment_plan
+#: model:ir.model.fields,help:shipment_plan.field_shipment_plan__etd
+msgid "This is the up to date estimated time of departure."
+msgstr "Dies ist die aktuell geschätzte Abfahrtszeit (ETD = Estimated Time of Departure)."
+
+#. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__to_address_id
 msgid "To Address"
-msgstr ""
+msgstr "Zieladresse"
 
 #. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__carrier_tracking_ref
 msgid "Tracking Ref."
-msgstr ""
-
-#. module: shipment_plan
-#: model_terms:ir.ui.view,arch_db:shipment_plan.view_shipment_plan_form
-msgid "Trans POs"
-msgstr ""
-
-#. module: shipment_plan
-#: model_terms:ir.ui.view,arch_db:shipment_plan.view_shipment_plan_form
-msgid "Trans PRs"
-msgstr ""
-
-#. module: shipment_plan
-#: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__trans_po_ids
-msgid "Trans Po"
-msgstr ""
+msgstr "Tracking-Referenz"
 
 #. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__trans_po_count
 msgid "Trans Po Count"
-msgstr ""
-
-#. module: shipment_plan
-#: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__trans_pr_ids
-msgid "Trans Pr"
-msgstr ""
+msgstr "Anzahl der Transportanfragen"
 
 #. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__trans_pr_count
 msgid "Trans Pr Count"
-msgstr ""
+msgstr "Anzahl der Transportausschreibungen"
 
 #. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__trans_purchase_line_ids
 msgid "Trans Purchase Line"
-msgstr ""
+msgstr "Position der Transportbestellung"
 
 #. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__trans_requisition_line_ids
 msgid "Trans Requisition Line"
-msgstr ""
+msgstr "Position der Transport-Ausschreibung"
+
+#. module: shipment_plan
+#: model:ir.model,name:shipment_plan.model_stock_picking
+msgid "Transfer"
+msgstr "Lieferung vornehmen"
 
 #. module: shipment_plan
 #: model_terms:ir.ui.view,arch_db:shipment_plan.product_normal_form_view
@@ -519,7 +599,7 @@ msgstr ""
 #. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_res_config_settings__transport_cost_product_id
 msgid "Transport Cost Product"
-msgstr ""
+msgstr "Produkt für Transportkosten"
 
 #. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_res_config_settings__transport_cost_type
@@ -527,10 +607,20 @@ msgid "Transport Cost Type"
 msgstr "Typ der Transportkosten"
 
 #. module: shipment_plan
+#: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__trans_po_ids
+msgid "Transport Purchase Orders"
+msgstr "Transportbestellungen"
+
+#. module: shipment_plan
+#: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__trans_pr_ids
+msgid "Transport Requisitions"
+msgstr "Transportausschreibungen"
+
+#. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_product_product__is_transport
 #: model:ir.model.fields,field_description:shipment_plan.field_product_template__is_transport
 msgid "Transport Service"
-msgstr ""
+msgstr "Transport-Service"
 
 #. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_product_product__transport_service_type
@@ -538,10 +628,10 @@ msgid "Transport Service Type"
 msgstr "Anfragetyp"
 
 #. module: shipment_plan
-#: code:addons/shipment_plan/models/shipment_plan.py:148
+#: code:addons/shipment_plan/models/shipment_plan.py:218
 #, python-format
 msgid "Transport for %s"
-msgstr ""
+msgstr "Transport für %s"
 
 #. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_product_product__trans_purchase_request
@@ -565,19 +655,9 @@ msgid "Unread Messages Counter"
 msgstr "Zähler der ungelesenen Nachrichten"
 
 #. module: shipment_plan
-#: model:ir.model.fields,help:shipment_plan.field_shipment_plan__eta
-msgid "Up to date Estimated Time of Arrival"
-msgstr ""
-
-#. module: shipment_plan
-#: model:ir.model.fields,help:shipment_plan.field_shipment_plan__etd
-msgid "Up to date Estimated Time of Departure"
-msgstr ""
-
-#. module: shipment_plan
 #: model_terms:ir.ui.view,arch_db:shipment_plan.purchase_order_form
 msgid "Use in Order"
-msgstr ""
+msgstr "In Auftrag verwenden"
 
 #. module: shipment_plan
 #: model:ir.model.fields,field_description:shipment_plan.field_shipment_plan__website_message_ids
@@ -590,8 +670,8 @@ msgid "Website communication history"
 msgstr "Website-Kommunikationshistorie"
 
 #. module: shipment_plan
-#: code:addons/shipment_plan/models/purchase.py:85
+#: code:addons/shipment_plan/models/purchase.py:96
 #, python-format
-msgid "You have already confirm the \"%s\" in Order \"%s\"."
-msgstr ""
+msgid "You have already confirmed the \"%s\" in order \"%s\"."
+msgstr "Das Produkt \"%s\" im Auftrag \"%s\" wurde bereits bestätigt."
 

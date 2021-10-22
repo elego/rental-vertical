@@ -48,17 +48,21 @@
         </field>
     </record>
 
+    <record id="view_rental_product_action" model="ir.actions.act_window">
+        <field name="name">Product Variants</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="context">{'search_default_rental': 1}</field>
+        <field name="view_type">form</field>
+        <field name="search_view_id" ref="rental_base.rental_product_search_view"/>
+    </record>
+
     <!-- Main Menu -->
     <menuitem name="Rentals"
         id="menu_rental_root"
         sequence="5"
         web_icon="rental_base,static/description/icon.png" />
-
-    <menuitem name="Dashboard"
-        parent="menu_rental_root"
-        id="menu_rental_dashboard"
-        action="board.open_board_my_dash_action"
-        sequence="0"/>
 
     <menuitem name="Customers"
         id="menu_top_customer"
@@ -94,12 +98,12 @@
                 <menuitem name="Outgoing Deliveries"
                     id="menu_customer_delivery_outgoing"
                     parent="menu_customer_delivery"
-                    action="rental_base.stock_picking_action_picking_type_out"
+                    action="stock_picking_action_picking_type_out"
                     sequence="5" />
                 <menuitem name="Incoming Deliveries"
                     id="menu_customer_delivery_incoming"
                     parent="menu_customer_delivery"
-                    action="rental_base.stock_picking_action_picking_type_in"
+                    action="stock_picking_action_picking_type_in"
                     sequence="10" />
             <menuitem name="Invoices"
                 id="menu_customer_invoices"
@@ -133,12 +137,12 @@
             <menuitem name="Incoming Deliveries"
                 id="menu_vendor_delivery_incoming"
                 parent="menu_vendor_delivery"
-                action="rental_base.stock_picking_action_picking_type_in"
+                action="stock_picking_action_picking_type_in"
                 sequence="5" />
             <menuitem name="Outgoing Deliveries"
                 id="menu_vendor_delivery_outgoing"
                 parent="menu_vendor_delivery"
-                action="rental_base.stock_picking_action_picking_type_out"
+                action="stock_picking_action_picking_type_out"
                 sequence="10" />
         <menuitem name="Invoices"
             id="menu_vendor_invoices"
@@ -160,7 +164,12 @@
         id="menu_master_data"
         parent="menu_rental_root"
         sequence="20" />
-
+        <menuitem name="Products"
+            id="menu_products"
+            parent="menu_master_data"
+            action="view_rental_product_action"
+            groups="product.group_product_variant"
+            sequence="0"/>
 
     <menuitem name="Configuration"
         id="menu_config"
@@ -173,15 +182,14 @@
             action="action_rental_configuration"
             sequence="0"
             web_icon="rental_base,static/description/icon.png" />
+            <menuitem name="Products"
+                id="menu_config_products"
+                parent="menu_config"
+                sequence="20" />
             <menuitem name="Rental Positions"
                 id="menu_rental_positions"
                 parent="menu_config"
                 action="sale_rental.sale_rental_action"
                 groups="base.group_no_one"
                 sequence="100" />
-
-        <menuitem name="Products"
-            id="menu_config_products"
-            parent="rental_base.menu_config"
-            sequence="20" />
 </odoo>

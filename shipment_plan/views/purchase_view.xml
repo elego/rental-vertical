@@ -15,6 +15,20 @@
             <xpath expr="//button[@name='button_confirm']" position="before">
                 <button name="action_transport_confirm" type="object" string="Use in Order" attrs="{'invisible': ['|', ('show_shipment_plan', '!=', True), ('selected_in_order', '=', True)]}"/>
             </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button"
+                    name="action_view_shipment_plans"
+                    type="object"
+                    icon="fa-truck"
+                    title="Shipment Plans"
+                    attrs="{'invisible': [('show_shipment_plan', '=', 0)]}"
+                >
+                    <div class="o_stat_info">
+                        <field name="shipment_plan_count" class="o_stat_value"/>
+                        <span class="o_stat_text"> Shipment Plans</span>
+                    </div>
+                </button>
+            </xpath>
         </field>
     </record>
 </odoo>

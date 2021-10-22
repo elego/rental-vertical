@@ -2,35 +2,40 @@
 
 {
     "name": "Rental Base",
-    "summary": "Base module for rental use cases",
-    "description": """Base Module for Rental Support
-
-This module add some basic configuration options and extensions for rental use cases.
-
-Configuration options:
- - Rental Prices: Rental prices can be configured for hourly, daily or monthly rentals.
- - Rental Off-Days: Off-days can be calculated for daily rentals which are excluded from price calculation.
- - Timeline: Use timeline for order regarding a rental product.
- - Rental Product Pack: Rental orders for product packs will also update the stock of pack components.
- - Product Variant: Configure rental products with extended fields and smartbuttons.
- - Product Instance: Use a product as unique product instance with serial number.
- - Product Set: Rental products can be grouped in a set for usage in rental orders.
- - Contract: Rental contracts are automatically created from monthly rentals for periodic invoicing.
- - Repair Order: Support repair orders for product instances.
-""",
-    "usage": """
-Go to Rentals > Configuration > Settings.
-Activate the checkboxes for rental extensions.
-
-Please activate the checkbox for using 'Product Variants' in Sales > Configuration > Settings, too.
-Otherwise you can not deal with rental orders.
-""",
     "version": "12.0.1.0.1",
     "category": "Rental",
-    "author": "Odoo Community Association (OCA)/Elego Software Solutions GmbH",
+    "summary": "Manage Rental of Products",
+    "description": """Base Module for Rental Management
+
+This module provides a new menu for rental management.
+It is based on the sale_rental module that currently can be found in sale-workflow repository.
+""",
+    "usage": """
+Create a rentable product and its rental service.
+ * Go to Rentals > Configuration > Settings.
+ * Please activate the checkbox for using 'Product Variants'.
+ * Go to Rentals > Products > Products.
+ * Create a new storable product.
+ * Active the checkbox 'Can be Rented'.
+ * Go to page 'Sales & Purchase'.
+ * Create the rental service and configure its name and price.
+
+Create a rental order:
+ * Go to Rentals > Customer > Rental Quotations.
+ * Create a new order and choose the type 'Rental Order'.
+ * Add the rental service as an order line.
+ * Set the quantity to rent out one or several storable rentable products.
+ * Choose start and end date.
+ * Confirm the order.
+ * Check out the two deliveries, one for outgoing and one for incoming delivery.
+
+Please also see the usage section of sale_rental module.
+""",
+
+    "author": "elego Software Solutions GmbH, Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/vertical-rental",
     "depends": [
         "account",
-        "board",
         "product_analytic",
         "sale",
         "sale_order_type",
@@ -46,6 +51,7 @@ Otherwise you can not deal with rental orders.
         "wizard/update_sale_line_date_view.xml",
         "views/res_config_settings_view.xml",
         "views/stock_picking_views.xml",
+        "views/product_views.xml",
         "views/menu_view.xml",
         "views/sale_view.xml",
     ],

@@ -13,6 +13,9 @@ Part of rental-vertical See LICENSE file for full copyright and licensing detail
                 <group name="main">
                     <field name="service_product_ids" widget="many2many_tags"/>
                     <field name="transport_service_type"/>
+                    <field name="multi"/>
+                    <field name="partner_id"
+                           attrs="{'invisible': ['|', ('transport_service_type', '!=', 'po'), ('multi', '=', True)]}"/>
                     <field name="origin_line_ids">
                         <tree>
                             <field name="order_line_id" invisible="1"/>

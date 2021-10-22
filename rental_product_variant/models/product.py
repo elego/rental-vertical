@@ -143,7 +143,12 @@ class ProductProduct(models.Model):
             [
                 "|",
                 ("product_id", "=", self.id),
-                ("product_id", "in", self.rental_service_ids.ids),
+                ("product_id", "in", self.search([
+                    '|', '&',
+                    ("active", "=", True),
+                    ("active", "=", False),
+                    ("rented_product_id", "=", self.id)
+                ]).ids),
             ]
         )
         if rental:
@@ -176,7 +181,12 @@ class ProductProduct(models.Model):
             [
                 "|",
                 ("product_id", "=", self.id),
-                ("product_id", "in", self.rental_service_ids.ids),
+                ("product_id", "in", self.search([
+                    '|', '&',
+                    ("active", "=", True),
+                    ("active", "=", False),
+                    ("rented_product_id", "=", self.id)
+                ]).ids),
             ]
         )
         return list(

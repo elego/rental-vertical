@@ -25,3 +25,4 @@ class ProductProduct(models.Model):
                 p.rental_service_ids.write(
                     {"trans_purchase_request": p.trans_purchase_request}
                 )
+        return res

@@ -10,8 +10,8 @@ class SaleOrderLine(models.Model):
 
     number_of_time_unit = fields.Float(
         string="Number of TU",
-        help="This is the time difference given by start and end date "
-        "for this order line.",
+        help="This is the time difference given by "
+             "start and end date for this order line.",
     )
 
     display_product_id = fields.Many2one(
@@ -154,8 +154,6 @@ class SaleOrderLine(models.Model):
         res = {}
         if self.product_id:
             if self.product_id.rented_product_id:
-                # self.rental = True
-                # self.can_sell_rental = False
                 self.sell_rental_id = False
                 if not self.rental_type:
                     self.rental_type = "new_rental"
@@ -168,28 +166,21 @@ class SaleOrderLine(models.Model):
                     if avail.get("warning", False):
                         res["warning"] = avail["warning"]
             elif self.product_id.rental_service_ids:
-                # self.can_sell_rental = True
-                # self.rental = False
                 self.rental_type = False
                 self.rental_qty = 0
                 self.extension_rental_id = False
             else:
                 self.rental_type = False
-                # self.rental = False
                 self.rental_qty = 0
                 self.extension_rental_id = False
-                # self.can_sell_rental = False
                 self.sell_rental_id = False
         else:
             self.rental_type = False
-            # self.rental = False
             self.rental_qty = 0
             self.extension_rental_id = False
-            # self.can_sell_rental = False
             self.sell_rental_id = False
         return res
 
-    # Override function in rental_sale
     @api.constrains(
         "rental_type",
         "extension_rental_id",
@@ -234,17 +225,6 @@ class SaleOrderLine(models.Model):
                         )
                         % (line.product_id.name)
                     )
-                # if line.product_uom_qty !=\
-                #        line.rental_qty * line.number_of_days:
-                #    raise ValidationError(_(
-                #        'On the sale order line with product "%s" '
-                #        'the Product Quantity (%s) should be the '
-                #        'number of days (%s) '
-                #        'multiplied by the Rental Quantity (%s).') % (
-                #        line.product_id.name, line.product_uom_qty,
-                #        line.number_of_days, line.rental_qty))
-                # the module sale_start_end_dates checks that, when we have
-                # must_have_dates, we have start + end dates
             elif line.sell_rental_id:
                 if line.product_uom_qty != line.sell_rental_id.rental_qty:
                     raise ValidationError(
@@ -261,8 +241,6 @@ class SaleOrderLine(models.Model):
                         )
                     )
 
-    # Override function in rental_sale
-    # replace number_of_days with number_of_time_unit
     @api.onchange("rental_qty", "number_of_time_unit", "product_id")
     def rental_qty_number_of_days_change(self):
         if self.product_id.rented_product_id:
@@ -342,7 +320,7 @@ class SaleOrder(models.Model):
                 if line.rental and line.product_id:
                     if line.product_id.type != "service":
                         raise exceptions.UserError(
-                            _("%s is not correctly configured.") % line.product_id.name
+                            _("The product %s is not correctly configured.") % line.product_id.name
                         )
 
     @api.multi

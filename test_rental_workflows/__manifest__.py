@@ -14,6 +14,8 @@ Test Rental Workflows
         'web_tour',
         'sale_rental',
         'rental_base',
+        'rental_config',
+        'rental_dashboard',
         'rental_pricelist',
         'rental_product_set',
         'rental_product_instance',

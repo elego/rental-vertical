@@ -14,37 +14,37 @@ class ProductProduct(models.Model):
         return self.env.ref("product.list0").id
 
     rental_of_month = fields.Boolean(
-        "Rented in months",
+        string="Rented in months",
         copy=False,
     )
 
     rental_of_day = fields.Boolean(
-        "Rented in days",
+        string="Rented in days",
         copy=False,
     )
 
     rental_of_hour = fields.Boolean(
-        "Rented in hours",
+        string="Rented in hours",
         copy=False,
     )
 
     product_rental_month_id = fields.Many2one(
-        "product.product",
-        "Rental Service (Month)",
+        comodel_name="product.product",
+        string="Rental Service (Month)",
         ondelete="set null",
         copy=False,
     )
 
     product_rental_day_id = fields.Many2one(
-        "product.product",
-        "Rental Service (Day)",
+        comodel_name="product.product",
+        string="Rental Service (Day)",
         ondelete="set null",
         copy=False,
     )
 
     product_rental_hour_id = fields.Many2one(
-        "product.product",
-        "Rental Service (Hour)",
+        comodel_name="product.product",
+        string="Rental Service (Hour)",
         ondelete="set null",
         copy=False,
     )
@@ -74,35 +74,35 @@ class ProductProduct(models.Model):
     )
 
     day_scale_pricelist_item_ids = fields.One2many(
-        "product.pricelist.item",
-        "day_item_id",
+        comodel_name="product.pricelist.item",
+        inverse_name="day_item_id",
         string="Day Scale Pricelist Items",
         copy=False,
     )
 
     month_scale_pricelist_item_ids = fields.One2many(
-        "product.pricelist.item",
-        "month_item_id",
+        comodel_name="product.pricelist.item",
+        inverse_name="month_item_id",
         string="Month Scale Pricelist Items",
         copy=False,
     )
 
     hour_scale_pricelist_item_ids = fields.One2many(
-        "product.pricelist.item",
-        "hour_item_id",
+        comodel_name="product.pricelist.item",
+        inverse_name="hour_item_id",
         string="Hour Scale Pricelist Items",
         copy=False,
     )
 
     def_pricelist_id = fields.Many2one(
-        "product.pricelist",
-        "Default Pricelist",
+        comodel_name="product.pricelist",
+        string="Default Pricelist",
         default=lambda self: self._default_pricelist(),
     )
 
     @api.model
     def _get_rental_service_prefix_suffix(self, field, str_type, rental_type):
-        field_name = "rental_service_%s_%s_%s" %(field, str_type, rental_type)
+        field_name = "rental_service_%s_%s_%s" % (field, str_type, rental_type)
         res = getattr(self.env.user.company_id, field_name)
         return res
 
@@ -120,6 +120,18 @@ class ProductProduct(models.Model):
                 _("The product has no related rental services.")
             )
 
+    @api.multi
+    def _get_rental_service_list(self):
+        self.ensure_one()
+        rental_services = []
+        if self.product_rental_month_id:
+            rental_services.append(self.product_rental_month_id)
+        if self.product_rental_day_id:
+            rental_services.append(self.product_rental_day_id)
+        if self.product_rental_hour_id:
+            rental_services.append(self.product_rental_hour_id)
+        return rental_services
+
     @api.model
     def _get_rental_service_uom(self, rental_type):
         time_uoms = self.env["sale.order.line"]._get_time_uom()
@@ -131,7 +143,9 @@ class ProductProduct(models.Model):
         elif rental_type == "hour":
             uom = time_uoms["hour"]
         else:
-            raise exceptions.ValidationError(_("No found expected Rental Type."))
+            raise exceptions.ValidationError(
+                _("No expected rental type (rental unit of measure) is found.")
+            )
         return uom
 
     @api.model
@@ -142,7 +156,9 @@ class ProductProduct(models.Model):
             if uom.id == val.id:
                 rental_type = key
         if not rental_type:
-            raise exceptions.ValidationError(_("No found expected Rental Type."))
+            raise exceptions.ValidationError(
+                _("No expected rental type (rental unit of measure) is found.")
+            )
         return rental_type
 
     @api.multi
@@ -152,9 +168,9 @@ class ProductProduct(models.Model):
         suffix = self._get_rental_service_prefix_suffix("name", "suffix", rental_type)
         name = sp_name
         if prefix:
-            name = "%s %s" %(prefix, name)
+            name = "%s %s" % (prefix, name)
         if suffix:
-            name = "%s %s" %(name, suffix)
+            name = "%s %s" % (name, suffix)
         return name
 
     @api.multi
@@ -163,10 +179,13 @@ class ProductProduct(models.Model):
         prefix = self._get_rental_service_prefix_suffix("default_code", "prefix", rental_type)
         suffix = self._get_rental_service_prefix_suffix("default_code", "suffix", rental_type)
         default_code = sp_code
-        if prefix:
-            default_code = "%s-%s" %(prefix, default_code)
-        if suffix:
-            default_code = "%s-%s" %(default_code, suffix)
+        if default_code:
+            if prefix:
+                default_code = "%s-%s" % (prefix, default_code)
+            if suffix:
+                default_code = "%s-%s" % (default_code, suffix)
+        else:
+            default_code = ""
         return default_code
 
     @api.model
@@ -177,7 +196,7 @@ class ProductProduct(models.Model):
             "name": _("Rental of %s (%s)") % (product.name, uom.name),
             "categ_id": product.categ_id.id,
             "copy_image": True,
-            "default_code": "RENT-%s-%s" %(rental_type.upper(), product.default_code),
+            "default_code": "RENT-%s-%s" % (rental_type.upper(), product.default_code),
         }
         res = (
             self.env["create.rental.product"]
@@ -249,12 +268,20 @@ class ProductProduct(models.Model):
                 rental_service.name = service_name
 
     @api.multi
-    def _update_rental_service_fields(self, vals, fields):
+    def _update_rental_service_fields(self, vals, fields, rental_services):
         self.ensure_one()
         service_vals = {}
         for field in fields:
             if field in vals:
                 service_vals[field] = vals.get(field, False)
+        # check 'active' becomes True from False
+        check_rental_services = (
+            service_vals.get('active', False) and
+            not self.rental_service_ids and
+            rental_services)
+        if check_rental_services:
+            for p in rental_services:
+                p.write(service_vals)
         self.rental_service_ids.write(service_vals)
 
     @api.multi
@@ -300,8 +327,14 @@ class ProductProduct(models.Model):
                 "rental",
                 "active",
             ]
-            if (vals.keys() & update_fields) and p.rental_service_ids:
-                p._update_rental_service_fields(vals, update_fields)
+            # when 'active' set to True from False,
+            # then 'rental_service_ids' set to Null, 
+            # need to find rental service products from main product
+            rental_services = []
+            if vals.get("active", False):
+                rental_services = p._get_rental_service_list()
+            if (vals.keys() & update_fields) and (p.rental_service_ids or rental_services):
+                p._update_rental_service_fields(vals, update_fields, rental_services)
         return res
 
     @api.model
