@@ -85,7 +85,7 @@ class SaleOrderLine(models.Model):
             ("end_date", ">=", self.start_date),
             "&",
             ("start_date", "<=", self.end_date),
-            ("start_date", ">=", self.end_date),
+            ("end_date", ">=", self.end_date),
         ]
         res = self.search(domain)
         return res
