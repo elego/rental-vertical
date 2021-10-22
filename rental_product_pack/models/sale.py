@@ -31,5 +31,4 @@ class SaleOrder(models.Model):
                             )
             out_pickings.action_confirm()
             in_pickings.action_confirm()
-
         return res
