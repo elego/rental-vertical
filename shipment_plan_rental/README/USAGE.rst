@@ -1,18 +1,7 @@
-# Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
-{
-    "name": "Shipment Management Rental",
-    "summary": "Shipment Management Rental",
-    "version": "12.0.1.0.0",
-    "category": "Rental/Transportation",
-    "author": "Odoo Community Association (OCA)/Elego Software Solutions GmbH",
-    "description": """
-This module provides a rental extension for the shipment management.
-Rentals require two deliveries, one to transfer the products to the customer and one to get them back.
-In case of products that needs special transportation, e.g. because of their weight, height or chemical
-properties, two shipment plans are created when requesting transportation from the rental order.
-    """,
-    "usage": """
+Usage
+-----
+
 Configure storable and service products as described in module 'shipment_plan'.
 
 Configure these storable products as rental products.
@@ -33,17 +22,4 @@ Create a rental order for a product that needs transportation.
  - Choose the transport service that should be used in the purchase order / requisition.
  - Create the request.
  - Check both shipment plans, purchase requisitions and/or purchase orders for outbound and inbound transport.
-    """,
-    "depends": [
-        "shipment_plan_sale",
-        "rental_base",
-        "rental_purchase_order_type",
-    ],
-    "data": [
-        "views/menu_view.xml",
-        "views/sale_view.xml",
-    ],
-    "demo": [],
-    "qweb": [],
-    "license": "AGPL-3",
-}
+

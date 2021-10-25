@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
-<title>Sale Shipment Plan</title>
+<title>Shipment Management Sale</title>
 <style type="text/css">
 
 /*
@@ -360,21 +360,57 @@ ul.auto-toc {
 </style>
 </head>
 <body>
-<div class="document" id="sale-shipment-plan">
-<h1 class="title">Sale Shipment Plan</h1>
+<div class="document" id="shipment-management-sale">
+<h1 class="title">Shipment Management Sale</h1>
 
-<p><em>This file has been generated on 2021-09-23-09-13-22. Changes to it will be overwritten.</em></p>
+<p><em>This file has been generated on 2021-10-25-10-18-19. Changes to it will be overwritten.</em></p>
 <div class="section" id="summary">
 <h1>Summary</h1>
-<p>Sale Shipment Plan</p>
+<p>Shipment Management Sale</p>
 </div>
 <div class="section" id="description">
 <h1>Description</h1>
-<p>TODO</p>
+<p>This module provides a sale extension for the shipment management.
+The combination of a storable product that needs transportation and the use of an incoterm configured for outbound
+transportation allows the salesmen to create a transport request (purchase order or requisition) directly from the
+sale order. It will also create the shipment plan.</p>
+</div>
+<div class="section" id="usage">
+<h1>Usage</h1>
+<p>Configure storable and service products as described in module 'shipment_plan'.</p>
+<dl class="docutils">
+<dt>Configure incoterms that should allow the creation of transport requests from sale orders.</dt>
+<dd><ul class="first last simple">
+<li>Go to Invoicing &gt; Configuration &gt; Incoterms</li>
+<li>Set the field 'Outbound transport required' (trans_pr_needed) to True.</li>
+</ul>
+</dd>
+<dt>Create a sale order for a product that needs transportation.</dt>
+<dd><ul class="first last simple">
+<li>Go to Sales &gt; Orders &gt; Quotations.</li>
+<li>Create a new quotation.</li>
+<li>Choose a customer.</li>
+<li>Choose an incoterm configured to allow the creation of a transport request.</li>
+<li>Add a storable product that needs transportation.</li>
+<li>Save the order.</li>
+<li>Click the button 'Request Transport'.</li>
+<li>Choose the transport service that should be used in the purchase order / requisition.</li>
+<li>Create the request.</li>
+<li>Check the shipment plan, purchase requisition and/or purchase orders.</li>
+</ul>
+</dd>
+</dl>
 </div>
 <div class="section" id="changelog">
 <h1>Changelog</h1>
 <ul class="simple">
+<li>dca4ac1b 2021-10-10 18:18:10 +0000 <a class="reference external" href="mailto:jenkins-ci&#64;elegosoft.com">jenkins-ci&#64;elegosoft.com</a>  [MERGE] remotes/origin/feature_4433_blp1142_rental_base_v12: addons-rental-vertical remotes/origin/feature_4433_blp1142_rental_base_v12 - 75791881da0ea6e70c408ec75042fe9635fc9a49 issue #4433 change view id to match parent id</li>
+<li>8b4d40c4 2021-09-23 09:19:24 +0200 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  regenerate doc (issue #4016)</li>
+<li>8d9bae9c 2021-09-16 19:14:49 +0200 <a class="reference external" href="mailto:yweng&#64;elegosoft.com">yweng&#64;elegosoft.com</a>  (origin/feature_4258_blp1142_shipment_plan_v12) [IMP] Update translations for module shipment_plan and shipment_plan_sale</li>
+<li>d3cdb63e 2021-09-16 18:39:35 +0200 <a class="reference external" href="mailto:yweng&#64;elegosoft.com">yweng&#64;elegosoft.com</a>  [IMP] add additional options for wizard create.trans.request and create.sale.trans.request to create single purchase order and single requisition (issue: 4349)</li>
+<li>78c008d1 2021-07-29 12:17:32 +0200 <a class="reference external" href="mailto:maria.sparenberg&#64;elegosoft.com">maria.sparenberg&#64;elegosoft.com</a>  issue #4258 some more refactoring - move stock stuff from shipment_plan_sale to shipment_plan</li>
+<li>121d6139 2021-07-27 15:59:36 +0200 <a class="reference external" href="mailto:maria.sparenberg&#64;elegosoft.com">maria.sparenberg&#64;elegosoft.com</a>  issue #4258 refactor, fix dependencies and add description and usage section in manifest</li>
+<li>6a1a205e 2021-07-20 15:45:43 +0200 <a class="reference external" href="mailto:maria.sparenberg&#64;elegosoft.com">maria.sparenberg&#64;elegosoft.com</a>  issue #4258 refactor and fix translations</li>
 <li>79ad02b9 2021-06-27 12:48:12 +0200 <a class="reference external" href="mailto:yweng&#64;elegosoft.com">yweng&#64;elegosoft.com</a>  [IMP] adjust Unittest of shipment_plan (issue 4258)</li>
 <li>7bfba3ef 2021-06-25 15:21:14 +0000 <a class="reference external" href="mailto:jenkins-ci&#64;elegosoft.com">jenkins-ci&#64;elegosoft.com</a>  [MERGE] remotes/origin/feature_4258_blp1110_shipment_plan_v12: addons-rental-vertical remotes/origin/feature_4258_blp1110_shipment_plan_v12 - a6c718e8bf13718fd1677970d2e9ea097395c610 [IMP] adjust form view of purchase.order and extract function to prepare values for creating pos and prs from shipment plan (issue 4258)</li>
 <li>dd988a2f 2021-06-09 12:42:47 +0200 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  update documentation (issue #3613)</li>

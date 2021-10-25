@@ -363,22 +363,41 @@ ul.auto-toc {
 <div class="document" id="rental-check-availability">
 <h1 class="title">Rental Check Availability</h1>
 
-<p><em>This file has been generated on 2021-09-23-09-13-22. Changes to it will be overwritten.</em></p>
+<p><em>This file has been generated on 2021-10-25-10-18-19. Changes to it will be overwritten.</em></p>
 <div class="section" id="summary">
 <h1>Summary</h1>
 <p>Extends the sale_rental module for checking availability of the rented product.</p>
 </div>
 <div class="section" id="description">
 <h1>Description</h1>
-<p>Check availability of the rented product.</p>
+<p>This module activates availability checks on stockable products related to rental services in
+sale orders. In the base functionality only the total amount of products in stock is checked and user is
+informed when the amount of products to rent out in a sale order is higher.</p>
+<p>After the installation of this module the availability is checked in consideration of the total amount
+of goods in stock and the amount of products used in concurrent sale orders at the certain desired timeframe.
+In case of insufficient products in stock the user receives visual notification on respective sale order line
+and can access the list of concurrent sale orders directly.</p>
 </div>
 <div class="section" id="usage">
 <h1>Usage</h1>
-<p>_empty_</p>
+<p>To use this module, you need to:</p>
+<ol class="arabic simple">
+<li>Go to Rental Orders and create a new one.</li>
+<li>Add a product available for being rented out in sale order line.</li>
+<li>If there is not enough stock on hand to fullfil the order and
+possible concurrent ones the sale order line will be colorized.
+Yellow marks that there are concurrent quotations and red indicates
+concurrent orders.</li>
+<li>To check the concurrent order for a critical sale order line just click
+on the inline button being displayed in the sale order line.</li>
+</ol>
 </div>
 <div class="section" id="changelog">
 <h1>Changelog</h1>
 <ul class="simple">
+<li>39845816 2021-10-21 14:15:20 +0200 <a class="reference external" href="mailto:yweng&#64;elegosoft.com">yweng&#64;elegosoft.com</a>  (origin/feature_4436_blp1250_unittest_rental_check_availability_v12) [IMP] update translations and manifest of module rental_pricelist_interval and rental_check_availability (issue 4436)</li>
+<li>d8665dd9 2021-10-19 12:26:31 +0200 <a class="reference external" href="mailto:yweng&#64;elegosoft.com">yweng&#64;elegosoft.com</a>  [IMP] Add Unittest for module rental_check_availability and adjust Unittest of rental_pricelist and rental_pricelist_interval (issue 4436)</li>
+<li>8b4d40c4 2021-09-23 09:19:24 +0200 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  regenerate doc (issue #4016)</li>
 <li>dd988a2f 2021-06-09 12:42:47 +0200 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  update documentation (issue #3613)</li>
 <li>78a00cdd 2021-04-28 02:43:00 +0200 <a class="reference external" href="mailto:yweng&#64;elegosoft.com">yweng&#64;elegosoft.com</a>  (origin/feature_4222_blp622_rental_check_availability_v12, feature_4222_blp622_rental_check_availability_v12) [IMP] adjust tree view of sale.order and hide the button 'show concurrent order' for product with zero quantity</li>
 <li>0cc27ac8 2021-03-28 21:45:23 +0200 <a class="reference external" href="mailto:yweng&#64;elegosoft.com">yweng&#64;elegosoft.com</a>  (origin/feature_4046_blp564_rental_check_availability_v12) [ADD] Module rental_check_availability (issue 4046)</li>

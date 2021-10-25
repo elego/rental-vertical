@@ -1,7 +1,7 @@
 Rental Off-Day
 ====================================================
 
-*This file has been generated on 2021-10-25-10-12-29. Changes to it will be overwritten.*
+*This file has been generated on 2021-10-25-10-18-19. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -54,6 +54,8 @@ Create a rental order:
 Changelog
 ---------
 
+- ce77a323 2021-10-25 10:17:16 +0200 wagner@elegosoft.com  (HEAD -> v12) fix two syntax errors in documentation (issue #3339)
+- 996b4742 2021-10-25 10:15:33 +0200 wagner@elegosoft.com  fix two syntax errors in documentation (issue #3339)
 - 84b8ac2c 2021-10-19 13:27:42 +0200 maria.sparenberg@elegosoft.com  (origin/feature_4439_blp1250_rental_product_pack_v12) issue #4438 format and finalize description and usage section
 - 8b4d40c4 2021-09-23 09:19:24 +0200 wagner@elegosoft.com  regenerate doc (issue #4016)
 - dd988a2f 2021-06-09 12:42:47 +0200 wagner@elegosoft.com  update documentation (issue #3613)

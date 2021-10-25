@@ -2,6 +2,7 @@
 Changelog
 ---------
 
+- 8b4d40c4 2021-09-23 09:19:24 +0200 wagner@elegosoft.com  regenerate doc (issue #4016)
 - dd988a2f 2021-06-09 12:42:47 +0200 wagner@elegosoft.com  update documentation (issue #3613)
 - a3dbbc3e 2021-01-15 13:20:08 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_4041_blp963_filter_instance_state_v12: addons-rental-vertical remotes/origin/feature_4041_blp963_filter_instance_state_v12 - 3d72d4dce46aade56e9ec43c2bad5722c82ccdbc [IMP] add unittest for module rental_timeline_product_instance (issue 4041)
 - 3d72d4dc 2021-01-14 17:34:01 +0100 yweng@elegosoft.com  (origin/feature_4041_blp963_filter_instance_state_v12) [IMP] add unittest for module rental_timeline_product_instance (issue 4041)

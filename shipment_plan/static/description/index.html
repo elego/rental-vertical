@@ -363,18 +363,83 @@ ul.auto-toc {
 <div class="document" id="shipment-management">
 <h1 class="title">Shipment Management</h1>
 
-<p><em>This file has been generated on 2021-09-23-09-13-22. Changes to it will be overwritten.</em></p>
+<p><em>This file has been generated on 2021-10-25-10-18-19. Changes to it will be overwritten.</em></p>
 <div class="section" id="summary">
 <h1>Summary</h1>
 <p>Shipment Management</p>
 </div>
 <div class="section" id="description">
 <h1>Description</h1>
-<p>TODO</p>
+<p>This module provides the base of the shipment management in order to organize and manage transportation
+for products that are to voluminous or heavy or somehow dangerous, and therefore need special transport treatment.
+The shipment plans focus on the transport after leaving or before entering the internal stock locations.</p>
+</div>
+<div class="section" id="usage">
+<h1>Usage</h1>
+<dl class="docutils">
+<dt>Configure the storable products that need transportation.</dt>
+<dd><ul class="first last simple">
+<li>Set the product type to 'Storable Product'.</li>
+<li>Set the flag 'Transport required' (trans_purchase_request) to True.</li>
+</ul>
+</dd>
+<dt>Configure transport services that can be purchased from delivery carriers.</dt>
+<dd><ul class="first last simple">
+<li>Set the product type to 'Service'.</li>
+<li>Set the flag 'Transport Service' (is_transport) to True.</li>
+<li>Go to Page 'Purchase' amd add some suppliers that offer this transport service.</li>
+<li>Also choose the 'Transport Service Type' in order to create a purchase order or a call for tender.</li>
+</ul>
+</dd>
+<dt>Configure the granularity of transport costs.</dt>
+<dd><ul class="first simple">
+<li>Go to Inventory &gt; Configuration &gt; Settings</li>
+<li>Choose the transport cost type as single or multiple positions.</li>
+</ul>
+<p class="last">Choosing the cost type 'Multi Positions’ the transport purchase order or call for tender can contain several lines
+for the different costs related to the transport, e.g. the transport costs itself and several charges.
+You can define the appropriate transport services when creating a new transport request.
+Choosing the cost type 'Single Position’ the transport request will only consist of one line with all costs.</p>
+</dd>
+<dt>Create a new shipment plan and purchase requests.</dt>
+<dd><ul class="first simple">
+<li>Go to Inventory &gt; Operation &gt; Shipment Plans.</li>
+<li>Choose the starting address and the destination address.</li>
+<li>Set the estimated time or arrival and departure.</li>
+<li>Give some more description that the transport carrier will need.</li>
+<li>Create a new purchase request by button click.</li>
+<li>Choose the transport service.</li>
+<li>Choose the request type to be either a purchase order or requisition (tender).</li>
+<li>Create a purchase order or requistion.</li>
+<li>Use these purchase orders as usual.</li>
+</ul>
+<dl class="last docutils">
+<dt>Create a shipment plan for internal pickings.</dt>
+<dd><ul class="first last simple">
+<li>Go to Inventory &gt; Configuration &gt; Settings and activate multiple storage locations.</li>
+<li>Go to Inventory &gt; Operation &gt; Transfers.</li>
+<li>Create a new stock picking with internal picking type.</li>
+<li>Create a shipment plan for this internal transfer, which is then linked in a smartbutton.</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
 </div>
 <div class="section" id="changelog">
 <h1>Changelog</h1>
 <ul class="simple">
+<li>ce77a323 2021-10-25 10:17:16 +0200 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  (HEAD -&gt; v12) fix two syntax errors in documentation (issue #3339)</li>
+<li>996b4742 2021-10-25 10:15:33 +0200 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  fix two syntax errors in documentation (issue #3339)</li>
+<li>dca4ac1b 2021-10-10 18:18:10 +0000 <a class="reference external" href="mailto:jenkins-ci&#64;elegosoft.com">jenkins-ci&#64;elegosoft.com</a>  [MERGE] remotes/origin/feature_4433_blp1142_rental_base_v12: addons-rental-vertical remotes/origin/feature_4433_blp1142_rental_base_v12 - 75791881da0ea6e70c408ec75042fe9635fc9a49 issue #4433 change view id to match parent id</li>
+<li>8b4d40c4 2021-09-23 09:19:24 +0200 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  regenerate doc (issue #4016)</li>
+<li>8d9bae9c 2021-09-16 19:14:49 +0200 <a class="reference external" href="mailto:yweng&#64;elegosoft.com">yweng&#64;elegosoft.com</a>  (origin/feature_4258_blp1142_shipment_plan_v12) [IMP] Update translations for module shipment_plan and shipment_plan_sale</li>
+<li>d3cdb63e 2021-09-16 18:39:35 +0200 <a class="reference external" href="mailto:yweng&#64;elegosoft.com">yweng&#64;elegosoft.com</a>  [IMP] add additional options for wizard create.trans.request and create.sale.trans.request to create single purchase order and single requisition (issue: 4349)</li>
+<li>f67f4850 2021-09-13 15:27:09 +0200 <a class="reference external" href="mailto:yweng&#64;elegosoft.com">yweng&#64;elegosoft.com</a>  [IMP] add fields location_id and location_dest_id for shipment.plan (issue 4353)</li>
+<li>78c008d1 2021-07-29 12:17:32 +0200 <a class="reference external" href="mailto:maria.sparenberg&#64;elegosoft.com">maria.sparenberg&#64;elegosoft.com</a>  issue #4258 some more refactoring - move stock stuff from shipment_plan_sale to shipment_plan</li>
+<li>121d6139 2021-07-27 15:59:36 +0200 <a class="reference external" href="mailto:maria.sparenberg&#64;elegosoft.com">maria.sparenberg&#64;elegosoft.com</a>  issue #4258 refactor, fix dependencies and add description and usage section in manifest</li>
+<li>44e04995 2021-07-26 15:45:26 +0200 <a class="reference external" href="mailto:maria.sparenberg&#64;elegosoft.com">maria.sparenberg&#64;elegosoft.com</a>  issue #4258 add shipment plan smartbutton in purchase orders</li>
+<li>6a1a205e 2021-07-20 15:45:43 +0200 <a class="reference external" href="mailto:maria.sparenberg&#64;elegosoft.com">maria.sparenberg&#64;elegosoft.com</a>  issue #4258 refactor and fix translations</li>
 <li>5df1a414 2021-06-29 17:07:31 +0200 <a class="reference external" href="mailto:yweng&#64;elegosoft.com">yweng&#64;elegosoft.com</a>  [FIX] rental_forward_shipment_plan (issue 4255)</li>
 <li>79ad02b9 2021-06-27 12:48:12 +0200 <a class="reference external" href="mailto:yweng&#64;elegosoft.com">yweng&#64;elegosoft.com</a>  [IMP] adjust Unittest of shipment_plan (issue 4258)</li>
 <li>7bfba3ef 2021-06-25 15:21:14 +0000 <a class="reference external" href="mailto:jenkins-ci&#64;elegosoft.com">jenkins-ci&#64;elegosoft.com</a>  [MERGE] remotes/origin/feature_4258_blp1110_shipment_plan_v12: addons-rental-vertical remotes/origin/feature_4258_blp1110_shipment_plan_v12 - a6c718e8bf13718fd1677970d2e9ea097395c610 [IMP] adjust form view of purchase.order and extract function to prepare values for creating pos and prs from shipment plan (issue 4258)</li>

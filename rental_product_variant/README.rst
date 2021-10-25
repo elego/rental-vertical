@@ -1,7 +1,7 @@
 Rental Product Variant
 ====================================================
 
-*This file has been generated on 2021-09-23-09-13-22. Changes to it will be overwritten.*
+*This file has been generated on 2021-10-25-10-18-19. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -41,6 +41,9 @@ In order to get vehicle related fields, open the product category and activate t
 Changelog
 ---------
 
+- 43b06373 2021-10-10 18:18:11 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_4447_blp1142_rental_product_variant_v12: addons-rental-vertical remotes/origin/feature_4447_blp1142_rental_product_variant_v12 - 35019a0969ffa6b2625ae89220590787266e85d7 [IMP] improve domain on smart buttons on Product.product form view, so inactivated product or related inactivated rental services also covered, (issue#4447)
+- 35019a09 2021-09-29 09:47:59 +0200 cpatel@elegosoft.com  (origin/feature_4447_blp1142_rental_product_variant_v12) [IMP] improve domain on smart buttons on Product.product form view, so inactivated product or related inactivated rental services also covered, (issue#4447)
+- 8b4d40c4 2021-09-23 09:19:24 +0200 wagner@elegosoft.com  regenerate doc (issue #4016)
 - dd988a2f 2021-06-09 12:42:47 +0200 wagner@elegosoft.com  update documentation (issue #3613)
 - 104b890c 2021-03-29 13:19:52 +0200 maria.sparenberg@elegosoft.com  (origin/fix_4176_blp1043_sales_smartbutton_v12) issue #4176 fix default argument because otherwise calling this method for sale orders you would need to call it with rental=False
 - 7516e2d5 2020-11-26 21:13:46 +0100 yweng@elegosoft.com  [IMP] remove some depends of rental_base

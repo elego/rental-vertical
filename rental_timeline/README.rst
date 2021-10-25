@@ -1,7 +1,7 @@
 Rental Timeline
 ====================================================
 
-*This file has been generated on 2021-09-23-09-13-22. Changes to it will be overwritten.*
+*This file has been generated on 2021-10-25-10-18-19. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -27,6 +27,9 @@ Just install this module to add the rental timeline view to your system. No furt
 Changelog
 ---------
 
+- 43b06373 2021-10-10 18:18:11 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_4447_blp1142_rental_product_variant_v12: addons-rental-vertical remotes/origin/feature_4447_blp1142_rental_product_variant_v12 - 35019a0969ffa6b2625ae89220590787266e85d7 [IMP] improve domain on smart buttons on Product.product form view, so inactivated product or related inactivated rental services also covered, (issue#4447)
+- 35019a09 2021-09-29 09:47:59 +0200 cpatel@elegosoft.com  (origin/feature_4447_blp1142_rental_product_variant_v12) [IMP] improve domain on smart buttons on Product.product form view, so inactivated product or related inactivated rental services also covered, (issue#4447)
+- 8b4d40c4 2021-09-23 09:19:24 +0200 wagner@elegosoft.com  regenerate doc (issue #4016)
 - 5fddc156 2021-06-25 15:21:12 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_4213_blp1110_timeline_filter_v12: addons-rental-vertical remotes/origin/feature_4213_blp1110_timeline_filter_v12 - cc3f88ac0f704ea56d61229ed238d9590b85f0db [IMP] add new field active for model product.timeline and implements the filter of it.
 - cc3f88ac 2021-06-22 21:39:26 +0200 yweng@elegosoft.com  (origin/feature_4213_blp1110_timeline_filter_v12) [IMP] add new field active for model product.timeline and implements the filter of it.
 - 6c3a7802 2021-06-22 20:38:48 +0200 yweng@elegosoft.com  [IMP] improves filter on field product_id for timeline (issue 4214)

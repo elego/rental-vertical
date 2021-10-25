@@ -2,6 +2,13 @@
 Changelog
 ---------
 
+- dca4ac1b 2021-10-10 18:18:10 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_4433_blp1142_rental_base_v12: addons-rental-vertical remotes/origin/feature_4433_blp1142_rental_base_v12 - 75791881da0ea6e70c408ec75042fe9635fc9a49 issue #4433 change view id to match parent id
+- 8b4d40c4 2021-09-23 09:19:24 +0200 wagner@elegosoft.com  regenerate doc (issue #4016)
+- 8d9bae9c 2021-09-16 19:14:49 +0200 yweng@elegosoft.com  (origin/feature_4258_blp1142_shipment_plan_v12) [IMP] Update translations for module shipment_plan and shipment_plan_sale
+- d3cdb63e 2021-09-16 18:39:35 +0200 yweng@elegosoft.com  [IMP] add additional options for wizard create.trans.request and create.sale.trans.request to create single purchase order and single requisition (issue: 4349)
+- 78c008d1 2021-07-29 12:17:32 +0200 maria.sparenberg@elegosoft.com  issue #4258 some more refactoring - move stock stuff from shipment_plan_sale to shipment_plan
+- 121d6139 2021-07-27 15:59:36 +0200 maria.sparenberg@elegosoft.com  issue #4258 refactor, fix dependencies and add description and usage section in manifest
+- 6a1a205e 2021-07-20 15:45:43 +0200 maria.sparenberg@elegosoft.com  issue #4258 refactor and fix translations
 - 79ad02b9 2021-06-27 12:48:12 +0200 yweng@elegosoft.com  [IMP] adjust Unittest of shipment_plan (issue 4258)
 - 7bfba3ef 2021-06-25 15:21:14 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_4258_blp1110_shipment_plan_v12: addons-rental-vertical remotes/origin/feature_4258_blp1110_shipment_plan_v12 - a6c718e8bf13718fd1677970d2e9ea097395c610 [IMP] adjust form view of purchase.order and extract function to prepare values for creating pos and prs from shipment plan (issue 4258)
 - dd988a2f 2021-06-09 12:42:47 +0200 wagner@elegosoft.com  update documentation (issue #3613)

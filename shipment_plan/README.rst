@@ -1,7 +1,7 @@
 Shipment Management
 ====================================================
 
-*This file has been generated on 2021-10-25-10-12-29. Changes to it will be overwritten.*
+*This file has been generated on 2021-10-25-10-18-19. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -59,6 +59,8 @@ Create a new shipment plan and purchase requests.
 Changelog
 ---------
 
+- ce77a323 2021-10-25 10:17:16 +0200 wagner@elegosoft.com  (HEAD -> v12) fix two syntax errors in documentation (issue #3339)
+- 996b4742 2021-10-25 10:15:33 +0200 wagner@elegosoft.com  fix two syntax errors in documentation (issue #3339)
 - dca4ac1b 2021-10-10 18:18:10 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_4433_blp1142_rental_base_v12: addons-rental-vertical remotes/origin/feature_4433_blp1142_rental_base_v12 - 75791881da0ea6e70c408ec75042fe9635fc9a49 issue #4433 change view id to match parent id
 - 8b4d40c4 2021-09-23 09:19:24 +0200 wagner@elegosoft.com  regenerate doc (issue #4016)
 - 8d9bae9c 2021-09-16 19:14:49 +0200 yweng@elegosoft.com  (origin/feature_4258_blp1142_shipment_plan_v12) [IMP] Update translations for module shipment_plan and shipment_plan_sale

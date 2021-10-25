@@ -2,6 +2,7 @@
 Changelog
 ---------
 
+- 8b4d40c4 2021-09-23 09:19:24 +0200 wagner@elegosoft.com  regenerate doc (issue #4016)
 - a5ae96f3 2021-06-25 15:21:08 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_3924_blp1110_product_instance_appointment_v12: addons-rental-vertical remotes/origin/feature_3924_blp1110_product_instance_appointment_v12 - 05df4ef2660dcd9427b6fd8d8c7f9f3c499dbb8e [IMP] Add related fields of last apointment to show its state and color in tree view of appointments (issue 3924)
 - 05df4ef2 2021-06-24 12:06:02 +0200 yweng@elegosoft.com  (origin/feature_3924_blp1110_product_instance_appointment_v12, origin/feature_3924_blp1102_product_instance_appointment_v12) [IMP] Add related fields of last apointment to show its state and color in tree view of appointments (issue 3924)
 - dd988a2f 2021-06-09 12:42:47 +0200 wagner@elegosoft.com  update documentation (issue #3613)
