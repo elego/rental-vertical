@@ -1,12 +1,12 @@
-Rental Off Day
+Rental Off-Day
 ====================================================
 
-*This file has been generated on 2021-09-23-09-13-22. Changes to it will be overwritten.*
+*This file has been generated on 2021-10-25-10-12-29. Changes to it will be overwritten.*
 
 Summary
 -------
 
-Calculate off-days in rentals on daily basis
+Manage off-days in rentals on daily basis
 
 Description
 -----------
@@ -25,20 +25,37 @@ Usage
 
 The off-days can only be used for products rentable in days.
 
-- Create a stockable product and activate that it is rentable in days.
-- Adjust its stock in location 'Rental In'.
-- Create a sale order and rent out the product in days.
-- Set a start and end date, e.g. for 3 weeks.
-- On sale order line you will see a page 'Off-Days'.
-- Choose the type 'Weekend' in order to create 'Fixed Off-Days' and you get a list with all saturdays
-  and sundays within the rental period.
-- Add some additional off-days.
-- The number of off-days reduces the rental quantity and is therefore not included in price calculation.
+Create a rentable product and its rental service for daily rentals:
+ * Go to Rentals > Configuration > Settings.
+ * Please activate the checkbox for using 'Product Variants'.
+ * Go to Rentals > Products > Products.
+ * Create a new storable product.
+ * Active the checkbox 'Can be Rented'.
+ * Go to page 'Rental Price'.
+ * Activate the boolean fields for daily rental.
+ * Add a usual price for one day.
+ * Save the product, which creates the related rental service.
+ * Add bulk prices as desired, e.g. one day costs 300 €, 7 days 290 €, 21 days 250 €, and so on.
+ * Adjust its stock in location 'Rental In'.
+
+Create a rental order:
+ * Go to Rentals > Customer > Rental Quotations.
+ * Create a new order and choose the type 'Rental Order'.
+ * Add the rental service as an order line.
+ * Set the quantity to rent out one or several storable rentable products.
+ * Choose start and end date, e.g. for 3 weeks.
+ * On the order line you will see a page 'Off-Days' at the bottom.
+ * Choose the type 'Weekend' in order to create 'Fixed Off-Days' and you get a list with all saturdays and sundays within the rental period.
+ * Add some additional off-days as needed.
+ * The number of off-days reduces the rental quantity and is therefore not included in price calculation.
+ * Confirm the order.
 
 
 Changelog
 ---------
 
+- 84b8ac2c 2021-10-19 13:27:42 +0200 maria.sparenberg@elegosoft.com  (origin/feature_4439_blp1250_rental_product_pack_v12) issue #4438 format and finalize description and usage section
+- 8b4d40c4 2021-09-23 09:19:24 +0200 wagner@elegosoft.com  regenerate doc (issue #4016)
 - dd988a2f 2021-06-09 12:42:47 +0200 wagner@elegosoft.com  update documentation (issue #3613)
 - 1abc79fe 2021-05-12 18:08:04 +0200 yweng@elegosoft.com  (origin/wip_4168_sale_rental_v12, wip_4168_sale_rental_v12) [IMP] adjust dependence of rental modules: replace rental_sale with sale_rental
 - 4218464c 2021-01-15 13:20:07 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_3978_blp963_additional_offdays_v12: addons-rental-vertical remotes/origin/feature_3978_blp963_additional_offdays_v12 - 51af4f6ee418b45af29dde84a394dfe2035bb930 issue #3978 add additional off days by onchange event
