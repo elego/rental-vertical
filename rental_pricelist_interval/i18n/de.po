@@ -1,19 +1,21 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* rental_pricelist_interval
+# 	* rental_pricelist_interval
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-30 17:38+0000\n"
-"PO-Revision-Date: 2021-04-30 17:38+0000\n"
+"POT-Creation-Date: 2021-10-18 11:57+0000\n"
+"PO-Revision-Date: 2021-10-18 16:09+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"Language: de\n"
+"X-Generator: Poedit 3.0\n"
 
 #. module: rental_pricelist_interval
 #: model_terms:ir.ui.view,arch_db:rental_pricelist_interval.product_normal_form_view
@@ -45,7 +47,7 @@ msgstr "Erstellt am"
 #. module: rental_pricelist_interval
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_product_product__def_interval_pricelist_id
 msgid "Default Interval Pricelist"
-msgstr ""
+msgstr "Standard Intervall Preisliste"
 
 #. module: rental_pricelist_interval
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_rental_price_interval_item__display_name
@@ -62,7 +64,7 @@ msgstr "Faktor"
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_rental_price_interval_item__id
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_rental_price_interval_rule__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: rental_pricelist_interval
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_rental_price_interval_item__min_quantity
@@ -78,12 +80,12 @@ msgstr "Intervallbasis"
 #. module: rental_pricelist_interval
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_product_product__rental_price_interval
 msgid "Interval Price"
-msgstr "Intervall Price"
+msgstr "Intervallpreis"
 
 #. module: rental_pricelist_interval
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_product_pricelist__is_interval_pricelist
 msgid "Interval Pricelist"
-msgstr "Intervall Preise"
+msgstr "Intervall Preiseliste"
 
 #. module: rental_pricelist_interval
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_product_product__interval_scale_pricelist_item_ids
@@ -110,7 +112,7 @@ msgstr "Zuletzt geändert am"
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_rental_price_interval_item__write_uid
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_rental_price_interval_rule__write_uid
 msgid "Last Updated by"
-msgstr "Zuletzt aktualisiert von"
+msgstr "Zuletzt aktualisiert durch"
 
 #. module: rental_pricelist_interval
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_rental_price_interval_item__write_date
@@ -131,20 +133,14 @@ msgid "Name"
 msgstr "Name"
 
 #. module: rental_pricelist_interval
-#: code:addons/rental_pricelist_interval/models/sale.py:131
-#, python-format
-msgid "No interval price was defined for this product."
-msgstr "Kein Intervall Preis ist gefunden."
-
-#. module: rental_pricelist_interval
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_res_company__rental_service_default_code_prefix_interval
 msgid "Prefix of Rental Service Internal Reference (Interval)"
-msgstr ""
+msgstr "Präfix für Rental Service Interne Referenz (Intervall)"
 
 #. module: rental_pricelist_interval
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_res_company__rental_service_name_prefix_interval
 msgid "Prefix of Rental Service Name (Interval)"
-msgstr ""
+msgstr "Präfix für Rental Service Name (Intervall)"
 
 #. module: rental_pricelist_interval
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_rental_price_interval_item__price
@@ -181,7 +177,7 @@ msgstr "Allgemeiner Preisliste (Intervall)"
 #. module: rental_pricelist_interval
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_sale_order_line__rental_interval_name
 msgid "Rental Interval"
-msgstr ""
+msgstr "MietIntervall"
 
 #. module: rental_pricelist_interval
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_res_company__rental_price_interval_rule_ids
@@ -227,20 +223,19 @@ msgstr "Auftragsposition"
 #. module: rental_pricelist_interval
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_sale_order_line__show_rental_interval_price
 msgid "Show Option Interval Price"
-msgstr ""
+msgstr "Option Intervallpreis anzeigen"
 
 #. module: rental_pricelist_interval
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_res_company__rental_service_default_code_suffix_interval
 msgid "Suffix of Rental Service Internal Reference (Interval)"
-msgstr ""
+msgstr "Suffix für Rental Service Interne Referenz (Intervall)"
 
 #. module: rental_pricelist_interval
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_res_company__rental_service_name_suffix_interval
 msgid "Suffix of Rental Service Name (Interval)"
-msgstr ""
+msgstr "Suffix für Rental Service Name (Intervall)"
 
 #. module: rental_pricelist_interval
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_sale_order_line__rental_interval_price
 msgid "Use Interval Price"
-msgstr ""
-
+msgstr "Intervallpreis verwenden "

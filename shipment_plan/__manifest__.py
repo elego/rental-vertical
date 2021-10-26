@@ -25,6 +25,7 @@ Configure transport services that can be purchased from delivery carriers.
 Configure the granularity of transport costs.
  - Go to Inventory > Configuration > Settings
  - Choose the transport cost type as single or multiple positions.
+
  Choosing the cost type 'Multi Positions’ the transport purchase order or call for tender can contain several lines
  for the different costs related to the transport, e.g. the transport costs itself and several charges.
  You can define the appropriate transport services when creating a new transport request.

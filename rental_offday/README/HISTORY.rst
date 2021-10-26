@@ -2,6 +2,10 @@
 Changelog
 ---------
 
+- ce77a323 2021-10-25 10:17:16 +0200 wagner@elegosoft.com  (HEAD -> v12) fix two syntax errors in documentation (issue #3339)
+- 996b4742 2021-10-25 10:15:33 +0200 wagner@elegosoft.com  fix two syntax errors in documentation (issue #3339)
+- 84b8ac2c 2021-10-19 13:27:42 +0200 maria.sparenberg@elegosoft.com  (origin/feature_4439_blp1250_rental_product_pack_v12) issue #4438 format and finalize description and usage section
+- 8b4d40c4 2021-09-23 09:19:24 +0200 wagner@elegosoft.com  regenerate doc (issue #4016)
 - dd988a2f 2021-06-09 12:42:47 +0200 wagner@elegosoft.com  update documentation (issue #3613)
 - 1abc79fe 2021-05-12 18:08:04 +0200 yweng@elegosoft.com  (origin/wip_4168_sale_rental_v12, wip_4168_sale_rental_v12) [IMP] adjust dependence of rental modules: replace rental_sale with sale_rental
 - 4218464c 2021-01-15 13:20:07 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_3978_blp963_additional_offdays_v12: addons-rental-vertical remotes/origin/feature_3978_blp963_additional_offdays_v12 - 51af4f6ee418b45af29dde84a394dfe2035bb930 issue #3978 add additional off days by onchange event

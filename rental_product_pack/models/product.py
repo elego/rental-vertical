@@ -7,7 +7,8 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     used_pack_line_count = fields.Integer(
-        "#Used Pack Line Count", compute="_compute_used_pack_line_count"
+        string="# Used Pack Line Count",
+        compute="_compute_used_pack_line_count",
     )
 
     @api.depends("pack_line_ids")
@@ -20,6 +21,6 @@ class ProductProduct(models.Model):
     _inherit = "product.product"
 
     used_pack_line_count = fields.Integer(
-        "#Used Pack Line Count",
+        string="# Used Pack Line Count",
         related="product_tmpl_id.used_pack_line_count",
     )

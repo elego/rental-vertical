@@ -2,6 +2,7 @@
 Changelog
 ---------
 
+- 8b4d40c4 2021-09-23 09:19:24 +0200 wagner@elegosoft.com  regenerate doc (issue #4016)
 - dd988a2f 2021-06-09 12:42:47 +0200 wagner@elegosoft.com  update documentation (issue #3613)
 - b92f94f2 2021-02-02 17:36:38 +0100 yweng@elegosoft.com  [IMP] adjust trigger function to update infos in timeline (issue 3760)
 - f82eb5d5 2021-02-01 17:07:51 +0100 yweng@elegosoft.com  [IMP] improves performance of timeline (issue 3760)

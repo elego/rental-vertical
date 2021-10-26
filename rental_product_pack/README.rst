@@ -1,35 +1,62 @@
 Rental Product Pack
 ====================================================
 
-*This file has been generated on 2021-09-23-09-13-22. Changes to it will be overwritten.*
+*This file has been generated on 2021-10-25-10-18-19. Changes to it will be overwritten.*
 
 Summary
 -------
 
-Allow use of product packs as in rental use cases
+Manage rentals with product packs
 
 Description
 -----------
 
-With this module, product packs can be rented as one compound product. Throughout the
-renting process, this compound product will be handled as one entity.
+This module allows to manage rentals with product packs.
+You can define product packs as described in the module product_pack.
+The components of the pack are added to both rental stock pickings after order confirmation.
 
 
 Usage
 -----
 
+Install the module.
+No further configuration is needed.
+
+Create at least one storable product that will be a component of a pack.
+ * Go to Rentals > Configuration > Settings.
+ * Please activate the checkbox for using 'Product Variants'.
+ * Go to Rentals > Products > Products.
+ * Create a new storable product.
+
+Create a rentable pack product.
+ * Create a new storable product.
+ * Activate the checkbox 'Can be Rented' and 'Is Pack'.
+ * Go to page 'Pack'.
+ * Choose Pack Type (e.g. Non-detailled) and add the previously created storable products that are part of this pack.
+ * Go to page 'Sales & Purchase'.
+ * Create the rental service and configure its name and price.
+
+Create a rental order:
+ * Go to Rentals > Customer > Rental Quotations.
+ * Create a new order and choose the type 'Rental Order'.
+ * Add the rental service of the rentable pack product as an order line.
+ * Set the quantity.
+ * Choose start and end date.
+ * Confirm the order.
+ * Check out the two deliveries, one for outgoing and one for incoming delivery.
+ * You can see all parts of the pack in both stock pickings.
+
+Hint:
 Refer to the usage information of the OCA module product_pack to learn how to
 define product packs.
-
-This module extends the sale and stock functionality to enable the renting of
-OCA product packs. In order to do that, just install the module.
-
-No further configuration is needed.
+Please note, that this module does not include the behavior of the module sale_product_pack.
 
 
 Changelog
 ---------
 
+- d32f4bf1 2021-10-19 13:27:01 +0200 maria.sparenberg@elegosoft.com  issue #4439 format code and finalize description and usage section
+- 8b4d40c4 2021-09-23 09:19:24 +0200 wagner@elegosoft.com  regenerate doc (issue #4016)
 - cef8bcb6 2021-06-25 15:21:15 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_4273_blp1110_rental_product_pack_v12: addons-rental-vertical remotes/origin/feature_4273_blp1110_rental_product_pack_v12 - 8b3f8264d894702df1b16242fefa3f48425f7f43 [IMP] improve german translation,to rental_contract (issue#3920)
 - aaa95c56 2021-06-25 10:44:10 +0200 cpatel@elegosoft.com  [IMP] parent_product_id to pack lines automatically filled, (issue#4273)
 - 8a51e30d 2021-06-23 11:39:35 +0200 cpatel@elegosoft.com  [IMP] todo points 1. sshow fields used_in_pack_line_ids under Pack tab, when pack_ok is True OR used_in_pack_line_ids is set 2. show parent_product_id field to the product pack line tree view issue(#4273)

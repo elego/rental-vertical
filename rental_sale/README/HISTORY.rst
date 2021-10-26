@@ -2,6 +2,7 @@
 Changelog
 ---------
 
+- 8b4d40c4 2021-09-23 09:19:24 +0200 wagner@elegosoft.com  regenerate doc (issue #4016)
 - dd988a2f 2021-06-09 12:42:47 +0200 wagner@elegosoft.com  update documentation (issue #3613)
 - d638ed95 2021-05-20 18:20:51 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_4168_blp1050_rename_sale_rental_v12: addons-rental-vertical remotes/origin/fix_4168_blp1050_rename_sale_rental_v12 - db62236826dd7f75e7bdb5b2a345d049102e145c [IMP] improves function _run_rental_procurement of sale.order.line (issue 4168)
 - d9768bd3 2021-05-13 09:27:50 +0200 wagner@elegosoft.com  (origin/feature_4168_blp1050_revert_to_sale_rental_deps_v12, feature_4168_blp1050_revert_to_sale_rental_deps_v12) revert to use sale_rental for OCA compatibility: disable installation of rental_sale (issue #4168)

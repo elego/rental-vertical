@@ -1,22 +1,56 @@
-Shipment Plan Rental
+Shipment Management Rental
 ====================================================
 
-*This file has been generated on 2021-09-23-09-13-22. Changes to it will be overwritten.*
+*This file has been generated on 2021-10-25-10-18-19. Changes to it will be overwritten.*
 
 Summary
 -------
 
-Shipment Plan for Rental
+Shipment Management Rental
 
 Description
 -----------
 
-TODO
+This module provides a rental extension for the shipment management.
+Rentals require two deliveries, one to transfer the products to the customer and one to get them back.
+In case of products that needs special transportation, e.g. because of their weight, height or chemical
+properties, two shipment plans are created when requesting transportation from the rental order.
+
+
+Usage
+-----
+
+Configure storable and service products as described in module 'shipment_plan'.
+
+Configure these storable products as rental products.
+ - Set the boolean field 'Rental' to True.
+ - Please also install rental_pricelist to easily create the related rental services for daily or monthly rentals
+   or do it manually as described in module 'sale_rental'.
+
+Configure incoterms as described in module 'shipment_plan_sale'.
+
+Create a rental order for a product that needs transportation.
+ - Go to Rentals > Customer > Rental Quotations.
+ - Create a new rental quotation.
+ - Choose a customer.
+ - Choose an incoterm configured to allow the creation of a transport request.
+ - Add a storable and rentable product that needs transportation.
+ - Save the order.
+ - Click the button 'Request Transport'.
+ - Choose the transport service that should be used in the purchase order / requisition.
+ - Create the request.
+ - Check both shipment plans, purchase requisitions and/or purchase orders for outbound and inbound transport.
 
 
 Changelog
 ---------
 
+- dca4ac1b 2021-10-10 18:18:10 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_4433_blp1142_rental_base_v12: addons-rental-vertical remotes/origin/feature_4433_blp1142_rental_base_v12 - 75791881da0ea6e70c408ec75042fe9635fc9a49 issue #4433 change view id to match parent id
+- 8b4d40c4 2021-09-23 09:19:24 +0200 wagner@elegosoft.com  regenerate doc (issue #4016)
+- d3cdb63e 2021-09-16 18:39:35 +0200 yweng@elegosoft.com  [IMP] add additional options for wizard create.trans.request and create.sale.trans.request to create single purchase order and single requisition (issue: 4349)
+- 61673ce7 2021-07-29 13:19:27 +0200 maria.sparenberg@elegosoft.com  issue #4258 fix test and add description and usage section in manifest
+- 39b3c089 2021-07-29 09:53:22 +0200 maria.sparenberg@elegosoft.com  issue #4258 fix rental tests
+- 6a1a205e 2021-07-20 15:45:43 +0200 maria.sparenberg@elegosoft.com  issue #4258 refactor and fix translations
 - e4dfcb4e 2021-06-29 13:58:57 +0200 yweng@elegosoft.com  [IMP] (issue 4275) improves description of transport and onchange event on sale.order.line. Do not return product for normal sale in a combined order (normal sale + rental)
 - 79ad02b9 2021-06-27 12:48:12 +0200 yweng@elegosoft.com  [IMP] adjust Unittest of shipment_plan (issue 4258)
 - 7bfba3ef 2021-06-25 15:21:14 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_4258_blp1110_shipment_plan_v12: addons-rental-vertical remotes/origin/feature_4258_blp1110_shipment_plan_v12 - a6c718e8bf13718fd1677970d2e9ea097395c610 [IMP] adjust form view of purchase.order and extract function to prepare values for creating pos and prs from shipment plan (issue 4258)

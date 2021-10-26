@@ -2,6 +2,7 @@
 Changelog
 ---------
 
+- 8b4d40c4 2021-09-23 09:19:24 +0200 wagner@elegosoft.com  regenerate doc (issue #4016)
 - 3627532b 2021-06-25 15:21:10 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_4098_blp1110_rental_toll_collect_v12: addons-rental-vertical remotes/origin/feature_4098_blp1110_rental_toll_collect_v12 - e7f929dfe79aa6a5e128bd05ee84a15be145a7b8 [IMP] minor changes, (issue#4098)
 - e7f929df 2021-06-16 11:31:29 +0200 cpatel@elegosoft.com  (origin/feature_4098_blp1110_rental_toll_collect_v12) [IMP] minor changes, (issue#4098)
 - a285f3fd 2021-06-16 11:22:30 +0200 cpatel@elegosoft.com  [IMP] toll collect csv file import, filter rows before import(issue#4098)

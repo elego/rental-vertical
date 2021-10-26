@@ -18,7 +18,7 @@ Configure storable and service products as described in module 'shipment_plan'.
 Configure these storable products as rental products.
  - Set the boolean field 'Rental' to True.
  - Please also install rental_pricelist to easily create the related rental services for daily or monthly rentals
- or do it manually as described in module 'sale_rental'.
+   or do it manually as described in module 'sale_rental'.
 
 Configure incoterms as described in module 'shipment_plan_sale'.
 
