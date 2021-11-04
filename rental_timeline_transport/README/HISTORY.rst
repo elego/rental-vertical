@@ -2,6 +2,7 @@
 Changelog
 ---------
 
+- 8b4d40c4 2021-09-23 09:19:24 +0200 wagner@elegosoft.com  regenerate doc (issue #4016)
 - dd988a2f 2021-06-09 12:42:47 +0200 wagner@elegosoft.com  update documentation (issue #3613)
 - d4788ddb 2021-02-02 20:04:59 +0100 yweng@elegosoft.com  (origin/feature_3760_blp969_rental_timeline_v12) [IMP] black formatted (issue 3760)
 - 4ff061a7 2021-02-02 20:00:30 +0100 yweng@elegosoft.com  [IMP] add trigger for updating of address fields of res.partner in product.timeline (issue 3760)

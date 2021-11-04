@@ -1,12 +1,12 @@
-Rental Off Day
+Rental Off-Day
 ====================================================
 
-*This file has been generated on 2021-09-23-09-13-22. Changes to it will be overwritten.*
+*This file has been generated on 2021-10-25-10-18-19. Changes to it will be overwritten.*
 
 Summary
 -------
 
-Calculate off-days in rentals on daily basis
+Manage off-days in rentals on daily basis
 
 Description
 -----------

@@ -2,6 +2,8 @@
 Changelog
 ---------
 
+- d32f4bf1 2021-10-19 13:27:01 +0200 maria.sparenberg@elegosoft.com  issue #4439 format code and finalize description and usage section
+- 8b4d40c4 2021-09-23 09:19:24 +0200 wagner@elegosoft.com  regenerate doc (issue #4016)
 - cef8bcb6 2021-06-25 15:21:15 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_4273_blp1110_rental_product_pack_v12: addons-rental-vertical remotes/origin/feature_4273_blp1110_rental_product_pack_v12 - 8b3f8264d894702df1b16242fefa3f48425f7f43 [IMP] improve german translation,to rental_contract (issue#3920)
 - aaa95c56 2021-06-25 10:44:10 +0200 cpatel@elegosoft.com  [IMP] parent_product_id to pack lines automatically filled, (issue#4273)
 - 8a51e30d 2021-06-23 11:39:35 +0200 cpatel@elegosoft.com  [IMP] todo points 1. sshow fields used_in_pack_line_ids under Pack tab, when pack_ok is True OR used_in_pack_line_ids is set 2. show parent_product_id field to the product pack line tree view issue(#4273)

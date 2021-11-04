@@ -2,6 +2,7 @@
 Changelog
 ---------
 
+- 8b4d40c4 2021-09-23 09:19:24 +0200 wagner@elegosoft.com  regenerate doc (issue #4016)
 - 6ba4bcb9 2021-07-01 16:33:45 +0200 yweng@elegosoft.com  [IMP] implements Unittest for module rental_routing and rental_forward_shipment_plan
 - 5df1a414 2021-06-29 17:07:31 +0200 yweng@elegosoft.com  [FIX] rental_forward_shipment_plan (issue 4255)
 - 7bfba3ef 2021-06-25 15:21:14 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_4258_blp1110_shipment_plan_v12: addons-rental-vertical remotes/origin/feature_4258_blp1110_shipment_plan_v12 - a6c718e8bf13718fd1677970d2e9ea097395c610 [IMP] adjust form view of purchase.order and extract function to prepare values for creating pos and prs from shipment plan (issue 4258)

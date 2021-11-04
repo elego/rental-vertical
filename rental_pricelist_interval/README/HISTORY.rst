@@ -2,6 +2,9 @@
 Changelog
 ---------
 
+- 39845816 2021-10-21 14:15:20 +0200 yweng@elegosoft.com  (origin/feature_4436_blp1250_unittest_rental_check_availability_v12) [IMP] update translations and manifest of module rental_pricelist_interval and rental_check_availability (issue 4436)
+- d8665dd9 2021-10-19 12:26:31 +0200 yweng@elegosoft.com  [IMP] Add Unittest for module rental_check_availability and adjust Unittest of rental_pricelist and rental_pricelist_interval (issue 4436)
+- 8b4d40c4 2021-09-23 09:19:24 +0200 wagner@elegosoft.com  regenerate doc (issue #4016)
 - 43303624 2021-07-03 02:09:50 +0200 yweng@elegosoft.com  (origin/feature_4258_blp1123_shipment_plan_v12) [IMP] adjust unittests for module rental_pricelist_interval
 - e4dfcb4e 2021-06-29 13:58:57 +0200 yweng@elegosoft.com  [IMP] (issue 4275) improves description of transport and onchange event on sale.order.line. Do not return product for normal sale in a combined order (normal sale + rental)
 - dd988a2f 2021-06-09 12:42:47 +0200 wagner@elegosoft.com  update documentation (issue #3613)

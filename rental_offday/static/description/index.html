@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
-<title>Rental Off Day</title>
+<title>Rental Off-Day</title>
 <style type="text/css">
 
 /*
@@ -361,12 +361,12 @@ ul.auto-toc {
 </head>
 <body>
 <div class="document" id="rental-off-day">
-<h1 class="title">Rental Off Day</h1>
+<h1 class="title">Rental Off-Day</h1>
 
-<p><em>This file has been generated on 2021-09-23-09-13-22. Changes to it will be overwritten.</em></p>
+<p><em>This file has been generated on 2021-10-25-10-18-19. Changes to it will be overwritten.</em></p>
 <div class="section" id="summary">
 <h1>Summary</h1>
-<p>Calculate off-days in rentals on daily basis</p>
+<p>Manage off-days in rentals on daily basis</p>
 </div>
 <div class="section" id="description">
 <h1>Description</h1>
@@ -381,21 +381,45 @@ products that are rentable in days. These days will not be included in price cal
 <div class="section" id="usage">
 <h1>Usage</h1>
 <p>The off-days can only be used for products rentable in days.</p>
-<ul class="simple">
-<li>Create a stockable product and activate that it is rentable in days.</li>
+<dl class="docutils">
+<dt>Create a rentable product and its rental service for daily rentals:</dt>
+<dd><ul class="first last simple">
+<li>Go to Rentals &gt; Configuration &gt; Settings.</li>
+<li>Please activate the checkbox for using 'Product Variants'.</li>
+<li>Go to Rentals &gt; Products &gt; Products.</li>
+<li>Create a new storable product.</li>
+<li>Active the checkbox 'Can be Rented'.</li>
+<li>Go to page 'Rental Price'.</li>
+<li>Activate the boolean fields for daily rental.</li>
+<li>Add a usual price for one day.</li>
+<li>Save the product, which creates the related rental service.</li>
+<li>Add bulk prices as desired, e.g. one day costs 300 €, 7 days 290 €, 21 days 250 €, and so on.</li>
 <li>Adjust its stock in location 'Rental In'.</li>
-<li>Create a sale order and rent out the product in days.</li>
-<li>Set a start and end date, e.g. for 3 weeks.</li>
-<li>On sale order line you will see a page 'Off-Days'.</li>
-<li>Choose the type 'Weekend' in order to create 'Fixed Off-Days' and you get a list with all saturdays
-and sundays within the rental period.</li>
-<li>Add some additional off-days.</li>
-<li>The number of off-days reduces the rental quantity and is therefore not included in price calculation.</li>
 </ul>
+</dd>
+<dt>Create a rental order:</dt>
+<dd><ul class="first last simple">
+<li>Go to Rentals &gt; Customer &gt; Rental Quotations.</li>
+<li>Create a new order and choose the type 'Rental Order'.</li>
+<li>Add the rental service as an order line.</li>
+<li>Set the quantity to rent out one or several storable rentable products.</li>
+<li>Choose start and end date, e.g. for 3 weeks.</li>
+<li>On the order line you will see a page 'Off-Days' at the bottom.</li>
+<li>Choose the type 'Weekend' in order to create 'Fixed Off-Days' and you get a list with all saturdays and sundays within the rental period.</li>
+<li>Add some additional off-days as needed.</li>
+<li>The number of off-days reduces the rental quantity and is therefore not included in price calculation.</li>
+<li>Confirm the order.</li>
+</ul>
+</dd>
+</dl>
 </div>
 <div class="section" id="changelog">
 <h1>Changelog</h1>
 <ul class="simple">
+<li>ce77a323 2021-10-25 10:17:16 +0200 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  (HEAD -&gt; v12) fix two syntax errors in documentation (issue #3339)</li>
+<li>996b4742 2021-10-25 10:15:33 +0200 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  fix two syntax errors in documentation (issue #3339)</li>
+<li>84b8ac2c 2021-10-19 13:27:42 +0200 <a class="reference external" href="mailto:maria.sparenberg&#64;elegosoft.com">maria.sparenberg&#64;elegosoft.com</a>  (origin/feature_4439_blp1250_rental_product_pack_v12) issue #4438 format and finalize description and usage section</li>
+<li>8b4d40c4 2021-09-23 09:19:24 +0200 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  regenerate doc (issue #4016)</li>
 <li>dd988a2f 2021-06-09 12:42:47 +0200 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  update documentation (issue #3613)</li>
 <li>1abc79fe 2021-05-12 18:08:04 +0200 <a class="reference external" href="mailto:yweng&#64;elegosoft.com">yweng&#64;elegosoft.com</a>  (origin/wip_4168_sale_rental_v12, wip_4168_sale_rental_v12) [IMP] adjust dependence of rental modules: replace rental_sale with sale_rental</li>
 <li>4218464c 2021-01-15 13:20:07 +0000 <a class="reference external" href="mailto:jenkins-ci&#64;elegosoft.com">jenkins-ci&#64;elegosoft.com</a>  [MERGE] remotes/origin/feature_3978_blp963_additional_offdays_v12: addons-rental-vertical remotes/origin/feature_3978_blp963_additional_offdays_v12 - 51af4f6ee418b45af29dde84a394dfe2035bb930 issue #3978 add additional off days by onchange event</li>

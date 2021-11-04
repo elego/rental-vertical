@@ -1,7 +1,7 @@
 Rental Repair
 ====================================================
 
-*This file has been generated on 2021-09-23-09-13-22. Changes to it will be overwritten.*
+*This file has been generated on 2021-10-25-10-18-19. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -17,6 +17,7 @@ _empty_
 Changelog
 ---------
 
+- 8b4d40c4 2021-09-23 09:19:24 +0200 wagner@elegosoft.com  regenerate doc (issue #4016)
 - dd988a2f 2021-06-09 12:42:47 +0200 wagner@elegosoft.com  update documentation (issue #3613)
 - 5c575cef 2021-03-09 09:39:32 +0100 cpatel@elegosoft.com  (origin/feature_3941_blp1022_rental_product_instance_repair_v12) [IMP] product search on task : changes removed from rental_repair and added to module rental_product_instance_reapir, translation also added, (issue#3941)
 - 4e087f73 2021-03-04 13:11:22 +0100 cpatel@elegosoft.com  (origin/feature_3941_blp1020_rental_repair_v12) [IMP] add search for product on project.task, (issue#3941)

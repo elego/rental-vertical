@@ -1,17 +1,7 @@
-# Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
-{
-    "name": "Shipment Management",
-    "summary": "Shipment Management",
-    "version": "12.0.1.0.0",
-    "category": "Transportation",
-    "author": "Odoo Community Association (OCA)/Elego Software Solutions GmbH",
-    "description": """
-This module provides the base of the shipment management in order to organize and manage transportation
-for products that are to voluminous or heavy or somehow dangerous, and therefore need special transport treatment.
-The shipment plans focus on the transport after leaving or before entering the internal stock locations.
-    """,
-    "usage": """
+Usage
+-----
+
 Configure the storable products that need transportation.
  - Set the product type to 'Storable Product'.
  - Set the flag 'Transport required' (trans_purchase_request) to True.
@@ -47,23 +37,4 @@ Create a new shipment plan and purchase requests.
   - Go to Inventory > Operation > Transfers.
   - Create a new stock picking with internal picking type.
   - Create a shipment plan for this internal transfer, which is then linked in a smartbutton.
-    """,
-    "depends": [
-        "purchase",
-        "purchase_requisition",
-        "stock",
-    ],
-    "data": [
-        "security/ir.model.access.csv",
-        "wizard/create_transport_request_view.xml",
-        "views/shipment_plan.xml",
-        "views/product_view.xml",
-        "views/purchase_view.xml",
-        "views/stock_view.xml",
-        "views/res_config_settings_view.xml",
-    ],
-    "demo": [],
-    "qweb": [],
-    "application": False,
-    "license": "AGPL-3",
-}
+

@@ -363,27 +363,63 @@ ul.auto-toc {
 <div class="document" id="rental-product-pack">
 <h1 class="title">Rental Product Pack</h1>
 
-<p><em>This file has been generated on 2021-09-23-09-13-22. Changes to it will be overwritten.</em></p>
+<p><em>This file has been generated on 2021-10-25-10-18-19. Changes to it will be overwritten.</em></p>
 <div class="section" id="summary">
 <h1>Summary</h1>
-<p>Allow use of product packs as in rental use cases</p>
+<p>Manage rentals with product packs</p>
 </div>
 <div class="section" id="description">
 <h1>Description</h1>
-<p>With this module, product packs can be rented as one compound product. Throughout the
-renting process, this compound product will be handled as one entity.</p>
+<p>This module allows to manage rentals with product packs.
+You can define product packs as described in the module product_pack.
+The components of the pack are added to both rental stock pickings after order confirmation.</p>
 </div>
 <div class="section" id="usage">
 <h1>Usage</h1>
-<p>Refer to the usage information of the OCA module product_pack to learn how to
-define product packs.</p>
-<p>This module extends the sale and stock functionality to enable the renting of
-OCA product packs. In order to do that, just install the module.</p>
-<p>No further configuration is needed.</p>
+<p>Install the module.
+No further configuration is needed.</p>
+<dl class="docutils">
+<dt>Create at least one storable product that will be a component of a pack.</dt>
+<dd><ul class="first last simple">
+<li>Go to Rentals &gt; Configuration &gt; Settings.</li>
+<li>Please activate the checkbox for using 'Product Variants'.</li>
+<li>Go to Rentals &gt; Products &gt; Products.</li>
+<li>Create a new storable product.</li>
+</ul>
+</dd>
+<dt>Create a rentable pack product.</dt>
+<dd><ul class="first last simple">
+<li>Create a new storable product.</li>
+<li>Activate the checkbox 'Can be Rented' and 'Is Pack'.</li>
+<li>Go to page 'Pack'.</li>
+<li>Choose Pack Type (e.g. Non-detailled) and add the previously created storable products that are part of this pack.</li>
+<li>Go to page 'Sales &amp; Purchase'.</li>
+<li>Create the rental service and configure its name and price.</li>
+</ul>
+</dd>
+<dt>Create a rental order:</dt>
+<dd><ul class="first last simple">
+<li>Go to Rentals &gt; Customer &gt; Rental Quotations.</li>
+<li>Create a new order and choose the type 'Rental Order'.</li>
+<li>Add the rental service of the rentable pack product as an order line.</li>
+<li>Set the quantity.</li>
+<li>Choose start and end date.</li>
+<li>Confirm the order.</li>
+<li>Check out the two deliveries, one for outgoing and one for incoming delivery.</li>
+<li>You can see all parts of the pack in both stock pickings.</li>
+</ul>
+</dd>
+</dl>
+<p>Hint:
+Refer to the usage information of the OCA module product_pack to learn how to
+define product packs.
+Please note, that this module does not include the behavior of the module sale_product_pack.</p>
 </div>
 <div class="section" id="changelog">
 <h1>Changelog</h1>
 <ul class="simple">
+<li>d32f4bf1 2021-10-19 13:27:01 +0200 <a class="reference external" href="mailto:maria.sparenberg&#64;elegosoft.com">maria.sparenberg&#64;elegosoft.com</a>  issue #4439 format code and finalize description and usage section</li>
+<li>8b4d40c4 2021-09-23 09:19:24 +0200 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  regenerate doc (issue #4016)</li>
 <li>cef8bcb6 2021-06-25 15:21:15 +0000 <a class="reference external" href="mailto:jenkins-ci&#64;elegosoft.com">jenkins-ci&#64;elegosoft.com</a>  [MERGE] remotes/origin/feature_4273_blp1110_rental_product_pack_v12: addons-rental-vertical remotes/origin/feature_4273_blp1110_rental_product_pack_v12 - 8b3f8264d894702df1b16242fefa3f48425f7f43 [IMP] improve german translation,to rental_contract (issue#3920)</li>
 <li>aaa95c56 2021-06-25 10:44:10 +0200 <a class="reference external" href="mailto:cpatel&#64;elegosoft.com">cpatel&#64;elegosoft.com</a>  [IMP] parent_product_id to pack lines automatically filled, (issue#4273)</li>
 <li>8a51e30d 2021-06-23 11:39:35 +0200 <a class="reference external" href="mailto:cpatel&#64;elegosoft.com">cpatel&#64;elegosoft.com</a>  [IMP] todo points 1. sshow fields used_in_pack_line_ids under Pack tab, when pack_ok is True OR used_in_pack_line_ids is set 2. show parent_product_id field to the product pack line tree view issue(#4273)</li>

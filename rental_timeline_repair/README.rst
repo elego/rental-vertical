@@ -1,7 +1,7 @@
 Rental Timeline Repair
 ====================================================
 
-*This file has been generated on 2021-09-23-09-13-22. Changes to it will be overwritten.*
+*This file has been generated on 2021-10-25-10-18-19. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -28,6 +28,7 @@ No further configuration is needed.
 Changelog
 ---------
 
+- 8b4d40c4 2021-09-23 09:19:24 +0200 wagner@elegosoft.com  regenerate doc (issue #4016)
 - 5fddc156 2021-06-25 15:21:12 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_4213_blp1110_timeline_filter_v12: addons-rental-vertical remotes/origin/feature_4213_blp1110_timeline_filter_v12 - cc3f88ac0f704ea56d61229ed238d9590b85f0db [IMP] add new field active for model product.timeline and implements the filter of it.
 - 91418bed 2021-06-22 12:23:09 +0200 yweng@elegosoft.com  [IMP] add filter for timeline (issue 4213)
 - dd988a2f 2021-06-09 12:42:47 +0200 wagner@elegosoft.com  update documentation (issue #3613)
