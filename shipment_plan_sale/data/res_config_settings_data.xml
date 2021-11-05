@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="shipment_plan_incoterm_settings" model="res.config.settings">
-        <field name="group_display_incoterm" eval="True" />
-    </record>
-    <function model="res.config.settings" name="execute">
-        <value model="res.config.settings" search="[('id', '=', ref('shipment_plan_incoterm_settings'))]"/>
-    </function>
+    <data noupdate="1">
+        <record id="shipment_plan_incoterm_settings" model="res.config.settings">
+            <field name="group_display_incoterm" eval="True" />
+        </record>
+        <function model="res.config.settings" name="execute">
+            <value model="res.config.settings" search="[('id', '=', ref('shipment_plan_incoterm_settings'))]"/>
+        </function>
+    </data>
 </odoo>
