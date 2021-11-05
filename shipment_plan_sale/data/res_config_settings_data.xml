@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"? noupdate="1">
 <odoo>
     <record id="shipment_plan_incoterm_settings" model="res.config.settings">
         <field name="group_display_incoterm" eval="True" />
