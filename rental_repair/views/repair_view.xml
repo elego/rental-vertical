@@ -103,7 +103,7 @@
             </p>
         </field>
     </record>
-
+    <!--
     <menuitem name="Service Orders"
         id="menu_repair_orders"
         parent="rental_base.menu_customer_orders"
@@ -115,5 +115,5 @@
         parent="rental_base.menu_customer_quotations"
         action="repair.action_repair_order_tree"
         sequence="15" />
-
+    -->
 </odoo>
