@@ -15,7 +15,7 @@ Part of rental-vertical See LICENSE file for full copyright and licensing detail
                     <field name="transport_service_type"/>
                     <field name="multi"/>
                     <field name="partner_id"
-                           attrs="{'invisible': ['|', ('transport_service_type', '!=', 'po'), ('multi', '=', True)], 'required': [('transport_service_type', '=', 'po'), ('multi', '=', False)]}}"/>
+                           attrs="{'invisible': ['|', ('transport_service_type', '!=', 'po'), ('multi', '=', True)], 'required': [('transport_service_type', '=', 'po'), ('multi', '=', False)]}"/>
                 </group>
                 <footer>
                     <button name="action_confirm" string="Create"
