@@ -11,23 +11,57 @@ class SaleRentalRouteOutLine(models.TransientModel):
     _name = "sale.rental.route.out.line"
     _description = "Sale Rental Route Out Line"
 
-    parent_id = fields.Many2one("sale.rental.route", "Parent")
-    rental_id = fields.Many2one("sale.rental", "Rental", required=True)
-    move_id = fields.Many2one("stock.move", "Move", related="rental_id.out_move_id")
+    parent_id = fields.Many2one(
+        comodel_name="sale.rental.route",
+        string="Parent",
+    )
+
+    rental_id = fields.Many2one(
+        comodel_name="sale.rental",
+        string="Rental",
+        required=True,
+    )
+
+    move_id = fields.Many2one(
+        comodel_name="stock.move",
+        string="Stock Move",
+        related="rental_id.out_move_id",
+    )
+
     product_id = fields.Many2one(
-        "product.product",
-        "Product",
+        comodel_name="product.product",
+        string="Product",
         related="rental_id.out_move_id.product_id",
     )
-    qty = fields.Float("Rental Quantity")
-    rental_avail_qty = fields.Float("Availiable Quantity")
-    rental_in_id = fields.Many2one("sale.rental", "Rental (in)")
-    rental_in_move_id = fields.Many2one(
-        "stock.move", "Move (in)", related="rental_in_id.in_move_id"
+
+    qty = fields.Float(
+        string="Rental Quantity",
     )
-    rental_start_date = fields.Date("Rental start date")
+
+    rental_avail_qty = fields.Float(
+        string="Available Quantity",
+    )
+
+    rental_in_id = fields.Many2one(
+        comodel_name="sale.rental",
+        string="Previous Rental",
+        help="This is the rental that is used as the source for this routing.",
+    )
+
+    rental_in_move_id = fields.Many2one(
+        comodel_name="stock.move",
+        string="Previous Stock Move",
+        help="This is the stock move of the previous rental.",
+        related="rental_in_id.in_move_id",
+    )
+
+    rental_start_date = fields.Date(
+        string="Rental Start Date",
+    )
+
     rental_onsite_location_id = fields.Many2one(
-        "stock.location", string="source location"
+        comodel_name="stock.location",
+        string="Source Location",
     )
 
     @api.model
@@ -48,14 +82,17 @@ class SaleRentalRouteOutLine(models.TransientModel):
             return False
         rounding = self.product_id.uom_id.rounding
         if (
-            float_compare(self.rental_avail_qty, self.qty, precision_rounding=rounding)
+            float_compare(
+                self.rental_avail_qty,
+                self.qty,
+                precision_rounding=rounding,
+            )
             < 0
         ):
             raise UserError(
                 _(
-                    "You can not reorder the Rental, available \
-                quantity is less then the required quantity."
-                )
+                    "The available quantity '%s' is less then the required quantity '%s'."
+                ) % (self.rental_avail_qty, self.qty)
             )
         # Moves for rented product use always the default uom of the product.
         # So we don't need to compute the quantity in uom of move.
@@ -80,9 +117,7 @@ class SaleRentalRouteOutLine(models.TransientModel):
         ):
             self.rental_in_move_id.product_uom_qty += 1
             reset_qty = True
-        new_move_id = self.rental_in_move_id.with_context(
-            do_not_push_apply=True
-        )._split(self.qty)
+        new_move_id = self.rental_in_move_id.with_context(do_not_push_apply=True)._split(self.qty)
         if reset_qty:
             self.rental_in_move_id.product_uom_qty -= 1
         new_move = self.env["stock.move"].browse(new_move_id)
@@ -105,8 +140,8 @@ class SaleRentalRouteOutLine(models.TransientModel):
             if self.rental_in_id.end_date > self.rental_id.start_date:
                 raise UserError(
                     _(
-                        "The end date of the seleted rental is \
-                    later then the start date of current rental."
+                        "The end date of the selected previous rental "
+                        "is later then the start date of current rental."
                     )
                 )
             self.rental_avail_qty = self.rental_in_id.in_move_id.product_qty
@@ -138,21 +173,57 @@ class SaleRentalRouteInLine(models.TransientModel):
     _name = "sale.rental.route.in.line"
     _description = "Sale Rental Route In Line"
 
-    parent_id = fields.Many2one("sale.rental.route", "Parent")
-    rental_id = fields.Many2one("sale.rental", "Rental", required=True)
-    move_id = fields.Many2one("stock.move", "Move", related="rental_id.in_move_id")
+    parent_id = fields.Many2one(
+        comodel_name="sale.rental.route",
+        string="Parent",
+    )
+
+    rental_id = fields.Many2one(
+        comodel_name="sale.rental",
+        string="Rental",
+        required=True,
+    )
+
+    move_id = fields.Many2one(
+        comodel_name="stock.move",
+        string="Stock Move",
+        related="rental_id.in_move_id",
+    )
+
     product_id = fields.Many2one(
-        "product.product", "Product", related="rental_id.in_move_id.product_id"
+        comodel_name="product.product",
+        string="Product",
+        related="rental_id.in_move_id.product_id",
     )
-    qty = fields.Float("Rental Quantity")
-    rental_avail_qty = fields.Float("Required Quantity")
-    rental_out_id = fields.Many2one("sale.rental", "Rental (out)")
+
+    qty = fields.Float(
+        string="Rental Quantity",
+    )
+
+    rental_avail_qty = fields.Float(
+        string="Required Quantity",
+    )
+
+    rental_out_id = fields.Many2one(
+        comodel_name="sale.rental",
+        string="Following Rental",
+        help="This is the rental that is used as the destination for this routing.",
+    )
+
     rental_out_move_id = fields.Many2one(
-        "stock.move", "Move (out)", related="rental_out_id.out_move_id"
+        comodel_name="stock.move",
+        string="Following Stock Move",
+        help="This is the stock move of the following rental.",
+        related="rental_out_id.out_move_id",
     )
-    rental_end_date = fields.Date("Rental end date")
+
+    rental_end_date = fields.Date(
+        string="Rental End Date",
+    )
+
     rental_onsite_location_id = fields.Many2one(
-        "stock.location", string="dest. location"
+        comodel_name="stock.location",
+        string="Destination Location",
     )
 
     @api.model
@@ -173,14 +244,17 @@ class SaleRentalRouteInLine(models.TransientModel):
             return False
         rounding = self.product_id.uom_id.rounding
         if (
-            float_compare(self.rental_avail_qty, self.qty, precision_rounding=rounding)
+            float_compare(
+                self.rental_avail_qty,
+                self.qty,
+                precision_rounding=rounding,
+            )
             < 0
         ):
             raise UserError(
                 _(
-                    "You can not reorder the Rental, \
-                available quantity is less then the required quantity."
-                )
+                    "The available quantity '%s' is less then the required quantity '%s'."
+                ) % (self.rental_avail_qty, self.qty)
             )
         # Moves for rented product use always the default uom of the product.
         # So we don't need to compute the quantity in uom of move.
@@ -205,9 +279,7 @@ class SaleRentalRouteInLine(models.TransientModel):
         ):
             self.rental_out_move_id.product_uom_qty += 1
             reset_qty = True
-        new_move_id = self.rental_out_move_id.with_context(
-            do_not_push_apply=True
-        )._split(self.qty)
+        new_move_id = self.rental_out_move_id.with_context(do_not_push_apply=True)._split(self.qty)
         if reset_qty:
             self.rental_out_move_id.product_uom_qty -= 1
         new_move = self.env["stock.move"].browse(new_move_id)
@@ -230,8 +302,8 @@ class SaleRentalRouteInLine(models.TransientModel):
             if self.rental_out_id.start_date < self.rental_id.end_date:
                 raise UserError(
                     _(
-                        "The start date of the seleted rental \
-                    is earlier then the end date of current rental."
+                        "The start date of the selected following rental "
+                        "is earlier then the end date of current rental."
                     )
                 )
             self.rental_avail_qty = self.rental_out_id.out_move_id.product_qty
@@ -265,15 +337,26 @@ class SaleRentalRoute(models.TransientModel):
     _name = "sale.rental.route"
     _description = "Sale Rental Route"
 
-    rental_id = fields.Many2one("sale.rental", "Rent")
+    rental_id = fields.Many2one(
+        comodel_name="sale.rental",
+        string="Rental",
+    )
+
     product_id = fields.Many2one(
-        "product.product", related="rental_id.rented_product_id"
+        comodel_name="product.product",
+        related="rental_id.rented_product_id",
     )
+
     out_lines = fields.One2many(
-        "sale.rental.route.out.line", "parent_id", "Route (Out)"
+        comodel_name="sale.rental.route.out.line",
+        inverse_name="parent_id",
+        string="Route from Source",
     )
+
     in_lines = fields.One2many(
-        "sale.rental.route.in.line", "parent_id", "Route (Return)"
+        comodel_name="sale.rental.route.in.line",
+        inverse_name="parent_id",
+        string="Route to Destination",
     )
 
     @api.model
@@ -294,8 +377,7 @@ class SaleRentalRoute(models.TransientModel):
             if not rentals:
                 raise UserError(
                     _(
-                        "Do not find the rental \
-                    object of this position."
+                        "There is no rental object for this position."
                     )
                 )
             res["rental_id"] = rentals[0].id
@@ -359,8 +441,7 @@ class SaleRentalRoute(models.TransientModel):
         ):
             raise UserError(
                 _(
-                    'You have assigned more qty \
-                than requried for "Route (Out)".'
+                    "You have assigned more quantity than required for 'Route (Out)'."
                 )
             )
         if (
@@ -373,27 +454,22 @@ class SaleRentalRoute(models.TransientModel):
         ):
             raise UserError(
                 _(
-                    'You have assigned more qty \
-                than requried for "Route (Return)".'
+                    "You have assigned more quantity than required for 'Route (Return)'."
                 )
             )
         for r, qty in out_dic.items():
             if qty > r.in_move_id.product_uom_qty:
                 raise UserError(
                     _(
-                        'You have assigned more qty \
-                    than available from "%s".'
-                    )
-                    % r.display_name
+                        "You have assigned more quantity than available from '%s'."
+                    ) % r.display_name
                 )
         for r, qty in in_dic.items():
             if qty > r.out_move_id.product_uom_qty:
                 raise UserError(
                     _(
-                        'You have assigned more qty \
-                    than available from "%s".'
-                    )
-                    % r.display_name
+                        "You have assigned more quantity than available from '%s'."
+                    ) % r.display_name
                 )
 
     @api.multi
@@ -403,10 +479,10 @@ class SaleRentalRoute(models.TransientModel):
         """
         self.ensure_one()
         self._check_route_lines()
-        for l in self.out_lines:
-            if l.rental_in_id:
-                l._split_rental_move()
-        for l in self.in_lines:
-            if l.rental_out_id:
-                l._split_rental_move()
+        for line in self.out_lines:
+            if line.rental_in_id:
+                line._split_rental_move()
+        for line in self.in_lines:
+            if line.rental_out_id:
+                line._split_rental_move()
         return True

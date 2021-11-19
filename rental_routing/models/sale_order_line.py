@@ -8,13 +8,17 @@ class SaleOrderLine(models.Model):
     # onchange_forword_rental_id -> set planned_source_address_id and planned_in_location_id
     # by confirmation of the rental order create wizard sale.rental.route automatically
     can_forward_rental = fields.Boolean(
-        "Route from order",
-        help="If set, the product’s delivery is not planned from your own warehouse location but from an previous order and its used location.",
+        string="Route from order",
+        help="If set, the product's delivery is not planned "
+             "from your own warehouse location but from an "
+             "previous order and its used location.",
     )
     forward_rental_id = fields.Many2one(
-        "sale.rental",
+        comodel_name="sale.rental",
         string="Source",
-        help="Please choose a previous order whose delivery address is now used as the start address for this new order.",
+        help="Please choose a previous order whose delivery "
+             "address is now used as the start address for "
+             "this new order.",
     )
 
     @api.constrains(
@@ -29,13 +33,13 @@ class SaleOrderLine(models.Model):
     def _check_sale_line_rental(self):
         res = super(SaleOrderLine, self)._check_sale_line_rental()
         for line in self:
-            # check qty before forwarding rented product form other customer
+            # check qty before forwarding rented product from other customer
             if line.rental_type == "new_rental" and line.can_forward_rental:
                 if line.forward_rental_id.in_move_id.product_qty < line.rental_qty:
                     raise ValidationError(
                         _(
-                            "'Rental to Forward' on the sale order line "
-                            "with rental service %s is impossible. You need %s %s."
+                            "'Route from order' on the sale order line "
+                            "with rental service %s is impossible. You need %s %s. "
                             "But only %s %s can be forwarded."
                         )
                         % (
@@ -46,15 +50,15 @@ class SaleOrderLine(models.Model):
                             line.product_id.rented_product_id.uom_id.name,
                         )
                     )
-            # After spliting the in_move of the rental we can not use it
+            # After splitting the in_move of the rental we can not use it
             # as rental_extension or sell_rental anymore
             if line.rental_type == "rental_extension":
                 if len(line.extension_rental_id.in_move_ids) > 1:
                     raise ValidationError(
                         _(
                             "'Rental to Extend' on the sale order line "
-                            "with rental service %s is impossible. Because"
-                            "it is already assigned to other Rental Order."
+                            "with rental service %s is impossible because "
+                            "it is already assigned to another rental order."
                         )
                         % line.product_id.name
                     )
@@ -64,7 +68,7 @@ class SaleOrderLine(models.Model):
                         _(
                             "On the sale order line with product %s "
                             "you are trying to sell a rented product, that "
-                            "is already assigned to other Rental Order. "
+                            "is already assigned to another rental order. "
                         )
                         % line.product_id.name
                     )
@@ -155,7 +159,7 @@ class SaleOrderLine(models.Model):
         if self.rental and self.start_date and self.rental_qty and self.product_id:
             sols = self.search([('forward_rental_id', '!=', False)])
             forwarded_rental_ids = sols.mapped("forward_rental_id").ids
-            domain=[
+            domain = [
                 (
                     'rented_product_id',
                     '=',
@@ -166,7 +170,7 @@ class SaleOrderLine(models.Model):
                 ('id', 'not in', forwarded_rental_ids),
                 ('state', '!=', 'cancel'),
             ]
-            
+
             return {'domain': {'forward_rental_id': domain}}
         else:
             self.forward_rental_id = False
