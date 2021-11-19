@@ -111,6 +111,6 @@ class PurchaseOrder(models.Model):
             "view_ids": [tree_view_id, form_view_id],
             "res_model": "shipment.plan",
             "domain": "[('id','in',["
-            + ",".join(map(str, self.order_line.shipment_plan_ids.ids))
+            + ",".join(map(str, self.order_line.mapped("shipment_plan_ids").mapped("id")))
             + "])]",
         }
