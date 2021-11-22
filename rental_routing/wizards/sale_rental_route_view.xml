@@ -1,50 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-        <record id="view_sale_rental_route" model="ir.ui.view">
-            <field name="name">sale.rental.route.form</field>
-            <field name="model">sale.rental.route</field>
-            <field name="arch" type="xml">
-                <form string="Routes">
-                    <group>
-                        <field name="rental_id" readonly="1"/>
-                        <field name="product_id" invisible="1"/>
-			<field name="out_lines" context="{'rental_id': rental_id}">
-                            <tree editable="bottom">
-                                <field name="rental_id" invisible="1"/>
-                                <field name="rental_start_date" readonly="1"/>
-				<field name="qty"/>
-                                <field name="rental_onsite_location_id" domain="[('usage','=','internal')]"/>
-                                <field name="rental_in_id" domain="[('rented_product_id', '=', parent.product_id), ('in_move_id.product_qty','&gt;=',0), ('state', '!=', 'cancel'), ('end_date', '&lt;=', rental_start_date)]" options="{'no_create': True}"/>
-                                <field name="rental_avail_qty"/>
-                            </tree>
-                        </field>
-                        <field name="in_lines" context="{'rental_id': rental_id}">
-                            <tree editable="bottom">
-                                <field name="rental_id" invisible="1"/>
-                                <field name="rental_end_date" readonly="1"/>
-                                <field name="qty"/>
-                                <field name="rental_onsite_location_id" domain="[('usage','=','internal')]"/>
-                                <field name="rental_out_id" domain="[('rented_product_id', '=', parent.product_id), ('out_move_id.product_qty','&gt;=',0), ('state', '!=', 'cancel'), ('start_date', '&gt;=', rental_end_date)]" options="{'no_create': True}"/>
-                                <field name="rental_avail_qty"/>
-                            </tree>
-                        </field>
-                    </group>
-                    <footer>
-                        <button name="action_confirm" type="object" string="Confirm" class="oe_highlight"/>
-                        or
-                        <button string="Cancel" class="oe_link" special="cancel" />
-                    </footer>
-                </form>
-            </field>
-        </record>
+    <record id="view_sale_rental_route" model="ir.ui.view">
+        <field name="name">sale.rental.route.form</field>
+        <field name="model">sale.rental.route</field>
+        <field name="arch" type="xml">
+            <form string="Routes">
+                <group>
+                    <field name="rental_id" readonly="1"/>
+                    <field name="product_id" invisible="1"/>
+                    <field name="out_lines" context="{'rental_id': rental_id}">
+                        <tree editable="bottom">
+                            <field name="rental_id" invisible="1"/>
+                            <field name="rental_start_date" readonly="1"/>
+                            <field name="qty"/>
+                            <field name="rental_onsite_location_id" domain="[('usage','=','internal')]"/>
+                            <field name="rental_in_id"
+                                   domain="[
+                                   ('rented_product_id', '=', parent.product_id),
+                                   ('in_move_id.product_qty','&gt;=',0),
+                                   ('state', '!=', 'cancel'),
+                                   ('end_date', '&lt;=', rental_start_date),
+                                   ]"
+                                   options="{'no_create': True}"
+                            />
+                            <field name="rental_avail_qty"/>
+                        </tree>
+                    </field>
+                    <field name="in_lines" context="{'rental_id': rental_id}">
+                        <tree editable="bottom">
+                            <field name="rental_id" invisible="1"/>
+                            <field name="rental_end_date" readonly="1"/>
+                            <field name="qty"/>
+                            <field name="rental_onsite_location_id" domain="[('usage','=','internal')]"/>
+                            <field name="rental_out_id"
+                                   domain="[
+                                   ('rented_product_id', '=', parent.product_id),
+                                   ('out_move_id.product_qty','&gt;=',0),
+                                   ('state', '!=', 'cancel'),
+                                   ('start_date', '&gt;=', rental_end_date)
+                                   ]"
+                                   options="{'no_create': True}"
+                            />
+                            <field name="rental_avail_qty"/>
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button name="action_confirm" type="object" string="Confirm" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
 
-        <record model="ir.actions.act_window" id="action_sale_rental_route">
-            <field name="name">Routing</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">sale.rental.route</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">form</field>
-            <field name="target">new</field>
-        </record>
+    <record model="ir.actions.act_window" id="action_sale_rental_route">
+        <field name="name">Routing</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.rental.route</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
 
 </odoo>

@@ -1,6 +1,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import models, fields, api, _
+from odoo.exceptions import UserError
 
 
 class SaleOrder(models.Model):
@@ -82,27 +83,27 @@ class SaleOrder(models.Model):
     @api.multi
     def create_and_set_rental_onsite_location_route(self):
         """
-        This function create the onsite location for the selected
+        This function creates the onsite location for the selected
         partner address and its rental route automatically.
         """
         self.ensure_one()
-        # create a intenal location for partner_shipping_id
+        # create a internal location for partner_shipping_id
         if not self.partner_shipping_id:
-            raise UserError(_("No found partner address"))
+            raise UserError(_("There is no shipping address found."))
         partner = self.partner_shipping_id
         if not self.warehouse_id.rental_allowed:
             raise UserError(_("The selected warehouse is not allowed for rental."))
         if not self.warehouse_id.rental_route_id:
-            raise UserError(_("No found default Route of the selected warehouse."))
+            raise UserError(_("There is no default rental route found for the selected warehouse."))
         rental_route = self.warehouse_id.rental_route_id
         if not self.warehouse_id.rental_out_location_id:
-            raise UserError(_("No found default Route out location of warehouse."))
+            raise UserError(_("There is no Rental Out location found for the selected warehouse."))
         rental_out_location = self.warehouse_id.rental_out_location_id
         if not self.warehouse_id.rental_in_location_id:
-            raise UserError(_("No found default Route in location of warehouse."))
+            raise UserError(_("There is no Rental In location found for the selected warehouse."))
         rental_in_location = self.warehouse_id.rental_in_location_id
         if not self.warehouse_id.int_type_id:
-            raise UserError(_('No found default picking type "internal" of warehouse.'))
+            raise UserError(_("There is no default picking type 'Internal' found for the selected warehouse."))
         location_name = "Location [%s]" % self.partner_shipping_id.display_name
         new_location = rental_out_location.copy({"name": location_name})
 

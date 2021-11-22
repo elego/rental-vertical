@@ -11,21 +11,31 @@ class SaleRental(models.Model):
     _inherit = "sale.rental"
 
     out_move_ids = fields.One2many(
-        "stock.move",
-        "rental_out_id",
+        comodel_name="stock.move",
+        inverse_name="rental_out_id",
         copy=False,
-        help="Moves that are splited from out_move_id",
+        help="Moves that are splitted from out_move_id",
     )
+
     in_move_ids = fields.One2many(
-        "stock.move",
-        "rental_in_id",
+        comodel_name="stock.move",
+        inverse_name="rental_in_id",
         copy=False,
-        help="Moves that are splited from in_move_id",
+        help="Moves that are splitted from in_move_id",
     )
-    out_move_id_bk = fields.Many2one("stock.move", string="Outgoing Stock Moves BK")
-    in_move_id_bk = fields.Many2one("stock.move", string="Return Stock Moves BK")
+
+    out_move_id_bk = fields.Many2one(
+        comodel_name="stock.move",
+        string="Outgoing Stock Moves BK",
+    )
+
+    in_move_id_bk = fields.Many2one(
+        comodel_name="stock.move",
+        string="Return Stock Moves BK",
+    )
+
     rental_onsite_location_id = fields.Many2one(
-        "stock.location",
+        comodel_name="stock.location",
         string="Onsite location",
         related="start_order_line_id.order_id.partner_shipping_id.rental_onsite_location_id",
     )
