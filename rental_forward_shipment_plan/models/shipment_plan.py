@@ -56,6 +56,8 @@ class ShipmentPlan(models.Model):
             "plan_type": "rental",
             "from_address_id": src_shipment_plan.from_address_id.id,
             "to_address_id": dest_shipment_plan.to_address_id.id,
+            "location_id": src_shipment_plan.location_id.id,
+            "location_dest_id": dest_shipment_plan.location_dest_id.id,
             "note": _("%s \n -------- Forwarding -------\n  %s")
             % (src_shipment_plan.note, dest_shipment_plan.note),
             "initial_etd": src_shipment_plan.initial_etd,

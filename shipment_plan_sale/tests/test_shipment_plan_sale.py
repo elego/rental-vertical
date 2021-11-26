@@ -33,6 +33,8 @@ def confirm_shipment_plan_pos(self, shipment_plan):
 class TestShipmentPlanSale(ShipmentPlanCommon):
     def setUp(self):
         super().setUp()
+        self.stock_location = self.env.ref("stock.stock_location_stock")
+        self.customer_location = self.env.ref("stock.stock_location_customers")
         self.incotermsA = self.env["account.incoterms"].create(
             {
                 "name": "Incoterm External Shipment",
@@ -100,6 +102,7 @@ class TestShipmentPlanSale(ShipmentPlanCommon):
         # })
         # config.execute()
         sale_order = self._create_sale_order()
+        sale_order.transport_cost_type = "multi"
         self.assertTrue(sale_order.trans_pr_needed)
         self.assertEqual(sale_order.transport_cost_type, "multi")
         wizard = (
@@ -148,6 +151,8 @@ class TestShipmentPlanSale(ShipmentPlanCommon):
         shipment_plan = wizard.action_confirm()
         self.assertEqual(shipment_plan.trans_po_count, 2)
         self.assertEqual(shipment_plan.trans_pr_count, 1)
+        self.assertEqual(shipment_plan.location_id, self.stock_location)
+        self.assertEqual(shipment_plan.location_dest_id, self.customer_location)
         confirm_shipment_plan_pos(self, shipment_plan)
         # TODO Check why the field 'trans_shipment_plan_id' of
         # sale order line was not set.

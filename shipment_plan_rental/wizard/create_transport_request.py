@@ -34,6 +34,8 @@ class CreateSaleTransRequest(models.TransientModel):
                         "from_address_id": dest_address_id,
                         "to_address_id": src_address_id,
                         "note": return_note,
+                        "location_id": order.warehouse_id.rental_out_location_id.id,
+                        "location_dest_id": order.warehouse_id.rental_in_location_id.id,
                     }
                 )
             else:
@@ -42,6 +44,8 @@ class CreateSaleTransRequest(models.TransientModel):
                         "plan_type": "rental",
                         "initial_etd": order.default_start_date - timedelta(days=1),
                         "initial_eta": order.default_start_date,
+                        "location_id": order.warehouse_id.rental_in_location_id.id,
+                        "location_dest_id": order.warehouse_id.rental_out_location_id.id,
                     }
                 )
         return res
