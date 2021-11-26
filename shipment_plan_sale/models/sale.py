@@ -175,6 +175,16 @@ class SaleOrder(models.Model):
                     order.trans_pr_needed = True
                     break
 
+    @api.model
+    def _prepare_cost_line(self, product, qty, uom, price, name):
+        return {
+            "product_id": product.id,
+            "product_uom_qty": qty,
+            "product_uom": uom.id,
+            "price_unit": price,
+            "name": name,
+        }
+
     @api.multi
     def action_create_trans_cost(self):
         self.ensure_one()
@@ -203,42 +213,24 @@ class SaleOrder(models.Model):
                 .get_param("stock.transport_cost_product_id")
             )
             product_transport_cost = self.env["product.product"].browse(int(product_id))
-            self.write(
-                {
-                    "order_line": [
-                        (
-                            0,
-                            0,
-                            {
-                                "product_id": product_transport_cost.id,
-                                "product_uom_qty": 1,
-                                "product_uom": self.env.ref("uom.product_uom_unit").id,
-                                "price_unit": cost,
-                                "name": name,
-                            },
-                        )
-                    ]
-                }
+            cost_line_vals = self._prepare_cost_line(
+                product_transport_cost, 1, self.env.ref("uom.product_uom_unit"), cost, name,
             )
+            self.write({"order_line": [(0, 0, cost_line_vals)]})
         elif self.transport_cost_type == "multi":
             order_line_vals = []
             for p in self.trans_po_ids:
                 if p.selected_in_order:
                     for pol in p.order_line:
                         margin = pol.product_id.transport_sales_margin
-                        order_line_vals.append(
-                            (
-                                0,
-                                0,
-                                {
-                                    "product_id": pol.product_id.id,
-                                    "product_uom_qty": pol.product_uom_qty,
-                                    "product_uom": pol.product_uom.id,
-                                    "price_unit": pol.price_unit * (1 + (margin / 100)),
-                                    "name": pol.name,
-                                },
-                            )
+                        cost_line_vals = self._prepare_cost_line(
+                            pol.product_id,
+                            pol.product_uom_qty,
+                            pol.product_uom,
+                            pol.price_unit * (1 + (margin / 100)),
+                            pol.name
                         )
+                        order_line_vals.append((0, 0, cost_line_vals))
             self.write({"order_line": order_line_vals})
 
     @api.multi
