@@ -7,18 +7,63 @@ odoo.define('rental_timeline.RentalTimelineController', function (require) {
     var _TimelineController = require('web_timeline.TimelineController');
 
     var RentalTimelineController = _TimelineController.extend({
+
+        // custom_events: _.extend({}, _TimelineController.prototype.custom_events, {
+        //     onParentGroupClick: '_onParentGroupClick'
+        // }),
+
+        
+        // _onParentGroupClick: function (event) {
+        //     if($("div").getClass === "vis-label vis-nesting-group collapsed" || $("div").getClass === "vis-label vis-nesting-group expanded"){
+        //         var groupField = "product_categ_id"
+        //     }
+        // },
+
         _onGroupClick: function (event) {
-            var groupField = this.renderer.last_group_bys[0];
-            return this.do_action({
-                type: 'ir.actions.act_window',
-                res_model: this.renderer.view.fields[groupField].relation,
-                res_id: event.data.item.group,
-                target: 'new',
-                flags: {
-                    mode: 'readonly',
-                },
-                views: [[false, 'form']],
+            if(this.renderer.last_group_bys[0] !== "product_categ_id") {
+                var groupField = this.renderer.last_group_bys[0];
+            } else {
+                var groupField = this.renderer.grouped_by;
+            }
+
+            $("div").click(function () {
+                var getClass = this.className;
             });
+
+            // if(getClass === "vis-label vis-nesting-group collapsed" || getClass === "vis-label vis-nesting-group expanded"){
+            //     return this.do_action({
+            //         type: 'ir.actions.act_window',
+            //         res_model: this.renderer.view.fields["product_categ_id"].relation,
+            //         res_id: event.data.item.group,
+            //         target: 'new',
+            //         flags: {
+            //             mode: 'readonly',
+            //         },
+            //         views: [[false, 'form']],
+            //     });
+            // } else {
+            //     return this.do_action({
+            //         type: 'ir.actions.act_window',
+            //         res_model: this.renderer.view.fields[groupField].relation,
+            //         res_id: event.data.item.group,
+            //         target: 'new',
+            //         flags: {
+            //             mode: 'readonly',
+            //         },
+            //         views: [[false, 'form']],
+            //     });
+            // }
+
+            return this.do_action({
+                        type: 'ir.actions.act_window',
+                        res_model: this.renderer.view.fields[groupField].relation,
+                        res_id: event.data.item.group,
+                        target: 'new',
+                        flags: {
+                            mode: 'readonly',
+                        },
+                        views: [[false, 'form']],
+                    });
         },
 
         _onUpdate: function (event) {

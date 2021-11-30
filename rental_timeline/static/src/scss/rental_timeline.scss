@@ -25,3 +25,12 @@
         }
     }
 }
+
+.vis-label .vis-nesting-group collapsed div {
+    display: none;
+}
+
+.vis-label .vis-nesting-group expanded div{
+    display: block;
+}
+
