@@ -7,14 +7,17 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
 
     var RentalTimelineRenderer = _TimelineRenderer.extend({
         
-
+        /**
+         * Get the groups.
+         *
+         * @private
+         * @returns {Array}
+         */
         split_groups: function(events, group_bys){
             if(group_bys.length === 0){
                 return events;
             }
 
-            console.log("events", events)
-            console.log("group_bys", group_bys)
             var groups = [];
             var self = this;
             //groups.push({id: -1, content: _t('-')});
@@ -34,22 +37,22 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                                     'record': event
                                 });
                             }
+                            if(product_group_name[1].slice(0,3) !== "All") {
 
-                            group = {
-                                id: product_group_name[0],
-                                content: product_group_name[1],
-                                tooltip: tooltip
-                            };
+                                group = {
+                                    id: product_group_name[0],
+                                    content: product_group_name[1],
+                                    tooltip: tooltip
+                                };
+                                groups.push(group);
+                            }
 
-                            groups.push(group);
                         }
                     }
                 }
             })
 
-            console.log("groups in timeline_renderer1: ", groups)
-
-
+            console.log("groups by product_id: ", groups)
 
             _.each(events, function(event){
                 var group_name = event[_.first(group_bys)];
@@ -70,8 +73,10 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
 
                             let nested_groups = []
                             _.each(events, function(event_p){
-                                if(event_p.product_categ_name === event.product_categ_name) {
-                                    nested_groups.push(event_p.product_id[0]) 
+                                if(event_p.product_categ_name === event.product_categ_name) { 
+                                    if(nested_groups.includes(event_p.product_id[0]) === false){
+                                        nested_groups.push(event_p.product_id[0]) 
+                                    }
                                     console.log(`event_p.product_categ_name ${event_p.product_categ_name}`)                                   
                                 }
                             })
@@ -79,16 +84,18 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                                 id: group_name[0],
                                 content: group_name[1], 
                                 nestedGroups: nested_groups,
-                                tooltip: tooltip
+                                tooltip: tooltip,
                             };
 
                             groups.push(group);
-                        }
+                        } 
+
                     }
                 }
             });
            
-            console.log("groups in timeline_renderer2: ", groups)
+            console.log("groups by group_bys: ", groups)
+
             return groups;
         },
 
@@ -196,6 +203,13 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
 
             // this.timeline.on('click', self.on_parent_group_click)
 
+            this.timeline.on('doubleClick', self.on_group_double_click);
+            // this.timeline.on('click', self.on_group_click);
+            this.timeline.on('click', function(props){
+                props.event.preventDefault()
+            });
+
+            // turn off the internal hammer tap event listener
             this.timeline.off('changed').on('changed', function() {
                 this.options.orientation = {
                     item: 'top',
@@ -299,19 +313,17 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
 
          
         /**
-         * Handle a click on a group header.
+         * Handle double click on a group header.
          *
          * @private
          */
-        //  on_parent_group_click: function (e) {
-        //      console.log("e,", e)
-        //     if (e.what === 'group-label' && e.group !== -1) {
-        //         this._trigger(e, function() {
-        //             // Do nothing
-        //         }, 'onParentGroupClick');
-        //     }
-        //     // console.log("hello world !!!")
-        // },
+         on_group_double_click: function (e) {
+            if (e.what === 'group-label' && e.group !== -1) {
+                this._trigger(e, function() {
+                    // Do nothing
+                }, 'onGroupDoubleClick');
+            }
+        },
 
         /**
          * Set groups and events.
@@ -374,6 +386,7 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                     this.$select_groups.remove();
                 }
                 groups = this.split_groups(events, group_bys);
+                groups = new vis.DataSet(groups)
             }
             this.timeline.setGroups(groups);
             this.timeline.setItems(data);
@@ -382,6 +395,10 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
             if (mode && adjust) {
                 this.timeline.fit();
             }
+        },
+
+        _do_nothing:function(){
+            console.log("click event is fired")
         },
 
         _onTodayClicked: function(){
