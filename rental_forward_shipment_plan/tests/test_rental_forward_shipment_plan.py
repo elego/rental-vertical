@@ -100,29 +100,39 @@ class TestRentalForwardShipmentPlan(TestRentalRouting):
         check_11 = check_12 = check_13 = False
         for sp in rental_order_1.trans_shipment_plan_ids:
             if sp.from_address_id == self.env.user.company_id.partner_id and sp.to_address_id == self.partnerA:
-                check_11 = True
+                if sp.location_id == self.warehouse0.rental_in_location_id and sp.location_dest_id == self.partnerA.rental_onsite_location_id:
+                    check_11 = True
             if sp.to_address_id == self.env.user.company_id.partner_id and sp.from_address_id == self.partnerA:
-                check_12 = True
+                if sp.location_dest_id == self.warehouse0.rental_in_location_id and sp.location_id == self.partnerA.rental_onsite_location_id:
+                    check_12 = True
             if sp.from_address_id == self.partnerA and sp.to_address_id == self.partnerB:
-                check_13 = True
+                if sp.location_id == self.partnerA.rental_onsite_location_id and sp.location_dest_id == self.partnerB.rental_onsite_location_id:
+                    check_13 = True
         check_21 = check_22 = check_23 = check_24 = False
         for sp in rental_order_2.trans_shipment_plan_ids:
             if sp.from_address_id == self.env.user.company_id.partner_id and sp.to_address_id == self.partnerB:
-                check_21 = True
+                if sp.location_id == self.warehouse0.rental_in_location_id and sp.location_dest_id == self.partnerB.rental_onsite_location_id:
+                    check_21 = True
             if sp.to_address_id == self.env.user.company_id.partner_id and sp.from_address_id == self.partnerB:
-                check_22 = True
+                if sp.location_dest_id == self.warehouse0.rental_in_location_id and sp.location_id == self.partnerB.rental_onsite_location_id:
+                    check_22 = True
             if sp.from_address_id == self.partnerA and sp.to_address_id == self.partnerB:
-                check_23 = True
+                if sp.location_id == self.partnerA.rental_onsite_location_id and sp.location_dest_id == self.partnerB.rental_onsite_location_id:
+                    check_23 = True
             if sp.from_address_id == self.partnerB and sp.to_address_id == self.partnerC:
-                check_24 = True
+                if sp.location_id == self.partnerB.rental_onsite_location_id and sp.location_dest_id == self.partnerC.rental_onsite_location_id:
+                    check_24 = True
         check_31 = check_32 = check_33 = False
         for sp in rental_order_3.trans_shipment_plan_ids:
             if sp.from_address_id == self.env.user.company_id.partner_id and sp.to_address_id == self.partnerC:
-                check_31 = True
+                if sp.location_id == self.warehouse0.rental_in_location_id and sp.location_dest_id == self.partnerC.rental_onsite_location_id:
+                    check_31 = True
             if sp.to_address_id == self.env.user.company_id.partner_id and sp.from_address_id == self.partnerC:
-                check_32 = True
+                if sp.location_dest_id == self.warehouse0.rental_in_location_id and sp.location_id == self.partnerC.rental_onsite_location_id:
+                    check_32 = True
             if sp.from_address_id == self.partnerB and sp.to_address_id == self.partnerC:
-                check_33 = True
+                if sp.location_id == self.partnerB.rental_onsite_location_id and sp.location_dest_id == self.partnerC.rental_onsite_location_id:
+                    check_33 = True
         self.assertTrue(check_11)
         self.assertTrue(check_12)
         self.assertTrue(check_13)

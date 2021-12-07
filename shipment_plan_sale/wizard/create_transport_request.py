@@ -124,6 +124,8 @@ class CreateSaleTransRequest(models.TransientModel):
             "origin": order.name,
             "origin_sale_line_ids": [(6, 0, order_lines.ids)],
             "dangerous_goods": dangerous_goods,
+            "location_id": self.env.ref("stock.stock_location_stock").id,
+            "location_dest_id": self.env.ref("stock.stock_location_customers").id,
         }
         return res
 

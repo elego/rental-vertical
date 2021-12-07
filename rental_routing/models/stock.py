@@ -14,10 +14,17 @@ class StockMove(models.Model):
     _inherit = "stock.move"
 
     rental_out_id = fields.Many2one(
-        "sale.rental", "Rental (out)", copy=False, ondelete="restrict"
+        comodel_name="sale.rental",
+        string="Rental (out)",
+        copy=False,
+        ondelete="restrict",
     )
+
     rental_in_id = fields.Many2one(
-        "sale.rental", "Rental (in)", copy=False, ondelete="restrict"
+        comodel_name="sale.rental",
+        string="Rental (in)",
+        copy=False,
+        ondelete="restrict",
     )
 
     @api.multi
@@ -30,8 +37,7 @@ class StockMove(models.Model):
                 if move.rental_out_id.out_move_id.state == "done":
                     raise UserError(
                         _(
-                            'The outgoing move of the \
-                        referenced rental is in state "done".'
+                            "The outgoing move of the referenced rental is in state 'Done'."
                         )
                     )
                 else:
@@ -42,8 +48,7 @@ class StockMove(models.Model):
                 if move.rental_in_id.in_move_id.state == "done":
                     raise UserError(
                         _(
-                            'The return move of the \
-                        referenced rental is in state "done".'
+                            "The return move of the referenced rental is in state 'Done'."
                         )
                     )
                 else:
@@ -61,11 +66,11 @@ class StockPicking(models.Model):
     _inherit = "stock.picking"
 
     rental_order = fields.Many2one(
-        "sale.order",
-        "Rental Order",
+        comodel_name="sale.order",
+        string="Rental Order",
         copy=False,
         ondelete="restrict",
-        help="Order which caused (created) the picking as rental (in)",
+        help="This is the order that created the picking as rental (in).",
     )
 
 

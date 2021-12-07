@@ -12,6 +12,7 @@ from odoo import fields, exceptions
 class TestShipmentPlanRental(ShipmentPlanCommon):
     def setUp(self):
         super().setUp()
+        self.warehouse0 = self.env.ref("stock.warehouse0")
         self.rental_sale_type = self.env.ref("rental_base.rental_sale_type")
         self.incotermsA = self.env["account.incoterms"].create(
             {
@@ -97,8 +98,8 @@ class TestShipmentPlanRental(ShipmentPlanCommon):
         """
         # Create Rental Order for product_rental
         rental_order = self._create_rental_order()
+        rental_order.transport_cost_type = "multi"
         self.assertTrue(rental_order.trans_pr_needed)
-        self.assertEqual(rental_order.transport_cost_type, "multi")
         wizard = (
             self.env["create.sale.trans.request"]
             .with_context(
@@ -141,9 +142,13 @@ class TestShipmentPlanRental(ShipmentPlanCommon):
         shipment_plan, return_shipment_plan = wizard.action_confirm()
         self.assertEqual(shipment_plan.trans_po_count, 1)
         self.assertEqual(shipment_plan.trans_pr_count, 1)
+        self.assertEqual(shipment_plan.location_id, self.warehouse0.rental_in_location_id)
+        self.assertEqual(shipment_plan.location_dest_id, self.warehouse0.rental_out_location_id)
         confirm_shipment_plan_pos(self, shipment_plan)
         self.assertEqual(return_shipment_plan.trans_po_count, 1)
         self.assertEqual(return_shipment_plan.trans_pr_count, 1)
+        self.assertEqual(return_shipment_plan.location_id, self.warehouse0.rental_out_location_id)
+        self.assertEqual(return_shipment_plan.location_dest_id, self.warehouse0.rental_in_location_id)
         confirm_shipment_plan_pos(self, return_shipment_plan)
         # TODO Check why the field 'trans_shipment_plan_id' and
         #'trans_return_shipment_plan_id' of sale order line
