@@ -22,12 +22,13 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
             var self = this;
             //groups.push({id: -1, content: _t('-')});
 
+            var count = 1
             _.each(events, function(event){
                 var product_group_name = event[_.first(["product_id"])];
                 if(product_group_name) {
                     if(product_group_name instanceof Array) {
                         let group = _.find(groups, function(existing_group){
-                            return _.isEqual(existing_group.id, product_group_name[0]);
+                            return _.isEqual(existing_group.id , product_group_name[0]);
                         });
 
                         if(_.isUndefined(group)) {
@@ -52,48 +53,58 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                 }
             })
 
-            console.log("groups by product_id: ", groups)
+            if(group_bys[0] === "product_categ_id"){
 
-            _.each(events, function(event){
-                var group_name = event[_.first(group_bys)];
-                if(group_name){
-                    if(group_name instanceof Array){
-                        let group = _.find(groups, function(existing_group){
-                            return _.isEqual(existing_group.id, group_name[0]);
-                        });
-
-                        if(_.isUndefined(group)){
-                            
-                            var tooltip = null;
-                            if(self.qweb.has_template('tooltip-item-group')){
-                                tooltip = self.qweb.render('tooltip-item-group', {
-                                    'record': event
-                                });
-                            }
-
-                            let nested_groups = []
-                            _.each(events, function(event_p){
-                                if(event_p.product_categ_name === event.product_categ_name) { 
-                                    if(nested_groups.includes(event_p.product_id[0]) === false){
-                                        nested_groups.push(event_p.product_id[0]) 
-                                    }
-                                    console.log(`event_p.product_categ_name ${event_p.product_categ_name}`)                                   
+                var group_categs = []
+    
+                console.log("groups by product_id: ", groups)
+    
+                _.each(events, function(event){
+                    var group_name = event[_.first(group_bys)];
+                    if(group_name){
+                        if(group_name instanceof Array){
+                            let group = _.find(group_categs, function(existing_group){
+                                return _.isEqual(existing_group.id, group_name[0] * 100);
+                                // return _.isEqual(existing_group, group_name);
+                            });
+    
+                            // if(!groups.includes(group)){
+                            if(_.isUndefined(group)){
+                                
+                                var tooltip = null;
+                                if(self.qweb.has_template('tooltip-item-group')){
+                                    tooltip = self.qweb.render('tooltip-item-group', {
+                                        'record': event
+                                    });
                                 }
-                            })
-                            group = {
-                                id: group_name[0],
-                                content: group_name[1], 
-                                nestedGroups: nested_groups,
-                                tooltip: tooltip,
-                            };
-
-                            groups.push(group);
-                        } 
-
+    
+                                let nested_groups = []
+                                _.each(events, function(event_p){
+                                    if(event_p.product_categ_name === event.product_categ_name) { 
+                                        if(!nested_groups.includes(event_p.product_id[0])){
+                                            nested_groups.push(event_p.product_id[0]) 
+                                        }
+                                        console.log(`event_p.product_categ_name ${event_p.product_categ_name}`)                                   
+                                    }
+                                })
+    
+                                group = {
+                                    id: group_name[0] * 100,
+                                    content: group_name[1], 
+                                    nestedGroups: nested_groups,
+                                    tooltip: tooltip,
+                                };
+        
+                                group_categs.push(group);
+                            } 
+    
+                        }
                     }
-                }
-            });
-           
+                });
+
+                groups = groups.concat(group_categs)
+            }
+
             console.log("groups by group_bys: ", groups)
 
             return groups;

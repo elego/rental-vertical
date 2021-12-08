@@ -20,27 +20,27 @@ odoo.define('rental_timeline.RentalTimelineController', function (require) {
             //     var props = timeline.getEventProperties(event)
             // }
 
-            return this.do_action({
-                type: 'ir.actions.act_window',
-                res_model: this.renderer.view.fields[groupField].relation,
-                res_id: event.data.item.group,
-                target: 'new',
-                flags: {
-                    mode: 'readonly',
-                },
-                views: [[false, 'form']],
-            });
+            // return this.do_action({
+            //     type: 'ir.actions.act_window',
+            //     res_model: this.renderer.view.fields[groupField].relation,
+            //     res_id: event.data.item.group,
+            //     target: 'new',
+            //     flags: {
+            //         mode: 'readonly',
+            //     },
+            //     views: [[false, 'form']],
+            // });
+            return 
         },
 
         _onGroupDoubleClick: function(event){
-            debugger
-            // if(this.renderer.last_group_bys[0] !== "product_categ_id") {
-            //     var groupField = this.renderer.last_group_bys[0];
-            // } else {
-            //     var groupField = this.renderer.grouped_by;
-            // }
+            if(this.renderer.last_group_bys[0] !== "product_categ_id") {
+                var groupField = this.renderer.last_group_bys[0];
+            } else {
+                var groupField = this.renderer.grouped_by;
+            }
 
-            var groupField = this.renderer.last_group_bys[0];
+            // var groupField = this.renderer.last_group_bys[0];
 
             return this.do_action({
                         type: 'ir.actions.act_window',
