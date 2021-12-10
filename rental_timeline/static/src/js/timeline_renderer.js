@@ -22,7 +22,6 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
             var self = this;
             //groups.push({id: -1, content: _t('-')});
 
-            var count = 1
             _.each(events, function(event){
                 var product_group_name = event[_.first(["product_id"])];
                 if(product_group_name) {
@@ -43,7 +42,10 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                                 group = {
                                     id: product_group_name[0],
                                     content: product_group_name[1],
-                                    tooltip: tooltip
+                                    tooltip: tooltip,
+                                    partner_id: event.partner_id,
+                                    order_name: event.order_name,
+                                    product_id: event.product_id
                                 };
                                 groups.push(group);
                             }
@@ -104,6 +106,156 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
 
                 groups = groups.concat(group_categs)
             }
+            else if (group_bys[0] === "order_name"){
+
+                var group_order_names = []
+    
+                _.each(events, function(event){
+                    var group_name = event[_.first(group_bys)];
+                    if(group_name){
+                        if(group_name){
+                            let group = _.find(group_order_names, function(existing_group){
+                                return _.isEqual(existing_group.content, group_name);
+                                // return _.isEqual(existing_group, group_name);
+                            });
+    
+                            // if(!groups.includes(group)){
+                            if(_.isUndefined(group)){
+                                
+                                var tooltip = null;
+                                if(self.qweb.has_template('tooltip-item-group')){
+                                    tooltip = self.qweb.render('tooltip-item-group', {
+                                        'record': event
+                                    });
+                                }
+    
+                                let nested_groups = []
+                                _.each(events, function(event_o){
+                                    if(event_o.order_name === event.order_name) { 
+                                        if(!nested_groups.includes(event_o.product_id[0])){
+                                            nested_groups.push(event_o.product_id[0]) 
+                                        }
+                                    }
+                                })
+    
+                                group = {
+                                    id: event.id * 100,
+                                    content: group_name, 
+                                    nestedGroups: nested_groups,
+                                    tooltip: tooltip,
+                                };
+        
+                                group_order_names.push(group);
+                            } 
+    
+                        }
+                    }
+                });
+
+                groups = groups.concat(group_order_names)
+            }
+            else if(group_bys[0] === "partner_id"){
+
+                var group_partners = []
+    
+                _.each(events, function(event){
+                    var group_name = event[_.first(group_bys)];
+                    if(group_name){
+                        if(group_name instanceof Array){
+                            let group = _.find(group_partners, function(existing_group){
+                                return _.isEqual(existing_group.id, group_name[0] * 100);
+                                // return _.isEqual(existing_group, group_name);
+                            });
+    
+                            // if(!groups.includes(group)){
+                            if(_.isUndefined(group)){
+                                
+                                var tooltip = null;
+                                if(self.qweb.has_template('tooltip-item-group')){
+                                    tooltip = self.qweb.render('tooltip-item-group', {
+                                        'record': event
+                                    });
+                                }
+    
+                                let nested_groups = []
+                                _.each(events, function(event_p){
+                                    if(event_p.partner_id[1] === event.partner_id[1]) { 
+                                        if(!nested_groups.includes(event_p.product_id[0])){
+                                            nested_groups.push(event_p.product_id[0]) 
+                                        }
+                                    }
+                                })
+    
+                                group = {
+                                    id: group_name[0] * 100,
+                                    content: group_name[1], 
+                                    nestedGroups: nested_groups,
+                                    tooltip: tooltip,
+                                    partner_id: group_name
+                                };
+        
+                                group_partners.push(group);
+                            } 
+    
+                        }
+                    }
+                });
+
+                var count = 300
+                for(let i = 0; i< group_partners.length -1; i ++) {
+                    if(group_partners[i].nestedGroups.length > 1) {
+                        for(let k = 0; k < group_partners[i].nestedGroups.length; k ++) {
+                            for(let j = i+1; j < group_partners.length; j++) {
+                                for(let m = 0; m < group_partners[j].nestedGroups.length; m ++){
+                                    if(group_partners[i].nestedGroups[k] === group_partners[j].nestedGroups[m]) {
+                                        const group = groups.find(elem => elem.id === group_partners[j].nestedGroups[m]);
+                                        const newGroup = Object.assign({}, group)
+                                        const newGroupId = newGroup.id * count;
+                                        newGroup.original_id = newGroup.id
+                                        newGroup.id = newGroupId;
+                                        newGroup.partner_id = group_partners[j].partner_id;
+                                        groups.push(newGroup);
+                                        count ++;
+                                        group_partners[j].nestedGroups[m] = newGroupId;
+                                    }
+                                }
+                            }
+                        }
+                    }else {
+                        for(let j = i+1; j < group_partners.length; j++) {
+                            if(group_partners[j].nestedGroups.length > 1) {
+                                for(let m = 0; m < group_partners[j].nestedGroups.length; m ++){
+                                    if(group_partners[i].nestedGroups[0] === group_partners[j].nestedGroups[m]) {
+                                        const group = groups.find(elem => elem.id === group_partners[j].nestedGroups[m]);
+                                        const newGroup = Object.assign({}, group)
+                                        const newGroupId = newGroup.id * count;
+                                        newGroup.original_id = newGroup.id
+                                        newGroup.id = newGroupId;
+                                        newGroup.partner_id = group_partners[j].partner_id;
+                                        groups.push(newGroup);
+                                        count ++;
+                                        group_partners[j].nestedGroups[m] = newGroupId;
+                                    }
+                                }
+                            }else {
+                                if(group_partners[i].nestedGroups[0] === group_partners[j].nestedGroups[0]) {
+                                    const group = groups.find(elem => elem.id === group_partners[j].nestedGroups[0]);
+                                    const newGroup = Object.assign({}, group)
+                                    const newGroupId = newGroup.id * count;
+                                    newGroup.original_id = newGroup.id
+                                    newGroup.id = newGroupId;
+                                    newGroup.partner_id = group_partners[j].partner_id;
+                                    groups.push(newGroup);
+                                    count ++;
+                                    group_partners[j].nestedGroups[0] = newGroupId;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                groups = groups.concat(group_partners)
+            }
 
             console.log("groups by group_bys: ", groups)
 
@@ -140,7 +292,7 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                 date_stop = moment(date_start).add(date_delay, 'hours').toDate();
             }
             
-            if(self.last_group_bys[0] !== "product_categ_id") {
+            if(self.last_group_bys[0] !== "product_categ_id" && self.last_group_bys[0] !== "order_name" && self.last_group_bys[0] !== "partner_id") {
                 var group = evt[self.last_group_bys[0]];
             } else {
                 var group = evt.product_id
@@ -346,7 +498,7 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
             var data = [];
             var groups = [];
 
-            if(group_bys[0] !== "product_categ_id") {
+            if(group_bys[0] !== "product_categ_id" && group_bys[0] !== "order_name" && group_bys[0] !== "partner_id") {
                 this.grouped_by = group_bys;
 
                 _.each(events, function (event) {
@@ -397,9 +549,29 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                     this.$select_groups.remove();
                 }
                 groups = this.split_groups(events, group_bys);
+                
+                if(group_bys[0] === "partner_id"){
+                    for(let i = 0; i < groups.length; i ++) {
+                            data.forEach(item => {
+                            if(!('nestedGroups' in groups[i])){
+                                if(item.group === groups[i].id && item.evt.partner_id !== groups[i].partner_id){
+                                    if(i +1 < groups.length) {
+                                        for(let j = i +1 ; j < groups.length; j ++) {
+                                            if(_.isEqual(item.evt.partner_id, groups[j].partner_id) && _.isEqual(item.evt.product_id, groups[j].product_id)){
+                                                item.group = groups[j].id
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        })
+                    }
+                }
+
                 groups = new vis.DataSet(groups)
             }
             this.timeline.setGroups(groups);
+
             this.timeline.setItems(data);
             var mode = !this.mode || this.mode === 'fit';
             var adjust = _.isUndefined(adjust_window) || adjust_window;
