@@ -111,7 +111,7 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                 var group_order_names = []
     
                 _.each(events, function(event){
-                    var group_name = event[_.first(group_bys)];
+                    var group_name = event[_.first(group_bys)];group_partners
                     if(group_name){
                         if(group_name){
                             let group = _.find(group_order_names, function(existing_group){
@@ -143,6 +143,7 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                                     content: group_name, 
                                     nestedGroups: nested_groups,
                                     tooltip: tooltip,
+                                    order_name: group_name
                                 };
         
                                 group_order_names.push(group);
@@ -151,6 +152,59 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                         }
                     }
                 });
+
+                let count = 199
+                for(let i = 0; i< group_order_names.length -1; i ++) {
+                    if(group_order_names[i].nestedGroups.length > 1) {
+                        for(let k = 0; k < group_order_names[i].nestedGroups.length; k ++) {
+                            for(let j = i+1; j < group_order_names.length; j++) {
+                                for(let m = 0; m < group_order_names[j].nestedGroups.length; m ++){
+                                    if(group_order_names[i].nestedGroups[k] === group_order_names[j].nestedGroups[m]) {
+                                        const group = groups.find(elem => elem.id === group_order_names[j].nestedGroups[m]);
+                                        const newGroup = Object.assign({}, group)
+                                        const newGroupId = newGroup.id * count;
+                                        newGroup.original_id = newGroup.id
+                                        newGroup.id = newGroupId;
+                                        newGroup.order_name = group_order_names[j].order_name;
+                                        groups.push(newGroup);
+                                        count ++;
+                                        group_order_names[j].nestedGroups[m] = newGroupId;
+                                    }
+                                }
+                            }
+                        }
+                    }else {
+                        for(let j = i+1; j < group_order_names.length; j++) {
+                            if(group_order_names[j].nestedGroups.length > 1) {
+                                for(let m = 0; m < group_order_names[j].nestedGroups.length; m ++){
+                                    if(group_order_names[i].nestedGroups[0] === group_order_names[j].nestedGroups[m]) {
+                                        const group = groups.find(elem => elem.id === group_order_names[j].nestedGroups[m]);
+                                        const newGroup = Object.assign({}, group)
+                                        const newGroupId = newGroup.id * count;
+                                        newGroup.original_id = newGroup.id
+                                        newGroup.id = newGroupId;
+                                        newGroup.order_name = group_order_names[j].order_name;
+                                        groups.push(newGroup);
+                                        count ++;
+                                        group_order_names[j].nestedGroups[m] = newGroupId;
+                                    }
+                                }
+                            }else {
+                                if(group_order_names[i].nestedGroups[0] === group_order_names[j].nestedGroups[0]) {
+                                    const group = groups.find(elem => elem.id === group_order_names[j].nestedGroups[0]);
+                                    const newGroup = Object.assign({}, group)
+                                    const newGroupId = newGroup.id * count;
+                                    newGroup.original_id = newGroup.id
+                                    newGroup.id = newGroupId;
+                                    newGroup.order_name = group_order_names[j].order_name;
+                                    groups.push(newGroup);
+                                    count ++;
+                                    group_order_names[j].nestedGroups[0] = newGroupId;
+                                }
+                            }
+                        }
+                    }
+                }
 
                 groups = groups.concat(group_order_names)
             }
@@ -201,7 +255,7 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                     }
                 });
 
-                var count = 300
+                let count = 300
                 for(let i = 0; i< group_partners.length -1; i ++) {
                     if(group_partners[i].nestedGroups.length > 1) {
                         for(let k = 0; k < group_partners[i].nestedGroups.length; k ++) {
@@ -558,6 +612,30 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                                     if(i +1 < groups.length) {
                                         for(let j = i +1 ; j < groups.length; j ++) {
                                             if(_.isEqual(item.evt.partner_id, groups[j].partner_id) && _.isEqual(item.evt.product_id, groups[j].product_id)){
+                                                item.original_group = item.group
+                                                item.group = groups[j].id
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        })
+                    }
+                }
+
+                if(group_bys[0] === "order_name"){
+                    for(let i = 0; i < groups.length; i ++) {
+                            data.forEach(item => {
+                            if(!('nestedGroups' in groups[i])){
+                                if(item.group === groups[i].id && item.evt.order_name !== groups[i].order_name){
+                                    if(i +1 < groups.length) {
+                                        for(let j = i +1 ; j < groups.length; j ++) {
+                                            // if(_.isEqual(item.evt.order_name, groups[j].order_name) && _.isEqual(item.evt.product_id, groups[j].product_id)){
+                                            //     item.original_group = item.group
+                                            //     item.group = groups[j].id
+                                            // }
+                                            if( item.evt.order_name === groups[j].order_name && _.isEqual(item.evt.product_id, groups[j].product_id)){
+                                                item.original_group = item.group
                                                 item.group = groups[j].id
                                             }
                                         }

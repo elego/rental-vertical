@@ -34,7 +34,7 @@ odoo.define('rental_timeline.RentalTimelineController', function (require) {
         },
 
         _onGroupDoubleClick: function(event){
-            if(this.renderer.last_group_bys[0] !== "product_categ_id" && this.renderer.last_group_bys[0] !== "partner_id") {
+            if(this.renderer.last_group_bys[0] !== "product_categ_id" && this.renderer.last_group_bys[0] !== "partner_id" && this.renderer.last_group_bys[0] !== "order_name") {
                 var groupField = this.renderer.last_group_bys[0];
             } else {
                 var groupField = this.renderer.grouped_by;
