@@ -108,10 +108,10 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
             }
             else if (group_bys[0] === "order_name"){
 
-                var group_order_names = []
+                var group_order_names = [];
     
                 _.each(events, function(event){
-                    var group_name = event[_.first(group_bys)];group_partners
+                    var group_name = event[_.first(group_bys)];
                     if(group_name){
                         if(group_name){
                             let group = _.find(group_order_names, function(existing_group){
@@ -153,7 +153,7 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                     }
                 });
 
-                let count = 199
+                let count = 300
                 for(let i = 0; i< group_order_names.length -1; i ++) {
                     if(group_order_names[i].nestedGroups.length > 1) {
                         for(let k = 0; k < group_order_names[i].nestedGroups.length; k ++) {
@@ -162,7 +162,7 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                                     if(group_order_names[i].nestedGroups[k] === group_order_names[j].nestedGroups[m]) {
                                         const group = groups.find(elem => elem.id === group_order_names[j].nestedGroups[m]);
                                         const newGroup = Object.assign({}, group)
-                                        const newGroupId = newGroup.id * count;
+                                        const newGroupId = newGroup.id * count +1;
                                         newGroup.original_id = newGroup.id
                                         newGroup.id = newGroupId;
                                         newGroup.order_name = group_order_names[j].order_name;
@@ -180,7 +180,7 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                                     if(group_order_names[i].nestedGroups[0] === group_order_names[j].nestedGroups[m]) {
                                         const group = groups.find(elem => elem.id === group_order_names[j].nestedGroups[m]);
                                         const newGroup = Object.assign({}, group)
-                                        const newGroupId = newGroup.id * count;
+                                        const newGroupId = newGroup.id * count +1;
                                         newGroup.original_id = newGroup.id
                                         newGroup.id = newGroupId;
                                         newGroup.order_name = group_order_names[j].order_name;
@@ -193,7 +193,7 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                                 if(group_order_names[i].nestedGroups[0] === group_order_names[j].nestedGroups[0]) {
                                     const group = groups.find(elem => elem.id === group_order_names[j].nestedGroups[0]);
                                     const newGroup = Object.assign({}, group)
-                                    const newGroupId = newGroup.id * count;
+                                    const newGroupId = newGroup.id * count +1;
                                     newGroup.original_id = newGroup.id
                                     newGroup.id = newGroupId;
                                     newGroup.order_name = group_order_names[j].order_name;
@@ -206,7 +206,7 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                     }
                 }
 
-                groups = groups.concat(group_order_names)
+                groups = groups.concat(group_order_names);
             }
             else if(group_bys[0] === "partner_id"){
 
