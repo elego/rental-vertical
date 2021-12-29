@@ -608,20 +608,22 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                     for(let i = 0; i < groups.length; i ++) {
                             data.forEach(item => {
                             if(!('nestedGroups' in groups[i])){
-                                if(item.group === groups[i].id && !_.isEqual(item.evt.partner_id, groups[i].partner_id)){
-                                    if(i +1 < groups.length) {
-                                        for(let j = i +1 ; j < groups.length; j ++) {
-                                            if(!('nestedGroups' in groups[j])) {
-                                                if(_.isEqual(item.evt.product_id, groups[j].product_id)){
-                                                    if(_.isEqual(item.evt.partner_id, groups[j].partner_id)) {
-                                                        item.original_group = item.group
-                                                        item.group = groups[j].id
-                                                    }
-                                                }  
-                                            }
-                                        }
-                                    }
-                                } else if (item.group !== groups[i].id && _.isEqual(item.evt.product_id, groups[i].product_id) && _.isEqual(item.evt.partner_id, groups[i].partner_id)){
+                                // if(item.group === groups[i].id && !_.isEqual(item.evt.partner_id, groups[i].partner_id)){
+                                //     if(i +1 < groups.length) {
+                                //         for(let j = i +1 ; j < groups.length; j ++) {
+                                //             if(!('nestedGroups' in groups[j])) {
+                                //                 if(_.isEqual(item.evt.product_id, groups[j].product_id)){
+                                //                     if(_.isEqual(item.evt.partner_id, groups[j].partner_id)) {
+                                //                         item.original_group = item.group
+                                //                         item.group = groups[j].id
+                                //                     }
+                                //                 }  
+                                //             }
+                                //         }
+                                //     }
+                                // } else 
+                                if (item.group !== groups[i].id && _.isEqual(item.evt.product_id, groups[i].product_id) 
+                                && _.isEqual(item.evt.partner_id, groups[i].partner_id)){
                                     item.group = groups[i].id
                                 }
                             }
@@ -633,16 +635,18 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                     for(let i = 0; i < groups.length; i ++) {
                             data.forEach(item => {
                             if(!('nestedGroups' in groups[i])){
-                                if(item.group === groups[i].id && item.evt.order_name !== groups[i].order_name){
-                                    if(i +1 < groups.length) {
-                                        for(let j = i +1 ; j < groups.length; j ++) {
-                                            if( item.evt.order_name === groups[j].order_name && _.isEqual(item.evt.product_id, groups[j].product_id)){
-                                                item.original_group = item.group
-                                                item.group = groups[j].id
-                                            }
-                                        }
-                                    }
-                                } else if (item.group !== groups[i].id && _.isEqual(item.evt.product_id, groups[i].product_id) && (item.evt.order_name === groups[i].order_name)){
+                                // if(item.group === groups[i].id && item.evt.order_name !== groups[i].order_name){
+                                //     if(i +1 < groups.length) {
+                                //         for(let j = i +1 ; j < groups.length; j ++) {
+                                //             if( item.evt.order_name === groups[j].order_name && _.isEqual(item.evt.product_id, groups[j].product_id)){
+                                //                 item.original_group = item.group
+                                //                 item.group = groups[j].id
+                                //             }
+                                //         }
+                                //     }
+                                // } else 
+                                if (item.group !== groups[i].id && _.isEqual(item.evt.product_id, groups[i].product_id) 
+                                && (item.evt.order_name === groups[i].order_name)){
                                     item.group = groups[i].id
                                 }
                             }
