@@ -59,8 +59,6 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
 
                 var group_categs = []
     
-                console.log("groups by product_id: ", groups)
-    
                 _.each(events, function(event){
                     var group_name = event[_.first(group_bys)];
                     if(group_name){
@@ -103,6 +101,8 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                         }
                     }
                 });
+
+                // group_categs = self.set_layer_groups(events, group_bys, group_categs, "product_categ_id")
 
                 groups = groups.concat(group_categs)
             }
@@ -153,58 +153,9 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                     }
                 });
 
-                let count = 300
-                for(let i = 0; i< group_order_names.length -1; i ++) {
-                    if(group_order_names[i].nestedGroups.length > 1) {
-                        for(let k = 0; k < group_order_names[i].nestedGroups.length; k ++) {
-                            for(let j = i+1; j < group_order_names.length; j++) {
-                                for(let m = 0; m < group_order_names[j].nestedGroups.length; m ++){
-                                    if(group_order_names[i].nestedGroups[k] === group_order_names[j].nestedGroups[m]) {
-                                        const group = groups.find(elem => elem.id === group_order_names[j].nestedGroups[m]);
-                                        const newGroup = Object.assign({}, group)
-                                        const newGroupId = newGroup.id * count +1;
-                                        newGroup.original_id = newGroup.id
-                                        newGroup.id = newGroupId;
-                                        newGroup.order_name = group_order_names[j].order_name;
-                                        groups.push(newGroup);
-                                        count ++;
-                                        group_order_names[j].nestedGroups[m] = newGroupId;
-                                    }
-                                }
-                            }
-                        }
-                    }else {
-                        for(let j = i+1; j < group_order_names.length; j++) {
-                            if(group_order_names[j].nestedGroups.length > 1) {
-                                for(let m = 0; m < group_order_names[j].nestedGroups.length; m ++){
-                                    if(group_order_names[i].nestedGroups[0] === group_order_names[j].nestedGroups[m]) {
-                                        const group = groups.find(elem => elem.id === group_order_names[j].nestedGroups[m]);
-                                        const newGroup = Object.assign({}, group)
-                                        const newGroupId = newGroup.id * count +1;
-                                        newGroup.original_id = newGroup.id
-                                        newGroup.id = newGroupId;
-                                        newGroup.order_name = group_order_names[j].order_name;
-                                        groups.push(newGroup);
-                                        count ++;
-                                        group_order_names[j].nestedGroups[m] = newGroupId;
-                                    }
-                                }
-                            }else {
-                                if(group_order_names[i].nestedGroups[0] === group_order_names[j].nestedGroups[0]) {
-                                    const group = groups.find(elem => elem.id === group_order_names[j].nestedGroups[0]);
-                                    const newGroup = Object.assign({}, group)
-                                    const newGroupId = newGroup.id * count +1;
-                                    newGroup.original_id = newGroup.id
-                                    newGroup.id = newGroupId;
-                                    newGroup.order_name = group_order_names[j].order_name;
-                                    groups.push(newGroup);
-                                    count ++;
-                                    group_order_names[j].nestedGroups[0] = newGroupId;
-                                }
-                            }
-                        }
-                    }
-                }
+                let groups_and_layersGroup = self.generate_sub_groups(groups,group_order_names, "order_name")
+                groups = groups_and_layersGroup[0]
+                group_order_names = groups_and_layersGroup[1]
 
                 groups = groups.concat(group_order_names);
             }
@@ -255,66 +206,185 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                     }
                 });
 
-                let count = 300
-                for(let i = 0; i< group_partners.length -1; i ++) {
-                    if(group_partners[i].nestedGroups.length > 1) {
-                        for(let k = 0; k < group_partners[i].nestedGroups.length; k ++) {
-                            for(let j = i+1; j < group_partners.length; j++) {
-                                for(let m = 0; m < group_partners[j].nestedGroups.length; m ++){
-                                    if(group_partners[i].nestedGroups[k] === group_partners[j].nestedGroups[m]) {
-                                        const group = groups.find(elem => elem.id === group_partners[j].nestedGroups[m]);
-                                        const newGroup = Object.assign({}, group)
-                                        const newGroupId = newGroup.id * count;
-                                        newGroup.original_id = newGroup.id
-                                        newGroup.id = newGroupId;
-                                        newGroup.partner_id = group_partners[j].partner_id;
-                                        groups.push(newGroup);
-                                        count ++;
-                                        group_partners[j].nestedGroups[m] = newGroupId;
-                                    }
-                                }
-                            }
-                        }
-                    }else {
-                        for(let j = i+1; j < group_partners.length; j++) {
-                            if(group_partners[j].nestedGroups.length > 1) {
-                                for(let m = 0; m < group_partners[j].nestedGroups.length; m ++){
-                                    if(group_partners[i].nestedGroups[0] === group_partners[j].nestedGroups[m]) {
-                                        const group = groups.find(elem => elem.id === group_partners[j].nestedGroups[m]);
-                                        const newGroup = Object.assign({}, group)
-                                        const newGroupId = newGroup.id * count;
-                                        newGroup.original_id = newGroup.id
-                                        newGroup.id = newGroupId;
-                                        newGroup.partner_id = group_partners[j].partner_id;
-                                        groups.push(newGroup);
-                                        count ++;
-                                        group_partners[j].nestedGroups[m] = newGroupId;
-                                    }
-                                }
-                            }else {
-                                if(group_partners[i].nestedGroups[0] === group_partners[j].nestedGroups[0]) {
-                                    const group = groups.find(elem => elem.id === group_partners[j].nestedGroups[0]);
-                                    const newGroup = Object.assign({}, group)
-                                    const newGroupId = newGroup.id * count;
-                                    newGroup.original_id = newGroup.id
-                                    newGroup.id = newGroupId;
-                                    newGroup.partner_id = group_partners[j].partner_id;
-                                    groups.push(newGroup);
-                                    count ++;
-                                    group_partners[j].nestedGroups[0] = newGroupId;
-                                }
-                            }
-                        }
-                    }
-                }
+                let groups_and_layersGroup = self.generate_sub_groups(groups, group_partners, "partner_id")
+                groups = groups_and_layersGroup[0]
+                group_partners = groups_and_layersGroup[1]
 
                 groups = groups.concat(group_partners)
             }
 
-            console.log("groups by group_bys: ", groups)
-
             return groups;
         },
+
+        /**
+         * Generate new sub group if the old sub groups have the same group ID.
+         *
+         * @private
+         * @param {groups}
+         * @param {layer_groups}
+         * @param {group_by}
+         * @returns {[groups, layer_groups]}
+         */
+        generate_sub_groups: function(groups, layer_groups, group_by) {
+            let count = 300
+            for(let i = 0; i< layer_groups.length -1; i ++) {
+                if(layer_groups[i].nestedGroups.length > 1) {
+                    for(let k = 0; k < layer_groups[i].nestedGroups.length; k ++) {
+                        for(let j = i+1; j < layer_groups.length; j++) {
+                            for(let m = 0; m < layer_groups[j].nestedGroups.length; m ++){
+                                if(layer_groups[i].nestedGroups[k] === layer_groups[j].nestedGroups[m]) {
+                                    const group = groups.find(elem => elem.id === layer_groups[j].nestedGroups[m]);
+                                    const newGroup = Object.assign({}, group)
+                                    const newGroupId = newGroup.id * count +3;
+                                    newGroup.original_id = newGroup.id
+                                    newGroup.id = newGroupId;
+                                    if(group_by === "partner_id"){
+                                        newGroup.partner_id = layer_groups[j].partner_id;
+                                    } else if (group_by === "order_name"){
+                                        newGroup.order_name = layer_groups[j].order_name;
+                                    }
+                                    groups.push(newGroup);
+                                    count ++;
+                                    layer_groups[j].nestedGroups[m] = newGroupId;
+                                }
+                            }
+                        }
+                    }
+                }else {
+                    for(let j = i+1; j < layer_groups.length; j++) {
+                        if(layer_groups[j].nestedGroups.length > 1) {
+                            for(let m = 0; m < layer_groups[j].nestedGroups.length; m ++){
+                                if(layer_groups[i].nestedGroups[0] === layer_groups[j].nestedGroups[m]) {
+                                    const group = groups.find(elem => elem.id === layer_groups[j].nestedGroups[m]);
+                                    const newGroup = Object.assign({}, group)
+                                    const newGroupId = newGroup.id * count +3;
+                                    newGroup.original_id = newGroup.id
+                                    newGroup.id = newGroupId;
+                                    if(group_by === "partner_id"){
+                                        newGroup.partner_id = layer_groups[j].partner_id;
+                                    } else if (group_by === "order_name"){
+                                        newGroup.order_name = layer_groups[j].order_name;
+                                    }
+                                    groups.push(newGroup);
+                                    count ++;
+                                    layer_groups[j].nestedGroups[m] = newGroupId;
+                                }
+                            }
+                        }else {
+                            if(layer_groups[i].nestedGroups[0] === layer_groups[j].nestedGroups[0]) {
+                                const group = groups.find(elem => elem.id === layer_groups[j].nestedGroups[0]);
+                                const newGroup = Object.assign({}, group)
+                                const newGroupId = newGroup.id * count+3;
+                                newGroup.original_id = newGroup.id
+                                newGroup.id = newGroupId;
+                                if(group_by === "partner_id"){
+                                    newGroup.partner_id = layer_groups[j].partner_id;
+                                } else if (group_by === "order_name"){
+                                    newGroup.order_name = layer_groups[j].order_name;
+                                }
+                                groups.push(newGroup);
+                                count ++;
+                                layer_groups[j].nestedGroups[0] = newGroupId;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return [groups,layer_groups];
+        },
+
+        // /**
+        //  * Set layer groups.
+        //  *
+        //  * @private
+        //  * @param {events}
+        //  * @param {group_bys}
+        //  * @param {layer_groups}
+        //  * @param {group_by}
+        //  * @returns {layer_groups}
+        //  */
+        // set_layer_groups: function(events, group_bys, layer_groups, group_by) {
+        //     _.each(events, function(event){
+        //         var group_name = event[_.first(group_bys)];
+        //         if(group_name){
+        //             if(group_name instanceof Array){
+        //                 let group = _.find(layer_groups, function(existing_group){
+        //                     return _.isEqual(existing_group.id, group_name[0] * 100);
+        //                     // return _.isEqual(existing_group, group_name);
+        //                 });
+
+        //                 // if(!groups.includes(group)){
+        //                 if(_.isUndefined(group)){
+                            
+        //                     var tooltip = null;
+        //                     if(window.qweb.has_template('tooltip-item-group')){
+        //                         tooltip = this.qweb.render('tooltip-item-group', {
+        //                             'record': event
+        //                         });
+        //                     }
+
+        //                     let nested_groups = []
+        //                     _.each(events, function(event_p){
+        //                         if(group_by === "product_categ_name") {
+        //                             if(event_p.product_categ_name === event.product_categ_name) { 
+        //                                 if(!nested_groups.includes(event_p.product_id[0])){
+        //                                     nested_groups.push(event_p.product_id[0]) 
+        //                                 }
+        //                             }
+        //                         }
+        //                         else if(group_by === "order_name") {
+        //                             if(event_p.order_name === event.order_name) { 
+        //                                 if(!nested_groups.includes(event_p.product_id[0])){
+        //                                     nested_groups.push(event_p.product_id[0]) 
+        //                                 }
+        //                             }
+        //                         }
+        //                         if(group_by === "partner_id") {
+        //                             if(event_p.partner_id[1] === event.partner_id[1]) { 
+        //                                 if(!nested_groups.includes(event_p.product_id[0])){
+        //                                     nested_groups.push(event_p.product_id[0]) 
+        //                                 }
+        //                             }
+        //                         }
+        //                     })
+
+        //                     if(group_by === "product_categ_id") {
+        //                         group = {
+        //                             id: group_name[0] * 100,
+        //                             content: group_name[1], 
+        //                             nestedGroups: nested_groups,
+        //                             tooltip: tooltip,
+        //                         };
+        //                     } else if (group_by === "order_name") {
+        //                         group = {
+        //                             id: event.id * 100,
+        //                             content: group_name, 
+        //                             nestedGroups: nested_groups,
+        //                             tooltip: tooltip,
+        //                             order_name: group_name
+        //                         };
+        //                     } else if (group_by === "partner_id") {
+        //                         group = {
+        //                             id: group_name[0] * 100,
+        //                             content: group_name[1], 
+        //                             nestedGroups: nested_groups,
+        //                             tooltip: tooltip,
+        //                             partner_id: group_name
+        //                         };
+
+        //                     }
+    
+        //                     layer_groups.push(group);
+        //                 } 
+
+        //             }
+        //         }
+        //     });
+
+        //     return layer_groups;
+        // },
+
 
         /**
          * Transform Odoo event object to timeline event object.
