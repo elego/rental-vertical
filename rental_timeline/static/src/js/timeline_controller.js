@@ -7,18 +7,51 @@ odoo.define('rental_timeline.RentalTimelineController', function (require) {
     var _TimelineController = require('web_timeline.TimelineController');
 
     var RentalTimelineController = _TimelineController.extend({
+
+        custom_events: _.extend({}, _TimelineController.prototype.custom_events, {
+            onGroupDoubleClick: '_onGroupDoubleClick',
+        }),
+
         _onGroupClick: function (event) {
-            var groupField = this.renderer.last_group_bys[0];
+            var groupField = this.renderer.grouped_by
+
+            // this.$el.find('.expanded').attr('class').onclick = function (event) {
+            //     console.log("hello event, ", event)
+            //     var props = timeline.getEventProperties(event)
+            // }
+
             return this.do_action({
                 type: 'ir.actions.act_window',
                 res_model: this.renderer.view.fields[groupField].relation,
                 res_id: event.data.item.group,
                 target: 'new',
                 flags: {
-                    mode: 'readonly',
+                    mode: 'readonly',    
                 },
                 views: [[false, 'form']],
             });
+            return 
+        },
+
+        _onGroupDoubleClick: function(event){
+            if(this.renderer.last_group_bys[0] !== "product_categ_id" && this.renderer.last_group_bys[0] !== "partner_id" && this.renderer.last_group_bys[0] !== "order_name") {
+                var groupField = this.renderer.last_group_bys[0];
+            } else {
+                var groupField = this.renderer.grouped_by;
+            }
+
+            // var groupField = this.renderer.last_group_bys[0];
+
+            return this.do_action({
+                        type: 'ir.actions.act_window',
+                        res_model: this.renderer.view.fields[groupField].relation,
+                        res_id: event.data.item.group,
+                        target: 'new',
+                        flags: {
+                            mode: 'readonly',
+                        },
+                        views: [[false, 'form']],
+                    });
         },
 
         _onUpdate: function (event) {
@@ -40,6 +73,7 @@ odoo.define('rental_timeline.RentalTimelineController', function (require) {
                 readonly: true,
             }).open();
         },
+        
 
     });
 

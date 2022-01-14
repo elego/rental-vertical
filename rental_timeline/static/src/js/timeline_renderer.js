@@ -3,41 +3,473 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
 
     var _TimelineRenderer = require('web_timeline.TimelineRenderer');
 
+    var time = require('web.time');
+
     var RentalTimelineRenderer = _TimelineRenderer.extend({
+        
+        /**
+         * Get the groups.
+         *
+         * @private
+         * @returns {Array}
+         */
         split_groups: function(events, group_bys){
             if(group_bys.length === 0){
                 return events;
             }
+
             var groups = [];
             var self = this;
             //groups.push({id: -1, content: _t('-')});
+
             _.each(events, function(event){
-                var group_name = event[_.first(group_bys)];
-                if(group_name){
-                    if(group_name instanceof Array){
-                        var group = _.find(groups, function(existing_group){
-                            return _.isEqual(existing_group.id, group_name[0]);
+                var product_group_name = event[_.first(["product_id"])];
+                if(product_group_name) {
+                    if(product_group_name instanceof Array) {
+                        let group = _.find(groups, function(existing_group){
+                            return _.isEqual(existing_group.id , product_group_name[0]);
                         });
 
-                        if(_.isUndefined(group)){
-                            var tooltip = null;
+                        if(_.isUndefined(group)) {
+                            var tooltip = null; 
                             if(self.qweb.has_template('tooltip-item-group')){
                                 tooltip = self.qweb.render('tooltip-item-group', {
                                     'record': event
                                 });
                             }
-                            group = {
-                                id: group_name[0],
-                                content: group_name[1],
-                                tooltip: tooltip
-                            };
-                            groups.push(group);
+                            if(product_group_name[1].slice(0,3) !== "All") {
+
+                                group = {
+                                    id: product_group_name[0],
+                                    content: product_group_name[1],
+                                    tooltip: tooltip,
+                                    partner_id: event.partner_id,
+                                    order_name: event.order_name,
+                                    product_id: event.product_id
+                                };
+                                groups.push(group);
+                            }
+
                         }
                     }
                 }
-            });
+            })
+
+            if(group_bys[0] === "product_categ_id"){
+
+                var group_categs = []
+    
+                _.each(events, function(event){
+                    var group_name = event[_.first(group_bys)];
+                    if(group_name){
+                        if(group_name instanceof Array){
+                            let group = _.find(group_categs, function(existing_group){
+                                return _.isEqual(existing_group.id, group_name[0] * 100);
+                                // return _.isEqual(existing_group, group_name);
+                            });
+    
+                            // if(!groups.includes(group)){
+                            if(_.isUndefined(group)){
+                                
+                                var tooltip = null;
+                                if(self.qweb.has_template('tooltip-item-group')){
+                                    tooltip = self.qweb.render('tooltip-item-group', {
+                                        'record': event
+                                    });
+                                }
+    
+                                let nested_groups = []
+                                _.each(events, function(event_p){
+                                    if(event_p.product_categ_name === event.product_categ_name) { 
+                                        if(!nested_groups.includes(event_p.product_id[0])){
+                                            nested_groups.push(event_p.product_id[0]) 
+                                        }
+                                        console.log(`event_p.product_categ_name ${event_p.product_categ_name}`)                                   
+                                    }
+                                })
+    
+                                group = {
+                                    id: group_name[0] * 100,
+                                    content: group_name[1], 
+                                    nestedGroups: nested_groups,
+                                    tooltip: tooltip,
+                                };
+        
+                                group_categs.push(group);
+                            } 
+    
+                        }
+                    }
+                });
+
+                // group_categs = self.set_layer_groups(events, group_bys, group_categs, "product_categ_id")
+
+                groups = groups.concat(group_categs)
+            }
+            else if (group_bys[0] === "order_name"){
+
+                var group_order_names = [];
+    
+                _.each(events, function(event){
+                    var group_name = event[_.first(group_bys)];
+                    if(group_name){
+                        if(group_name){
+                            let group = _.find(group_order_names, function(existing_group){
+                                return _.isEqual(existing_group.content, group_name);
+                                // return _.isEqual(existing_group, group_name);
+                            });
+    
+                            // if(!groups.includes(group)){
+                            if(_.isUndefined(group)){
+                                
+                                var tooltip = null;
+                                if(self.qweb.has_template('tooltip-item-group')){
+                                    tooltip = self.qweb.render('tooltip-item-group', {
+                                        'record': event
+                                    });
+                                }
+    
+                                let nested_groups = []
+                                _.each(events, function(event_o){
+                                    if(event_o.order_name === event.order_name) { 
+                                        if(!nested_groups.includes(event_o.product_id[0])){
+                                            nested_groups.push(event_o.product_id[0]) 
+                                        }
+                                    }
+                                })
+    
+                                group = {
+                                    id: event.id * 100,
+                                    content: group_name, 
+                                    nestedGroups: nested_groups,
+                                    tooltip: tooltip,
+                                    order_name: group_name
+                                };
+        
+                                group_order_names.push(group);
+                            } 
+    
+                        }
+                    }
+                });
+
+                let groups_and_layersGroup = self.generate_sub_groups(groups,group_order_names, "order_name")
+                groups = groups_and_layersGroup[0]
+                group_order_names = groups_and_layersGroup[1]
+
+                groups = groups.concat(group_order_names);
+            }
+            else if(group_bys[0] === "partner_id"){
+
+                var group_partners = []
+    
+                _.each(events, function(event){
+                    var group_name = event[_.first(group_bys)];
+                    if(group_name){
+                        if(group_name instanceof Array){
+                            let group = _.find(group_partners, function(existing_group){
+                                return _.isEqual(existing_group.id, group_name[0] * 100);
+                                // return _.isEqual(existing_group, group_name);
+                            });
+    
+                            // if(!groups.includes(group)){
+                            if(_.isUndefined(group)){
+                                
+                                var tooltip = null;
+                                if(self.qweb.has_template('tooltip-item-group')){
+                                    tooltip = self.qweb.render('tooltip-item-group', {
+                                        'record': event
+                                    });
+                                }
+    
+                                let nested_groups = []
+                                _.each(events, function(event_p){
+                                    if(event_p.partner_id[1] === event.partner_id[1]) { 
+                                        if(!nested_groups.includes(event_p.product_id[0])){
+                                            nested_groups.push(event_p.product_id[0]) 
+                                        }
+                                    }
+                                })
+    
+                                group = {
+                                    id: group_name[0] * 100,
+                                    content: group_name[1], 
+                                    nestedGroups: nested_groups,
+                                    tooltip: tooltip,
+                                    partner_id: group_name
+                                };
+        
+                                group_partners.push(group);
+                            } 
+    
+                        }
+                    }
+                });
+
+                let groups_and_layersGroup = self.generate_sub_groups(groups, group_partners, "partner_id")
+                groups = groups_and_layersGroup[0]
+                group_partners = groups_and_layersGroup[1]
+
+                groups = groups.concat(group_partners)
+            }
+
             return groups;
         },
+
+        /**
+         * Generate new sub group if the old sub groups have the same group ID.
+         *
+         * @private
+         * @param {groups}
+         * @param {layer_groups}
+         * @param {group_by}
+         * @returns {[groups, layer_groups]}
+         */
+        generate_sub_groups: function(groups, layer_groups, group_by) {
+            let count = 300
+            for(let i = 0; i< layer_groups.length -1; i ++) {
+                if(layer_groups[i].nestedGroups.length > 1) {
+                    for(let k = 0; k < layer_groups[i].nestedGroups.length; k ++) {
+                        for(let j = i+1; j < layer_groups.length; j++) {
+                            for(let m = 0; m < layer_groups[j].nestedGroups.length; m ++){
+                                if(layer_groups[i].nestedGroups[k] === layer_groups[j].nestedGroups[m]) {
+                                    const group = groups.find(elem => elem.id === layer_groups[j].nestedGroups[m]);
+                                    const newGroup = Object.assign({}, group)
+                                    const newGroupId = newGroup.id * count +3;
+                                    newGroup.original_id = newGroup.id
+                                    newGroup.id = newGroupId;
+                                    if(group_by === "partner_id"){
+                                        newGroup.partner_id = layer_groups[j].partner_id;
+                                    } else if (group_by === "order_name"){
+                                        newGroup.order_name = layer_groups[j].order_name;
+                                    }
+                                    groups.push(newGroup);
+                                    count ++;
+                                    layer_groups[j].nestedGroups[m] = newGroupId;
+                                }
+                            }
+                        }
+                    }
+                }else {
+                    for(let j = i+1; j < layer_groups.length; j++) {
+                        if(layer_groups[j].nestedGroups.length > 1) {
+                            for(let m = 0; m < layer_groups[j].nestedGroups.length; m ++){
+                                if(layer_groups[i].nestedGroups[0] === layer_groups[j].nestedGroups[m]) {
+                                    const group = groups.find(elem => elem.id === layer_groups[j].nestedGroups[m]);
+                                    const newGroup = Object.assign({}, group)
+                                    const newGroupId = newGroup.id * count +3;
+                                    newGroup.original_id = newGroup.id
+                                    newGroup.id = newGroupId;
+                                    if(group_by === "partner_id"){
+                                        newGroup.partner_id = layer_groups[j].partner_id;
+                                    } else if (group_by === "order_name"){
+                                        newGroup.order_name = layer_groups[j].order_name;
+                                    }
+                                    groups.push(newGroup);
+                                    count ++;
+                                    layer_groups[j].nestedGroups[m] = newGroupId;
+                                }
+                            }
+                        }else {
+                            if(layer_groups[i].nestedGroups[0] === layer_groups[j].nestedGroups[0]) {
+                                const group = groups.find(elem => elem.id === layer_groups[j].nestedGroups[0]);
+                                const newGroup = Object.assign({}, group)
+                                const newGroupId = newGroup.id * count+3;
+                                newGroup.original_id = newGroup.id
+                                newGroup.id = newGroupId;
+                                if(group_by === "partner_id"){
+                                    newGroup.partner_id = layer_groups[j].partner_id;
+                                } else if (group_by === "order_name"){
+                                    newGroup.order_name = layer_groups[j].order_name;
+                                }
+                                groups.push(newGroup);
+                                count ++;
+                                layer_groups[j].nestedGroups[0] = newGroupId;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return [groups,layer_groups];
+        },
+
+        // /**
+        //  * Set layer groups.
+        //  *
+        //  * @private
+        //  * @param {events}
+        //  * @param {group_bys}
+        //  * @param {layer_groups}
+        //  * @param {group_by}
+        //  * @returns {layer_groups}
+        //  */
+        // set_layer_groups: function(events, group_bys, layer_groups, group_by) {
+        //     _.each(events, function(event){
+        //         var group_name = event[_.first(group_bys)];
+        //         if(group_name){
+        //             if(group_name instanceof Array){
+        //                 let group = _.find(layer_groups, function(existing_group){
+        //                     return _.isEqual(existing_group.id, group_name[0] * 100);
+        //                     // return _.isEqual(existing_group, group_name);
+        //                 });
+
+        //                 // if(!groups.includes(group)){
+        //                 if(_.isUndefined(group)){
+                            
+        //                     var tooltip = null;
+        //                     if(window.qweb.has_template('tooltip-item-group')){
+        //                         tooltip = this.qweb.render('tooltip-item-group', {
+        //                             'record': event
+        //                         });
+        //                     }
+
+        //                     let nested_groups = []
+        //                     _.each(events, function(event_p){
+        //                         if(group_by === "product_categ_name") {
+        //                             if(event_p.product_categ_name === event.product_categ_name) { 
+        //                                 if(!nested_groups.includes(event_p.product_id[0])){
+        //                                     nested_groups.push(event_p.product_id[0]) 
+        //                                 }
+        //                             }
+        //                         }
+        //                         else if(group_by === "order_name") {
+        //                             if(event_p.order_name === event.order_name) { 
+        //                                 if(!nested_groups.includes(event_p.product_id[0])){
+        //                                     nested_groups.push(event_p.product_id[0]) 
+        //                                 }
+        //                             }
+        //                         }
+        //                         if(group_by === "partner_id") {
+        //                             if(event_p.partner_id[1] === event.partner_id[1]) { 
+        //                                 if(!nested_groups.includes(event_p.product_id[0])){
+        //                                     nested_groups.push(event_p.product_id[0]) 
+        //                                 }
+        //                             }
+        //                         }
+        //                     })
+
+        //                     if(group_by === "product_categ_id") {
+        //                         group = {
+        //                             id: group_name[0] * 100,
+        //                             content: group_name[1], 
+        //                             nestedGroups: nested_groups,
+        //                             tooltip: tooltip,
+        //                         };
+        //                     } else if (group_by === "order_name") {
+        //                         group = {
+        //                             id: event.id * 100,
+        //                             content: group_name, 
+        //                             nestedGroups: nested_groups,
+        //                             tooltip: tooltip,
+        //                             order_name: group_name
+        //                         };
+        //                     } else if (group_by === "partner_id") {
+        //                         group = {
+        //                             id: group_name[0] * 100,
+        //                             content: group_name[1], 
+        //                             nestedGroups: nested_groups,
+        //                             tooltip: tooltip,
+        //                             partner_id: group_name
+        //                         };
+
+        //                     }
+    
+        //                     layer_groups.push(group);
+        //                 } 
+
+        //             }
+        //         }
+        //     });
+
+        //     return layer_groups;
+        // },
+
+
+        /**
+         * Transform Odoo event object to timeline event object.
+         *
+         * @private
+         * @returns {Object}
+         */
+         event_data_transform: function (evt) {
+            var self = this;
+            var date_start = new moment();
+            var date_stop = null;
+
+            var date_delay = evt[this.date_delay] || false,
+                all_day = this.all_day ? evt[this.all_day] : false;
+
+            if (all_day) {
+                date_start = time.auto_str_to_date(evt[this.date_start].split(' ')[0], 'start');
+                if (this.no_period) {
+                    date_stop = date_start;
+                } else {
+                    date_stop = this.date_stop ? time.auto_str_to_date(evt[this.date_stop].split(' ')[0], 'stop') : null;
+                }
+            } else {
+                date_start = time.auto_str_to_date(evt[this.date_start]);
+                date_stop = this.date_stop ? time.auto_str_to_date(evt[this.date_stop]) : null;
+            }
+
+            if (!date_stop && date_delay) {
+                date_stop = moment(date_start).add(date_delay, 'hours').toDate();
+            }
+            
+            if(self.last_group_bys[0] !== "product_categ_id" && self.last_group_bys[0] !== "order_name" && self.last_group_bys[0] !== "partner_id") {
+                var group = evt[self.last_group_bys[0]];
+            } else {
+                var group = evt.product_id
+            }
+            if (group) {
+                if (group instanceof Array) {
+                    group = _.first(group);
+                }
+            } else {
+                group = -1;
+            }
+            var color = null;
+            if (self.arch.attrs.color_field !== undefined) {
+                color = evt[self.arch.attrs.color_field];
+            } else {
+                _.each(self.colors, function (col) {
+                    if (eval("'" + evt[col.field] + "' " + col.opt + " '" + col.value + "'")) {
+                        color = col.color;
+                    }
+                });
+            }
+
+            var content = _.isUndefined(evt.__name) ? evt.display_name : evt.__name;
+            if (this.arch.children.length) {
+                content = this.render_timeline_item(evt);
+            }
+
+            var title = "";
+            if (content) {
+                var doc = document.createElement('html');
+                doc.innerHTML = "<html><body>" + content + "</body></html>"
+                var tt_content = doc.getElementsByClassName('tooltip_content')
+                if (tt_content && tt_content.length) {
+                    title = tt_content[0].innerHTML
+                }
+            }
+
+            var r = {
+                'title': title,
+                'start': date_start,
+                'content': content,
+                'id': evt.id,
+                'group': group,
+                'evt': evt,
+                'style': 'background-color: ' + color + ';'
+            };
+            // Check if the event is instantaneous, if so, display it with a point on the timeline (no 'end')
+            if (date_stop && !moment(date_start).isSame(date_stop)) {
+                r.end = date_stop;
+            }
+            return r;
+        },
+
 
         init_timeline: function(){
             var self = this;
@@ -56,6 +488,15 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
             this.options.verticalScroll = true;
             this.timeline.setOptions(this.options);
 
+            // this.timeline.on('click', self.on_parent_group_click)
+
+            this.timeline.on('doubleClick', self.on_group_double_click);
+            // this.timeline.on('click', self.on_group_click);
+            this.timeline.on('click', function(props){
+                props.event.preventDefault()
+            });
+
+            // turn off the internal hammer tap event listener
             this.timeline.off('changed').on('changed', function() {
                 this.options.orientation = {
                     item: 'top',
@@ -67,6 +508,8 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                     self.$el.find('.vis-content').attr('style') + self.$el.find('.vis-itemset').attr('style')
                 );
             });
+
+            
 
             (function(_create, setData){
                 vis.timeline.components.Group.prototype.setData = function(data){
@@ -153,6 +596,148 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
             })(
                 vis.timeline.components.items.Item.prototype._repaintDragCenter
             );
+        },
+
+         
+        /**
+         * Handle double click on a group header.
+         *
+         * @private
+         */
+         on_group_double_click: function (e) {
+            if (e.what === 'group-label' && e.group !== -1) {
+                this._trigger(e, function() {
+                    // Do nothing
+                }, 'onGroupDoubleClick');
+            }
+        },
+
+        /**
+         * Set groups and events.
+         *
+         * @private
+         */
+         on_data_loaded_2: function (events, group_bys, x2x, adjust_window) {
+            var self = this;
+            var data = [];
+            var groups = [];
+
+            if(group_bys[0] !== "product_categ_id" && group_bys[0] !== "order_name" && group_bys[0] !== "partner_id") {
+                this.grouped_by = group_bys;
+
+                _.each(events, function (event) {
+                    if (event[self.date_start]) {
+                        if (x2x) {
+                            _.each(event[group_bys], function (gr) {
+                                var x2x_object = jQuery.extend({}, event);
+                                x2x_object[group_bys] = [gr];
+                                // Creating a UNIQUE id with [id]_[gr].
+                                // This id is unique due the unique relationship
+                                // between two records in O2M or M2M
+                                x2x_object.id = event.id + "_" + gr;
+                                data.push(self.event_data_transform(x2x_object));
+                            })
+                        } else {
+                            data.push(self.event_data_transform(event));
+                        }
+                    }
+                });
+            } else {
+                this.grouped_by = "product_id"
+                _.each(events, function (event) {
+                    if (event[self.date_start]) {
+                        if (x2x) {
+                            _.each(event["product_id"], function (gr) {
+                                var x2x_object = jQuery.extend({}, event);
+                                x2x_object["product_id"] = [gr];
+                                // Creating a UNIQUE id with [id]_[gr].
+                                // This id is unique due the unique relationship
+                                // between two records in O2M or M2M
+                                x2x_object.id = event.id + "_" + gr;
+                                data.push(self.event_data_transform(x2x_object));
+                            })
+                        } else {
+                            data.push(self.event_data_transform(event));
+                        }
+                    }
+                });
+            }
+
+            if (x2x) {
+                groups = this.groups;
+                this.selected_groups = this.groups;
+                this.createSelectGroups();
+            } else {
+                if (typeof this.$select_groups !== 'undefined') {
+                    this.$('.selected-groups').html('');
+                    this.$select_groups.remove();
+                }
+                groups = this.split_groups(events, group_bys);
+                
+                if(group_bys[0] === "partner_id"){
+                    for(let i = 0; i < groups.length; i ++) {
+                            data.forEach(item => {
+                            if(!('nestedGroups' in groups[i])){
+                                // if(item.group === groups[i].id && !_.isEqual(item.evt.partner_id, groups[i].partner_id)){
+                                //     if(i +1 < groups.length) {
+                                //         for(let j = i +1 ; j < groups.length; j ++) {
+                                //             if(!('nestedGroups' in groups[j])) {
+                                //                 if(_.isEqual(item.evt.product_id, groups[j].product_id)){
+                                //                     if(_.isEqual(item.evt.partner_id, groups[j].partner_id)) {
+                                //                         item.original_group = item.group
+                                //                         item.group = groups[j].id
+                                //                     }
+                                //                 }  
+                                //             }
+                                //         }
+                                //     }
+                                // } else 
+                                if (item.group !== groups[i].id && _.isEqual(item.evt.product_id, groups[i].product_id) 
+                                && _.isEqual(item.evt.partner_id, groups[i].partner_id)){
+                                    item.group = groups[i].id
+                                }
+                            }
+                        })
+                    }
+                }
+
+                if(group_bys[0] === "order_name"){
+                    for(let i = 0; i < groups.length; i ++) {
+                            data.forEach(item => {
+                            if(!('nestedGroups' in groups[i])){
+                                // if(item.group === groups[i].id && item.evt.order_name !== groups[i].order_name){
+                                //     if(i +1 < groups.length) {
+                                //         for(let j = i +1 ; j < groups.length; j ++) {
+                                //             if( item.evt.order_name === groups[j].order_name && _.isEqual(item.evt.product_id, groups[j].product_id)){
+                                //                 item.original_group = item.group
+                                //                 item.group = groups[j].id
+                                //             }
+                                //         }
+                                //     }
+                                // } else 
+                                if (item.group !== groups[i].id && _.isEqual(item.evt.product_id, groups[i].product_id) 
+                                && (item.evt.order_name === groups[i].order_name)){
+                                    item.group = groups[i].id
+                                }
+                            }
+                        })
+                    }
+                }
+
+                groups = new vis.DataSet(groups)
+            }
+            this.timeline.setGroups(groups);
+
+            this.timeline.setItems(data);
+            var mode = !this.mode || this.mode === 'fit';
+            var adjust = _.isUndefined(adjust_window) || adjust_window;
+            if (mode && adjust) {
+                this.timeline.fit();
+            }
+        },
+
+        _do_nothing:function(){
+            console.log("click event is fired")
         },
 
         _onTodayClicked: function(){
