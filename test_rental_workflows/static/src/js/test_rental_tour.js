@@ -384,9 +384,47 @@ odoo.define('rental.tour', function (require) {
         content: _t('Save Rental Order'),
         trigger: '.o_form_button_save',
         position: 'bottom',
-    }, {
+    }, 
+    // check Schedule Activity on sale.order
+    // Assign different user for Activity Type : To Do
+    {
+        content: _t('Click on Schedule Acitvity'),
+        trigger: '.o_chatter_topbar .o_chatter_button_schedule_activity',
+        extra_trigger: 'div.o_form_readonly',
+        run: 'click',
+        position: 'bottom'
+    },{
+        content: _t('Set Activity Type '),
+        trigger: ".o_form_editable .o_field_many2one[name='activity_type_id'] .o_input_dropdown input",
+        extra_trigger: '.o_act_window',
+        run: 'click',
+        position: 'bottom',
+    },{
+        trigger: 'li a:contains("To Do")',
+        in_modal: false,
+        extra_trigger: 'ul.ui-autocomplete',
+        run: 'click'
+    },{
+        content: _t('Change Assign User '),
+        trigger: ".o_form_editable .o_field_many2one[name='user_id'] .o_input_dropdown input",
+        extra_trigger: '.o_act_window',
+        run: 'click',
+        position: 'bottom',
+    },{
+        trigger: 'li a:contains("Max Weber")',
+        in_modal: false,
+        extra_trigger: 'ul.ui-autocomplete',
+        run: 'click'
+    },{
+        content: _t('Click on Schedule'),
+        trigger: 'button[name="action_close_dialog"]',
+        extra_trigger: '.o_act_window',
+        run: 'click',
+        position: 'bottom',
+    },{
         content: _t("Click Send by email"),
         trigger: 'button[name="action_quotation_send"]:visible:not(:disabled)',
+        extra_trigger: 'div[name="order_line"]',
     }, {
         content: _t("Click Send"),
         extra_trigger: '.o_act_window',
