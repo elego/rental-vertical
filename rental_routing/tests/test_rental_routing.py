@@ -84,6 +84,7 @@ class TestRentalRouting(RentalStockCommon):
         rental_order_3.action_confirm()
         self.assertEqual(rental_order_2.delivery_count, 4)
         self.assertEqual(rental_order_3.delivery_count, 3)
+        self.assertEqual(self.partnerA.rental_onsite_location_id.partner_id, self.partnerA)
         PickingObj = self.env["stock.picking"]
         #check Pickings of order 1
         check_11 = check_12 = check_13 = False
