@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- ProductCategory -->
+        <record id="product_category_form_view" model="ir.ui.view">
+            <field name="name">product.category.form</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="rental_product_variant.product_category_form_view" />
+            <field name="arch" type="xml">
+                <group name="show_attrs" position="inside">
+                    <field name="show_instance_condition_type" />
+                </group>
+            </field>
+        </record>
+
+        <!-- ProductTemplate -->
+        <record id="product_template_form_view" model="ir.ui.view">
+            <field name="name">product.template.stock.property.form.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='sale_ok']/.." position="before">
+                    <div>
+                        <field name="product_instance" />
+                        <label for="product_instance" />
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- ProductProduct -->
+        <record id="product_normal_form_view" model="ir.ui.view">
+            <field name="name">view.product.product.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view" />
+            <field name="arch" type="xml">
+                <!-- Change the exiting odoo's visible condition for two buttons
+                     1. serial Number
+                     2. Reordering Rules
+                -->
+                <xpath expr="//button[@name='action_open_product_lot']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('product_instance', '=', True)]}</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_view_orderpoints']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('product_instance', '=', True)]}</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_open_quants']" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|',('product_instance', '=', True),('type', '!=', 'product')]}</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_product_forecast_report']" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|',('product_instance', '=', True),('type', '!=', 'product')]}</attribute>
+                </xpath>
+                <xpath expr="//button[@name='%(stock.action_open_routes)d']" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|',('product_instance', '=', True),('type', '!=', 'product')]}</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_view_sales']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('product_instance', '=', True)]}</attribute>
+                </xpath>
+                <div name="button_box" position="before">
+                    <button class="oe_stat_button" name="action_view_operating_data"
+                        type="object" icon="fa-history" string="Operating Data" attrs="{'invisible': [('product_instance', '=', False)]}">
+                    </button>
+                </div>
+                <xpath expr="//group[field[@name='manu_type_id']]" position="after">
+                    <group name="instance_attributes"
+                        attrs="{'invisible': [('product_instance', '=', False)]}">
+                        <field name="show_instance_condition_type" invisible="1" />
+                        <field name="instance_state" />
+                        <label for="instance_condition_hour"
+                               attrs="{'invisible': [('show_instance_condition_type', '!=', 'hour')]}" />
+                        <div attrs="{'invisible': [('show_instance_condition_type', '!=', 'hour')]}">
+                            <field name="instance_condition_hour" class="oe_inline" /> <span>h on</span>
+                            <field name="instance_condition_date" class="oe_inline oe_no_button" />
+                        </div>
+                        <label for="instance_condition_km"
+                               attrs="{'invisible': [('show_instance_condition_type', '!=', 'km')]}" />
+                        <div attrs="{'invisible': [('show_instance_condition_type', '!=', 'km')]}">
+                            <field name="instance_condition_km" class="oe_inline" /> <span>km on</span>
+                            <field name="instance_condition_date" class="oe_inline oe_no_button" />
+                        </div>
+                        <field name="instance_next_service_date" />
+                        <field name="instance_serial_number_id" context="{'default_product_id': id}"
+                               attrs="{'invisible': [('id', '=', False)]}"/>
+                        <field name="instance_current_location_id" readonly="1"/>
+                    </group>
+                </xpath>
+                <xpath expr="//page[@name='invoicing']//group[@name='payables']" position="after">
+                    <group string="Total Cost of Ownership">
+                        <field name="real_sale_price"/>
+                        <field name="real_total_kilometers" attrs="{'invisible': [('show_instance_condition_type', '!=', 'km')]}"/>
+                        <field name="real_total_hours" attrs="{'invisible': [('show_instance_condition_type', '!=', 'hour')]}"/>
+                        <field name="real_total_rental_time"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="product_normal_form_view_inherit_purchase" model="ir.ui.view">
+            <field name="name">product.product.purchase.order</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="groups_id" eval="[(4, ref('purchase.group_purchase_user'))]"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_view_po']" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|',('product_instance', '=', True),('purchase_ok', '=', False)]}</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="product_search_form_view" model="ir.ui.view">
+            <field name="name">product.product.search</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_search_form_view" />
+            <field name="arch" type="xml">
+                <search position="inside">
+                    <field name="instance_serial_number_id" />
+                    <field name="instance_current_location_id" />
+                </search>
+                <field name="name" position="replace">
+                    <field name="name" string="Product" filter_domain="['|', '|', '|', '|', ('default_code', 'ilike', self), ('name', 'ilike', self), ('barcode', 'ilike', self), ('instance_serial_number_id.name', 'ilike', self), ('license_plate', 'ilike', self)]"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>

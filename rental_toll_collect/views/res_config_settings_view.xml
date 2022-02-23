@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="10" />
+            <field name="inherit_id" ref="rental_base.res_config_settings_view_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//div[@data-key='rental_base']" positition="inside">
+                    <h2>Toll Collect</h2>
+                    <div
+                        class="row mt16 o_settings_container"
+                        name="rental_toll_collect_container"
+                    >
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="automatic_toll_charge_invoicing" />
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="automatic_toll_charge_invoicing" />
+                                <div class="text-muted">
+                                    Invoice the imported toll charge lines together
+                                    with rental services when invoicing a sale / rental
+                                    order or contract.
+                                </div>
+                            </div>
+                            <div class="o_setting_left_pane">
+                                <field name="administrative_charge" />
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="administrative_charge" />
+                                <span
+                                    class="fa fa-lg fa-building-o"
+                                    title="Values set here are company-specific."
+                                    aria-label="Values set here are company-specific."
+                                    groups="base.group_multi_company"
+                                    role="img"
+                                />
+                                <div class="text-muted">
+                                  If activated,you can set your own Default
+                                  Administrative Charge Product for the partners.
+                                </div>
+                                <div
+                                    class="content-group"
+                                    attrs="{'invisible': [('administrative_charge', '=', False)]}"
+                                >
+                                    <div class="row mt16">
+                                        <label
+                                            string="Administrative Charge Product"
+                                            for="administrative_charge_product"
+                                            class="col-lg-3 o_light_label"
+                                        />
+                                        <field name="administrative_charge_product" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
