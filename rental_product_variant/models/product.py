@@ -187,11 +187,8 @@ class ProductProduct(models.Model):
             ]
         )
         return list(
-<<<<<<< HEAD
-            set([l.move_id.id for l in ails if l.move_id.move_type in inv_types])
-=======
+            # set([l.move_id.id for l in ails if l.move_id.move_type in inv_types]) # FIXME or REMOVEME
             set([l.invoice_id.id for l in ails if l.invoice_id.type in inv_types])
->>>>>>> remotes/origin/wip_4516_blp161_rental_product_instance_v14
         )
 
     def action_view_sale_order(self):
@@ -230,42 +227,36 @@ class ProductProduct(models.Model):
         record_ids = self._get_invoice_ids(inv_type)
         action = {}
         if inv_type == "in_invoice":
-<<<<<<< HEAD
-            action = self.env.ref("account.action_move_in_invoice_type").read([])[0]
-            action["domain"] = [("id", "in", record_ids)]
-        elif inv_type == "out_invoice":
-            action = self.env.ref("account.action_move_out_invoice_type").read([])[0]
-=======
+# FIXME or REMOVEME
+#            action = self.env.ref("account.action_move_in_invoice_type").read([])[0]
+#            action["domain"] = [("id", "in", record_ids)]
+#        elif inv_type == "out_invoice":
+#            action = self.env.ref("account.action_move_out_invoice_type").read([])[0]
             action = self.env.ref("account.action_vendor_bill_template").read([])[0]
             action["domain"] = [("id", "in", record_ids)]
         elif inv_type == "out_invoice":
             action = self.env.ref("account.action_invoice_tree1").read([])[0]
->>>>>>> remotes/origin/wip_4516_blp161_rental_product_instance_v14
             action["domain"] = [("id", "in", record_ids)]
         return action
 
     def action_view_all_invoice(self):
         self.ensure_one()
         record_ids = self._get_invoice_ids(inv_types=["in_invoice", "out_invoice"])
-<<<<<<< HEAD
-        tree_view_id = self.env.ref("account.view_out_invoice_tree").id
-        form_view_id = self.env.ref("account.view_move_form").id
-=======
+# FIXME or REMOVEME
+#        tree_view_id = self.env.ref("account.view_out_invoice_tree").id
+#        form_view_id = self.env.ref("account.view_move_form").id
         tree_view_id = self.env.ref("account.invoice_tree").id
         form_view_id = self.env.ref("account.invoice_form").id
->>>>>>> remotes/origin/wip_4516_blp161_rental_product_instance_v14
         return {
             "type": "ir.actions.act_window",
             "name": _("All Invoices"),
             "target": "current",
             "view_mode": "tree,form",
-<<<<<<< HEAD
-            "views": [[tree_view_id, "tree"], [form_view_id, "form"]],
-            "res_model": "account.move",
-=======
+# FIXME or REMOVEME
+#            "views": [[tree_view_id, "tree"], [form_view_id, "form"]],
+#            "res_model": "account.move",
             "view_ids": [tree_view_id, form_view_id],
             "res_model": "account.invoice",
->>>>>>> remotes/origin/wip_4516_blp161_rental_product_instance_v14
             "domain": "[('id','in',[" + ",".join(map(str, record_ids)) + "])]",
             "context": "{'search_default_group_by_type': 1}",
         }

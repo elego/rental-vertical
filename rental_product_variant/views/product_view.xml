@@ -25,11 +25,7 @@
             <field name="model">product.product</field>
             <field name="inherit_id" ref="product.product_normal_form_view" />
             <field name="arch" type="xml">
-<<<<<<< HEAD
-                <div name="button_box" position="inside">
-=======
                 <div name="button_box" position="after">
->>>>>>> remotes/origin/wip_4516_blp161_rental_product_instance_v14
                     <button class="oe_stat_button" name="action_view_rental_order"
                         type="object" icon="fa-key" attrs="{'invisible': [('sale_ok', '=', False)]}">
                         <field name="rental_count" widget="statinfo" />
@@ -45,20 +41,12 @@
                         <field name="out_invoice_count" widget="statinfo" />
                     </button>
                     <!--TODO delete button action_view_all_invoice-->
-<<<<<<< HEAD
-                    <!-- <button class="oe_stat_button" name="action_view_all_invoice"
-=======
                     <button class="oe_stat_button" name="action_view_all_invoice"
->>>>>>> remotes/origin/wip_4516_blp161_rental_product_instance_v14
                         invisible="1"
                         type="object" icon="fa-money">
                         <field name="in_invoice_count" widget="statinfo" />
                         <field name="out_invoice_count" widget="statinfo" />
-<<<<<<< HEAD
-                    </button> -->
-=======
                     </button>
->>>>>>> remotes/origin/wip_4516_blp161_rental_product_instance_v14
                     <button class="oe_stat_button" name="action_view_all_purchase_order"
                         type="object" icon="fa-shopping-cart" attrs="{'invisible': [('purchase_ok', '=', False)]}">
                         <field name="po_count" widget="statinfo" />

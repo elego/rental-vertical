@@ -39,11 +39,7 @@ In order to get vehicle related fields, open the product category and activate t
         "security/ir.model.access.csv",
         "views/product_view.xml",
         "views/account_invoice_view.xml",
-<<<<<<< HEAD
-        # "views/purchase_order_view.xml",
-=======
         "views/purchase_order_view.xml",
->>>>>>> remotes/origin/wip_4516_blp161_rental_product_instance_v14
     ],
     "demo": [],
     "qweb": [],

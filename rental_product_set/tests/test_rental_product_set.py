@@ -127,10 +127,7 @@ class TestRentalProductSet(TransactionCase):
                 "end_date": self.end_date,
                 "quantity": 1,
                 "uom_id": self.uom_month.id,
-<<<<<<< HEAD
-=======
                 "order_id": self.rental_so_order.order_line.order_id.id
->>>>>>> remotes/origin/wip_4516_blp161_rental_product-set_v14
             }
         )
         so_set._onchange_product_set_id()
@@ -138,52 +135,29 @@ class TestRentalProductSet(TransactionCase):
         # check sale order (3 = 1 + 2)
         self.assertEqual(len(so.order_line), count_lines + 2)
         # check uom
-<<<<<<< HEAD
-        self.assertEquals(so.order_line[0].product_uom, self.uom_day)
-        self.assertEquals(so.order_line[1].product_uom, self.uom_month)
-        self.assertEquals(so.order_line[2].product_uom, self.uom_month)
-        # check rental_type = 'new_rental'
-        self.assertEquals(
-=======
         self.assertEqual(so.order_line[0].product_uom, self.uom_day)
         self.assertEqual(so.order_line[1].product_uom, self.uom_month)
         self.assertEqual(so.order_line[2].product_uom, self.uom_month)
         # check rental_type = 'new_rental'
         self.assertEqual(
->>>>>>> remotes/origin/wip_4516_blp161_rental_product-set_v14
             so.order_line.mapped("rental_type"),
             ["new_rental", "new_rental", "new_rental"],
         )
         # check rental = True
-<<<<<<< HEAD
-        self.assertEquals(so.order_line.mapped("rental"), [True, True, True])
-        # check start_date
-        self.assertEquals(
-=======
         self.assertEqual(so.order_line.mapped("rental"), [True, True, True])
         # check start_date
         self.assertEqual(
->>>>>>> remotes/origin/wip_4516_blp161_rental_product-set_v14
             so.order_line.mapped("start_date"),
             [self.start_date, self.start_date, self.start_date],
         )
         # check end_date
-<<<<<<< HEAD
-        self.assertEquals(
-=======
         self.assertEqual(
->>>>>>> remotes/origin/wip_4516_blp161_rental_product-set_v14
             so.order_line.mapped("end_date"),
             [self.end_date, self.end_date, self.end_date],
         )
         # check product_uom_qty, rental_qty
-<<<<<<< HEAD
-        self.assertEquals(so.order_line.mapped("product_uom_qty"), [33.0, 1.0, 1.0])
-        self.assertEquals(so.order_line.mapped("rental_qty"), [1.0, 1.0, 1.0])
-=======
         self.assertEqual(so.order_line.mapped("product_uom_qty"), [33.0, 1.0, 1.0])
         self.assertEqual(so.order_line.mapped("rental_qty"), [1.0, 1.0, 1.0])
->>>>>>> remotes/origin/wip_4516_blp161_rental_product-set_v14
 
     def test_rental_add_set_on_empty_so(self):
         # create so without sale order line
@@ -204,10 +178,7 @@ class TestRentalProductSet(TransactionCase):
                 "end_date": self.end_date_two_motnhs,
                 "quantity": 1,
                 "uom_id": self.uom_month.id,
-<<<<<<< HEAD
-=======
                 "order_id": self.rental_so_order.order_line.order_id.id
->>>>>>> remotes/origin/wip_4516_blp161_rental_product-set_v14
             }
         )
         so_set._onchange_product_set_id()
@@ -215,23 +186,6 @@ class TestRentalProductSet(TransactionCase):
         # check sale order
         self.assertEqual(len(so.order_line), 2)
         # check uom
-<<<<<<< HEAD
-        self.assertEquals(so.order_line[0].product_uom, self.uom_month)
-        self.assertEquals(so.order_line[1].product_uom, self.uom_month)
-
-        # check rental_type = 'new_rental'
-        self.assertEquals(
-            so.order_line.mapped("rental_type"), ["new_rental", "new_rental"]
-        )
-        # check rental = True
-        self.assertEquals(so.order_line.mapped("rental"), [True, True])
-        # check start_date
-        self.assertEquals(
-            so.order_line.mapped("start_date"), [self.start_date, self.start_date]
-        )
-        # check end_date
-        self.assertEquals(
-=======
         self.assertEqual(so.order_line[0].product_uom, self.uom_month)
         self.assertEqual(so.order_line[1].product_uom, self.uom_month)
 
@@ -247,15 +201,9 @@ class TestRentalProductSet(TransactionCase):
         )
         # check end_date
         self.assertEqual(
->>>>>>> remotes/origin/wip_4516_blp161_rental_product-set_v14
             so.order_line.mapped("end_date"),
             [self.end_date_two_motnhs, self.end_date_two_motnhs],
         )
         # check product_uom_qty, rental_qty
-<<<<<<< HEAD
-        self.assertEquals(so.order_line.mapped("product_uom_qty"), [2.0, 2.0])
-        self.assertEquals(so.order_line.mapped("rental_qty"), [1.0, 1.0])
-=======
         self.assertEqual(so.order_line.mapped("product_uom_qty"), [2.0, 2.0])
         self.assertEqual(so.order_line.mapped("rental_qty"), [1.0, 1.0])
->>>>>>> remotes/origin/wip_4516_blp161_rental_product-set_v14
