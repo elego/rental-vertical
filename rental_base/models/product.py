@@ -6,4 +6,4 @@ from odoo import fields, models
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    rental = fields.Boolean('Can be Rent')
+    rental = fields.Boolean("Can be Rent")
