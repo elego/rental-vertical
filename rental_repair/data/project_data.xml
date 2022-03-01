@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="project_task_type_new" model="project.task.type">
+            <field name="name">New</field>
+        </record>
+
+        <record id="project_task_type_qualification" model="project.task.type">
+            <field name="name">Qualification</field>
+        </record>
+
+        <record id="project_task_type_in_progress" model="project.task.type">
+            <field name="name">In Progress</field>
+        </record>
+
+        <record id="project_task_type_has_appointment" model="project.task.type">
+            <field name="name">Has Appointment</field>
+        </record>
+
+        <record id="project_task_type_done_-_no_documentation" model="project.task.type">
+            <field name="name">Done - no documentation</field>
+        </record>
+
+        <record id="project_task_type_done" model="project.task.type">
+            <field name="name">Done</field>
+        </record>
+
+        <record id="project_task_type_cancelled" model="project.task.type">
+            <field name="name">Cancelled</field>
+        </record>
+
+        <record id="project_project_helpdesk" model="project.project">
+            <field name="date_start" eval="time.strftime('%Y-%m-01 10:00:00')" />
+            <field name="name">Helpdesk</field>
+            <field name="label_tasks">Tickets</field>
+            <field name="privacy_visibility">employees</field>
+            <field name="color">3</field>
+            <field name="user_id" ref="base.user_root" />
+            <field name="type_ids" eval="[
+                (6, 0, [
+                    ref('project_task_type_new'),
+                    ref('project_task_type_qualification'),
+                    ref('project_task_type_in_progress'),
+                    ref('project_task_type_has_appointment'),
+                    ref('project_task_type_done_-_no_documentation'),
+                    ref('project_task_type_done'),
+                    ref('project_task_type_cancelled'),
+                ]),
+            ]" />
+        </record>
+    </data>
+</odoo>

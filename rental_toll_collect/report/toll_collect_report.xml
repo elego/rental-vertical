@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <!-- QWeb Reports -->
+        <!-- <report
+            id="toll_charge_lines"
+            model="account.move"
+            string="Toll Charge Lines"
+            report_type="qweb-pdf"
+            name="rental_toll_collect.report_toll_collect"
+            file="rental_toll_collect.report_toll_collect"
+            attachment="(object.state in ('open','in_payment','paid') and object.type in ('out_invoice')) and ('TOLL-' + object.number + '.pdf')"
+            print_report_name="(object._get_toll_report_filename())"
+            groups="account.group_account_invoice"
+            paperformat="paperformat_toll_charge_lines"
+        /> -->
+        <record id="toll_charge_lines" model="ir.actions.report">
+            <field name="name">Toll Charge Lines</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">rental_toll_collect.report_toll_collect</field>
+            <field name="report_file">rental_toll_collect.report_toll_collect</field>
+            <field name="print_report_name">(object._get_toll_report_filename())</field>
+            <field name="attachment">(object.state == 'posted') and object.move_type in ('out_invoice')) and ('TOLL-' + object.name + '.pdf')</field>
+            <field name="binding_model_id" ref="model_account_move"/>
+            <field name="binding_type">report</field>
+            <field name="groups_id" eval="[(4, ref('account.group_account_invoice'))]"/>
+            <field name="paperformat_id" ref="rental_toll_collect.paperformat_toll_charge_lines"/>
+        </record>
+    </data>
+</odoo>

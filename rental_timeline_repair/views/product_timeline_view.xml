@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_product_timeline_timeline" model="ir.ui.view">
+        <field name="name">product.timeline.timeline</field>
+        <field name="model">product.timeline</field>
+        <field name="inherit_id" ref="rental_timeline.view_product_timeline_timeline" />
+        <field name="arch" type="xml">
+            <templates position="before">
+                <field name="repair" />
+            </templates>
+            <td id="clues" position="inside">
+                <i t-if="record.repair" class="fa fa-fw o_button_icon fa-wrench" />
+            </td>
+            <t t-raw="record.display_name" position="before">
+                <i t-if="record.repair" class="fa fa-fw o_button_icon fa-wrench" />
+            </t>
+        </field>
+    </record>
+
+    <record id="view_product_timeline_form" model="ir.ui.view">
+        <field name="name">product.timeline.form</field>
+        <field name="model">product.timeline</field>
+        <field name="inherit_id" ref="rental_timeline.view_product_timeline_form" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="repair" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_product_timeline_search_repair" model="ir.ui.view">
+        <field name="name">product.timeline.search</field>
+        <field name="model">product.timeline</field>
+        <field name="inherit_id" ref="rental_timeline.view_product_timeline_search" />
+        <field name="arch" type="xml">
+            <filter name="type_rental" position="after">
+                <filter domain="[('type','=','repair')]" name="repair" string="Repair"/>
+            </filter>
+        </field>
+    </record>
+
+</odoo>

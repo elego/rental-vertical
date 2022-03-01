@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Toll Collect report template -->
+    <template id="report_toll_collect_document">
+        <t t-call="web.internal_layout">
+            <t t-set="o" t-value="o.with_context(lang=lang)" />
+            <div class="page">
+                <h3 class="mb32">
+                    <span style="color: rgb(0, 172, 169);">TOLL STATEMENT</span>
+                    <t t-if="o.toll_line_ids">
+                        <t t-esc="o.toll_line_ids[0].license_plate" />
+                    </t>
+                </h3>
+                <table
+                    class="table o_main_table"
+                    style="table-layout:auto"
+                    name="toll_charge_line_table"
+                >
+                    <thead>
+                        <tr>
+                            <th name="th_license_plate" class="text-left">
+                                <span>License Plate</span>
+                            </th>
+                            <th name="th_toll_date" class="text-left">
+                                <span>Date</span>
+                            </th>
+                            <th name="th_start_time" class="text-left">
+                                <span>Time</span>
+                            </th>
+                            <th name="th_booking_number" class="text-left">
+                                <span>Booking Number</span>
+                            </th>
+                            <th name="th_toll_type" class="text-left">
+                                <span>Type</span>
+                            </th>
+                            <th name="th_route_ramp" class="text-left">
+                                <span>Ramp</span>
+                            </th>
+                            <th name="th_route_via" class="text-left">
+                                <span>Drive via</span>
+                            </th>
+                            <th name="th_route_exit" class="text-left">
+                                <span>Exit</span>
+                            </th>
+                            <th name="th_analytic_account" class="text-left">
+                                <span>Analytic Account</span>
+                            </th>
+                            <th name="th_tariff_model" class="text-left">
+                                <span>Tariff Model</span>
+                            </th>
+                            <th name="th_axle_class" class="text-left">
+                                <span>Axle Class</span>
+                            </th>
+                            <th name="th_weight_class" class="text-left">
+                                <span>Weight Class</span>
+                            </th>
+                            <th name="th_polution_class" class="text-left">
+                                <span>Pollution Class</span>
+                            </th>
+                            <th name="th_procedure" class="text-left">
+                                <span>Procedure</span>
+                            </th>
+                            <th name="th_distance" class="text-left">
+                                <span>Distance (km)</span>
+                            </th>
+                            <th name="th_amount" class="text-left">
+                                <span>Toll Charge Amount (EUR)</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="toll_tbody">
+                        <t t-set="current_subtotal" t-value="0" />
+                        <t t-foreach="o.toll_line_ids" t-as="line">
+                            <t t-if="line.invoiced">
+                                <t
+                                    t-set="current_subtotal"
+                                    t-value="current_subtotal + line.amount"
+                                />
+                                <tr class="o_line_section" style="font-weight: 300;">
+                                    <td class="text-left">
+                                        <span t-field="line.license_plate" />
+                                    </td>
+                                    <td class="text-right">
+                                        <span
+                                            t-field="line.toll_date"
+                                            t-options="{'widget': 'date'}"
+                                        />
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="line.start_time" />
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="line.booking_number" />
+                                    </td>
+                                    <td class="text-left">
+                                        <span t-field="line.toll_type" />
+                                    </td>
+                                    <td class="text-left">
+                                        <span t-field="line.route_ramp" />
+                                    </td>
+                                    <td class="text-left">
+                                        <span t-field="line.route_via" />
+                                    </td>
+                                    <td class="text-left">
+                                        <span t-field="line.route_exit" />
+                                    </td>
+                                    <td class="text-left">
+                                        <span t-field="line.analytic_account" />
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="line.tariff_model" />
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="line.axle_class" />
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="line.weight_class" />
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="line.polution_class" />
+                                    </td>
+                                    <td class="text-left">
+                                        <span t-field="line.procedure" />
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="line.distance" />
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="line.amount" />
+                                    </td>
+                                </tr>
+                            </t>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_toll_collect">
+        <t t-call="web.html_container">
+            <t t-set="is_toll" t-value="True" />
+            <t t-foreach="docs" t-as="o">
+                <t
+                    t-set="lang"
+                    t-value="o.user_id.sudo().lang if o.type in ('in_invoice', 'in_refund') else o.partner_id.lang"
+                />
+                <t
+                    t-call="rental_toll_collect.report_toll_collect_document"
+                    t-lang="lang"
+                />
+            </t>
+        </t>
+    </template>
+
+</odoo>
