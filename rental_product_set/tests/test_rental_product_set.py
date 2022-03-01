@@ -130,7 +130,7 @@ class TestRentalProductSet(TransactionCase):
                 "order_id": self.rental_so_order.order_line.order_id.id
             }
         )
-        so_set._onchange_product_set_id()
+        # so_set._onchange_product_set_id()
         so_set.add_set()
         # check sale order (3 = 1 + 2)
         self.assertEqual(len(so.order_line), count_lines + 2)
@@ -181,7 +181,7 @@ class TestRentalProductSet(TransactionCase):
                 "order_id": self.rental_so_order.order_line.order_id.id
             }
         )
-        so_set._onchange_product_set_id()
+        # so_set._onchange_product_set_id()
         so_set.add_set()
         # check sale order
         self.assertEqual(len(so.order_line), 2)

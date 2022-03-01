@@ -192,7 +192,8 @@ class AccountMoveLine(models.Model):
             {
                 "price_unit": values.get(
                     "price_unit", toll_product_line.product_id.list_price
-                )
+                ),
+                "name": values.get("name"),
             }
         )
         return toll_product_line
