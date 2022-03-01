@@ -9,7 +9,7 @@ class ProductSetAdd(models.TransientModel):
     rental_ok = fields.Boolean("Can be Rented", default=False)
     start_date = fields.Date(string="Start Date")
     end_date = fields.Date(string="End Date")
-    uom_id = fields.Many2one("uom.uom", sting="Unit Of Measure")
+    uom_id = fields.Many2one("uom.uom", string="Unit Of Measure")
 
     @api.model
     def _get_time_uom(self):
