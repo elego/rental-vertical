@@ -11,8 +11,8 @@ class TestUi(odoo.tests.HttpCase):
     def test_01_rental_tour(self):
         self.browser_js("/web", "odoo.__DEBUG__.services['web_tour.tour'].run('rental_tour')", "odoo.__DEBUG__.services['web_tour.tour'].tours.rental_tour.ready", login="admin")
 
-    def test_02_rental_contract_tour(self):
-        self.browser_js("/web", "odoo.__DEBUG__.services['web_tour.tour'].run('rental_contract_tour')", "odoo.__DEBUG__.services['web_tour.tour'].tours.rental_contract_tour.ready", login="admin")
+#    def test_02_rental_contract_tour(self):
+#        self.browser_js("/web", "odoo.__DEBUG__.services['web_tour.tour'].run('rental_contract_tour')", "odoo.__DEBUG__.services['web_tour.tour'].tours.rental_contract_tour.ready", login="admin")
 
     def test_03_rental_return_product_qc_tour(self):
         self.browser_js("/web", "odoo.__DEBUG__.services['web_tour.tour'].run('rental_return_product_qc')", "odoo.__DEBUG__.services['web_tour.tour'].tours.rental_return_product_qc.ready", login="admin")
