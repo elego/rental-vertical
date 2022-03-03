@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="workflow_settings_group" model="res.config.settings">
+        <field name="group_uom" eval="True" />
+        <field name="group_discount_per_so_line" eval="True" />
+        <field name="group_sale_delivery_address" eval="True" />
+        <field name="group_warning_sale" eval="True" />
+        <field name="group_warning_purchase" eval="True" />
+        <field name="group_warning_stock" eval="True" />
+        <field name="group_warning_account" eval="True" />
+        <field name="group_proforma_sales" eval="True" />
+        <field name="group_sale_order_dates" eval="True" />
+        <field name="group_display_incoterm" eval="True" />
+        <field name="group_lot_on_delivery_slip" eval="True" />
+        <field name="group_stock_tracking_owner" eval="True" />
+        <field name="group_stock_multi_locations" eval="True" />
+        <field name="group_stock_adv_location" eval="True" />
+        <field name="group_stock_multi_warehouses" eval="True" />
+        <field name="group_analytic_accounting" eval="True" />
+        <field name="group_analytic_tags" eval="True" />
+        <field name="group_subtask_project" eval="True" />
+        <field name="group_sale_pricelist" eval="True" />
+        <field name="group_pricelist_item" eval="True" />
+        <!-- <field name="group_product_pricelist" eval="True" /> -->
+    </record>
+    <function model="res.config.settings" name="execute">
+        <value model="res.config.settings" search="[('id', '=', ref('test_rental_workflows.workflow_settings_group'))]"/>
+    </function>
+
+    <record id="workflow_settings_other" model="res.config.settings">
+        <field name="multi_sales_price" eval="True" />
+        <field name="multi_sales_price_method">formula</field>
+        <field name="use_security_lead" eval="True" />
+        <field name="security_lead">2</field>
+        <field name="use_po_lead" eval="True" />
+        <field name="po_lead">2</field>
+        <field name="use_sale_note">2</field>
+        <field name="automatic_toll_charge_invoicing" eval="True"/>
+        <!-- <field name="chart_template_id" ref="l10n_de_skr03.l10n_de_chart_template" />
+        <field name="paperformat_id" ref="l10n_de.paperformat_euro_din" />
+        <field name="external_report_layout_id" ref="rockbird_report_base.external_layout_rental" /> -->
+        <field name="theme_default_sidebar_preference">large</field>
+    </record>
+    <function model="res.config.settings" name="execute">
+        <value model="res.config.settings" search="[('id', '=', ref('test_rental_workflows.workflow_settings_other'))]"/>
+    </function>
+</odoo>
