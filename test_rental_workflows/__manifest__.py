@@ -25,7 +25,7 @@ Test Rental Workflows
 #        'rental_contract_toll_collect',
         'rental_timeline',
         'rental_toll_collect',
-        'quality_control_stock',
+        'quality_control_stock_oca',
         'rental_routing',
     ],
     'data': [
