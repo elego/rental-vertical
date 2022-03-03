@@ -14,7 +14,7 @@
                         <field name="picking_id"/>
                         <field name="origin"/>
                         <field name="rental_in_id"/>
-                        <field name="date_expected"/>
+                        <field name="forecast_expected_date"/>
                         <field name="product_uom_qty"/>
                         <field name="state"/>
                         <field name="date"/>
@@ -27,7 +27,7 @@
                         <field name="picking_id"/>
                         <field name="origin"/>
                         <field name="rental_out_id"/>
-                        <field name="date_expected"/>
+                        <field name="forecast_expected_date"/>
                         <field name="product_uom_qty"/>
                         <field name="state"/>
                         <field name="date"/>
