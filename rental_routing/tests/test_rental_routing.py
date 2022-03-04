@@ -12,19 +12,19 @@ class TestRentalRouting(RentalStockCommon):
         self.partnerA = self.PartnerObj.create(
             {
                 "name": "Partner A",
-                "customer": True,
+                "customer_rank": 10,
             }
         )
         self.partnerB = self.PartnerObj.create(
             {
                 "name": "Partner B",
-                "customer": True,
+                "customer_rank": 10,
             }
         )
         self.partnerC = self.PartnerObj.create(
             {
                 "name": "Partner C",
-                "customer": True,
+                "customer_rank": 10,
             }
         )
         # Create Product (need Trans PR) for Sale
