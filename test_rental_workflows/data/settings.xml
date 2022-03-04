@@ -14,7 +14,7 @@
         <field name="group_stock_tracking_owner" eval="True" />
         <field name="group_stock_multi_locations" eval="True" />
         <field name="group_stock_adv_location" eval="True" />
-        <field name="group_stock_multi_warehouses" eval="True" />
+        <field name="stock.group_stock_multi_warehouses" eval="True" />
         <field name="group_analytic_accounting" eval="True" />
         <field name="group_analytic_tags" eval="True" />
         <field name="group_subtask_project" eval="True" />
