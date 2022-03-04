@@ -18,7 +18,6 @@
         <field name="group_analytic_tags" eval="True" />
         <field name="group_subtask_project" eval="True" />
         <field name="group_sale_pricelist" eval="True" />
-        <field name="group_pricelist_item" eval="True" />
         <!-- <field name="group_product_pricelist" eval="True" /> -->
     </record>
     <function model="res.config.settings" name="execute">
@@ -38,6 +37,7 @@
         <field name="paperformat_id" ref="l10n_de.paperformat_euro_din" />
         <field name="external_report_layout_id" ref="rockbird_report_base.external_layout_rental" /> -->
         <field name="theme_default_sidebar_preference">large</field>
+        <field name="product_pricelist_setting">advanced</field>
     </record>
     <function model="res.config.settings" name="execute">
         <value model="res.config.settings" search="[('id', '=', ref('test_rental_workflows.workflow_settings_other'))]"/>
