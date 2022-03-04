@@ -106,15 +106,30 @@ class SaleOrderLine(models.Model):
         location = self.order_id.warehouse_id.rental_out_location_id
         if self.order_id.partner_shipping_id.rental_onsite_location_id:
             location = self.order_id.partner_shipping_id.rental_onsite_location_id
-        self.env["procurement.group"].run(
-            self.product_id.rented_product_id,
-            self.rental_qty,
-            self.product_id.rented_product_id.uom_id,
-            location,
-            self.name,
-            self.order_id.name,
-            vals,
-        )
+# FIXME: We need to figure out how to run the procurement properly now; it is not obvious to me
+#        self.env["procurement.group"].run(
+#            # This is an example from Odoo v14
+#            [self.env["procurement.group"].Procurement(
+#                product, 100, uom_unit,
+#                warehouse.lot_stock_id, "Test default vendor", "/",
+#                self.env.company,
+#                {
+#                    "warehouse_id": warehouse,
+#                    "date_planned": dt.today() + td(days=15),
+#                    "rule_id": warehouse.buy_pull_id,
+#                    "group_id": False,
+#                    "route_ids": [],
+#                }
+#            )])
+#            # These are the old test arguments
+#            self.product_id.rented_product_id,
+#            self.rental_qty,
+#            self.product_id.rented_product_id.uom_id,
+#            location,
+#            self.name,
+#            self.order_id.name,
+#            vals,
+#        )
 
     def _prepare_new_rental_procurement_values(self, group=False):
         res = super(SaleOrderLine, self)._prepare_new_rental_procurement_values(
