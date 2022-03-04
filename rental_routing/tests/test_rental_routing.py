@@ -34,7 +34,7 @@ class TestRentalRouting(RentalStockCommon):
                 "name": "Product for Rental",
                 "type": "product",
                 "categ_id": self.category_all.id,
-                "trans_purchase_request": True,
+            #    "trans_purchase_request": True, # FIXME: This is a customer-specific extension!
             }
         )
         self.service_rental = self._create_rental_service_day(self.product_rental)
