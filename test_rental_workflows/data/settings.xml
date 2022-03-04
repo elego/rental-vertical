@@ -9,7 +9,6 @@
         <field name="group_warning_stock" eval="True" />
         <field name="group_warning_account" eval="True" />
         <field name="group_proforma_sales" eval="True" />
-        <field name="group_sale_order_dates" eval="True" />
         <field name="group_display_incoterm" eval="True" />
         <field name="group_lot_on_delivery_slip" eval="True" />
         <field name="group_stock_tracking_owner" eval="True" />
