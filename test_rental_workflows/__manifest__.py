@@ -36,7 +36,7 @@ Test Rental Workflows
     'demo': [
         'demo/rental_products.xml',
         'demo/inventory.xml',
-        # 'demo/quality_control_data.xml', # need migration to v14 of the OCA module quality_control
+        'demo/quality_control_data.xml',
         'demo/toll.charge.line.csv',
     ],
     'qweb': [

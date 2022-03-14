@@ -5,7 +5,7 @@
             <field name="name">Rental Generic Test</field>
             <field name="type">generic</field>
             <field name="active" eval="True" />
-            <field name="category" ref="quality_control.qc_test_template_category_generic" />
+            <field name="category" ref="quality_control_oca.qc_test_template_category_generic" />
         </record>
 
         <!-- QC with Products  -->
