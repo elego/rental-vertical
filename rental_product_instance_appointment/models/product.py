@@ -68,8 +68,10 @@ class ProductProduct(models.Model):
                         )
                     ):
                         instance_next_service_date = app.date_next_appointment
-            if instance_next_service_date:
-                rec.instance_next_service_date = instance_next_service_date
+            rec.instance_next_service_date = instance_next_service_date
+            # FIX ME or CHECK ME
+            # if instance_next_service_date:
+            #     rec.instance_next_service_date = instance_next_service_date
 
     def update_operating_data_daily_increase(self):
         for product in self:

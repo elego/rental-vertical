@@ -103,6 +103,7 @@ class SaleRentalRouteOutLine(models.TransientModel):
                 "location_id": self.rental_in_move_id.location_id.id,
                 "location_dest_id": self.move_id.location_dest_id.id,
                 "rental_order": self.rental_in_id.start_order_line_id.order_id.id,
+                "sale_id": self.move_id.picking_id.sale_id.id,
             }
         )
         reset_qty = False
@@ -116,10 +117,10 @@ class SaleRentalRouteOutLine(models.TransientModel):
         ):
             self.rental_in_move_id.product_uom_qty += 1
             reset_qty = True
-        new_move_id = self.rental_in_move_id.with_context(do_not_push_apply=True)._split(self.qty)
+        new_move_vals = self.rental_in_move_id.with_context(do_not_push_apply=True)._split(self.qty)
         if reset_qty:
             self.rental_in_move_id.product_uom_qty -= 1
-        new_move = self.env["stock.move"].browse(new_move_id)
+        new_move = self.env["stock.move"].create(new_move_vals)
         new_move.write(
             {
                 "location_id": self.rental_in_move_id.location_id.id,
@@ -264,6 +265,7 @@ class SaleRentalRouteInLine(models.TransientModel):
                 "location_id": self.move_id.location_id.id,
                 "location_dest_id": self.rental_out_move_id.location_dest_id.id,
                 "rental_order": self.rental_id.start_order_line_id.order_id.id,
+                "sale_id": self.move_id.picking_id.sale_id.id,
             }
         )
         reset_qty = False
@@ -277,10 +279,11 @@ class SaleRentalRouteInLine(models.TransientModel):
         ):
             self.rental_out_move_id.product_uom_qty += 1
             reset_qty = True
-        new_move_id = self.rental_out_move_id.with_context(do_not_push_apply=True)._split(self.qty)
+        new_move_vals = self.rental_out_move_id.with_context(do_not_push_apply=True)._split(self.qty)
         if reset_qty:
             self.rental_out_move_id.product_uom_qty -= 1
-        new_move = self.env["stock.move"].browse(new_move_id)
+        new_move = self.env["stock.move"].create(new_move_vals)
+
         new_move.write(
             {
                 "location_id": self.move_id.location_id.id,

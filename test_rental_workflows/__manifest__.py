@@ -27,6 +27,7 @@ Test Rental Workflows
         'rental_toll_collect',
         'quality_control_stock_oca',
         'rental_routing',
+        'rental_repair',
     ],
     'data': [
         'data/settings.xml',
@@ -35,7 +36,7 @@ Test Rental Workflows
     'demo': [
         'demo/rental_products.xml',
         'demo/inventory.xml',
-        'demo/quality_control_data.xml',
+        # 'demo/quality_control_data.xml', # need migration to v14 of the OCA module quality_control
         'demo/toll.charge.line.csv',
     ],
     'qweb': [

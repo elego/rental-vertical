@@ -3,8 +3,6 @@
 # Copyright 2016 Sodexis (http://sodexis.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from dateutil.relativedelta import relativedelta
-
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 import logging
@@ -93,5 +91,5 @@ class StockRule(models.Model):
             and move_to_copy.sale_line_id.rental_type == "new_rental"
         ):
             rental_end_date = move_to_copy.sale_line_id.end_date
-            res["delay"] = 2 # fields.Datetime.to_datetime(rental_end_date) # FIXME
+            res["date"] = fields.Datetime.to_datetime(rental_end_date)
         return res

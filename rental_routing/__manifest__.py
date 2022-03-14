@@ -26,6 +26,7 @@ TODO
     """,
     "depends": ["rental_base"],
     "data": [
+        "security/ir.model.access.csv",
         "wizards/sale_rental_route_view.xml",
         "views/view_order_form.xml",
         "views/sale_rental_view.xml",

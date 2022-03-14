@@ -3,12 +3,7 @@
     <data noupdate="1">
         <record id="inventory" model="stock.inventory">
             <field name="name">Rental Inventur</field>
-            <field name="location_id" model="stock.location" search="[('name', '=', 'Rental In')]" />
-            <field name="filter">partial</field>
         </record>
-        <function model="stock.inventory" name="action_start">
-            <value model="stock.inventory" search="[('state','=','draft'), ('id', '=', ref('inventory'))]" />
-        </function>
 
         <record id="inventory_line_rental_01531" model="stock.inventory.line">
             <field name="product_id" ref="rental_01531" />
@@ -51,8 +46,11 @@
             <field name="location_id" model="stock.location" search="[('name', '=', 'Rental In')]" />
         </record>
 
+        <function model="stock.inventory" name="_action_start">
+            <function eval="[[('state','=','draft'),('id', '=', ref('inventory'))]]" model="stock.inventory" name="search"/>
+        </function>
         <function model="stock.inventory" name="action_validate">
-            <value model="stock.inventory" search="[('state','in',['confirm', 'draft']),('id', '=', ref('inventory'))]" />
+            <function eval="[[('state','=','confirm'),('id', '=', ref('inventory'))]]" model="stock.inventory" name="search"/>
         </function>
 
         <!-- Write Analytic Accounts on Service Products -->

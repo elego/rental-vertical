@@ -25,19 +25,20 @@
     </function>
 
     <record id="workflow_settings_other" model="res.config.settings">
-        <field name="multi_sales_price" eval="True" />
-        <field name="multi_sales_price_method">formula</field>
+        <field name="group_product_pricelist" eval="True" />
+        <field name="product_pricelist_setting">advanced</field>
         <field name="use_security_lead" eval="True" />
         <field name="security_lead">2</field>
         <field name="use_po_lead" eval="True" />
         <field name="po_lead">2</field>
-        <field name="use_sale_note">2</field>
+        <!-- <field name="use_sale_note">2</field> -->
         <field name="automatic_toll_charge_invoicing" eval="True"/>
         <!-- <field name="chart_template_id" ref="l10n_de_skr03.l10n_de_chart_template" />
         <field name="paperformat_id" ref="l10n_de.paperformat_euro_din" />
         <field name="external_report_layout_id" ref="rockbird_report_base.external_layout_rental" /> -->
-        <field name="theme_default_sidebar_preference">large</field>
+        <!-- <field name="theme_default_sidebar_preference">large</field> FIXME as module it comes from module muk_web_theme_branding(available only in v12)-->
         <field name="product_pricelist_setting">advanced</field>
+        <!-- <field name="group_account_readonly" eval="True" /> -->
     </record>
     <function model="res.config.settings" name="execute">
         <value model="res.config.settings" search="[('id', '=', ref('test_rental_workflows.workflow_settings_other'))]"/>
