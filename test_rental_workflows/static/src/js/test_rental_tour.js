@@ -165,7 +165,7 @@ odoo.define('rental.tour', function (require) {
         extra_trigger: ".o_field_many2one[name='display_product_id'] .o_external_button",
         run: 'click'
     }, {
-        trigger: 'li a:contains("Day(s)")',
+        trigger: 'li a:contains("Days")',
         in_modal: false,
         extra_trigger: 'ul.ui-autocomplete',
         run: 'click'
@@ -185,11 +185,11 @@ odoo.define('rental.tour', function (require) {
         run: function (){} //check Ordered Qty: 93 = diff(06/01/2020 - 03/01/2020)
     }, {
         content: _t('Check Unit of measure'),
-        trigger: 'td.o_data_cell:contains("Day(s)")',
+        trigger: 'td.o_data_cell:contains("Days")',
         extra_trigger: 'div[name="order_line"]',
         in_modal: false,
         position: 'bottom',
-        run: function (){} //check Unit of measure : Day(s)
+        run: function (){} //check Unit of measure : Days
     }, {
         content: _t('Check Unit Price'),
         trigger: 'td.o_data_cell:contains("70.00")',
@@ -224,11 +224,11 @@ odoo.define('rental.tour', function (require) {
         run: function (){} //check Ordered Qty: 62 = diff(05/01/2020 - 03/01/2020)
     }, {
         content: _t('Check Unit of measure'),
-        trigger: 'td.o_data_cell:contains("Day(s)")',
+        trigger: 'td.o_data_cell:contains("Days")',
         extra_trigger: 'div[name="order_line"]',
         in_modal: false,
         position: 'bottom',
-        run: function (){} //check Unit of measure : Day(s)
+        run: function (){} //check Unit of measure : Days
     }, {
         content: _t('Check Unit Price'),
         trigger: 'td.o_data_cell:contains("200.00")',
@@ -310,11 +310,11 @@ odoo.define('rental.tour', function (require) {
         run: function (){} //check Ordered Qty: 44 = [62 - (17 + 1)], where 62=diff(05/01/2020 - 03/01/2020)
     }, {
         content: _t('Check Unit of measure'),
-        trigger: 'td.o_data_cell:contains("Day(s)")',
+        trigger: 'td.o_data_cell:contains("Days")',
         extra_trigger: 'div[name="order_line"]',
         in_modal: false,
         position: 'bottom',
-        run: function (){} //check Unit of measure : Day(s)
+        run: function (){} //check Unit of measure : Days
     }, {
         content: _t('Check Unit Price'),
         trigger: 'td.o_data_cell:contains("200.00")',
@@ -368,11 +368,11 @@ odoo.define('rental.tour', function (require) {
         run: function (){} //check Ordered Qty: 62 = diff(05/01/2020 - 03/01/2020) Day(s)
     }, {
         content: _t('Check Unit of measure'),
-        trigger: 'td.o_data_cell:contains("Day(s)")',
+        trigger: 'td.o_data_cell:contains("Days")',
         extra_trigger: 'div[name="order_line"]',
         in_modal: false,
         position: 'bottom',
-        run: function (){} //check Unit of measure : Day(s)
+        run: function (){} //check Unit of measure : Days
     }, {
         content: _t('Check Unit Price'),
         trigger: 'td.o_data_cell:contains("200.00")',
@@ -430,7 +430,7 @@ odoo.define('rental.tour', function (require) {
         position: 'bottom',
     }, {
         content: _t('Check Done Quantity'),
-        trigger: 'td.o_data_cell:contains("1.000")',
+        trigger: 'td.o_data_cell:contains("1.00")',
         extra_trigger: 'div[name="move_ids_without_package"]',
         in_modal: false,
         position: 'bottom',
@@ -452,7 +452,7 @@ odoo.define('rental.tour', function (require) {
         position: 'bottom',
     }, {
         content: _t('Check Sale Type on Invoice'),
-        trigger: '.o_invoice_form a[name="sale_type_id"]:contains("Rental Order")',
+        trigger: '.o_form_view a[name="sale_type_id"]:contains("Rental Order")',
         in_modal: false,
         position: 'bottom',
         run: function (){} //check Invoice: Sale Type = Rental Order
@@ -465,11 +465,11 @@ odoo.define('rental.tour', function (require) {
         run: function (){} //check Invoice: (Rental Time : 62 days)
     }, {
         content: _t('Check Unit of measure on Invoice'),
-        trigger: 'td.o_data_cell:contains("Day(s)")',
+        trigger: 'td.o_data_cell:contains("Days")',
         extra_trigger: 'div[name="invoice_line_ids"]',
         in_modal: false,
         position: 'bottom',
-        run: function (){} //check Invoice: (Uom : Day(s))
+        run: function (){} //check Invoice: (Uom : Days)
     }, {
         content: _t('Check Unit Price on Invoice'),
         trigger: 'td.o_data_cell:contains("200.00")',
