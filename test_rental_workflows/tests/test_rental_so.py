@@ -20,8 +20,8 @@ class TestUi(odoo.tests.HttpCase):
     def test_04_rental_toll_collect_tour(self):
         self.browser_js("/web", "odoo.__DEBUG__.services['web_tour.tour'].run('toll_collect_tour')", "odoo.__DEBUG__.services['web_tour.tour'].tours.toll_collect_tour.ready", login="admin")
 
-    def test_05_rental_contract_toll_collect_tour(self):
-        self.browser_js("/web", "odoo.__DEBUG__.services['web_tour.tour'].run('contract_toll_collect_tour')", "odoo.__DEBUG__.services['web_tour.tour'].tours.contract_toll_collect_tour.ready", login="admin")
+    # def test_05_rental_contract_toll_collect_tour(self):
+    #     self.browser_js("/web", "odoo.__DEBUG__.services['web_tour.tour'].run('contract_toll_collect_tour')", "odoo.__DEBUG__.services['web_tour.tour'].tours.contract_toll_collect_tour.ready", login="admin")
 
 #@tagged('post_install', '-at_install')
 #class TestRentalSO(TestRentalPricelist):

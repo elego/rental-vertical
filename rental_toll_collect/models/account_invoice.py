@@ -268,6 +268,10 @@ class AccountMoveLine(models.Model):
 
     def write(self, values):
         toll_lines = values.get("toll_line_ids", False)
+        toll_charge_product = self.filtered(lambda l: l.product_id == self.env.ref("rental_toll_collect.product_toll"))
+        if toll_charge_product:
+            # set context to avoid check for Toll Charge product
+            self = self.with_context(check_move_validity=False)
         if toll_lines and any([item[2] for item in toll_lines]):
             values.update({"update_toll_lines": True})
         super(AccountMoveLine, self).write(values)

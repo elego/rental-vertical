@@ -30,6 +30,7 @@ odoo.define('toll_collect.tour', function (require) {
             content: _t("Let's create new Rental Order."),
             trigger: '.o_list_button_add',
             position: 'bottom',
+            run: 'click'
             // extra_trigger: '.o_content .o_view_controller',
         },
         {
@@ -62,6 +63,7 @@ odoo.define('toll_collect.tour', function (require) {
             position: "bottom",
         },
         {
+            content: _t("Click to Product on Sale Order Line"),
             trigger: ".o_field_many2one[name='display_product_id'] .o_input_dropdown input",
             run: 'click'
         },
@@ -77,7 +79,7 @@ odoo.define('toll_collect.tour', function (require) {
             run: 'click'
         },
         {
-            trigger: 'li a:contains("Day(s)")',
+            trigger: 'li a:contains("Days")',
             in_modal: false,
             extra_trigger: 'ul.ui-autocomplete',
             run: 'click'
@@ -99,11 +101,11 @@ odoo.define('toll_collect.tour', function (require) {
         },
         {
             content: _t('Check Unit of measure'),
-            trigger: 'td.o_data_cell:contains("Day(s)")',
+            trigger: 'td.o_data_cell:contains("Days")',
             extra_trigger: 'div[name="order_line"]',
             in_modal: false,
             position: 'bottom',
-            run: function (){} //check Unit of measure : Day(s)
+            run: function (){} //check Unit of measure : Days
         },
         {
             content: _t('Check Unit Price'),
@@ -116,21 +118,32 @@ odoo.define('toll_collect.tour', function (require) {
         {
             content: _t('Save Rental Order'),
             trigger: '.o_form_button_save',
+            run: 'click',
             position: 'bottom',
+        },
+        {
+            content: _t("Click Update Toll Charges on Sale Order"),
+            trigger: 'button[name="action_update_toll_charges"]',
+            run: 'click',
+            // extra_trigger: '.o_statusbar_status .btn-primary:contains("Update Toll Charges")',
+            // trigger: 'button[name="action_update_toll_charges"]:visible:not(:disabled)',
         },
         {
             content: _t("Click Send by email"),
             trigger: 'button[name="action_quotation_send"]:visible:not(:disabled)',
+            run: 'click',
         },
         {
             content: _t("Click Send"),
             extra_trigger: '.o_act_window',
             trigger: '.btn[name="action_send_mail"]',
+            run: 'click',
         },
         {
             content: _t("Click Confirm"),
             extra_trigger: '.o_statusbar_status .btn-primary:contains("Quotation Sent")',
             trigger: 'button[name="action_confirm"]:visible:not(:disabled)',
+            run: 'click',
         },
         {
             content: _t('Check Toll Line count'),
@@ -179,6 +192,7 @@ odoo.define('toll_collect.tour', function (require) {
         {
             content: _t("Click on Validate"),
             trigger: 'button[name="button_validate"]',
+            run: 'click',
         },
         {
             content: _t('Click on Apply'),
@@ -189,11 +203,11 @@ odoo.define('toll_collect.tour', function (require) {
         },
         {
             content: _t('Check Done Quantity'),
-            trigger: 'td.o_data_cell:contains("1.000")',
+            trigger: 'td.o_data_cell:contains("1.00")',
             extra_trigger: 'div[name="move_ids_without_package"]',
             in_modal: false,
             position: 'bottom',
-            run: function (){} //check Done: 1.0 Unit(s)
+            run: function (){} //check Done: 1.0 Units
         },
         {
             content: _t("Use the breadcrumbs to go back to Rental Order."),
@@ -293,8 +307,15 @@ odoo.define('toll_collect.tour', function (require) {
             position: 'bottom',
         },
         {
+            content: _t("Click Update Toll Charges on Invoice"),
+            trigger: 'button[name="action_update_toll_charges"]',
+            run: 'click'
+            // extra_trigger: '.o_statusbar_status .btn-primary:contains("Update Toll Charges")',
+            // trigger: 'button[name="action_update_toll_charges"]:visible:not(:disabled)',
+        },
+        {
             content: _t('Check Sale Type on Invoice'),
-            trigger: '.o_invoice_form a[name="sale_type_id"]:contains("Rental Order")',
+            trigger: '.o_form_view a[name="sale_type_id"]:contains("Rental Order")',
             in_modal: false,
             position: 'bottom',
             run: function (){} //check Invoice: Sale Type = Rental Order
@@ -323,11 +344,11 @@ odoo.define('toll_collect.tour', function (require) {
         },
         {
             content: _t('Check Unit of measure on Invoice line'),
-            trigger: 'td.o_data_cell:contains("Day(s)")',
+            trigger: 'td.o_data_cell:contains("Days")',
             extra_trigger: 'div[name="invoice_line_ids"]',
             in_modal: false,
             position: 'bottom',
-            run: function (){} //check Invoice Line: (Uom : Day(s))
+            run: function (){} //check Invoice Line: (Uom : Days)
         },
         {
             content: _t('Check Unit Price on Invoice line'),
@@ -395,11 +416,11 @@ odoo.define('toll_collect.tour', function (require) {
         },
         {
             content: _t('Check Unit of Measure of Toll Charge Product on Invoice Line'),
-            trigger: '.o_data_row:nth-child(2) .o_data_cell:contains("Unit(s)")',
+            trigger: '.o_data_row:nth-child(2) .o_data_cell:contains("Units")',
             extra_trigger: 'div[name="invoice_line_ids"]',
             in_modal: false,
             position: 'bottom',
-            run: function (){} //check Toll Charge Product on Invoice Line: (Unit of Measure : Unit(s))
+            run: function (){} //check Toll Charge Product on Invoice Line: (Unit of Measure : Units)
         },
         {
             content: _t('Check Price of Toll Charge Product on Invoice Line'),
@@ -410,10 +431,10 @@ odoo.define('toll_collect.tour', function (require) {
             run: function (){} //check Toll Charge Product on Invoice Line: (Price : 7.64)
         },
         {
-          content: _t('Click on Smart Button Toll Lines'),
-          trigger: 'button[name="action_view_product_toll_charges"]',
-          extra_trigger: '.o_form_view',
-          run: 'click'
+            content: _t('Click on Smart Button Toll Lines'),
+            trigger: 'button[name="action_view_product_toll_charges"]',
+            extra_trigger: '.o_form_view',
+            run: 'click'
         },
         {
             content: _t('Click on first record from list of Toll charge lines'),
@@ -428,18 +449,19 @@ odoo.define('toll_collect.tour', function (require) {
             position: 'bottom',
         },
         {
-            content: _t("Set False to Chargeable?"),
-            trigger: '.o_form_sheet div[name="chargeable"] input',
-            extra_trigger: '.o_form_sheet',
-            run: function (){
-                $('.o_form_sheet div[name="chargeable"] input').attr('checked', false);
-                $('.o_form_sheet div[name="chargeable"] input').trigger('change');
-            }
+            content: _t('Go to Chargeable?'),
+            trigger: 'tbody > tr:nth-child(5) .custom-control-label',
+            run: 'click'
         },
         {
-          trigger: '.o_form_button_save',
-          content: _t('Save the Toll Charge Line'),
-          run: 'click'
+            content: _t('Set False to Chargeable?'),
+            trigger: 'tbody > tr:nth-child(5) .custom-control-input',
+            run: 'text on'
+        },
+        {
+            trigger: '.o_form_button_save',
+            content: _t('Save the Toll Charge Line'),
+            run: 'click'
         },
         {
             content: _t("Use the breadcrumbs to go back to Invoice."),
@@ -448,9 +470,9 @@ odoo.define('toll_collect.tour', function (require) {
             position: "bottom"
         },
         {
-          trigger: 'button[name="action_update_toll_charges"]',
-          content: _t('Update Toll Charges'),
-          run: 'click'
+            content: _t('Update Toll Charges on Invoice after settting value Flase to Chargeable'),
+            trigger: 'button[name="action_update_toll_charges"]',
+            run: 'click'
         },
         {
             content: _t('Check Toll Line count'),
@@ -468,11 +490,11 @@ odoo.define('toll_collect.tour', function (require) {
         },
         {
             content: _t('Check Unit of Measure of Toll Charge Product on Invoice Line'),
-            trigger: '.o_data_row:nth-child(2) .o_data_cell:contains("Unit(s)")',
+            trigger: '.o_data_row:nth-child(2) .o_data_cell:contains("Units")',
             extra_trigger: 'div[name="invoice_line_ids"]',
             in_modal: false,
             position: 'bottom',
-            run: function (){} //check Toll Charge Product on Invoice Line: (Unit of Measure : Unit(s))
+            run: function (){} //check Toll Charge Product on Invoice Line: (Unit of Measure : Units)
         },
         {
             content: _t('Check Price of Toll Charge Product on Invoice Line'),

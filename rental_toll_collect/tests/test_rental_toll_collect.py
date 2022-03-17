@@ -218,7 +218,6 @@ class TestRentalTollCollect(TransactionCase):
             'active_ids': [self.sale_order.id],
             'active_id': self.sale_order.id,
             'default_journal_id': self.default_journal_sale.id,
-            'check_move_validity': False,
         }).create({
             'advance_payment_method': 'delivered'
         })
