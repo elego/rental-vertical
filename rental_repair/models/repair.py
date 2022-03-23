@@ -145,7 +145,7 @@ class RepairOrder(models.Model):
                 analytic_id = repair.income_analytic_account_id.id
                 for operation in repair.operations:
                     if operation.invoiced and operation.invoice_line_id:
-                        operation.invoice_line_id.account_analytic_id = analytic_id
+                        operation.invoice_line_id.analytic_account_id = analytic_id
                     if (
                         operation.invoiced
                         and operation.invoice_line_id
@@ -156,7 +156,7 @@ class RepairOrder(models.Model):
                         )
                 for fee in repair.fees_lines:
                     if fee.invoiced and fee.invoice_line_id:
-                        fee.invoice_line_id.account_analytic_id = analytic_id
+                        fee.invoice_line_id.analytic_account_id = analytic_id
                     if fee.invoiced and fee.invoice_line_id and fee.analytic_tag_ids:
                         fee.invoice_line_id.analytic_tag_ids = fee.analytic_tag_ids
         return res

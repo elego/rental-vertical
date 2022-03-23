@@ -83,10 +83,6 @@ class ProductOperatingAppointment(models.Model):
     )
 
     operating_uom = fields.Selection(
-        selection=[
-            ("km", "Kilometer"),
-            ("hour", "Operating Hours"),
-        ],
         string="Operating UoM",
         related="product_id.show_instance_condition_type",
     )

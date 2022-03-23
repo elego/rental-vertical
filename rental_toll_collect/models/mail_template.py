@@ -8,20 +8,19 @@ class MailTemplate(models.Model):
     _inherit = "mail.template"
 
     def generate_email(self, res_ids, fields=None):
-        res = super(MailTemplate, self).generate_email(res_ids, fields)
         multi_mode = True
-        if isinstance(res_ids, pycompat.integer_types):
+        if isinstance(res_ids, int):
             res_ids = [res_ids]
             multi_mode = False
 
-        res_ids_to_templates = self.get_email_template(res_ids)
+        res = super(MailTemplate, self).generate_email(res_ids, fields)
+        # res_ids_to_templates = self.get_email_template(res_ids)
         for res_id in res_ids:
-            related_model = self.env[self.model_id.model].browse(res_id)
-
+            related_model = self.env[self.model].browse(res_id)
             if related_model._name == "account.move":
-                template = res_ids_to_templates[res_id]
+                # template = res_ids_to_templates[res_id]
                 inv_print_name = self._render_template(
-                    template.report_name, template.model, res_id
+                    self.report_name, self.model, res_id
                 )
                 new_attachments = []
                 # check Customer Invoice and has Toll Charge Lines(having invoiced=True)
