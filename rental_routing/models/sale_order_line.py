@@ -86,6 +86,8 @@ class SaleOrderLine(models.Model):
                         res["in_move_id_bk"] = move.id
                         if move.state != "cancel":
                             move.state = "confirmed"
+                            # move holds 'make_to_order' in v14(compare to v12) so need to change
+                            move.procure_method = 'make_to_stock'
                     else:
                         move.write({"move_dest_ids": [(5, 0, 0)]})
                         if move.state != "cancel":
