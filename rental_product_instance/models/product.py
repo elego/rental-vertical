@@ -68,7 +68,6 @@ class ProductProduct(models.Model):
 
     show_instance_condition_type = fields.Selection(
         string="Show Instance Condition Type",
-        selection=[("hour", "Hours"), ("km", "Kilometers")],
         related="categ_id.show_instance_condition_type",
         store=True,
     )
