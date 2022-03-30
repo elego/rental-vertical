@@ -30,8 +30,8 @@ odoo.define("rental_timeline.RentalTimelineView", function (require) {
 
     var RentalTimelineView = _TimelineView.extend({
         display_name: _lt("Rental Timeline"),
-        jsLibs: ["/web_timeline/static/lib/vis-timeline/vis-timeline-graph2d.js"],
-        cssLibs: ["/web_timeline/static/lib/vis-timeline/vis-timeline-graph2d.css"],
+        jsLibs: ["/rental_timeline/static/lib/vis/vis-timeline-graph2d.js"],
+        cssLibs: ["/rental_timeline/static/lib/vis/vis-timeline-graph2d.css"],
         config: _.extend({}, _TimelineView.prototype.config, {
             Model: TimelineModel,
             Controller: RentalTimelineController,
