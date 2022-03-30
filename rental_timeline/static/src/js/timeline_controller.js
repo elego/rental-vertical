@@ -1,23 +1,22 @@
-odoo.define('rental_timeline.RentalTimelineController', function (require) {
+odoo.define("rental_timeline.RentalTimelineController", function (require) {
     "use strict";
 
+    var dialogs = require("web.view_dialogs");
 
-    var dialogs = require('web.view_dialogs');
-
-    var _TimelineController = require('web_timeline.TimelineController');
+    var _TimelineController = require("web_timeline.TimelineController");
 
     var RentalTimelineController = _TimelineController.extend({
         _onGroupClick: function (event) {
             var groupField = this.renderer.last_group_bys[0];
             return this.do_action({
-                type: 'ir.actions.act_window',
+                type: "ir.actions.act_window",
                 res_model: this.renderer.view.fields[groupField].relation,
                 res_id: event.data.item.group,
-                target: 'new',
+                target: "new",
                 flags: {
-                    mode: 'readonly',
+                    mode: "readonly",
                 },
-                views: [[false, 'form']],
+                views: [[false, "form"]],
             });
         },
 
@@ -30,7 +29,10 @@ odoo.define('rental_timeline.RentalTimelineController', function (require) {
             var res_id = item.evt.click_res_id;
             new dialogs.FormViewDialog(this, {
                 res_model: res_model,
-                res_id: parseInt(res_id, 10).toString() === res_id ? parseInt(res_id, 10) : res_id,
+                res_id:
+                    parseInt(res_id, 10).toString() === res_id
+                        ? parseInt(res_id, 10)
+                        : res_id,
                 context: this.getSession().user_context,
                 title: title,
                 view_id: Number(this.open_popup_action),
@@ -40,7 +42,6 @@ odoo.define('rental_timeline.RentalTimelineController', function (require) {
                 readonly: true,
             }).open();
         },
-
     });
 
     return RentalTimelineController;
