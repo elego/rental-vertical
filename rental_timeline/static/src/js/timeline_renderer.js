@@ -177,6 +177,64 @@ odoo.define("rental_timeline.RentalTimelineRenderer", function (require) {
             })(vis.timeline.components.items.Item.prototype._repaintDragCenter);
         },
 
+        /**
+         * Transform Odoo event object to timeline event object.
+         *
+         * @param {TransformEvent} evt
+         * @private
+         * @returns {Object}
+         */
+        event_data_transform: function (evt) {
+            const [date_start, date_stop] = this._get_event_dates(evt);
+
+            let group = evt[this.last_group_bys[0]];
+            if (group && group instanceof Array) {
+                group = _.first(group);
+            } else {
+                group = -1;
+            }
+
+            for (const color of this.colors) {
+                if (py.eval(`'${evt[color.field]}' ${color.opt} '${color.value}'`)) {
+                    this.color = color.color;
+                }
+            }
+
+            let content = evt.__name || evt.display_name;
+            if (this.arch.children.length) {
+                content = this.render_timeline_item(evt);
+            }
+
+            let title = "";
+            if (content) {
+                let doc = document.createElement("html");
+                doc.innerHTML = "<html><body>" + content + "</body></html>";
+                let tt_content = doc.getElementsByClassName("tooltip_content");
+                if (tt_content && tt_content.length) {
+                    title = tt_content[0].innerHTML;
+                }
+            }
+
+            const r = {
+                title: title,
+                start: date_start,
+                content: content,
+                id: evt.id,
+                group: group,
+                evt: evt,
+                style: `background-color: ${this.color};`,
+            };
+            // Check if the event is instantaneous,
+            // if so, display it with a point on the timeline (no 'end')
+            if (date_stop && !moment(date_start).isSame(date_stop)) {
+                r.end = date_stop;
+            }
+
+            this.color = null;
+
+            return r;
+        },
+
         _onTodayClicked: function () {
             this._scaleCurrentWindow(1, "days", "day");
         },
