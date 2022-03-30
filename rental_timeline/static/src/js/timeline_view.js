@@ -11,17 +11,16 @@ _.str.toBoolElse = function (str, elseValues, trueValues, falseValues) {
     return ret;
 };
 
-
-odoo.define('rental_timeline.RentalTimelineView', function (require) {
+odoo.define("rental_timeline.RentalTimelineView", function (require) {
     "use strict";
 
-    var core = require('web.core');
-    var view_registry = require('web.view_registry');
-    var AbstractView = require('web.AbstractView');
-    var TimelineModel = require('web_timeline.TimelineModel');
-    var _TimelineView = require('web_timeline.TimelineView');
-    var RentalTimelineRenderer = require('rental_timeline.RentalTimelineRenderer');
-    var RentalTimelineController = require('rental_timeline.RentalTimelineController');
+    var core = require("web.core");
+    var view_registry = require("web.view_registry");
+    var AbstractView = require("web.AbstractView");
+    var TimelineModel = require("web_timeline.TimelineModel");
+    var _TimelineView = require("web_timeline.TimelineView");
+    var RentalTimelineRenderer = require("rental_timeline.RentalTimelineRenderer");
+    var RentalTimelineController = require("rental_timeline.RentalTimelineController");
 
     var _lt = core._lt;
 
@@ -30,14 +29,16 @@ odoo.define('rental_timeline.RentalTimelineView', function (require) {
     }
 
     var RentalTimelineView = _TimelineView.extend({
-        display_name: _lt('Rental Timeline'),
-        config: _.extend({},_TimelineView.prototype.config, {
+        display_name: _lt("Rental Timeline"),
+        jsLibs: ["/rental_timeline/static/lib/vis/vis-timeline-graph2d.js"],
+        cssLibs: ["/rental_timeline/static/lib/vis/vis-timeline-graph2d.css"],
+        config: _.extend({}, _TimelineView.prototype.config, {
             Model: TimelineModel,
             Controller: RentalTimelineController,
             Renderer: RentalTimelineRenderer,
         }),
     });
 
-    view_registry.add('rental_timeline', RentalTimelineView);
+    view_registry.add("rental_timeline", RentalTimelineView);
     return RentalTimelineView;
 });
