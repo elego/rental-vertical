@@ -2,6 +2,5 @@
 Changelog
 ---------
 
-- 8b4d40c4 2021-09-23 09:19:24 +0200 wagner@elegosoft.com  regenerate doc (issue #4016)
-- ad7e8fb7 2021-09-21 16:50:25 +0200 maria.sparenberg@elegosoft.com  issue #4433 add product menu to rental_base, remove configs and dashboard to separate modules
+- 4509f78a 2022-02-23 20:48:33 +0100 wagner@elegosoft.com  (origin/feature_4516_add_files_ported_from_v12_v14, feature_4516_add_files_ported_from_v12_v14) add files ported to v14 by cpatel and khanhbui (issue #4516)
 

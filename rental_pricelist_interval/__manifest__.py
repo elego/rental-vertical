@@ -8,6 +8,23 @@
     "category": "Rental",
     "author": "elego Software Solutions GmbH, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/vertical-rental",
+    "description": """
+This Module implements a new rental service product for interval pricing under consideration
+of odoo price lists. This enables to rent out products and charge for day interval ranges.
+
+These ranges can be configured freely on general and/or product level. In contrast to rentals
+on daily, monthly or yearly bases a different price computation is applied in sale order lines.
+""",
+    "configuration": """
+To configure this module, you need to:
+
+#. Go to company settings and define the default interval ranges on 'Rental Interval Prices' tab.
+   These ranges will be applied for computation of price intervals for rental service products when interval pricing is activated
+   in stockable product.
+
+#. If desired go to 'RS (Prefix and Suffix)' tab an define how rental interval service product
+   names and reference numbers are created.
+""",
     "contributors": [
         "Ben Brich <b.brich@humanilog.org> (www.humanilog.org)",
         "Yu Weng <yweng@elegosoft.com> (www.elegosoft.com)",
