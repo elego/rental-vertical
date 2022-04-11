@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Hide fields inserted by product_contract module to move them to new location -->
+    <record id="view_order_form1" model="ir.ui.view">
+        <field name="name">rental_contract.product_contract</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="product_contract.view_order_form"/>
+        <field name="arch" type="xml">
+            <!-- Hide form fields -->
+            <xpath expr="//field[@name='contract_id']" position="attributes">
+                <attribute name="attrs">{'invisible': 1}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='contract_line_id']" position="attributes">
+                <attribute name="attrs">{'invisible': 1}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']//field[@name='date_start']/parent::group" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']//field[@name='date_end']/parent::group" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='is_contract']/following-sibling::separator" position="attributes">
+                <attribute name="attrs">{'invisible': 1}</attribute>
+            </xpath>
+            <xpath expr="//separator/following-sibling::group[field[@name='recurring_rule_type']]" position="attributes">
+                <attribute name="attrs">{'invisible': 1}</attribute>
+            </xpath>
+            <xpath expr="//separator/following-sibling::group[field[@name='recurring_invoicing_type']]" position="attributes">
+                <attribute name="attrs">{'invisible': 1}</attribute>
+            </xpath>
+            <xpath expr="//separator/following-sibling::group[field[@name='is_auto_renew']]" position="attributes">
+                <attribute name="attrs">{'invisible': 1}</attribute>
+            </xpath>
+            <xpath expr="//separator/following-sibling::group[label[@for='auto_renew_interval']]" position="attributes">
+                <attribute name="attrs">{'invisible': 1}</attribute>
+            </xpath>
+            <!-- Hide tree fields -->
+            <xpath expr="//field[@name='order_line']/tree//field[@name='date_start']" position="attributes">
+                <attribute name="attrs">{'column_invisible': 1}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree//field[@name='date_end']" position="attributes">
+                <attribute name="attrs">{'column_invisible': 1}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_order_form2" model="ir.ui.view">
+        <field name="name">rental_contract.view_order_form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="rental_base.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@id='rental_invoicing']//div[field[@name='analytic_tag_ids']]" position="after">
+                <field name="contract_id"
+                       options='{"no_create": True}'
+                       attrs="{'invisible': [('is_contract', '=', False)]}"
+                       domain="['|',('contract_template_id','=',contract_template_id),
+                                ('contract_template_id','=',False),
+                                ('partner_id','=',parent.partner_id),
+                                ('is_terminated','=',False),
+                                ]"
+                />
+                <field name="contract_line_id"
+                       options='{"no_create": True}'
+                       attrs="{'invisible': ['|', ('is_contract', '=', False), ('contract_id', '=', False)]}"
+                       domain="[('contract_id','=',contract_id)]"
+                />
+                <field name="recurring_rule_type"
+                       attrs="{'invisible': [('is_contract', '=', False)]}"
+                />
+                <field name="recurring_invoicing_type"
+                       attrs="{'invisible': [('is_contract', '=', False)]}"
+                />
+                <field name="is_auto_renew"
+                       attrs="{'invisible': ['|', ('is_contract', '=', False), ('rental', '=', True)]}"
+                />
+                <label for="auto_renew_interval" attrs="{'invisible': [('is_auto_renew', '=', False)]}"/>
+                <div  attrs="{'invisible': [('is_auto_renew', '=', False)]}">
+                    <field name="auto_renew_interval"
+                           class="oe_inline" nolabel="1"
+                           attrs="{'required':[('is_auto_renew', '=', True)]}"/>
+                    <field name="auto_renew_rule_type"
+                           class="oe_inline" nolabel="1"
+                           attrs="{'required':[('is_auto_renew', '=', True)]}"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
