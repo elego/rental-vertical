@@ -11,9 +11,9 @@
                 <xpath expr="//sheet" position="inside">
                     <group name="show_attrs" string="Product Attribute Extension">
                         <field name="show_product_identification_number" />
-                        <field name="show_vehicle_number" />
+                        <!-- <field name="show_vehicle_number" />
                         <field name="show_license_plate" />
-                        <field name="show_init_regist" />
+                        <field name="show_init_regist" /> -->
                     </group>
                 </xpath>
             </field>
@@ -58,21 +58,21 @@
                 </button>
                 <xpath expr="//field[@name='categ_id']" position="replace" />
                 <xpath expr="//field[@name='type']" position="after">
-                    <field name="fleet_type_id" />
+                    <!-- <field name="fleet_type_id" /> -->
                     <field name="categ_id" />
                 </xpath>
                 <xpath expr="//field[@name='barcode']" position="before">
                     <field name="manu_id" />
                     <field name="manu_type_id" domain="[('manufacturer_id','=',manu_id)]" />
                     <field name="show_product_identification_number" invisible="1" />
-                    <field name="show_vehicle_number" invisible="1" />
+                    <!-- <field name="show_vehicle_number" invisible="1" />
                     <field name="show_license_plate" invisible="1" />
-                    <field name="show_init_regist" invisible="1" />
+                    <field name="show_init_regist" invisible="1" /> -->
                     <field name="product_identification_number" attrs="{'invisible': [('show_product_identification_number', '=', False)]}" />
-                    <field name="vehicle_number" attrs="{'invisible': [('show_vehicle_number', '=', False)]}" />
-                    <field name="license_plate" attrs="{'invisible': [('show_license_plate', '=', False)]}" />
+                    <!-- <field name="vehicle_number" attrs="{'invisible': [('show_vehicle_number', '=', False)]}" />
+                    <field name="license_plate" attrs="{'invisible': [('show_license_plate', '=', False)]}" /> -->
                     <field name="manu_year" />
-                    <field name="init_regist" attrs="{'invisible': [('show_init_regist', '=', False)]}" />
+                    <!-- <field name="init_regist" attrs="{'invisible': [('show_init_regist', '=', False)]}" /> -->
                 </xpath>
                 <xpath expr="//field[@name='barcode']" position="after">
                     <field name="qr_code" />
@@ -113,7 +113,7 @@
             <field name="inherit_id" ref="product.product_search_form_view" />
             <field name="arch" type="xml">
                 <search position="inside">
-                    <field name="license_plate" />
+                    <!-- <field name="license_plate" /> -->
                     <field name="manu_id" />
                     <field name="manu_type_id" />
                 </search>
@@ -210,7 +210,7 @@
         </record>
 
         <!-- FleetType -->
-        <record id="view_fleet_type_form" model="ir.ui.view">
+        <!-- <record id="view_fleet_type_form" model="ir.ui.view">
             <field name="name">fleet.type.form</field>
             <field name="model">fleet.type</field>
             <field name="arch" type="xml">
@@ -249,7 +249,7 @@
             <field name="res_model">fleet.type</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
-        </record>
+        </record> -->
 
         <menuitem action="action_product_manufacturer"
             id="menu_product_manufacturer" parent="stock.menu_stock_inventory_control"
@@ -257,9 +257,9 @@
         <menuitem action="action_product_manufacturer_type"
             id="menu_product_manufacturer_type" parent="stock.menu_stock_inventory_control"
             sequence="13" />
-        <menuitem action="action_fleet_type"
+        <!-- <menuitem action="action_fleet_type"
             id="menu_fleet_type" parent="stock.menu_stock_inventory_control"
-            sequence="13" />
+            sequence="13" /> -->
 
         <!-- Menu in Rentals -->
         <menuitem action="action_product_manufacturer"
@@ -270,10 +270,10 @@
             id="menu_product_manufacturer_type"
             parent="rental_base.menu_config_products"
             sequence="15" />
-        <menuitem action="action_fleet_type"
+        <!-- <menuitem action="action_fleet_type"
             id="menu_fleet_type"
             parent="rental_base.menu_config_products"
-            sequence="20" />
+            sequence="20" /> -->
 
     </data>
 </odoo>
