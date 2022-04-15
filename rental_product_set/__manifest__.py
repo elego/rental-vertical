@@ -18,7 +18,7 @@ OCA product sets. In order to do that, just install the module.
 
 No further configuration is needed.
 """,
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
     "category": "Rental",
     "author": "Odoo Community Association (OCA)/Elego Software Solutions GmbH",
     "depends": [

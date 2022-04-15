@@ -13,7 +13,7 @@ This module adds the basic rental timeline view as well as an extension to the p
     "usage": """
 Just install this module to add the rental timeline view to your system. No further configuration is necessary.
     """,
-    "version": "14.0.1.0.1",
+    "version": "15.0.1.0.0",
     "category": "Rental",
     "author": "Odoo Community Association (OCA)/Elego Software Solutions GmbH",
     "depends": [

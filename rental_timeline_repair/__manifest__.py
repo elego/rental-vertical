@@ -3,7 +3,7 @@
 {
     "name": "Rental Timeline Repair",
     "summary": "extends the rental_timeline module to show the repair orders in the timeline.",
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
     "category": "Rental/Service",
     "author": "Odoo Community Association (OCA)/Elego Software Solutions GmbH",
     "description": """

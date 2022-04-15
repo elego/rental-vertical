@@ -3,7 +3,7 @@
 {
     "name": "Rental Purchase Order Type",
     "summary": "Additional purchase order types for rental use cases: transport orders and repair orders",
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
     "category": "Rental/Purchase",
     "author": "elego Software Solutions GmbH, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/vertical-rental",
