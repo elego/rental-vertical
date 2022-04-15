@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_product_timeline_timeline" model="ir.ui.view">
+        <field name="name">product.timeline.timeline</field>
+        <field name="model">product.timeline</field>
+        <field name="inherit_id" ref="rental_timeline.view_product_timeline_timeline" />
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <field name="product_instance_next_service_date" />
+            </field>
+            <tr t-if="record.product_name" position="after">
+                <tr t-if="record.product_instance_next_service_date">
+                    <td>Next Service:</td>
+                    <td t-esc="record.product_instance_next_service_date" />
+                </tr>
+            </tr>
+        </field>
+    </record>
+</odoo>

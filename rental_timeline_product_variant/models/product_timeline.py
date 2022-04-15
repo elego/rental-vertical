@@ -26,6 +26,7 @@ class ProductTimeline(models.Model):
         store=True,
     )
 
+    # ------ need to remove fields later -------
     product_fleet_type_id = fields.Many2one(
         related="product_id.fleet_type_id",
         store=True,
@@ -40,7 +41,9 @@ class ProductTimeline(models.Model):
         related="product_id.license_plate",
         store=True,
     )
+    # ------- end -------------
 
+    # ------ need to remove fields later -------
     @api.depends(
         "product_id",
         "product_id.license_plate",
