@@ -5,6 +5,8 @@
             <field name="name">Insurance Day</field>
             <field name="default_code"></field>
             <field name="type">service</field>
+            <field name="uom_id" ref="uom.product_uom_day"/>
+            <field name="uom_po_id" ref="uom.product_uom_day"/>
             <field name="categ_id" ref="product.product_category_1"/>
             <field name="sale_ok" eval="True"/>
             <field name="is_insurance" eval="True"/>
