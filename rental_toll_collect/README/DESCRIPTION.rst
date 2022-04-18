@@ -1,7 +1,7 @@
 Rental Toll Collect
 ====================================================
 
-*This file has been generated on 2021-10-25-10-18-19. Changes to it will be overwritten.*
+*This file has been generated on 2022-04-10-15-34-31. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -13,7 +13,7 @@ Description
 
 This module provides the opportunity to import csv files downloaded from toll collect portal.
 During import it matches the given license plate in csv file with a vehicle product.
-The toll charge lines can be invoiced to a customer manually or by creating an invoice from a
+The toll charge lines can be invoiced to a customer manually or by creating an invoice from a 
 sale/rental order containing a vehicle product as sale/rental order line.
 
 The csv should contain the following columns:
@@ -21,7 +21,7 @@ The csv should contain the following columns:
 - Account number ("Mautaufstellungs-Nr.")
 - license plate ("Kfz-Kennz.")
 - Date ("Datum")
-- Start	("Start")
+- Start ("Start")
 - Booking number ("Buchungsnummer")
 - Type ("Art")
 - Route Ramp ("Auffahrt")
@@ -36,3 +36,4 @@ The csv should contain the following columns:
 - Procedure ("Verf.¹")
 - Distance ("km")
 - Amount ("EUR")
+

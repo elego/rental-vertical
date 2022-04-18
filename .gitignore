@@ -73,3 +73,7 @@ docs/_build/
 
 # OCA rules
 !static/lib/
+
+# Other
+hotpatch-*.udiff
+patches/

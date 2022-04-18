@@ -7,6 +7,9 @@
     "category": "Rental",
     "author": "elego Software Solutions GmbH, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/vertical-rental",
+    "description": """
+This module adds menu entries for CRM to the rental application.
+""",
     "depends": [
         "rental_base",
         "crm",
