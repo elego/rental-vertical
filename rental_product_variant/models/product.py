@@ -11,22 +11,6 @@ class ProductCategory(models.Model):
         help="If checked, the product identification number "
         "is displayed in product form view.",
     )
-    # ------ need to remove fields later -------
-    show_vehicle_number = fields.Boolean(
-        string="Show Vehicle Identification Number",
-        help="If checked, the vehicle identification number "
-        "is displayed in product form view.",
-    )
-    show_license_plate = fields.Boolean(
-        string="Show License Plate",
-        help="If checked, the license plate is displayed in " "product form view.",
-    )
-    show_init_regist = fields.Boolean(
-        string="Show Initial Registration",
-        help="If checked, the initial registration is displayed "
-        "in product form view.",
-    )
-    # ------- end -------------
 
 
 class ProductProduct(models.Model):
@@ -54,47 +38,15 @@ class ProductProduct(models.Model):
         string="Type",
         ondelete="set null",
     )
-    # ------ need to remove fields later -------
-    fleet_type_id = fields.Many2one(
-        comodel_name="fleet.type",
-        string="Fleet Type",
-        ondelete="set null",
-    )
-    # ------- end -------------
 
     # Category special fields
     product_identification_number = fields.Char(
         string="Product Identification Number (PIN)",
     )
-    # ------ need to remove fields later -------
-    vehicle_number = fields.Char(
-        string="Vehicle Identification Number (VIN)",
-    )
-    license_plate = fields.Char(
-        string="License Plate",
-    )
-    init_regist = fields.Date(
-        string="Initial Registration",
-    )
-    # ------- end -------------
     show_product_identification_number = fields.Boolean(
         string="Show Product Identification Number",
         related="categ_id.show_product_identification_number",
     )
-    # ------ need to remove fields later -------
-    show_vehicle_number = fields.Boolean(
-        string="Show Vehicle Identification Number",
-        related="categ_id.show_vehicle_number",
-    )
-    show_license_plate = fields.Boolean(
-        string="Show License Plate",
-        related="categ_id.show_license_plate",
-    )
-    show_init_regist = fields.Boolean(
-        string="Show Initial Registration",
-        related="categ_id.show_init_regist",
-    )
-    # ------- end -------------
 
     # Lists
     rental_order_ids = fields.One2many(
@@ -311,15 +263,3 @@ class ProductManufacturerType(models.Model):
         comodel_name="product.manufacturer",
         string="Manufacturer",
     )
-
-
-# ------ need to remove fields later -------
-class FleetType(models.Model):
-    _name = "fleet.type"
-    _description = "Fleet Type"
-
-    name = fields.Char(
-        string="Name",
-        translate=True,
-    )
-# ------- end -------------
