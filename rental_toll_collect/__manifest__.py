@@ -54,6 +54,8 @@ The csv should contain the following columns:
         "product_analytic",
         "rental_base",
         "rental_product_instance",
+        "rental_pricelist",
+        "rental_product_variant_fleet",
     ],
     "data": [
         "security/ir.model.access.csv",
