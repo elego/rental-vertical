@@ -21,19 +21,18 @@ class ProductTimeline(models.Model):
         store=True,
     )
 
-    # ------ need to add later -----
-    # @api.depends(
-    #     "product_id",
-    #     "product_id.license_plate",
-    #     "product_manu_id",
-    #     "product_manu_id.name",
-    #     "product_manu_type_id",
-    #     "product_manu_type_id.name",
-    #     "product_fleet_type_id",
-    #     "product_fleet_type_id.name",
-    # )
-    # def _compute_variant_fields(self):
-    #     res = super(ProductTimeline, self)._compute_variant_fields()
-    #     for line in self:
-    #         line.product_fleet_type_name = line.product_fleet_type_id.display_name
-    #     return res
+    @api.depends(
+        "product_id",
+        "product_id.license_plate",
+        "product_manu_id",
+        "product_manu_id.name",
+        "product_manu_type_id",
+        "product_manu_type_id.name",
+        "product_fleet_type_id",
+        "product_fleet_type_id.name",
+    )
+    def _compute_variant_fields(self):
+        res = super(ProductTimeline, self)._compute_variant_fields()
+        for line in self:
+            line.product_fleet_type_name = line.product_fleet_type_id.display_name
+        return res

@@ -55,35 +55,34 @@ class ProductProduct(models.Model):
         related="categ_id.show_init_regist",
     )
 
-    # ---need to add later ----------
-    # override
-    # @api.model
-    # def _name_search(
-    #     self, name, args=None, operator="ilike", limit=100, name_get_uid=None
-    # ):
-    #     res = super()._name_search(
-    #         name=name,
-    #         args=args,
-    #         operator=operator,
-    #         limit=limit,
-    #         name_get_uid=name_get_uid,
-    #     )
-    #     args = args or []
-    #     if name:
-    #         domain = [
-    #             "|",
-    #             ("instance_serial_number_id.name", operator, name),
-    #             ("license_plate", operator, name),
-    #         ]
-    #         record_ids = self._search(
-    #             expression.AND([domain, args]),
-    #             limit=limit,
-    #             access_rights_uid=name_get_uid,
-    #         )
-    #         if record_ids:
-    #             res2 = self.browse(record_ids).name_get()
-    #             return list(set(res + res2))
-    #     return res
+    # override from rental_product_instance
+    @api.model
+    def _name_search(
+        self, name, args=None, operator="ilike", limit=100, name_get_uid=None
+    ):
+        res = super()._name_search(
+            name=name,
+            args=args,
+            operator=operator,
+            limit=limit,
+            name_get_uid=name_get_uid,
+        )
+        args = args or []
+        if name:
+            domain = [
+                "|",
+                ("instance_serial_number_id.name", operator, name),
+                ("license_plate", operator, name),
+            ]
+            record_ids = self._search(
+                expression.AND([domain, args]),
+                limit=limit,
+                access_rights_uid=name_get_uid,
+            )
+            if record_ids:
+                res2 = self.browse(record_ids).name_get()
+                return list(set(res + res2))
+        return res
 
 
 class FleetType(models.Model):

@@ -51,7 +51,7 @@
             </field>
         </record>
 
-        <!-- For module: Rental Timeline -->
+        <!-- For module: rental_timeline_product_instance -->
         <record id="view_product_timeline_search_instance_fleet" model="ir.ui.view">
             <field name="name">product.timeline.search</field>
             <field name="model">product.timeline</field>

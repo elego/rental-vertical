@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-14 14:56+0000\n"
-"PO-Revision-Date: 2021-01-14 14:56+0000\n"
+"POT-Creation-Date: 2022-04-19 13:48+0000\n"
+"PO-Revision-Date: 2022-04-19 13:48+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,6 +17,7 @@ msgstr ""
 
 #. module: rental_timeline_product_instance
 #: model_terms:ir.ui.view,arch_db:rental_timeline_product_instance.product_instance_state_search_view
+#: model_terms:ir.ui.view,arch_db:rental_timeline_product_instance.view_product_timeline_search_instance_state
 #: selection:product.product,instance_state:0
 msgid "Available"
 msgstr "Verfügbar"
@@ -42,16 +43,6 @@ msgid "Maintenance"
 msgstr "Wartung"
 
 #. module: rental_timeline_product_instance
-#: model:ir.model.fields,field_description:rental_timeline_product_instance.field_product_timeline__product_instance_next_service_date
-msgid "Next Service"
-msgstr "Nächster Service"
-
-#. module: rental_timeline_product_instance
-#: model_terms:ir.ui.view,arch_db:rental_timeline_product_instance.view_product_timeline_timeline
-msgid "Next Service:"
-msgstr "Nächster Service:"
-
-#. module: rental_timeline_product_instance
 #: model:ir.model,name:rental_timeline_product_instance.model_product_product
 msgid "Product"
 msgstr "Produkt"
@@ -67,17 +58,13 @@ msgid "Product Instance Serial Number Name"
 msgstr ""
 
 #. module: rental_timeline_product_instance
-#: model:ir.model.fields,field_description:rental_timeline_product_instance.field_product_timeline__product_instance_state_formated
-msgid "Product Instance State Formated"
-msgstr ""
-
-#. module: rental_timeline_product_instance
 #: model:ir.model,name:rental_timeline_product_instance.model_product_timeline
 msgid "Product Timeline"
 msgstr "Produkt-Zeitachse"
 
 #. module: rental_timeline_product_instance
 #: model_terms:ir.ui.view,arch_db:rental_timeline_product_instance.product_instance_state_search_view
+#: model_terms:ir.ui.view,arch_db:rental_timeline_product_instance.view_product_timeline_search_instance_state
 #: selection:product.product,instance_state:0
 msgid "Rental"
 msgstr "Vermietung"
@@ -89,6 +76,7 @@ msgstr "Reparaturen"
 
 #. module: rental_timeline_product_instance
 #: model_terms:ir.ui.view,arch_db:rental_timeline_product_instance.product_instance_state_search_view
+#: model_terms:ir.ui.view,arch_db:rental_timeline_product_instance.view_product_timeline_search_instance_state
 #: selection:product.product,instance_state:0
 msgid "Reserved"
 msgstr "Reserviert"
@@ -105,17 +93,11 @@ msgstr "Seriennummer:"
 
 #. module: rental_timeline_product_instance
 #: model:ir.model.fields,field_description:rental_timeline_product_instance.field_product_product__instance_state
-#: model:ir.model.fields,field_description:rental_timeline_product_instance.field_product_timeline__product_instance_state
 msgid "State"
 msgstr "Status"
 
 #. module: rental_timeline_product_instance
-#: model_terms:ir.ui.view,arch_db:rental_timeline_product_instance.view_product_timeline_timeline
-msgid "State:"
-msgstr "Status:"
-
-#. module: rental_timeline_product_instance
-#: code:addons/rental_timeline_product_instance/models/product_timeline.py:73
+#: code:addons/rental_timeline_product_instance/models/product_timeline.py:57
 #, python-format
 msgid "You can not have 2 timelines that overlaps on the same day."
 msgstr "Aufträge dürfen in der Zeitachse zeitlich nicht überlappen."

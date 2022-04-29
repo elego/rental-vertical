@@ -26,7 +26,7 @@ In order to get vehicle related fields, open the product category and activate t
         "rental_timeline_product_instance",
     ],
     "data": [
-        # "security/ir.model.access.csv", need to add later
+        "security/ir.model.access.csv",
         "views/product_view.xml",
     ],
     "demo": [],
