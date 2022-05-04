@@ -1,7 +1,7 @@
 Rental Base
 ====================================================
 
-*This file has been generated on 2022-05-04-12-14-51. Changes to it will be overwritten.*
+*This file has been generated on 2022-05-04-12-55-06. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -44,7 +44,8 @@ Please also see the usage section of sale_rental module.
 Changelog
 ---------
 
-- 4ff94cf3 2022-05-04 12:09:50 +0200 wagner@elegosoft.com  (HEAD -> feature_2832_blp7_new_logos_v12, origin/feature_2832_blp7_new_logos_v12) add new rental logo (issue #3613, issue #4016)
+- 02eb49c8 2022-05-04 12:18:32 +0200 wagner@elegosoft.com  update doc (issue #4016)
+- 4ff94cf3 2022-05-04 12:09:50 +0200 wagner@elegosoft.com  add new rental logo (issue #3613, issue #4016)
 - 0a7d4741 2022-02-05 11:54:04 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/v12: addons-rental-vertical remotes/origin/v12 - d9593e161c7cf28c376467b1238dfce794b45fd3 humanilog-v12 one time integration of humanilog-v12 branches by humanilog_v12_daily_build-964
 - a285e95c 2021-12-29 11:56:47 +0100 cpatel@elegosoft.com  (origin/fix_4516_blp1295_rental_base_v12) [FIX] correction made when user update times on lines, unit tests added for it, (issue#4516)
 - 19d29957 2021-12-23 17:12:20 +0100 cpatel@elegosoft.com  [FIX] correct Update Times , when user want to change start and end date on rental order, (issue#4516)

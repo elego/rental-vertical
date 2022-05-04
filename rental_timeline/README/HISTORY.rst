@@ -2,7 +2,8 @@
 Changelog
 ---------
 
-- 4ff94cf3 2022-05-04 12:09:50 +0200 wagner@elegosoft.com  (HEAD -> feature_2832_blp7_new_logos_v12, origin/feature_2832_blp7_new_logos_v12) add new rental logo (issue #3613, issue #4016)
+- 02eb49c8 2022-05-04 12:18:32 +0200 wagner@elegosoft.com  update doc (issue #4016)
+- 4ff94cf3 2022-05-04 12:09:50 +0200 wagner@elegosoft.com  add new rental logo (issue #3613, issue #4016)
 - 1730e660 2022-04-14 15:09:43 +0200 cpatel@elegosoft.com  (origin/feature_4995_blp1379_refactor_fleet_extensions_v12) [IMP] refactore fleet and vehicle related fields,(issue#4955)
 - d2b67af6 2022-01-14 14:17:40 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_4100_blp1295_timeline-group-by-product-categories-or-partners-or-orders_v12: addons-rental-vertical remotes/origin/feature_4100_blp1295_timeline-group-by-product-categories-or-partners-or-orders_v12 - cb5ffd044719126fff8ba785721ff1e048e475ba refactor timeline_renderer
 - cb5ffd04 2021-12-29 18:36:55 +0100 khanh.bui@elegosoft.com  (origin/feature_4100_blp1295_timeline-group-by-product-categories-or-partners-or-orders_v12) refactor timeline_renderer

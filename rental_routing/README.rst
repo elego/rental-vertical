@@ -1,7 +1,7 @@
 Rental Routing
 ====================================================
 
-*This file has been generated on 2022-05-04-12-14-51. Changes to it will be overwritten.*
+*This file has been generated on 2022-05-04-12-55-06. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -35,7 +35,9 @@ TODO
 Changelog
 ---------
 
-- 4ff94cf3 2022-05-04 12:09:50 +0200 wagner@elegosoft.com  (HEAD -> feature_2832_blp7_new_logos_v12, origin/feature_2832_blp7_new_logos_v12) add new rental logo (issue #3613, issue #4016)
+- eee26e11 2022-05-04 12:20:20 +0200 wagner@elegosoft.com  (HEAD -> feature_2832_blp7_new_logos_v12, origin/feature_2832_blp7_new_logos_v12) add missing README.rst files (issue #4016)
+- 02eb49c8 2022-05-04 12:18:32 +0200 wagner@elegosoft.com  update doc (issue #4016)
+- 4ff94cf3 2022-05-04 12:09:50 +0200 wagner@elegosoft.com  add new rental logo (issue #3613, issue #4016)
 - 8da6a4bd 2022-02-09 14:03:45 +0100 yweng@elegosoft.com  (origin/feature_4650_blp1358_rental_routing_v12) [IMP] set partner_id for on side location (issue 4650)
 - fabfc5bc 2021-11-19 17:16:26 +0100 maria.sparenberg@elegosoft.com  (origin/feature_4561_blp1268_rental_routing_v12) issue #4561 format rental_routing and update German translations
 - 296b6193 2021-10-25 10:20:28 +0200 wagner@elegosoft.com  regenrate documentation (issue #4016)

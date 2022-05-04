@@ -1,7 +1,7 @@
 Rental Off-Day
 ====================================================
 
-*This file has been generated on 2022-05-04-12-14-51. Changes to it will be overwritten.*
+*This file has been generated on 2022-05-04-12-55-06. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -54,7 +54,8 @@ Create a rental order:
 Changelog
 ---------
 
-- 4ff94cf3 2022-05-04 12:09:50 +0200 wagner@elegosoft.com  (HEAD -> feature_2832_blp7_new_logos_v12, origin/feature_2832_blp7_new_logos_v12) add new rental logo (issue #3613, issue #4016)
+- 02eb49c8 2022-05-04 12:18:32 +0200 wagner@elegosoft.com  update doc (issue #4016)
+- 4ff94cf3 2022-05-04 12:09:50 +0200 wagner@elegosoft.com  add new rental logo (issue #3613, issue #4016)
 - 296b6193 2021-10-25 10:20:28 +0200 wagner@elegosoft.com  regenrate documentation (issue #4016)
 - ce77a323 2021-10-25 10:17:16 +0200 wagner@elegosoft.com  fix two syntax errors in documentation (issue #3339)
 - 996b4742 2021-10-25 10:15:33 +0200 wagner@elegosoft.com  fix two syntax errors in documentation (issue #3339)

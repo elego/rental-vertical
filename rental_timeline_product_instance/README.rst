@@ -1,7 +1,7 @@
 Rental Timeline Product Instance
 ====================================================
 
-*This file has been generated on 2022-05-04-12-14-51. Changes to it will be overwritten.*
+*This file has been generated on 2022-05-04-12-55-06. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -30,7 +30,8 @@ No further configuration is needed.
 Changelog
 ---------
 
-- 4ff94cf3 2022-05-04 12:09:50 +0200 wagner@elegosoft.com  (HEAD -> feature_2832_blp7_new_logos_v12, origin/feature_2832_blp7_new_logos_v12) add new rental logo (issue #3613, issue #4016)
+- 02eb49c8 2022-05-04 12:18:32 +0200 wagner@elegosoft.com  update doc (issue #4016)
+- 4ff94cf3 2022-05-04 12:09:50 +0200 wagner@elegosoft.com  add new rental logo (issue #3613, issue #4016)
 - 214cf6a2 2022-04-27 15:13:48 +0200 cpatel@elegosoft.com  (origin/feature_4995_blp1380_refactor_fleet_extensions_v12) [FIX] test errors due to field license_plate and correct remaining ref after refactoring, (issue#4995)
 - 1f13e294 2022-04-19 16:47:51 +0200 cpatel@elegosoft.com  [IMP] rental_timeline_product_instance : remove fields related to fleet and vehicle, update translation, (issue#4955)
 - 296b6193 2021-10-25 10:20:28 +0200 wagner@elegosoft.com  regenrate documentation (issue #4016)

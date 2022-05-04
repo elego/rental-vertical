@@ -2,7 +2,8 @@
 Changelog
 ---------
 
-- 4ff94cf3 2022-05-04 12:09:50 +0200 wagner@elegosoft.com  (HEAD -> feature_2832_blp7_new_logos_v12, origin/feature_2832_blp7_new_logos_v12) add new rental logo (issue #3613, issue #4016)
+- 02eb49c8 2022-05-04 12:18:32 +0200 wagner@elegosoft.com  update doc (issue #4016)
+- 4ff94cf3 2022-05-04 12:09:50 +0200 wagner@elegosoft.com  add new rental logo (issue #3613, issue #4016)
 - ebcb3b67 2021-11-04 19:18:27 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_3339_blp1254_fix_guitest_v12: addons-rental-vertical remotes/origin/feature_3339_blp1254_fix_guitest_v12 - fa2ff086b771c129533099f5f66e8b369da07d07 issue #3339 fix guitest in rental_pricelist
 - fa2ff086 2021-11-01 17:05:11 +0100 maria.sparenberg@elegosoft.com  (origin/feature_3339_blp1254_fix_guitest_v12) issue #3339 fix guitest in rental_pricelist
 - 296b6193 2021-10-25 10:20:28 +0200 wagner@elegosoft.com  regenrate documentation (issue #4016)

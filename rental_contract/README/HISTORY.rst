@@ -2,7 +2,8 @@
 Changelog
 ---------
 
-- 4ff94cf3 2022-05-04 12:09:50 +0200 wagner@elegosoft.com  (HEAD -> feature_2832_blp7_new_logos_v12, origin/feature_2832_blp7_new_logos_v12) add new rental logo (issue #3613, issue #4016)
+- 02eb49c8 2022-05-04 12:18:32 +0200 wagner@elegosoft.com  update doc (issue #4016)
+- 4ff94cf3 2022-05-04 12:09:50 +0200 wagner@elegosoft.com  add new rental logo (issue #3613, issue #4016)
 - 296b6193 2021-10-25 10:20:28 +0200 wagner@elegosoft.com  regenrate documentation (issue #4016)
 - 43b06373 2021-10-10 18:18:11 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_4447_blp1142_rental_product_variant_v12: addons-rental-vertical remotes/origin/feature_4447_blp1142_rental_product_variant_v12 - 35019a0969ffa6b2625ae89220590787266e85d7 [IMP] improve domain on smart buttons on Product.product form view, so inactivated product or related inactivated rental services also covered, (issue#4447)
 - 35019a09 2021-09-29 09:47:59 +0200 cpatel@elegosoft.com  (origin/feature_4447_blp1142_rental_product_variant_v12) [IMP] improve domain on smart buttons on Product.product form view, so inactivated product or related inactivated rental services also covered, (issue#4447)
