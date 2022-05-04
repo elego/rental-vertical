@@ -1,7 +1,7 @@
 Rental Routing
 ====================================================
 
-*This file has been generated on 2022-04-10-15-34-31. Changes to it will be overwritten.*
+*This file has been generated on 2022-05-04-12-21-41. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -35,6 +35,7 @@ TODO
 Changelog
 ---------
 
+- 8d191ff7 2022-04-10 15:41:16 +0200 wagner@elegosoft.com  add missing/lost documentation (issue #4516)
 - 4f834448 2022-03-23 12:22:21 +0100 cpatel@elegosoft.com  (origin/feature_4516_blp544_add_files_ported_from_v12_v14) [IMP] rental_return_product_qc tour correction, (issue#4516)
 - 279539a5 2022-03-14 10:48:31 +0100 cpatel@elegosoft.com  [IMP] correction,migration,fix unit test errors, (issue#4516)
 - 56a39959 2022-03-04 11:37:59 +0100 wagner@elegosoft.com  (feature_4516_blp544_add_files_ported_from_v12_v14) FIXME: comment-out rental procurement run (issue #4516)
