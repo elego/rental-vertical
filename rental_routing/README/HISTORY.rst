@@ -2,6 +2,10 @@
 Changelog
 ---------
 
+- 4ff94cf3 2022-05-04 12:09:50 +0200 wagner@elegosoft.com  (HEAD -> feature_2832_blp7_new_logos_v12, origin/feature_2832_blp7_new_logos_v12) add new rental logo (issue #3613, issue #4016)
+- 8da6a4bd 2022-02-09 14:03:45 +0100 yweng@elegosoft.com  (origin/feature_4650_blp1358_rental_routing_v12) [IMP] set partner_id for on side location (issue 4650)
+- fabfc5bc 2021-11-19 17:16:26 +0100 maria.sparenberg@elegosoft.com  (origin/feature_4561_blp1268_rental_routing_v12) issue #4561 format rental_routing and update German translations
+- 296b6193 2021-10-25 10:20:28 +0200 wagner@elegosoft.com  regenrate documentation (issue #4016)
 - 8b4d40c4 2021-09-23 09:19:24 +0200 wagner@elegosoft.com  regenerate doc (issue #4016)
 - 6ba4bcb9 2021-07-01 16:33:45 +0200 yweng@elegosoft.com  [IMP] implements Unittest for module rental_routing and rental_forward_shipment_plan
 - 5df1a414 2021-06-29 17:07:31 +0200 yweng@elegosoft.com  [FIX] rental_forward_shipment_plan (issue 4255)

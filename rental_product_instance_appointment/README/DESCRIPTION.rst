@@ -1,7 +1,7 @@
 Rental Product Instance Appointment
 ====================================================
 
-*This file has been generated on 2021-10-25-10-18-19. Changes to it will be overwritten.*
+*This file has been generated on 2022-05-04-12-14-51. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -17,6 +17,6 @@ create project tasks a defined time before the actual appointment date.
 
 You can distinguish between time dependent and usage dependent appointments.
 Time dependent appointments are due on a specific date.
-Usage dependent appointments are due if a specific condition is reached, 
+Usage dependent appointments are due if a specific condition is reached,
 like a certain mileage or amount of operating hours.
 

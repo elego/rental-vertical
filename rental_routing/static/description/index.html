@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
-<title>Sale Rental Routing</title>
+<title>Rental Routing</title>
 <style type="text/css">
 
 /*
@@ -360,20 +360,28 @@ ul.auto-toc {
 </style>
 </head>
 <body>
-<div class="document" id="sale-rental-routing">
-<h1 class="title">Sale Rental Routing</h1>
+<div class="document" id="rental-routing">
+<h1 class="title">Rental Routing</h1>
 
-<p><em>This file has been generated on 2021-10-25-10-18-19. Changes to it will be overwritten.</em></p>
+<p><em>This file has been generated on 2022-05-04-12-14-51. Changes to it will be overwritten.</em></p>
 <div class="section" id="summary">
 <h1>Summary</h1>
-<p>This module adds support for the management of transports of rental products.</p>
+<p>Rental Routing between Rentals</p>
 </div>
 <div class="section" id="description">
 <h1>Description</h1>
-<p>Rental products are deliverd from the rental_in location of the rental company
+<p>Rental products are delivered from the rental_in location of the rental company
 to a rental_out location at the renting customer.</p>
-<p>This module adds the following fields and views:</p>
-<p>TODO</p>
+<p>This module provides the opportunity to deliver the rental products directly from
+customer to customer. After creating a new rental order you can choose a previous
+rental as a source. That means, you do not need an outgoing delivery from your
+rental location but instead you do a transfer from one customer location to another
+customer location.
+Depending on the perspective you could also go to the &quot;old&quot; rental and start the
+routing there. Then you do not choose a previous rental as source but a following
+rental as destination. That means, you do not need an incoming delivery from your
+customer's location to your rental location before re-delivering it to the new customer.
+You just transfer the product from one customer location to another customer location.</p>
 </div>
 <div class="section" id="usage">
 <h1>Usage</h1>
@@ -382,6 +390,10 @@ to a rental_out location at the renting customer.</p>
 <div class="section" id="changelog">
 <h1>Changelog</h1>
 <ul class="simple">
+<li>4ff94cf3 2022-05-04 12:09:50 +0200 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  (HEAD -&gt; feature_2832_blp7_new_logos_v12, origin/feature_2832_blp7_new_logos_v12) add new rental logo (issue #3613, issue #4016)</li>
+<li>8da6a4bd 2022-02-09 14:03:45 +0100 <a class="reference external" href="mailto:yweng&#64;elegosoft.com">yweng&#64;elegosoft.com</a>  (origin/feature_4650_blp1358_rental_routing_v12) [IMP] set partner_id for on side location (issue 4650)</li>
+<li>fabfc5bc 2021-11-19 17:16:26 +0100 <a class="reference external" href="mailto:maria.sparenberg&#64;elegosoft.com">maria.sparenberg&#64;elegosoft.com</a>  (origin/feature_4561_blp1268_rental_routing_v12) issue #4561 format rental_routing and update German translations</li>
+<li>296b6193 2021-10-25 10:20:28 +0200 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  regenrate documentation (issue #4016)</li>
 <li>8b4d40c4 2021-09-23 09:19:24 +0200 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  regenerate doc (issue #4016)</li>
 <li>6ba4bcb9 2021-07-01 16:33:45 +0200 <a class="reference external" href="mailto:yweng&#64;elegosoft.com">yweng&#64;elegosoft.com</a>  [IMP] implements Unittest for module rental_routing and rental_forward_shipment_plan</li>
 <li>5df1a414 2021-06-29 17:07:31 +0200 <a class="reference external" href="mailto:yweng&#64;elegosoft.com">yweng&#64;elegosoft.com</a>  [FIX] rental_forward_shipment_plan (issue 4255)</li>

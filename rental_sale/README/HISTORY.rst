@@ -2,6 +2,8 @@
 Changelog
 ---------
 
+- 4ff94cf3 2022-05-04 12:09:50 +0200 wagner@elegosoft.com  (HEAD -> feature_2832_blp7_new_logos_v12, origin/feature_2832_blp7_new_logos_v12) add new rental logo (issue #3613, issue #4016)
+- 296b6193 2021-10-25 10:20:28 +0200 wagner@elegosoft.com  regenrate documentation (issue #4016)
 - 8b4d40c4 2021-09-23 09:19:24 +0200 wagner@elegosoft.com  regenerate doc (issue #4016)
 - dd988a2f 2021-06-09 12:42:47 +0200 wagner@elegosoft.com  update documentation (issue #3613)
 - d638ed95 2021-05-20 18:20:51 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/fix_4168_blp1050_rename_sale_rental_v12: addons-rental-vertical remotes/origin/fix_4168_blp1050_rename_sale_rental_v12 - db62236826dd7f75e7bdb5b2a345d049102e145c [IMP] improves function _run_rental_procurement of sale.order.line (issue 4168)
