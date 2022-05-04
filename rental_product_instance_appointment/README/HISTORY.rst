@@ -2,6 +2,10 @@
 Changelog
 ---------
 
+- 02eb49c8 2022-05-04 12:18:32 +0200 wagner@elegosoft.com  update doc (issue #4016)
+- 4ff94cf3 2022-05-04 12:09:50 +0200 wagner@elegosoft.com  add new rental logo (issue #3613, issue #4016)
+- fe0abaf8 2022-01-14 13:07:48 +0100 maria.sparenberg@elegosoft.com  issue #4552 fix dependency
+- 296b6193 2021-10-25 10:20:28 +0200 wagner@elegosoft.com  regenrate documentation (issue #4016)
 - 8b4d40c4 2021-09-23 09:19:24 +0200 wagner@elegosoft.com  regenerate doc (issue #4016)
 - a5ae96f3 2021-06-25 15:21:08 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_3924_blp1110_product_instance_appointment_v12: addons-rental-vertical remotes/origin/feature_3924_blp1110_product_instance_appointment_v12 - 05df4ef2660dcd9427b6fd8d8c7f9f3c499dbb8e [IMP] Add related fields of last apointment to show its state and color in tree view of appointments (issue 3924)
 - 05df4ef2 2021-06-24 12:06:02 +0200 yweng@elegosoft.com  (origin/feature_3924_blp1110_product_instance_appointment_v12, origin/feature_3924_blp1102_product_instance_appointment_v12) [IMP] Add related fields of last apointment to show its state and color in tree view of appointments (issue 3924)

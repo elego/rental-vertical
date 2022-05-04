@@ -1,7 +1,7 @@
 Rental Timeline Product Instance
 ====================================================
 
-*This file has been generated on 2021-10-25-10-18-19. Changes to it will be overwritten.*
+*This file has been generated on 2022-05-04-12-55-06. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -30,6 +30,11 @@ No further configuration is needed.
 Changelog
 ---------
 
+- 02eb49c8 2022-05-04 12:18:32 +0200 wagner@elegosoft.com  update doc (issue #4016)
+- 4ff94cf3 2022-05-04 12:09:50 +0200 wagner@elegosoft.com  add new rental logo (issue #3613, issue #4016)
+- 214cf6a2 2022-04-27 15:13:48 +0200 cpatel@elegosoft.com  (origin/feature_4995_blp1380_refactor_fleet_extensions_v12) [FIX] test errors due to field license_plate and correct remaining ref after refactoring, (issue#4995)
+- 1f13e294 2022-04-19 16:47:51 +0200 cpatel@elegosoft.com  [IMP] rental_timeline_product_instance : remove fields related to fleet and vehicle, update translation, (issue#4955)
+- 296b6193 2021-10-25 10:20:28 +0200 wagner@elegosoft.com  regenrate documentation (issue #4016)
 - 8b4d40c4 2021-09-23 09:19:24 +0200 wagner@elegosoft.com  regenerate doc (issue #4016)
 - 5fddc156 2021-06-25 15:21:12 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_4213_blp1110_timeline_filter_v12: addons-rental-vertical remotes/origin/feature_4213_blp1110_timeline_filter_v12 - cc3f88ac0f704ea56d61229ed238d9590b85f0db [IMP] add new field active for model product.timeline and implements the filter of it.
 - 6c3a7802 2021-06-22 20:38:48 +0200 yweng@elegosoft.com  [IMP] improves filter on field product_id for timeline (issue 4214)

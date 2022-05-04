@@ -2,6 +2,11 @@
 Changelog
 ---------
 
+- 02eb49c8 2022-05-04 12:18:32 +0200 wagner@elegosoft.com  update doc (issue #4016)
+- 4ff94cf3 2022-05-04 12:09:50 +0200 wagner@elegosoft.com  add new rental logo (issue #3613, issue #4016)
+- 51e3f29d 2022-04-19 16:43:14 +0200 cpatel@elegosoft.com  [IMP] rental_timeline_product_variant : remove fields related to fleet and vehicle, update translation, (issue#4955)
+- 1730e660 2022-04-14 15:09:43 +0200 cpatel@elegosoft.com  (origin/feature_4995_blp1379_refactor_fleet_extensions_v12) [IMP] refactore fleet and vehicle related fields,(issue#4955)
+- 296b6193 2021-10-25 10:20:28 +0200 wagner@elegosoft.com  regenrate documentation (issue #4016)
 - 8b4d40c4 2021-09-23 09:19:24 +0200 wagner@elegosoft.com  regenerate doc (issue #4016)
 - dd988a2f 2021-06-09 12:42:47 +0200 wagner@elegosoft.com  update documentation (issue #3613)
 - d4788ddb 2021-02-02 20:04:59 +0100 yweng@elegosoft.com  (origin/feature_3760_blp969_rental_timeline_v12) [IMP] black formatted (issue 3760)

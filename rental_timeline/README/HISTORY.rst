@@ -2,6 +2,20 @@
 Changelog
 ---------
 
+- 02eb49c8 2022-05-04 12:18:32 +0200 wagner@elegosoft.com  update doc (issue #4016)
+- 4ff94cf3 2022-05-04 12:09:50 +0200 wagner@elegosoft.com  add new rental logo (issue #3613, issue #4016)
+- 1730e660 2022-04-14 15:09:43 +0200 cpatel@elegosoft.com  (origin/feature_4995_blp1379_refactor_fleet_extensions_v12) [IMP] refactore fleet and vehicle related fields,(issue#4955)
+- d2b67af6 2022-01-14 14:17:40 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_4100_blp1295_timeline-group-by-product-categories-or-partners-or-orders_v12: addons-rental-vertical remotes/origin/feature_4100_blp1295_timeline-group-by-product-categories-or-partners-or-orders_v12 - cb5ffd044719126fff8ba785721ff1e048e475ba refactor timeline_renderer
+- cb5ffd04 2021-12-29 18:36:55 +0100 khanh.bui@elegosoft.com  (origin/feature_4100_blp1295_timeline-group-by-product-categories-or-partners-or-orders_v12) refactor timeline_renderer
+- 48f493cb 2021-12-29 16:32:51 +0100 khanh.bui@elegosoft.com  refactor code 1
+- e0851096 2021-12-29 14:39:45 +0100 khanh.bui@elegosoft.com  fix group by partner_id and order_name
+- abf059d7 2021-12-28 18:57:57 +0100 khanh.bui@elegosoft.com  fix group by order_name
+- a96d0ddd 2021-12-13 12:43:25 +0100 khanh.bui@elegosoft.com  (origin/wip_4100_product-groups-rental-timeline_v12) group by order_name
+- dad8b1a7 2021-12-11 00:19:44 +0100 khanh.bui@elegosoft.com  grouping by partner_id
+- aa6b2983 2021-12-08 11:07:23 +0100 khanh.bui@elegosoft.com  sorting product category in hierachy final
+- 57ee12cb 2021-12-03 17:23:42 +0100 khanh.bui@elegosoft.com  fix collapse and expand parent groups
+- 39c2ca9c 2021-11-30 15:19:23 +0100 khanh.bui@elegosoft.com  timeline by product_category_id
+- 296b6193 2021-10-25 10:20:28 +0200 wagner@elegosoft.com  regenrate documentation (issue #4016)
 - 43b06373 2021-10-10 18:18:11 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_4447_blp1142_rental_product_variant_v12: addons-rental-vertical remotes/origin/feature_4447_blp1142_rental_product_variant_v12 - 35019a0969ffa6b2625ae89220590787266e85d7 [IMP] improve domain on smart buttons on Product.product form view, so inactivated product or related inactivated rental services also covered, (issue#4447)
 - 35019a09 2021-09-29 09:47:59 +0200 cpatel@elegosoft.com  (origin/feature_4447_blp1142_rental_product_variant_v12) [IMP] improve domain on smart buttons on Product.product form view, so inactivated product or related inactivated rental services also covered, (issue#4447)
 - 8b4d40c4 2021-09-23 09:19:24 +0200 wagner@elegosoft.com  regenerate doc (issue #4016)
