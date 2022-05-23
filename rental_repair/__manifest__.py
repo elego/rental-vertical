@@ -10,7 +10,7 @@
     "author": "Odoo Community Association (OCA)/Elego Software Solutions GmbH",
     "depends": [
         "project",
-        "rental_base",
+        # "rental_base",
         "repair",
         "rental_purchase_order_type",
     ],

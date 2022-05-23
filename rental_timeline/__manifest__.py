@@ -19,7 +19,7 @@ Just install this module to add the rental timeline view to your system. No furt
     "depends": [
         "web_timeline",
         "rental_base",
-        "rental_product_variant",
+        # "rental_product_variant",
     ],
     "data": [
         "security/ir.model.access.csv",

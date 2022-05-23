@@ -24,7 +24,7 @@ No further configuration is needed.
     "depends": [
         "rental_pricelist",
         "sale_product_set",
-        "rental_base",
+        # "rental_base",
     ],
     "data": [
         "wizard/product_set_add.xml",
