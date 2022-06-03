@@ -49,9 +49,9 @@ Create a new shipment plan and purchase requests.
   - Create a shipment plan for this internal transfer, which is then linked in a smartbutton.
     """,
     "depends": [
-        "purchase",
+        # "purchase",
         "purchase_requisition",
-        "stock",
+        # "stock",
     ],
     "data": [
         "security/ir.model.access.csv",

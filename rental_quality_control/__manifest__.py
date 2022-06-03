@@ -14,6 +14,7 @@ Rental/Vendor/Delivery for the Vendors.""",
     "depends": [
         "sale_rental",
         "quality_control_stock",
+        "rental_base",
     ],
     "data": [
         "views/inspection_line_view.xml",

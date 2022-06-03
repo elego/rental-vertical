@@ -24,7 +24,10 @@ You just transfer the product from one customer location to another customer loc
     "usage": """
 TODO
     """,
-    "depends": ["rental_base"],
+    "depends": [
+        "rental_base",
+        "shipment_plan",
+        ],
     "data": [
         "wizards/sale_rental_route_view.xml",
         "views/view_order_form.xml",
