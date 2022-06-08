@@ -116,39 +116,39 @@ class RentalStockProductLine(models.Model):
         relation="out_move_rental_product_line_rel",
         column1="move_id",
         column2="line_id",
-        string="Moves (Out)",
+        string="Moves (In Field)",
     )
     in_move_ids = fields.Many2many(
         comodel_name="stock.move",
         relation="in_move_rental_product_line_rel",
         column1="move_id",
         column2="line_id",
-        string="Moves (In)",
+        string="Moves (Return)",
     )
     product_qty_out = fields.Float(
-        string="Initial Required Quantity (out)",
+        string="Initial Required Quantity (In Field)",
     )
     product_qty_in = fields.Float(
-        string="Initial Required Quantity (in)",
+        string="Initial Required Quantity (Return)",
     )
     routed_qty_out = fields.Float(
-        string="Routed Quantity (Out)",
+        string="Routed Quantity (In Field)",
     )
     routed_qty_in = fields.Float(
-        string="Routed Quantity (In)",
+        string="Routed Quantity (Return)",
     )
     reduced_qty_out = fields.Float(
-        string="Reduced Quantity (Out)",
+        string="Reduced Quantity (In Field)",
     )
     reduced_qty_in = fields.Float(
-        string="Reduced Quantity (In)",
+        string="Reduced Quantity (Return)",
     )
     total_qty_out = fields.Float(
-        string="Total Quantity (Out)",
+        string="Total Quantity (In Field)",
         compute="_compute_total_qty",
     )
     total_qty_in = fields.Float(
-        string="Total Quantity (In)",
+        string="Total Quantity (Return)",
         compute="_compute_total_qty",
     )
 
