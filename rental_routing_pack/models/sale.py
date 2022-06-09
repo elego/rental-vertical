@@ -115,47 +115,48 @@ class RentalStockProductLine(models.Model):
         relation="out_move_rental_product_line_rel",
         column1="move_id",
         column2="line_id",
-        string="Moves (In Field)",
+        string="Moves (Inbound)",
     )
     in_move_ids = fields.Many2many(
         comodel_name="stock.move",
         relation="in_move_rental_product_line_rel",
         column1="move_id",
         column2="line_id",
-        string="Moves (Return)",
+        string="Moves (Outbound)",
     )
     out_move_id = fields.Many2one(
         comodel_name="stock.move",
-        string="Moves (In Field)",
+        string="Origin Move (Inbound)",
     )
     in_move_id = fields.Many2one(
         comodel_name="stock.move",
-        string="Moves (Return)",
+        string="Origin Moves (Outbound)",
     )
     product_qty_out = fields.Float(
-        string="Initial Required Quantity (In Field)",
+        string="Initial Demand",
     )
     product_qty_in = fields.Float(
-        string="Initial Required Quantity (Return)",
+        string="Initial Demand (Outbound)",
+        help="Technical Field, Value of this field should always equal to product_qty_out"
     )
     routed_qty_out = fields.Float(
-        string="Routed Quantity (In Field)",
+        string="Routed (Inbound)",
     )
     routed_qty_in = fields.Float(
-        string="Routed Quantity (Return)",
+        string="Routed (Outbound)",
     )
     reduced_qty_out = fields.Float(
-        string="Reduced Quantity (In Field)",
+        string="Reduced (Inbound)",
     )
     reduced_qty_in = fields.Float(
-        string="Reduced Quantity (Return)",
+        string="Reduced (Outbound)",
     )
     total_qty_out = fields.Float(
-        string="Total Quantity (In Field)",
+        string="Total (Inbound)",
         compute="_compute_total_qty",
     )
     total_qty_in = fields.Float(
-        string="Total Quantity (Return)",
+        string="Total (Outbound)",
         compute="_compute_total_qty",
     )
 
