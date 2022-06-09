@@ -37,7 +37,7 @@ class RentalPackProductRouteLine(models.TransientModel):
         for rec in self:
             rec.avail_qty = 0
             if rec.product_line_id:
-                rec.avail_qty = rec.product_line_id.product_qty_in - rec.product_line_id.reduced_qty_in
+                rec.avail_qty = rec.product_line_id.total_qty_in - rec.product_line_id.routed_qty_in
 
 
 class RentalPackProductRoute(models.TransientModel):
@@ -108,7 +108,7 @@ class RentalPackProductRoute(models.TransientModel):
                         {
                             "parent_id": self.id,
                             "product_line_id": line.id,
-                            "qty": line.product_qty_in - line.reduced_qty_in,
+                            "qty": line.total_qty_in - line.routed_qty_in,
                         },
                     )
                 )

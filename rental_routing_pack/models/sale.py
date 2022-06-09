@@ -84,11 +84,9 @@ class SaleOrder(models.Model):
                         "product_qty_out": move.product_qty,
                         "product_qty_in": 0,
                         "out_move_ids": [(4, move.id, 0)],
+                        "out_move_id": move.id,
                         "in_move_ids": [],
                     }
-                else:
-                    line_dict[move.product_id.id]["out_move_ids"].append((4, move.id, 0))
-                    line_dict[move.product_id.id]["product_qty_out"] += move.product_qty
         for picking in in_pickings:
             for move in picking.move_ids_without_package:
                 if move.product_id.pack_ok \
@@ -96,6 +94,7 @@ class SaleOrder(models.Model):
                     continue
                 if move.product_id.id in line_dict:
                     line_dict[move.product_id.id]["in_move_ids"].append((4, move.id, 0))
+                    line_dict[move.product_id.id]["in_move_id"] = move.id
                     line_dict[move.product_id.id]["product_qty_in"] += move.product_qty
         for key, val in line_dict.items():
             new_line = rspl_obj.create(val)
@@ -123,6 +122,14 @@ class RentalStockProductLine(models.Model):
         relation="in_move_rental_product_line_rel",
         column1="move_id",
         column2="line_id",
+        string="Moves (Return)",
+    )
+    out_move_id = fields.Many2one(
+        comodel_name="stock.move",
+        string="Moves (In Field)",
+    )
+    in_move_id = fields.Many2one(
+        comodel_name="stock.move",
         string="Moves (Return)",
     )
     product_qty_out = fields.Float(
@@ -204,57 +211,43 @@ class RentalStockProductLine(models.Model):
         self.ensure_one()
         if forward_line.product_id == self.product_id:
             rounding = self.product_id.uom_id.rounding
-            in_moves = forward_line._get_origin_rental_moves("in")
-            out_moves = self._get_origin_rental_moves("out")
-            if not in_moves or not out_moves:
+            in_move = forward_line.in_move_id
+            out_move = self.out_move_id
+            if not in_move or not out_move:
                 raise exceptions.UserError(_("No found origin rental moves."))
-            location = in_moves[0].location_id
-            location_dest = out_moves[0].location_dest_id
+            location = in_move.location_id
+            location_dest = out_move.location_dest_id
 
             #split moves in in_moves of forward_line and assign the new_move to the given new picking
-            forward_qty = qty
-            for move in in_moves:
-                reset_qty = False
-                split_qty = 0
-                if (
-                    float_compare(
-                        move.product_qty,
-                        forward_qty,
-                        precision_rounding=rounding,
-                    )
-                    <= 0
-                ):
-                    forward_qty -= move.product_qty
-                    split_qty = move.product_qty
-                    move.product_uom_qty += 1
-                    reset_qty = True
-                else:
-                    split_qty = forward_qty
-                    forward_qty = 0
-                new_move_id = move.with_context(do_not_push_apply=True)._split(split_qty)
-                if reset_qty:
-                    move.product_uom_qty -= 1
-                new_move = self.env["stock.move"].browse(new_move_id)
-                new_move.write(
-                    {
-                        "location_id": location.id,
-                        "location_dest_id": location_dest.id,
-                        "group_id": out_moves[0].group_id.id,
-                        "picking_id": new_picking.id,
-                    }
+            reset_qty = False
+            if (
+                float_compare(
+                    in_move.product_qty,
+                    qty,
+                    precision_rounding=rounding,
                 )
-                #update referenced moves for current line and forward line
-                self.write({"out_move_ids": [(4, new_move.id, 0)]})
-                forward_line.write({"in_move_ids": [(4, new_move.id, 0)]})
-                if (
-                    float_compare(
-                        forward_qty,
-                        0,
-                        precision_rounding=rounding,
-                    )
-                    == 0
-                ):
-                    break
+                == 0
+            ):
+                in_move.product_uom_qty += 1
+                reset_qty = True
+            new_move_id = in_move.with_context(do_not_push_apply=True)._split(qty)
+            if reset_qty:
+                in_move.product_uom_qty -= 1
+            new_move = self.env["stock.move"].browse(new_move_id)
+            new_move.write(
+                {
+                    "location_id": location.id,
+                    "location_dest_id": location_dest.id,
+                    "group_id": out_move.group_id.id,
+                    "picking_id": new_picking.id,
+                    "rental_out_line_id": self.id,
+                    "rental_in_line_id": forward_line.id,
+                    "origin": "%s -> %s" %(forward_line.order_id.name, self.order_id.name),
+                }
+            )
+            #update referenced moves for current line and forward line
+            self.write({"out_move_ids": [(4, new_move.id, 0)]})
+            forward_line.write({"in_move_ids": [(4, new_move.id, 0)]})
             #update reduced_qty_in and routed_qty in forward line
             forward_line.reduced_qty_in += qty
             forward_line.routed_qty_in = forward_line._get_routed_qty("in")
@@ -282,30 +275,17 @@ class RentalStockProductLine(models.Model):
                     to_be_reduced_qty = self.product_qty_out - self.routed_qty_out
                     increase_qty = qty - to_be_reduced_qty
                 self.reduced_qty_out += to_be_reduced_qty
-                for move in out_moves:
-                    if (
-                        float_compare(
-                            move.product_uom_qty,
-                            to_be_reduced_qty,
-                            precision_rounding=rounding,
-                        )
-                        > 0
-                    ):
-                        move.product_uom_qty -= to_be_reduced_qty
-                        to_be_reduced_qty = 0
-                        break
-                    else:
-                        to_be_reduced_qty -= move.product_uom_qty
-                        move.product_uom_qty = 0
-                    if (
-                        float_compare(
-                            to_be_reduced_qty,
-                            0,
-                            precision_rounding=rounding,
-                        )
-                        == 0
-                    ):
-                        break
+                if (
+                    float_compare(
+                        out_move.product_uom_qty,
+                        to_be_reduced_qty,
+                        precision_rounding=rounding,
+                    )
+                    > 0
+                ):
+                    out_move.product_uom_qty -= to_be_reduced_qty
+                else:
+                    out_move.product_uom_qty = 0
             #Because of the forwarding of products. We send more products as expected.
             #So we have to increase qty of move for (rental in) in current line
             if (
@@ -316,11 +296,5 @@ class RentalStockProductLine(models.Model):
                 )
                 > 0
             ):
-                self.increase_rental_in_qty(increase_qty)
+                self.in_move_id.product_uom_qty += increase_qty
             self.routed_qty_out = self._get_routed_qty("out")
-
-    @api.multi
-    def increase_rental_in_qty(self, qty):
-        self.ensure_one()
-        in_moves = self._get_origin_rental_moves("in")
-        in_moves.product_uom_qty += qty
