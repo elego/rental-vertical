@@ -30,7 +30,7 @@
                         <tree decoration-danger="total_qty_out &lt; product_qty_out or total_qty_in &lt; product_qty_in">
                             <field name="product_id"/>
                             <field name="product_qty_out"/>
-                            <field name="product_qty_in"/>
+                            <field name="product_qty_in" invisible="1"/>
                             <field name="routed_qty_out"/>
                             <field name="routed_qty_in"/>
                             <field name="total_qty_out"/>
@@ -44,7 +44,7 @@
                                     <field name="total_qty_out"/>
                                 </group>
                                 <group>
-                                    <field name="product_qty_in"/>
+                                    <field name="product_qty_in" invisible="1"/>
                                     <field name="routed_qty_in"/>
                                     <field name="total_qty_in"/>
                                 </group>

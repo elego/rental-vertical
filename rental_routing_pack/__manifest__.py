@@ -22,8 +22,8 @@ No further configuration is needed.
     ],
     "data": [
         "security/ir.model.access.csv",
-        "views/sale_view.xml",
         "wizard/rental_pack_product_route_view.xml",
+        "views/sale_view.xml",
     ],
     "demo": [],
     "qweb": [],

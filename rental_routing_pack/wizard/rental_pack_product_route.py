@@ -16,17 +16,17 @@ class RentalPackProductRouteLine(models.TransientModel):
         string="Product Line",
         required=True,
     )
-
     product_id = fields.Many2one(
         comodel_name="product.product",
         string="Product",
         related="product_line_id.product_id",
     )
-
     qty = fields.Float(
         string="Quantity",
     )
-
+    required_qty = fields.Float(
+        string="Required Quantity",
+    )
     avail_qty = fields.Float(
         string="Available Quantity",
         compute="compute_avail_qty",
@@ -66,7 +66,6 @@ class RentalPackProductRoute(models.TransientModel):
     )
     lines = fields.Many2many(
         comodel_name="rental.pack.product.route.line",
-        #inverse_name="parent_id",
         string="Source Products",
     )
 
@@ -100,6 +99,11 @@ class RentalPackProductRoute(models.TransientModel):
     def onchange_source_order_id(self):
         lines = [(5, 0, 0)]
         for line in self.source_order_id.rental_stock_product_line_ids:
+            required_qty = 0
+            for dest_line in  self.order_id.rental_stock_product_line_ids:
+                if line.product_id.id == dest_line.product_id.id:
+                    required_qty = dest_line.out_move_id.product_uom_qty
+                    break
             if line.in_move_ids:
                 lines.append(
                     (
@@ -109,6 +113,7 @@ class RentalPackProductRoute(models.TransientModel):
                             "parent_id": self.id,
                             "product_line_id": line.id,
                             "qty": line.total_qty_in - line.routed_qty_in,
+                            "required_qty": required_qty,
                         },
                     )
                 )
@@ -146,6 +151,7 @@ class RentalPackProductRoute(models.TransientModel):
         new_picking = out_pickings[0].copy(
             {
                 "move_lines": [],
+                "origin": "%s -> %s" %(self.source_order_id.name, self.order_id.name),
                 "picking_type_id": self.order_id.warehouse_id.int_type_id.id,
                 "location_id": self.source_order_id.partner_shipping_id.rental_onsite_location_id.id,
                 "location_dest_id": self.order_id.partner_shipping_id.rental_onsite_location_id.id,
