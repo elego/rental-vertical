@@ -6,11 +6,13 @@
         <record id="product_category_form_view" model="ir.ui.view">
             <field name="name">product.category.form</field>
             <field name="model">product.category</field>
-            <field name="inherit_id" ref="rental_product_variant.product_category_form_view" />
+            <field name="inherit_id" ref="product.product_category_form_view" />
             <field name="arch" type="xml">
-                <group name="show_attrs" position="inside">
-                    <field name="show_instance_condition_type" />
-                </group>
+                <xpath expr="//sheet" position="inside">
+                    <group name="show_attrs" string="Product Attribute Extension">
+                        <field name="show_instance_condition_type" />
+                    </group>
+                </xpath>
             </field>
         </record>
 

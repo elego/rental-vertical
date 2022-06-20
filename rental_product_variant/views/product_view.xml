@@ -3,7 +3,7 @@
     <data>
 
         <!-- ProductCategory -->
-        <record id="product_category_form_view" model="ir.ui.view">
+        <!-- <record id="product_category_form_view" model="ir.ui.view">
             <field name="name">product.category.form</field>
             <field name="model">product.category</field>
             <field name="inherit_id" ref="product.product_category_form_view" />
@@ -14,7 +14,7 @@
                     </group>
                 </xpath>
             </field>
-        </record>
+        </record> -->
 
         <!-- ProductProduct -->
         <record id="product_normal_form_view" model="ir.ui.view">
@@ -37,13 +37,6 @@
                         type="object" icon="fa-money">
                         <field name="out_invoice_count" widget="statinfo" />
                     </button>
-                    <!--TODO delete button action_view_all_invoice-->
-                    <button class="oe_stat_button" name="action_view_all_invoice"
-                        invisible="1"
-                        type="object" icon="fa-money">
-                        <field name="in_invoice_count" widget="statinfo" />
-                        <field name="out_invoice_count" widget="statinfo" />
-                    </button>
                     <button class="oe_stat_button" name="action_view_all_purchase_order"
                         type="object" icon="fa-shopping-cart" attrs="{'invisible': [('purchase_ok', '=', False)]}">
                         <field name="po_count" widget="statinfo" />
@@ -55,18 +48,14 @@
                 </button>
                 <xpath expr="//field[@name='categ_id']" position="replace" />
                 <xpath expr="//field[@name='type']" position="after">
-                    <!-- <field name="fleet_type_id" /> -->
                     <field name="categ_id" />
                 </xpath>
                 <xpath expr="//field[@name='barcode']" position="before">
                     <field name="manu_id" />
                     <field name="manu_type_id" domain="[('manufacturer_id','=',manu_id)]" />
-                    <field name="show_product_identification_number" invisible="1" />
-                    <field name="product_identification_number" attrs="{'invisible': [('show_product_identification_number', '=', False)]}" />
+                    <!-- <field name="show_product_identification_number" invisible="1" /> -->
+                    <!-- <field name="product_identification_number" attrs="{'invisible': [('show_product_identification_number', '=', False)]}" /> -->
                     <field name="manu_year" />
-                </xpath>
-                <xpath expr="//field[@name='barcode']" position="after">
-                    <field name="qr_code" />
                 </xpath>
                 <xpath expr="//field[@name='description']/.." position="replace" />
                 <xpath expr="//notebook" position="inside">

@@ -21,6 +21,11 @@ class ProductCategory(models.Model):
         help="If checked, the initial registration is displayed "
         "in product form view.",
     )
+    show_product_identification_number = fields.Boolean(
+        string="Show Product Identification Number",
+        help="If checked, the product identification number "
+        "is displayed in product form view.",
+    )
 
 
 class ProductProduct(models.Model):
@@ -53,6 +58,10 @@ class ProductProduct(models.Model):
     show_init_regist = fields.Boolean(
         string="Show Initial Registration",
         related="categ_id.show_init_regist",
+    )
+    show_product_identification_number = fields.Boolean(
+        string="Show Product Identification Number",
+        related="categ_id.show_product_identification_number",
     )
 
     # override from rental_product_instance
