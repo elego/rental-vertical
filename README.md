@@ -48,7 +48,7 @@ Currently we have these modules to support rental business:
 * [rental_timeline_offday (Rental Timeline Offday)](rental_timeline_offday/README.rst): Extends the rental_timeline module to show the offday_number in the timeline popup.
 * [rental_timeline_product_instance (Rental Timeline Product Instance)](rental_timeline_product_instance/README.rst): Extends the rental_timeline module to show the product instance fields in the timeline product popup.
 * [rental_timeline_product_instance_appointment (Rental Timeline Product Instance Appointment)](rental_timeline_product_instance_appointment/README.rst): Extends the rental_timeline module to display an appointment icon in the mouse over if there is an appointment during the rental time.
-* [rental_timeline_product_variant (Rental Timeline Product Variant)](rental_timeline_product_variant/README.rst): Extends the rental_timeline module to show the product variant fields in the timeline product popup.
+* [rental_timeline_product_variant_manufacturer (Rental Timeline Product Variant)](rental_timeline_product_variant_manufacturer/README.rst): Extends the rental_timeline module to show the product variant fields in the timeline product popup.
 * [rental_timeline_repair (Rental Timeline Repair)](rental_timeline_repair/README.rst): extends the rental_timeline module to show the repair orders in the timeline.
 * [rental_timeline_transport (Rental Timeline Transport)](rental_timeline_transport/README.rst): extends the rental_timeline module to show the transport order fields in the timeline popup.
 * [rental_toll_collect (Rental Toll Collect)](rental_toll_collect/README.rst): Import a CSV file from Toll Collect and invoice the costs to customers.
