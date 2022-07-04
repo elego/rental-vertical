@@ -6,10 +6,10 @@ Rental Timeline Product Variant Fleet
 Summary
 -------
 
-Extends the rental_timeline_product_variant module to add fields.
+Extends the rental_timeline_product_variant_manufacturer module to add fields.
 
 Description
 -----------
 
-Extends the rental_timeline_product_variant module to add fields..
+Extends the rental_timeline_product_variant_manufacturer module to add fields..
 

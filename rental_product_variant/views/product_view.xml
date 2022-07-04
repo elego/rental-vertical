@@ -1,21 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-
-        <!-- ProductCategory -->
-        <record id="product_category_form_view" model="ir.ui.view">
-            <field name="name">product.category.form</field>
-            <field name="model">product.category</field>
-            <field name="inherit_id" ref="product.product_category_form_view" />
-            <field name="arch" type="xml">
-                <xpath expr="//sheet" position="inside">
-                    <group name="show_attrs" string="Product Attribute Extension">
-                        <field name="show_product_identification_number" />
-                    </group>
-                </xpath>
-            </field>
-        </record>
-
         <!-- ProductProduct -->
         <record id="product_normal_form_view" model="ir.ui.view">
             <field name="name">view.product.product.form</field>
@@ -37,13 +22,6 @@
                         type="object" icon="fa-money">
                         <field name="out_invoice_count" widget="statinfo" />
                     </button>
-                    <!--TODO delete button action_view_all_invoice-->
-                    <button class="oe_stat_button" name="action_view_all_invoice"
-                        invisible="1"
-                        type="object" icon="fa-money">
-                        <field name="in_invoice_count" widget="statinfo" />
-                        <field name="out_invoice_count" widget="statinfo" />
-                    </button>
                     <button class="oe_stat_button" name="action_view_all_purchase_order"
                         type="object" icon="fa-shopping-cart" attrs="{'invisible': [('purchase_ok', '=', False)]}">
                         <field name="po_count" widget="statinfo" />
@@ -55,18 +33,7 @@
                 </button>
                 <xpath expr="//field[@name='categ_id']" position="replace" />
                 <xpath expr="//field[@name='type']" position="after">
-                    <!-- <field name="fleet_type_id" /> -->
                     <field name="categ_id" />
-                </xpath>
-                <xpath expr="//field[@name='barcode']" position="before">
-                    <field name="manu_id" />
-                    <field name="manu_type_id" domain="[('manufacturer_id','=',manu_id)]" />
-                    <field name="show_product_identification_number" invisible="1" />
-                    <field name="product_identification_number" attrs="{'invisible': [('show_product_identification_number', '=', False)]}" />
-                    <field name="manu_year" />
-                </xpath>
-                <xpath expr="//field[@name='barcode']" position="after">
-                    <field name="qr_code" />
                 </xpath>
                 <xpath expr="//field[@name='description']/.." position="replace" />
                 <xpath expr="//notebook" position="inside">
@@ -109,112 +76,6 @@
                 </search>
             </field>
         </record>
-
-
-        <!-- ProductManufacturer -->
-        <record id="view_product_manufacturer_form" model="ir.ui.view">
-            <field name="name">product.manufacturer.form</field>
-            <field name="model">product.manufacturer</field>
-            <field name="arch" type="xml">
-                <form>
-                    <sheet>
-                        <group>
-                            <field name="name" />
-                            <field name="manufacturer_type_ids" />
-                        </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
-
-        <record id="view_product_manufacturer_tree" model="ir.ui.view">
-            <field name="name">product.manufacturer.tree</field>
-            <field name="model">product.manufacturer</field>
-            <field name="arch" type="xml">
-                <tree>
-                    <field name="name" />
-                </tree>
-            </field>
-        </record>
-
-        <record id="view_product_manufacturer_filter" model="ir.ui.view">
-            <field name="name">product.manufacturer.search</field>
-            <field name="model">product.manufacturer</field>
-            <field name="arch" type="xml">
-                <search>
-                    <field name="name" />
-                </search>
-             </field>
-        </record>
-
-        <record id="action_product_manufacturer" model="ir.actions.act_window">
-            <field name="name">Manufacturer</field>
-            <field name="res_model">product.manufacturer</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-        </record>
-
-        <!-- ProductManufacturerType -->
-        <record id="view_product_manufacturer_type_form" model="ir.ui.view">
-            <field name="name">product.manufacturer.type.form</field>
-            <field name="model">product.manufacturer.type</field>
-            <field name="arch" type="xml">
-                <form>
-                    <sheet>
-                        <group col="4">
-                            <field name="name" />
-                            <field name="manufacturer_id" />
-                        </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
-
-        <record id="view_product_manufacturer_type_tree" model="ir.ui.view">
-            <field name="name">product.manufacturer.type.tree</field>
-            <field name="model">product.manufacturer.type</field>
-            <field name="arch" type="xml">
-                <tree>
-                    <field name="name" />
-                    <field name="manufacturer_id" />
-                </tree>
-            </field>
-        </record>
-
-        <record id="view_product_manufacturer_type_filter" model="ir.ui.view">
-            <field name="name">product.manufacturer.type.search</field>
-            <field name="model">product.manufacturer.type</field>
-            <field name="arch" type="xml">
-                <search>
-                    <field name="name" />
-                    <field name="manufacturer_id" />
-                </search>
-             </field>
-        </record>
-
-        <record id="action_product_manufacturer_type" model="ir.actions.act_window">
-            <field name="name">Manufacturer Type</field>
-            <field name="res_model">product.manufacturer.type</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-        </record>
-
-        <menuitem action="action_product_manufacturer"
-            id="menu_product_manufacturer" parent="stock.menu_stock_inventory_control"
-            sequence="13" />
-        <menuitem action="action_product_manufacturer_type"
-            id="menu_product_manufacturer_type" parent="stock.menu_stock_inventory_control"
-            sequence="13" />
-
-        <!-- Menu in Rentals -->
-        <menuitem action="action_product_manufacturer"
-            id="menu_product_manufacturer"
-            parent="rental_base.menu_config_products"
-            sequence="10" />
-        <menuitem action="action_product_manufacturer_type"
-            id="menu_product_manufacturer_type"
-            parent="rental_base.menu_config_products"
-            sequence="15" />
 
     </data>
 </odoo>

@@ -1,0 +1,105 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* rental_product_variant_manufacturer
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-06-21 07:32+0000\n"
+"PO-Revision-Date: 2022-06-21 07:32+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: rental_product_variant_manufacturer
+#: model:ir.model.fields,field_description:rental_product_variant_manufacturer.field_product_manufacturer__create_uid
+#: model:ir.model.fields,field_description:rental_product_variant_manufacturer.field_product_manufacturer_type__create_uid
+msgid "Created by"
+msgstr "Erstellt von"
+
+#. module: rental_product_variant_manufacturer
+#: model:ir.model.fields,field_description:rental_product_variant_manufacturer.field_product_manufacturer__create_date
+#: model:ir.model.fields,field_description:rental_product_variant_manufacturer.field_product_manufacturer_type__create_date
+msgid "Created on"
+msgstr "Erstellt am"
+
+#. module: rental_product_variant_manufacturer
+#: model:ir.model.fields,field_description:rental_product_variant_manufacturer.field_product_manufacturer__display_name
+#: model:ir.model.fields,field_description:rental_product_variant_manufacturer.field_product_manufacturer_type__display_name
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: rental_product_variant_manufacturer
+#: model:ir.model.fields,field_description:rental_product_variant_manufacturer.field_product_manufacturer__id
+#: model:ir.model.fields,field_description:rental_product_variant_manufacturer.field_product_manufacturer_type__id
+msgid "ID"
+msgstr ""
+
+#. module: rental_product_variant_manufacturer
+#: model:ir.model.fields,field_description:rental_product_variant_manufacturer.field_product_manufacturer____last_update
+#: model:ir.model.fields,field_description:rental_product_variant_manufacturer.field_product_manufacturer_type____last_update
+msgid "Last Modified on"
+msgstr "Zuletzt geändert am"
+
+#. module: rental_product_variant_manufacturer
+#: model:ir.model.fields,field_description:rental_product_variant_manufacturer.field_product_manufacturer__write_uid
+#: model:ir.model.fields,field_description:rental_product_variant_manufacturer.field_product_manufacturer_type__write_uid
+msgid "Last Updated by"
+msgstr "Zuletzt aktualisiert durch"
+
+#. module: rental_product_variant_manufacturer
+#: model:ir.model.fields,field_description:rental_product_variant_manufacturer.field_product_manufacturer__write_date
+#: model:ir.model.fields,field_description:rental_product_variant_manufacturer.field_product_manufacturer_type__write_date
+msgid "Last Updated on"
+msgstr "Zuletzt aktualisiert am"
+
+#. module: rental_product_variant_manufacturer
+#: model:ir.actions.act_window,name:rental_product_variant_manufacturer.action_product_manufacturer
+#: model:ir.model.fields,field_description:rental_product_variant_manufacturer.field_product_manufacturer_type__manufacturer_id
+#: model:ir.model.fields,field_description:rental_product_variant_manufacturer.field_product_product__manu_id
+#: model:ir.ui.menu,name:rental_product_variant_manufacturer.menu_product_manufacturer
+msgid "Manufacturer"
+msgstr "Hersteller"
+
+#. module: rental_product_variant_manufacturer
+#: model:ir.actions.act_window,name:rental_product_variant_manufacturer.action_product_manufacturer_type
+#: model:ir.model.fields,field_description:rental_product_variant_manufacturer.field_product_manufacturer__manufacturer_type_ids
+#: model:ir.ui.menu,name:rental_product_variant_manufacturer.menu_product_manufacturer_type
+msgid "Manufacturer Type"
+msgstr "Herstellertyp"
+
+#. module: rental_product_variant_manufacturer
+#: model:ir.model.fields,field_description:rental_product_variant_manufacturer.field_product_manufacturer__name
+#: model:ir.model.fields,field_description:rental_product_variant_manufacturer.field_product_manufacturer_type__name
+msgid "Name"
+msgstr "Bezeichnung"
+
+#. module: rental_product_variant_manufacturer
+#: model:ir.model,name:rental_product_variant_manufacturer.model_product_product
+msgid "Product"
+msgstr "Produkt"
+
+#. module: rental_product_variant_manufacturer
+#: model:ir.model,name:rental_product_variant_manufacturer.model_product_manufacturer
+msgid "Product Manufacturer"
+msgstr "Produkthersteller"
+
+#. module: rental_product_variant_manufacturer
+#: model:ir.model,name:rental_product_variant_manufacturer.model_product_manufacturer_type
+msgid "Product Manufacturer Type"
+msgstr "Herstellertyp des Produktes"
+
+#. module: rental_product_variant_manufacturer
+#: model:ir.model.fields,field_description:rental_product_variant_manufacturer.field_product_product__manu_type_id
+msgid "Type"
+msgstr "Art"
+
+#. module: rental_product_variant_manufacturer
+#: model:ir.model.fields,field_description:rental_product_variant_manufacturer.field_product_product__manu_year
+msgid "Year of Manufacture"
+msgstr "Baujahr"
+
