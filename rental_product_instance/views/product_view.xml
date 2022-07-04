@@ -152,5 +152,12 @@
             </field>
         </record>
 
+        <record id="menu_config_rental_product_tag" model="ir.ui.menu">
+            <field name="name">Product Tags</field>
+            <field name="parent_id" ref="rental_base.menu_config_products"/>
+            <field name="sequence" eval="21"/>
+            <field name="action" ref="product_template_tags.product_template_tag_act_window"/>
+        </record>
+
     </data>
 </odoo>
