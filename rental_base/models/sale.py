@@ -21,6 +21,12 @@ class SaleOrder(models.Model):
         readonly=False,
     )
 
+    is_rental_order = fields.Boolean(
+        string="Is Rental Order",
+        compute="_compute_is_rental_order",
+        store=True,
+    )
+
     @api.depends("order_line.start_date")
     def _compute_default_start_date(self):
         for order in self:
@@ -52,6 +58,19 @@ class SaleOrder(models.Model):
                         "default_end_date": max(dates),
                     }
                 )
+
+    @api.depends("type_id")
+    def _compute_is_rental_order(self):
+        try:
+            rental_type = self.env['ir.model.data'].sudo().get_object('rental_base', 'rental_sale_type')
+        except ValueError:
+            for order in self:
+                order.is_rental_order = False
+            return
+        for order in self:
+            order.is_rental_order = False
+            if order.type_id.id == rental_type.id:
+                order.is_rental_order = True
 
     @api.multi
     def unlink(self):
@@ -148,6 +167,24 @@ class SaleOrderLine(models.Model):
                             line.sell_rental_id.rental_qty,
                         )
                     )
+    #use this field to show the widget radio for field rental
+    order_type = fields.Selection(string='Order Type',
+        selection=[('normal', 'Normal'), ('rental', 'Rental')],
+        compute='_compute_order_type', inverse='_write_order_type')
+
+    @api.depends('rental')
+    def _compute_order_type(self):
+        for rec in self:
+            rec.order_type = 'rental' if rec.rental else 'normal'
+
+    def _write_order_type(self):
+        for rec in self:
+            rec.rental = rec.order_type == 'rental'
+
+    @api.onchange('order_type')
+    def _onchange_order_type(self):
+        self.rental = self.order_type == 'rental'
+
 
     @api.multi
     def _prepare_invoice_line(self, qty):
