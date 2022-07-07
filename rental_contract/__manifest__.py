@@ -46,9 +46,9 @@ This module is automatically installed when all of the following modules are ins
     "depends": [
         "contract",
         "product_contract",
-        "product_analytic",
-        "sale_start_end_dates",
-        "sale_rental",
+        # "product_analytic",
+        # "sale_start_end_dates",
+        # "sale_rental",
         "rental_base",
     ],
     "data": [

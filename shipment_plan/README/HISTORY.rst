@@ -2,7 +2,10 @@
 Changelog
 ---------
 
-- ce77a323 2021-10-25 10:17:16 +0200 wagner@elegosoft.com  (HEAD -> v12) fix two syntax errors in documentation (issue #3339)
+- 7d6ce349 2021-11-19 16:42:38 +0100 yweng@elegosoft.com  (origin/feature_4349_blp1268_shipment_plan_v12) [FIX] singleton error (issue 4561)
+- 5b3b3302 2021-11-16 12:59:13 +0100 yweng@elegosoft.com  [IMP] add option required for field partner_id of create.transport.request and create.sale.transport.request (issue 4349)
+- 296b6193 2021-10-25 10:20:28 +0200 wagner@elegosoft.com  regenrate documentation (issue #4016)
+- ce77a323 2021-10-25 10:17:16 +0200 wagner@elegosoft.com  fix two syntax errors in documentation (issue #3339)
 - 996b4742 2021-10-25 10:15:33 +0200 wagner@elegosoft.com  fix two syntax errors in documentation (issue #3339)
 - dca4ac1b 2021-10-10 18:18:10 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_4433_blp1142_rental_base_v12: addons-rental-vertical remotes/origin/feature_4433_blp1142_rental_base_v12 - 75791881da0ea6e70c408ec75042fe9635fc9a49 issue #4433 change view id to match parent id
 - 8b4d40c4 2021-09-23 09:19:24 +0200 wagner@elegosoft.com  regenerate doc (issue #4016)

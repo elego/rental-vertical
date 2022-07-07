@@ -458,7 +458,7 @@ msgstr ""
 
 #. module: rental_repair
 #: model:ir.model.fields,field_description:rental_repair.field_project_task__vendor_repair_ids
-#: model_terms:ir.ui.view,arch_db:rental_repair.view_task_form2
+#: model_terms:ir.ui.view,arch_db:rental_repair.view_task_form3
 msgid "Vendor Repair Orders"
 msgstr ""
 

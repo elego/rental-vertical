@@ -49,11 +49,13 @@ The csv should contain the following columns:
     "category": "Rental",
     "author": "Odoo Community Association (OCA) / elego Software Solutions GmbH",
     "depends": [
-        "product",
-        "account",
-        "product_analytic",
+        # "product",
+        # "account",
+        # "product_analytic",
         "rental_base",
-        "rental_product_instance",
+        # "rental_product_instance",
+        "rental_pricelist",
+        "rental_product_variant_fleet",
     ],
     "data": [
         "security/ir.model.access.csv",

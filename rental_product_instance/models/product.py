@@ -165,12 +165,9 @@ class ProductProduct(models.Model):
             name_get_uid=name_get_uid,
         )
         args = args or []
+        # need to remove license_plate later from domain
         if name:
-            domain = [
-                "|",
-                ("instance_serial_number_id.name", operator, name),
-                ("license_plate", operator, name),
-            ]
+            domain = [("instance_serial_number_id.name", operator, name)]
             record_ids = self._search(
                 expression.AND([domain, args]),
                 limit=limit,

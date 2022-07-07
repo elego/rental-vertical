@@ -8,7 +8,6 @@
             <field name="product_id" position="after">
                 <field name="product_manu_name" />
                 <field name="product_manu_type_name" />
-                <field name="product_fleet_type_name" />
             </field>
             <tr t-if="record.product_categ_name" position="before">
                 <tr t-if="record.product_manu_name">
@@ -18,14 +17,6 @@
                 <tr t-if="record.product_manu_type_name">
                     <td>Type:</td>
                     <td t-esc="record.product_manu_type_name" />
-                </tr>
-                <tr t-if="record.product_fleet_type_name">
-                    <td>Fleet Type:</td>
-                    <td t-esc="record.product_fleet_type_name" />
-                </tr>
-                <tr t-if="record.product_license_plate">
-                    <td>License Plate:</td>
-                    <td t-esc="record.product_license_plate" />
                 </tr>
             </tr>
         </field>

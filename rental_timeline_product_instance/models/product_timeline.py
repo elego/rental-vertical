@@ -6,11 +6,6 @@ from odoo import api, exceptions, fields, models, _
 class ProductTimeline(models.Model):
     _inherit = "product.timeline"
 
-    product_instance_next_service_date = fields.Date(
-        related="product_id.instance_next_service_date",
-        store=True,
-    )
-
     product_instance_current_location_id = fields.Many2one(
         related="product_id.instance_current_location_id",
         store=True,

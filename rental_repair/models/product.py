@@ -42,26 +42,20 @@ class ProductProduct(models.Model):
     @api.multi
     def action_view_project_task(self):
         self.ensure_one()
-        res_model = "project.task"
         helpdesk = self.env.ref("rental_repair.project_project_helpdesk")
         record_ids = self.task_ids.ids
-        tree_view_id = self.env.ref("rental_repair.view_project_task_tree").id
-        form_view_id = self.env.ref("project.view_task_form2").id
-        kanban_view_id = self.env.ref("project.view_task_kanban").id
         action_context = {
             "default_product_id": self.id,
             "default_project_id": helpdesk.id,
         }
-        return {
-            "type": "ir.actions.act_window",
+        action = self.env.ref("rental_repair.action_project_helpdesk_tasks").read()[0]
+        action['name'] = _("Tickets")
+        action.update({
             "name": _("Tickets"),
-            "target": "current",
-            "view_mode": "kanban,tree,form",
-            "view_ids": [kanban_view_id, tree_view_id, form_view_id],
-            "res_model": res_model,
             "context": action_context,
             "domain": "[('id','in',[" + ",".join(map(str, record_ids)) + "])]",
-        }
+        })
+        return action
 
     @api.multi
     def action_view_repair_history(self):

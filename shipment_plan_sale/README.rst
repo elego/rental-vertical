@@ -1,7 +1,7 @@
 Shipment Management Sale
 ====================================================
 
-*This file has been generated on 2021-10-25-10-18-19. Changes to it will be overwritten.*
+*This file has been generated on 2022-05-04-12-55-06. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -42,6 +42,19 @@ Create a sale order for a product that needs transportation.
 Changelog
 ---------
 
+- a035624c 2021-11-26 17:49:24 +0100 yweng@elegosoft.com  (origin/feature_4353_blp1290_shipment_plan_v12) [IMP] extract function _prepare_cost_line() from action_create_trans_cost() of sale.order (issue 4553)
+- fb728eef 2021-11-26 17:07:06 +0100 yweng@elegosoft.com  [IMP] improves wizard create.sale.trans.request (issue 4353)
+- 131292b3 2021-11-22 12:32:15 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_4349_blp1268_shipment_plan_v12: addons-rental-vertical remotes/origin/feature_4349_blp1268_shipment_plan_v12 - 7d6ce349c66ef7eb68bea5c612f2428ab93abb4d [FIX] singleton error (issue 4561)
+- 5b3b3302 2021-11-16 12:59:13 +0100 yweng@elegosoft.com  [IMP] add option required for field partner_id of create.transport.request and create.sale.transport.request (issue 4349)
+- 830d8fa6 2021-11-05 13:35:28 +0100 wagner@elegosoft.com  Revert "fix: add missing noupdate for shipment settings (issue #3339)"
+- 4086b646 2021-11-05 13:35:16 +0100 wagner@elegosoft.com  Revert "fix syntax for shipment settings (issue #3339)"
+- a60b7214 2021-11-05 13:05:49 +0100 wagner@elegosoft.com  fix syntax for shipment settings (issue #3339)
+- 22e4d7b5 2021-11-05 12:22:34 +0100 wagner@elegosoft.com  Merge remote-tracking branch 'origin/fix_4258_blp1268_shipment_plan_v12' into v12
+- 0461a604 2021-11-05 12:20:14 +0100 wagner@elegosoft.com  fix: add missing noupdate for shipment settings (issue #3339)
+- 6466c3f4 2021-11-05 12:18:42 +0100 yweng@elegosoft.com  (origin/fix_4258_blp1268_shipment_plan_v12) [FIX] add noupdate=1 for auto res_config_settings
+- 842e4978 2021-11-04 19:18:28 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_4349_blp1254_shipment_plan_v12: addons-rental-vertical remotes/origin/feature_4349_blp1254_shipment_plan_v12 - 18939f75589e41bcae95ed51ddc7be729dd9fdaa [IMP] add option required for field 'multi' of create.transport.request (issue 4349)
+- 18939f75 2021-11-04 13:38:26 +0100 yweng@elegosoft.com  (origin/feature_4349_blp1254_shipment_plan_v12) [IMP] add option required for field 'multi' of create.transport.request (issue 4349)
+- 296b6193 2021-10-25 10:20:28 +0200 wagner@elegosoft.com  regenrate documentation (issue #4016)
 - dca4ac1b 2021-10-10 18:18:10 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_4433_blp1142_rental_base_v12: addons-rental-vertical remotes/origin/feature_4433_blp1142_rental_base_v12 - 75791881da0ea6e70c408ec75042fe9635fc9a49 issue #4433 change view id to match parent id
 - 8b4d40c4 2021-09-23 09:19:24 +0200 wagner@elegosoft.com  regenerate doc (issue #4016)
 - 8d9bae9c 2021-09-16 19:14:49 +0200 yweng@elegosoft.com  (origin/feature_4258_blp1142_shipment_plan_v12) [IMP] Update translations for module shipment_plan and shipment_plan_sale
