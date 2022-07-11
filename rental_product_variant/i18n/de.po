@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-19 13:42+0000\n"
-"PO-Revision-Date: 2022-04-19 13:42+0000\n"
+"POT-Creation-Date: 2022-06-21 07:36+0000\n"
+"PO-Revision-Date: 2022-06-21 07:36+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,13 +21,7 @@ msgid "Additional Information"
 msgstr "Weitere Informationen"
 
 #. module: rental_product_variant
-#: code:addons/rental_product_variant/models/product.py:211
-#, python-format
-msgid "All Invoices"
-msgstr "Alle Rechnungen"
-
-#. module: rental_product_variant
-#: code:addons/rental_product_variant/models/product.py:180
+#: code:addons/rental_product_variant/models/product.py:174
 #, python-format
 msgid "All Purchase Orders"
 msgstr "Alle Einkaufsbestellungen"
@@ -66,11 +60,6 @@ msgid "Fleet Type"
 msgstr "Flottentyp"
 
 #. module: rental_product_variant
-#: model:ir.model.fields,field_description:rental_product_variant.field_product_product__further_ref
-msgid "Further Reference"
-msgstr "Weitere Referenz"
-
-#. module: rental_product_variant
 #: model:ir.model.fields,field_description:rental_product_variant.field_product_manufacturer__id
 #: model:ir.model.fields,field_description:rental_product_variant.field_product_manufacturer_type__id
 msgid "ID"
@@ -93,11 +82,6 @@ msgid "Internal Notes"
 msgstr "Interne Notizen"
 
 #. module: rental_product_variant
-#: model:ir.model.fields,field_description:rental_product_variant.field_product_product__invoice_count
-msgid "Invoices"
-msgstr "Rechnungen"
-
-#. module: rental_product_variant
 #: model:ir.model.fields,field_description:rental_product_variant.field_product_manufacturer____last_update
 #: model:ir.model.fields,field_description:rental_product_variant.field_product_manufacturer_type____last_update
 msgid "Last Modified on"
@@ -116,17 +100,13 @@ msgid "Last Updated on"
 msgstr "Zuletzt aktualisiert am"
 
 #. module: rental_product_variant
-#: model:ir.actions.act_window,name:rental_product_variant.action_product_manufacturer
 #: model:ir.model.fields,field_description:rental_product_variant.field_product_manufacturer_type__manufacturer_id
 #: model:ir.model.fields,field_description:rental_product_variant.field_product_product__manu_id
-#: model:ir.ui.menu,name:rental_product_variant.menu_product_manufacturer
 msgid "Manufacturer"
 msgstr "Hersteller"
 
 #. module: rental_product_variant
-#: model:ir.actions.act_window,name:rental_product_variant.action_product_manufacturer_type
 #: model:ir.model.fields,field_description:rental_product_variant.field_product_manufacturer__manufacturer_type_ids
-#: model:ir.ui.menu,name:rental_product_variant.menu_product_manufacturer_type
 msgid "Manufacturer Type"
 msgstr "Herstellertyp"
 
@@ -145,11 +125,6 @@ msgstr "Ausg.R."
 #: model:ir.model,name:rental_product_variant.model_product_product
 msgid "Product"
 msgstr "Produkt"
-
-#. module: rental_product_variant
-#: model_terms:ir.ui.view,arch_db:rental_product_variant.product_category_form_view
-msgid "Product Attribute Extension"
-msgstr "Erweiterung der Produktattribute"
 
 #. module: rental_product_variant
 #: model:ir.model,name:rental_product_variant.model_product_category
@@ -175,11 +150,6 @@ msgstr "Herstellertyp des Produktes"
 #: model:ir.model.fields,field_description:rental_product_variant.field_product_product__po_count
 msgid "Purchase"
 msgstr "Einkauf"
-
-#. module: rental_product_variant
-#: model:ir.model.fields,field_description:rental_product_variant.field_product_product__qr_code
-msgid "QR-Code"
-msgstr "QR-Code"
 
 #. module: rental_product_variant
 #: model:ir.model.fields,field_description:rental_product_variant.field_product_product__rental_count
@@ -255,7 +225,6 @@ msgstr "Dieser Hinweis dient nur internen Zwecken."
 
 #. module: rental_product_variant
 #: model:ir.model.fields,field_description:rental_product_variant.field_product_product__manu_type_id
-#: model_terms:ir.ui.view,arch_db:rental_product_variant.view_account_invoice_filter
 #: model_terms:ir.ui.view,arch_db:rental_product_variant.view_purchase_order_filter
 msgid "Type"
 msgstr "Typ"

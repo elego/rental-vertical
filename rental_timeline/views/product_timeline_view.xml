@@ -123,7 +123,7 @@
                <search string="Timeline">
                     <field name="product_id"
                         string="Product"
-                        filter_domain="['|', '|', ('product_id','ilike', self), ('product_id.product_identification_number', 'ilike', self), ('product_id.default_code', 'ilike', self)]"
+                        filter_domain="['|', ('product_id','ilike', self), ('product_id.default_code', 'ilike', self)]"
                     />
                     <field name="order_name" />
                     <field name="partner_id" />

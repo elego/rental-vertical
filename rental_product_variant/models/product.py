@@ -6,6 +6,7 @@ from odoo import api, fields, models, _
 class ProductCategory(models.Model):
     _inherit = "product.category"
 
+    # ---need to remove below field
     show_product_identification_number = fields.Boolean(
         string="Show Product Identification Number",
         help="If checked, the product identification number "
@@ -20,12 +21,7 @@ class ProductProduct(models.Model):
         string="Additional Information",
         translate=True,
     )
-    further_ref = fields.Char(
-        string="Further Reference",
-    )
-    qr_code = fields.Char(
-        string="QR-Code",
-    )
+    # ---need to remove below three fields
     manu_year = fields.Char(
         string="Year of Manufacture",
     )
@@ -40,6 +36,7 @@ class ProductProduct(models.Model):
     )
 
     # Category special fields
+    # ---need to remove below two fields
     product_identification_number = fields.Char(
         string="Product Identification Number (PIN)",
     )
@@ -61,9 +58,6 @@ class ProductProduct(models.Model):
     )
 
     # Smartbutton Counts
-    # TODO Delete field in next Baseline
-    invoice_count = fields.Integer("Invoices")
-
     in_invoice_count = fields.Integer(
         compute="_compute_invoice_count",
         string="In Inv.",
@@ -201,23 +195,6 @@ class ProductProduct(models.Model):
         return action
 
     @api.multi
-    def action_view_all_invoice(self):
-        self.ensure_one()
-        record_ids = self._get_invoice_ids(inv_types=["in_invoice", "out_invoice"])
-        tree_view_id = self.env.ref("account.invoice_tree").id
-        form_view_id = self.env.ref("account.invoice_form").id
-        return {
-            "type": "ir.actions.act_window",
-            "name": _("All Invoices"),
-            "target": "current",
-            "view_mode": "tree,form",
-            "view_ids": [tree_view_id, form_view_id],
-            "res_model": "account.invoice",
-            "domain": "[('id','in',[" + ",".join(map(str, record_ids)) + "])]",
-            "context": "{'search_default_group_by_type': 1}",
-        }
-
-    @api.multi
     def _compute_invoice_count(self):
         for rec in self:
             rec.in_invoice_count = len(rec._get_invoice_ids(inv_types=["in_invoice"]))
@@ -238,7 +215,7 @@ class ProductProduct(models.Model):
         for rec in self:
             rec.po_count = len(rec._get_purchase_order_ids())
 
-
+# ---need to remove below class
 class ProductManufacturer(models.Model):
     _name = "product.manufacturer"
     _description = "Product Manufacturer"
@@ -251,7 +228,7 @@ class ProductManufacturer(models.Model):
         inverse_name="manufacturer_id",
     )
 
-
+# ---need to remove below class
 class ProductManufacturerType(models.Model):
     _name = "product.manufacturer.type"
     _description = "Product Manufacturer Type"
