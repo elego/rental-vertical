@@ -31,8 +31,6 @@
             <field name="manu_year">2018</field>
             <field name="barcode">011500</field>
             <field name="description"></field>
-            <field name="further_ref">01100</field>
-            <field name="qr_code">02200</field>
             <field name="vehicle_number">VOLVO RT01531</field>
             <field name="license_plate">BNA 1531</field>
             <field name="init_regist">2018-05-01</field>
@@ -107,8 +105,6 @@
             <field name="manu_year">2018</field>
             <field name="barcode">011600</field>
             <field name="description"></field>
-            <field name="further_ref">01200</field>
-            <field name="qr_code">02300</field>
             <field name="vehicle_number">CAT RT01532</field>
             <field name="license_plate">BNA 1532</field>
             <field name="init_regist">2018-05-01</field>
@@ -155,8 +151,6 @@
             <field name="manu_year">2018</field>
             <field name="barcode">011700</field>
             <field name="description"></field>
-            <field name="further_ref">01300</field>
-            <field name="qr_code">02400</field>
             <field name="vehicle_number">CAT RT01533</field>
             <field name="license_plate">BNA 1533</field>
             <field name="init_regist">2018-05-01</field>
@@ -204,8 +198,6 @@
             <field name="manu_year">2018</field>
             <field name="barcode">011800</field>
             <field name="description"></field>
-            <field name="further_ref">01400</field>
-            <field name="qr_code">02500</field>
             <field name="vehicle_number">VOLVO RT01534</field>
             <field name="license_plate">BNA 1534</field>
             <field name="init_regist">2018-05-01</field>
@@ -252,8 +244,6 @@
             <field name="manu_year">2018</field>
             <field name="barcode">011900</field>
             <field name="description"></field>
-            <field name="further_ref">01500</field>
-            <field name="qr_code">02600</field>
             <field name="vehicle_number">VOLVO RT01535</field>
             <field name="license_plate">BNA 1535</field>
             <field name="init_regist">2018-05-01</field>

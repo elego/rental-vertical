@@ -3,12 +3,14 @@
     <data>
 
         <!-- ProductCategory -->
+        <!-- From module: rental_product_instance -->
         <record id="product_category_form_view" model="ir.ui.view">
             <field name="name">product.category.form</field>
             <field name="model">product.category</field>
-            <field name="inherit_id" ref="rental_product_variant.product_category_form_view" />
+            <field name="inherit_id" ref="rental_product_instance.product_category_form_view" />
             <field name="arch" type="xml">
                 <group name="show_attrs" position="inside">
+                    <field name="show_product_identification_number" />
                     <field name="show_vehicle_number" />
                     <field name="show_license_plate" />
                     <field name="show_init_regist" />
@@ -26,6 +28,8 @@
                     <field name="fleet_type_id" />
                 </xpath>
                 <xpath expr="//field[@name='barcode']" position="before">
+                    <field name="show_product_identification_number" invisible="1" />
+                    <field name="product_identification_number" attrs="{'invisible': [('show_product_identification_number', '=', False)]}" />
                     <field name="show_vehicle_number" invisible="1" />
                     <field name="show_license_plate" invisible="1" />
                     <field name="show_init_regist" invisible="1" />

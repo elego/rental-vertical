@@ -1,7 +1,7 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
 {
-    "name": "Rental Timeline Product Variant",
+    "name": "Rental Timeline Product Variant Manufacturer",
     "summary": "Extends the rental_timeline module to show the product variant fields in the timeline product popup.",
     "version": "12.0.1.0.0",
     "category": "Rental",
