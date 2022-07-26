@@ -1,7 +1,7 @@
 Rental Product Variant Fleet
 ====================================================
 
-*This file has been generated on 2022-05-04-12-55-06. Changes to it will be overwritten.*
+*This file has been generated on 2022-07-26-13-09-49. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -31,7 +31,9 @@ In order to get vehicle related fields, open the product category and activate t
 Changelog
 ---------
 
-- eee26e11 2022-05-04 12:20:20 +0200 wagner@elegosoft.com  (HEAD -> feature_2832_blp7_new_logos_v12, origin/feature_2832_blp7_new_logos_v12) add missing README.rst files (issue #4016)
+- 3e36d7bd 2022-06-20 16:50:34 +0200 cpatel@elegosoft.com  [IMP] refactor rental modules to isolate fleet and vehicle related fields, (issue#4955)
+- 1e549e87 2022-05-04 12:56:56 +0200 wagner@elegosoft.com  (origin/feature_2832_blp7_new_logos_v12, feature_2832_blp7_new_logos_v12) update doc (issue #3613, issue #4016)
+- eee26e11 2022-05-04 12:20:20 +0200 wagner@elegosoft.com  add missing README.rst files (issue #4016)
 - 02eb49c8 2022-05-04 12:18:32 +0200 wagner@elegosoft.com  update doc (issue #4016)
 - 4ff94cf3 2022-05-04 12:09:50 +0200 wagner@elegosoft.com  add new rental logo (issue #3613, issue #4016)
 - 214cf6a2 2022-04-27 15:13:48 +0200 cpatel@elegosoft.com  (origin/feature_4995_blp1380_refactor_fleet_extensions_v12) [FIX] test errors due to field license_plate and correct remaining ref after refactoring, (issue#4995)

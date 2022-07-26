@@ -1,7 +1,7 @@
 Rental Timeline
 ====================================================
 
-*This file has been generated on 2022-05-04-12-55-06. Changes to it will be overwritten.*
+*This file has been generated on 2022-07-26-13-09-49. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -27,6 +27,9 @@ Just install this module to add the rental timeline view to your system. No furt
 Changelog
 ---------
 
+- 3e36d7bd 2022-06-20 16:50:34 +0200 cpatel@elegosoft.com  [IMP] refactor rental modules to isolate fleet and vehicle related fields, (issue#4955)
+- 2d6ba4d8 2022-05-23 12:38:59 +0200 cpatel@elegosoft.com  [IMP] refactor the dependencies in rental modules, (issue#4955)
+- 1e549e87 2022-05-04 12:56:56 +0200 wagner@elegosoft.com  (origin/feature_2832_blp7_new_logos_v12, feature_2832_blp7_new_logos_v12) update doc (issue #3613, issue #4016)
 - 02eb49c8 2022-05-04 12:18:32 +0200 wagner@elegosoft.com  update doc (issue #4016)
 - 4ff94cf3 2022-05-04 12:09:50 +0200 wagner@elegosoft.com  add new rental logo (issue #3613, issue #4016)
 - 1730e660 2022-04-14 15:09:43 +0200 cpatel@elegosoft.com  (origin/feature_4995_blp1379_refactor_fleet_extensions_v12) [IMP] refactore fleet and vehicle related fields,(issue#4955)
