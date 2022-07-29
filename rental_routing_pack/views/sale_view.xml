@@ -59,4 +59,23 @@
             </notebook>
         </field>
     </record>
+
+    <!-- disable routing action in module rental_routing -->
+    <record id="view_order_form_routing_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.routing.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="rental_routing.view_order_form_inherit"/>
+        <field name="arch" type="xml">
+            <field name="can_forward_rental" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+
+            <field name="forward_rental_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <button name="%(rental_routing.action_sale_rental_route)d" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </button>
+        </field>
+    </record>
 </odoo>
