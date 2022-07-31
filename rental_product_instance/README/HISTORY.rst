@@ -2,6 +2,13 @@
 Changelog
 ---------
 
+- 4b388153 2022-07-04 15:46:20 +0200 wagner@elegosoft.com  (origin/feature_5057_blp1387_template_tags_v12, feature_5057_blp1387_template_tags_v12) Merge remote-tracking branch 'origin/feature_4955_blp1387_refactor_fleet_extensions_v12' into feature_5057_blp1387_template_tags_v12
+- a99ec9b3 2022-07-04 12:03:51 +0200 yweng@elegosoft.com  [IMP] add menu to config product template tags (issue #5057)
+- 7bbc1e5b 2022-07-01 19:45:44 +0200 yweng@elegosoft.com  [IMP] show field tag_ids of product.template in views of product.product (issue #5057)
+- d111b89c 2022-06-21 09:51:33 +0200 cpatel@elegosoft.com  [IMP] improve translation to modules rental_product_instance,rental_product_variant, (issue#4955)
+- b6652fbd 2022-06-21 09:43:52 +0200 cpatel@elegosoft.com  [IMP][ADD] refactor code for fields manu_id,manu_type_id,manu_year, add new module rental_product_variant_manufacturer for it, (issue#4955)
+- 3e36d7bd 2022-06-20 16:50:34 +0200 cpatel@elegosoft.com  [IMP] refactor rental modules to isolate fleet and vehicle related fields, (issue#4955)
+- 1e549e87 2022-05-04 12:56:56 +0200 wagner@elegosoft.com  (origin/feature_2832_blp7_new_logos_v12, feature_2832_blp7_new_logos_v12) update doc (issue #3613, issue #4016)
 - 02eb49c8 2022-05-04 12:18:32 +0200 wagner@elegosoft.com  update doc (issue #4016)
 - 4ff94cf3 2022-05-04 12:09:50 +0200 wagner@elegosoft.com  add new rental logo (issue #3613, issue #4016)
 - 214cf6a2 2022-04-27 15:13:48 +0200 cpatel@elegosoft.com  (origin/feature_4995_blp1380_refactor_fleet_extensions_v12) [FIX] test errors due to field license_plate and correct remaining ref after refactoring, (issue#4995)

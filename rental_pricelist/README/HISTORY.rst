@@ -2,6 +2,10 @@
 Changelog
 ---------
 
+- 8c252fe3 2022-07-05 11:31:44 +0200 chandnip445@gmail.com  (origin/wip_fix_conflict_cpatel_yweng_v12) [FIX] conflicts from cpatel and yweng
+- 9b388b37 2022-06-10 14:27:18 +0200 yweng@elegosoft.com  (origin/feature_4670_blp1038_rental_product_pack_routing_v12) [IMP] add field rental_service_copy_image for res.company (issue #4972)
+- 931c91ee 2022-05-17 15:34:14 +0200 yweng@elegosoft.com  (origin/feature_4972_blp1031_rental_pricelist_v12) [IMP] Rental UX Improvements (issue #4972)
+- 1e549e87 2022-05-04 12:56:56 +0200 wagner@elegosoft.com  (origin/feature_2832_blp7_new_logos_v12, feature_2832_blp7_new_logos_v12) update doc (issue #3613, issue #4016)
 - 02eb49c8 2022-05-04 12:18:32 +0200 wagner@elegosoft.com  update doc (issue #4016)
 - 4ff94cf3 2022-05-04 12:09:50 +0200 wagner@elegosoft.com  add new rental logo (issue #3613, issue #4016)
 - ebcb3b67 2021-11-04 19:18:27 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_3339_blp1254_fix_guitest_v12: addons-rental-vertical remotes/origin/feature_3339_blp1254_fix_guitest_v12 - fa2ff086b771c129533099f5f66e8b369da07d07 issue #3339 fix guitest in rental_pricelist

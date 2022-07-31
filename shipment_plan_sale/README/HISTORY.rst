@@ -2,6 +2,7 @@
 Changelog
 ---------
 
+- 1e549e87 2022-05-04 12:56:56 +0200 wagner@elegosoft.com  (origin/feature_2832_blp7_new_logos_v12, feature_2832_blp7_new_logos_v12) update doc (issue #3613, issue #4016)
 - a035624c 2021-11-26 17:49:24 +0100 yweng@elegosoft.com  (origin/feature_4353_blp1290_shipment_plan_v12) [IMP] extract function _prepare_cost_line() from action_create_trans_cost() of sale.order (issue 4553)
 - fb728eef 2021-11-26 17:07:06 +0100 yweng@elegosoft.com  [IMP] improves wizard create.sale.trans.request (issue 4353)
 - 131292b3 2021-11-22 12:32:15 +0000 jenkins-ci@elegosoft.com  [MERGE] remotes/origin/feature_4349_blp1268_shipment_plan_v12: addons-rental-vertical remotes/origin/feature_4349_blp1268_shipment_plan_v12 - 7d6ce349c66ef7eb68bea5c612f2428ab93abb4d [FIX] singleton error (issue 4561)

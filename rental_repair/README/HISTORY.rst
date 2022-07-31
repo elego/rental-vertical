@@ -2,6 +2,8 @@
 Changelog
 ---------
 
+- 2d6ba4d8 2022-05-23 12:38:59 +0200 cpatel@elegosoft.com  [IMP] refactor the dependencies in rental modules, (issue#4955)
+- 1e549e87 2022-05-04 12:56:56 +0200 wagner@elegosoft.com  (origin/feature_2832_blp7_new_logos_v12, feature_2832_blp7_new_logos_v12) update doc (issue #3613, issue #4016)
 - 02eb49c8 2022-05-04 12:18:32 +0200 wagner@elegosoft.com  update doc (issue #4016)
 - 4ff94cf3 2022-05-04 12:09:50 +0200 wagner@elegosoft.com  add new rental logo (issue #3613, issue #4016)
 - 121411f2 2022-03-18 13:41:24 +0100 yweng@elegosoft.com  (origin/fix_4764_blp1371_rental_repair_v12) [IMP] use form view of tasks for helpdesk ticket (issue 4764)

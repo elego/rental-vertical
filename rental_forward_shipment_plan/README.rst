@@ -1,7 +1,7 @@
 Rental Forward Shipment Plan
 ====================================================
 
-*This file has been generated on 2022-05-04-12-55-06. Changes to it will be overwritten.*
+*This file has been generated on 2022-07-26-13-09-49. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -31,7 +31,8 @@ This module is automatically installed when all of the following modules are ins
 Changelog
 ---------
 
-- eee26e11 2022-05-04 12:20:20 +0200 wagner@elegosoft.com  (HEAD -> feature_2832_blp7_new_logos_v12, origin/feature_2832_blp7_new_logos_v12) add missing README.rst files (issue #4016)
+- 1e549e87 2022-05-04 12:56:56 +0200 wagner@elegosoft.com  (origin/feature_2832_blp7_new_logos_v12, feature_2832_blp7_new_logos_v12) update doc (issue #3613, issue #4016)
+- eee26e11 2022-05-04 12:20:20 +0200 wagner@elegosoft.com  add missing README.rst files (issue #4016)
 - 02eb49c8 2022-05-04 12:18:32 +0200 wagner@elegosoft.com  update doc (issue #4016)
 - 4ff94cf3 2022-05-04 12:09:50 +0200 wagner@elegosoft.com  add new rental logo (issue #3613, issue #4016)
 - fb728eef 2021-11-26 17:07:06 +0100 yweng@elegosoft.com  [IMP] improves wizard create.sale.trans.request (issue 4353)

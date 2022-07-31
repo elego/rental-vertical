@@ -1,7 +1,7 @@
 Rental Pricelist (Interval)
 ====================================================
 
-*This file has been generated on 2022-05-04-12-55-06. Changes to it will be overwritten.*
+*This file has been generated on 2022-07-26-13-09-49. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -53,9 +53,10 @@ To use this module, you need to:
 Changelog
 ---------
 
+- 1e549e87 2022-05-04 12:56:56 +0200 wagner@elegosoft.com  (origin/feature_2832_blp7_new_logos_v12, feature_2832_blp7_new_logos_v12) update doc (issue #3613, issue #4016)
 - 02eb49c8 2022-05-04 12:18:32 +0200 wagner@elegosoft.com  update doc (issue #4016)
 - 4ff94cf3 2022-05-04 12:09:50 +0200 wagner@elegosoft.com  add new rental logo (issue #3613, issue #4016)
-- 65629885 2022-04-19 18:07:10 +0200 wagner@elegosoft.com  (origin/v12, v12) generate doc
+- 65629885 2022-04-19 18:07:10 +0200 wagner@elegosoft.com  generate doc
 - 296b6193 2021-10-25 10:20:28 +0200 wagner@elegosoft.com  regenrate documentation (issue #4016)
 - 39845816 2021-10-21 14:15:20 +0200 yweng@elegosoft.com  (origin/feature_4436_blp1250_unittest_rental_check_availability_v12) [IMP] update translations and manifest of module rental_pricelist_interval and rental_check_availability (issue 4436)
 - d8665dd9 2021-10-19 12:26:31 +0200 yweng@elegosoft.com  [IMP] Add Unittest for module rental_check_availability and adjust Unittest of rental_pricelist and rental_pricelist_interval (issue 4436)
