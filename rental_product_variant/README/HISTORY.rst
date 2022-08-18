@@ -2,6 +2,10 @@
 Changelog
 ---------
 
+- d111b89c 2022-06-21 09:51:33 +0200 cpatel@elegosoft.com  [IMP] improve translation to modules rental_product_instance,rental_product_variant, (issue#4955)
+- b6652fbd 2022-06-21 09:43:52 +0200 cpatel@elegosoft.com  [IMP][ADD] refactor code for fields manu_id,manu_type_id,manu_year, add new module rental_product_variant_manufacturer for it, (issue#4955)
+- 3e36d7bd 2022-06-20 16:50:34 +0200 cpatel@elegosoft.com  [IMP] refactor rental modules to isolate fleet and vehicle related fields, (issue#4955)
+- 1e549e87 2022-05-04 12:56:56 +0200 wagner@elegosoft.com  (origin/feature_2832_blp7_new_logos_v12, feature_2832_blp7_new_logos_v12) update doc (issue #3613, issue #4016)
 - 02eb49c8 2022-05-04 12:18:32 +0200 wagner@elegosoft.com  update doc (issue #4016)
 - 4ff94cf3 2022-05-04 12:09:50 +0200 wagner@elegosoft.com  add new rental logo (issue #3613, issue #4016)
 - 2bdfb687 2022-04-19 16:38:24 +0200 cpatel@elegosoft.com  [IMP] rental_product_variant : remove fields related to fleet and vehicle, update translation, (issue#4955)
