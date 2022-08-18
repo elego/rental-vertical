@@ -23,12 +23,19 @@ Just install this module to add the rental timeline view to your system. No furt
     ],
     "data": [
         "security/ir.model.access.csv",
-        "views/assets.xml",
         "views/product_timeline_view.xml",
         "views/product_view.xml",
     ],
     "demo": [],
-    "qweb": [],
+    "assets": {
+        'web.assets_backend': [
+            "/rental_timeline/static/src/scss/rental_timeline.scss",
+            "/rental_timeline/static/src/js/Popup.js",
+            "/rental_timeline/static/src/js/timeline_renderer.js",
+            "/rental_timeline/static/src/js/timeline_controller.js",
+            "/rental_timeline/static/src/js/timeline_view.js",
+        ],
+    },
     "application": False,
     "license": "AGPL-3",
 }
