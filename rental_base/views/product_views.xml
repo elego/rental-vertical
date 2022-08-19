@@ -11,9 +11,6 @@
                         <label for="rental"/>
                     </div>
                 </xpath>
-                <xpath expr="//page[@name='sales']" position="attributes">
-                    <attribute name="attrs">{'invisible': [('sale_ok','=',False), ('rental','=',False)]}</attribute>
-                </xpath>
             </field>
         </record>
 

@@ -6,7 +6,6 @@ from odoo import models, api
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-
     @api.multi
     def action_confirm(self):
         res = super(SaleOrder, self).action_confirm()
@@ -19,7 +18,17 @@ class SaleOrder(models.Model):
             )
             for picking in out_pickings:
                 for move in picking.move_ids_without_package:
-                    move._create_pack_products()
+                    if move.product_id and move.product_id.pack_ok:
+                        for line in move.product_id.pack_line_ids:
+                            qty = move.product_uom_qty * line.quantity
+                            new_move = move.copy(
+                                {
+                                    "product_id": line.product_id.id,
+                                    "product_uom_qty": qty,
+                                    "rental_pack_move_id": move.id,
+                                    "picking_id": move.picking_id.id,
+                                }
+                            )
             out_pickings.action_confirm()
             in_pickings.action_confirm()
         return res
