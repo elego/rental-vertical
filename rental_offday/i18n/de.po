@@ -202,7 +202,7 @@ msgstr ""
 #. module: rental_offday
 #: model:ir.model.fields.selection,name:rental_offday.selection__sale_order_line__fixed_offday_type__weekend
 msgid "Weekend"
-msgstr ""
+msgstr "Wochenende"
 
 #. module: rental_offday
 #: code:addons/rental_offday/models/sale.py:0
@@ -226,4 +226,4 @@ msgstr "Der Standtag \"%s\" wurde schon hinzugefügt."
 #. module: rental_offday
 #: model:ir.model.fields.selection,name:rental_offday.selection__sale_order_line__fixed_offday_type__none
 msgid "none"
-msgstr ""
+msgstr "Keine"

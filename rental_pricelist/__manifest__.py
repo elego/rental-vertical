@@ -4,15 +4,10 @@
     "name": "Rental Pricelist",
     "summary": "Enables the user to define different rental prices with "
     "time uom (Month, Day and Hour).",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "category": "Rental",
     "author": "elego Software Solutions GmbH, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/vertical-rental",
-    "description": """
-Rental prices are usually scaled prices based on a time unit, typically day, sometimes months or hour.
-This modules integrates the standard Odoo pricelists into rental use cases and allows the user an
-easy way to specify the prices in a product tab as well as to use all the enhanced pricelist features.
-""",
     "depends": [
         "rental_base",
     ],
