@@ -1,7 +1,7 @@
 Rental Timeline
 ====================================================
 
-*This file has been generated on 2022-04-10-15-34-31. Changes to it will be overwritten.*
+*This file has been generated on 2022-05-04-12-21-41. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -27,6 +27,7 @@ Just install this module to add the rental timeline view to your system. No furt
 Changelog
 ---------
 
+- 8d191ff7 2022-04-10 15:41:16 +0200 wagner@elegosoft.com  add missing/lost documentation (issue #4516)
 - b99848b4 2022-03-30 17:36:22 +0200 wagner@elegosoft.com  add missing libraries from Khanh (issue #4516)
 - d0c85919 2022-03-30 17:31:16 +0200 wagner@elegosoft.com  Revert "fix js library paths for timeline (issue #4516)"
 - dbf03820 2022-03-30 17:07:48 +0200 wagner@elegosoft.com  fix js library paths for timeline (issue #4516)

@@ -1,7 +1,7 @@
 Rental Product Insurance
 ====================================================
 
-*This file has been generated on 2022-04-10-15-34-31. Changes to it will be overwritten.*
+*This file has been generated on 2022-05-04-12-21-41. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -28,5 +28,8 @@ Usage
 Changelog
 ---------
 
+- 5171feab 2022-04-18 14:45:33 +0000 jenkins-ci@elegosoft.com  (HEAD -> feature_3890_blp50_new_logos_and_doc_v14, tag: daily_rental-ce-demo-v14_v14_rental_ce_demo_v14_quick_daily_build-28, tag: daily_rental-ce-demo-v14_v14_rental_ce_demo_v14_quick_daily_build-27, tag: daily_rental-ce-demo-v14_v14_rental_ce_demo_v14_daily_build-50, tag: bp_rental_v14_integration-ceqp-40, tag: bp_rental_v14_integration-cedqp-39, tag: bp_rental_v14_integration-cedqp-37, tag: bp_rental_v14_integration-cedqp-36, tag: bp_rental_v14_integration-cedqp-35, tag: bp_rental_v14_integration-cedqp-34, tag: bp_rental_v14_integration-cedqp-31, tag: bp_rental_v14_integration-cedqp-30, tag: bp_rental_v14_integration-cedqp-29, tag: bp_rental_v14_integration-cedqp-28, tag: bp_rental_v14_integration-cedqp-27, tag: baseline_rental-ce-demo-v14_v14_rental_ce_demo_v14_daily_build-50, origin/rental_v14_integration-cedqp-28, origin/rental_v14_integration-cedqp-27, origin/rental_v14_integration-cedp-50, origin/rental_v14_integration, rental_v14_integration) [MERGE] remotes/origin/feature_3890_blp42_rental_contract_v14: addons-rental-vertical remotes/origin/feature_3890_blp42_rental_contract_v14 - 542b532a2299be4ee8f52cb0071a0d87596a197f [MIG] rental_contract_insurance: Migration 14.0
+- 542b532a 2022-04-12 18:29:00 +0200 yweng@elegosoft.com  (origin/feature_4731_blp14_rental_contract_v14, origin/feature_3890_blp42_rental_contract_v14, feature_4731_blp14_rental_contract_v14, feature_3890_blp42_rental_contract_v14) [MIG] rental_contract_insurance: Migration 14.0
+- 8d191ff7 2022-04-10 15:41:16 +0200 wagner@elegosoft.com  add missing/lost documentation (issue #4516)
 - 4509f78a 2022-02-23 20:48:33 +0100 wagner@elegosoft.com  (origin/feature_4516_add_files_ported_from_v12_v14, feature_4516_add_files_ported_from_v12_v14) add files ported to v14 by cpatel and khanhbui (issue #4516)
 
