@@ -10,4 +10,5 @@ product-attribute
 product-pack
 purchase-workflow
 sale-workflow
+vertical-rental
 web
