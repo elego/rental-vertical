@@ -205,8 +205,10 @@
     </record>
 
     <menuitem
+      string="Shipment Plans"
       id="menu_action_shipment"
       action="action_shipment_plan"
+      groups="purchase.group_purchase_user"
       parent="stock.menu_stock_warehouse_mgmt"
       sequence="1"/>
 
