@@ -165,6 +165,7 @@
 
     <menuitem name="Tickets"
         id="menu_tickets"
+        groups="project.group_project_user"
         parent="rental_base.menu_rental_root"
         action="action_project_helpdesk_tasks"
         sequence="2" />
