@@ -27,7 +27,6 @@
             id="mis_rental_report_style_menu"
             parent="mis_rental_report_config_menu"
             groups="sales_team.group_sale_manager"
-            action="mis_builder.mis_report_view_action"
             action="mis_builder.mis_report_style_view_action"
             sequence="1" />
 </odoo>
