@@ -36,7 +36,6 @@ In order to get vehicle related fields, open the product category and activate t
         "product_dimension",
     ],
     "data": [
-        "security/ir.model.access.csv",
         "views/product_view.xml",
         "views/purchase_order_view.xml",
     ],

@@ -59,6 +59,9 @@ class ProductProduct(models.Model):
         string="Show Initial Registration",
         related="categ_id.show_init_regist",
     )
+    product_identification_number = fields.Char(
+        string="Product Identification Number (PIN)",
+    )
     show_product_identification_number = fields.Boolean(
         string="Show Product Identification Number",
         related="categ_id.show_product_identification_number",

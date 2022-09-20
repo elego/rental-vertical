@@ -486,6 +486,7 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                 axis: 'top'
             };
             this.options.verticalScroll = true;
+            this.options.rtl = false;
             this.timeline.setOptions(this.options);
 
             // this.timeline.on('click', self.on_parent_group_click)

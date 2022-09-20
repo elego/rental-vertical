@@ -29,6 +29,7 @@
         <menuitem
             id="menu_toll_charge_line_import"
             parent="rental_toll_collect.menu_toll_charges"
+            groups="account.group_account_user"
             action="action_toll_charge_line_import"
             sequence="4"
         />

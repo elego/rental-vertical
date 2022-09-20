@@ -3,46 +3,12 @@
 from odoo import api, fields, models, _
 
 
-class ProductCategory(models.Model):
-    _inherit = "product.category"
-
-    # ---need to remove below field
-    show_product_identification_number = fields.Boolean(
-        string="Show Product Identification Number",
-        help="If checked, the product identification number "
-        "is displayed in product form view.",
-    )
-
-
 class ProductProduct(models.Model):
     _inherit = "product.product"
 
     additional_info = fields.Html(
         string="Additional Information",
         translate=True,
-    )
-    # ---need to remove below three fields
-    manu_year = fields.Char(
-        string="Year of Manufacture",
-    )
-    manu_id = fields.Many2one(
-        comodel_name="product.manufacturer",
-        string="Manufacturer",
-    )
-    manu_type_id = fields.Many2one(
-        comodel_name="product.manufacturer.type",
-        string="Type",
-        ondelete="set null",
-    )
-
-    # Category special fields
-    # ---need to remove below two fields
-    product_identification_number = fields.Char(
-        string="Product Identification Number (PIN)",
-    )
-    show_product_identification_number = fields.Boolean(
-        string="Show Product Identification Number",
-        related="categ_id.show_product_identification_number",
     )
 
     # Lists
@@ -214,29 +180,3 @@ class ProductProduct(models.Model):
     def _compute_po_count(self):
         for rec in self:
             rec.po_count = len(rec._get_purchase_order_ids())
-
-# ---need to remove below class
-class ProductManufacturer(models.Model):
-    _name = "product.manufacturer"
-    _description = "Product Manufacturer"
-
-    name = fields.Char(
-        string="Name",
-    )
-    manufacturer_type_ids = fields.One2many(
-        comodel_name="product.manufacturer.type",
-        inverse_name="manufacturer_id",
-    )
-
-# ---need to remove below class
-class ProductManufacturerType(models.Model):
-    _name = "product.manufacturer.type"
-    _description = "Product Manufacturer Type"
-
-    name = fields.Char(
-        string="Name",
-    )
-    manufacturer_id = fields.Many2one(
-        comodel_name="product.manufacturer",
-        string="Manufacturer",
-    )

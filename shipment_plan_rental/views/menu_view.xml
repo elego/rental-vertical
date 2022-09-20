@@ -2,6 +2,7 @@
 <odoo>
     <menuitem name="Requisitions"
         id="menu_requisition"
+        groups="purchase.group_purchase_user"
         parent="rental_purchase_order_type.menu_vendor_requests"
         action="purchase_requisition.action_purchase_requisition"
         sequence="2" />
