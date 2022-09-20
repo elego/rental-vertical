@@ -13,44 +13,66 @@ class ProductTimeline(models.Model):
     _description = "Product Timeline"
 
     res_model = fields.Char(
+        string="Origin Data Model",
+        help="This is a technical field to know which kind "
+             "of Odoo object this timeline item is about.",
         require=True,
     )
 
     res_id = fields.Integer(
+        string="Origin Object ID",
+        help="This is a technical field to know which exact "
+             "Odoo object this timeline item is about.",
         require=True,
     )
 
     click_res_model = fields.Char(
+        string="Clickable Data Model",
+        help="This is a technical field to define which kind "
+             "of Odoo object this timeline item opens, when "
+             "double clicked.",
         require=True,
     )
 
     click_res_id = fields.Integer(
+        string="Clickable Object ID",
+        help="This is a technical field to define which exact "
+             "Odoo object this timeline item opens, when double "
+             "clicked.",
         require=True,
     )
 
     date_start = fields.Datetime(
-        "Date Start",
+        string="Date Start",
         require=True,
     )
 
     date_start_formated = fields.Char(
+        string="Date Start (Formatted)",
+        help="This field contains the start date as string "
+             "without time to show it in rental timeline "
+             "mouseover view.",
         compute="_compute_required_fields",
         store=True,
     )
 
     date_end = fields.Datetime(
-        "Date End",
+        string="Date End",
         require=True,
     )
 
     date_end_formated = fields.Char(
+        string="Date End (Formatted)",
+        help="This field contains the end date as string "
+             "without time to show it in rental timeline "
+             "mouseover view.",
         compute="_compute_required_fields",
         store=True,
     )
 
     product_id = fields.Many2one(
-        "product.product",
-        "Product",
+        string="Product",
+        comodel_name="product.product",
         ondelete="cascade",
         required=True,
     )
@@ -61,50 +83,62 @@ class ProductTimeline(models.Model):
     )
 
     product_name = fields.Char(
+        string="Product Name",
+        help="This field contains the product name as string "
+             "to show it in rental timeline mouseover view.",
         compute="_compute_required_fields",
         store=True,
     )
 
     time_uom = fields.Many2one(
-        "uom.uom",
+        string="Time UOM",
+        comodel_name="uom.uom",
         compute="_compute_fields",
         store=True,
     )
 
     order_name = fields.Char(
-        "Order",
+        string="Order",
+        help="This field contains the order name as string "
+             "to show it in rental timeline mouseover view.",
         require=True,
     )
 
     type = fields.Selection(
         string="Type",
         selection=[
-            ("rental", "Rental"),
-            ("reserved", "Reserved"),
+            ("rental", "Confirmed Order"),
+            ("reserved", "Quotation"),
         ],
     )
 
     type_formated = fields.Char(
+        string="Type (Formatted)",
+        help="This field contains the timeline type as string "
+             "to show it in rental timeline mouseover view.",
         compute="_compute_required_fields",
         store=True,
     )
 
+    # TODO: Remove because it's not used
     has_clues = fields.Char(
         "Has Clues",
         compute="_compute_fields",
         store=True,
     )
-
+    # TODO: Remove because it's not used
     redline = fields.Boolean(
         "Redline",
     )
 
     product_tmpl_id = fields.Many2one(
+        string="Product Template",
         related="product_id.product_tmpl_id",
         store=True,
     )
 
     product_categ_id = fields.Many2one(
+        string="Product Category",
         related="product_id.categ_id",
         store=True,
     )
@@ -115,42 +149,38 @@ class ProductTimeline(models.Model):
     )
 
     name = fields.Char(
-        "Name",
+        string="Name",
         compute="_compute_fields",
         store=True,
     )
 
     partner_id = fields.Many2one(
-        "res.partner",
-        "Partner",
-        ondelete="set null",
-        compute="_compute_fields",
-        store=True,
-    )
-
-    partner_id = fields.Many2one(
-        "res.partner",
-        "Partner",
+        string="Partner",
+        comodel_name="res.partner",
         ondelete="set null",
         compute="_compute_fields",
         store=True,
     )
 
     partner_shipping_id = fields.Many2one(
-        "res.partner",
+        string="Shipping Partner",
+        comodel_name="res.partner",
         ondelete="set null",
         compute="_compute_fields",
         store=True,
     )
 
     partner_shipping_address = fields.Char(
-        "Shipping address",
+        string="Shipping address",
+        help="This field contains the shipping address as string "
+             "to show it in rental timeline mouseover view.",
         compute="_compute_fields",
         store=True,
     )
 
     currency_id = fields.Many2one(
-        "res.currency",
+        string="Currency",
+        comodel_name="res.currency",
         compute="_compute_fields",
         store=True,
     )
@@ -163,38 +193,45 @@ class ProductTimeline(models.Model):
     )
 
     number_of_days = fields.Integer(
-        "Total days",
+        string="Total days",
         compute="_compute_fields",
         store=True,
     )
 
     rental_period = fields.Char(
+        string="Rental Duration",
+        help="This field contains the rental duration as string "
+             "to show it in rental timeline mouseover view.",
         compute="_compute_fields",
         store=True,
     )
 
     amount = fields.Char(
+        string="Amount",
         compute="_compute_fields",
         store=True,
     )
 
     warehouse_id = fields.Many2one(
-        "stock.warehouse",
         string="Warehouse",
+        comodel_name="stock.warehouse",
         compute="_compute_fields",
         store=True,
     )
 
     warehouse_name = fields.Char(
+        string="Warehouse Name",
+        help="This field contains the warehouse name as string "
+             "to show it in rental timeline mouseover view.",
         compute="_compute_warehouse_name",
         store=True,
     )
-
+    # TODO: What is this for? Remove?
     action_id = fields.Integer(
         compute="_compute_fields",
         store=True,
     )
-
+    # TODO: What is this for? Remove?
     menu_id = fields.Integer(
         compute="_compute_fields",
         store=True,
@@ -221,13 +258,10 @@ class ProductTimeline(models.Model):
                 obj = self.env[line.res_model].browse(line.res_id)
                 order_obj = obj.order_id
                 line.order_name = order_obj.name
-                line.name = _("R: %s") % order_obj.partner_id.name
+                line.name = order_obj.partner_id.commercial_partner_id.name
                 line.partner_id = order_obj.partner_id.id
                 line.partner_shipping_id = order_obj.partner_shipping_id.id
-                line.partner_shipping_address = (
-                    order_obj.partner_shipping_id._display_address()
-                )
-
+                line.partner_shipping_address = order_obj.partner_shipping_id._display_address()
                 line.warehouse_id = order_obj.warehouse_id.id
                 line.currency_id = obj.currency_id.id
                 line.price_subtotal = obj.price_subtotal
@@ -245,14 +279,16 @@ class ProductTimeline(models.Model):
                     currency=currency.symbol,
                 )
                 line.has_clues = False
-
+            # TODO: Remove?
             line.action_id = self.env.ref("rental_base.action_rental_orders").id
             line.menu_id = self.env.ref("rental_base.menu_rental_root").id
 
     @api.model
     def _get_depends_fields(self, model):
-        """Get depends fields of related model. Function _compute_fields should
-        be called, if these fields of the related model are changed.
+        """
+        This function returns the "api.depends"-fields of related model.
+        The function _compute_fields should be called if these fields
+        of the related model are changed.
         """
         res = []
         if model == "sale.order.line":
@@ -268,9 +304,10 @@ class ProductTimeline(models.Model):
 
     @api.model
     def _get_partner_fields(self):
-        """get all many2one fields that are related to res.partner
-        it can be used for triggering the _compute_fields to update
-        the partner or address infomations
+        """
+        This function returns all "Many2one"-fields that are related
+        to res.partner. It can be used for triggering the _compute_fields
+        to update the partner or address information.
         """
         res = [
             "partner_id",
@@ -313,7 +350,7 @@ class ProductTimeline(models.Model):
                     date_with_time = True
             datetime_format = lang.date_format
             if date_with_time:
-                datetime_format += " " + time.date_format
+                datetime_format += " " + time.date_format # TODO: import forgotten?
             if isinstance(line.date_start, datetime):
                 line.date_start_formated = line.date_start.strftime(datetime_format)
             else:
