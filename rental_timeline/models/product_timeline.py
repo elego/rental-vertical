@@ -348,7 +348,7 @@ class ProductTimeline(models.Model):
                     date_with_time = True
             datetime_format = lang.date_format
             if date_with_time:
-                datetime_format += " " + time.date_format # TODO: import forgotten?
+                datetime_format += " " + lang.time_format
             if isinstance(line.date_start, datetime):
                 line.date_start_formated = line.date_start.strftime(datetime_format)
             else:
