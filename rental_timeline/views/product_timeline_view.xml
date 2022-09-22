@@ -192,10 +192,12 @@
 
         <menuitem action="action_product_timeline"
             id="menu_product_timeline" parent="stock.menu_stock_inventory_control"
+            groups="sales_team.group_sale_manager"
             sequence="12" />
 
         <menuitem name="Overview"
             id="menu_overview"
+            groups="base.group_user"
             parent="rental_base.menu_rental_root"
             action="action_product_timeline"
             sequence="1" />

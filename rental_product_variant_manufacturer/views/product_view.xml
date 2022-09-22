@@ -117,8 +117,10 @@
 
         <menuitem action="action_product_manufacturer"
             id="menu_product_manufacturer" parent="stock.menu_stock_inventory_control"
+            groups="sales_team.group_sale_manager"
             sequence="13" />
         <menuitem action="action_product_manufacturer_type"
+            groups="sales_team.group_sale_manager"
             id="menu_product_manufacturer_type" parent="stock.menu_stock_inventory_control"
             sequence="13" />
 
@@ -126,10 +128,12 @@
         <menuitem action="action_product_manufacturer"
             id="menu_product_manufacturer"
             parent="rental_base.menu_config_products"
+            groups="sales_team.group_sale_manager"
             sequence="10" />
         <menuitem action="action_product_manufacturer_type"
             id="menu_product_manufacturer_type"
             parent="rental_base.menu_config_products"
+            groups="sales_team.group_sale_manager"
             sequence="15" />
 
     </data>
