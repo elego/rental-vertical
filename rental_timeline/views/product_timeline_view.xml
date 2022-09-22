@@ -18,6 +18,7 @@
                 >
                     <field name="type" />
                     <field name="type_formated" />
+                    <field name="has_clues" />
                     <field name="date_start" readonly="1" widget="date" />
                     <field name="date_start_formated" readonly="1"/>
                     <field name="date_end" readonly="1" widget="date" />
@@ -35,8 +36,6 @@
                     <field name="product_name" />
                     <field name="product_categ_id" />
                     <field name="product_categ_name" />
-                    <field name="action_id" /> <!-- TODO: Remove? -->
-                    <field name="menu_id" /> <!-- TODO: Remove? -->
                     <field name="res_model" />
                     <field name="res_id" />
                     <field name="click_res_model" />
@@ -60,6 +59,10 @@
                             <!-- Timeline Mouseover -->
                             <div t-attf-class="tooltip_content" style="display: none">
                                 <table border="1">
+                                     <tr t-if="record.has_clues">
+                                        <td>Clues:</td>
+                                        <td id="clues"></td>
+                                    </tr>
                                     <tr t-if="record.order_name">
                                         <td>Order:</td>
                                         <td t-esc="record.order_name" />

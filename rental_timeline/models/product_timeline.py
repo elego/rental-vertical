@@ -120,7 +120,6 @@ class ProductTimeline(models.Model):
         store=True,
     )
 
-    # TODO: Remove because it's not used
     has_clues = fields.Char(
         "Has Clues",
         compute="_compute_fields",
@@ -226,12 +225,12 @@ class ProductTimeline(models.Model):
         compute="_compute_warehouse_name",
         store=True,
     )
-    # TODO: What is this for? Remove?
+    # TODO: Remove
     action_id = fields.Integer(
         compute="_compute_fields",
         store=True,
     )
-    # TODO: What is this for? Remove?
+    # TODO: Remove
     menu_id = fields.Integer(
         compute="_compute_fields",
         store=True,
@@ -252,10 +251,10 @@ class ProductTimeline(models.Model):
         For updating of further infos of the related model it should be called
         for example in _reset_timeline of the related res_model.
         """
-        lang = self.env["res.lang"].search([("code", "=", self.env.user.lang)])
+        lang = self.env["res.lang"].search([("code", "=", self.env.user.company_id.partner_id.lang)])
         for line in self:
             if line.res_model == "sale.order.line":
-                obj = self.env[line.res_model].browse(line.res_id)
+                obj = self.env[line.res_model].browse(line.res_id).with_context(lang=lang.code)
                 order_obj = obj.order_id
                 line.order_name = order_obj.name
                 line.name = order_obj.partner_id.commercial_partner_id.name
@@ -274,14 +273,13 @@ class ProductTimeline(models.Model):
                 currency = line.currency_id
                 line.amount = "{price_subtotal} {currency}".format(
                     price_subtotal=lang.format(
-                        "%.2f", line.price_subtotal, grouping=True
+                        "%.2f",
+                        line.price_subtotal,
+                        grouping=True
                     ),
                     currency=currency.symbol,
                 )
                 line.has_clues = False
-            # TODO: Remove?
-            line.action_id = self.env.ref("rental_base.action_rental_orders").id
-            line.menu_id = self.env.ref("rental_base.menu_rental_root").id
 
     @api.model
     def _get_depends_fields(self, model):
@@ -332,13 +330,13 @@ class ProductTimeline(models.Model):
         "time_uom",
     )
     def _compute_required_fields(self):
-        lang = self.env["res.lang"].search([("code", "=", self.env.user.lang)])
+        lang = self.env["res.lang"].search([("code", "=", self.env.user.company_id.partner_id.lang)])
         for line in self:
             date_with_time = False
             line.product_name = line.product_id.display_name
             line.product_categ_name = line.product_categ_id.display_name
             try:
-                selections = self.fields_get()["type"]["selection"]
+                selections = self.with_context(lang=lang.code).fields_get()["type"]["selection"]
                 selection = [s for s in selections if s[0] == line.type][0]
                 line.type_formated = selection[1]
             except Exception as e:
