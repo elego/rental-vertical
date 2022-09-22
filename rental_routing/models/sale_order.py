@@ -105,7 +105,7 @@ class SaleOrder(models.Model):
         if not self.warehouse_id.int_type_id:
             raise UserError(_("There is no default picking type 'Internal' found for the selected warehouse."))
         location_name = "Location [%s]" % self.partner_shipping_id.display_name
-        new_location = rental_out_location.sodu().copy({"name": location_name, "partner_id": partner.id})
+        new_location = rental_out_location.sudo().copy({"name": location_name, "partner_id": partner.id})
 
         # set onsite location of partner address
         self.partner_shipping_id.rental_onsite_location_id = new_location
