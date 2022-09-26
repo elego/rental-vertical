@@ -15,9 +15,10 @@ class ProductTimeline(models.Model):
     @api.depends("res_id", "res_model")
     def _compute_fields(self):
         super(ProductTimeline, self)._compute_fields()
+        lang = self.env["res.lang"].search([("code", "=", self.env.user.company_id.partner_id.lang)])
         for line in self:
             if line.res_model == "sale.order.line":
-                obj = self.env[line.res_model].browse(line.res_id)
+                obj = self.env[line.res_model].browse(line.res_id).with_context(lang=lang.code)
                 line.offday_number = obj.offday_number
 
     @api.model

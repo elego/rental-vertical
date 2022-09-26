@@ -7,7 +7,7 @@ class ProductProduct(models.Model):
     _inherit = "product.product"
 
     product_timeline_ids = fields.One2many(
-        "product.timeline",
-        "product_id",
-        "Time Lines",
+        string="Timeline Items",
+        comodel_name="product.timeline",
+        inverse_name="product_id",
     )
