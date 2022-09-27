@@ -67,11 +67,12 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
     
                 _.each(events, function(event){
                     var group_name = event[_.first(group_bys)];
+
                     if(group_name){
                         if(group_name instanceof Array){
                             let group = _.find(group_categs, function(existing_group){
-                                return _.isEqual(existing_group.id, group_name[0] * 100);
-                                // return _.isEqual(existing_group, group_name);
+                                // return _.isEqual(existing_group.id, group_name[0] * 1000);
+                                return _.isEqual(existing_group.content, group_name[1]);
                             });
     
                             // if(!groups.includes(group)){
@@ -95,15 +96,16 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                                 })
     
                                 group = {
-                                    id: group_name[0] * 100,
+                                    id: group_name[0] * 10000,
+                                    // id: 100000 + counter,
                                     content: group_name[1], 
                                     nestedGroups: nested_groups,
                                     tooltip: tooltip,
                                 };
-        
+
                                 group_categs.push(group);
                             } 
-    
+
                         }
                     }
                 });
@@ -174,7 +176,8 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                     if(group_name){
                         if(group_name instanceof Array){
                             let group = _.find(group_partners, function(existing_group){
-                                return _.isEqual(existing_group.id, group_name[0] * 100);
+                                // return _.isEqual(existing_group.id, group_name[0] * 100);
+                                return _.isEqual(existing_group.content, group_name[1]);
                                 // return _.isEqual(existing_group, group_name);
                             });
     
@@ -198,7 +201,7 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                                 })
     
                                 group = {
-                                    id: group_name[0] * 100,
+                                    id: group_name[0] * 10000,
                                     content: group_name[1], 
                                     nestedGroups: nested_groups,
                                     tooltip: tooltip,
