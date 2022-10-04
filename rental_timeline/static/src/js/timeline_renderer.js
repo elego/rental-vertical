@@ -96,7 +96,7 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                                 })
     
                                 group = {
-                                    id: group_name[0] * 10000,
+                                    id: group_name[0] + 1000000,
                                     // id: 100000 + counter,
                                     content: group_name[1], 
                                     nestedGroups: nested_groups,
@@ -147,7 +147,7 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                                 })
     
                                 group = {
-                                    id: event.id * 100,
+                                    id: event.id + 1000000,
                                     content: group_name, 
                                     nestedGroups: nested_groups,
                                     tooltip: tooltip,
@@ -201,7 +201,7 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                                 })
     
                                 group = {
-                                    id: group_name[0] * 10000,
+                                    id: group_name[0] + 1000000,
                                     content: group_name[1], 
                                     nestedGroups: nested_groups,
                                     tooltip: tooltip,
