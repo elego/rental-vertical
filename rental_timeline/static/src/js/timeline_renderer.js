@@ -5,6 +5,9 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
 
     var time = require('web.time');
 
+    var is_default_product_id = true
+    var group_categ_again = 0
+
     var RentalTimelineRenderer = _TimelineRenderer.extend({
         
         /**
@@ -55,6 +58,9 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                 }
             })
 
+            if(!is_default_product_id) {
+
+            
             if(group_bys[0] === "product_categ_id"){
 
                 var group_categs = []
@@ -213,6 +219,9 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                 groups = groups.concat(group_partners)
             }
 
+            }
+
+            is_default_product_id = true
             return groups;
         },
 
@@ -474,6 +483,9 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
         init_timeline: function(){
             var self = this;
             var util = vis.util;
+
+            is_default_product_id = false
+
             this._super();
             this.options.editable = {
                 add: false,
@@ -623,6 +635,17 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
             var data = [];
             var groups = [];
 
+            if(group_bys[0] === "product_categ_id" && group_categ_again % 2 === 0) {
+                is_default_product_id = false;
+                group_categ_again += 2
+            } else if (group_bys[0] === "order_name" && group_categ_again % 2 === 0) {
+                is_default_product_id = false;
+                group_categ_again += 2
+            }else if (group_bys[0] === "partner_id" && group_categ_again % 2 === 0) {
+                is_default_product_id = false;
+                group_categ_again += 2
+            }
+
             if(group_bys[0] !== "product_categ_id" && group_bys[0] !== "order_name" && group_bys[0] !== "partner_id") {
                 this.grouped_by = group_bys;
 
@@ -643,6 +666,8 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                         }
                     }
                 });
+
+                group_categ_again ++;
             } else {
                 this.grouped_by = "product_id"
                 _.each(events, function (event) {
@@ -662,6 +687,8 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                         }
                     }
                 });
+
+                group_categ_again ++;
             }
 
             if (x2x) {
