@@ -1,4 +1,4 @@
-odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
+odoo.define('rental_timeline.RentalTimelineRenderer', function (require) {
     "use strict";
 
     var _TimelineRenderer = require('web_timeline.TimelineRenderer');
@@ -9,15 +9,15 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
     var group_categ_again = 0
 
     var RentalTimelineRenderer = _TimelineRenderer.extend({
-        
+
         /**
          * Get the groups.
          *
          * @private
          * @returns {Array}
          */
-        split_groups: function(events, group_bys){
-            if(group_bys.length === 0){
+        split_groups: function (events, group_bys) {
+            if (group_bys.length === 0) {
                 return events;
             }
 
@@ -25,22 +25,22 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
             var self = this;
             //groups.push({id: -1, content: _t('-')});
 
-            _.each(events, function(event){
+            _.each(events, function (event) {
                 var product_group_name = event[_.first(["product_id"])];
-                if(product_group_name) {
-                    if(product_group_name instanceof Array) {
-                        let group = _.find(groups, function(existing_group){
-                            return _.isEqual(existing_group.id , product_group_name[0]);
+                if (product_group_name) {
+                    if (product_group_name instanceof Array) {
+                        let group = _.find(groups, function (existing_group) {
+                            return _.isEqual(existing_group.id, product_group_name[0]);
                         });
 
-                        if(_.isUndefined(group)) {
-                            var tooltip = null; 
-                            if(self.qweb.has_template('tooltip-item-group')){
+                        if (_.isUndefined(group)) {
+                            var tooltip = null;
+                            if (self.qweb.has_template('tooltip-item-group')) {
                                 tooltip = self.qweb.render('tooltip-item-group', {
                                     'record': event
                                 });
                             }
-                            if(product_group_name[1].slice(0,3) !== "All") {
+                            if (product_group_name[1].slice(0, 3) !== "All") {
 
                                 group = {
                                     id: product_group_name[0],
@@ -58,169 +58,169 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                 }
             })
 
-            if(!is_default_product_id) {
+            if (!is_default_product_id) {
 
-            
-            if(group_bys[0] === "product_categ_id"){
 
-                var group_categs = []
-    
-                _.each(events, function(event){
-                    var group_name = event[_.first(group_bys)];
+                if (group_bys[0] === "product_categ_id") {
 
-                    if(group_name){
-                        if(group_name instanceof Array){
-                            let group = _.find(group_categs, function(existing_group){
-                                // return _.isEqual(existing_group.id, group_name[0] * 1000);
-                                return _.isEqual(existing_group.content, group_name[1]);
-                            });
-    
-                            // if(!groups.includes(group)){
-                            if(_.isUndefined(group)){
-                                
-                                var tooltip = null;
-                                if(self.qweb.has_template('tooltip-item-group')){
-                                    tooltip = self.qweb.render('tooltip-item-group', {
-                                        'record': event
-                                    });
-                                }
-    
-                                let nested_groups = []
-                                _.each(events, function(event_p){
-                                    if(event_p.product_categ_name === event.product_categ_name) { 
-                                        if(!nested_groups.includes(event_p.product_id[0])){
-                                            nested_groups.push(event_p.product_id[0]) 
-                                        }
-                                        console.log(`event_p.product_categ_name ${event_p.product_categ_name}`)                                   
+                    var group_categs = []
+
+                    _.each(events, function (event) {
+                        var group_name = event[_.first(group_bys)];
+
+                        if (group_name) {
+                            if (group_name instanceof Array) {
+                                let group = _.find(group_categs, function (existing_group) {
+                                    // return _.isEqual(existing_group.id, group_name[0] * 1000);
+                                    return _.isEqual(existing_group.content, group_name[1]);
+                                });
+
+                                // if(!groups.includes(group)){
+                                if (_.isUndefined(group)) {
+
+                                    var tooltip = null;
+                                    if (self.qweb.has_template('tooltip-item-group')) {
+                                        tooltip = self.qweb.render('tooltip-item-group', {
+                                            'record': event
+                                        });
                                     }
-                                })
-    
-                                group = {
-                                    id: group_name[0] + 1000000,
-                                    // id: 100000 + counter,
-                                    content: group_name[1], 
-                                    nestedGroups: nested_groups,
-                                    tooltip: tooltip,
-                                };
 
-                                group_categs.push(group);
-                            } 
-
-                        }
-                    }
-                });
-
-                // group_categs = self.set_layer_groups(events, group_bys, group_categs, "product_categ_id")
-
-                groups = groups.concat(group_categs)
-            }
-            else if (group_bys[0] === "order_name"){
-
-                var group_order_names = [];
-    
-                _.each(events, function(event){
-                    var group_name = event[_.first(group_bys)];
-                    if(group_name){
-                        if(group_name){
-                            let group = _.find(group_order_names, function(existing_group){
-                                return _.isEqual(existing_group.content, group_name);
-                                // return _.isEqual(existing_group, group_name);
-                            });
-    
-                            // if(!groups.includes(group)){
-                            if(_.isUndefined(group)){
-                                
-                                var tooltip = null;
-                                if(self.qweb.has_template('tooltip-item-group')){
-                                    tooltip = self.qweb.render('tooltip-item-group', {
-                                        'record': event
-                                    });
-                                }
-    
-                                let nested_groups = []
-                                _.each(events, function(event_o){
-                                    if(event_o.order_name === event.order_name) { 
-                                        if(!nested_groups.includes(event_o.product_id[0])){
-                                            nested_groups.push(event_o.product_id[0]) 
+                                    let nested_groups = []
+                                    _.each(events, function (event_p) {
+                                        if (event_p.product_categ_name === event.product_categ_name) {
+                                            if (!nested_groups.includes(event_p.product_id[0])) {
+                                                nested_groups.push(event_p.product_id[0])
+                                            }
+                                            console.log(`event_p.product_categ_name ${event_p.product_categ_name}`)
                                         }
-                                    }
-                                })
-    
-                                group = {
-                                    id: event.id + 1000000,
-                                    content: group_name, 
-                                    nestedGroups: nested_groups,
-                                    tooltip: tooltip,
-                                    order_name: group_name
-                                };
-        
-                                group_order_names.push(group);
-                            } 
-    
-                        }
-                    }
-                });
+                                    })
 
-                let groups_and_layersGroup = self.generate_sub_groups(groups,group_order_names, "order_name")
-                groups = groups_and_layersGroup[0]
-                group_order_names = groups_and_layersGroup[1]
+                                    group = {
+                                        id: group_name[0] + 1000000,
+                                        // id: 100000 + counter,
+                                        content: group_name[1],
+                                        nestedGroups: nested_groups,
+                                        tooltip: tooltip,
+                                    };
 
-                groups = groups.concat(group_order_names);
-            }
-            else if(group_bys[0] === "partner_id"){
-
-                var group_partners = []
-    
-                _.each(events, function(event){
-                    var group_name = event[_.first(group_bys)];
-                    if(group_name){
-                        if(group_name instanceof Array){
-                            let group = _.find(group_partners, function(existing_group){
-                                // return _.isEqual(existing_group.id, group_name[0] * 100);
-                                return _.isEqual(existing_group.content, group_name[1]);
-                                // return _.isEqual(existing_group, group_name);
-                            });
-    
-                            // if(!groups.includes(group)){
-                            if(_.isUndefined(group)){
-                                
-                                var tooltip = null;
-                                if(self.qweb.has_template('tooltip-item-group')){
-                                    tooltip = self.qweb.render('tooltip-item-group', {
-                                        'record': event
-                                    });
+                                    group_categs.push(group);
                                 }
-    
-                                let nested_groups = []
-                                _.each(events, function(event_p){
-                                    if(event_p.partner_id[1] === event.partner_id[1]) { 
-                                        if(!nested_groups.includes(event_p.product_id[0])){
-                                            nested_groups.push(event_p.product_id[0]) 
-                                        }
-                                    }
-                                })
-    
-                                group = {
-                                    id: group_name[0] + 1000000,
-                                    content: group_name[1], 
-                                    nestedGroups: nested_groups,
-                                    tooltip: tooltip,
-                                    partner_id: group_name
-                                };
-        
-                                group_partners.push(group);
-                            } 
-    
+
+                            }
                         }
-                    }
-                });
+                    });
 
-                let groups_and_layersGroup = self.generate_sub_groups(groups, group_partners, "partner_id")
-                groups = groups_and_layersGroup[0]
-                group_partners = groups_and_layersGroup[1]
+                    // group_categs = self.set_layer_groups(events, group_bys, group_categs, "product_categ_id")
 
-                groups = groups.concat(group_partners)
-            }
+                    groups = groups.concat(group_categs)
+                }
+                else if (group_bys[0] === "order_name") {
+
+                    var group_order_names = [];
+
+                    _.each(events, function (event) {
+                        var group_name = event[_.first(group_bys)];
+                        if (group_name) {
+                            if (group_name) {
+                                let group = _.find(group_order_names, function (existing_group) {
+                                    return _.isEqual(existing_group.content, group_name);
+                                    // return _.isEqual(existing_group, group_name);
+                                });
+
+                                // if(!groups.includes(group)){
+                                if (_.isUndefined(group)) {
+
+                                    var tooltip = null;
+                                    if (self.qweb.has_template('tooltip-item-group')) {
+                                        tooltip = self.qweb.render('tooltip-item-group', {
+                                            'record': event
+                                        });
+                                    }
+
+                                    let nested_groups = []
+                                    _.each(events, function (event_o) {
+                                        if (event_o.order_name === event.order_name) {
+                                            if (!nested_groups.includes(event_o.product_id[0])) {
+                                                nested_groups.push(event_o.product_id[0])
+                                            }
+                                        }
+                                    })
+
+                                    group = {
+                                        id: event.id + 1000000,
+                                        content: group_name,
+                                        nestedGroups: nested_groups,
+                                        tooltip: tooltip,
+                                        order_name: group_name
+                                    };
+
+                                    group_order_names.push(group);
+                                }
+
+                            }
+                        }
+                    });
+
+                    let groups_and_layersGroup = self.generate_sub_groups(groups, group_order_names, "order_name")
+                    groups = groups_and_layersGroup[0]
+                    group_order_names = groups_and_layersGroup[1]
+
+                    groups = groups.concat(group_order_names);
+                }
+                else if (group_bys[0] === "partner_id") {
+
+                    var group_partners = []
+
+                    _.each(events, function (event) {
+                        var group_name = event[_.first(group_bys)];
+                        if (group_name) {
+                            if (group_name instanceof Array) {
+                                let group = _.find(group_partners, function (existing_group) {
+                                    // return _.isEqual(existing_group.id, group_name[0] * 100);
+                                    return _.isEqual(existing_group.content, group_name[1]);
+                                    // return _.isEqual(existing_group, group_name);
+                                });
+
+                                // if(!groups.includes(group)){
+                                if (_.isUndefined(group)) {
+
+                                    var tooltip = null;
+                                    if (self.qweb.has_template('tooltip-item-group')) {
+                                        tooltip = self.qweb.render('tooltip-item-group', {
+                                            'record': event
+                                        });
+                                    }
+
+                                    let nested_groups = []
+                                    _.each(events, function (event_p) {
+                                        if (event_p.partner_id[1] === event.partner_id[1]) {
+                                            if (!nested_groups.includes(event_p.product_id[0])) {
+                                                nested_groups.push(event_p.product_id[0])
+                                            }
+                                        }
+                                    })
+
+                                    group = {
+                                        id: group_name[0] + 1000000,
+                                        content: group_name[1],
+                                        nestedGroups: nested_groups,
+                                        tooltip: tooltip,
+                                        partner_id: group_name
+                                    };
+
+                                    group_partners.push(group);
+                                }
+
+                            }
+                        }
+                    });
+
+                    let groups_and_layersGroup = self.generate_sub_groups(groups, group_partners, "partner_id")
+                    groups = groups_and_layersGroup[0]
+                    group_partners = groups_and_layersGroup[1]
+
+                    groups = groups.concat(group_partners)
+                }
 
             }
 
@@ -237,73 +237,49 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
          * @param {group_by}
          * @returns {[groups, layer_groups]}
          */
-        generate_sub_groups: function(groups, layer_groups, group_by) {
-            let count = 300
-            for(let i = 0; i< layer_groups.length -1; i ++) {
-                if(layer_groups[i].nestedGroups.length > 1) {
-                    for(let k = 0; k < layer_groups[i].nestedGroups.length; k ++) {
-                        for(let j = i+1; j < layer_groups.length; j++) {
-                            for(let m = 0; m < layer_groups[j].nestedGroups.length; m ++){
-                                if(layer_groups[i].nestedGroups[k] === layer_groups[j].nestedGroups[m]) {
-                                    const group = groups.find(elem => elem.id === layer_groups[j].nestedGroups[m]);
-                                    const newGroup = Object.assign({}, group)
-                                    const newGroupId = newGroup.id * count +3;
-                                    newGroup.original_id = newGroup.id
-                                    newGroup.id = newGroupId;
-                                    if(group_by === "partner_id"){
-                                        newGroup.partner_id = layer_groups[j].partner_id;
-                                    } else if (group_by === "order_name"){
-                                        newGroup.order_name = layer_groups[j].order_name;
-                                    }
-                                    groups.push(newGroup);
-                                    count ++;
-                                    layer_groups[j].nestedGroups[m] = newGroupId;
+        generate_sub_groups: function (groups, layer_groups, group_by) {
+
+            /*             var ids = layer_groups.map(layer_group => { return layer_groups.group.id });
+                        var max_id = Math.max(...ids); */
+            /*             var max_id = 0
+                        for (let i = 0; i < layer_groups.length; i++) {
+                            for (let j = 0; j < layer_groups[i].nestedGroups.length; j++) {
+                                if (layer_groups[i].nestedGroups[j] > max_id) {
+                                    max_id = layer_groups[i].nestedGroups[j];
                                 }
                             }
-                        }
-                    }
-                }else {
-                    for(let j = i+1; j < layer_groups.length; j++) {
-                        if(layer_groups[j].nestedGroups.length > 1) {
-                            for(let m = 0; m < layer_groups[j].nestedGroups.length; m ++){
-                                if(layer_groups[i].nestedGroups[0] === layer_groups[j].nestedGroups[m]) {
-                                    const group = groups.find(elem => elem.id === layer_groups[j].nestedGroups[m]);
-                                    const newGroup = Object.assign({}, group)
-                                    const newGroupId = newGroup.id * count +3;
-                                    newGroup.original_id = newGroup.id
-                                    newGroup.id = newGroupId;
-                                    if(group_by === "partner_id"){
-                                        newGroup.partner_id = layer_groups[j].partner_id;
-                                    } else if (group_by === "order_name"){
-                                        newGroup.order_name = layer_groups[j].order_name;
-                                    }
-                                    groups.push(newGroup);
-                                    count ++;
-                                    layer_groups[j].nestedGroups[m] = newGroupId;
-                                }
-                            }
-                        }else {
-                            if(layer_groups[i].nestedGroups[0] === layer_groups[j].nestedGroups[0]) {
-                                const group = groups.find(elem => elem.id === layer_groups[j].nestedGroups[0]);
+            
+                        } */
+
+            var ids = groups.map(group => { return group.id });
+            var max_id = Math.max(...ids);
+
+            for (let i = 0; i < layer_groups.length - 1; i++) {
+                for (let k = 0; k < layer_groups[i].nestedGroups.length; k++) {
+                    for (let j = i + 1; j < layer_groups.length; j++) {
+                        for (let m = 0; m < layer_groups[j].nestedGroups.length; m++) {
+
+                            if (layer_groups[i].nestedGroups[k] === layer_groups[j].nestedGroups[m]) {
+                                const group = groups.find(elem => elem.id === layer_groups[j].nestedGroups[m]);
                                 const newGroup = Object.assign({}, group)
-                                const newGroupId = newGroup.id * count+3;
                                 newGroup.original_id = newGroup.id
-                                newGroup.id = newGroupId;
-                                if(group_by === "partner_id"){
+
+                                max_id++;
+                                newGroup.id = max_id;
+                                if (group_by === "partner_id") {
                                     newGroup.partner_id = layer_groups[j].partner_id;
-                                } else if (group_by === "order_name"){
+                                } else if (group_by === "order_name") {
                                     newGroup.order_name = layer_groups[j].order_name;
                                 }
                                 groups.push(newGroup);
-                                count ++;
-                                layer_groups[j].nestedGroups[0] = newGroupId;
+                                layer_groups[j].nestedGroups[m] = newGroup.id;
                             }
                         }
                     }
                 }
             }
 
-            return [groups,layer_groups];
+            return [groups, layer_groups];
         },
 
         // /**
@@ -328,7 +304,7 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
 
         //                 // if(!groups.includes(group)){
         //                 if(_.isUndefined(group)){
-                            
+
         //                     var tooltip = null;
         //                     if(window.qweb.has_template('tooltip-item-group')){
         //                         tooltip = this.qweb.render('tooltip-item-group', {
@@ -386,7 +362,7 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
         //                         };
 
         //                     }
-    
+
         //                     layer_groups.push(group);
         //                 } 
 
@@ -404,7 +380,7 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
          * @private
          * @returns {Object}
          */
-         event_data_transform: function (evt) {
+        event_data_transform: function (evt) {
             var self = this;
             var date_start = new moment();
             var date_stop = null;
@@ -427,8 +403,8 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
             if (!date_stop && date_delay) {
                 date_stop = moment(date_start).add(date_delay, 'hours').toDate();
             }
-            
-            if(self.last_group_bys[0] !== "product_categ_id" && self.last_group_bys[0] !== "order_name" && self.last_group_bys[0] !== "partner_id") {
+
+            if (self.last_group_bys[0] !== "product_categ_id" && self.last_group_bys[0] !== "order_name" && self.last_group_bys[0] !== "partner_id") {
                 var group = evt[self.last_group_bys[0]];
             } else {
                 var group = evt.product_id
@@ -483,7 +459,7 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
         },
 
 
-        init_timeline: function(){
+        init_timeline: function () {
             var self = this;
             var util = vis.util;
 
@@ -508,12 +484,12 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
 
             this.timeline.on('doubleClick', self.on_group_double_click);
             // this.timeline.on('click', self.on_group_click);
-            this.timeline.on('click', function(props){
+            this.timeline.on('click', function (props) {
                 props.event.preventDefault()
             });
 
             // turn off the internal hammer tap event listener
-            this.timeline.off('changed').on('changed', function() {
+            this.timeline.off('changed').on('changed', function () {
                 this.options.orientation = {
                     item: 'top',
                     axis: 'top'
@@ -525,23 +501,23 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                 );
             });
 
-            
 
-            (function(_create, setData){
-                vis.timeline.components.Group.prototype.setData = function(data){
+
+            (function (_create, setData) {
+                vis.timeline.components.Group.prototype.setData = function (data) {
                     setData.apply(this, [data]);
                     this.copy_data = data;
                 }
-                vis.timeline.components.Group.prototype._create = function(){
+                vis.timeline.components.Group.prototype._create = function () {
                     _create.apply(this);
                     this.popup = null;
                     this.dom.label.addEventListener('mouseover', this._onMouseOver.bind(this));
                     this.dom.label.addEventListener('mouseout', this._onMouseOut.bind(this));
                     this.dom.label.addEventListener('mousemove', this._onMouseMove.bind(this));
                 };
-                vis.timeline.components.Group.prototype._onMouseOver = function(event){
-                    if(this.copy_data.tooltip == null) return;
-                    if(this.popup == null) this.popup = new Popup(this.itemSet.body.dom.root, 'flip');
+                vis.timeline.components.Group.prototype._onMouseOver = function (event) {
+                    if (this.copy_data.tooltip == null) return;
+                    if (this.popup == null) this.popup = new Popup(this.itemSet.body.dom.root, 'flip');
                     this.popup.setText(this.copy_data.tooltip);
                     var container = this.itemSet.body.dom.centerContainer;
                     this.popup.setPosition(
@@ -550,14 +526,14 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                     );
                     this.popup.show();
                 };
-                vis.timeline.components.Group.prototype._onMouseOut = function(event){
-                    if(this.popup != null){
+                vis.timeline.components.Group.prototype._onMouseOut = function (event) {
+                    if (this.popup != null) {
                         this.popup.hide();
                     }
                 };
-                vis.timeline.components.Group.prototype._onMouseMove = function(event){
-                    if(this.popup){
-                        if(!this.popup.hidden){
+                vis.timeline.components.Group.prototype._onMouseMove = function (event) {
+                    if (this.popup) {
+                        if (!this.popup.hidden) {
                             var container = this.itemSet.body.dom.centerContainer;
                             this.popup.setPosition(
                                 event.clientX - util.getAbsoluteLeft(container) + container.offsetLeft,
@@ -572,11 +548,11 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                 vis.timeline.components.Group.prototype.setData
             );
 
-            (function(_onUpdateItem){
+            (function (_onUpdateItem) {
                 // we set the option add=false, so we must overwrite the function _onUpdateItem
                 // because in the function _onUpdateItem is a check if add is true
                 // now we set add to true, call the function and set add back to false
-                vis.timeline.components.ItemSet.prototype._onUpdateItem = function(item){
+                vis.timeline.components.ItemSet.prototype._onUpdateItem = function (item) {
                     var add = this.options.editable.add;
                     this.options.editable.add = true;
                     _onUpdateItem.apply(this, [item]);
@@ -586,43 +562,43 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                 vis.timeline.components.ItemSet.prototype._onUpdateItem
             );
 
-            (function(_repaintDragCenter){
+            (function (_repaintDragCenter) {
                 // we set the option updateTime=false, so we must overwrite the function _onUpdateItem
                 // because in the function _onUpdateItem is a check if updateTime is true
                 // now we set updateTime to true, call the function and set updateTime back to false
-                vis.timeline.components.items.Item.prototype._repaintDragCenter = function(){
+                vis.timeline.components.items.Item.prototype._repaintDragCenter = function () {
                     var updateTime = this.options.editable.updateTime;
                     this.options.editable.updateTime = true;
                     _repaintDragCenter.apply(this);
                     this.options.editable.updateTime = updateTime;
 
-//                     if(this.selected && !this.dom.dragCenter && false){
-//                         hammer.off('tap');
-//                         hammer.off('doubletap');
-//                         hammer.on('tap', function(event){
-//                             //event.stopPropagation();
-//                             me.parent.itemSet._onUpdateItem(me);
-//                             me.parent.itemSet.body.emitter.emit('click', {
-//                                 event: event,
-//                                 item: me.id
-//                             });
-//                         });
-//                     }
+                    //                     if(this.selected && !this.dom.dragCenter && false){
+                    //                         hammer.off('tap');
+                    //                         hammer.off('doubletap');
+                    //                         hammer.on('tap', function(event){
+                    //                             //event.stopPropagation();
+                    //                             me.parent.itemSet._onUpdateItem(me);
+                    //                             me.parent.itemSet.body.emitter.emit('click', {
+                    //                                 event: event,
+                    //                                 item: me.id
+                    //                             });
+                    //                         });
+                    //                     }
                 };
             })(
                 vis.timeline.components.items.Item.prototype._repaintDragCenter
             );
         },
 
-         
+
         /**
          * Handle double click on a group header.
          *
          * @private
          */
-         on_group_double_click: function (e) {
+        on_group_double_click: function (e) {
             if (e.what === 'group-label' && e.group !== -1) {
-                this._trigger(e, function() {
+                this._trigger(e, function () {
                     // Do nothing
                 }, 'onGroupDoubleClick');
             }
@@ -633,23 +609,23 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
          *
          * @private
          */
-         on_data_loaded_2: function (events, group_bys, x2x, adjust_window) {
+        on_data_loaded_2: function (events, group_bys, x2x, adjust_window) {
             var self = this;
             var data = [];
             var groups = [];
 
-            if(group_bys[0] === "product_categ_id" && group_categ_again % 2 === 0) {
+            if (group_bys[0] === "product_categ_id" && group_categ_again % 2 === 0) {
                 is_default_product_id = false;
                 group_categ_again += 2
             } else if (group_bys[0] === "order_name" && group_categ_again % 2 === 0) {
                 is_default_product_id = false;
                 group_categ_again += 2
-            }else if (group_bys[0] === "partner_id" && group_categ_again % 2 === 0) {
+            } else if (group_bys[0] === "partner_id" && group_categ_again % 2 === 0) {
                 is_default_product_id = false;
                 group_categ_again += 2
             }
 
-            if(group_bys[0] !== "product_categ_id" && group_bys[0] !== "order_name" && group_bys[0] !== "partner_id") {
+            if (group_bys[0] !== "product_categ_id" && group_bys[0] !== "order_name" && group_bys[0] !== "partner_id") {
                 this.grouped_by = group_bys;
 
                 _.each(events, function (event) {
@@ -670,7 +646,7 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                     }
                 });
 
-                group_categ_again ++;
+                group_categ_again++;
             } else {
                 this.grouped_by = "product_id"
                 _.each(events, function (event) {
@@ -691,7 +667,7 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                     }
                 });
 
-                group_categ_again ++;
+                group_categ_again++;
             }
 
             if (x2x) {
@@ -704,11 +680,11 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                     this.$select_groups.remove();
                 }
                 groups = this.split_groups(events, group_bys);
-                
-                if(group_bys[0] === "partner_id"){
-                    for(let i = 0; i < groups.length; i ++) {
-                            data.forEach(item => {
-                            if(!('nestedGroups' in groups[i])){
+
+                if (group_bys[0] === "partner_id") {
+                    for (let i = 0; i < groups.length; i++) {
+                        data.forEach(item => {
+                            if (!('nestedGroups' in groups[i])) {
                                 // if(item.group === groups[i].id && !_.isEqual(item.evt.partner_id, groups[i].partner_id)){
                                 //     if(i +1 < groups.length) {
                                 //         for(let j = i +1 ; j < groups.length; j ++) {
@@ -723,8 +699,8 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                                 //         }
                                 //     }
                                 // } else 
-                                if (item.group !== groups[i].id && _.isEqual(item.evt.product_id, groups[i].product_id) 
-                                && _.isEqual(item.evt.partner_id, groups[i].partner_id)){
+                                if (item.group !== groups[i].id && _.isEqual(item.evt.product_id, groups[i].product_id)
+                                    && _.isEqual(item.evt.partner_id, groups[i].partner_id)) {
                                     item.group = groups[i].id
                                 }
                             }
@@ -732,10 +708,10 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                     }
                 }
 
-                if(group_bys[0] === "order_name"){
-                    for(let i = 0; i < groups.length; i ++) {
-                            data.forEach(item => {
-                            if(!('nestedGroups' in groups[i])){
+                if (group_bys[0] === "order_name") {
+                    for (let i = 0; i < groups.length; i++) {
+                        data.forEach(item => {
+                            if (!('nestedGroups' in groups[i])) {
                                 // if(item.group === groups[i].id && item.evt.order_name !== groups[i].order_name){
                                 //     if(i +1 < groups.length) {
                                 //         for(let j = i +1 ; j < groups.length; j ++) {
@@ -746,8 +722,8 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                                 //         }
                                 //     }
                                 // } else 
-                                if (item.group !== groups[i].id && _.isEqual(item.evt.product_id, groups[i].product_id) 
-                                && (item.evt.order_name === groups[i].order_name)){
+                                if (item.group !== groups[i].id && _.isEqual(item.evt.product_id, groups[i].product_id)
+                                    && (item.evt.order_name === groups[i].order_name)) {
                                     item.group = groups[i].id
                                 }
                             }
@@ -767,37 +743,37 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
             }
         },
 
-        _do_nothing:function(){
+        _do_nothing: function () {
             console.log("click event is fired")
         },
 
-        _onTodayClicked: function(){
+        _onTodayClicked: function () {
             this._scaleCurrentWindow(1, 'days', 'day');
         },
 
-        _onScaleDayClicked: function(){
+        _onScaleDayClicked: function () {
             this._scaleCurrentWindow(1, 'days', 'now');
         },
 
-        _onScaleWeekClicked: function(){
+        _onScaleWeekClicked: function () {
             this._scaleCurrentWindow(7, 'days', 'now');
         },
 
-        _onScaleMonthClicked: function(){
+        _onScaleMonthClicked: function () {
             this._scaleCurrentWindow(1, 'months', 'now');
         },
 
-        _onScaleYearClicked: function(){
+        _onScaleYearClicked: function () {
             this._scaleCurrentWindow(1, 'years', 'now');
         },
 
-        _scaleCurrentWindow: function(factor, time_unit='hours', startOf='current_window'){
-            if(this.timeline){
+        _scaleCurrentWindow: function (factor, time_unit = 'hours', startOf = 'current_window') {
+            if (this.timeline) {
                 var start = null;
-                if(startOf == 'current_window'){
+                if (startOf == 'current_window') {
                     start = this.timeline.getWindow().start;
                 }
-                else{
+                else {
                     var moment_now = new moment();
                     start = startOf == 'now' ? moment_now : moment_now.startOf(startOf);
                 }
