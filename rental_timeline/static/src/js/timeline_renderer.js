@@ -107,6 +107,7 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function (require) {
                                 }
 
                             }
+
                         }
                     });
 
@@ -253,7 +254,6 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function (require) {
 
             var ids = groups.map(group => { return group.id });
             var max_id = Math.max(...ids);
-
             for (let i = 0; i < layer_groups.length - 1; i++) {
                 for (let k = 0; k < layer_groups[i].nestedGroups.length; k++) {
                     for (let j = i + 1; j < layer_groups.length; j++) {
@@ -281,97 +281,6 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function (require) {
 
             return [groups, layer_groups];
         },
-
-        // /**
-        //  * Set layer groups.
-        //  *
-        //  * @private
-        //  * @param {events}
-        //  * @param {group_bys}
-        //  * @param {layer_groups}
-        //  * @param {group_by}
-        //  * @returns {layer_groups}
-        //  */
-        // set_layer_groups: function(events, group_bys, layer_groups, group_by) {
-        //     _.each(events, function(event){
-        //         var group_name = event[_.first(group_bys)];
-        //         if(group_name){
-        //             if(group_name instanceof Array){
-        //                 let group = _.find(layer_groups, function(existing_group){
-        //                     return _.isEqual(existing_group.id, group_name[0] * 100);
-        //                     // return _.isEqual(existing_group, group_name);
-        //                 });
-
-        //                 // if(!groups.includes(group)){
-        //                 if(_.isUndefined(group)){
-
-        //                     var tooltip = null;
-        //                     if(window.qweb.has_template('tooltip-item-group')){
-        //                         tooltip = this.qweb.render('tooltip-item-group', {
-        //                             'record': event
-        //                         });
-        //                     }
-
-        //                     let nested_groups = []
-        //                     _.each(events, function(event_p){
-        //                         if(group_by === "product_categ_name") {
-        //                             if(event_p.product_categ_name === event.product_categ_name) { 
-        //                                 if(!nested_groups.includes(event_p.product_id[0])){
-        //                                     nested_groups.push(event_p.product_id[0]) 
-        //                                 }
-        //                             }
-        //                         }
-        //                         else if(group_by === "order_name") {
-        //                             if(event_p.order_name === event.order_name) { 
-        //                                 if(!nested_groups.includes(event_p.product_id[0])){
-        //                                     nested_groups.push(event_p.product_id[0]) 
-        //                                 }
-        //                             }
-        //                         }
-        //                         if(group_by === "partner_id") {
-        //                             if(event_p.partner_id[1] === event.partner_id[1]) { 
-        //                                 if(!nested_groups.includes(event_p.product_id[0])){
-        //                                     nested_groups.push(event_p.product_id[0]) 
-        //                                 }
-        //                             }
-        //                         }
-        //                     })
-
-        //                     if(group_by === "product_categ_id") {
-        //                         group = {
-        //                             id: group_name[0] * 100,
-        //                             content: group_name[1], 
-        //                             nestedGroups: nested_groups,
-        //                             tooltip: tooltip,
-        //                         };
-        //                     } else if (group_by === "order_name") {
-        //                         group = {
-        //                             id: event.id * 100,
-        //                             content: group_name, 
-        //                             nestedGroups: nested_groups,
-        //                             tooltip: tooltip,
-        //                             order_name: group_name
-        //                         };
-        //                     } else if (group_by === "partner_id") {
-        //                         group = {
-        //                             id: group_name[0] * 100,
-        //                             content: group_name[1], 
-        //                             nestedGroups: nested_groups,
-        //                             tooltip: tooltip,
-        //                             partner_id: group_name
-        //                         };
-
-        //                     }
-
-        //                     layer_groups.push(group);
-        //                 } 
-
-        //             }
-        //         }
-        //     });
-
-        //     return layer_groups;
-        // },
 
 
         /**
