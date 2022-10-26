@@ -239,47 +239,45 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function (require) {
          * @returns {[groups, layer_groups]}
          */
         generate_sub_groups: function (groups, layer_groups, group_by) {
-
-            /*             var ids = layer_groups.map(layer_group => { return layer_groups.group.id });
-                        var max_id = Math.max(...ids); */
-            /*             var max_id = 0
-                        for (let i = 0; i < layer_groups.length; i++) {
-                            for (let j = 0; j < layer_groups[i].nestedGroups.length; j++) {
-                                if (layer_groups[i].nestedGroups[j] > max_id) {
-                                    max_id = layer_groups[i].nestedGroups[j];
-                                }
-                            }
-            
-                        } */
-
             var ids = groups.map(group => { return group.id });
             var max_id = Math.max(...ids);
-            for (let i = 0; i < layer_groups.length - 1; i++) {
+
+            /* get id of all child groups and their position in the hierarchy */
+            var group_ids = [];
+            for (let i = 0; i < layer_groups.length; i++) {
                 for (let k = 0; k < layer_groups[i].nestedGroups.length; k++) {
-                    for (let j = i + 1; j < layer_groups.length; j++) {
-                        for (let m = 0; m < layer_groups[j].nestedGroups.length; m++) {
-
-                            if (layer_groups[i].nestedGroups[k] === layer_groups[j].nestedGroups[m]) {
-                                const group = groups.find(elem => elem.id === layer_groups[j].nestedGroups[m]);
-                                const newGroup = Object.assign({}, group)
-                                newGroup.original_id = newGroup.id
-
-                                max_id++;
-                                newGroup.id = max_id;
-                                if (group_by === "partner_id") {
-                                    newGroup.partner_id = layer_groups[j].partner_id;
-                                } else if (group_by === "order_name") {
-                                    newGroup.order_name = layer_groups[j].order_name;
-                                }
-                                groups.push(newGroup);
-                                layer_groups[j].nestedGroups[m] = newGroup.id;
-                            }
+                    group_ids.push(
+                        {
+                            id: layer_groups[i].nestedGroups[k],
+                            layer_group_pos: i,
+                            nested_group_pos: k
                         }
-                    }
+                    )
                 }
             }
 
-            return [groups, layer_groups];
+            /* for all child ids generate a new group(copy of original with new Id)
+                 and place it in the hierarchy */
+            var new_groups = [];
+            for (let m = 0; m < group_ids.length; m++) {
+
+                const group = groups.find(elem => elem.id === layer_groups[group_ids[m].layer_group_pos].nestedGroups[group_ids[m].nested_group_pos]);
+                const newGroup = Object.assign({}, group)
+                newGroup.original_id = newGroup.id
+
+                max_id++;
+                newGroup.id = max_id;
+                if (group_by === "partner_id") {
+                    newGroup.partner_id = layer_groups[group_ids[m].layer_group_pos].partner_id;
+                } else if (group_by === "order_name") {
+                    newGroup.order_name = layer_groups[group_ids[m].layer_group_pos].order_name;
+                }
+                new_groups.push(newGroup);
+                layer_groups[group_ids[m].layer_group_pos].nestedGroups[group_ids[m].nested_group_pos] = newGroup.id;
+
+            }
+
+            return [new_groups, layer_groups];
         },
 
 
