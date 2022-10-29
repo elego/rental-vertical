@@ -120,10 +120,12 @@
         name="Toll Charges"
         id="menu_toll_charges"
         parent="rental_base.menu_master_data"
+        groups="account.group_account_user"
         sequence="20" />
         <menuitem
             id="menu_toll_charge_line"
             parent="menu_toll_charges"
+            groups="account.group_account_user"
             action="toll_charge_line_action"
             sequence="3"
         />

@@ -111,11 +111,13 @@
 
         <menuitem action="action_fleet_type"
             id="menu_fleet_type" parent="stock.menu_stock_inventory_control"
+            groups="sales_team.group_sale_manager"
             sequence="13" />
 
         <!-- Menu in Rentals -->
         <menuitem action="action_fleet_type"
             id="menu_fleet_type"
+            groups="sales_team.group_sale_manager"
             parent="rental_base.menu_config_products"
             sequence="20" />
 
