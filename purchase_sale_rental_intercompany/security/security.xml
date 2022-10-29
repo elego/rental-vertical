@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<odoo>
+    <record model="ir.rule" id="sale_order_type.sale_order_type_comp_rule">
+        <field name="active" eval="False"/>
+    </record>
+</odoo>

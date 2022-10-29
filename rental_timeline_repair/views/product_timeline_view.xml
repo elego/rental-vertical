@@ -33,8 +33,8 @@
         <field name="model">product.timeline</field>
         <field name="inherit_id" ref="rental_timeline.view_product_timeline_search" />
         <field name="arch" type="xml">
-            <filter name="type_rental" position="after">
-                <filter domain="[('type','=','repair')]" name="repair" string="Repair"/>
+            <filter name="type_rental_order" position="after">
+                <filter domain="[('type','=','repair')]" name="repair" string="Repair Orders"/>
             </filter>
         </field>
     </record>

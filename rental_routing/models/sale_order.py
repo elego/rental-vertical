@@ -105,14 +105,14 @@ class SaleOrder(models.Model):
         if not self.warehouse_id.int_type_id:
             raise UserError(_("There is no default picking type 'Internal' found for the selected warehouse."))
         location_name = "Location [%s]" % self.partner_shipping_id.display_name
-        new_location = rental_out_location.copy({"name": location_name, "partner_id": partner.id})
+        new_location = rental_out_location.sudo().copy({"name": location_name, "partner_id": partner.id})
 
         # set onsite location of partner address
         self.partner_shipping_id.rental_onsite_location_id = new_location
 
         # Create a new route for the new location
         route_name = "Rent [%s]" % self.partner_shipping_id.display_name
-        new_route = self.warehouse_id.rental_route_id.copy({"name": route_name})
+        new_route = self.warehouse_id.rental_route_id.sudo().copy({"name": route_name})
         # new_push_rule = new_route.push_ids[0]
         # new_pull_rule = new_route.pull_ids[0]
         for rule in new_route.rule_ids:

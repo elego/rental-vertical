@@ -8,12 +8,12 @@ class ProductTimeline(models.Model):
 
     type = fields.Selection(
         selection_add=[
-            ("repair", "Repair"),
+            ("repair", "Repair Order"),
         ],
     )
 
     repair = fields.Boolean(
-        "Repair",
+        string="Repair Order",
         compute="_compute_fields",
         store=True,
     )
@@ -21,13 +21,11 @@ class ProductTimeline(models.Model):
     @api.depends("res_id", "res_model")
     def _compute_fields(self):
         super(ProductTimeline, self)._compute_fields()
-        lang = self.env["res.lang"].search([("code", "=", self.env.user.lang)])
+        lang = self.env["res.lang"].search([("code", "=", self.env.user.company_id.partner_id.lang)])
         for line in self:
             if line.res_model == "repair.order":
-                obj = self.env[line.res_model].browse(line.res_id)
-                line.name = (
-                    _("r: %s") % obj.partner_id.name if obj.partner_id else obj.name
-                )
+                obj = self.env[line.res_model].browse(line.res_id).with_context(lang=lang.code)
+                line.name = obj.partner_id.commercial_partner_id.name if obj.partner_id else obj.name
                 line.order_name = obj.name
                 line.partner_id = obj.partner_id.id
                 line.partner_shipping_id = obj.address_id.id

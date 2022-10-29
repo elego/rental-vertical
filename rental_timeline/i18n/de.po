@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-22 19:11+0000\n"
-"PO-Revision-Date: 2021-06-22 19:11+0000\n"
+"POT-Creation-Date: 2022-09-20 12:49+0000\n"
+"PO-Revision-Date: 2022-09-20 12:49+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -63,24 +63,29 @@ msgid "Category:"
 msgstr "Kategorie:"
 
 #. module: rental_timeline
-#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__click_res_id
-msgid "Click Res"
-msgstr "Click Res"
-
-#. module: rental_timeline
 #: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__click_res_model
-msgid "Click Res Model"
-msgstr "Click Res Model"
+msgid "Clickable Data Model"
+msgstr "Anklickbares Datenmodell"
 
 #. module: rental_timeline
-#: model_terms:ir.ui.view,arch_db:rental_timeline.view_product_timeline_timeline
-msgid "Clues:"
-msgstr "Hinweise:"
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__click_res_id
+msgid "Clickable Object ID"
+msgstr "Anklickbares Objekt (ID)"
 
 #. module: rental_timeline
-#: model_terms:ir.actions.act_window,help:rental_timeline.action_product_timeline
-msgid "Create a timeline for equipment first."
-msgstr "Zuerst muss eine Zeitachse für das Equipment erstellt werden."
+#: selection:product.timeline,type:0
+msgid "Confirmed Order"
+msgstr "Bestätigter Auftrag"
+
+#. module: rental_timeline
+#: model_terms:ir.ui.view,arch_db:rental_timeline.view_product_timeline_search
+msgid "Confirmed Orders"
+msgstr "Bestätigte Aufträge"
+
+#. module: rental_timeline
+#: model:ir.model,name:rental_timeline.model_res_partner
+msgid "Contact"
+msgstr "Kontakt"
 
 #. module: rental_timeline
 #: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__create_uid
@@ -109,8 +114,8 @@ msgstr "Enddatum"
 
 #. module: rental_timeline
 #: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__date_end_formated
-msgid "Date End Formated"
-msgstr ""
+msgid "Date End (Formatted)"
+msgstr "Enddatum (Formatiert)"
 
 #. module: rental_timeline
 #: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__date_start
@@ -119,8 +124,8 @@ msgstr "Startdatum"
 
 #. module: rental_timeline
 #: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__date_start_formated
-msgid "Date Start Formated"
-msgstr "Formatiertes Startdatum"
+msgid "Date Start (Formatted)"
+msgstr "Startdatum (Formatiert)"
 
 #. module: rental_timeline
 #: selection:ir.ui.view,type:0
@@ -207,18 +212,6 @@ msgid "New Rental"
 msgstr "Neue Vermietung"
 
 #. module: rental_timeline
-#: code:addons/rental_timeline/models/sale.py:89
-#, python-format
-msgid "No found rented product."
-msgstr "Es wurde kein Vermietprodukt gefunden."
-
-#. module: rental_timeline
-#: code:addons/rental_timeline/models/sale.py:64
-#, python-format
-msgid "No found timelines."
-msgstr "Es wurden kein Zeitachsen-Einträge gefunden."
-
-#. module: rental_timeline
 #: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__order_name
 msgid "Order"
 msgstr "Auftrag"
@@ -227,6 +220,16 @@ msgstr "Auftrag"
 #: model_terms:ir.ui.view,arch_db:rental_timeline.view_product_timeline_timeline
 msgid "Order:"
 msgstr "Auftrag:"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__res_model
+msgid "Origin Data Model"
+msgstr "Datenmodell (Quelle)"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__res_id
+msgid "Origin Object ID"
+msgstr "Objekt-ID (Quelle)"
 
 #. module: rental_timeline
 #: model:ir.ui.menu,name:rental_timeline.menu_overview
@@ -297,35 +300,24 @@ msgid "QWeb"
 msgstr "QWeb"
 
 #. module: rental_timeline
-#: code:addons/rental_timeline/models/product_timeline.py:224
-#, python-format
-msgid "R: %s"
-msgstr "V: %s"
-
-#. module: rental_timeline
-#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__redline
-msgid "Redline"
-msgstr "Rote Linie"
+#: selection:product.timeline,type:0
+msgid "Quotation"
+msgstr "Angebot"
 
 #. module: rental_timeline
 #: model_terms:ir.ui.view,arch_db:rental_timeline.view_product_timeline_search
-msgid "Rental"
-msgstr "Vermieten"
+msgid "Quotations"
+msgstr "Angebote"
 
 #. module: rental_timeline
-#: selection:product.timeline,type:0
-msgid "Rental"
-msgstr "Vermietung"
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__rental_period
+msgid "Rental Duration"
+msgstr "Mietdauer"
 
 #. module: rental_timeline
 #: selection:sale.order.line,rental_type:0
 msgid "Rental Extension"
 msgstr "Mietverlängerung"
-
-#. module: rental_timeline
-#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__rental_period
-msgid "Rental Period"
-msgstr "Mietdauer"
 
 #. module: rental_timeline
 #. openerp-web
@@ -345,26 +337,6 @@ msgstr "Vermietungstyp"
 #: model_terms:ir.ui.view,arch_db:rental_timeline.view_product_timeline_timeline
 msgid "Rental period:"
 msgstr "Mietdauer:"
-
-#. module: rental_timeline
-#: selection:product.timeline,type:0
-msgid "Repair"
-msgstr "Reparatur"
-
-#. module: rental_timeline
-#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__res_id
-msgid "Res"
-msgstr "Res"
-
-#. module: rental_timeline
-#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__res_model
-msgid "Res Model"
-msgstr "Res Model"
-
-#. module: rental_timeline
-#: selection:product.timeline,type:0
-msgid "Reserved"
-msgstr "Reserviert"
 
 #. module: rental_timeline
 #: model:ir.model,name:rental_timeline.model_sale_order
@@ -389,7 +361,7 @@ msgstr "Kategorie für das neue Produkt wählen"
 #. module: rental_timeline
 #: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__partner_shipping_address
 msgid "Shipping address"
-msgstr "Zustellungsadresse"
+msgstr "Lieferadresse"
 
 #. module: rental_timeline
 #: model_terms:ir.ui.view,arch_db:rental_timeline.view_product_timeline_timeline
@@ -397,9 +369,26 @@ msgid "Shipping address:"
 msgstr "Lieferadresse:"
 
 #. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__partner_shipping_id
+msgid "Shipping Partner"
+msgstr "Lieferadresse"
+
+#. module: rental_timeline
 #: model_terms:ir.ui.view,arch_db:rental_timeline.view_product_timeline_timeline
 msgid "Start date:"
-msgstr "Anfangsdatum:"
+msgstr "Startdatum:"
+
+#. module: rental_timeline
+#: code:addons/rental_timeline/models/sale.py:94
+#, python-format
+msgid "The order line with ID '%s' of order '%s' does not have a rental product."
+msgstr "Die Auftragszeile mit der ID '%s' vom Auftrag '%s' hat kein vermietbares Produkt."
+
+#. module: rental_timeline
+#: code:addons/rental_timeline/models/sale.py:66
+#, python-format
+msgid "The order line with rental product '%s' does not have timeline objects."
+msgstr "Die Auftragszeile mit dem vermietbaren Produkt '%s' hat keine Zeitleisten-Objekte."
 
 #. module: rental_timeline
 #: sql_constraint:product.timeline:0
@@ -407,14 +396,73 @@ msgid "The start date must be anterior to the end date."
 msgstr "Das Startdatum muss vor dem Enddatum liegen."
 
 #. module: rental_timeline
-#: model:ir.model.fields,field_description:rental_timeline.field_product_product__product_timeline_ids
-msgid "Time Lines"
-msgstr "Zeitleiste"
+#: model:ir.model.fields,help:rental_timeline.field_product_timeline__date_end_formated
+msgid "This field contains the end date as string without time to show it in rental timeline mouseover view."
+msgstr "Das Feld enthält das Enddatum als Zeichenkette ohne die Uhrzeit, um sie im Mouseover der Zeitleiste anzuzeigen."
+
+#. module: rental_timeline
+#: model:ir.model.fields,help:rental_timeline.field_product_timeline__order_name
+msgid "This field contains the order name as string to show it in rental timeline mouseover view."
+msgstr "Das Feld enthält die Auftragsnummer als Zeichenkette, um sie im Mouseover der Zeitleiste anzuzeigen."
+
+#. module: rental_timeline
+#: model:ir.model.fields,help:rental_timeline.field_product_timeline__product_name
+msgid "This field contains the product name as string to show it in rental timeline mouseover view."
+msgstr "Das Feld enthält die Produktbezeichnung als Zeichenkette, um sie im Mouseover der Zeitleiste anzuzeigen."
+
+#. module: rental_timeline
+#: model:ir.model.fields,help:rental_timeline.field_product_timeline__rental_period
+msgid "This field contains the rental duration as string to show it in rental timeline mouseover view."
+msgstr "Das Feld enthält die Mietdauer als Zeichenkette, um sie im Mouseover der Zeitleiste anzuzeigen."
+
+#. module: rental_timeline
+#: model:ir.model.fields,help:rental_timeline.field_product_timeline__partner_shipping_address
+msgid "This field contains the shipping address as string to show it in rental timeline mouseover view."
+msgstr "Das Feld enthält die Lieferaddresse als Zeichenkette, um sie im Mouseover der Zeitleiste anzuzeigen."
+
+#. module: rental_timeline
+#: model:ir.model.fields,help:rental_timeline.field_product_timeline__date_start_formated
+msgid "This field contains the start date as string without time to show it in rental timeline mouseover view."
+msgstr "Das Feld enthält das Startdatum als Zeichenkette ohne die Uhrzeit, um sie im Mouseover der Zeitleiste anzuzeigen."
+
+#. module: rental_timeline
+#: model:ir.model.fields,help:rental_timeline.field_product_timeline__type_formated
+msgid "This field contains the timeline type as string to show it in rental timeline mouseover view."
+msgstr "Das Feld enthält den Zeitleisten-Typ als Zeichenkette, um sie im Mouseover der Zeitleiste anzuzeigen."
+
+#. module: rental_timeline
+#: model:ir.model.fields,help:rental_timeline.field_product_timeline__warehouse_name
+msgid "This field contains the warehouse name as string to show it in rental timeline mouseover view."
+msgstr "Das Feld enthält die Lagerhaus-Bezeichnung als Zeichenkette, um sie im Mouseover der Zeitleiste anzuzeigen."
+
+#. module: rental_timeline
+#: model:ir.model.fields,help:rental_timeline.field_product_timeline__click_res_id
+msgid "This is a technical field to define which exact Odoo object this timeline item opens, when double clicked."
+msgstr "Das ist ein technisches Feld zur Bestimmung, welches Odoo Objekt dieses Zeitleisten-Objekt öffnet, wenn es doppelt geklickt wird."
+
+#. module: rental_timeline
+#: model:ir.model.fields,help:rental_timeline.field_product_timeline__click_res_model
+msgid "This is a technical field to define which kind of Odoo object this timeline item opens, when double clicked."
+msgstr "Das ist ein technisches Feld zur Bestimmung, welches Datenmodell dieses Zeitleisten-Objekt öffnet, wenn es doppelt geklickt wird."
+
+#. module: rental_timeline
+#: model:ir.model.fields,help:rental_timeline.field_product_timeline__res_id
+msgid "This is a technical field to know which exact Odoo object this timeline item is about."
+msgstr "Das ist ein technisches Feld, das zeigt, welches Odoo Objekt zu diesem Zeitleisten-Objekt gehört."
+
+#. module: rental_timeline
+#: model:ir.model.fields,help:rental_timeline.field_product_timeline__res_model
+msgid "This is a technical field to know which kind of Odoo object this timeline item is about."
+msgstr "Das ist ein technisches Feld, das zeigt, welches Datenmodell zu diesem Zeitleisten-Objekt gehört."
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__time_uom
+msgid "Time UOM"
+msgstr "Zeit-ME"
 
 #. module: rental_timeline
 #: model:ir.actions.act_window,name:rental_timeline.action_product_timeline
 #: selection:ir.actions.act_window.view,view_mode:0
-#: model:ir.model.fields,field_description:rental_timeline.field_sale_order_line__timeline_ids
 #: model:ir.ui.menu,name:rental_timeline.menu_product_timeline
 #: model_terms:ir.ui.view,arch_db:rental_timeline.view_product_timeline_form
 #: model_terms:ir.ui.view,arch_db:rental_timeline.view_product_timeline_search
@@ -422,6 +470,18 @@ msgstr "Zeitleiste"
 #: selection:ir.ui.view,type:0
 msgid "Timeline"
 msgstr "Zeitleiste"
+
+#. module: rental_timeline
+#: model:ir.actions.act_window,name:rental_timeline.action_product_timeline_items
+#: model:ir.model.fields,field_description:rental_timeline.field_product_product__product_timeline_ids
+#: model:ir.ui.menu,name:rental_timeline.menu_timeline_items
+msgid "Timeline Items"
+msgstr "Zeitleisten-Objekte"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_sale_order_line__timeline_ids
+msgid "Timeline Objects"
+msgstr "Zeitleisten-Objekte"
 
 #. module: rental_timeline
 #: model:ir.actions.act_window,name:rental_timeline.action_view_all_timeline
@@ -451,8 +511,8 @@ msgstr "Typ"
 
 #. module: rental_timeline
 #: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__type_formated
-msgid "Type Formated"
-msgstr ""
+msgid "Type (Formatted)"
+msgstr "Typ (Formatiert)"
 
 #. module: rental_timeline
 #: model_terms:ir.ui.view,arch_db:rental_timeline.view_product_timeline_timeline
@@ -486,7 +546,7 @@ msgid "Warehouse:"
 msgstr "Lager"
 
 #. module: rental_timeline
-#: code:addons/rental_timeline/models/sale.py:137
+#: code:addons/rental_timeline/models/sale.py:146
 #, python-format
 msgid "You are not allowed to change the 'rental type' in an order line of a confirmed order.\n"
 "\n"

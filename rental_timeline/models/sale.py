@@ -10,7 +10,8 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     timeline_ids = fields.One2many(
-        "product.timeline",
+        string="Timeline Objects",
+        comodel_name="product.timeline",
         compute="_compute_timeline_ids",
     )
 
@@ -61,12 +62,15 @@ class SaleOrderLine(models.Model):
                 continue
             if line.product_id.rented_product_id:
                 if not line.timeline_ids:
-                    raise exceptions.UserError(_("No found timelines."))
+                    raise exceptions.UserError(
+                        _(
+                            "The order line with rental product '%s' "
+                            "does not have timeline objects."
+                        ) % line.product_id.rented_product_id
+                    )
                 update_date_start_later = False
                 start_timelines = sorted(line.timeline_ids, key=lambda l: l.date_start)
-                end_timelines = sorted(
-                    line.timeline_ids, key=lambda l: l.date_end, reverse=True
-                )
+                end_timelines = sorted(line.timeline_ids, key=lambda l: l.date_end, reverse=True)
                 if vals.get("start_date", False) and start_timelines:
                     if start_timelines[0].date_end < fields.Datetime.to_datetime(
                         vals.get("start_date")
@@ -86,7 +90,12 @@ class SaleOrderLine(models.Model):
                     timelines = sorted(line.timeline_ids, key=lambda l: l.name)
                     timelines[0].order_name = vals["name"]
             else:
-                raise exceptions.UserError(_("No found rented product."))
+                raise exceptions.UserError(
+                    _(
+                        "The order line with ID '%s' of order '%s' "
+                        "does not have a rental product."
+                    ) % (line.id, line.order_id.name)
+                )
 
     @api.multi
     def _timeline_recompute_fields(self):
@@ -126,7 +135,7 @@ class SaleOrderLine(models.Model):
                     reset_lines |= line
                 if name and line.name != name:
                     reset_lines |= line
-                # Since rental_type needed to be editable in state 'sent' and 'sale
+                # Since rental_type needed to be editable in state 'sent' and 'sale'
                 # to create new order lines in these states it is here forbidden to
                 # change it on existing sale order lines.
                 if (
@@ -186,7 +195,7 @@ class SaleOrder(models.Model):
     @api.multi
     def action_cancel(self):
         """
-        delete all time lines
+        Delete all timeline objects when cancelling sale order.
         """
         for order in self:
             for line in order.order_line.filtered(
@@ -200,7 +209,7 @@ class SaleOrder(models.Model):
     @api.multi
     def action_draft(self):
         """
-        recreate the timeline items
+        Recreate the timeline objects when setting sale order to draft state.
         """
         res = super(SaleOrder, self).action_draft()
         for order in self:
@@ -211,7 +220,7 @@ class SaleOrder(models.Model):
     @api.multi
     def action_confirm(self):
         """
-        change type of time lines
+        Update timeline type of timeline objects when confirming the sale order.
         """
         values = {
             "type": "rental",

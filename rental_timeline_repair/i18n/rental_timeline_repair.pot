@@ -6,14 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-22 09:52+0000\n"
-"PO-Revision-Date: 2021-06-22 09:52+0000\n"
+"POT-Creation-Date: 2022-09-22 08:33+0000\n"
+"PO-Revision-Date: 2022-09-22 08:33+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: rental_timeline_repair
+#: selection:product.timeline,type:0
+msgid "Confirmed Order"
+msgstr ""
 
 #. module: rental_timeline_repair
 #: code:addons/rental_timeline_repair/models/repair.py:67
@@ -34,24 +39,19 @@ msgstr ""
 
 #. module: rental_timeline_repair
 #: selection:product.timeline,type:0
-msgid "Rental"
-msgstr ""
-
-#. module: rental_timeline_repair
-#: model:ir.model.fields,field_description:rental_timeline_repair.field_product_timeline__repair
-#: selection:product.timeline,type:0
-#: model_terms:ir.ui.view,arch_db:rental_timeline_repair.view_product_timeline_search_repair
-msgid "Repair"
+msgid "Quotation"
 msgstr ""
 
 #. module: rental_timeline_repair
 #: model:ir.model,name:rental_timeline_repair.model_repair_order
+#: model:ir.model.fields,field_description:rental_timeline_repair.field_product_timeline__repair
+#: selection:product.timeline,type:0
 msgid "Repair Order"
 msgstr ""
 
 #. module: rental_timeline_repair
-#: selection:product.timeline,type:0
-msgid "Reserved"
+#: model_terms:ir.ui.view,arch_db:rental_timeline_repair.view_product_timeline_search_repair
+msgid "Repair Orders"
 msgstr ""
 
 #. module: rental_timeline_repair
@@ -62,11 +62,5 @@ msgstr ""
 #. module: rental_timeline_repair
 #: model:ir.model.fields,field_description:rental_timeline_repair.field_product_timeline__type
 msgid "Type"
-msgstr ""
-
-#. module: rental_timeline_repair
-#: code:addons/rental_timeline_repair/models/product_timeline.py:29
-#, python-format
-msgid "r: %s"
 msgstr ""
 
