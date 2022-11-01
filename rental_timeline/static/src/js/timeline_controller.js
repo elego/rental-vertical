@@ -20,17 +20,21 @@ odoo.define('rental_timeline.RentalTimelineController', function (require) {
             //     var props = timeline.getEventProperties(event)
             // }
 
-            return this.do_action({
-                type: 'ir.actions.act_window',
-                res_model: this.renderer.view.fields[groupField].relation,
-                res_id: event.data.item.group,
-                target: 'new',
-                flags: {
-                    mode: 'readonly',    
-                },
-                views: [[false, 'form']],
-            });
-            return 
+            if(event.data.item.group < 1000000) {
+                return this.do_action({
+                    type: 'ir.actions.act_window',
+                    res_model: this.renderer.view.fields[groupField].relation,
+                    res_id: event.data.item.group,
+                    target: 'new',
+                    flags: {
+                        mode: 'readonly',    
+                    },
+                    views: [[false, 'form']],
+                });
+
+            } else {
+                return 
+            }
         },
 
         _onGroupDoubleClick: function(event){

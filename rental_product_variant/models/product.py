@@ -54,7 +54,7 @@ class ProductProduct(models.Model):
         help="This it the total number of rental orders including "
         "order lines with this product.",
     )
-
+    
     @api.multi
     def _get_sale_order_ids(self, rental=False):
         self.ensure_one()
