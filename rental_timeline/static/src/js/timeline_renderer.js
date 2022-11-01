@@ -64,8 +64,7 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                     if(group_name){
                         if(group_name instanceof Array){
                             let group = _.find(group_categs, function(existing_group){
-                                return _.isEqual(existing_group.id, group_name[0] * 100);
-                                // return _.isEqual(existing_group, group_name);
+                                return _.isEqual(existing_group.content, group_name[1]);
                             });
     
                             // if(!groups.includes(group)){
@@ -84,12 +83,11 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                                         if(!nested_groups.includes(event_p.product_id[0])){
                                             nested_groups.push(event_p.product_id[0]) 
                                         }
-                                        console.log(`event_p.product_categ_name ${event_p.product_categ_name}`)                                   
                                     }
                                 })
     
                                 group = {
-                                    id: group_name[0] * 100,
+                                    id: group_name[0] + 1000000,
                                     content: group_name[1], 
                                     nestedGroups: nested_groups,
                                     tooltip: tooltip,
@@ -116,7 +114,6 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                         if(group_name){
                             let group = _.find(group_order_names, function(existing_group){
                                 return _.isEqual(existing_group.content, group_name);
-                                // return _.isEqual(existing_group, group_name);
                             });
     
                             // if(!groups.includes(group)){
@@ -139,7 +136,7 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                                 })
     
                                 group = {
-                                    id: event.id * 100,
+                                    id: event.id + 1000000,
                                     content: group_name, 
                                     nestedGroups: nested_groups,
                                     tooltip: tooltip,
@@ -168,11 +165,9 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                     if(group_name){
                         if(group_name instanceof Array){
                             let group = _.find(group_partners, function(existing_group){
-                                return _.isEqual(existing_group.id, group_name[0] * 100);
-                                // return _.isEqual(existing_group, group_name);
+                                return _.isEqual(existing_group.content, group_name[1]);
                             });
     
-                            // if(!groups.includes(group)){
                             if(_.isUndefined(group)){
                                 
                                 var tooltip = null;
@@ -192,7 +187,7 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
                                 })
     
                                 group = {
-                                    id: group_name[0] * 100,
+                                    id: group_name[0] + 1000000,
                                     content: group_name[1], 
                                     nestedGroups: nested_groups,
                                     tooltip: tooltip,
@@ -227,64 +222,28 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
          */
         generate_sub_groups: function(groups, layer_groups, group_by) {
             let count = 300
+
+            var ids = groups.map(group => { return group.id });
+            var max_id = Math.max(...ids);
+
             for(let i = 0; i< layer_groups.length -1; i ++) {
-                if(layer_groups[i].nestedGroups.length > 1) {
-                    for(let k = 0; k < layer_groups[i].nestedGroups.length; k ++) {
-                        for(let j = i+1; j < layer_groups.length; j++) {
-                            for(let m = 0; m < layer_groups[j].nestedGroups.length; m ++){
-                                if(layer_groups[i].nestedGroups[k] === layer_groups[j].nestedGroups[m]) {
-                                    const group = groups.find(elem => elem.id === layer_groups[j].nestedGroups[m]);
-                                    const newGroup = Object.assign({}, group)
-                                    const newGroupId = newGroup.id * count +3;
-                                    newGroup.original_id = newGroup.id
-                                    newGroup.id = newGroupId;
-                                    if(group_by === "partner_id"){
-                                        newGroup.partner_id = layer_groups[j].partner_id;
-                                    } else if (group_by === "order_name"){
-                                        newGroup.order_name = layer_groups[j].order_name;
-                                    }
-                                    groups.push(newGroup);
-                                    count ++;
-                                    layer_groups[j].nestedGroups[m] = newGroupId;
-                                }
-                            }
-                        }
-                    }
-                }else {
+                for(let k = 0; k < layer_groups[i].nestedGroups.length; k ++) {
                     for(let j = i+1; j < layer_groups.length; j++) {
-                        if(layer_groups[j].nestedGroups.length > 1) {
-                            for(let m = 0; m < layer_groups[j].nestedGroups.length; m ++){
-                                if(layer_groups[i].nestedGroups[0] === layer_groups[j].nestedGroups[m]) {
-                                    const group = groups.find(elem => elem.id === layer_groups[j].nestedGroups[m]);
-                                    const newGroup = Object.assign({}, group)
-                                    const newGroupId = newGroup.id * count +3;
-                                    newGroup.original_id = newGroup.id
-                                    newGroup.id = newGroupId;
-                                    if(group_by === "partner_id"){
-                                        newGroup.partner_id = layer_groups[j].partner_id;
-                                    } else if (group_by === "order_name"){
-                                        newGroup.order_name = layer_groups[j].order_name;
-                                    }
-                                    groups.push(newGroup);
-                                    count ++;
-                                    layer_groups[j].nestedGroups[m] = newGroupId;
-                                }
-                            }
-                        }else {
-                            if(layer_groups[i].nestedGroups[0] === layer_groups[j].nestedGroups[0]) {
-                                const group = groups.find(elem => elem.id === layer_groups[j].nestedGroups[0]);
+                        for(let m = 0; m < layer_groups[j].nestedGroups.length; m ++){
+
+                            if(layer_groups[i].nestedGroups[k] === layer_groups[j].nestedGroups[m]) {
+                                const group = groups.find(elem => elem.id === layer_groups[j].nestedGroups[m]);
                                 const newGroup = Object.assign({}, group)
-                                const newGroupId = newGroup.id * count+3;
                                 newGroup.original_id = newGroup.id
-                                newGroup.id = newGroupId;
+                                max_id ++;
+                                newGroup.id = max_id;
                                 if(group_by === "partner_id"){
                                     newGroup.partner_id = layer_groups[j].partner_id;
                                 } else if (group_by === "order_name"){
                                     newGroup.order_name = layer_groups[j].order_name;
                                 }
                                 groups.push(newGroup);
-                                count ++;
-                                layer_groups[j].nestedGroups[0] = newGroupId;
+                                layer_groups[j].nestedGroups[m] = newGroup.id;
                             }
                         }
                     }
@@ -294,96 +253,6 @@ odoo.define('rental_timeline.RentalTimelineRenderer', function(require){
             return [groups,layer_groups];
         },
 
-        // /**
-        //  * Set layer groups.
-        //  *
-        //  * @private
-        //  * @param {events}
-        //  * @param {group_bys}
-        //  * @param {layer_groups}
-        //  * @param {group_by}
-        //  * @returns {layer_groups}
-        //  */
-        // set_layer_groups: function(events, group_bys, layer_groups, group_by) {
-        //     _.each(events, function(event){
-        //         var group_name = event[_.first(group_bys)];
-        //         if(group_name){
-        //             if(group_name instanceof Array){
-        //                 let group = _.find(layer_groups, function(existing_group){
-        //                     return _.isEqual(existing_group.id, group_name[0] * 100);
-        //                     // return _.isEqual(existing_group, group_name);
-        //                 });
-
-        //                 // if(!groups.includes(group)){
-        //                 if(_.isUndefined(group)){
-                            
-        //                     var tooltip = null;
-        //                     if(window.qweb.has_template('tooltip-item-group')){
-        //                         tooltip = this.qweb.render('tooltip-item-group', {
-        //                             'record': event
-        //                         });
-        //                     }
-
-        //                     let nested_groups = []
-        //                     _.each(events, function(event_p){
-        //                         if(group_by === "product_categ_name") {
-        //                             if(event_p.product_categ_name === event.product_categ_name) { 
-        //                                 if(!nested_groups.includes(event_p.product_id[0])){
-        //                                     nested_groups.push(event_p.product_id[0]) 
-        //                                 }
-        //                             }
-        //                         }
-        //                         else if(group_by === "order_name") {
-        //                             if(event_p.order_name === event.order_name) { 
-        //                                 if(!nested_groups.includes(event_p.product_id[0])){
-        //                                     nested_groups.push(event_p.product_id[0]) 
-        //                                 }
-        //                             }
-        //                         }
-        //                         if(group_by === "partner_id") {
-        //                             if(event_p.partner_id[1] === event.partner_id[1]) { 
-        //                                 if(!nested_groups.includes(event_p.product_id[0])){
-        //                                     nested_groups.push(event_p.product_id[0]) 
-        //                                 }
-        //                             }
-        //                         }
-        //                     })
-
-        //                     if(group_by === "product_categ_id") {
-        //                         group = {
-        //                             id: group_name[0] * 100,
-        //                             content: group_name[1], 
-        //                             nestedGroups: nested_groups,
-        //                             tooltip: tooltip,
-        //                         };
-        //                     } else if (group_by === "order_name") {
-        //                         group = {
-        //                             id: event.id * 100,
-        //                             content: group_name, 
-        //                             nestedGroups: nested_groups,
-        //                             tooltip: tooltip,
-        //                             order_name: group_name
-        //                         };
-        //                     } else if (group_by === "partner_id") {
-        //                         group = {
-        //                             id: group_name[0] * 100,
-        //                             content: group_name[1], 
-        //                             nestedGroups: nested_groups,
-        //                             tooltip: tooltip,
-        //                             partner_id: group_name
-        //                         };
-
-        //                     }
-    
-        //                     layer_groups.push(group);
-        //                 } 
-
-        //             }
-        //         }
-        //     });
-
-        //     return layer_groups;
-        // },
 
 
         /**
