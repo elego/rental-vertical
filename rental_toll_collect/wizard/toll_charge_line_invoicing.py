@@ -143,16 +143,15 @@ class TollChargeLineInvoicing(models.TransientModel):
 
     def _prepare_invoice(self, partner):
         vinvoice = self.env["account.invoice"].new(
-            {"partner_id": partner.id, "type": "out_invoice"}
-        )
-        vinvoice._onchange_partner_id()
-        invoice_vals = vinvoice._convert_to_write(vinvoice._cache)
-        invoice_vals.update(
             {
+                "partner_id": partner.id,
+                "type": "out_invoice",
                 "origin": _("Toll Collect"),
                 "company_id": self.env.user.company_id.id,
             }
         )
+        vinvoice._onchange_partner_id()
+        invoice_vals = vinvoice._convert_to_write(vinvoice._cache)
         return invoice_vals
 
     def _prepare_toll_product_line(self, invoice, product, chargeable_toll_lines):
