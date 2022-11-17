@@ -32,3 +32,9 @@ class PurchaseOrder(models.Model):
             'end_date': purchase_line.end_date,
         })
         return new_line
+
+
+class PurchaseOrderLine(models.Model):
+    _inherit = 'purchase.order.line'
+
+    state = fields.Selection(related='order_id.state', store=True, readonly=False, default='draft')
