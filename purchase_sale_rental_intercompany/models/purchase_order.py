@@ -76,19 +76,6 @@ class PurchaseOrderLine(models.Model):
             number = float_round(number, precision_rounding=1)
         return number
 
-    @api.multi
-    def _get_product_rental_uom_ids(self):
-        self.ensure_one()
-        time_uoms = self._get_time_uom()
-        uom_ids = []
-        if self.product_id.rented_product_id.rental_of_month:
-            uom_ids.append(time_uoms["month"].id)
-        if self.product_id.rented_product_id.rental_of_day:
-            uom_ids.append(time_uoms["day"].id)
-        if self.product_id.rented_product_id.rental_of_hour:
-            uom_ids.append(time_uoms["hour"].id)
-        return uom_ids
-
     @api.onchange("product_id")
     def onchange_product_id(self):
         res = super().onchange_product_id()
@@ -99,7 +86,7 @@ class PurchaseOrderLine(models.Model):
         ):
             if "domain" in res and "product_uom" in res["domain"]:
                 del res["domain"]["product_uom"]
-                uom_ids = self._get_product_rental_uom_ids()
+                uom_ids = self.product_id.uom_po_id.ids
                 res["domain"]["product_uom"] = [("id", "in", uom_ids)]
                 if uom_ids and self.product_uom.id not in uom_ids:
                     self.product_uom = uom_ids[0]
