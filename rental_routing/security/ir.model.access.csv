@@ -1,4 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_sale_rental_route_out_line,access_sale_rental_route_out_line,model_sale_rental_route_out_line,base.group_user,1,1,1,1
-access_sale_rental_route_in_line,access_sale_rental_route_in_line,model_sale_rental_route_in_line,base.group_user,1,1,1,1
-access_sale_rental_route,access_sale_rental_route,model_sale_rental_route,base.group_user,1,1,1,1
