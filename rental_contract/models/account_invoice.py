@@ -15,13 +15,14 @@ class AccountInvoice(models.Model):
 
     @api.onchange("partner_id", "company_id")
     def _onchange_partner_id(self):
-        super(AccountInvoice, self)._onchange_partner_id()
+        res = super(AccountInvoice, self)._onchange_partner_id()
         contract_type = (
             self.partner_id.contract_type
             or self.partner_id.commercial_partner_id.contract_type
         )
         if contract_type:
             self.contract_type_id = contract_type
+        return res
 
     @api.onchange("contract_type_id")
     def onchange_sale_type_id(self):
