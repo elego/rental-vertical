@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="purchase_order_form" model="ir.ui.view">
+            <field name="name">purchase.order.form.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase_order_type.purchase_order_form" />
+            <field name="arch" type="xml">
+                <field name="order_type" position="attributes">
+                    <attribute name="domain">[("company_id", "=", company_id)]</attribute>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

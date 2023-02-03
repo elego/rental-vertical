@@ -19,6 +19,7 @@
         "security/security.xml",
         "views/sale_order_type_view.xml",
         "views/purchase_order_type_view.xml",
+        "views/purchase_order_view.xml",
     ],
     "demo": [],
     "qweb": [],
