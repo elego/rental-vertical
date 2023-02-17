@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem name="Dashboard"
+        parent="rental_base.menu_rental_root"
+        id="menu_rental_dashboard"
+        action="board.open_board_my_dash_action"
+        sequence="0"/>
+
+</odoo>

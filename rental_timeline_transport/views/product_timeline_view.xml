@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_product_timeline_timeline" model="ir.ui.view">
+        <field name="name">product.timeline.timeline</field>
+        <field name="model">product.timeline</field>
+        <field name="inherit_id" ref="rental_timeline.view_product_timeline_timeline" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="freight_forwarder_name" />
+                <field name="source_address" />
+                <field name="destination_address" />
+            </field>
+            <tr t-if="record.partner_shipping_address" position="after">
+                <tr t-if="record.freight_forwarder_name">
+                    <td>Freight forwarder:</td>
+                    <td t-esc="record.freight_forwarder_name" />
+                </tr>
+                <tr t-if="record.source_address">
+                    <td>Source:</td>
+                    <td t-esc="record.source_address" />
+                </tr>
+                <tr t-if="record.destination_address">
+                    <td>Destination:</td>
+                    <td t-esc="record.destination_address" />
+                </tr>
+            </tr>
+        </field>
+    </record>
+</odoo>

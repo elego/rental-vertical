@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="inventory" model="stock.inventory">
+            <field name="name">Rental Inventur</field>
+        </record>
+
+        <record id="inventory_line_rental_01531" model="stock.inventory.line">
+            <field name="product_id" ref="rental_01531" />
+            <field name="product_uom_id" ref="uom.product_uom_unit" />
+            <field name="inventory_id" ref="inventory" />
+            <field name="prod_lot_id" ref="serial_rental_01531" />
+            <field name="product_qty">1</field>
+            <field name="location_id" model="stock.location" search="[('name', '=', 'Rental In')]" />
+        </record>
+        <record id="inventory_line_rental_01532" model="stock.inventory.line">
+            <field name="product_id" ref="rental_01532" />
+            <field name="product_uom_id" ref="uom.product_uom_unit" />
+            <field name="inventory_id" ref="inventory" />
+            <field name="prod_lot_id" ref="serial_rental_01532" />
+            <field name="product_qty">1</field>
+            <field name="location_id" model="stock.location" search="[('name', '=', 'Rental In')]" />
+        </record>
+        <record id="inventory_line_rental_01533" model="stock.inventory.line">
+            <field name="product_id" ref="rental_01533" />
+            <field name="product_uom_id" ref="uom.product_uom_unit" />
+            <field name="inventory_id" ref="inventory" />
+            <field name="prod_lot_id" ref="serial_rental_01533" />
+            <field name="product_qty">1</field>
+            <field name="location_id" model="stock.location" search="[('name', '=', 'Rental In')]" />
+        </record>
+        <record id="inventory_line_rental_01534" model="stock.inventory.line">
+            <field name="product_id" ref="rental_01534" />
+            <field name="product_uom_id" ref="uom.product_uom_unit" />
+            <field name="inventory_id" ref="inventory" />
+            <field name="prod_lot_id" ref="serial_rental_01534" />
+            <field name="product_qty">1</field>
+            <field name="location_id" model="stock.location" search="[('name', '=', 'Rental In')]" />
+        </record>
+        <record id="inventory_line_rental_01535" model="stock.inventory.line">
+            <field name="product_id" ref="rental_01535" />
+            <field name="product_uom_id" ref="uom.product_uom_unit" />
+            <field name="inventory_id" ref="inventory" />
+            <field name="prod_lot_id" ref="serial_rental_01535" />
+            <field name="product_qty">1</field>
+            <field name="location_id" model="stock.location" search="[('name', '=', 'Rental In')]" />
+        </record>
+
+        <function model="stock.inventory" name="_action_start">
+            <function eval="[[('state','=','draft'),('id', '=', ref('inventory'))]]" model="stock.inventory" name="search"/>
+        </function>
+        <function model="stock.inventory" name="action_validate">
+            <function eval="[[('state','=','confirm'),('id', '=', ref('inventory'))]]" model="stock.inventory" name="search"/>
+        </function>
+
+        <!-- Write Analytic Accounts on Service Products -->
+        <function model="product.product" name="_update_rental_service_analytic_account">
+            <value eval="[ref('test_rental_workflows.rental_01531')]"/>
+            <value eval="{'income_analytic_account_id': ref('test_rental_workflows.account_01531'), 'expense_analytic_account_id': ref('test_rental_workflows.account_01531')}"/>
+        </function>
+        <function model="product.product" name="_update_rental_service_analytic_account">
+            <value eval="[ref('test_rental_workflows.rental_01532')]"/>
+            <value eval="{'income_analytic_account_id': ref('test_rental_workflows.account_01532'), 'expense_analytic_account_id': ref('test_rental_workflows.account_01532')}"/>
+        </function>
+        <function model="product.product" name="_update_rental_service_analytic_account">
+            <value eval="[ref('test_rental_workflows.rental_01533')]"/>
+            <value eval="{'income_analytic_account_id': ref('test_rental_workflows.account_01533'), 'expense_analytic_account_id': ref('test_rental_workflows.account_01533')}"/>
+        </function>
+        <function model="product.product" name="_update_rental_service_analytic_account">
+            <value eval="[ref('test_rental_workflows.rental_01534')]"/>
+            <value eval="{'income_analytic_account_id': ref('test_rental_workflows.account_01534'), 'expense_analytic_account_id': ref('test_rental_workflows.account_01534')}"/>
+        </function>
+        <function model="product.product" name="_update_rental_service_analytic_account">
+            <value eval="[ref('test_rental_workflows.rental_01535')]"/>
+            <value eval="{'income_analytic_account_id': ref('test_rental_workflows.account_01535'), 'expense_analytic_account_id': ref('test_rental_workflows.account_01535')}"/>
+        </function>
+
+    </data>
+</odoo>

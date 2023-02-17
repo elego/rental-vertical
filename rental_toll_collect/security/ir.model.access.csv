@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_toll_charge_line,access_toll_charge_line,model_toll_charge_line,base.group_user,1,1,1,1
+access_toll_charge_line_import,access_toll_charge_line_import,model_toll_charge_line_import,base.group_user,1,1,1,0
+access_toll_charge_line_invoicing,access_toll_charge_line_invoicing,model_toll_charge_line_invoicing,base.group_user,1,1,1,0

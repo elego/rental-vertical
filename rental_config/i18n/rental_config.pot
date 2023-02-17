@@ -1,0 +1,209 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* rental_config
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-01-19 10:50+0000\n"
+"PO-Revision-Date: 2022-01-19 10:50+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: rental_config
+#: model:ir.model.fields,field_description:rental_config.field_res_config_settings__module_rental_product_instance_appointment
+msgid "Appointments for Product Instances"
+msgstr ""
+
+#. module: rental_config
+#: model:ir.model,name:rental_config.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: rental_config
+#: model_terms:ir.ui.view,arch_db:rental_config.res_config_settings_view_form
+msgid "Configure product sets for rental orders"
+msgstr ""
+
+#. module: rental_config
+#: model_terms:ir.ui.view,arch_db:rental_config.res_config_settings_view_form
+msgid "Configure products with prices for hourly, daily or monthly rentals"
+msgstr ""
+
+#. module: rental_config
+#: model_terms:ir.ui.view,arch_db:rental_config.res_config_settings_view_form
+msgid "Configure rental products as product packs"
+msgstr ""
+
+#. module: rental_config
+#: model_terms:ir.ui.view,arch_db:rental_config.res_config_settings_view_form
+msgid "Configure rental products as unique product instances"
+msgstr ""
+
+#. module: rental_config
+#: model_terms:ir.ui.view,arch_db:rental_config.res_config_settings_view_form
+msgid "Configure rental products with extended fields"
+msgstr ""
+
+#. module: rental_config
+#: model_terms:ir.ui.view,arch_db:rental_config.res_config_settings_view_form
+msgid "Create project tasks for periodic appointments of product instances"
+msgstr ""
+
+#. module: rental_config
+#: model:ir.model.fields,field_description:rental_config.field_res_config_settings__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: rental_config
+#: model_terms:ir.ui.view,arch_db:rental_config.res_config_settings_view_form
+msgid "Exclude off-days from price calculation in daily rentals"
+msgstr ""
+
+#. module: rental_config
+#: model:ir.model.fields,field_description:rental_config.field_res_config_settings__id
+msgid "ID"
+msgstr ""
+
+#. module: rental_config
+#: model:ir.model.fields,help:rental_config.field_res_config_settings__module_rental_timeline
+msgid ""
+"If activated, a timeline for all rental orders (and others, e.g. repair "
+"orders) is shown as overview."
+msgstr ""
+
+#. module: rental_config
+#: model:ir.model.fields,help:rental_config.field_res_config_settings__module_rental_offday
+msgid ""
+"If activated, off-days can be calculated for daily rentals which are "
+"excluded from price calculation."
+msgstr ""
+
+#. module: rental_config
+#: model:ir.model.fields,help:rental_config.field_res_config_settings__module_rental_product_variant
+msgid ""
+"If activated, product variants are used with several new attributes and "
+"smartbuttons."
+msgstr ""
+
+#. module: rental_config
+#: model:ir.model.fields,help:rental_config.field_res_config_settings__module_rental_product_instance
+msgid "If activated, product variants can be used as unique instances."
+msgstr ""
+
+#. module: rental_config
+#: model:ir.model.fields,help:rental_config.field_res_config_settings__module_rental_product_instance_appointment
+msgid ""
+"If activated, project tasks are automatically created for appointments of "
+"product instances."
+msgstr ""
+
+#. module: rental_config
+#: model:ir.model.fields,help:rental_config.field_res_config_settings__module_rental_contract
+msgid ""
+"If activated, rental contracts are automatically created from monthly "
+"rentals for periodic invoicing."
+msgstr ""
+
+#. module: rental_config
+#: model:ir.model.fields,help:rental_config.field_res_config_settings__module_rental_product_pack
+msgid ""
+"If activated, rental orders for product packs will also update the stock of "
+"pack components."
+msgstr ""
+
+#. module: rental_config
+#: model:ir.model.fields,help:rental_config.field_res_config_settings__module_rental_pricelist
+msgid ""
+"If activated, rental prices can be configured for hourly, daily or monthly "
+"rentals."
+msgstr ""
+
+#. module: rental_config
+#: model:ir.model.fields,help:rental_config.field_res_config_settings__module_rental_product_set
+msgid ""
+"If activated, rental products can be grouped in a set for usage in rental "
+"orders."
+msgstr ""
+
+#. module: rental_config
+#: model:ir.model.fields,help:rental_config.field_res_config_settings__module_rental_repair
+msgid ""
+"If activated, repair orders can be managed for product instances, including "
+"the creation of account analytic linesfor the repair costs."
+msgstr ""
+
+#. module: rental_config
+#: model:ir.model.fields,field_description:rental_config.field_res_config_settings____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: rental_config
+#: model_terms:ir.ui.view,arch_db:rental_config.res_config_settings_view_form
+msgid "Manage repair orders for product instances"
+msgstr ""
+
+#. module: rental_config
+#: model:ir.model.fields,field_description:rental_config.field_res_config_settings__module_rental_product_instance
+msgid "Product Instance"
+msgstr ""
+
+#. module: rental_config
+#: model:ir.model.fields,field_description:rental_config.field_res_config_settings__module_rental_product_variant
+msgid "Product Variant"
+msgstr ""
+
+#. module: rental_config
+#: model:ir.model.fields,field_description:rental_config.field_res_config_settings__module_rental_contract
+msgid "Rental Contracts"
+msgstr ""
+
+#. module: rental_config
+#: model:ir.model.fields,field_description:rental_config.field_res_config_settings__module_rental_offday
+msgid "Rental Off-Days"
+msgstr ""
+
+#. module: rental_config
+#: model_terms:ir.ui.view,arch_db:rental_config.res_config_settings_view_form
+msgid "Rental Options"
+msgstr ""
+
+#. module: rental_config
+#: model:ir.model.fields,field_description:rental_config.field_res_config_settings__module_rental_pricelist
+msgid "Rental Prices"
+msgstr ""
+
+#. module: rental_config
+#: model:ir.model.fields,field_description:rental_config.field_res_config_settings__module_rental_product_pack
+msgid "Rental Product Packs"
+msgstr ""
+
+#. module: rental_config
+#: model:ir.model.fields,field_description:rental_config.field_res_config_settings__module_rental_product_set
+msgid "Rental Product Sets"
+msgstr ""
+
+#. module: rental_config
+#: model:ir.model.fields,field_description:rental_config.field_res_config_settings__module_rental_repair
+msgid "Repair Orders for Product Instances"
+msgstr ""
+
+#. module: rental_config
+#: model:ir.model.fields,field_description:rental_config.field_res_config_settings__module_rental_timeline
+msgid "Timeline"
+msgstr ""
+
+#. module: rental_config
+#: model_terms:ir.ui.view,arch_db:rental_config.res_config_settings_view_form
+msgid "Use contracts for periodic invoicing of monthly rentals"
+msgstr ""
+
+#. module: rental_config
+#: model_terms:ir.ui.view,arch_db:rental_config.res_config_settings_view_form
+msgid "Use timeline for rentable products with related orders"
+msgstr ""

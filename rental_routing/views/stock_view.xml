@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="view_picking_tree" model="ir.ui.view">
+            <field name="name">stock.picking.tree.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.vpicktree"/>
+            <field name="arch" type="xml">
+                <field name="location_dest_id" position="before">
+                    <field name="location_id"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

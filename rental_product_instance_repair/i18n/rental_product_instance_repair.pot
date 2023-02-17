@@ -1,0 +1,43 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* rental_product_instance_repair
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-03-09 08:31+0000\n"
+"PO-Revision-Date: 2021-03-09 08:31+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: rental_product_instance_repair
+#: model:ir.model,name:rental_product_instance_repair.model_product_product
+#: model_terms:ir.ui.view,arch_db:rental_product_instance_repair.view_task_search_form
+msgid "Product"
+msgstr ""
+
+#. module: rental_product_instance_repair
+#: model:ir.model.fields,field_description:rental_product_instance_repair.field_project_task__product_instance
+msgid "Product Instance"
+msgstr ""
+
+#. module: rental_product_instance_repair
+#: model:ir.model,name:rental_product_instance_repair.model_repair_order
+msgid "Repair Order"
+msgstr ""
+
+#. module: rental_product_instance_repair
+#: model:ir.model,name:rental_product_instance_repair.model_project_task
+msgid "Task"
+msgstr ""
+
+#. module: rental_product_instance_repair
+#: model:ir.model.fields,help:rental_product_instance_repair.field_project_task__product_instance
+msgid "This product is a product instance, which can only have one unit in stock."
+msgstr ""
+

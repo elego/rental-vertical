@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_appointment,access_product_appointment,model_product_appointment,base.group_user,1,1,1,1
+access_product_operating_appointment,access_product_operating_appointment,model_product_operating_appointment,base.group_user,1,1,1,1

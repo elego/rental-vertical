@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="product_instance_state_search_view" model="ir.ui.view">
+            <field name="name">product.product.search</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_search_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='inactive']" position="after">
+                    <separator/>
+                    <filter name="state_available" string="Available" domain="[('instance_state','=','available')]"/>
+                    <filter name="state_reserved" string="Reserved" domain="[('instance_state','=','reserved')]"/>
+                    <filter name="state_rental" string="Rental" domain="[('instance_state','=','rental')]"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

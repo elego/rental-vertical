@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<!-- Product Set menu under Rental/Master Data -->
+	<menuitem name="Product Set"
+            id="menu_product_set"
+            parent="rental_base.menu_master_data"
+            action="sale_product_set.act_open_product_set_view"
+            sequence="1"/>
+</odoo>
