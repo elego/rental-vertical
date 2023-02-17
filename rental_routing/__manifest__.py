@@ -2,7 +2,7 @@
 {
     "name": "Rental Routing",
     "summary": "This module adds support for the management of transports of rental products.",
-    "version": "15.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Rental",
     "author": "Odoo Community Association (OCA)/Elego Software Solutions GmbH",
     "license": "AGPL-3",

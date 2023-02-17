@@ -30,7 +30,7 @@ like a certain mileage or amount of operating hours.
   using the last 20 operating data that differ in value and time.
 - A project task is automatically created before the calculated appointment date using the lead time.
 """,
-    "version": "15.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Rental",
     "author": "Odoo Community Association (OCA)/Elego Software Solutions GmbH",
     "depends": [

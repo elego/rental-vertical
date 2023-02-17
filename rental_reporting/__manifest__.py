@@ -3,7 +3,7 @@
 {
     "name": "Rental Reporting",
     "summary": "Add rental-specific reporting menu and functions",
-    "version": "15.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Rental/Reporting",
     "author": "elego Software Solutions GmbH, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/vertical-rental",

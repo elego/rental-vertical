@@ -14,7 +14,7 @@ It automatically sets the serial number of a product instance in project tasks a
 - Go to the product form view of a product instance and check the new smartbutton.
 - Change the product in tasks or repair orders and see the onchange event for the serial number.
     """,
-    "version": "15.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Rental/Service",
     "author": "Odoo Community Association (OCA)/Elego Software Solutions GmbH",
     "usage": """

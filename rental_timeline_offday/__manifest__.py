@@ -3,7 +3,7 @@
 {
     "name": "Rental Timeline Offday",
     "summary": "Extends the rental_timeline module to show the offday_number in the timeline popup.",
-    "version": "15.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Rental",
     "author": "Odoo Community Association (OCA)/Elego Software Solutions GmbH",
     "description": """

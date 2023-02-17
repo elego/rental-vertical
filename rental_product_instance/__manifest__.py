@@ -20,7 +20,7 @@ you can save the mileage of vehicles or the operating hours of machines.
 - Set a product category that can be configured to either use mileage or operating hours as condition.
 - Go to the smartbutton for operating data, create the current condition and update it regularly.
     """,
-    "version": "15.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Rental",
     "author": "Odoo Community Association (OCA)/Elego Software Solutions GmbH",
     "depends": [

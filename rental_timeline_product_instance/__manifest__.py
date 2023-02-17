@@ -3,7 +3,7 @@
 {
     "name": "Rental Timeline Product Instance",
     "summary": "Extends the rental_timeline module to show the product instance fields in the timeline product popup.",
-    "version": "15.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Rental",
     "author": "Odoo Community Association (OCA)/Elego Software Solutions GmbH",
     "description": """
