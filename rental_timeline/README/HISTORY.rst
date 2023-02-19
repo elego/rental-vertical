@@ -2,6 +2,9 @@
 Changelog
 ---------
 
+- 63224bf0 2022-09-12 17:20:43 +0200 khanh.bui@elegosoft.com  (origin/feature_5095_blp54_scroll-on-the-right-of-products-in-timeline_v14) set scrollbar to the right of the products (issue #5095)
+- c92a1b33 2022-05-04 12:54:10 +0200 wagner@elegosoft.com  update doc (issue #3613, issue #4016)
+- 19e327a4 2022-04-18 14:45:33 +0000 jenkins-ci@elegosoft.com  add new rental logo and update doc (issue #3613, issue #4016)
 - 8d191ff7 2022-04-10 15:41:16 +0200 wagner@elegosoft.com  add missing/lost documentation (issue #4516)
 - b99848b4 2022-03-30 17:36:22 +0200 wagner@elegosoft.com  add missing libraries from Khanh (issue #4516)
 - d0c85919 2022-03-30 17:31:16 +0200 wagner@elegosoft.com  Revert "fix js library paths for timeline (issue #4516)"
