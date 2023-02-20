@@ -76,7 +76,7 @@ odoo.define("rental_timeline.RentalTimelineController", function (require) {
 
             let fields = this.renderer.fieldNames;
             fields = _.uniq(fields.concat(n_group_bys));
-            return $.when(
+            $.when(
                 res,
                 this._rpc({
                     model: this.model.modelName,
@@ -95,13 +95,15 @@ odoo.define("rental_timeline.RentalTimelineController", function (require) {
                     )
                 )
             );
+
+            return res;
         },
 
         _onGroupClick: function (event) {
             var groupField = this.renderer.last_group_bys[0];
             return this.do_action({
                 type: "ir.actions.act_window",
-                res_model: this.renderer.view.fields[groupField].relation,
+                res_model: this.renderer.fields[groupField].relation,
                 res_id: event.data.item.group,
                 target: "new",
                 flags: {
