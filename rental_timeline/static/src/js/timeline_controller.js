@@ -6,24 +6,69 @@ odoo.define("rental_timeline.RentalTimelineController", function (require) {
     var _TimelineController = require("web_timeline.TimelineController");
 
     var RentalTimelineController = _TimelineController.extend({
+        // /**
+        //  * @override
+        //  */
+        // update: function (params, options) {
+        //     const res = this._super.apply(this, arguments);
+        //     if (_.isEmpty(params)) {
+        //         return res;
+        //     }
+        //     const defaults = _.defaults({}, options, {
+        //         adjust_window: true,
+        //     });
+        //     const domains = params.domain;
+        //     const contexts = params.context;
+        //     const group_bys = params.groupBy;
+        //     this.last_domains = domains;
+        //     this.last_contexts = contexts;
+        //     // Select the group by
+        //     let n_group_bys = group_bys;
+        //     if (this.renderer.arch.attrs.default_group_by) {
+        //         n_group_bys = this.renderer.arch.attrs.default_group_by.split(",");
+        //     }
+        //     this.renderer.last_group_bys = n_group_bys;
+        //     this.renderer.last_domains = domains;
+
+        //     let fields = this.renderer.fieldNames;
+        //     fields = _.uniq(fields.concat(n_group_bys));
+        //     return $.when(
+        //         this._rpc({
+        //             model: this.model.modelName,
+        //             method: "search_read",
+        //             kwargs: {
+        //                 fields: fields,
+        //                 domain: domains,
+        //             },
+        //             context: this.getSession().user_context,
+        //         }).then((data) =>
+        //             this.renderer.on_data_loaded(
+        //                 data,
+        //                 n_group_bys,
+        //                 defaults.adjust_window
+        //             )
+        //         )
+        //     );
+        // },
         /**
          * @override
          */
         update: function (params, options) {
+            const res = this._super.apply(this, arguments);
             if (_.isEmpty(params)) {
                 return res;
             }
             const defaults = _.defaults({}, options, {
                 adjust_window: true,
             });
-            const domains = params.domain;
-            const contexts = params.context;
-            const group_bys = params.groupBy;
+            const domains = params.domain || this.renderer.last_domains || [];
+            const contexts = params.context || [];
+            const group_bys = params.groupBy || this.renderer.last_group_bys || [];
             this.last_domains = domains;
             this.last_contexts = contexts;
             // Select the group by
             let n_group_bys = group_bys;
-            if (this.renderer.arch.attrs.default_group_by) {
+            if (!n_group_bys.length && this.renderer.arch.attrs.default_group_by) {
                 n_group_bys = this.renderer.arch.attrs.default_group_by.split(",");
             }
             this.renderer.last_group_bys = n_group_bys;
@@ -32,12 +77,14 @@ odoo.define("rental_timeline.RentalTimelineController", function (require) {
             let fields = this.renderer.fieldNames;
             fields = _.uniq(fields.concat(n_group_bys));
             return $.when(
+                res,
                 this._rpc({
                     model: this.model.modelName,
                     method: "search_read",
                     kwargs: {
                         fields: fields,
                         domain: domains,
+                        order: [{name: this.renderer.arch.attrs.default_group_by}],
                     },
                     context: this.getSession().user_context,
                 }).then((data) =>
