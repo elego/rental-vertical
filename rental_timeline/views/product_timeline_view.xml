@@ -21,15 +21,15 @@
                     <field name="type_formated" />
                     <field name="has_clues" />
                     <field name="redline" />
-                    <field name="date_start" readonly="1" />
+                    <field name="date_start" readonly="1" widget="date" />
                     <field name="date_start_formated" readonly="1" />
                     <field name="date_end" readonly="1" />
-                    <field name="date_end_formated" readonly="1" />
+                    <field name="date_end_formated" readonly="1" widget="date" />
                     <field name="partner_id" />
                     <field name="partner_shipping_address" />
                     <field name="currency_id" />
                     <field name="amount" />
-                    <field name="price_subtotal"/>
+                    <field name="price_subtotal" widget="monetary" />
                     <field name="number_of_days" />
                     <field name="rental_period" />
                     <field name="warehouse_id" />
