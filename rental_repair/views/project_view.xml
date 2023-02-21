@@ -37,7 +37,7 @@
                 <field name="phone" attrs="{'readonly': [('parent_id', '!=', False)]}" />
                 <field name="mobile" attrs="{'readonly': [('parent_id', '!=', False)]}" />
             </field>
-            <field name="user_id" position="after">
+            <field name="user_ids" position="after">
                 <field name="product_id" />
                 <field name="tracking" invisible="1" />
                 <field name="lot_id"
