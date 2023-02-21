@@ -7,42 +7,6 @@ odoo.define("rental_timeline.RentalTimelineRenderer", function (require) {
     const _t = core._t;
 
     var RentalTimelineRenderer = _TimelineRenderer.extend({
-        // split_groups: function (events, group_bys) {
-        //     if (group_bys.length === 0) {
-        //         return events;
-        //     }
-        //     var groups = [];
-        //     var self = this;
-        //     //groups.push({id: -1, content: _t('-')});
-        //     _.each(events, function (event) {
-        //         var group_name = event[_.first(group_bys)];
-        //         if (group_name) {
-        //             if (group_name instanceof Array) {
-        //                 var group = _.find(groups, function (existing_group) {
-        //                     return _.isEqual(existing_group.id, group_name[0]);
-        //                 });
-
-        //                 if (_.isUndefined(group)) {
-        //                     var tooltip = null;
-        //                     if (self.qweb.has_template("tooltip-item-group")) {
-        //                         tooltip = self.qweb.render("tooltip-item-group", {
-        //                             record: event,
-        //                         });
-        //                     }
-        //                     group = {
-        //                         id: group_name[0],
-        //                         content: group_name[1],
-        //                         tooltip: tooltip,
-        //                     };
-        //                     groups.push(group);
-        //                 }
-        //             }
-        //         }
-        //     });
-
-        //     return groups;
-        // },
-
         /**
          * Get the groups.
          *
@@ -99,26 +63,25 @@ odoo.define("rental_timeline.RentalTimelineRenderer", function (require) {
                                         }
                                     }
                                 } else {
-                                    // groups.push({
-                                    //     id: group_name[0],
-                                    //     content: group_name[1],
-                                    //     order: seq,
-                                    // });
-
-                                     var tooltip = null;
+                                    var tooltip = null;
 
                                     if (self.qweb.has_template("tooltip-item-group")) {
-                                        tooltip = self.qweb.render("tooltip-item-group", {
-                                            record: evt,
-                                        });
+                                        tooltip = self.qweb.render(
+                                            "tooltip-item-group",
+                                            {
+                                                record: evt,
+                                            }
+                                        );
                                     }
+
                                     group = {
                                         id: group_name[0],
                                         content: group_name[1],
                                         tooltip: tooltip,
                                         order: seq,
                                     };
-                                    groups.push(group)
+
+                                    groups.push(group);
                                     seq += 1;
                                 }
                             });
@@ -127,12 +90,10 @@ odoo.define("rental_timeline.RentalTimelineRenderer", function (require) {
                 }
             }
 
-            if(groups[0].id === -1) {
+            if (groups[0].id === -1) {
                 groups.shift();
             }
-
             return groups;
-
         },
 
         init_timeline: function () {
