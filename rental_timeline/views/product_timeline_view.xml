@@ -112,7 +112,7 @@
                             <t t-if="record.redline">
                                 <hr color="#ff0000" />
                             </t>
-                            <t t-raw="record.display_name" />
+                            <t t-out="record.display_name" />
                         </div>
                     </templates>
                 </rental_timeline>
