@@ -3,39 +3,96 @@ odoo.define("rental_timeline.RentalTimelineRenderer", function (require) {
 
     var _TimelineRenderer = require("web_timeline.TimelineRenderer");
 
+    const core = require("web.core");
+    const _t = core._t;
+
     var RentalTimelineRenderer = _TimelineRenderer.extend({
-        split_groups: function (events, group_bys) {
+        /**
+         * Get the groups.
+         *
+         * @param {Object[]} events
+         * @param {String[]} group_bys
+         * @private
+         * @returns {Array}
+         */
+        split_groups: async function (events, group_bys) {
             if (group_bys.length === 0) {
                 return events;
             }
-            var groups = [];
-            var self = this;
-            //groups.push({id: -1, content: _t('-')});
-            _.each(events, function (event) {
-                var group_name = event[_.first(group_bys)];
+            let groups = [];
+            groups.push({id: -1, content: _t("<b>UNASSIGNED</b>"), order: -1});
+            var seq = 1;
+            let self = this;
+
+            for (const evt of events) {
+                const grouped_field = _.first(group_bys);
+                const group_name = evt[grouped_field];
                 if (group_name) {
                     if (group_name instanceof Array) {
-                        var group = _.find(groups, function (existing_group) {
-                            return _.isEqual(existing_group.id, group_name[0]);
-                        });
-
+                        let group = _.find(
+                            groups,
+                            (existing_group) => existing_group.id === group_name[0]
+                        );
                         if (_.isUndefined(group)) {
-                            var tooltip = null;
-                            if (self.qweb.has_template("tooltip-item-group")) {
-                                tooltip = self.qweb.render("tooltip-item-group", {
-                                    record: event,
-                                });
-                            }
-                            group = {
-                                id: group_name[0],
-                                content: group_name[1],
-                                tooltip: tooltip,
-                            };
-                            groups.push(group);
+                            // Check if group is m2m in this case add id -> value of all
+                            // found entries.
+                            await this._rpc({
+                                model: this.modelName,
+                                method: "fields_get",
+                                args: [grouped_field],
+                                context: this.getSession().user_context,
+                            }).then(async (fields) => {
+                                if (fields[grouped_field].type === "many2many") {
+                                    const list_values =
+                                        await this.get_m2m_grouping_datas(
+                                            fields[grouped_field].relation,
+                                            group_name
+                                        );
+                                    for (const vals of list_values) {
+                                        let is_inside = false;
+                                        for (const gr of groups) {
+                                            if (vals.id === gr.id) {
+                                                is_inside = true;
+                                                break;
+                                            }
+                                        }
+                                        if (!is_inside) {
+                                            vals.order = seq;
+                                            seq += 1;
+                                            groups.push(vals);
+                                        }
+                                    }
+                                } else {
+                                    var tooltip = null;
+
+                                    if (self.qweb.has_template("tooltip-item-group")) {
+                                        tooltip = self.qweb.render(
+                                            "tooltip-item-group",
+                                            {
+                                                record: evt,
+                                            }
+                                        );
+                                    }
+
+                                    group = {
+                                        id: group_name[0],
+                                        content: group_name[1],
+                                        tooltip: tooltip,
+                                        order: seq,
+                                    };
+
+                                    groups.push(group);
+                                    seq += 1;
+                                }
+                            });
                         }
                     }
                 }
-            });
+            }
+
+            if (groups[0].id === -1) {
+                groups.shift();
+            }
             return groups;
         },
 
