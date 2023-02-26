@@ -1,7 +1,7 @@
 Rental Timeline
 ====================================================
 
-*This file has been generated on 2022-04-10-15-34-31. Changes to it will be overwritten.*
+*This file has been generated on 2023-02-19-14-21-34. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -27,6 +27,9 @@ Just install this module to add the rental timeline view to your system. No furt
 Changelog
 ---------
 
+- 11d7eaa5 2022-07-27 16:26:42 +0200 yweng@elegosoft.com  (origin/wip_fix_rental_timeline_v15, origin/fix_4968_blp131_rental_timeline_v15, wip_fix_rental_timeline_v15, fix_4968_blp131_rental_timeline_v15) [IMP] move assets into __manifest__.py
+- 9089b1d5 2022-04-15 14:16:12 +0200 wagner@elegosoft.com  (tag: odoo-fox-v15_v15_int_current_daily, tag: daily_odoo-fox-v15_v15_fox_v15_daily_build-26, tag: daily_odoo-fox-v15_v15_fox_v15_daily_build-25, tag: daily_odoo-fox-v15_v15_fox_v15_daily_build-23, tag: daily_odoo-fox-v15_v15_fox_v15_daily_build-22, tag: daily_odoo-fox-v15_v15_fox_v15_daily_build-21, tag: daily_odoo-fox-v15_v15_fox_v15_daily_build-17, tag: daily_odoo-fox-v15_v15_fox_v15_daily_build-16, tag: daily_odoo-fox-v15_v15_fox_v15_daily_build-15, tag: daily_odoo-fox-v15_v15_fox_v15_daily_build-13, tag: daily_odoo-fox-v15_v15_fox_v15_daily_build-12, tag: bp_fox_v15_integration-ceqp-2, tag: bp_fox_v15_integration-cep-27, tag: bp_fox_v15_integration-cep-26, tag: bp_fox_v15_integration-cep-25, tag: bp_fox_v15_integration-cep-23, tag: bp_fox_v15_integration-cep-22, tag: bp_fox_v15_integration-cep-21, tag: bp_fox_v15_integration-cep-17, tag: bp_fox_v15_integration-cep-16, tag: bp_fox_v15_integration-cep-15, tag: bp_fox_v15_integration-cep-13, tag: bp_fox_v15_integration-cep-12, tag: baseline_odoo-fox-v15_v15_fox_v15_daily_build-26, origin/fox_v15_integration-cep-26, origin/fox_v15_integration-cep-25, origin/fox_v15_integration-cep-23, origin/fox_v15_integration-cep-22, origin/fox_v15_integration-cep-21, origin/fox_v15_integration-cep-17, origin/fox_v15_integration-cep-16, origin/fox_v15_integration-cep-15, origin/fox_v15_integration-cep-13, origin/fox_v15_integration-cep-12) update module versions for v15 and remove old migration scripts (issue #4967)
+- 8d191ff7 2022-04-10 15:41:16 +0200 wagner@elegosoft.com  add missing/lost documentation (issue #4516)
 - b99848b4 2022-03-30 17:36:22 +0200 wagner@elegosoft.com  add missing libraries from Khanh (issue #4516)
 - d0c85919 2022-03-30 17:31:16 +0200 wagner@elegosoft.com  Revert "fix js library paths for timeline (issue #4516)"
 - dbf03820 2022-03-30 17:07:48 +0200 wagner@elegosoft.com  fix js library paths for timeline (issue #4516)
