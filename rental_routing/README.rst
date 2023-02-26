@@ -1,7 +1,7 @@
 Rental Routing
 ====================================================
 
-*This file has been generated on 2022-05-04-12-21-41. Changes to it will be overwritten.*
+*This file has been generated on 2023-02-19-14-17-56. Changes to it will be overwritten.*
 
 Summary
 -------
@@ -35,6 +35,10 @@ TODO
 Changelog
 ---------
 
+- a57a5f20 2023-01-14 14:57:50 +0100 wagner@elegosoft.com  Revert "remove published modules now in OCA/vertical-rental (issue #5391)"
+- 42229eb4 2023-01-12 17:13:27 +0100 wagner@elegosoft.com  (origin/feature_5391_humanilogv14bb400_merge_vertical_rental_pr21_v14, feature_5391_humanilogv14bb400_merge_vertical_rental_pr21_v14) remove published modules now in OCA/vertical-rental (issue #5391)
+- c92a1b33 2022-05-04 12:54:10 +0200 wagner@elegosoft.com  update doc (issue #3613, issue #4016)
+- 19e327a4 2022-04-18 14:45:33 +0000 jenkins-ci@elegosoft.com  add new rental logo and update doc (issue #3613, issue #4016)
 - 8d191ff7 2022-04-10 15:41:16 +0200 wagner@elegosoft.com  add missing/lost documentation (issue #4516)
 - 4f834448 2022-03-23 12:22:21 +0100 cpatel@elegosoft.com  (origin/feature_4516_blp544_add_files_ported_from_v12_v14) [IMP] rental_return_product_qc tour correction, (issue#4516)
 - 279539a5 2022-03-14 10:48:31 +0100 cpatel@elegosoft.com  [IMP] correction,migration,fix unit test errors, (issue#4516)
