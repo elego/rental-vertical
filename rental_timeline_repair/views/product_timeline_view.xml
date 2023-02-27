@@ -9,10 +9,10 @@
                 <field name="repair" />
             </templates>
             <td id="clues" position="inside">
-                <i t-if="record.repair" class="fa fa-fw o_button_icon fa-wrench" />
+                <span><i t-if="record.repair" class="fa fa-fw o_button_icon fa-wrench" title="clues" /></span>
             </td>
             <t t-raw="record.display_name" position="before">
-                <i t-if="record.repair" class="fa fa-fw o_button_icon fa-wrench" />
+                <span><i t-if="record.repair" class="fa fa-fw o_button_icon fa-wrench" title="name" /></span>
             </t>
         </field>
     </record>
