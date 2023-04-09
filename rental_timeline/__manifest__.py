@@ -16,6 +16,7 @@ Just install this module. No further configuration is necessary.
         "web_timeline",
         "rental_base",
     ],
+    "qweb": [],
     "data": [
         "security/ir.model.access.csv",
         "views/assets.xml",
@@ -23,7 +24,6 @@ Just install this module. No further configuration is necessary.
         "views/product_view.xml",
     ],
     "demo": [],
-    "qweb": [],
     "application": False,
     "license": "AGPL-3",
 }
