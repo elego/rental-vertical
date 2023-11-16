@@ -1,0 +1,272 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * rental_product_instance
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-22 21:05+0000\n"
+"PO-Revision-Date: 2020-12-22 21:05+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: rental_product_instance
+#: model_terms:ir.ui.view,arch_db:rental_product_instance.product_normal_form_view
+msgid "<span>h on</span>"
+msgstr "<span>h on</span>"
+
+#. module: rental_product_instance
+#: model_terms:ir.ui.view,arch_db:rental_product_instance.product_normal_form_view
+msgid "<span>km on</span>"
+msgstr "<span>km on</span>"
+
+#. module: rental_product_instance
+#: selection:product.product,instance_state:0
+msgid "Available"
+msgstr "Disponible"
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_condition_date
+msgid "Condition Date"
+msgstr "Fecha de condicion"
+
+#. module: rental_product_instance
+#: model_terms:ir.actions.act_window,help:rental_product_instance.action_instance_operating_data
+msgid "Create a operating data!"
+msgstr "Crea dataos de operación!"
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_instance_operating_data__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_instance_operating_data__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_condition_hour
+msgid "Current Hours"
+msgstr "Horas actuales"
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_condition_km
+msgid "Current Kilometers"
+msgstr "Kilometros actuales"
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_current_location_id
+msgid "Current Location"
+msgstr "Localización actual"
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_condition_in_tree
+msgid "Current Operating Data"
+msgstr "Datos de operación actuales"
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_instance_operating_data__date
+msgid "Date"
+msgstr "Fecha"
+
+#. module: rental_product_instance
+#: selection:product.product,instance_state:0
+msgid "Delivery"
+msgstr "Entregas"
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_instance_operating_data__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: rental_product_instance
+#: selection:product.category,show_instance_condition_type:0
+msgid "Hours"
+msgstr "Horas"
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_instance_operating_data__id
+msgid "ID"
+msgstr "ID"
+
+#. module: rental_product_instance
+#: model:ir.model,name:rental_product_instance.model_instance_operating_data
+msgid "Instance Operating Data"
+msgstr "Datos de operación de la instancia"
+
+#. module: rental_product_instance
+#: selection:product.category,show_instance_condition_type:0
+msgid "Kilometers"
+msgstr "Kilómetros"
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_instance_operating_data____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_instance_operating_data__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_instance_operating_data__write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: rental_product_instance
+#: model:ir.model,name:rental_product_instance.model_stock_production_lot
+msgid "Lot/Serial"
+msgstr "Lote/Número de serie"
+
+#. module: rental_product_instance
+#: selection:product.product,instance_state:0
+msgid "Maintenance"
+msgstr "Mantenimiento"
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_next_service_date
+msgid "Next Service"
+msgstr "Siguiente servicio"
+
+#. module: rental_product_instance
+#: model:ir.actions.act_window,name:rental_product_instance.action_instance_operating_data
+#: model:ir.model.fields,field_description:rental_product_instance.field_instance_operating_data__operating_data
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_operating_data_ids
+#: model_terms:ir.ui.view,arch_db:rental_product_instance.product_normal_form_view
+msgid "Operating Data"
+msgstr "Datos operacionales"
+
+#. module: rental_product_instance
+#: model:ir.model,name:rental_product_instance.model_product_product
+#: model_terms:ir.ui.view,arch_db:rental_product_instance.product_search_form_view
+msgid "Product"
+msgstr "Producto"
+
+#. module: rental_product_instance
+#: model:ir.model,name:rental_product_instance.model_product_category
+msgid "Product Category"
+msgstr "Categoria del producto"
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_instance_operating_data__instance_id
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_template__product_instance
+msgid "Product Instance"
+msgstr "Instancia del producto"
+
+#. module: rental_product_instance
+#: model:ir.model,name:rental_product_instance.model_product_template
+msgid "Product Template"
+msgstr "Plantilla del producto"
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__real_sale_price
+msgid "Real Sale Price"
+msgstr "Precio de venta real"
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__real_total_hours
+msgid "Real Total Hours"
+msgstr "Horas totales reales"
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__real_total_kilometers
+msgid "Real Total Kilometers"
+msgstr "Kilometros totales reales"
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__real_total_rental_time
+msgid "Real Total Rental Time"
+msgstr "Tiempo alquilado total real"
+
+#. module: rental_product_instance
+#: selection:product.product,instance_state:0
+msgid "Rental"
+msgstr "Alquiler"
+
+#. module: rental_product_instance
+#: selection:product.product,instance_state:0
+msgid "Repair"
+msgstr "Reparar"
+
+#. module: rental_product_instance
+#: selection:product.product,instance_state:0
+msgid "Reserved"
+msgstr "Reservado"
+
+#. module: rental_product_instance
+#: model_terms:ir.ui.view,arch_db:rental_product_instance.instance_operating_data_search
+msgid "Search Operating Data"
+msgstr "Buscar datos de operación"
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_serial_number_id
+msgid "Serial Number"
+msgstr "Número de serie"
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_category__show_instance_condition_type
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__show_instance_condition_type
+msgid "Show Instance Condition Type"
+msgstr "Mostrar tipo de condición de instancia"
+
+#. module: rental_product_instance
+#: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_state
+msgid "State"
+msgstr "Estado"
+
+#. module: rental_product_instance
+#: model:ir.model,name:rental_product_instance.model_stock_move
+msgid "Stock Move"
+msgstr "Movimiento de inventario"
+
+#. module: rental_product_instance
+#: model:ir.model.fields,help:rental_product_instance.field_product_product__real_total_hours
+msgid ""
+"These are the total operating hours that the product instance had on sale."
+msgstr ""
+"Estas son las horas de funcionamiento totales que la instancia del producto "
+"tuvo."
+
+#. module: rental_product_instance
+#: model:ir.model.fields,help:rental_product_instance.field_product_product__real_total_kilometers
+msgid "This is the mileage the product instance had on sale."
+msgstr "Este es el kilometraje que la instancia del producto tuvo."
+
+#. module: rental_product_instance
+#: model:ir.model.fields,help:rental_product_instance.field_product_product__real_sale_price
+msgid "This is the price at which the product instance was actually sold."
+msgstr ""
+"Este es el precio al cual la instancia del producto fue realmente vendida."
+
+#. module: rental_product_instance
+#: model:ir.model.fields,help:rental_product_instance.field_product_product__real_total_rental_time
+msgid "This is the total rental time for this product instance."
+msgstr "Este es el tiempo total de alquiler para esta instancia de producto."
+
+#. module: rental_product_instance
+#: model:ir.model.fields,help:rental_product_instance.field_product_product__product_instance
+#: model:ir.model.fields,help:rental_product_instance.field_product_template__product_instance
+msgid ""
+"This product is a product instance, which can only have one unit in stock."
+msgstr ""
+"Este producto es una instancia de producto, que solo puede tener una unidad "
+"en stock."
+
+#. module: rental_product_instance
+#: model_terms:ir.ui.view,arch_db:rental_product_instance.product_normal_form_view
+msgid "Total Cost of Ownership"
+msgstr "Coste total de propiedad"
+
+#. module: rental_product_instance
+#: code:addons/rental_product_instance/models/stock.py:20
+#, python-format
+msgid "You can not have 2 serial numbers for a product instance."
+msgstr "No puedes tener 2 números de serie para una instancia de producto."
