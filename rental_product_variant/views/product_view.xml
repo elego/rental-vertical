@@ -57,11 +57,9 @@
                     </button>
                 </div>
                 <xpath expr="//field[@name='categ_id']" position="replace" />
-                <xpath expr="//field[@name='type']" position="after">
+                <xpath expr="//field[@name='barcode']" position="before">
                     <field name="fleet_type_id" />
                     <field name="categ_id" />
-                </xpath>
-                <xpath expr="//field[@name='barcode']" position="before">
                     <field name="manu_id" />
                     <field name="manu_type_id" domain="[('manufacturer_id','=',manu_id)]" />
                     <field name="show_product_identification_number" invisible="1" />
