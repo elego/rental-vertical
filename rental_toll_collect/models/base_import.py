@@ -31,7 +31,7 @@ class Import(models.TransientModel):
             # Get only list of actually imported fields
             import_fields = [f for f in fields if f]
 
-            rows_to_import = self._read_file(options)
+            _file_length, rows_to_import = self._read_file(options)
             # fileter rows here
             rows_to_import = itertools.filterfalse(
                 lambda row: len(row) < 2, rows_to_import

@@ -10,20 +10,21 @@ odoo.define("rental_timeline.RentalTimelineController", function (require) {
          * @override
          */
         update: function (params, options) {
+            const res = this._super.apply(this, arguments);
             if (_.isEmpty(params)) {
                 return res;
             }
             const defaults = _.defaults({}, options, {
                 adjust_window: true,
             });
-            const domains = params.domain;
-            const contexts = params.context;
-            const group_bys = params.groupBy;
+            const domains = params.domain || this.renderer.last_domains || [];
+            const contexts = params.context || [];
+            const group_bys = params.groupBy || this.renderer.last_group_bys || [];
             this.last_domains = domains;
             this.last_contexts = contexts;
             // Select the group by
             let n_group_bys = group_bys;
-            if (this.renderer.arch.attrs.default_group_by) {
+            if (!n_group_bys.length && this.renderer.arch.attrs.default_group_by) {
                 n_group_bys = this.renderer.arch.attrs.default_group_by.split(",");
             }
             this.renderer.last_group_bys = n_group_bys;
@@ -31,13 +32,15 @@ odoo.define("rental_timeline.RentalTimelineController", function (require) {
 
             let fields = this.renderer.fieldNames;
             fields = _.uniq(fields.concat(n_group_bys));
-            return $.when(
+            $.when(
+                res,
                 this._rpc({
                     model: this.model.modelName,
                     method: "search_read",
                     kwargs: {
                         fields: fields,
                         domain: domains,
+                        order: [{name: this.renderer.arch.attrs.default_group_by}],
                     },
                     context: this.getSession().user_context,
                 }).then((data) =>
@@ -48,13 +51,15 @@ odoo.define("rental_timeline.RentalTimelineController", function (require) {
                     )
                 )
             );
+
+            return res;
         },
 
         _onGroupClick: function (event) {
             var groupField = this.renderer.last_group_bys[0];
             return this.do_action({
                 type: "ir.actions.act_window",
-                res_model: this.renderer.view.fields[groupField].relation,
+                res_model: this.renderer.fields[groupField].relation,
                 res_id: event.data.item.group,
                 target: "new",
                 flags: {

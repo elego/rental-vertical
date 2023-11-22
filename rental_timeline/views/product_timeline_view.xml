@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <data>
 
@@ -7,23 +7,24 @@
             <field name="model">product.timeline</field>
             <field name="type">rental_timeline</field>
             <field name="arch" type="xml">
-                <timeline date_start="date_start"
-                          date_stop="date_end"
-                          default_group_by="product_id"
-                          zoomKey="ctrlKey"
-                          tooltip='{"followMouse": true}'
-                          stack="False"
-                          event_open_popup="True"
-                          colors="#CC9966:type == 'reserved'; #66CCCC:type == 'rental'; #ffce00:type=='maintenance'; #99CC99:type == 'repair'; #FFCC33:type=='delivery';"
+                <rental_timeline
+                    date_start="date_start"
+                    date_stop="date_end"
+                    default_group_by="product_id"
+                    zoomKey="ctrlKey"
+                    tooltip='{"followMouse": true}'
+                    stack="False"
+                    event_open_popup="True"
+                    colors="#CC9966:type == 'reserved'; #66CCCC:type == 'rental'; #ffce00:type=='maintenance'; #99CC99:type == 'repair'; #FFCC33:type=='delivery';"
                 >
                     <field name="type" />
                     <field name="type_formated" />
                     <field name="has_clues" />
                     <field name="redline" />
                     <field name="date_start" readonly="1" widget="date" />
-                    <field name="date_start_formated" readonly="1"/>
-                    <field name="date_end" readonly="1" widget="date" />
-                    <field name="date_end_formated" readonly="1" />
+                    <field name="date_start_formated" readonly="1" />
+                    <field name="date_end" readonly="1" />
+                    <field name="date_end_formated" readonly="1" widget="date" />
                     <field name="partner_id" />
                     <field name="partner_shipping_address" />
                     <field name="currency_id" />
@@ -62,7 +63,7 @@
                                 <table border="1">
                                     <tr t-if="record.has_clues">
                                         <td>Clues:</td>
-                                        <td id="clues"></td>
+                                        <td id="clues" />
                                     </tr>
                                     <tr t-if="record.order_name">
                                         <td>Order:</td>
@@ -80,7 +81,9 @@
                                         <td>Total days:</td>
                                         <td t-esc="record.number_of_days" />
                                     </tr>
-                                    <tr t-if="record.rental_period and (record.type == 'reserved' or record.type == 'rental')">
+                                    <tr
+                                        t-if="record.rental_period and (record.type == 'reserved' or record.type == 'rental')"
+                                    >
                                         <td>Rental period:</td>
                                         <td t-esc="record.rental_period" />
                                     </tr>
@@ -109,10 +112,10 @@
                             <t t-if="record.redline">
                                 <hr color="#ff0000" />
                             </t>
-                            <t t-raw="record.display_name" />
+                            <t t-out="record.display_name" />
                         </div>
                     </templates>
-                </timeline>
+                </rental_timeline>
             </field>
         </record>
 
@@ -121,7 +124,8 @@
             <field name="model">product.timeline</field>
             <field name="arch" type="xml">
                <search string="Timeline">
-                    <field name="product_id"
+                    <field
+                        name="product_id"
                         string="Product"
                         filter_domain="['|', '|', '|', '|', ('product_id','ilike', self), ('product_id.product_identification_number', 'ilike', self), ('product_id.vehicle_number', 'ilike', self), ('product_id.license_plate', 'ilike', self), ('product_id.default_code', 'ilike', self)]"
                     />
@@ -129,13 +133,25 @@
                     <field name="partner_id" />
                     <field name="product_categ_id" />
                     <field name="type" />
-                    <separator/>
-                    <filter domain="[('type','=','rental')]" name="type_rental" string="Rental"/>
-                    <separator/>
-                    <filter domain="[('active','=',False)]" name="archived" string="Archived Products"/>
-                    <separator/>
+                    <separator />
+                    <filter
+                        domain="[('type','=','rental')]"
+                        name="type_rental"
+                        string="Rental"
+                    />
+                    <separator />
+                    <filter
+                        domain="[('active','=',False)]"
+                        name="archived"
+                        string="Archived Products"
+                    />
+                    <separator />
                     <group expand="0" string="Group By">
-                        <filter string="Product" name="product" context="{'group_by':'product_id'}" />
+                        <filter
+                            string="Product"
+                            name="product"
+                            context="{'group_by':'product_id'}"
+                        />
                     </group>
                 </search>
             </field>
@@ -189,15 +205,20 @@
             </field>
         </record>
 
-        <menuitem action="action_product_timeline"
-            id="menu_product_timeline" parent="stock.menu_stock_inventory_control"
-            sequence="12" />
+        <menuitem
+            action="action_product_timeline"
+            id="menu_product_timeline"
+            parent="stock.menu_stock_inventory_control"
+            sequence="12"
+        />
 
-        <menuitem name="Overview"
+        <menuitem
+            name="Overview"
             id="menu_overview"
             parent="rental_base.menu_rental_root"
             action="action_product_timeline"
-            sequence="1" />
+            sequence="1"
+        />
 
     </data>
 </odoo>

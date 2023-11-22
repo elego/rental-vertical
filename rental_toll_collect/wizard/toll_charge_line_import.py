@@ -95,7 +95,7 @@ class TollChargeLineImport(models.TransientModel):
                     "file": base64.b64decode(self.data_file),
                 }
             )
-            res = wizard.do(fields, columns, OPTIONS, dryrun=False)
+            res = wizard.execute_import(fields, columns, OPTIONS, dryrun=False)
             messages = res.get("messages", [])
             errors = list(filter(lambda m: m["type"] == "error", messages))
             if errors:
