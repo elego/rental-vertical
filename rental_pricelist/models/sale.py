@@ -21,8 +21,7 @@ class SaleOrderLine(models.Model):
     )
 
     rental_ok = fields.Boolean(
-        string="Can be rented",
-        related="display_product_id.rental",
+        string="Can be rented", related="display_product_id.rental"
     )
 
     @api.model
@@ -277,7 +276,17 @@ class SaleOrderLine(models.Model):
                             key
                         )
                         break
+        if self.number_of_time_unit:
+            self.product_uom_qty = self.rental_qty * self.number_of_time_unit
         return super(SaleOrderLine, self).product_uom_change()
+
+    @api.onchange(
+        "product_id", "price_unit", "product_uom", "product_uom_qty", "tax_id"
+    )
+    def _onchange_discount(self):
+        if self.number_of_time_unit:
+            self.product_uom_qty = self.rental_qty * self.number_of_time_unit
+        return super(SaleOrderLine, self)._onchange_discount()
 
     @api.onchange("start_date", "end_date", "product_uom")
     def onchange_start_end_date(self):
