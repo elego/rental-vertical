@@ -57,7 +57,7 @@
                     </button>
                 </div>
                 <xpath expr="//field[@name='categ_id']" position="replace" />
-                <xpath expr="//field[@name='type']" position="after">
+                <xpath expr="//field[@name='detailed_type']" position="after">
                     <field name="fleet_type_id" />
                     <field name="categ_id" />
                 </xpath>

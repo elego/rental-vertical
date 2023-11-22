@@ -1,0 +1,360 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * rental_product_variant
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-22 21:09+0000\n"
+"PO-Revision-Date: 2020-12-22 21:09+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: rental_product_variant
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_product__additional_info
+msgid "Additional Information"
+msgstr "Información adicional"
+
+#. module: rental_product_variant
+#: code:addons/rental_product_variant/models/product.py:241
+#, python-format
+msgid "All Invoices"
+msgstr "Todas las facturas"
+
+#. module: rental_product_variant
+#: code:addons/rental_product_variant/models/product.py:210
+#, python-format
+msgid "All Purchase Orders"
+msgstr "Todos los pedidos de compras"
+
+#. module: rental_product_variant
+#: model:ir.model.fields,field_description:rental_product_variant.field_fleet_type__create_uid
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_manufacturer__create_uid
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_manufacturer_type__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: rental_product_variant
+#: model:ir.model.fields,field_description:rental_product_variant.field_fleet_type__create_date
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_manufacturer__create_date
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_manufacturer_type__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: rental_product_variant
+#: model_terms:ir.ui.view,arch_db:rental_product_variant.product_normal_form_view
+msgid "Delivery"
+msgstr "Entregas"
+
+#. module: rental_product_variant
+#: model:ir.model.fields,field_description:rental_product_variant.field_fleet_type__display_name
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_manufacturer__display_name
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_manufacturer_type__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: rental_product_variant
+#: model_terms:ir.ui.view,arch_db:rental_product_variant.product_normal_form_view
+msgid "End Date"
+msgstr "Fecha de fin"
+
+#. module: rental_product_variant
+#: model:ir.actions.act_window,name:rental_product_variant.action_fleet_type
+#: model:ir.model,name:rental_product_variant.model_fleet_type
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_product__fleet_type_id
+#: model:ir.ui.menu,name:rental_product_variant.menu_fleet_type
+msgid "Fleet Type"
+msgstr "Tipo de flota"
+
+#. module: rental_product_variant
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_product__further_ref
+msgid "Further Reference"
+msgstr "Referencia adicional"
+
+#. module: rental_product_variant
+#: model:ir.model.fields,field_description:rental_product_variant.field_fleet_type__id
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_manufacturer__id
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_manufacturer_type__id
+msgid "ID"
+msgstr "ID"
+
+#. module: rental_product_variant
+#: model:ir.model.fields,help:rental_product_variant.field_product_category__show_init_regist
+#: model:ir.model.fields,help:rental_product_variant.field_product_product__show_init_regist
+msgid "If checked, the initial registration is displayed in product form view."
+msgstr ""
+"Si está activado, el registro inicial se muestra en la vista de formulario "
+"de producto."
+
+#. module: rental_product_variant
+#: model:ir.model.fields,help:rental_product_variant.field_product_category__show_license_plate
+#: model:ir.model.fields,help:rental_product_variant.field_product_product__show_license_plate
+msgid "If checked, the license plate is displayed in product form view."
+msgstr ""
+"Si está activado, la matricula se muestra en la vista de formulario de "
+"producto."
+
+#. module: rental_product_variant
+#: model:ir.model.fields,help:rental_product_variant.field_product_category__show_product_identification_number
+#: model:ir.model.fields,help:rental_product_variant.field_product_product__show_product_identification_number
+msgid ""
+"If checked, the product identification number is displayed in product form "
+"view."
+msgstr ""
+"Si está activado, el número de identificación del producto se muestra en la "
+"vista de formulario de producto."
+
+#. module: rental_product_variant
+#: model:ir.model.fields,help:rental_product_variant.field_product_category__show_vehicle_number
+#: model:ir.model.fields,help:rental_product_variant.field_product_product__show_vehicle_number
+msgid ""
+"If checked, the vehicle identification number is displayed in product form "
+"view."
+msgstr ""
+"Si está activado, el número de identificación del vehículo se muestra en la "
+"vista de formulario de producto."
+
+#. module: rental_product_variant
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_product__in_invoice_count
+msgid "In Inv."
+msgstr "En Fac."
+
+#. module: rental_product_variant
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_product__init_regist
+msgid "Initial Registration"
+msgstr "Registro inicial"
+
+#. module: rental_product_variant
+#: model_terms:ir.ui.view,arch_db:rental_product_variant.product_normal_form_view
+msgid "Internal Notes"
+msgstr "Notas internas"
+
+#. module: rental_product_variant
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_product__invoice_count
+msgid "Invoices"
+msgstr "Facturas"
+
+#. module: rental_product_variant
+#: model:ir.model.fields,field_description:rental_product_variant.field_fleet_type____last_update
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_manufacturer____last_update
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_manufacturer_type____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: rental_product_variant
+#: model:ir.model.fields,field_description:rental_product_variant.field_fleet_type__write_uid
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_manufacturer__write_uid
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_manufacturer_type__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: rental_product_variant
+#: model:ir.model.fields,field_description:rental_product_variant.field_fleet_type__write_date
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_manufacturer__write_date
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_manufacturer_type__write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: rental_product_variant
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_product__license_plate
+msgid "License Plate"
+msgstr "Matrícula"
+
+#. module: rental_product_variant
+#: model:ir.actions.act_window,name:rental_product_variant.action_product_manufacturer
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_manufacturer_type__manufacturer_id
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_product__manu_id
+#: model:ir.ui.menu,name:rental_product_variant.menu_product_manufacturer
+msgid "Manufacturer"
+msgstr "Fabricante"
+
+#. module: rental_product_variant
+#: model:ir.actions.act_window,name:rental_product_variant.action_product_manufacturer_type
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_manufacturer__manufacturer_type_ids
+#: model:ir.ui.menu,name:rental_product_variant.menu_product_manufacturer_type
+msgid "Manufacturer Type"
+msgstr "Tipo de fabricante"
+
+#. module: rental_product_variant
+#: model:ir.model.fields,field_description:rental_product_variant.field_fleet_type__name
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_manufacturer__name
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_manufacturer_type__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: rental_product_variant
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_product__out_invoice_count
+msgid "Out Inv."
+msgstr "Fac. Saliente."
+
+#. module: rental_product_variant
+#: model:ir.model,name:rental_product_variant.model_product_product
+msgid "Product"
+msgstr "Producto"
+
+#. module: rental_product_variant
+#: model_terms:ir.ui.view,arch_db:rental_product_variant.product_category_form_view
+msgid "Product Attribute Extension"
+msgstr "Extensión del atributo del producto."
+
+#. module: rental_product_variant
+#: model:ir.model,name:rental_product_variant.model_product_category
+msgid "Product Category"
+msgstr "Categoria del producto"
+
+#. module: rental_product_variant
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_product__product_identification_number
+msgid "Product Identification Number (PIN)"
+msgstr "Número de identificación del producto (PIN)"
+
+#. module: rental_product_variant
+#: model:ir.model,name:rental_product_variant.model_product_manufacturer
+msgid "Product Manufacturer"
+msgstr "Fabricante del producto"
+
+#. module: rental_product_variant
+#: model:ir.model,name:rental_product_variant.model_product_manufacturer_type
+msgid "Product Manufacturer Type"
+msgstr "Tipo de fabricante del producto"
+
+#. module: rental_product_variant
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_product__po_count
+msgid "Purchase"
+msgstr "Compra"
+
+#. module: rental_product_variant
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_product__qr_code
+msgid "QR-Code"
+msgstr "Código QR"
+
+#. module: rental_product_variant
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_product__rental_count
+#: model_terms:ir.ui.view,arch_db:rental_product_variant.product_normal_form_view
+msgid "Rental"
+msgstr "Alquiler"
+
+#. module: rental_product_variant
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_product__rental_order_ids
+msgid "Rental Orders"
+msgstr "Pedidos de alquiler"
+
+#. module: rental_product_variant
+#: model_terms:ir.ui.view,arch_db:rental_product_variant.product_normal_form_view
+msgid "Return"
+msgstr "Volver"
+
+#. module: rental_product_variant
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_product__so_count
+msgid "Sales"
+msgstr "Ventas"
+
+#. module: rental_product_variant
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_category__show_init_regist
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_product__show_init_regist
+msgid "Show Initial Registration"
+msgstr "Mostrar registro inicial"
+
+#. module: rental_product_variant
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_category__show_license_plate
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_product__show_license_plate
+msgid "Show License Plate"
+msgstr "Mostrar matrícula"
+
+#. module: rental_product_variant
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_category__show_product_identification_number
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_product__show_product_identification_number
+msgid "Show Product Identification Number"
+msgstr "Mostrar número de identificación del producto"
+
+#. module: rental_product_variant
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_category__show_vehicle_number
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_product__show_vehicle_number
+msgid "Show Vehicle Identification Number"
+msgstr "Mostrar número de identificación del vehículo"
+
+#. module: rental_product_variant
+#: model_terms:ir.ui.view,arch_db:rental_product_variant.product_normal_form_view
+msgid "Specification"
+msgstr "Especificación"
+
+#. module: rental_product_variant
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_product__stock_move_ids
+msgid "Stock Moves"
+msgstr "Movimientos de inventario"
+
+#. module: rental_product_variant
+#: model:ir.model.fields,help:rental_product_variant.field_product_product__stock_move_ids
+msgid "Technical: used to compute quantities."
+msgstr "Técnico: usado para calcular cantidades."
+
+#. module: rental_product_variant
+#: model:ir.model.fields,help:rental_product_variant.field_product_product__in_invoice_count
+msgid ""
+"This is the total number of in invoices including invoice lines with this "
+"product."
+msgstr ""
+"Este es el número total de facturas que incluyen líneas de factura con este "
+"producto."
+
+#. module: rental_product_variant
+#: model:ir.model.fields,help:rental_product_variant.field_product_product__out_invoice_count
+msgid ""
+"This is the total number of out invoices including invoice lines with this "
+"product."
+msgstr ""
+"Este es el número total de facturas de compra que incluyen líneas de factura "
+"con este producto."
+
+#. module: rental_product_variant
+#: model:ir.model.fields,help:rental_product_variant.field_product_product__po_count
+msgid ""
+"This it the total number of purchase orders including order lines with this "
+"product or related analytic account."
+msgstr ""
+"Este es el número total de pedidos de compra que incluyen líneas de pedido "
+"con este producto o con la cuenta analítica relacionada."
+
+#. module: rental_product_variant
+#: model:ir.model.fields,help:rental_product_variant.field_product_product__rental_count
+msgid ""
+"This it the total number of rental orders including order lines with this "
+"product."
+msgstr ""
+"Este es el número total de pedidos de alquiler que incluyen líneas de pedido "
+"con este producto."
+
+#. module: rental_product_variant
+#: model:ir.model.fields,help:rental_product_variant.field_product_product__so_count
+msgid ""
+"This it the total number of sale orders including order lines with this "
+"product."
+msgstr ""
+"Este es el número total de pedidos de venta que incluyen líneas de pedido "
+"con este producto."
+
+#. module: rental_product_variant
+#: model_terms:ir.ui.view,arch_db:rental_product_variant.product_normal_form_view
+msgid "This note is only for internal purposes."
+msgstr "Esta nota es interna."
+
+#. module: rental_product_variant
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_product__manu_type_id
+#: model_terms:ir.ui.view,arch_db:rental_product_variant.view_account_invoice_filter
+#: model_terms:ir.ui.view,arch_db:rental_product_variant.view_purchase_order_filter
+msgid "Type"
+msgstr "Tipo"
+
+#. module: rental_product_variant
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_product__vehicle_number
+msgid "Vehicle Identification Number (VIN)"
+msgstr "Número de identificación del Vehículo (VIN)"
+
+#. module: rental_product_variant
+#: model:ir.model.fields,field_description:rental_product_variant.field_product_product__manu_year
+msgid "Year of Manufacture"
+msgstr "Año de fabricación"

@@ -1,0 +1,500 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * rental_timeline
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-06-22 19:11+0000\n"
+"PO-Revision-Date: 2021-06-22 19:11+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: rental_timeline
+#: model_terms:ir.ui.view,arch_db:rental_timeline.product_timeline_form_view
+msgid "<span class=\"o_stat_text\">Timelines</span>"
+msgstr "<span class=\"o_stat_text\">Líneas de tiempo</span>"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__action_id
+msgid "Action"
+msgstr "Acción"
+
+#. module: rental_timeline
+#: model:ir.model,name:rental_timeline.model_ir_actions_act_window_view
+msgid "Action Window View"
+msgstr "Vista de la ventana de Acción"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__active
+msgid "Active"
+msgstr "Activo"
+
+#. module: rental_timeline
+#: selection:ir.actions.act_window.view,view_mode:0
+#: selection:ir.ui.view,type:0
+msgid "Activity"
+msgstr ""
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__amount
+msgid "Amount"
+msgstr "Cantidad"
+
+#. module: rental_timeline
+#: model_terms:ir.ui.view,arch_db:rental_timeline.view_product_timeline_search
+msgid "Archived Products"
+msgstr "Productos archivados"
+
+#. module: rental_timeline
+#: selection:ir.actions.act_window.view,view_mode:0
+#: selection:ir.ui.view,type:0
+msgid "Calendar"
+msgstr ""
+
+#. module: rental_timeline
+#: model_terms:ir.ui.view,arch_db:rental_timeline.view_product_timeline_timeline
+msgid "Category:"
+msgstr "Categoria:"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__click_res_id
+msgid "Click Res"
+msgstr "Click Res"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__click_res_model
+msgid "Click Res Model"
+msgstr "Modelo Click Res"
+
+#. module: rental_timeline
+#: model_terms:ir.ui.view,arch_db:rental_timeline.view_product_timeline_timeline
+msgid "Clues:"
+msgstr "Pistas:"
+
+#. module: rental_timeline
+#: model_terms:ir.actions.act_window,help:rental_timeline.action_product_timeline
+msgid "Create a timeline for equipment first."
+msgstr "Crea una linea de tiempo para equipamiento primero."
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__currency_id
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: rental_timeline
+#: model_terms:ir.ui.view,arch_db:rental_timeline.view_product_timeline_timeline
+msgid "Customer:"
+msgstr "Cliente:"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__date_end
+msgid "Date End"
+msgstr "Fecha de fin"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__date_end_formated
+msgid "Date End Formated"
+msgstr "Fecha de fin formateada"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__date_start
+msgid "Date Start"
+msgstr "Fecha de comienzo"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__date_start_formated
+msgid "Date Start Formated"
+msgstr "Fecha de comienzo formateada"
+
+#. module: rental_timeline
+#: selection:ir.ui.view,type:0
+msgid "Diagram"
+msgstr ""
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: rental_timeline
+#: model_terms:ir.ui.view,arch_db:rental_timeline.view_product_timeline_timeline
+msgid "End date:"
+msgstr "Fecha de fin:"
+
+#. module: rental_timeline
+#: selection:ir.actions.act_window.view,view_mode:0
+#: selection:ir.ui.view,type:0
+msgid "Form"
+msgstr ""
+
+#. module: rental_timeline
+#: selection:ir.actions.act_window.view,view_mode:0
+#: selection:ir.ui.view,type:0
+msgid "Gantt"
+msgstr ""
+
+#. module: rental_timeline
+#: selection:ir.actions.act_window.view,view_mode:0
+#: selection:ir.ui.view,type:0
+msgid "Graph"
+msgstr ""
+
+#. module: rental_timeline
+#: model_terms:ir.ui.view,arch_db:rental_timeline.view_product_timeline_search
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__has_clues
+msgid "Has Clues"
+msgstr "Tiene pistas"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__id
+msgid "ID"
+msgstr "ID"
+
+#. module: rental_timeline
+#: selection:ir.actions.act_window.view,view_mode:0
+#: selection:ir.ui.view,type:0
+msgid "Kanban"
+msgstr ""
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__menu_id
+msgid "Menu"
+msgstr "Menú"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: rental_timeline
+#: selection:sale.order.line,rental_type:0
+msgid "New Rental"
+msgstr "Nuevo alquiler"
+
+#. module: rental_timeline
+#: code:addons/rental_timeline/models/sale.py:89
+#, python-format
+msgid "No found rented product."
+msgstr "No se encontró producto alquilado."
+
+#. module: rental_timeline
+#: code:addons/rental_timeline/models/sale.py:64
+#, python-format
+msgid "No found timelines."
+msgstr "No se encontraron líneas temporales."
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__order_name
+msgid "Order"
+msgstr "Pedido"
+
+#. module: rental_timeline
+#: model_terms:ir.ui.view,arch_db:rental_timeline.view_product_timeline_timeline
+msgid "Order:"
+msgstr "Pedido:"
+
+#. module: rental_timeline
+#: model:ir.ui.menu,name:rental_timeline.menu_overview
+msgid "Overview"
+msgstr "Vista general"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__partner_id
+msgid "Partner"
+msgstr "Socio"
+
+#. module: rental_timeline
+#: selection:ir.actions.act_window.view,view_mode:0
+#: selection:ir.ui.view,type:0
+msgid "Pivot"
+msgstr ""
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__price_subtotal
+msgid "Price Subtotal"
+msgstr "Precio subtotal"
+
+#. module: rental_timeline
+#: model_terms:ir.ui.view,arch_db:rental_timeline.view_product_timeline_timeline
+msgid "Price:"
+msgstr "Precio:"
+
+#. module: rental_timeline
+#: model:ir.model,name:rental_timeline.model_product_product
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__product_id
+#: model_terms:ir.ui.view,arch_db:rental_timeline.view_product_timeline_search
+msgid "Product"
+msgstr "Producto"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__product_categ_name
+msgid "Product Categ Name"
+msgstr "Nombre de la categoría del producto"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__product_categ_id
+msgid "Product Category"
+msgstr "Categoria del producto"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__product_name
+msgid "Product Name"
+msgstr "Nombre del producto"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__product_tmpl_id
+msgid "Product Template"
+msgstr "Plantilla del producto"
+
+#. module: rental_timeline
+#: model:ir.model,name:rental_timeline.model_product_timeline
+msgid "Product Timeline"
+msgstr "Línea temporal del producto"
+
+#. module: rental_timeline
+#: model_terms:ir.ui.view,arch_db:rental_timeline.view_product_timeline_timeline
+msgid "Product:"
+msgstr "Producto:"
+
+#. module: rental_timeline
+#: selection:ir.ui.view,type:0
+msgid "QWeb"
+msgstr ""
+
+#. module: rental_timeline
+#: code:addons/rental_timeline/models/product_timeline.py:224
+#, python-format
+msgid "R: %s"
+msgstr "R: %s"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__redline
+msgid "Redline"
+msgstr "Linea roja"
+
+#. module: rental_timeline
+#: model_terms:ir.ui.view,arch_db:rental_timeline.view_product_timeline_search
+msgid "Rental"
+msgstr "Alquiler"
+
+#. module: rental_timeline
+#: selection:product.timeline,type:0
+msgid "Rental"
+msgstr "Alquiler"
+
+#. module: rental_timeline
+#: selection:sale.order.line,rental_type:0
+msgid "Rental Extension"
+msgstr "Extensión de alquiler"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__rental_period
+msgid "Rental Period"
+msgstr "Periodo de alquiler"
+
+#. module: rental_timeline
+#. openerp-web
+#: code:addons/rental_timeline/static/src/js/timeline_view.js:33
+#: selection:ir.actions.act_window.view,view_mode:0
+#: selection:ir.ui.view,type:0
+#, python-format
+msgid "Rental Timeline"
+msgstr "Línea temporal del alquiler"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_sale_order_line__rental_type
+msgid "Rental Type"
+msgstr "Tipo de alquiler"
+
+#. module: rental_timeline
+#: model_terms:ir.ui.view,arch_db:rental_timeline.view_product_timeline_timeline
+msgid "Rental period:"
+msgstr "Periodo de alquiler:"
+
+#. module: rental_timeline
+#: selection:product.timeline,type:0
+msgid "Repair"
+msgstr "Reparar"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__res_id
+msgid "Res"
+msgstr "Res"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__res_model
+msgid "Res Model"
+msgstr "Modelo Res"
+
+#. module: rental_timeline
+#: selection:product.timeline,type:0
+msgid "Reserved"
+msgstr "Reservado"
+
+#. module: rental_timeline
+#: model:ir.model,name:rental_timeline.model_sale_order
+msgid "Sale Order"
+msgstr "Orden de venta"
+
+#. module: rental_timeline
+#: model:ir.model,name:rental_timeline.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedidos de venta"
+
+#. module: rental_timeline
+#: selection:ir.ui.view,type:0
+msgid "Search"
+msgstr ""
+
+#. module: rental_timeline
+#: model:ir.model.fields,help:rental_timeline.field_product_timeline__product_categ_id
+msgid "Select category for the current product"
+msgstr "Escoja categoría para el producto seleccionado"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__partner_shipping_address
+msgid "Shipping address"
+msgstr "Dirección de envio"
+
+#. module: rental_timeline
+#: model_terms:ir.ui.view,arch_db:rental_timeline.view_product_timeline_timeline
+msgid "Shipping address:"
+msgstr "Dirección de envío:"
+
+#. module: rental_timeline
+#: model_terms:ir.ui.view,arch_db:rental_timeline.view_product_timeline_timeline
+msgid "Start date:"
+msgstr "Fecha de comienzo:"
+
+#. module: rental_timeline
+#: sql_constraint:product.timeline:0
+msgid "The start date must be anterior to the end date."
+msgstr "La fecha de comienzo debe ser anterior a la fecha de fin."
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_product__product_timeline_ids
+msgid "Time Lines"
+msgstr "Lineas de tiempo"
+
+#. module: rental_timeline
+#: model:ir.actions.act_window,name:rental_timeline.action_product_timeline
+#: selection:ir.actions.act_window.view,view_mode:0
+#: model:ir.model.fields,field_description:rental_timeline.field_sale_order_line__timeline_ids
+#: model:ir.ui.menu,name:rental_timeline.menu_product_timeline
+#: model_terms:ir.ui.view,arch_db:rental_timeline.view_product_timeline_form
+#: model_terms:ir.ui.view,arch_db:rental_timeline.view_product_timeline_search
+#: model_terms:ir.ui.view,arch_db:rental_timeline.view_product_timeline_tree
+#: selection:ir.ui.view,type:0
+msgid "Timeline"
+msgstr "Línea temporal"
+
+#. module: rental_timeline
+#: model:ir.actions.act_window,name:rental_timeline.action_view_all_timeline
+msgid "Timelines"
+msgstr "Líneas temporales"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__number_of_days
+msgid "Total days"
+msgstr "Días totales"
+
+#. module: rental_timeline
+#: model_terms:ir.ui.view,arch_db:rental_timeline.view_product_timeline_timeline
+msgid "Total days:"
+msgstr "Días totales:"
+
+#. module: rental_timeline
+#: selection:ir.actions.act_window.view,view_mode:0
+#: selection:ir.ui.view,type:0
+msgid "Tree"
+msgstr ""
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__type
+msgid "Type"
+msgstr "Tipo"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__type_formated
+msgid "Type Formated"
+msgstr "Tipo formateado"
+
+#. module: rental_timeline
+#: model_terms:ir.ui.view,arch_db:rental_timeline.view_product_timeline_timeline
+msgid "Type:"
+msgstr "Tipo:"
+
+#. module: rental_timeline
+#: model:ir.model,name:rental_timeline.model_ir_ui_view
+msgid "View"
+msgstr "Vista"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_ir_actions_act_window_view__view_mode
+#: model:ir.model.fields,field_description:rental_timeline.field_ir_ui_view__type
+msgid "View Type"
+msgstr "Tipo de vista"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__warehouse_id
+msgid "Warehouse"
+msgstr "Almacén"
+
+#. module: rental_timeline
+#: model:ir.model.fields,field_description:rental_timeline.field_product_timeline__warehouse_name
+msgid "Warehouse Name"
+msgstr "Nombre del almacén"
+
+#. module: rental_timeline
+#: model_terms:ir.ui.view,arch_db:rental_timeline.view_product_timeline_timeline
+msgid "Warehouse:"
+msgstr "Almacén:"
+
+#. module: rental_timeline
+#: code:addons/rental_timeline/models/sale.py:132
+#, python-format
+msgid ""
+"You are not allowed to change the 'rental type' in an order line of a confirmed order.\n"
+"\n"
+"Order: %s\n"
+"Line with product: '%s'"
+msgstr ""
+"No estás autorizado a cambiar el 'tipo de alquiler' en la línea de pedido en un pedido confirmado.\n"
+"\n"
+"Orden: %s\n"
+"Línea con producto: '%s'"

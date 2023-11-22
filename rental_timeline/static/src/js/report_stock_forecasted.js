@@ -1,8 +1,7 @@
 odoo.define("stock.ReplenishReport", function (require) {
-    "use strict";
-    // let {loadLegacyViews} = require("./legacy/legacy_views");
+    "use strict"; console.log("patch OK");
 
-    // const {loadLegacyViews} = require("@rental_timeline/legacy/legacy_views");
+    const {loadLegacyViews} = require("@rental_timeline/js/legacy/legacy_views");
 
     const clientAction = require("report.client_action");
     const core = require("web.core");
@@ -402,5 +401,5 @@ odoo.define("stock.ReplenishReport", function (require) {
 
     core.action_registry.add("replenish_report", ReplenishReport);
 
-    return ReplenishReport;
+    return { ReplenishReport: ReplenishReport, };
 });
