@@ -62,7 +62,6 @@
                     <field name="categ_id" />
                 </xpath>
                 <xpath expr="//field[@name='barcode']" position="before">
-                    <field name="categ_id" />
                     <field name="manu_id" />
                     <field name="manu_type_id" domain="[('manufacturer_id','=',manu_id)]" />
                     <field name="show_product_identification_number" invisible="1" />
