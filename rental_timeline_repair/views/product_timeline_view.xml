@@ -11,7 +11,7 @@
             <td id="clues" position="inside">
                 <span><i t-if="record.repair" class="fa fa-fw o_button_icon fa-wrench" title="clues" /></span>
             </td>
-            <t t-raw="record.display_name" position="before">
+            <t t-out="record.display_name" position="before">
                 <span><i t-if="record.repair" class="fa fa-fw o_button_icon fa-wrench" title="name" /></span>
             </t>
         </field>
