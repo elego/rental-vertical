@@ -4,7 +4,7 @@
 class Popup {
     /**
      * @param {Element} container       The container object.
-     * @param {string}  overflowMethod  How the popup should act to overflowing ('flip' or 'cap')
+     * @param {String}  overflowMethod  How the popup should act to overflowing ('flip' or 'cap')
      */
     constructor(container, overflowMethod) {
         this.container = container;
@@ -15,15 +15,15 @@ class Popup {
         this.padding = 5;
         this.hidden = false;
 
-        // create the frame
+        // Create the frame
         this.frame = document.createElement("div");
         this.frame.className = "vis-tooltip";
         this.container.appendChild(this.frame);
     }
 
     /**
-     * @param {number} x   Horizontal position of the popup window
-     * @param {number} y   Vertical position of the popup window
+     * @param {Number} x   Horizontal position of the popup window
+     * @param {Number} y   Vertical position of the popup window
      */
     setPosition(x, y) {
         this.x = parseInt(x);
@@ -32,20 +32,20 @@ class Popup {
 
     /**
      * Set the content for the popup window. This can be HTML code or text.
-     * @param {string | Element} content
+     * @param {String | Element} content
      */
     setText(content) {
         if (content instanceof Element) {
             this.frame.innerHTML = "";
             this.frame.appendChild(content);
         } else {
-            this.frame.innerHTML = content; // string containing text or HTML
+            this.frame.innerHTML = content; // String containing text or HTML
         }
     }
 
     /**
      * Show the popup window
-     * @param {boolean} [doShow]    Show or hide the window
+     * @param {Boolean} [doShow]    Show or hide the window
      */
     show(doShow) {
         if (doShow === undefined) {

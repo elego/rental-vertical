@@ -10,7 +10,7 @@ create project tasks a defined time before the actual appointment date.
 
 You can distinguish between time dependent and usage dependent appointments.
 Time dependent appointments are due on a specific date.
-Usage dependent appointments are due if a specific condition is reached, 
+Usage dependent appointments are due if a specific condition is reached,
 like a certain mileage or amount of operating hours.
 """,
     "usage": """
@@ -24,9 +24,9 @@ like a certain mileage or amount of operating hours.
 - Add one or several usage dependent appointments in 'Appointments' page on product view.
   The product instance therefore need a condition type configured by its product category.
 - Set a name, a threshold, an intervall, a notification lead time (in days) and a daily increase.
-- If there are no existing operating data yet, the daily increase is by default 1 and the appointment 
+- If there are no existing operating data yet, the daily increase is by default 1 and the appointment
   date is calculated using 'today' as a reference until the threshold is reached.
-- If there are operating data, the daily increase is calculated from the value and date difference, 
+- If there are operating data, the daily increase is calculated from the value and date difference,
   using the last 20 operating data that differ in value and time.
 - A project task is automatically created before the calculated appointment date using the lead time.
 """,

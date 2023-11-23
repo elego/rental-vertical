@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="view_product_timeline_timeline" model="ir.ui.view">
         <field name="name">product.timeline.timeline</field>
@@ -9,10 +9,18 @@
                 <field name="repair" />
             </templates>
             <td id="clues" position="inside">
-                <span><i t-if="record.repair" class="fa fa-fw o_button_icon fa-wrench" title="clues" /></span>
+                <span><i
+                        t-if="record.repair"
+                        class="fa fa-fw o_button_icon fa-wrench"
+                        title="clues"
+                    /></span>
             </td>
             <t t-out="record.display_name" position="before">
-                <span><i t-if="record.repair" class="fa fa-fw o_button_icon fa-wrench" title="name" /></span>
+                <span><i
+                        t-if="record.repair"
+                        class="fa fa-fw o_button_icon fa-wrench"
+                        title="name"
+                    /></span>
             </t>
         </field>
     </record>
@@ -34,7 +42,11 @@
         <field name="inherit_id" ref="rental_timeline.view_product_timeline_search" />
         <field name="arch" type="xml">
             <filter name="type_rental" position="after">
-                <filter domain="[('type','=','repair')]" name="repair" string="Repair"/>
+                <filter
+                    domain="[('type','=','repair')]"
+                    name="repair"
+                    string="Repair"
+                />
             </filter>
         </field>
     </record>

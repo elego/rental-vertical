@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <data>
 
@@ -26,18 +26,31 @@
             <field name="inherit_id" ref="product.product_normal_form_view" />
             <field name="arch" type="xml">
                 <div name="button_box" position="inside">
-                    <button class="oe_stat_button" name="action_view_rental_order"
-                        type="object" icon="fa-key" attrs="{'invisible': [('sale_ok', '=', False)]}">
+                    <button
+                        class="oe_stat_button"
+                        name="action_view_rental_order"
+                        type="object"
+                        icon="fa-key"
+                        attrs="{'invisible': [('sale_ok', '=', False)]}"
+                    >
                         <field name="rental_count" widget="statinfo" />
                     </button>
-                    <button class="oe_stat_button" name="action_view_invoice"
+                    <button
+                        class="oe_stat_button"
+                        name="action_view_invoice"
                         context="{'inv_type': 'in_invoice'}"
-                        type="object" icon="fa-money">
+                        type="object"
+                        icon="fa-money"
+                    >
                         <field name="in_invoice_count" widget="statinfo" />
                     </button>
-                    <button class="oe_stat_button" name="action_view_invoice"
+                    <button
+                        class="oe_stat_button"
+                        name="action_view_invoice"
                         context="{'inv_type': 'out_invoice'}"
-                        type="object" icon="fa-money">
+                        type="object"
+                        icon="fa-money"
+                    >
                         <field name="out_invoice_count" widget="statinfo" />
                     </button>
                     <!--TODO delete button action_view_all_invoice-->
@@ -47,12 +60,22 @@
                         <field name="in_invoice_count" widget="statinfo" />
                         <field name="out_invoice_count" widget="statinfo" />
                     </button> -->
-                    <button class="oe_stat_button" name="action_view_all_purchase_order"
-                        type="object" icon="fa-shopping-cart" attrs="{'invisible': [('purchase_ok', '=', False)]}">
+                    <button
+                        class="oe_stat_button"
+                        name="action_view_all_purchase_order"
+                        type="object"
+                        icon="fa-shopping-cart"
+                        attrs="{'invisible': [('purchase_ok', '=', False)]}"
+                    >
                         <field name="po_count" widget="statinfo" />
                     </button>
-                    <button class="oe_stat_button" name="action_view_sale_order"
-                        type="object" icon="fa-line-chart" attrs="{'invisible': [('sale_ok', '=', False)]}">
+                    <button
+                        class="oe_stat_button"
+                        name="action_view_sale_order"
+                        type="object"
+                        icon="fa-line-chart"
+                        attrs="{'invisible': [('sale_ok', '=', False)]}"
+                    >
                         <field name="so_count" widget="statinfo" />
                     </button>
                 </div>
@@ -63,16 +86,31 @@
                 </xpath>
                 <xpath expr="//field[@name='barcode']" position="before">
                     <field name="manu_id" />
-                    <field name="manu_type_id" domain="[('manufacturer_id','=',manu_id)]" />
+                    <field
+                        name="manu_type_id"
+                        domain="[('manufacturer_id','=',manu_id)]"
+                    />
                     <field name="show_product_identification_number" invisible="1" />
                     <field name="show_vehicle_number" invisible="1" />
                     <field name="show_license_plate" invisible="1" />
                     <field name="show_init_regist" invisible="1" />
-                    <field name="product_identification_number" attrs="{'invisible': [('show_product_identification_number', '=', False)]}" />
-                    <field name="vehicle_number" attrs="{'invisible': [('show_vehicle_number', '=', False)]}" />
-                    <field name="license_plate" attrs="{'invisible': [('show_license_plate', '=', False)]}" />
+                    <field
+                        name="product_identification_number"
+                        attrs="{'invisible': [('show_product_identification_number', '=', False)]}"
+                    />
+                    <field
+                        name="vehicle_number"
+                        attrs="{'invisible': [('show_vehicle_number', '=', False)]}"
+                    />
+                    <field
+                        name="license_plate"
+                        attrs="{'invisible': [('show_license_plate', '=', False)]}"
+                    />
                     <field name="manu_year" />
-                    <field name="init_regist" attrs="{'invisible': [('show_init_regist', '=', False)]}" />
+                    <field
+                        name="init_regist"
+                        attrs="{'invisible': [('show_init_regist', '=', False)]}"
+                    />
                 </xpath>
                 <xpath expr="//field[@name='barcode']" position="after">
                     <field name="qr_code" />
@@ -81,7 +119,11 @@
                 <xpath expr="//notebook" position="inside">
                     <page name="description" string="Internal Notes">
                         <group string="Internal Notes">
-                            <field name="description" nolabel="1" placeholder="This note is only for internal purposes." />
+                            <field
+                                name="description"
+                                nolabel="1"
+                                placeholder="This note is only for internal purposes."
+                            />
                         </group>
                     </page>
                     <page string="Rental" name="rental" groups="base.group_no_one">
@@ -98,9 +140,12 @@
                         </field>
                     </page>
                 </xpath>
-                <xpath expr="//notebook//page[@name='general_information']" position="after">
+                <xpath
+                    expr="//notebook//page[@name='general_information']"
+                    position="after"
+                >
                     <page string="Specification" name="add_info">
-                        <field name="additional_info" no_label="1"/>
+                        <field name="additional_info" no_label="1" />
                     </page>
                 </xpath>
 
@@ -251,29 +296,44 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <menuitem action="action_product_manufacturer"
-            id="menu_product_manufacturer" parent="stock.menu_stock_inventory_control"
-            sequence="13" />
-        <menuitem action="action_product_manufacturer_type"
-            id="menu_product_manufacturer_type" parent="stock.menu_stock_inventory_control"
-            sequence="13" />
-        <menuitem action="action_fleet_type"
-            id="menu_fleet_type" parent="stock.menu_stock_inventory_control"
-            sequence="13" />
+        <menuitem
+            action="action_product_manufacturer"
+            id="menu_product_manufacturer"
+            parent="stock.menu_stock_inventory_control"
+            sequence="13"
+        />
+        <menuitem
+            action="action_product_manufacturer_type"
+            id="menu_product_manufacturer_type"
+            parent="stock.menu_stock_inventory_control"
+            sequence="13"
+        />
+        <menuitem
+            action="action_fleet_type"
+            id="menu_fleet_type"
+            parent="stock.menu_stock_inventory_control"
+            sequence="13"
+        />
 
         <!-- Menu in Rentals -->
-        <menuitem action="action_product_manufacturer"
+        <menuitem
+            action="action_product_manufacturer"
             id="menu_product_manufacturer"
             parent="rental_base.menu_config_products"
-            sequence="10" />
-        <menuitem action="action_product_manufacturer_type"
+            sequence="10"
+        />
+        <menuitem
+            action="action_product_manufacturer_type"
             id="menu_product_manufacturer_type"
             parent="rental_base.menu_config_products"
-            sequence="15" />
-        <menuitem action="action_fleet_type"
+            sequence="15"
+        />
+        <menuitem
+            action="action_fleet_type"
             id="menu_fleet_type"
             parent="rental_base.menu_config_products"
-            sequence="20" />
+            sequence="20"
+        />
 
     </data>
 </odoo>

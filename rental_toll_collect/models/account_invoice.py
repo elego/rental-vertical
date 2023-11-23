@@ -3,7 +3,6 @@
 from odoo import _, api, fields, models
 
 
-
 class AccountMove(models.Model):
     _inherit = "account.move"
 
@@ -68,7 +67,9 @@ class AccountMove(models.Model):
                         vals = line._prepare_toll_product_line(
                             line.toll_line_ids.filtered("chargeable")
                         )
-                        line.toll_product_line_ids.with_context(check_move_validity=False).write(vals)
+                        line.toll_product_line_ids.with_context(
+                            check_move_validity=False
+                        ).write(vals)
                     else:
                         # When manually invoicing toll charge lines,
                         # the 'toll charge' is linked as invoice_line_id.
@@ -91,7 +92,9 @@ class AccountMove(models.Model):
                             line.with_context(check_move_validity=False).write(vals)
                         else:
                             line._create_toll_product_line()
-                line.with_context(check_move_validity=False).write({'update_toll_lines': False})
+                line.with_context(check_move_validity=False).write(
+                    {"update_toll_lines": False}
+                )
         return True
 
     def _get_toll_report_filename(self):
@@ -255,7 +258,9 @@ class AccountMoveLine(models.Model):
     def create(self, vals_list):
         i_lines = super().create(vals_list)
         if self.env.user.company_id.automatic_toll_charge_invoicing:
-            toll_product_lines = self.env["account.move.line"].with_context(check_move_validity=False)
+            toll_product_lines = self.env["account.move.line"].with_context(
+                check_move_validity=False
+            )
             for line in i_lines:
                 line = line.with_context(check_move_validity=False)
                 if not vals_list[0].get("toll_line_ids", False):
@@ -268,7 +273,9 @@ class AccountMoveLine(models.Model):
 
     def write(self, values):
         toll_lines = values.get("toll_line_ids", False)
-        toll_charge_product = self.filtered(lambda l: l.product_id == self.env.ref("rental_toll_collect.product_toll"))
+        toll_charge_product = self.filtered(
+            lambda l: l.product_id == self.env.ref("rental_toll_collect.product_toll")
+        )
         if toll_charge_product:
             # set context to avoid check for Toll Charge product
             self = self.with_context(check_move_validity=False)

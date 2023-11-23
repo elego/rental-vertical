@@ -1,7 +1,8 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
 import math
-from odoo import api, exceptions, fields, models, _
+
+from odoo import _, api, exceptions, fields, models
 
 
 class ProjectTask(models.Model):
@@ -93,10 +94,8 @@ class ProjectTask(models.Model):
     def _compute_stagnation_time(self):
         for task in self:
             s = sum(
-                [
-                    math.ceil((i.end_time - i.start_time).total_seconds())
-                    for i in task.stagnation_ids
-                ]
+                math.ceil((i.end_time - i.start_time).total_seconds())
+                for i in task.stagnation_ids
             )
             task.total_stagnation_time_sec = s
             task.total_stagnation_time = (

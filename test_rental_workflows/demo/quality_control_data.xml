@@ -1,51 +1,78 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <data>
         <record model="qc.test" id="qc_test_01">
             <field name="name">Rental Generic Test</field>
             <field name="type">generic</field>
             <field name="active" eval="True" />
-            <field name="category" ref="quality_control_oca.qc_test_template_category_generic" />
+            <field
+                name="category"
+                ref="quality_control_oca.qc_test_template_category_generic"
+            />
         </record>
 
         <!-- QC with Products  -->
         <record model="qc.trigger.product_line" id="rental_01531_trigger_line_01">
-            <field name="trigger" model="qc.trigger" search="[('picking_type_id', '=', ref('stock.picking_type_out'))]"/>
-            <field name="test" ref="qc_test_01"/>
-            <field name="user" ref="base.user_admin"/>
-            <field name="product" ref="test_rental_workflows.rental_01531"/>
+            <field
+                name="trigger"
+                model="qc.trigger"
+                search="[('picking_type_id', '=', ref('stock.picking_type_out'))]"
+            />
+            <field name="test" ref="qc_test_01" />
+            <field name="user" ref="base.user_admin" />
+            <field name="product" ref="test_rental_workflows.rental_01531" />
         </record>
         <record model="qc.trigger.product_line" id="rental_01531_trigger_line_02">
-            <field name="trigger" model="qc.trigger" search="[('picking_type_id', '=', ref('stock.picking_type_in'))]"/>
-            <field name="test" ref="qc_test_01"/>
-            <field name="user" ref="base.user_admin"/>
-            <field name="product" ref="test_rental_workflows.rental_01531"/>
+            <field
+                name="trigger"
+                model="qc.trigger"
+                search="[('picking_type_id', '=', ref('stock.picking_type_in'))]"
+            />
+            <field name="test" ref="qc_test_01" />
+            <field name="user" ref="base.user_admin" />
+            <field name="product" ref="test_rental_workflows.rental_01531" />
         </record>
 
         <record model="qc.trigger.product_line" id="rental_01532_trigger_line_01">
-            <field name="trigger" model="qc.trigger" search="[('picking_type_id', '=', ref('stock.picking_type_out'))]"/>
-            <field name="test" ref="qc_test_01"/>
-            <field name="user" ref="base.user_admin"/>
-            <field name="product" ref="test_rental_workflows.rental_01532"/>
+            <field
+                name="trigger"
+                model="qc.trigger"
+                search="[('picking_type_id', '=', ref('stock.picking_type_out'))]"
+            />
+            <field name="test" ref="qc_test_01" />
+            <field name="user" ref="base.user_admin" />
+            <field name="product" ref="test_rental_workflows.rental_01532" />
         </record>
         <record model="qc.trigger.product_line" id="rental_01532_trigger_line_02">
-            <field name="trigger" model="qc.trigger" search="[('picking_type_id', '=', ref('stock.picking_type_in'))]"/>
-            <field name="test" ref="qc_test_01"/>
-            <field name="user" ref="base.user_admin"/>
-            <field name="product" ref="test_rental_workflows.rental_01532"/>
+            <field
+                name="trigger"
+                model="qc.trigger"
+                search="[('picking_type_id', '=', ref('stock.picking_type_in'))]"
+            />
+            <field name="test" ref="qc_test_01" />
+            <field name="user" ref="base.user_admin" />
+            <field name="product" ref="test_rental_workflows.rental_01532" />
         </record>
 
         <record model="qc.trigger.product_line" id="rental_01533_trigger_line_01">
-            <field name="trigger" model="qc.trigger" search="[('picking_type_id', '=', ref('stock.picking_type_out'))]"/>
-            <field name="test" ref="qc_test_01"/>
-            <field name="user" ref="base.user_admin"/>
-            <field name="product" ref="test_rental_workflows.rental_01533"/>
+            <field
+                name="trigger"
+                model="qc.trigger"
+                search="[('picking_type_id', '=', ref('stock.picking_type_out'))]"
+            />
+            <field name="test" ref="qc_test_01" />
+            <field name="user" ref="base.user_admin" />
+            <field name="product" ref="test_rental_workflows.rental_01533" />
         </record>
         <record model="qc.trigger.product_line" id="rental_01533_trigger_line_02">
-            <field name="trigger" model="qc.trigger" search="[('picking_type_id', '=', ref('stock.picking_type_in'))]"/>
-            <field name="test" ref="qc_test_01"/>
-            <field name="user" ref="base.user_admin"/>
-            <field name="product" ref="test_rental_workflows.rental_01533"/>
+            <field
+                name="trigger"
+                model="qc.trigger"
+                search="[('picking_type_id', '=', ref('stock.picking_type_in'))]"
+            />
+            <field name="test" ref="qc_test_01" />
+            <field name="user" ref="base.user_admin" />
+            <field name="product" ref="test_rental_workflows.rental_01533" />
         </record>
 
 

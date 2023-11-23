@@ -1,9 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo noupdate="1">
     <record id="rental_contract_template" model="contract.template">
         <field name="name">Customer Contract</field>
         <field name="contract_type">sale</field>
-        <field name="journal_id" model="account.journal"
-               search="[('code', '=', 'INV'), ('type', '=', 'sale')]"/>
+        <field
+            name="journal_id"
+            model="account.journal"
+            search="[('code', '=', 'INV'), ('type', '=', 'sale')]"
+        />
     </record>
 </odoo>

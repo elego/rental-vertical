@@ -1,6 +1,6 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
-from odoo import api, fields, models, _
+from odoo import fields, models
 from odoo.osv import expression
 
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <data noupdate="1">
         <record id="project_task_type_new" model="project.task.type">
@@ -17,7 +17,10 @@
             <field name="name">Has Appointment</field>
         </record>
 
-        <record id="project_task_type_done_-_no_documentation" model="project.task.type">
+        <record
+            id="project_task_type_done_-_no_documentation"
+            model="project.task.type"
+        >
             <field name="name">Done - no documentation</field>
         </record>
 
@@ -36,7 +39,9 @@
             <field name="privacy_visibility">employees</field>
             <field name="color">3</field>
             <field name="user_id" ref="base.user_root" />
-            <field name="type_ids" eval="[
+            <field
+                name="type_ids"
+                eval="[
                 (6, 0, [
                     ref('project_task_type_new'),
                     ref('project_task_type_qualification'),
@@ -46,7 +51,8 @@
                     ref('project_task_type_done'),
                     ref('project_task_type_cancelled'),
                 ]),
-            ]" />
+            ]"
+            />
         </record>
     </data>
 </odoo>

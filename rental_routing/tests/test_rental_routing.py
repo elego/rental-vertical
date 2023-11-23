@@ -1,9 +1,9 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
-from dateutil.relativedelta import relativedelta
+
+from odoo import fields
 
 from odoo.addons.rental_base.tests.stock_common import RentalStockCommon
-from odoo import fields, exceptions
 
 
 class TestRentalRouting(RentalStockCommon):
@@ -34,7 +34,7 @@ class TestRentalRouting(RentalStockCommon):
                 "name": "Product for Rental",
                 "type": "product",
                 "categ_id": self.category_all.id,
-            #    "trans_purchase_request": True, # FIXME: This is a customer-specific extension!
+                #    "trans_purchase_request": True, # FIXME: This is a customer-specific extension!
             }
         )
         self.service_rental = self._create_rental_service_day(self.product_rental)
@@ -53,11 +53,14 @@ class TestRentalRouting(RentalStockCommon):
         """
         # 1. Create Rental Orders for product_rental
         rental_order_1 = self._create_rental_order(
-            self.partnerA.id, self.date_0101, self.date_0108)
+            self.partnerA.id, self.date_0101, self.date_0108
+        )
         rental_order_2 = self._create_rental_order(
-            self.partnerB.id, self.date_0110, self.date_0117)
+            self.partnerB.id, self.date_0110, self.date_0117
+        )
         rental_order_3 = self._create_rental_order(
-            self.partnerC.id, self.date_0119, self.date_0126)
+            self.partnerC.id, self.date_0119, self.date_0126
+        )
         rental_order_1.action_confirm()
         rental_order_2.action_confirm()
         self.assertEqual(rental_order_1.delivery_count, 2)
@@ -67,12 +70,16 @@ class TestRentalRouting(RentalStockCommon):
             [("start_order_line_id", "=", rental_order_2.order_line.id)]
         )
         # 2. Routing: order 1 -> order 2
-        wizard = self.env["sale.rental.route"].with_context(
-            {
-                "active_model": "sale.order.line",
-                "active_ids": rental_order_1.order_line.ids,
-            }
-        ).create({})
+        wizard = (
+            self.env["sale.rental.route"]
+            .with_context(
+                {
+                    "active_model": "sale.order.line",
+                    "active_ids": rental_order_1.order_line.ids,
+                }
+            )
+            .create({})
+        )
         wizard.in_lines.rental_out_id = rental_2
         wizard.in_lines.onchange_rental_out_id()
         wizard.action_confirm()
@@ -85,45 +92,91 @@ class TestRentalRouting(RentalStockCommon):
         self.assertEqual(rental_order_2.delivery_count, 4)
         self.assertEqual(rental_order_3.delivery_count, 3)
         PickingObj = self.env["stock.picking"]
-        #check Pickings of order 1
+        # check Pickings of order 1
         check_11 = check_12 = check_13 = False
-        for picking in PickingObj.browse(rental_order_1._get_all_picking_ids()[rental_order_1.id]):
-            if picking.location_id == self.warehouse0.rental_in_location_id and picking.location_dest_id == self.partnerA.rental_onsite_location_id and picking.move_lines[0].product_uom_qty == 1:
+        for picking in PickingObj.browse(
+            rental_order_1._get_all_picking_ids()[rental_order_1.id]
+        ):
+            if (
+                picking.location_id == self.warehouse0.rental_in_location_id
+                and picking.location_dest_id == self.partnerA.rental_onsite_location_id
+                and picking.move_lines[0].product_uom_qty == 1
+            ):
                 check_11 = True
-            if picking.location_id == self.partnerA.rental_onsite_location_id and picking.location_dest_id == self.partnerB.rental_onsite_location_id and picking.move_lines[0].product_uom_qty == 1:
+            if (
+                picking.location_id == self.partnerA.rental_onsite_location_id
+                and picking.location_dest_id == self.partnerB.rental_onsite_location_id
+                and picking.move_lines[0].product_uom_qty == 1
+            ):
                 check_12 = True
-            if picking.location_id == self.partnerA.rental_onsite_location_id and picking.location_dest_id == self.warehouse0.rental_in_location_id and picking.move_lines[0].product_uom_qty == 0:
+            if (
+                picking.location_id == self.partnerA.rental_onsite_location_id
+                and picking.location_dest_id == self.warehouse0.rental_in_location_id
+                and picking.move_lines[0].product_uom_qty == 0
+            ):
                 check_13 = True
-        self.assertTrue(check_11) # origin picking out
-        self.assertTrue(check_12) # new picking in
-        self.assertTrue(check_13) # origin picking in
-        #check Pickings of order 2
+        self.assertTrue(check_11)  # origin picking out
+        self.assertTrue(check_12)  # new picking in
+        self.assertTrue(check_13)  # origin picking in
+        # check Pickings of order 2
         check_21 = check_22 = check_23 = check_24 = False
-        for picking in PickingObj.browse(rental_order_2._get_all_picking_ids()[rental_order_2.id]):
-            if picking.location_id == self.warehouse0.rental_in_location_id and picking.location_dest_id == self.partnerB.rental_onsite_location_id and picking.move_lines[0].product_uom_qty == 0:
+        for picking in PickingObj.browse(
+            rental_order_2._get_all_picking_ids()[rental_order_2.id]
+        ):
+            if (
+                picking.location_id == self.warehouse0.rental_in_location_id
+                and picking.location_dest_id == self.partnerB.rental_onsite_location_id
+                and picking.move_lines[0].product_uom_qty == 0
+            ):
                 check_21 = True
-            if picking.location_id == self.partnerB.rental_onsite_location_id and picking.location_dest_id == self.warehouse0.rental_in_location_id and picking.move_lines[0].product_uom_qty == 0:
+            if (
+                picking.location_id == self.partnerB.rental_onsite_location_id
+                and picking.location_dest_id == self.warehouse0.rental_in_location_id
+                and picking.move_lines[0].product_uom_qty == 0
+            ):
                 check_22 = True
-            if picking.location_id == self.partnerA.rental_onsite_location_id and picking.location_dest_id == self.partnerB.rental_onsite_location_id and picking.move_lines[0].product_uom_qty == 1:
+            if (
+                picking.location_id == self.partnerA.rental_onsite_location_id
+                and picking.location_dest_id == self.partnerB.rental_onsite_location_id
+                and picking.move_lines[0].product_uom_qty == 1
+            ):
                 check_23 = True
-            if picking.location_id == self.partnerB.rental_onsite_location_id and picking.location_dest_id == self.partnerC.rental_onsite_location_id and picking.move_lines[0].product_uom_qty == 1:
+            if (
+                picking.location_id == self.partnerB.rental_onsite_location_id
+                and picking.location_dest_id == self.partnerC.rental_onsite_location_id
+                and picking.move_lines[0].product_uom_qty == 1
+            ):
                 check_24 = True
-        self.assertTrue(check_21) # origin picking out
-        self.assertTrue(check_22) # origin picking in
-        self.assertTrue(check_23) # new picking out
-        self.assertTrue(check_24) # new picking in
-        #check Pickings of order 3
+        self.assertTrue(check_21)  # origin picking out
+        self.assertTrue(check_22)  # origin picking in
+        self.assertTrue(check_23)  # new picking out
+        self.assertTrue(check_24)  # new picking in
+        # check Pickings of order 3
         check_31 = check_32 = check_33 = False
-        for picking in PickingObj.browse(rental_order_3._get_all_picking_ids()[rental_order_3.id]):
-            if picking.location_id == self.warehouse0.rental_in_location_id and picking.location_dest_id == self.partnerC.rental_onsite_location_id and picking.move_lines[0].product_uom_qty == 0:
+        for picking in PickingObj.browse(
+            rental_order_3._get_all_picking_ids()[rental_order_3.id]
+        ):
+            if (
+                picking.location_id == self.warehouse0.rental_in_location_id
+                and picking.location_dest_id == self.partnerC.rental_onsite_location_id
+                and picking.move_lines[0].product_uom_qty == 0
+            ):
                 check_31 = True
-            if picking.location_id == self.partnerB.rental_onsite_location_id and picking.location_dest_id == self.partnerC.rental_onsite_location_id and picking.move_lines[0].product_uom_qty == 1:
+            if (
+                picking.location_id == self.partnerB.rental_onsite_location_id
+                and picking.location_dest_id == self.partnerC.rental_onsite_location_id
+                and picking.move_lines[0].product_uom_qty == 1
+            ):
                 check_32 = True
-            if picking.location_id == self.partnerC.rental_onsite_location_id and picking.location_dest_id == self.warehouse0.rental_in_location_id and picking.move_lines[0].product_uom_qty == 1:
+            if (
+                picking.location_id == self.partnerC.rental_onsite_location_id
+                and picking.location_dest_id == self.warehouse0.rental_in_location_id
+                and picking.move_lines[0].product_uom_qty == 1
+            ):
                 check_33 = True
-        self.assertTrue(check_31) # origin picking out
-        self.assertTrue(check_32) # new picking out
-        self.assertTrue(check_33) # origin picking in
+        self.assertTrue(check_31)  # origin picking out
+        self.assertTrue(check_32)  # new picking out
+        self.assertTrue(check_33)  # origin picking in
 
     def test_01_rental_routing_qty(self):
         """
@@ -133,11 +186,14 @@ class TestRentalRouting(RentalStockCommon):
         """
         # 1. Create Rental Orders for product_rental
         rental_order_1 = self._create_rental_order(
-            self.partnerA.id, self.date_0101, self.date_0108, qty=1)
+            self.partnerA.id, self.date_0101, self.date_0108, qty=1
+        )
         rental_order_2 = self._create_rental_order(
-            self.partnerB.id, self.date_0110, self.date_0117, qty=3)
+            self.partnerB.id, self.date_0110, self.date_0117, qty=3
+        )
         rental_order_3 = self._create_rental_order(
-            self.partnerC.id, self.date_0119, self.date_0126, qty=3)
+            self.partnerC.id, self.date_0119, self.date_0126, qty=3
+        )
         rental_order_1.action_confirm()
         rental_order_2.action_confirm()
         rental_order_3.action_confirm()
@@ -152,80 +208,134 @@ class TestRentalRouting(RentalStockCommon):
         )
 
         # 2. Routing: order 1 -> order 3
-        wizard = self.env["sale.rental.route"].with_context(
-            {
-                "active_model": "sale.order.line",
-                "active_ids": rental_order_1.order_line.ids,
-            }
-        ).create({})
+        wizard = (
+            self.env["sale.rental.route"]
+            .with_context(
+                {
+                    "active_model": "sale.order.line",
+                    "active_ids": rental_order_1.order_line.ids,
+                }
+            )
+            .create({})
+        )
         wizard.in_lines.rental_out_id = rental_3
         wizard.in_lines.onchange_rental_out_id()
-        #print(wizard.in_lines.rental_id)
-        #print(wizard.in_lines.move_id)
+        # print(wizard.in_lines.rental_id)
+        # print(wizard.in_lines.move_id)
         self.assertEqual(wizard.in_lines.qty, 1.0)
         self.assertEqual(wizard.in_lines.rental_avail_qty, 3.0)
-        #print(wizard.in_lines.rental_out_id)
-        #print(wizard.in_lines.rental_out_move_id)
+        # print(wizard.in_lines.rental_out_id)
+        # print(wizard.in_lines.rental_out_move_id)
         self.assertEqual(wizard.in_lines.rental_end_date, self.date_0108)
-        #print(wizard.in_lines.rental_onsite_location_id)
+        # print(wizard.in_lines.rental_onsite_location_id)
         wizard.action_confirm()
 
         # 3. Routing: order 2 -> order 3
-        wizard = self.env["sale.rental.route"].with_context(
-            {
-                "active_model": "sale.order.line",
-                "active_ids": rental_order_3.order_line.ids,
-            }
-        ).create({})
+        wizard = (
+            self.env["sale.rental.route"]
+            .with_context(
+                {
+                    "active_model": "sale.order.line",
+                    "active_ids": rental_order_3.order_line.ids,
+                }
+            )
+            .create({})
+        )
         wizard.out_lines.rental_in_id = rental_2
         wizard.out_lines.onchange_rental_in_id()
-        #print(wizard.out_lines.rental_id)
-        #print(wizard.out_lines.move_id)
+        # print(wizard.out_lines.rental_id)
+        # print(wizard.out_lines.move_id)
         self.assertEqual(wizard.out_lines.qty, 2.0)
         self.assertEqual(wizard.out_lines.rental_avail_qty, 3.0)
-        #print(wizard.out_lines.rental_in_id)
-        #print(wizard.out_lines.rental_in_move_id)
+        # print(wizard.out_lines.rental_in_id)
+        # print(wizard.out_lines.rental_in_move_id)
         self.assertEqual(wizard.out_lines.rental_start_date, self.date_0119)
-        #print(wizard.out_lines.rental_onsite_location_id)
+        # print(wizard.out_lines.rental_onsite_location_id)
         wizard.action_confirm()
 
         PickingObj = self.env["stock.picking"]
-        #check Pickings of order 1
+        # check Pickings of order 1
         check_11 = check_12 = check_13 = False
-        for picking in PickingObj.browse(rental_order_1._get_all_picking_ids()[rental_order_1.id]):
-            if picking.location_id == self.warehouse0.rental_in_location_id and picking.location_dest_id == self.partnerA.rental_onsite_location_id and picking.move_lines[0].product_uom_qty == 1:
+        for picking in PickingObj.browse(
+            rental_order_1._get_all_picking_ids()[rental_order_1.id]
+        ):
+            if (
+                picking.location_id == self.warehouse0.rental_in_location_id
+                and picking.location_dest_id == self.partnerA.rental_onsite_location_id
+                and picking.move_lines[0].product_uom_qty == 1
+            ):
                 check_11 = True
-            if picking.location_id == self.partnerA.rental_onsite_location_id and picking.location_dest_id == self.partnerC.rental_onsite_location_id and picking.move_lines[0].product_uom_qty == 1:
+            if (
+                picking.location_id == self.partnerA.rental_onsite_location_id
+                and picking.location_dest_id == self.partnerC.rental_onsite_location_id
+                and picking.move_lines[0].product_uom_qty == 1
+            ):
                 check_12 = True
-            if picking.location_id == self.partnerA.rental_onsite_location_id and picking.location_dest_id == self.warehouse0.rental_in_location_id and picking.move_lines[0].product_uom_qty == 0:
+            if (
+                picking.location_id == self.partnerA.rental_onsite_location_id
+                and picking.location_dest_id == self.warehouse0.rental_in_location_id
+                and picking.move_lines[0].product_uom_qty == 0
+            ):
                 check_13 = True
-        self.assertTrue(check_11) # origin picking out
-        self.assertTrue(check_12) # new picking in
-        self.assertTrue(check_13) # origin picking in
-        #check Pickings of order 2
+        self.assertTrue(check_11)  # origin picking out
+        self.assertTrue(check_12)  # new picking in
+        self.assertTrue(check_13)  # origin picking in
+        # check Pickings of order 2
         check_21 = check_22 = check_23 = False
-        for picking in PickingObj.browse(rental_order_2._get_all_picking_ids()[rental_order_2.id]):
-            if picking.location_id == self.warehouse0.rental_in_location_id and picking.location_dest_id == self.partnerB.rental_onsite_location_id and picking.move_lines[0].product_uom_qty == 3:
+        for picking in PickingObj.browse(
+            rental_order_2._get_all_picking_ids()[rental_order_2.id]
+        ):
+            if (
+                picking.location_id == self.warehouse0.rental_in_location_id
+                and picking.location_dest_id == self.partnerB.rental_onsite_location_id
+                and picking.move_lines[0].product_uom_qty == 3
+            ):
                 check_21 = True
-            if picking.location_id == self.partnerB.rental_onsite_location_id and picking.location_dest_id == self.warehouse0.rental_in_location_id and picking.move_lines[0].product_uom_qty == 1:
+            if (
+                picking.location_id == self.partnerB.rental_onsite_location_id
+                and picking.location_dest_id == self.warehouse0.rental_in_location_id
+                and picking.move_lines[0].product_uom_qty == 1
+            ):
                 check_22 = True
-            if picking.location_id == self.partnerB.rental_onsite_location_id and picking.location_dest_id == self.partnerC.rental_onsite_location_id and picking.move_lines[0].product_uom_qty == 2:
+            if (
+                picking.location_id == self.partnerB.rental_onsite_location_id
+                and picking.location_dest_id == self.partnerC.rental_onsite_location_id
+                and picking.move_lines[0].product_uom_qty == 2
+            ):
                 check_23 = True
-        self.assertTrue(check_21) # origin picking out
-        self.assertTrue(check_22) # origin picking in
-        self.assertTrue(check_23) # new picking in
-        #check Pickings of order 3
+        self.assertTrue(check_21)  # origin picking out
+        self.assertTrue(check_22)  # origin picking in
+        self.assertTrue(check_23)  # new picking in
+        # check Pickings of order 3
         check_31 = check_32 = check_33 = False
-        for picking in PickingObj.browse(rental_order_3._get_all_picking_ids()[rental_order_3.id]):
-            if picking.location_id == self.warehouse0.rental_in_location_id and picking.location_dest_id == self.partnerC.rental_onsite_location_id and picking.move_lines[0].product_uom_qty == 0:
+        for picking in PickingObj.browse(
+            rental_order_3._get_all_picking_ids()[rental_order_3.id]
+        ):
+            if (
+                picking.location_id == self.warehouse0.rental_in_location_id
+                and picking.location_dest_id == self.partnerC.rental_onsite_location_id
+                and picking.move_lines[0].product_uom_qty == 0
+            ):
                 check_31 = True
-            if picking.location_id == self.partnerA.rental_onsite_location_id and picking.location_dest_id == self.partnerC.rental_onsite_location_id and picking.move_lines[0].product_uom_qty == 1:
+            if (
+                picking.location_id == self.partnerA.rental_onsite_location_id
+                and picking.location_dest_id == self.partnerC.rental_onsite_location_id
+                and picking.move_lines[0].product_uom_qty == 1
+            ):
                 check_32 = True
-            if picking.location_id == self.partnerB.rental_onsite_location_id and picking.location_dest_id == self.partnerC.rental_onsite_location_id and picking.move_lines[0].product_uom_qty == 2:
+            if (
+                picking.location_id == self.partnerB.rental_onsite_location_id
+                and picking.location_dest_id == self.partnerC.rental_onsite_location_id
+                and picking.move_lines[0].product_uom_qty == 2
+            ):
                 check_33 = True
-            if picking.location_id == self.partnerC.rental_onsite_location_id and picking.location_dest_id == self.warehouse0.rental_in_location_id and picking.move_lines[0].product_uom_qty == 3:
+            if (
+                picking.location_id == self.partnerC.rental_onsite_location_id
+                and picking.location_dest_id == self.warehouse0.rental_in_location_id
+                and picking.move_lines[0].product_uom_qty == 3
+            ):
                 check_34 = True
-        self.assertTrue(check_31) # origin picking out
-        self.assertTrue(check_32) # new picking out (qty 1) 
-        self.assertTrue(check_33) # new picking out (qty 2)
-        self.assertTrue(check_34) # origin picking in
+        self.assertTrue(check_31)  # origin picking out
+        self.assertTrue(check_32)  # new picking out (qty 1)
+        self.assertTrue(check_33)  # new picking out (qty 2)
+        self.assertTrue(check_34)  # origin picking in

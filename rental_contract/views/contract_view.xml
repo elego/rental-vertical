@@ -1,16 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="contract_contract_form_view" model="ir.ui.view">
         <field name="name">contract.contract.form</field>
         <field name="model">contract.contract</field>
-        <field name="inherit_id" ref="contract.contract_contract_form_view"/>
+        <field name="inherit_id" ref="contract.contract_contract_form_view" />
         <field name="arch" type="xml">
             <field name="contract_type" position="attributes">
                 <attribute name="invisible">0</attribute>
             </field>
             <field name="contract_type" position="after">
-                <field name="sale_type_id" invisible="1"/>
-                <field name="type_id" required="1" domain="[('contract_type', '=', contract_type)]"/>
+                <field name="sale_type_id" invisible="1" />
+                <field
+                    name="type_id"
+                    required="1"
+                    domain="[('contract_type', '=', contract_type)]"
+                />
             </field>
         </field>
     </record>
@@ -18,39 +22,48 @@
     <record id="contract_contract_search_view" model="ir.ui.view">
         <field name="name">contract.contract.search</field>
         <field name="model">contract.contract</field>
-        <field name="inherit_id" ref="contract.contract_contract_search_view"/>
+        <field name="inherit_id" ref="contract.contract_contract_search_view" />
         <field name="arch" type="xml">
             <filter name="group_by_date_end" position="after">
-                <filter name="group_by_type_id"
-                        string="Subscription Subtype"
-                        domain="[]"
-                        context="{'group_by':'type_id'}"
+                <filter
+                    name="group_by_type_id"
+                    string="Subscription Subtype"
+                    domain="[]"
+                    context="{'group_by':'type_id'}"
                 />
             </filter>
             <xpath expr="//filter[@name='finished']" position="after">
-                <separator/>
-                <filter name="date_end" string="End Date" date="date_end"/>
+                <separator />
+                <filter name="date_end" string="End Date" date="date_end" />
             </xpath>
         </field>
     </record>
 
-    <menuitem name="Contracts"
+    <menuitem
+        name="Contracts"
         id="menu_customer_top_contracts"
         parent="rental_base.menu_top_customer"
-        sequence="11" />
-        <menuitem name="Customer Contracts"
-            id="menu_customer_contracts"
-            parent="menu_customer_top_contracts"
-            action="contract.action_customer_contract"
-            sequence="5" />
+        sequence="11"
+    />
+        <menuitem
+        name="Customer Contracts"
+        id="menu_customer_contracts"
+        parent="menu_customer_top_contracts"
+        action="contract.action_customer_contract"
+        sequence="5"
+    />
 
-    <menuitem name="Contracts"
+    <menuitem
+        name="Contracts"
         id="menu_supplier_top_contracts"
         parent="rental_base.menu_top_vendor"
-        sequence="11" />
-        <menuitem name="Supplier Contracts"
-            id="menu_supplier_contracts"
-            parent="menu_supplier_top_contracts"
-            action="contract.action_supplier_contract"
-            sequence="10" />
+        sequence="11"
+    />
+        <menuitem
+        name="Supplier Contracts"
+        id="menu_supplier_contracts"
+        parent="menu_supplier_top_contracts"
+        action="contract.action_supplier_contract"
+        sequence="10"
+    />
 </odoo>

@@ -78,7 +78,10 @@
             <field name="res_model">toll.charge.line.import</field>
             <field name="view_mode">form</field>
             <field name="target">new</field>
-            <field name="view_id" ref="rental_toll_collect.toll_charge_line_invoicing_view" />
+            <field
+                name="view_id"
+                ref="rental_toll_collect.toll_charge_line_invoicing_view"
+            />
         </record>
 
     </data>

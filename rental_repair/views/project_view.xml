@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="view_project_task_tree" model="ir.ui.view">
         <field name="name">project.task.tree</field>
@@ -32,22 +32,38 @@
             <field name="partner_id" position="replace" />
             <field name="email_from" position="replace" />
             <field name="tag_ids" position="after">
-                <field name="partner_id" attrs="{'readonly': [('parent_id', '!=', False)]}" />
-                <field name="email_from" attrs="{'readonly': [('parent_id', '!=', False)]}" />
-                <field name="phone" attrs="{'readonly': [('parent_id', '!=', False)]}" />
-                <field name="mobile" attrs="{'readonly': [('parent_id', '!=', False)]}" />
+                <field
+                    name="partner_id"
+                    attrs="{'readonly': [('parent_id', '!=', False)]}"
+                />
+                <field
+                    name="email_from"
+                    attrs="{'readonly': [('parent_id', '!=', False)]}"
+                />
+                <field
+                    name="phone"
+                    attrs="{'readonly': [('parent_id', '!=', False)]}"
+                />
+                <field
+                    name="mobile"
+                    attrs="{'readonly': [('parent_id', '!=', False)]}"
+                />
             </field>
             <field name="user_ids" position="after">
                 <field name="product_id" />
                 <field name="tracking" invisible="1" />
-                <field name="lot_id"
-                       attrs="{'invisible': [('tracking','=','none')]}"
-                       domain="[('product_id', '=', product_id)]" />
+                <field
+                    name="lot_id"
+                    attrs="{'invisible': [('tracking','=','none')]}"
+                    domain="[('product_id', '=', product_id)]"
+                />
             </field>
             <notebook position="inside">
                 <page name="repair" string="Repair Orders">
-                    <field name="repair_ids"
-                           context="{'default_product_id': product_id, 'default_lot_id': lot_id, 'default_partner_id': partner_id}" />
+                    <field
+                        name="repair_ids"
+                        context="{'default_product_id': product_id, 'default_lot_id': lot_id, 'default_partner_id': partner_id}"
+                    />
                 </page>
             </notebook>
         </field>
@@ -56,13 +72,15 @@
     <record id="view_task_form3" model="ir.ui.view">
         <field name="name">view.project.task.form</field>
         <field name="model">project.task</field>
-        <field name="groups_id" eval="[(4, ref('purchase.group_purchase_user'))]"/>
+        <field name="groups_id" eval="[(4, ref('purchase.group_purchase_user'))]" />
         <field name="inherit_id" ref="view_task_form2" />
         <field name="arch" type="xml">
             <page name="repair" position="after">
                 <page name="vendor" string="Vendor Repair Orders">
-                    <field name="vendor_repair_ids"
-                           context="{'default_order_type': %(rental_purchase_order_type.po_type_repair_order)d}" />
+                    <field
+                        name="vendor_repair_ids"
+                        context="{'default_order_type': %(rental_purchase_order_type.po_type_repair_order)d}"
+                    />
                 </page>
             </page>
         </field>
@@ -109,8 +127,10 @@
         <field name="inherit_id" ref="project.view_task_kanban" />
         <field name="arch" type="xml">
             <t t-else="record.email_from.raw_value" position="replace">
-                <t t-if="record.partner_id"><span><field name="partner_id" /></span><br /></t>
-                <t t-if="record.product_id"><span><field name="product_id" /></span><br /></t>
+                <t t-if="record.partner_id"><span><field name="partner_id" /></span><br
+                    /></t>
+                <t t-if="record.product_id"><span><field name="product_id" /></span><br
+                    /></t>
             </t>
         </field>
     </record>
@@ -121,7 +141,11 @@
         <field name="inherit_id" ref="project.view_task_search_form" />
         <field name="arch" type="xml">
             <filter name="my_tasks" position="before">
-                <filter string="Service Tickets" name="service_tickets" domain="[('project_id.name','ilike','service')]"/>
+                <filter
+                    string="Service Tickets"
+                    name="service_tickets"
+                    domain="[('project_id.name','ilike','service')]"
+                />
             </filter>
         </field>
     </record>
@@ -136,7 +160,7 @@
             <p class="o_view_nocontent_smiling_face">
                 Click <i>Create</i> to start a new ticket.
             </p><p>
-                To get things done, use activities and status on tasks.<br/>
+                To get things done, use activities and status on tasks.<br />
                 Chat in real time or by email to collaborate efficiently.
             </p>
         </field>
@@ -163,10 +187,12 @@
         <field name="act_window_id" ref="action_project_helpdesk_tasks" />
     </record>
 
-    <menuitem name="Tickets"
+    <menuitem
+        name="Tickets"
         id="menu_tickets"
         parent="rental_base.menu_rental_root"
         action="action_project_helpdesk_tasks"
-        sequence="2" />
+        sequence="2"
+    />
 
 </odoo>

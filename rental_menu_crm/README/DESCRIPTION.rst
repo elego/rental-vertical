@@ -12,4 +12,3 @@ Description
 -----------
 
 This module adds menu entries for CRM to the rental application.
-

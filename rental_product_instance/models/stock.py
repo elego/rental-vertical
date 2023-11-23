@@ -1,6 +1,6 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
-from odoo import fields, models, api, exceptions, _
+from odoo import _, api, exceptions, models
 
 
 class StockProductionLot(models.Model):
@@ -24,7 +24,7 @@ class StockMove(models.Model):
     _inherit = "stock.move"
 
     def write(self, vals):
-        res = super(StockMove, self).write(vals)
+        super(StockMove, self).write(vals)
         if vals.get("state", False) == "done":
             for m in self:
                 if m.product_id.product_instance:

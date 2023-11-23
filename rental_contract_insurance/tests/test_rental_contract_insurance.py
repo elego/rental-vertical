@@ -2,9 +2,10 @@
 
 from dateutil.relativedelta import relativedelta
 
-from odoo.addons.rental_base.tests.stock_common import RentalStockCommon
 from odoo import fields
 from odoo.exceptions import ValidationError
+
+from odoo.addons.rental_base.tests.stock_common import RentalStockCommon
 
 
 class TestRentalContractInsurance(RentalStockCommon):
@@ -288,7 +289,6 @@ class TestRentalContractInsurance(RentalStockCommon):
         line = self.env["sale.order.line"].create(vals)
         self.rental_order.action_confirm()
         self.assertEqual(self.rental_order.contract_count, 1)
-        check_insurance_line = False
         for line in self.rental_order.order_line:
             if line.product_id == self.insurancePM:
                 self.assertEqual(line.date_start, self.today)

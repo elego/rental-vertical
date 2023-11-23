@@ -22,4 +22,3 @@ Changelog
 - abcb9ec 2020-04-16 21:48:01 +0200 cpatel@elegosoft.com  (origin/feature_3615_blp461_test_rental_workflows_v12) [IMP] tour steps for workflow sale order to invoice for 60 days rental product instance
 - 2da340d 2020-04-13 14:11:24 +0200 wagner@elegosoft.com  change license for rental-vertical to AGPL (issue #3339)
 - 871f83e 2020-04-08 14:52:58 +0200 cpatel@elegosoft.com  (origin/feature_3615_blp435_test_rental_workflows_v12) [ADD] new module test_rental_workflows to manage integration tests
-

@@ -1,18 +1,28 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-  
+
     <record id="product_set_add_form_view_rental" model="ir.ui.view">
         <field name="name">product.set.add.form.view.rental</field>
         <field name="model">product.set.add</field>
-        <field name="inherit_id" ref="sale_product_set.product_set_add_form_view"/>
+        <field name="inherit_id" ref="sale_product_set.product_set_add_form_view" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='product_set_id']" position="before">
-                <field name="rental_ok"/>
+                <field name="rental_ok" />
             </xpath>
             <xpath expr="//field[@name='product_set_id']" position="after">
-                <field name="start_date" attrs="{'invisible': [('rental_ok', '=', False)], 'required': [('rental_ok', '=', True)]}"/>
-                <field name="end_date" attrs="{'invisible': [('rental_ok', '=', False)], 'required': [('rental_ok', '=', True)]}"/>
-                <field name="uom_id" attrs="{'invisible': [('rental_ok', '=', False)], 'required': [('rental_ok', '=', True)]}" options="{'no_create': True, 'no_create_edit': True}"/>
+                <field
+                    name="start_date"
+                    attrs="{'invisible': [('rental_ok', '=', False)], 'required': [('rental_ok', '=', True)]}"
+                />
+                <field
+                    name="end_date"
+                    attrs="{'invisible': [('rental_ok', '=', False)], 'required': [('rental_ok', '=', True)]}"
+                />
+                <field
+                    name="uom_id"
+                    attrs="{'invisible': [('rental_ok', '=', False)], 'required': [('rental_ok', '=', True)]}"
+                    options="{'no_create': True, 'no_create_edit': True}"
+                />
             </xpath>
       </field>
   </record>

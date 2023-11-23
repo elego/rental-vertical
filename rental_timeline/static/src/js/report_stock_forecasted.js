@@ -1,5 +1,6 @@
 odoo.define("stock.ReplenishReport", function (require) {
-    "use strict"; console.log("patch OK");
+    "use strict";
+    console.log("patch OK");
 
     const {loadLegacyViews} = require("@rental_timeline/js/legacy/legacy_views");
 
@@ -85,9 +86,9 @@ odoo.define("stock.ReplenishReport", function (require) {
             );
         },
 
-        //--------------------------------------------------------------------------
+        // --------------------------------------------------------------------------
         // Private
-        //--------------------------------------------------------------------------
+        // --------------------------------------------------------------------------
 
         /**
          * @private
@@ -261,7 +262,10 @@ odoo.define("stock.ReplenishReport", function (require) {
          * @returns {Promise}
          */
         _bindAdditionalActionHandlers: function () {
-            let rr = this.$el.find("iframe").contents().find(".o_report_replenishment");
+            const rr = this.$el
+                .find("iframe")
+                .contents()
+                .find(".o_report_replenishment");
             rr.on(
                 "click",
                 ".o_report_replenish_change_priority",
@@ -289,9 +293,9 @@ odoo.define("stock.ReplenishReport", function (require) {
             );
         },
 
-        //--------------------------------------------------------------------------
+        // --------------------------------------------------------------------------
         // Handlers
-        //--------------------------------------------------------------------------
+        // --------------------------------------------------------------------------
 
         /**
          * Opens the product replenish wizard. Could re-open the report if pending
@@ -401,5 +405,5 @@ odoo.define("stock.ReplenishReport", function (require) {
 
     core.action_registry.add("replenish_report", ReplenishReport);
 
-    return { ReplenishReport: ReplenishReport, };
+    return {ReplenishReport: ReplenishReport};
 });

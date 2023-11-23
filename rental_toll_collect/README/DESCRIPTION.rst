@@ -13,7 +13,7 @@ Description
 
 This module provides the opportunity to import csv files downloaded from toll collect portal.
 During import it matches the given license plate in csv file with a vehicle product.
-The toll charge lines can be invoiced to a customer manually or by creating an invoice from a 
+The toll charge lines can be invoiced to a customer manually or by creating an invoice from a
 sale/rental order containing a vehicle product as sale/rental order line.
 
 The csv should contain the following columns:
@@ -36,4 +36,3 @@ The csv should contain the following columns:
 - Procedure ("Verf.¹")
 - Distance ("km")
 - Amount ("EUR")
-

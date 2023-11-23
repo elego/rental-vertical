@@ -40,13 +40,13 @@ repos:
       # update the NOT INSTALLABLE ADDONS section above
       - id: oca-update-pre-commit-excluded-addons
       - id: oca-fix-manifest-website
-        args: ["https://github.com/OCA/account-financial-tools"]
+        args: ["https://gitlab.elegosoft.com/swrent/rental-vertical"]
       - id: oca-gen-addon-readme
         args:
           - --addons-dir=.
           - --branch=15.0
           - --org-name=OCA
-          - --repo-name=account-financial-tools
+          - --repo-name=rental-vertical
           - --if-source-changed
   - repo: https://github.com/OCA/odoo-pre-commit-hooks
     rev: v0.0.25

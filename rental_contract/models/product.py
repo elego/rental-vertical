@@ -1,6 +1,6 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
-from odoo import api, fields, models, _
+from odoo import api, fields, models
 
 
 class ProductProduct(models.Model):
@@ -29,22 +29,27 @@ class ProductProduct(models.Model):
             [
                 "|",
                 ("product_id", "=", self.id),
-                ("product_id", "in", self.search([
-                    '|', '&',
-                    ("active", "=", True),
-                    ("active", "=", False),
-                    ("rented_product_id", "=", self.id)
-                ]).ids),
+                (
+                    "product_id",
+                    "in",
+                    self.search(
+                        [
+                            "|",
+                            "&",
+                            ("active", "=", True),
+                            ("active", "=", False),
+                            ("rented_product_id", "=", self.id),
+                        ]
+                    ).ids,
+                ),
             ]
         )
         return list(
-            set(
-                [
-                    l.contract_id.id
-                    for l in cls
-                    if l.contract_id.contract_type == contract_type
-                ]
-            )
+            {
+                l.contract_id.id
+                for l in cls
+                if l.contract_id.contract_type == contract_type
+            }
         )
 
     def action_view_supplier_contract(self):

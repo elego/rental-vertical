@@ -1,6 +1,6 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
-from odoo import api, fields, models, exceptions, _
+from odoo import _, api, exceptions, fields, models
 
 
 class ProductProduct(models.Model):
@@ -126,7 +126,6 @@ class InsuranceProductSolInfo(models.Model):
     # )
     def _compute_insurance_price_unit(self):
         for r in self:
-            insurance_amount = 0
             r.insurance_price_unit = 0
             percent = r.insurance_percent
             if r.insurance_type == "product":

@@ -12,7 +12,6 @@ Description
 -----------
 
 This module extends the modules rental_repair and rental_product_instance.
-It adds a smartbutton to the product form view of product instances to get 
+It adds a smartbutton to the product form view of product instances to get
 an overview of all related project tasks.
 It automatically sets the serial number of a product instance in project tasks and repair orders.
-

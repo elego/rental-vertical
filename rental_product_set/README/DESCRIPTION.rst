@@ -15,4 +15,3 @@ Product sets define a number of products that are frequently sold together and a
 as different sale order lines. This modules extends this use case to renting of product
 sets. As in the original workflows, independent rental order lines are created for all
 the products in the set. There is no further relation between those products.
-

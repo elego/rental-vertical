@@ -3,7 +3,6 @@
 
 from odoo import fields, models
 
-
 RENTAL_TIMELINE_VIEW = ("rental_timeline", "Rental Timeline")
 
 

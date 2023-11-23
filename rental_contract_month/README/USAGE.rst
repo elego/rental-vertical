@@ -11,4 +11,3 @@ This module is automatically installed when all of the following modules are ins
 
  - rental_contract
  - rental_pricelist
-

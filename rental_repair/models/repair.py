@@ -1,6 +1,6 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
-from odoo import api, fields, models, _
+from odoo import api, fields, models
 
 
 class RepairLine(models.Model):
@@ -22,7 +22,7 @@ class RepairLine(models.Model):
 
     @api.onchange("repair_id", "product_id", "product_uom_qty")
     def onchange_product_id(self):
-        res = super(RepairLine, self).onchange_product_id()
+        super(RepairLine, self).onchange_product_id()
         if self.product_id:
             self.analytic_cost = self.product_id.standard_price
 
@@ -41,7 +41,7 @@ class RepairFee(models.Model):
 
     @api.onchange("repair_id", "product_id", "product_uom_qty")
     def onchange_product_id(self):
-        res = super(RepairFee, self).onchange_product_id()
+        super(RepairFee, self).onchange_product_id()
         if self.product_id:
             self.analytic_cost = self.product_id.standard_price
 

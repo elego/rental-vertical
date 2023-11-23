@@ -1,14 +1,16 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
-from odoo import api, fields, models, _
+from odoo import _, api, fields, models
 
 
 class ProductTimeline(models.Model):
     _inherit = "product.timeline"
 
     type = fields.Selection(
-        selection_add=[("delivery", "Delivery"),],
-        ondelete={'delivery': 'cascade'}
+        selection_add=[
+            ("delivery", "Delivery"),
+        ],
+        ondelete={"delivery": "cascade"},
     )
 
     freight_forwarder_id = fields.Many2one(

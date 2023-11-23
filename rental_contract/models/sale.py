@@ -1,6 +1,6 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
-from odoo import api, fields, models, _
+from odoo import api, fields, models
 
 
 class SaleOrderLine(models.Model):
@@ -11,13 +11,13 @@ class SaleOrderLine(models.Model):
 
     @api.onchange("end_date")
     def end_date_change(self):
-        res = super().end_date_change()
+        super().end_date_change()
         if self.end_date:
             self.date_end = self.end_date
 
     @api.onchange("start_date")
     def start_date_change(self):
-        res = super().start_date_change()
+        super().start_date_change()
         if self.start_date:
             self.date_start = self.start_date
 

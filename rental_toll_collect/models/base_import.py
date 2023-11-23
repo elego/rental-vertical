@@ -4,7 +4,6 @@ import itertools
 import operator
 
 from odoo import api, models
-from odoo.tools import pycompat
 from odoo.tools.translate import _
 
 
@@ -24,8 +23,10 @@ class Import(models.TransientModel):
             # If only one index, itemgetter will return an atom rather
             # than a 1-tuple
             if len(indices) == 1:
+
                 def mapper(row):
                     return [row[indices[0]]]
+
             else:
                 mapper = operator.itemgetter(*indices)
             # Get only list of actually imported fields
@@ -39,7 +40,8 @@ class Import(models.TransientModel):
             if options.get("headers"):
                 rows_to_import = itertools.islice(rows_to_import, 1, None)
             data = [
-                list(row) for row in map(mapper, rows_to_import)
+                list(row)
+                for row in map(mapper, rows_to_import)
                 # don't try inserting completely empty rows (e.g. from
                 # filtering out o2m fields)
                 if any(row)

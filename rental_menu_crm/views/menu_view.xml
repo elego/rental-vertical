@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <menuitem name="Opportunities"
+    <menuitem
+        name="Opportunities"
         id="menu_opportunities"
         parent="rental_base.menu_rental_root"
         action="crm.action_your_pipeline"

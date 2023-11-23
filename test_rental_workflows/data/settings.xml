@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="workflow_settings_group" model="res.config.settings">
         <field name="group_uom" eval="True" />
@@ -21,7 +21,10 @@
         <!-- <field name="group_product_pricelist" eval="True" /> -->
     </record>
     <function model="res.config.settings" name="execute">
-        <value model="res.config.settings" search="[('id', '=', ref('test_rental_workflows.workflow_settings_group'))]"/>
+        <value
+            model="res.config.settings"
+            search="[('id', '=', ref('test_rental_workflows.workflow_settings_group'))]"
+        />
     </function>
 
     <record id="workflow_settings_other" model="res.config.settings">
@@ -32,7 +35,7 @@
         <field name="use_po_lead" eval="True" />
         <field name="po_lead">2</field>
         <!-- <field name="use_sale_note">2</field> -->
-        <field name="automatic_toll_charge_invoicing" eval="True"/>
+        <field name="automatic_toll_charge_invoicing" eval="True" />
         <!-- <field name="chart_template_id" ref="l10n_de_skr03.l10n_de_chart_template" />
         <field name="paperformat_id" ref="l10n_de.paperformat_euro_din" />
         <field name="external_report_layout_id" ref="rockbird_report_base.external_layout_rental" /> -->
@@ -41,6 +44,9 @@
         <!-- <field name="group_account_readonly" eval="True" /> -->
     </record>
     <function model="res.config.settings" name="execute">
-        <value model="res.config.settings" search="[('id', '=', ref('test_rental_workflows.workflow_settings_other'))]"/>
+        <value
+            model="res.config.settings"
+            search="[('id', '=', ref('test_rental_workflows.workflow_settings_other'))]"
+        />
     </function>
 </odoo>

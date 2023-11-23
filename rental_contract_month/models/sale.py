@@ -1,6 +1,6 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
-from odoo import api, fields, models, exceptions, _
+from odoo import api, models
 
 
 class SaleOrderLine(models.Model):

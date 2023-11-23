@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="view_product_timeline_timeline" model="ir.ui.view">
         <field name="name">product.timeline.timeline</field>
@@ -37,14 +37,28 @@
         <field name="inherit_id" ref="rental_timeline.view_product_timeline_search" />
         <field name="arch" type="xml">
             <field name="product_id" position="attributes">
-                <attribute name="filter_domain">['|', '|', '|', '|', '|', ('product_id','ilike', self), ('product_id.instance_serial_number_id', 'ilike', self), ('product_id.product_identification_number', 'ilike', self), ('product_id.vehicle_number', 'ilike', self), ('product_id.license_plate', 'ilike', self), ('product_id.default_code', 'ilike', self)]</attribute>
+                <attribute
+                    name="filter_domain"
+                >['|', '|', '|', '|', '|', ('product_id','ilike', self), ('product_id.instance_serial_number_id', 'ilike', self), ('product_id.product_identification_number', 'ilike', self), ('product_id.vehicle_number', 'ilike', self), ('product_id.license_plate', 'ilike', self), ('product_id.default_code', 'ilike', self)]</attribute>
             </field>
             <field name="type" position="after">
-                <separator/>
-                <filter domain="[('product_id.instance_state','=','available')]" name="available" string="Available"/>
-                <filter domain="[('product_id.instance_state','=','rental')]" name="rental" string="Rental"/>
-                <filter domain="[('product_id.instance_state','=','reserved')]" name="reserved" string="Reserved"/>
-                <separator/>
+                <separator />
+                <filter
+                    domain="[('product_id.instance_state','=','available')]"
+                    name="available"
+                    string="Available"
+                />
+                <filter
+                    domain="[('product_id.instance_state','=','rental')]"
+                    name="rental"
+                    string="Rental"
+                />
+                <filter
+                    domain="[('product_id.instance_state','=','reserved')]"
+                    name="reserved"
+                    string="Reserved"
+                />
+                <separator />
             </field>
         </field>
     </record>

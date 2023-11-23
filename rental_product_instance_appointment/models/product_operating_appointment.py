@@ -1,7 +1,8 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
 from dateutil.relativedelta import relativedelta
-from odoo import api, fields, models, _
+
+from odoo import api, fields, models
 
 
 class ProductOperatingAppointment(models.Model):

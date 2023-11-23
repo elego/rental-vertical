@@ -30,4 +30,3 @@ Additional fields configured and added by product category:
  - Show Vehicle Identification Number -> vehicle_number [Char]: vehicle identification number
  - Show License Plate -> license_plate [Char]: license plate
  - Show Initial Registration -> init_regist [Date]: date of initial registration
-

@@ -12,7 +12,7 @@ _logger = logging.getLogger(__name__)
 
 
 class TestRentalTollCollect(TransactionCase):
-    """ Test Rental Toll Collect"""
+    """Test Rental Toll Collect"""
 
     def setUp(self):
         super(TestRentalTollCollect, self).setUp()
@@ -36,7 +36,9 @@ class TestRentalTollCollect(TransactionCase):
         self.pricelist = self.env.ref("product.list0")
         self.toll_product = self.env.ref("rental_toll_collect.product_toll")
         self.company_id = self.env.user.company_id
-        self.default_journal_sale = self.env['account.journal'].search([('company_id', '=', self.company_id.id), ('type', '=', 'sale')], limit=1)
+        self.default_journal_sale = self.env["account.journal"].search(
+            [("company_id", "=", self.company_id.id), ("type", "=", "sale")], limit=1
+        )
 
         # Create Product Test Import
         self.import_product = ProductObj.create(
@@ -213,14 +215,18 @@ class TestRentalTollCollect(TransactionCase):
     def test_03_rental_so_to_invoice_toll_charge_lines(self):
         self.sale_order.action_confirm()
         # create an invoice with invoiceable lines
-        wiz_inv = self.env['sale.advance.payment.inv'].with_context({
-            'active_model': 'sale.order',
-            'active_ids': [self.sale_order.id],
-            'active_id': self.sale_order.id,
-            'default_journal_id': self.default_journal_sale.id,
-        }).create({
-            'advance_payment_method': 'delivered'
-        })
+        wiz_inv = (
+            self.env["sale.advance.payment.inv"]
+            .with_context(
+                {
+                    "active_model": "sale.order",
+                    "active_ids": [self.sale_order.id],
+                    "active_id": self.sale_order.id,
+                    "default_journal_id": self.default_journal_sale.id,
+                }
+            )
+            .create({"advance_payment_method": "delivered"})
+        )
         wiz_inv.create_invoices()
         self.assertEqual(len(self.sale_order.invoice_ids), 1)
         self.invoice = self.sale_order.invoice_ids[0]
@@ -245,9 +251,7 @@ class TestRentalTollCollect(TransactionCase):
             self.invoice.invoice_line_ids[0].product_id, self.day_service_product
         )
         self.assertEqual(self.invoice.invoice_line_ids[0].product_uom_id, self.uom_day)
-        self.assertEqual(
-            self.invoice.invoice_line_ids[1].product_id, self.toll_product
-        )
+        self.assertEqual(self.invoice.invoice_line_ids[1].product_id, self.toll_product)
         self.assertEqual(self.invoice.invoice_line_ids[1].product_uom_id, self.uom_unit)
         self.assertEqual(
             self.invoice.invoice_line_ids.mapped("name"),

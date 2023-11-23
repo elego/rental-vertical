@@ -1,6 +1,6 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
-from odoo import api, fields, models, _
+from odoo import api, fields, models
 
 
 class ContractContract(models.Model):
@@ -9,10 +9,7 @@ class ContractContract(models.Model):
     type_id = fields.Many2one("contract.order.type", string="Contract Subtype")
     sale_type_id = fields.Many2one("sale.order.type", string="Sale Order Type")
     sub_type = fields.Selection(
-        related="type_id.sub_type",
-        string="Sub Type",
-        store=True,
-        readonly=True
+        related="type_id.sub_type", string="Sub Type", store=True, readonly=True
     )
 
     @api.onchange("partner_id")
@@ -64,7 +61,7 @@ class ContractContract(models.Model):
 
     def _prepare_invoice(self, date_invoice, journal=None):
         res = super(ContractContract, self)._prepare_invoice(date_invoice, journal)
-        so_id = self.contract_line_ids.mapped("sale_order_line_id.order_id")
+        self.contract_line_ids.mapped("sale_order_line_id.order_id")
         if self.type_id:
             res["contract_type_id"] = self.type_id.id
             if self.sale_type_id:

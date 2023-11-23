@@ -1,6 +1,6 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
-from odoo import api, fields, models, _
+from odoo import _, fields, models
 
 
 class ProductCategory(models.Model):
@@ -142,22 +142,25 @@ class ProductProduct(models.Model):
             [
                 "|",
                 ("product_id", "=", self.id),
-                ("product_id", "in", self.search([
-                    '|', '&',
-                    ("active", "=", True),
-                    ("active", "=", False),
-                    ("rented_product_id", "=", self.id)
-                ]).ids),
+                (
+                    "product_id",
+                    "in",
+                    self.search(
+                        [
+                            "|",
+                            "&",
+                            ("active", "=", True),
+                            ("active", "=", False),
+                            ("rented_product_id", "=", self.id),
+                        ]
+                    ).ids,
+                ),
             ]
         )
         if rental:
-            return list(
-                set([l.order_id.id for l in sols if l.order_id.type_id == type_id])
-            )
+            return list({l.order_id.id for l in sols if l.order_id.type_id == type_id})
         else:
-            return list(
-                set([l.order_id.id for l in sols if l.order_id.type_id != type_id])
-            )
+            return list({l.order_id.id for l in sols if l.order_id.type_id != type_id})
 
     def _get_purchase_order_ids(self):
         self.ensure_one()
@@ -170,7 +173,7 @@ class ProductProduct(models.Model):
         else:
             domain = [("product_id", "=", self.id)]
         pols = self.env["purchase.order.line"].search(domain)
-        return list(set([l.order_id.id for l in pols]))
+        return list({l.order_id.id for l in pols})
 
     def _get_invoice_ids(self, inv_types=[]):
         self.ensure_one()
@@ -178,17 +181,22 @@ class ProductProduct(models.Model):
             [
                 "|",
                 ("product_id", "=", self.id),
-                ("product_id", "in", self.search([
-                    '|', '&',
-                    ("active", "=", True),
-                    ("active", "=", False),
-                    ("rented_product_id", "=", self.id)
-                ]).ids),
+                (
+                    "product_id",
+                    "in",
+                    self.search(
+                        [
+                            "|",
+                            "&",
+                            ("active", "=", True),
+                            ("active", "=", False),
+                            ("rented_product_id", "=", self.id),
+                        ]
+                    ).ids,
+                ),
             ]
         )
-        return list(
-            set([l.move_id.id for l in ails if l.move_id.move_type in inv_types])
-        )
+        return list({l.move_id.id for l in ails if l.move_id.move_type in inv_types})
 
     def action_view_sale_order(self):
         self.ensure_one()
