@@ -276,13 +276,9 @@ class SaleOrderLine(models.Model):
                             key
                         )
                         break
-        if self.number_of_time_unit:
-            self.product_uom_qty = self.rental_qty * self.number_of_time_unit
         return super(SaleOrderLine, self).product_uom_change()
 
-    @api.onchange(
-        "product_id", "price_unit", "product_uom", "product_uom_qty", "tax_id"
-    )
+    @api.onchange("product_id", "price_unit", "product_uom", "product_uom_qty", "tax_id")
     def _onchange_discount(self):
         if self.number_of_time_unit:
             self.product_uom_qty = self.rental_qty * self.number_of_time_unit
