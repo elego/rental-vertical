@@ -1,33 +1,14 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <template
-            id="assets_backend"
-            name="UI test assets"
-            inherit_id="web.assets_backend"
-        >
+        <template id="assets_tests" name="UI test assets" inherit_id="web.assets_tests">
             <xpath expr="." position="inside">
                 <!-- <script type="text/javascript" src="/test_rental_workflows/static/src/js/test_activate_toll_charge_invoicing_tour.js" /> -->
-                <script
-                    type="text/javascript"
-                    src="/test_rental_workflows/static/src/js/test_rental_tour.js"
-                />
-                <script
-                    type="text/javascript"
-                    src="/test_rental_workflows/static/src/js/test_rental_contract_tour.js"
-                />
-                <script
-                    type="text/javascript"
-                    src="/test_rental_workflows/static/src/js/test_rental_return_product_qc_tour.js"
-                />
-                <script
-                    type="text/javascript"
-                    src="/test_rental_workflows/static/src/js/test_rental_toll_collect_tour.js"
-                />
-                <script
-                    type="text/javascript"
-                    src="/test_rental_workflows/static/src/js/test_rental_contract_toll_collect_tour.js"
-                />
+                <script type="text/javascript" src="/test_rental_workflows/static/src/js/test_rental_tour.js" />
+                <script type="text/javascript" src="/test_rental_workflows/static/src/js/test_rental_contract_tour.js" />
+                <script type="text/javascript" src="/test_rental_workflows/static/src/js/test_rental_return_product_qc_tour.js" />
+                <script type="text/javascript" src="/test_rental_workflows/static/src/js/test_rental_toll_collect_tour.js" />
+                <script type="text/javascript" src="/test_rental_workflows/static/src/js/test_rental_contract_toll_collect_tour.js" />
             </xpath>
         </template>
     </data>

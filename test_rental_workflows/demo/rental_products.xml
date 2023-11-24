@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
         <record id="rb_rental" model="fleet.type">
@@ -30,7 +30,7 @@
             <field name="default_code">01531</field>
             <field name="manu_year">2018</field>
             <field name="barcode">011500</field>
-            <field name="description" />
+            <field name="description"></field>
             <field name="further_ref">01100</field>
             <field name="qr_code">02200</field>
             <field name="vehicle_number">VOLVO RT01531</field>
@@ -39,11 +39,7 @@
             <field name="manu_id" ref="volvo" />
             <field name="manu_type_id" ref="volvo_L110H" />
             <field name="fleet_type_id" ref="rb_rental" />
-            <field
-                name="instance_current_location_id"
-                model="stock.location"
-                search="[('name', '=', 'Rental In')]"
-            />
+            <field name="instance_current_location_id" model="stock.location" search="[('name', '=', 'Rental In')]" />
             <field name="rental_of_day" eval="True" />
             <field name="rental_price_day">200</field>
             <field name="rental_of_month" eval="True" />
@@ -55,7 +51,7 @@
         <record id="serial_rental_01531" model="stock.production.lot">
             <field name="name">KTG11531</field>
             <field name="product_id" ref="rental_01531" />
-            <field name="company_id" ref="base.main_company" />
+            <field name="company_id" ref="base.main_company"/>
         </record>
         <record id="rental_01531" model="product.product">
             <field name="instance_serial_number_id" ref="serial_rental_01531" />
@@ -64,40 +60,26 @@
         <record id="rental_pricelist_item_01" model="product.pricelist.item">
             <field name="base">list_price</field>
             <field name="applied_on">0_product_variant</field>
-            <field name="pricelist_id" ref="product.list0" />
-            <field
-                name="product_id"
-                model="product.product"
-                search="[('rented_product_id', '=', ref('rental_01531')), ('uom_id', '=', ref('uom.product_uom_day'))]"
-            />
+            <field name="pricelist_id" ref="product.list0"/>
+            <field name="product_id" model="product.product" search="[('rented_product_id', '=', ref('rental_01531')), ('uom_id', '=', ref('uom.product_uom_day'))]" />
             <field name="min_quantity">80</field>
             <field name="fixed_price">70</field>
             <field name="compute_price">fixed</field>
         </record>
         <function model="product.pricelist.item" name="_onchange_product_id">
-            <value
-                model="product.pricelist.item"
-                search="[('id','=', ref('rental_pricelist_item_01'))]"
-            />
+            <value model="product.pricelist.item" search="[('id','=', ref('rental_pricelist_item_01'))]" />
         </function>
         <record id="rental_pricelist_item_02" model="product.pricelist.item">
             <field name="base">list_price</field>
             <field name="applied_on">0_product_variant</field>
-            <field name="pricelist_id" ref="product.list0" />
-            <field
-                name="product_id"
-                model="product.product"
-                search="[('rented_product_id', '=', ref('rental_01531')), ('uom_id', '=', ref('rental_base.product_uom_month'))]"
-            />
+            <field name="pricelist_id" ref="product.list0"/>
+            <field name="product_id" model="product.product" search="[('rented_product_id', '=', ref('rental_01531')), ('uom_id', '=', ref('rental_base.product_uom_month'))]" />
             <field name="min_quantity">3</field>
             <field name="fixed_price">800</field>
             <field name="compute_price">fixed</field>
         </record>
         <function model="product.pricelist.item" name="_onchange_product_id">
-            <value
-                model="product.pricelist.item"
-                search="[('id','=', ref('rental_pricelist_item_02'))]"
-            />
+            <value model="product.pricelist.item" search="[('id','=', ref('rental_pricelist_item_02'))]" />
         </function>
 
         <!-- Product2 -->
@@ -125,7 +107,7 @@
             <field name="default_code">01532</field>
             <field name="manu_year">2018</field>
             <field name="barcode">011600</field>
-            <field name="description" />
+            <field name="description"></field>
             <field name="further_ref">01200</field>
             <field name="qr_code">02300</field>
             <field name="vehicle_number">CAT RT01532</field>
@@ -134,11 +116,7 @@
             <field name="manu_id" ref="cat" />
             <field name="manu_type_id" ref="cat_930M" />
             <field name="fleet_type_id" ref="rb_rental" />
-            <field
-                name="instance_current_location_id"
-                model="stock.location"
-                search="[('name', '=', 'Rental In')]"
-            />
+            <field name="instance_current_location_id" model="stock.location" search="[('name', '=', 'Rental In')]" />
             <field name="rental_of_day" eval="True" />
             <field name="rental_price_day">200</field>
             <field name="rental_of_month" eval="True" />
@@ -150,7 +128,7 @@
         <record id="serial_rental_01532" model="stock.production.lot">
             <field name="name">KTG11532</field>
             <field name="product_id" ref="rental_01532" />
-            <field name="company_id" ref="base.main_company" />
+            <field name="company_id" ref="base.main_company"/>
         </record>
         <record id="rental_01532" model="product.product">
             <field name="instance_serial_number_id" ref="serial_rental_01532" />
@@ -178,7 +156,7 @@
             <field name="default_code">01533</field>
             <field name="manu_year">2018</field>
             <field name="barcode">011700</field>
-            <field name="description" />
+            <field name="description"></field>
             <field name="further_ref">01300</field>
             <field name="qr_code">02400</field>
             <field name="vehicle_number">CAT RT01533</field>
@@ -187,11 +165,7 @@
             <field name="manu_id" ref="cat" />
             <field name="manu_type_id" ref="cat_933M" />
             <field name="fleet_type_id" ref="rb_rental" />
-            <field
-                name="instance_current_location_id"
-                model="stock.location"
-                search="[('name', '=', 'Rental In')]"
-            />
+            <field name="instance_current_location_id" model="stock.location" search="[('name', '=', 'Rental In')]" />
             <field name="rental_of_day" eval="True" />
             <field name="rental_price_day">200</field>
             <field name="rental_of_month" eval="True" />
@@ -203,7 +177,7 @@
         <record id="serial_rental_01533" model="stock.production.lot">
             <field name="name">KTG11533</field>
             <field name="product_id" ref="rental_01533" />
-            <field name="company_id" ref="base.main_company" />
+            <field name="company_id" ref="base.main_company"/>
         </record>
         <record id="rental_01533" model="product.product">
             <field name="instance_serial_number_id" ref="serial_rental_01533" />
@@ -232,7 +206,7 @@
             <field name="default_code">01534</field>
             <field name="manu_year">2018</field>
             <field name="barcode">011800</field>
-            <field name="description" />
+            <field name="description"></field>
             <field name="further_ref">01400</field>
             <field name="qr_code">02500</field>
             <field name="vehicle_number">VOLVO RT01534</field>
@@ -241,11 +215,7 @@
             <field name="manu_id" ref="volvo" />
             <field name="manu_type_id" ref="volvo_L110H" />
             <field name="fleet_type_id" ref="rb_rental" />
-            <field
-                name="instance_current_location_id"
-                model="stock.location"
-                search="[('name', '=', 'Rental In')]"
-            />
+            <field name="instance_current_location_id" model="stock.location" search="[('name', '=', 'Rental In')]" />
             <field name="rental_of_day" eval="True" />
             <field name="rental_price_day">200</field>
             <field name="rental_of_month" eval="True" />
@@ -257,7 +227,7 @@
         <record id="serial_rental_01534" model="stock.production.lot">
             <field name="name">KTG11534</field>
             <field name="product_id" ref="rental_01534" />
-            <field name="company_id" ref="base.main_company" />
+            <field name="company_id" ref="base.main_company"/>
         </record>
         <record id="rental_01534" model="product.product">
             <field name="instance_serial_number_id" ref="serial_rental_01534" />
@@ -285,7 +255,7 @@
             <field name="default_code">01535</field>
             <field name="manu_year">2018</field>
             <field name="barcode">011900</field>
-            <field name="description" />
+            <field name="description"></field>
             <field name="further_ref">01500</field>
             <field name="qr_code">02600</field>
             <field name="vehicle_number">VOLVO RT01535</field>
@@ -294,11 +264,7 @@
             <field name="manu_id" ref="volvo" />
             <field name="manu_type_id" ref="volvo_L80H" />
             <field name="fleet_type_id" ref="rb_rental" />
-            <field
-                name="instance_current_location_id"
-                model="stock.location"
-                search="[('name', '=', 'Rental In')]"
-            />
+            <field name="instance_current_location_id" model="stock.location" search="[('name', '=', 'Rental In')]" />
             <field name="rental_of_day" eval="True" />
             <field name="rental_price_day">200</field>
             <field name="rental_of_month" eval="True" />
@@ -309,7 +275,7 @@
         <record id="serial_rental_01535" model="stock.production.lot">
             <field name="name">KTG11535</field>
             <field name="product_id" ref="rental_01535" />
-            <field name="company_id" ref="base.main_company" />
+            <field name="company_id" ref="base.main_company"/>
         </record>
         <record id="rental_01535" model="product.product">
             <field name="instance_serial_number_id" ref="serial_rental_01535" />
