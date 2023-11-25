@@ -12,4 +12,3 @@ Description
 -----------
 
 This module provides the opportunity to sell product as insurance.
-

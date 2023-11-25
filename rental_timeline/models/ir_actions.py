@@ -8,4 +8,6 @@ from .ir_view import RENTAL_TIMELINE_VIEW
 class IrActionsActWindowView(models.Model):
     _inherit = "ir.actions.act_window.view"
 
-    view_mode = fields.Selection(selection_add=[RENTAL_TIMELINE_VIEW], ondelete={'rental_timeline': 'cascade'})
+    view_mode = fields.Selection(
+        selection_add=[RENTAL_TIMELINE_VIEW], ondelete={"rental_timeline": "cascade"}
+    )

@@ -1,6 +1,6 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
-from odoo import api, fields, models, exceptions, _
+from odoo import _, api, exceptions, fields, models
 
 
 class RepairOrder(models.Model):
@@ -89,7 +89,7 @@ class RepairOrder(models.Model):
                 if product_id and order.product_id != product_id:
                     reset_orders |= order
                 if name and order.name != name:
-                    reset_lines |= order
+                    pass
             reset_orders._reset_timeline(vals)
         keys = set(self.env["product.timeline"]._get_depends_fields("repair.order"))
         if keys.intersection(vals.keys()):

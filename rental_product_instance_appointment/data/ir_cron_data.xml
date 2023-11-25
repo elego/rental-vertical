@@ -5,8 +5,11 @@
             <field name="interval_number">1</field>
             <field name="interval_type">days</field>
             <field name="numbercall">-1</field>
-            <field name="doall" eval="False"/>
-            <field name="model_id" ref="rental_product_instance_appointment.model_product_appointment"/>
+            <field name="doall" eval="False" />
+            <field
+                name="model_id"
+                ref="rental_product_instance_appointment.model_product_appointment"
+            />
             <field name="state">code</field>
             <field name="code">model._cron_gen_update_appointment()</field>
         </record>
@@ -16,8 +19,11 @@
             <field name="interval_number">1</field>
             <field name="interval_type">days</field>
             <field name="numbercall">-1</field>
-            <field name="doall" eval="False"/>
-            <field name="model_id" ref="rental_product_instance_appointment.model_product_operating_appointment"/>
+            <field name="doall" eval="False" />
+            <field
+                name="model_id"
+                ref="rental_product_instance_appointment.model_product_operating_appointment"
+            />
             <field name="state">code</field>
             <field name="code">model._cron_gen_update_appointment()</field>
         </record>

@@ -1,5 +1,5 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
-from odoo import models, fields, api, _
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -38,7 +38,7 @@ class ProductSetAdd(models.TransientModel):
             so = self.env["sale.order"].browse(so_id)
             max_sequence = 0
             if so.order_line:
-                max_sequence = max([line.sequence for line in so.order_line])
+                max_sequence = max(line.sequence for line in so.order_line)
             sale_order_line_env = self.env["sale.order.line"]
             sale_order_line = self.env["sale.order.line"]
             for set_line in self.product_set_id.set_line_ids:

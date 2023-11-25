@@ -2,8 +2,9 @@
 
 from dateutil.relativedelta import relativedelta
 
-from odoo.addons.rental_base.tests.stock_common import RentalStockCommon
 from odoo import fields
+
+from odoo.addons.rental_base.tests.stock_common import RentalStockCommon
 
 
 class TestRentalProductInstanceAppointment(RentalStockCommon):
@@ -11,7 +12,7 @@ class TestRentalProductInstanceAppointment(RentalStockCommon):
         super().setUp()
 
         # Product A Created
-        company = self.env.ref('base.main_company')
+        company = self.env.ref("base.main_company")
         ProductObj = self.env["product.product"]
         self.productA = ProductObj.create(
             {
@@ -23,7 +24,7 @@ class TestRentalProductInstanceAppointment(RentalStockCommon):
             {
                 "name": "Serial Number A",
                 "product_id": self.productA.id,
-                "company_id": company.id
+                "company_id": company.id,
             }
         )
         self.productA.instance_serial_number_id = self.serialNumberA

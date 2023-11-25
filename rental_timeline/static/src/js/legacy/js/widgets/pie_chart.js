@@ -1,5 +1,5 @@
 odoo.define("web.PieChart", function (require) {
-    // let {loadLegacyViews} = require("../../legacy_views");
+    // Let {loadLegacyViews} = require("../../legacy_views");
     ("use strict");
 
     /**

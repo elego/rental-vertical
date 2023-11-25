@@ -19,10 +19,10 @@ odoo.define("rental_timeline.RentalTimelineRenderer", function (require) {
             if (group_bys.length === 0) {
                 return events;
             }
-            let groups = [];
+            const groups = [];
             groups.push({id: -1, content: _t("<b>UNASSIGNED</b>"), order: -1});
             var seq = 1;
-            let self = this;
+            const self = this;
 
             for (const evt of events) {
                 const grouped_field = _.first(group_bys);
@@ -194,7 +194,7 @@ odoo.define("rental_timeline.RentalTimelineRenderer", function (require) {
             );
 
             (function (_onUpdateItem) {
-                // we set the option add=false, so we must overwrite the function _onUpdateItem
+                // We set the option add=false, so we must overwrite the function _onUpdateItem
                 // because in the function _onUpdateItem is a check if add is true
                 // now we set add to true, call the function and set add back to false
                 vis.timeline.components.ItemSet.prototype._onUpdateItem = function (
@@ -208,7 +208,7 @@ odoo.define("rental_timeline.RentalTimelineRenderer", function (require) {
             })(vis.timeline.components.ItemSet.prototype._onUpdateItem);
 
             (function (_repaintDragCenter) {
-                // we set the option updateTime=false, so we must overwrite the function _onUpdateItem
+                // We set the option updateTime=false, so we must overwrite the function _onUpdateItem
                 // because in the function _onUpdateItem is a check if updateTime is true
                 // now we set updateTime to true, call the function and set updateTime back to false
                 vis.timeline.components.items.Item.prototype._repaintDragCenter =
@@ -218,7 +218,7 @@ odoo.define("rental_timeline.RentalTimelineRenderer", function (require) {
                         _repaintDragCenter.apply(this);
                         this.options.editable.updateTime = updateTime;
 
-                        //                     if(this.selected && !this.dom.dragCenter && false){
+                        //                     If(this.selected && !this.dom.dragCenter && false){
                         //                         hammer.off('tap');
                         //                         hammer.off('doubletap');
                         //                         hammer.on('tap', function(event){
@@ -264,9 +264,9 @@ odoo.define("rental_timeline.RentalTimelineRenderer", function (require) {
 
             let title = "";
             if (content) {
-                let doc = document.createElement("html");
+                const doc = document.createElement("html");
                 doc.innerHTML = "<html><body>" + content + "</body></html>";
-                let tt_content = doc.getElementsByClassName("tooltip_content");
+                const tt_content = doc.getElementsByClassName("tooltip_content");
                 if (tt_content && tt_content.length) {
                     title = tt_content[0].innerHTML;
                 }

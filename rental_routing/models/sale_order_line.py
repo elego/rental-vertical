@@ -1,5 +1,5 @@
-from odoo import models, fields, api, _
-from odoo.exceptions import ValidationError, UserError
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class SaleOrderLine(models.Model):
@@ -10,15 +10,15 @@ class SaleOrderLine(models.Model):
     can_forward_rental = fields.Boolean(
         string="Route from order",
         help="If set, the product's delivery is not planned "
-             "from your own warehouse location but from an "
-             "previous order and its used location.",
+        "from your own warehouse location but from an "
+        "previous order and its used location.",
     )
     forward_rental_id = fields.Many2one(
         comodel_name="sale.rental",
         string="Source",
         help="Please choose a previous order whose delivery "
-             "address is now used as the start address for "
-             "this new order.",
+        "address is now used as the start address for "
+        "this new order.",
     )
 
     @api.constrains(
@@ -31,7 +31,7 @@ class SaleOrderLine(models.Model):
         "product_id",
     )
     def _check_sale_line_rental(self):
-        res = super(SaleOrderLine, self)._check_sale_line_rental()
+        super(SaleOrderLine, self)._check_sale_line_rental()
         for line in self:
             # check qty before forwarding rented product from other customer
             if line.rental_type == "new_rental" and line.can_forward_rental:
@@ -87,7 +87,7 @@ class SaleOrderLine(models.Model):
                         if move.state != "cancel":
                             move.state = "confirmed"
                             # move holds 'make_to_order' in v14(compare to v12) so need to change
-                            move.procure_method = 'make_to_stock'
+                            move.procure_method = "make_to_stock"
                     else:
                         move.write({"move_dest_ids": [(5, 0, 0)]})
                         if move.state != "cancel":
@@ -159,21 +159,21 @@ class SaleOrderLine(models.Model):
     @api.onchange("can_forward_rental", "start_date", "rental_qty", "product_id")
     def onchange_forward_rental(self):
         if self.rental and self.start_date and self.rental_qty and self.product_id:
-            sols = self.search([('forward_rental_id', '!=', False)])
+            sols = self.search([("forward_rental_id", "!=", False)])
             forwarded_rental_ids = sols.mapped("forward_rental_id").ids
             domain = [
                 (
-                    'rented_product_id',
-                    '=',
+                    "rented_product_id",
+                    "=",
                     self.product_id.rented_product_id.id,
                 ),
-                ('rental_qty', '=', self.rental_qty),
-                ('end_date', '<', self.start_date),
-                ('id', 'not in', forwarded_rental_ids),
-                ('state', '!=', 'cancel'),
+                ("rental_qty", "=", self.rental_qty),
+                ("end_date", "<", self.start_date),
+                ("id", "not in", forwarded_rental_ids),
+                ("state", "!=", "cancel"),
             ]
 
-            return {'domain': {'forward_rental_id': domain}}
+            return {"domain": {"forward_rental_id": domain}}
         else:
             self.forward_rental_id = False
-            return {'domain': {'forward_rental_id': [('id', '=', False)]}}
+            return {"domain": {"forward_rental_id": [("id", "=", False)]}}

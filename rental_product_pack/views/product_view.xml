@@ -60,10 +60,7 @@
                 <group name="group_pack" position="after">
                     <group name="group_found_pack">
                         <group string="Found in packs" colspan="4">
-                            <field
-                                name="used_in_pack_line_ids"
-                                nolabel="1"
-                            >
+                            <field name="used_in_pack_line_ids" nolabel="1">
                                 <tree editable="bottom">
                                     <field name="parent_product_id" />
                                     <field name="quantity" />

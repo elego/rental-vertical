@@ -25,4 +25,3 @@ Configuration options:
  - Product Set: Rental products can be grouped in a set for usage in rental orders.
  - Contract: Rental contracts are automatically created from monthly rentals for periodic invoicing.
  - Repair Order: Support repair orders for product instances.
-

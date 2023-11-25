@@ -3,9 +3,10 @@
 # Copyright 2016 Sodexis (http://sodexis.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models, fields, api, _
-from odoo.exceptions import UserError
 import logging
+
+from odoo import _, fields, models
+from odoo.exceptions import UserError
 
 logger = logging.getLogger(__name__)
 

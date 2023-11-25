@@ -8,4 +8,3 @@ This module is automatically installed when all of the following modules are ins
 - rental_product_instance
 
 No further configuration is needed.
-

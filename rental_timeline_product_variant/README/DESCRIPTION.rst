@@ -12,4 +12,3 @@ Description
 -----------
 
 This module adds the display of product variant-specific fields to the rental timeline view.
-

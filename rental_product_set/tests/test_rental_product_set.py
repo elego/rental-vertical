@@ -1,15 +1,15 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
-from odoo.tests.common import TransactionCase
+import logging
 from datetime import date, timedelta
 
-import logging
+from odoo.tests.common import TransactionCase
 
 _logger = logging.getLogger(__name__)
 
 
 class TestRentalProductSet(TransactionCase):
-    """ Test Rental Product set"""
+    """Test Rental Product set"""
 
     def setUp(self):
         super(TestRentalProductSet, self).setUp()
@@ -127,7 +127,7 @@ class TestRentalProductSet(TransactionCase):
                 "end_date": self.end_date,
                 "quantity": 1,
                 "uom_id": self.uom_month.id,
-                "order_id": self.rental_so_order.order_line.order_id.id
+                "order_id": self.rental_so_order.order_line.order_id.id,
             }
         )
         # so_set._onchange_product_set_id()
@@ -178,7 +178,7 @@ class TestRentalProductSet(TransactionCase):
                 "end_date": self.end_date_two_motnhs,
                 "quantity": 1,
                 "uom_id": self.uom_month.id,
-                "order_id": self.rental_so_order.order_line.order_id.id
+                "order_id": self.rental_so_order.order_line.order_id.id,
             }
         )
         # so_set._onchange_product_set_id()

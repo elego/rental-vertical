@@ -12,4 +12,3 @@ Changelog
 - bb9f32ed 2022-03-04 00:34:55 +0100 wagner@elegosoft.com  date_expected is gone in stock_move and stock_rule -- still needs fixing (issue #4516)
 - f67ef61b 2022-03-03 23:31:30 +0100 wagner@elegosoft.com  odoo-module-migrate -i 12.0 -t 14.0 -d . -m rental_routing -nc (issue #4516)
 - 4509f78a 2022-02-23 20:48:33 +0100 wagner@elegosoft.com  (origin/feature_4516_add_files_ported_from_v12_v14, feature_4516_add_files_ported_from_v12_v14) add files ported to v14 by cpatel and khanhbui (issue #4516)
-

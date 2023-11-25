@@ -1,7 +1,6 @@
 import base64
 
 from odoo import models
-from odoo.tools import pycompat
 
 
 class MailTemplate(models.Model):

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="res_partner_contract_type_form_view">
+            <field name="name">res.partner.contract_type.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="arch" type="xml">
+                <page name="sales_purchases" position="inside">
+                    <group
+                        colspan="2"
+                        col="2"
+                        attrs="{'invisible':[('customer_rank', '=', 0)]}"
+                    >
+                        <separator string="Contract Subtype" colspan="2" />
+                        <field name="contract_type" />
+                    </group>
+                </page>
+            </field>
+        </record>
+    </data>
+</odoo>

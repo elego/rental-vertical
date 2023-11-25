@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="rental_base.view_order_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//separator[@id='description']" position="before">
+                    <separator
+                        id="insurance"
+                        string="Insurance"
+                        attrs="{'invisible': [('rental','=',False),]}"
+                    />
+                    <field name="update_insurance_line" invisible="1" />
+                    <field
+                        name="insurance_entire_time"
+                        attrs="{'invisible': [('rental','=',False),]}"
+                    />
+                    <field
+                        name="insurance_product_ids"
+                        context="{'default_sol_id': active_id}"
+                        nolabel="1"
+                        colspan="2"
+                        attrs="{'invisible': [('rental','=',False),]}"
+                    >
+                        <tree editable="bottom">
+                            <field
+                                name="insurance_product_id"
+                                options="{'no_create': True, 'no_open': True}"
+                                domain="[('is_insurance', '=', True), ('uom_id', '=', parent.product_uom)]"
+                            />
+                            <field name="insurance_type" string="Type" />
+                            <field name="insurance_percent" />
+                            <field name="insurance_price_unit" string="Amount" />
+                        </tree>
+                    </field>
+                    <field name="insurance_line_ids" invisible="1" />
+                </xpath>
+                <xpath
+                    expr="//field[@name='order_line']//tree//field[@name='price_unit']"
+                    position="after"
+                >
+                    <field name="update_insurance_line" invisible="1" />
+                    <field name="rental" invisible="1" />
+                    <button
+                        name="update_rental_insurance_line"
+                        type="object"
+                        icon="fa-refresh"
+                        class="oe_inline"
+                        string="Update Insurance Line"
+                        attrs="{'invisible': [
+                                       '|',
+                                       ('rental','=',False),
+                                       ('update_insurance_line','=',False),
+                                   ]}"
+                    />
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

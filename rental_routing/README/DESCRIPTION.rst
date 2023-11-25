@@ -24,4 +24,3 @@ routing there. Then you do not choose a previous rental as source but a followin
 rental as destination. That means, you do not need an incoming delivery from your
 customer's location to your rental location before re-delivering it to the new customer.
 You just transfer the product from one customer location to another customer location.
-

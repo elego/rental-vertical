@@ -1,11 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="action_transport_orders" model="ir.actions.act_window">
         <field name="name">Transport Orders</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">purchase.order</field>
         <field name="view_mode">tree,kanban,form,pivot,graph,calendar,activity</field>
-        <field name="domain" eval="[('order_type','=', ref('rental_purchase_order_type.po_type_transport_order'))]" />
+        <field
+            name="domain"
+            eval="[('order_type','=', ref('rental_purchase_order_type.po_type_transport_order'))]"
+        />
         <field name="context">{}</field>
         <field name="search_view_id" ref="purchase.view_purchase_order_filter" />
         <field name="help" type="html">
@@ -21,7 +24,10 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">purchase.order</field>
         <field name="view_mode">tree,kanban,form,pivot,graph,calendar,activity</field>
-        <field name="domain" eval="[('order_type','=', ref('rental_purchase_order_type.po_type_repair_order'))]" />
+        <field
+            name="domain"
+            eval="[('order_type','=', ref('rental_purchase_order_type.po_type_repair_order'))]"
+        />
         <field name="context">{}</field>
         <field name="search_view_id" ref="purchase.view_purchase_order_filter" />
         <field name="help" type="html">
@@ -33,35 +39,47 @@
         </field>
     </record>
 
-    <menuitem name="Orders"
+    <menuitem
+        name="Orders"
         id="menu_vendor_orders"
         parent="rental_base.menu_top_vendor"
         action="purchase.purchase_form_action"
-        sequence="10" />
-        <menuitem name="Purchase Orders"
-            id="menu_vendor_orders_purchase_form_action"
-            parent="menu_vendor_orders"
-            action="purchase.purchase_form_action"
-            sequence="5" />
-        <menuitem name="Transport Orders"
-            id="menu_vendor_transport_order"
-            parent="menu_vendor_orders"
-            action="action_transport_orders"
-            sequence="10" />
-        <menuitem name="Repair Orders"
-            id="menu_vendor_repair_order"
-            parent="menu_vendor_orders"
-            action="action_repair_orders"
-            sequence="15" />
+        sequence="10"
+    />
+        <menuitem
+        name="Purchase Orders"
+        id="menu_vendor_orders_purchase_form_action"
+        parent="menu_vendor_orders"
+        action="purchase.purchase_form_action"
+        sequence="5"
+    />
+        <menuitem
+        name="Transport Orders"
+        id="menu_vendor_transport_order"
+        parent="menu_vendor_orders"
+        action="action_transport_orders"
+        sequence="10"
+    />
+        <menuitem
+        name="Repair Orders"
+        id="menu_vendor_repair_order"
+        parent="menu_vendor_orders"
+        action="action_repair_orders"
+        sequence="15"
+    />
 
-    <menuitem name="Requests"
+    <menuitem
+        name="Requests"
         id="menu_vendor_requests"
         parent="rental_base.menu_top_vendor"
-        sequence="5" />
-        <menuitem name="Request for Quotations"
-            id="menu_vendors_quotations"
-            parent="menu_vendor_requests"
-            action="purchase.purchase_rfq"
-            sequence="5" />
+        sequence="5"
+    />
+        <menuitem
+        name="Request for Quotations"
+        id="menu_vendors_quotations"
+        parent="menu_vendor_requests"
+        action="purchase.purchase_rfq"
+        sequence="5"
+    />
 
 </odoo>

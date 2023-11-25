@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <data>
 
@@ -8,9 +8,9 @@
             <field name="arch" type="xml">
                 <form>
                     <group>
-                        <field name="instance_id"/>
-                        <field name="operating_data"/>
-                        <field name="date"/>
+                        <field name="instance_id" />
+                        <field name="operating_data" />
+                        <field name="date" />
                     </group>
                 </form>
             </field>
@@ -21,9 +21,9 @@
             <field name="model">instance.operating.data</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="instance_id"/>
-                    <field name="operating_data"/>
-                    <field name="date"/>
+                    <field name="instance_id" />
+                    <field name="operating_data" />
+                    <field name="date" />
                 </tree>
             </field>
         </record>
@@ -31,10 +31,10 @@
         <record id="instance_operating_data_search" model="ir.ui.view">
             <field name="name">instance.operating.data.search</field>
             <field name="model">instance.operating.data</field>
-            <field name="priority" eval="15"/>
+            <field name="priority" eval="15" />
             <field name="arch" type="xml">
                 <search string="Search Operating Data">
-                    <field name="instance_id"/>
+                    <field name="instance_id" />
                </search>
             </field>
         </record>

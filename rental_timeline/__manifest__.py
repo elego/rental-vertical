@@ -30,10 +30,22 @@ Just install this module to add the rental timeline view to your system. No furt
     ],
     "demo": [],
     "assets": {
-        'web.assets_backend': [
-            ('replace', 'web/static/src/legacy/legacy_views.js', 'rental_timeline/static/src/js/legacy/legacy_views.js'),
-            ('replace', 'stock/static/src/js/report_stock_forecasted.js', 'rental_timeline/static/src/js/report_stock_forecasted.js'),
-            ('replace', 'web/static/src/legacy/js/widgets/pie_chart.js', 'rental_timeline/static/src/js/legacy/js/widgets/pie_chart.js'),
+        "web.assets_backend": [
+            (
+                "replace",
+                "web/static/src/legacy/legacy_views.js",
+                "rental_timeline/static/src/js/legacy/legacy_views.js",
+            ),
+            (
+                "replace",
+                "stock/static/src/js/report_stock_forecasted.js",
+                "rental_timeline/static/src/js/report_stock_forecasted.js",
+            ),
+            (
+                "replace",
+                "web/static/src/legacy/js/widgets/pie_chart.js",
+                "rental_timeline/static/src/js/legacy/js/widgets/pie_chart.js",
+            ),
             "rental_timeline/static/src/scss/rental_timeline.scss",
             "rental_timeline/static/src/js/timeline_view.js",
             "rental_timeline/static/src/js/timeline_renderer.js",

@@ -2,17 +2,18 @@
 
 from dateutil.relativedelta import relativedelta
 
-from odoo.addons.rental_base.tests.stock_common import RentalStockCommon
 from odoo import fields
 from odoo.exceptions import ValidationError
+
+from odoo.addons.rental_base.tests.stock_common import RentalStockCommon
 
 
 class TestRentalProductInstance(RentalStockCommon):
     def setUp(self):
-        super(TestRentalProductInstance,self).setUp()
+        super(TestRentalProductInstance, self).setUp()
 
         # Product A Created
-        company = self.env.ref('base.main_company')
+        company = self.env.ref("base.main_company")
         ProductObj = self.env["product.product"]
         self.productA = ProductObj.create({"name": "Product A", "type": "consu"})
         self.serialNumberA = self.env["stock.production.lot"].create(

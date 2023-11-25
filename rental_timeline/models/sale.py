@@ -3,7 +3,7 @@
 import functools
 import operator
 
-from odoo import api, fields, models, exceptions, _
+from odoo import _, api, exceptions, fields, models
 
 
 class SaleOrderLine(models.Model):

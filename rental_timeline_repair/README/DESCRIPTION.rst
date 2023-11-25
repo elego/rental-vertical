@@ -12,4 +12,3 @@ Description
 -----------
 
 This module adds the display of repair orders related to rental products to the rental timeline view.
-

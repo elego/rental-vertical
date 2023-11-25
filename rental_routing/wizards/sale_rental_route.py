@@ -1,4 +1,4 @@
-from odoo import models, fields, api, _
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools.float_utils import float_compare
 
@@ -91,7 +91,8 @@ class SaleRentalRouteOutLine(models.TransientModel):
             raise UserError(
                 _(
                     "The available quantity '%s' is less then the required quantity '%s'."
-                ) % (self.rental_avail_qty, self.qty)
+                )
+                % (self.rental_avail_qty, self.qty)
             )
         # Moves for rented product use always the default uom of the product.
         # So we don't need to compute the quantity in uom of move.
@@ -117,7 +118,9 @@ class SaleRentalRouteOutLine(models.TransientModel):
         ):
             self.rental_in_move_id.product_uom_qty += 1
             reset_qty = True
-        new_move_vals = self.rental_in_move_id.with_context(do_not_push_apply=True)._split(self.qty)
+        new_move_vals = self.rental_in_move_id.with_context(
+            do_not_push_apply=True
+        )._split(self.qty)
         if reset_qty:
             self.rental_in_move_id.product_uom_qty -= 1
         new_move = self.env["stock.move"].create(new_move_vals)
@@ -253,7 +256,8 @@ class SaleRentalRouteInLine(models.TransientModel):
             raise UserError(
                 _(
                     "The available quantity '%s' is less then the required quantity '%s'."
-                ) % (self.rental_avail_qty, self.qty)
+                )
+                % (self.rental_avail_qty, self.qty)
             )
         # Moves for rented product use always the default uom of the product.
         # So we don't need to compute the quantity in uom of move.
@@ -279,7 +283,9 @@ class SaleRentalRouteInLine(models.TransientModel):
         ):
             self.rental_out_move_id.product_uom_qty += 1
             reset_qty = True
-        new_move_vals = self.rental_out_move_id.with_context(do_not_push_apply=True)._split(self.qty)
+        new_move_vals = self.rental_out_move_id.with_context(
+            do_not_push_apply=True
+        )._split(self.qty)
         if reset_qty:
             self.rental_out_move_id.product_uom_qty -= 1
         new_move = self.env["stock.move"].create(new_move_vals)
@@ -376,11 +382,7 @@ class SaleRentalRoute(models.TransientModel):
                 [("start_order_line_id", "=", active_id)]
             )
             if not rentals:
-                raise UserError(
-                    _(
-                        "There is no rental object for this position."
-                    )
-                )
+                raise UserError(_("There is no rental object for this position."))
             res["rental_id"] = rentals[0].id
             if rentals[0].out_move_id and rentals[0].out_move_id.product_qty > 0:
                 res["out_lines"].append(
@@ -440,9 +442,7 @@ class SaleRentalRoute(models.TransientModel):
             < 0
         ):
             raise UserError(
-                _(
-                    "You have assigned more quantity than required for 'Route (Out)'."
-                )
+                _("You have assigned more quantity than required for 'Route (Out)'.")
             )
         if (
             float_compare(
@@ -453,23 +453,19 @@ class SaleRentalRoute(models.TransientModel):
             < 0
         ):
             raise UserError(
-                _(
-                    "You have assigned more quantity than required for 'Route (Return)'."
-                )
+                _("You have assigned more quantity than required for 'Route (Return)'.")
             )
         for r, qty in out_dic.items():
             if qty > r.in_move_id.product_uom_qty:
                 raise UserError(
-                    _(
-                        "You have assigned more quantity than available from '%s'."
-                    ) % r.display_name
+                    _("You have assigned more quantity than available from '%s'.")
+                    % r.display_name
                 )
         for r, qty in in_dic.items():
             if qty > r.out_move_id.product_uom_qty:
                 raise UserError(
-                    _(
-                        "You have assigned more quantity than available from '%s'."
-                    ) % r.display_name
+                    _("You have assigned more quantity than available from '%s'.")
+                    % r.display_name
                 )
 
     def action_confirm(self):

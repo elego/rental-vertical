@@ -13,4 +13,3 @@ Description
 
 This module adds the display of the number of 'offdays' in rental orders to the rental timeline view.
 'offdays' are days that are not invoiced within the renting period, for example weekends or holidays.
-

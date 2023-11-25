@@ -6,8 +6,8 @@
     "category": "Rental",
     "summary": "Manage Rental of Products",
     "author": "elego Software Solutions GmbH, Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/vertical-rental",
-    "description":"""
+    "website": "https://gitlab.elegosoft.com/swrent/rental-vertical",
+    "description": """
 Base Module for Rental Management
 
 This module provides a new menu for rental management.

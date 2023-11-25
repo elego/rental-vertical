@@ -1,14 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <data>
         <record id="view_purchase_order_filter" model="ir.ui.view">
             <field name="name">purchase.order.search.inherit</field>
             <field name="model">purchase.order</field>
-            <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+            <field name="inherit_id" ref="purchase.view_purchase_order_filter" />
             <field name="arch" type="xml">
                 <xpath expr="//filter[@name='vendor']" position="after">
-                    <filter string="Type" name="group_by_order_type" domain="[]"
-                        context="{'group_by':'order_type'}"/>
+                    <filter
+                        string="Type"
+                        name="group_by_order_type"
+                        domain="[]"
+                        context="{'group_by':'order_type'}"
+                    />
                 </xpath>
             </field>
         </record>

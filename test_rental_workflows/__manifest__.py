@@ -31,7 +31,7 @@ Test Rental Workflows
     ],
     'data': [
         'data/settings.xml',
-        'views/assets.xml',
+        # 'views/assets.xml',
     ],
     'demo': [
         'demo/rental_products.xml',
@@ -41,6 +41,11 @@ Test Rental Workflows
     ],
     'qweb': [
     ],
+     'assets': {
+        'web.assets_tests': [
+            'test_rental_workflows/static/src/js/**/*',
+        ],
+    },
     'installable': True,
     'license': 'AGPL-3',
 }
