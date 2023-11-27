@@ -1,0 +1,307 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * rental_product_instance_appointment
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-06-24 10:00+0000\n"
+"PO-Revision-Date: 2023-11-27 13:52+0100\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.2.2\n"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model,name:rental_product_instance_appointment.model_product_appointment
+msgid "Appointment"
+msgstr "Reserva"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_product__appointment_ids
+#: model_terms:ir.ui.view,arch_db:rental_product_instance_appointment.product_normal_form_view
+msgid "Appointments"
+msgstr "Reservas"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__create_task
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment__create_task
+msgid "Create Task"
+msgstr "Crear tarea"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__create_uid
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__create_date
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment__daily_increase
+msgid "Daily Increase"
+msgstr "Incremento diario"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__date_next_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment__date_next_appointment
+msgid "Date"
+msgstr "Fecha"
+
+#. module: rental_product_instance_appointment
+#: model_terms:ir.ui.view,arch_db:rental_product_instance_appointment.product_normal_form_view
+msgid "Date Dependent Appointments"
+msgstr "Fecha de reservas dependientes"
+
+#. module: rental_product_instance_appointment
+#: selection:product.appointment,time_uom:0
+msgid "Day(s)"
+msgstr "Día(s)"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__display_name
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__id
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment__id
+msgid "ID"
+msgstr "ID"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__product_id
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment__product_id
+msgid "Instance"
+msgstr "Instancia"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model,name:rental_product_instance_appointment.model_instance_operating_data
+msgid "Instance Operating Data"
+msgstr "Datos de operación de la instancia"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment__interval
+msgid "Interval"
+msgstr "Intervalo"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__last_appointment_closed
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment__last_appointment_closed
+msgid "Last Appointment Closed"
+msgstr "Última reserva cerrada"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__date_last_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment__date_last_appointment
+msgid "Last Appointment Date"
+msgstr "Última fecha de reserva"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__last_appointment_stage_id
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment__last_appointment_stage_id
+msgid "Last Appointment Stage"
+msgstr "Última fase de reserva"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment____last_update
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__last_task_id
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment__last_task_id
+msgid "Last Ticket"
+msgstr "Último ticket"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__write_uid
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__write_date
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment__write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__leads_of_notification
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment__leads_of_notification
+msgid "Leads of Notification"
+msgstr "Notificación de clientes potenciales"
+
+#. module: rental_product_instance_appointment
+#: selection:product.appointment,time_uom:0
+msgid "Month(s)"
+msgstr "Mes(es)"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__name
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_product__instance_next_service_date
+msgid "Next Service"
+msgstr "Siguiente servicio"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model,name:rental_product_instance_appointment.model_product_operating_appointment
+msgid "Operating Appointment"
+msgstr "Reserva operativa"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_product__operating_appointment_ids
+msgid "Operating Appointments"
+msgstr "Reservas operativas"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment__operating_uom
+msgid "Operating UoM"
+msgstr "Unidad de medida operativa"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model,name:rental_product_instance_appointment.model_product_product
+msgid "Product"
+msgstr "Producto"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model,name:rental_product_instance_appointment.model_project_task
+msgid "Task"
+msgstr "Tarea"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,help:rental_product_instance_appointment.field_product_appointment__last_appointment_closed
+#: model:ir.model.fields,help:rental_product_instance_appointment.field_product_operating_appointment__last_appointment_closed
+msgid "Tasks in this stage are considered closed."
+msgstr "Las tareas en esta fase se consideran cerradas."
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,help:rental_product_instance_appointment.field_product_appointment__last_task_id
+#: model:ir.model.fields,help:rental_product_instance_appointment.field_product_operating_appointment__last_task_id
+msgid ""
+"This is last created task in the helpdesk project related to this "
+"appointment."
+msgstr ""
+"Esta es la última tarea creada en el proyecto de soporte relacionada con "
+"esta reserva."
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,help:rental_product_instance_appointment.field_product_appointment__date_next_appointment
+msgid "This is the appointment date for this time dependent appointment."
+msgstr "Esta es la fecha de reserva para esta reserva dependiente del tiempo."
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,help:rental_product_instance_appointment.field_product_operating_appointment__interval
+msgid ""
+"This is the interval which defines the repetition of this appointment. As "
+"soon as the current appointment threshold is reached, the threshold is "
+"incremented by this interval."
+msgstr ""
+"Este es el intervalo que define la repetición de esta reserva. Tan pronto "
+"como el limite de la reserva actual sea alcanzado, el limite se incrementa "
+"con este intervalo."
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,help:rental_product_instance_appointment.field_product_appointment__time_interval
+msgid ""
+"This is the interval which defines the repetition of this appointment. Be "
+"aware of the used unit of measure."
+msgstr ""
+"Este es el interavlo que define la repetición de esta reserva. Observe la "
+"unidad de medida usada."
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,help:rental_product_instance_appointment.field_product_appointment__leads_of_notification
+#: model:ir.model.fields,help:rental_product_instance_appointment.field_product_operating_appointment__leads_of_notification
+msgid ""
+"This is the number of days previous to the appointment date in order to "
+"create a task in the helpdesk project as notfication. The deadline of this "
+"task is set to appointment date."
+msgstr ""
+"Es el número de días antes de la fecha límite en que debe crearse un ticket "
+"en el servicio de asistencia para su notificación. La fecha límite para el "
+"ticket se establece en la fecha límite."
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,help:rental_product_instance_appointment.field_product_operating_appointment__date_next_appointment
+msgid ""
+"This is the planned appointment date for this usage dependent appointment. "
+"It is computed by the difference of threshold and current operating data "
+"divided by the daily increase."
+msgstr ""
+"Esta es la fecha de reserva planeada para esta reserva dependiente del uso. "
+"Se calcula por la diferencia del limite y la fecha de operación actual "
+"dividido por el incremento diario."
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,help:rental_product_instance_appointment.field_product_operating_appointment__threshold
+msgid ""
+"This is the threshold value that has be reached to make the appointment "
+"necessary and thereby to create the task in the helpdesk project. This "
+"value is automatically incremented by the interval value as soon as a "
+"project task is created for the current threshold."
+msgstr ""
+"Este es el valor límite que debe ser alcanzado para hacer la reserva "
+"necesaria y por lo tanto crear una tarea en el proyecto de soporte. Este "
+"valor es incrementado automáticamente por el valor del intervalo tan pronto "
+"como una tarea de proyecto es creada para el límite actual."
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,help:rental_product_instance_appointment.field_product_operating_appointment__daily_increase
+msgid ""
+"This is the value that defines how the operating data are increased day by "
+"day. The default value is 1 but is automatically updated and computed after "
+"adding new operating data."
+msgstr ""
+"Este es el valor que define como los datos operativos se incrementan día a "
+"día. El valor por defecto es 1 pero se actualiza automáticamente después de "
+"añadir nuevos datos de operación."
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_operating_appointment__threshold
+msgid "Threshold"
+msgstr "Límite"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__time_interval
+msgid "Time Interval"
+msgstr "Intervalo de tiempo"
+
+#. module: rental_product_instance_appointment
+#: model:ir.model.fields,field_description:rental_product_instance_appointment.field_product_appointment__time_uom
+msgid "Time UoM"
+msgstr "Unidad de medida de tiempo"
+
+#. module: rental_product_instance_appointment
+#: model:ir.actions.server,name:rental_product_instance_appointment.daily_gen_product_appointment_ir_actions_server
+#: model:ir.cron,cron_name:rental_product_instance_appointment.daily_gen_product_appointment
+#: model:ir.cron,name:rental_product_instance_appointment.daily_gen_product_appointment
+msgid "Update product appointments daily"
+msgstr "Actualizar reservas de productos diariamente"
+
+#. module: rental_product_instance_appointment
+#: model:ir.actions.server,name:rental_product_instance_appointment.daily_gen_product_operating_appointment_ir_actions_server
+#: model:ir.cron,cron_name:rental_product_instance_appointment.daily_gen_product_operating_appointment
+#: model:ir.cron,name:rental_product_instance_appointment.daily_gen_product_operating_appointment
+msgid "Update product operating appointments daily"
+msgstr "Actualizar reservas operativas de producto diariamente"
+
+#. module: rental_product_instance_appointment
+#: model_terms:ir.ui.view,arch_db:rental_product_instance_appointment.product_normal_form_view
+msgid "Usage Dependent Appointments"
+msgstr "Reservas en función de operativa"

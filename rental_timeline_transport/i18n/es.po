@@ -7,13 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-20 14:40+0000\n"
-"PO-Revision-Date: 2020-03-20 14:40+0000\n"
+"PO-Revision-Date: 2023-11-27 14:23+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"X-Generator: Poedit 3.2.2\n"
 
 #. module: rental_timeline_transport
 #: selection:product.timeline,type:0
@@ -22,23 +24,24 @@ msgstr "Entregas"
 
 #. module: rental_timeline_transport
 #: model_terms:ir.ui.view,arch_db:rental_timeline_transport.view_product_timeline_timeline
+#, fuzzy
 msgid "Destination:"
-msgstr ""
+msgstr "Destino:"
 
 #. module: rental_timeline_transport
 #: model:ir.model.fields,field_description:rental_timeline_transport.field_product_timeline__freight_forwarder_name
 msgid "Freight Forwarder Name"
-msgstr ""
+msgstr "Nombre del transportista"
 
 #. module: rental_timeline_transport
 #: model:ir.model.fields,field_description:rental_timeline_transport.field_product_timeline__freight_forwarder_id
 msgid "Freight forwarder"
-msgstr ""
+msgstr "Transportista"
 
 #. module: rental_timeline_transport
 #: model_terms:ir.ui.view,arch_db:rental_timeline_transport.view_product_timeline_timeline
 msgid "Freight forwarder:"
-msgstr ""
+msgstr "Transportista:"
 
 #. module: rental_timeline_transport
 #: code:addons/rental_timeline_transport/models/purchase.py:60
@@ -50,7 +53,7 @@ msgstr "No se encontraron líneas temporales."
 #: code:addons/rental_timeline_transport/models/purchase.py:68
 #, python-format
 msgid "No found transport product."
-msgstr ""
+msgstr "No se ha encontrado ningún producto de transporte."
 
 #. module: rental_timeline_transport
 #: model:ir.model,name:rental_timeline_transport.model_product_timeline
@@ -59,13 +62,15 @@ msgstr "Línea temporal del producto"
 
 #. module: rental_timeline_transport
 #: model:ir.model,name:rental_timeline_transport.model_purchase_order
+#, fuzzy
 msgid "Purchase Order"
-msgstr ""
+msgstr "Pedido de Compra"
 
 #. module: rental_timeline_transport
 #: model:ir.model,name:rental_timeline_transport.model_purchase_order_line
+#, fuzzy
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Línea orden de compra"
 
 #. module: rental_timeline_transport
 #: selection:product.timeline,type:0
@@ -90,14 +95,15 @@ msgstr "Dirección de envio"
 
 #. module: rental_timeline_transport
 #: model_terms:ir.ui.view,arch_db:rental_timeline_transport.view_product_timeline_timeline
+#, fuzzy
 msgid "Source:"
-msgstr ""
+msgstr "Fuente:"
 
 #. module: rental_timeline_transport
 #: code:addons/rental_timeline_transport/models/product_timeline.py:46
 #, python-format
 msgid "T: %s"
-msgstr ""
+msgstr "T: %s"
 
 #. module: rental_timeline_transport
 #: model:ir.model.fields,field_description:rental_timeline_transport.field_purchase_order_line__timeline_ids

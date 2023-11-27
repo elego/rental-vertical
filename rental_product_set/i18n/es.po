@@ -1,0 +1,66 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * rental_product_set
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-22 21:19+0000\n"
+"PO-Revision-Date: 2023-11-27 13:56+0100\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.2.2\n"
+
+#. module: rental_product_set
+#: model:ir.model.fields,field_description:rental_product_set.field_product_set_add__rental_ok
+msgid "Can be Rented"
+msgstr "Puede ser alquilado"
+
+#. module: rental_product_set
+#: model:ir.model.fields,field_description:rental_product_set.field_product_set_add__end_date
+msgid "End Date"
+msgstr "Fecha de fin"
+
+#. module: rental_product_set
+#: code:addons/rental_product_set/wizard/product_set_add.py:112
+#, python-format
+msgid ""
+"From Product set %s : %s must be marked 'Can be Rented' and its service "
+"products must be available."
+msgstr ""
+"Desde el set de productos %s: %s debe ser marcado como \"Puede ser "
+"alquilado\" y sus productos de servicio deben estar disponibles."
+
+#. module: rental_product_set
+#: model:ir.ui.menu,name:rental_product_set.menu_product_set
+msgid "Product Set"
+msgstr "Set de productos"
+
+#. module: rental_product_set
+#: model:ir.model.fields,field_description:rental_product_set.field_product_set_add__start_date
+msgid "Start Date"
+msgstr "Fecha de comienzo"
+
+#. module: rental_product_set
+#: code:addons/rental_product_set/wizard/product_set_add.py:28
+#, python-format
+msgid "The end date cannot be earlier than the start date."
+msgstr ""
+"La fecha de finalización no puede ser más temprana que la fecha de "
+"comienzo."
+
+#. module: rental_product_set
+#: model:ir.model.fields,field_description:rental_product_set.field_product_set_add__uom_id
+msgid "Uom"
+msgstr "Unidad de medida"
+
+#. module: rental_product_set
+#: model:ir.model,name:rental_product_set.model_product_set_add
+msgid "Wizard model to add product set into a quotation"
+msgstr "Asistente para añadir un set de productos en un presupuesto"

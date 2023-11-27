@@ -1,0 +1,527 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* rental_routing
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-03-04 13:05+0000\n"
+"PO-Revision-Date: 2023-11-27 14:20+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.2.2\n"
+
+#. module: rental_routing
+#: code:addons/rental_routing/models/sale_order_line.py:0
+#, python-format
+msgid ""
+"'Rental to Extend' on the sale order line with rental service %s is "
+"impossible because it is already assigned to another rental order."
+msgstr ""
+"\"Alquiler para ampliar\" en la línea de pedido de venta con %s de servicio "
+"de alquiler es imposible porque ya está asignado a otro pedido de alquiler."
+
+#. module: rental_routing
+#: code:addons/rental_routing/models/sale_order_line.py:0
+#, python-format
+msgid ""
+"'Route from order' on the sale order line with rental service %s is "
+"impossible. You need %s %s. But only %s %s can be forwarded."
+msgstr ""
+"\"Enrutar desde el pedido\" en la línea de pedido de venta con %s de "
+"servicio de alquiler es imposible. Necesitas %s %s. Pero solo %s %s se "
+"pueden reenviar."
+
+#. module: rental_routing
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route_out_line__rental_avail_qty
+#, fuzzy
+msgid "Available Quantity"
+msgstr "Cantidad disponible"
+
+#. module: rental_routing
+#: model_terms:ir.ui.view,arch_db:rental_routing.view_sale_rental_route
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: rental_routing
+#: model_terms:ir.ui.view,arch_db:rental_routing.view_sale_rental_route
+#, fuzzy
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: rental_routing
+#: model:ir.model,name:rental_routing.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: rental_routing
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route__create_uid
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route_in_line__create_uid
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route_out_line__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: rental_routing
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route__create_date
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route_in_line__create_date
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route_out_line__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: rental_routing
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route_in_line__rental_onsite_location_id
+#, fuzzy
+msgid "Destination Location"
+msgstr "Lugar de destino"
+
+#. module: rental_routing
+#: model:ir.model.fields,field_description:rental_routing.field_res_partner__display_name
+#: model:ir.model.fields,field_description:rental_routing.field_sale_order__display_name
+#: model:ir.model.fields,field_description:rental_routing.field_sale_order_line__display_name
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental__display_name
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route__display_name
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route_in_line__display_name
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route_out_line__display_name
+#: model:ir.model.fields,field_description:rental_routing.field_stock_move__display_name
+#: model:ir.model.fields,field_description:rental_routing.field_stock_picking__display_name
+#: model:ir.model.fields,field_description:rental_routing.field_stock_rule__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: rental_routing
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route_in_line__rental_out_id
+msgid "Following Rental"
+msgstr "Siguiente alquiler"
+
+#. module: rental_routing
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route_in_line__rental_out_move_id
+msgid "Following Stock Move"
+msgstr "Siguiente movimiento de almacen"
+
+#. module: rental_routing
+#: model:ir.model.fields,field_description:rental_routing.field_res_partner__id
+#: model:ir.model.fields,field_description:rental_routing.field_sale_order__id
+#: model:ir.model.fields,field_description:rental_routing.field_sale_order_line__id
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental__id
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route__id
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route_in_line__id
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route_out_line__id
+#: model:ir.model.fields,field_description:rental_routing.field_stock_move__id
+#: model:ir.model.fields,field_description:rental_routing.field_stock_picking__id
+#: model:ir.model.fields,field_description:rental_routing.field_stock_rule__id
+msgid "ID"
+msgstr "ID"
+
+#. module: rental_routing
+#: model:ir.model.fields,help:rental_routing.field_sale_order_line__can_forward_rental
+msgid ""
+"If set, the product's delivery is not planned from your own warehouse "
+"location but from an previous order and its used location."
+msgstr ""
+"Si se establece, la entrega del producto no se planifica desde su propia "
+"ubicación de almacén, sino desde un pedido anterior y su ubicación "
+"utilizada."
+
+#. module: rental_routing
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental__in_move_ids
+msgid "In Move"
+msgstr "En movimiento"
+
+#. module: rental_routing
+#: model:ir.model.fields,field_description:rental_routing.field_res_partner____last_update
+#: model:ir.model.fields,field_description:rental_routing.field_sale_order____last_update
+#: model:ir.model.fields,field_description:rental_routing.field_sale_order_line____last_update
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental____last_update
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route____last_update
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route_in_line____last_update
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route_out_line____last_update
+#: model:ir.model.fields,field_description:rental_routing.field_stock_move____last_update
+#: model:ir.model.fields,field_description:rental_routing.field_stock_picking____last_update
+#: model:ir.model.fields,field_description:rental_routing.field_stock_rule____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: rental_routing
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route__write_uid
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route_in_line__write_uid
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route_out_line__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: rental_routing
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route__write_date
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route_in_line__write_date
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route_out_line__write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: rental_routing
+#: model:ir.model.fields,help:rental_routing.field_sale_rental__in_move_ids
+msgid "Moves that are splitted from in_move_id"
+msgstr "Movimientos que se separan desde in_move_id"
+
+#. module: rental_routing
+#: model:ir.model.fields,help:rental_routing.field_sale_rental__out_move_ids
+msgid "Moves that are splitted from out_move_id"
+msgstr "Movimientos que se separan desde out_move_id"
+
+#. module: rental_routing
+#: code:addons/rental_routing/models/sale_order_line.py:0
+#, python-format
+msgid ""
+"On the sale order line with product %s you are trying to sell a rented "
+"product, that is already assigned to another rental order. "
+msgstr ""
+"En la línea de pedido de venta con el producto %s está intentando vender un "
+"producto alquilado, que ya está asignado a otro pedido de alquiler. "
+
+#. module: rental_routing
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental__rental_onsite_location_id
+msgid "Onsite location"
+msgstr "Ubicación in situ"
+
+#. module: rental_routing
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental__out_move_ids
+msgid "Out Move"
+msgstr "Movimiento de salida"
+
+#. module: rental_routing
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental__out_move_id_bk
+msgid "Outgoing Stock Moves BK"
+msgstr "Movimientos de almacen salientes BK"
+
+#. module: rental_routing
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route_in_line__parent_id
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route_out_line__parent_id
+#, fuzzy
+msgid "Parent"
+msgstr "Superior"
+
+#. module: rental_routing
+#: model:ir.model.fields,help:rental_routing.field_sale_order_line__forward_rental_id
+msgid ""
+"Please choose a previous order whose delivery address is now used as the "
+"start address for this new order."
+msgstr ""
+"Elija un pedido anterior cuya dirección de entrega se utilice ahora como "
+"dirección de inicio para este nuevo pedido."
+
+#. module: rental_routing
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route_out_line__rental_in_id
+msgid "Previous Rental"
+msgstr "Alquiler Anterior"
+
+#. module: rental_routing
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route_out_line__rental_in_move_id
+msgid "Previous Stock Move"
+msgstr "Movimiento de almacén anterior"
+
+#. module: rental_routing
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route_in_line__product_id
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route_out_line__product_id
+msgid "Product"
+msgstr "Producto"
+
+#. module: rental_routing
+#: model:ir.model,name:rental_routing.model_sale_rental
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route__rental_id
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route_in_line__rental_id
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route_out_line__rental_id
+#: model_terms:ir.ui.view,arch_db:rental_routing.view_partner_form
+msgid "Rental"
+msgstr "Alquiler"
+
+#. module: rental_routing
+#: model:ir.model.fields,field_description:rental_routing.field_stock_move__rental_in_id
+msgid "Rental (in)"
+msgstr "Alquiler (entrante)"
+
+#. module: rental_routing
+#: model:ir.model.fields,field_description:rental_routing.field_stock_move__rental_out_id
+msgid "Rental (out)"
+msgstr "Alquiler (saliente)"
+
+#. module: rental_routing
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route_in_line__rental_end_date
+msgid "Rental End Date"
+msgstr "Fecha de finalización del alquiler"
+
+#. module: rental_routing
+#: model:ir.model.fields,field_description:rental_routing.field_res_partner__rental_onsite_location_id
+#: model:ir.model.fields,field_description:rental_routing.field_res_users__rental_onsite_location_id
+msgid "Rental Onsite Location"
+msgstr "Ubicación del alquiler en el lugar"
+
+#. module: rental_routing
+#: model:ir.model.fields,field_description:rental_routing.field_res_partner__rental_onsite_location_route
+#: model:ir.model.fields,field_description:rental_routing.field_res_users__rental_onsite_location_route
+msgid "Rental Onsite Location Route"
+msgstr "Ruta de ubicación de alquiler en el lugar"
+
+#. module: rental_routing
+#: model:ir.model.fields,field_description:rental_routing.field_stock_picking__rental_order
+msgid "Rental Order"
+msgstr "Pedido de alquiler"
+
+#. module: rental_routing
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route_in_line__qty
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route_out_line__qty
+msgid "Rental Quantity"
+msgstr "Cantidad de alquiler"
+
+#. module: rental_routing
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route_out_line__rental_start_date
+msgid "Rental Start Date"
+msgstr "Fecha de inicio del alquiler"
+
+#. module: rental_routing
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route__product_id
+msgid "Rented Product"
+msgstr "Producto alquilado"
+
+#. module: rental_routing
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route_in_line__rental_avail_qty
+msgid "Required Quantity"
+msgstr "Cantidad requerida"
+
+#. module: rental_routing
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental__in_move_id_bk
+msgid "Return Stock Moves BK"
+msgstr "Movimiento de almacen de retorno BK"
+
+#. module: rental_routing
+#: model_terms:ir.ui.view,arch_db:rental_routing.view_order_form_inherit
+#, fuzzy
+msgid "Route"
+msgstr "Ruta"
+
+#. module: rental_routing
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route__out_lines
+msgid "Route from Source"
+msgstr "Ruta desde el origen"
+
+#. module: rental_routing
+#: model:ir.model.fields,field_description:rental_routing.field_sale_order_line__can_forward_rental
+msgid "Route from order"
+msgstr "Ruta desde el pedido"
+
+#. module: rental_routing
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route__in_lines
+msgid "Route to Destination"
+msgstr "Ruta al destino"
+
+#. module: rental_routing
+#: model_terms:ir.ui.view,arch_db:rental_routing.view_sale_rental_route
+#, fuzzy
+msgid "Routes"
+msgstr "Rutas"
+
+#. module: rental_routing
+#: model:ir.actions.act_window,name:rental_routing.action_sale_rental_route
+#, fuzzy
+msgid "Routing"
+msgstr "Ruta"
+
+#. module: rental_routing
+#: model:ir.model,name:rental_routing.model_sale_rental_route
+msgid "Sale Rental Route"
+msgstr "Ruta de de venta de alquiler"
+
+#. module: rental_routing
+#: model:ir.model,name:rental_routing.model_sale_rental_route_in_line
+msgid "Sale Rental Route In Line"
+msgstr "Ruta de venta de alquiler entrante"
+
+#. module: rental_routing
+#: model:ir.model,name:rental_routing.model_sale_rental_route_out_line
+msgid "Sale Rental Route Out Line"
+msgstr "Ruta de venta de alquiler saliente"
+
+#. module: rental_routing
+#: model:ir.model,name:rental_routing.model_sale_order
+msgid "Sales Order"
+msgstr "Ordenes de venta"
+
+#. module: rental_routing
+#: model:ir.model,name:rental_routing.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedidos de venta"
+
+#. module: rental_routing
+#: model:ir.model.fields,field_description:rental_routing.field_sale_order_line__forward_rental_id
+#, fuzzy
+msgid "Source"
+msgstr "Fuente"
+
+#. module: rental_routing
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route_out_line__rental_onsite_location_id
+#, fuzzy
+msgid "Source Location"
+msgstr "Ubicación Origen"
+
+#. module: rental_routing
+#: model:ir.model,name:rental_routing.model_stock_move
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route_in_line__move_id
+#: model:ir.model.fields,field_description:rental_routing.field_sale_rental_route_out_line__move_id
+msgid "Stock Move"
+msgstr "Movimiento de inventario"
+
+#. module: rental_routing
+#: model:ir.model,name:rental_routing.model_stock_rule
+msgid "Stock Rule"
+msgstr "Reglas de inventario"
+
+#. module: rental_routing
+#: code:addons/rental_routing/wizards/sale_rental_route.py:0
+#, python-format
+msgid "The available quantity '%s' is less then the required quantity '%s'."
+msgstr "La cantidad disponible '%s' es menor que la cantidad requerida '%s'."
+
+#. module: rental_routing
+#: code:addons/rental_routing/wizards/sale_rental_route.py:0
+#, python-format
+msgid ""
+"The end date of the selected previous rental is later then the start date "
+"of current rental."
+msgstr ""
+"La fecha de finalización del alquiler anterior seleccionado es posterior a "
+"la fecha de inicio del alquiler actual."
+
+#. module: rental_routing
+#: code:addons/rental_routing/models/stock.py:0
+#, python-format
+msgid "The outgoing move of the referenced rental is in state 'Done'."
+msgstr ""
+"La mudanza saliente del alquiler al que se hace referencia está en estado "
+"'Hecho'."
+
+#. module: rental_routing
+#: code:addons/rental_routing/models/stock.py:0
+#, python-format
+msgid "The return move of the referenced rental is in state 'Done'."
+msgstr ""
+"El movimiento de devolución del alquiler al que se hace referencia está en "
+"estado 'Listo'."
+
+#. module: rental_routing
+#: code:addons/rental_routing/models/sale_order.py:0
+#, python-format
+msgid "The selected warehouse is not allowed for rental."
+msgstr "El almacén seleccionado no está permitido para alquiler."
+
+#. module: rental_routing
+#: code:addons/rental_routing/wizards/sale_rental_route.py:0
+#, python-format
+msgid ""
+"The start date of the selected following rental is earlier then the end "
+"date of current rental."
+msgstr ""
+"La fecha de inicio del siguiente alquiler seleccionado es anterior a la "
+"fecha de finalización del alquiler actual."
+
+#. module: rental_routing
+#: code:addons/rental_routing/models/sale_order.py:0
+#, python-format
+msgid "There is no Rental In location found for the selected warehouse."
+msgstr ""
+"No se ha encontrado ninguna ubicación de alquiler entrante para el almacén "
+"seleccionado."
+
+#. module: rental_routing
+#: code:addons/rental_routing/models/sale_order.py:0
+#, python-format
+msgid "There is no Rental Out location found for the selected warehouse."
+msgstr ""
+"No se ha encontrado ninguna ubicación de alquiler saliente para el almacén "
+"seleccionado."
+
+#. module: rental_routing
+#: code:addons/rental_routing/models/sale_order.py:0
+#, python-format
+msgid ""
+"There is no default picking type 'Internal' found for the selected "
+"warehouse."
+msgstr ""
+"No se ha encontrado ningún tipo de picking predeterminado \"Interno\" para "
+"el almacén seleccionado."
+
+#. module: rental_routing
+#: code:addons/rental_routing/models/sale_order.py:0
+#, python-format
+msgid "There is no default rental route found for the selected warehouse."
+msgstr ""
+"No se ha encontrado ninguna ruta de alquiler predeterminada para el almacén "
+"seleccionado."
+
+#. module: rental_routing
+#: code:addons/rental_routing/wizards/sale_rental_route.py:0
+#, python-format
+msgid "There is no rental object for this position."
+msgstr "No hay ningún objeto de alquiler para este puesto."
+
+#. module: rental_routing
+#: code:addons/rental_routing/models/sale_order.py:0
+#, python-format
+msgid "There is no shipping address found."
+msgstr "No se ha encontrado ninguna dirección de envío."
+
+#. module: rental_routing
+#: model:ir.model.fields,help:rental_routing.field_stock_picking__rental_order
+msgid "This is the order that created the picking as rental (in)."
+msgstr "Este es el orden que creó la recogida como alquiler (entrante)."
+
+#. module: rental_routing
+#: model:ir.model.fields,help:rental_routing.field_sale_rental_route_in_line__rental_out_id
+msgid "This is the rental that is used as the destination for this routing."
+msgstr "Este es el alquiler que se utiliza como destino para esta ruta."
+
+#. module: rental_routing
+#: model:ir.model.fields,help:rental_routing.field_sale_rental_route_out_line__rental_in_id
+msgid "This is the rental that is used as the source for this routing."
+msgstr "Este es el alquiler que se utiliza como fuente para esta ruta."
+
+#. module: rental_routing
+#: model:ir.model.fields,help:rental_routing.field_sale_rental_route_in_line__rental_out_move_id
+msgid "This is the stock move of the following rental."
+msgstr "Este es el movimiento de almacén del siguiente alquiler."
+
+#. module: rental_routing
+#: model:ir.model.fields,help:rental_routing.field_sale_rental_route_out_line__rental_in_move_id
+msgid "This is the stock move of the previous rental."
+msgstr "Este es el movimiento de stock del alquiler anterior."
+
+#. module: rental_routing
+#: model:ir.model,name:rental_routing.model_stock_picking
+#, fuzzy
+msgid "Transfer"
+msgstr "Transferir"
+
+#. module: rental_routing
+#: code:addons/rental_routing/wizards/sale_rental_route.py:0
+#, python-format
+msgid "You have assigned more quantity than available from '%s'."
+msgstr "Ha asignado más cantidad de la disponible en '%s'."
+
+#. module: rental_routing
+#: code:addons/rental_routing/wizards/sale_rental_route.py:0
+#, python-format
+msgid "You have assigned more quantity than required for 'Route (Out)'."
+msgstr "Ha asignado más cantidad de la necesaria para 'Ruta (Salida)'."
+
+#. module: rental_routing
+#: code:addons/rental_routing/wizards/sale_rental_route.py:0
+#, python-format
+msgid "You have assigned more quantity than required for 'Route (Return)'."
+msgstr "Ha asignado más cantidad de la necesaria para 'Ruta (retorno)'."
+
+#. module: rental_routing
+#: model_terms:ir.ui.view,arch_db:rental_routing.view_sale_rental_route
+#, fuzzy
+msgid "or"
+msgstr "o"

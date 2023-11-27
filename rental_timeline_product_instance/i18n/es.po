@@ -7,13 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-14 14:56+0000\n"
-"PO-Revision-Date: 2021-01-14 14:56+0000\n"
+"PO-Revision-Date: 2023-11-27 14:22+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"X-Generator: Poedit 3.2.2\n"
 
 #. module: rental_timeline_product_instance
 #: model_terms:ir.ui.view,arch_db:rental_timeline_product_instance.product_instance_state_search_view
@@ -28,8 +30,9 @@ msgstr "Localización actual"
 
 #. module: rental_timeline_product_instance
 #: model_terms:ir.ui.view,arch_db:rental_timeline_product_instance.view_product_timeline_timeline
+#, fuzzy
 msgid "Current Location:"
-msgstr ""
+msgstr "Ubicación actual:"
 
 #. module: rental_timeline_product_instance
 #: selection:product.product,instance_state:0
@@ -49,7 +52,7 @@ msgstr "Siguiente servicio"
 #. module: rental_timeline_product_instance
 #: model_terms:ir.ui.view,arch_db:rental_timeline_product_instance.view_product_timeline_timeline
 msgid "Next Service:"
-msgstr ""
+msgstr "Siguiente servicio:"
 
 #. module: rental_timeline_product_instance
 #: model:ir.model,name:rental_timeline_product_instance.model_product_product
@@ -59,17 +62,17 @@ msgstr "Producto"
 #. module: rental_timeline_product_instance
 #: model:ir.model.fields,field_description:rental_timeline_product_instance.field_product_timeline__product_instance_current_location_name
 msgid "Product Instance Current Location Name"
-msgstr ""
+msgstr "Nombre de la ubicación actual de la instancia del producto"
 
 #. module: rental_timeline_product_instance
 #: model:ir.model.fields,field_description:rental_timeline_product_instance.field_product_timeline__product_instance_serial_number_name
 msgid "Product Instance Serial Number Name"
-msgstr ""
+msgstr "Nombre del número de serie de la instancia del producto"
 
 #. module: rental_timeline_product_instance
 #: model:ir.model.fields,field_description:rental_timeline_product_instance.field_product_timeline__product_instance_state_formated
 msgid "Product Instance State Formated"
-msgstr ""
+msgstr "Estado de instancia de producto formateado"
 
 #. module: rental_timeline_product_instance
 #: model:ir.model,name:rental_timeline_product_instance.model_product_timeline
@@ -101,7 +104,7 @@ msgstr "Número de serie"
 #. module: rental_timeline_product_instance
 #: model_terms:ir.ui.view,arch_db:rental_timeline_product_instance.view_product_timeline_timeline
 msgid "Serial Number:"
-msgstr ""
+msgstr "Número de serie:"
 
 #. module: rental_timeline_product_instance
 #: model:ir.model.fields,field_description:rental_timeline_product_instance.field_product_product__instance_state
@@ -111,11 +114,12 @@ msgstr "Estado"
 
 #. module: rental_timeline_product_instance
 #: model_terms:ir.ui.view,arch_db:rental_timeline_product_instance.view_product_timeline_timeline
+#, fuzzy
 msgid "State:"
-msgstr ""
+msgstr "Estado:"
 
 #. module: rental_timeline_product_instance
 #: code:addons/rental_timeline_product_instance/models/product_timeline.py:73
 #, python-format
 msgid "You can not have 2 timelines that overlaps on the same day."
-msgstr ""
+msgstr "No puede tener 2 líneas de tiempo que se superpongan en el mismo día."

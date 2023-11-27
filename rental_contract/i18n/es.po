@@ -1,0 +1,274 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * rental_contract
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-22 21:21+0000\n"
+"PO-Revision-Date: 2023-11-27 12:23+0100\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.2.2\n"
+
+#. module: rental_contract
+#: model:ir.model.fields,field_description:rental_contract.field_contract_order_type__journal_id
+#: model_terms:ir.ui.view,arch_db:rental_contract.contract_order_type_search_view
+msgid "Billing Journal"
+msgstr "Diario de facturación"
+
+#. module: rental_contract
+#: model:ir.model.fields,field_description:rental_contract.field_product_product__cust_contract_count
+msgid "C-Contracts"
+msgstr "Contratos-Cli"
+
+#. module: rental_contract
+#: model_terms:ir.actions.act_window,help:rental_contract.contract_order_type_action
+msgid "Click to set a new Contract Subtype."
+msgstr "Click para escoger un nuevo subtipo de contrato"
+
+#. module: rental_contract
+#: model:ir.model.fields,field_description:rental_contract.field_contract_order_type__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: rental_contract
+#: model:ir.model,name:rental_contract.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: rental_contract
+#: model:ir.model,name:rental_contract.model_contract_contract
+msgid "Contract"
+msgstr "Contrato"
+
+#. module: rental_contract
+#: model:ir.model,name:rental_contract.model_contract_line
+msgid "Contract Line"
+msgstr "Línea de contrato"
+
+#. module: rental_contract
+#: model:ir.model,name:rental_contract.model_contract_order_type
+#: model:ir.model.fields,field_description:rental_contract.field_contract_contract__type_id
+#: model:ir.model.fields,field_description:rental_contract.field_res_partner__contract_type
+#: model:ir.model.fields,field_description:rental_contract.field_res_users__contract_type
+#: model_terms:ir.ui.view,arch_db:rental_contract.res_partner_contract_type_form_view
+msgid "Contract Subtype"
+msgstr "Subtipo de contrato"
+
+#. module: rental_contract
+#: model:ir.actions.act_window,name:rental_contract.contract_order_type_action
+#: model:ir.ui.menu,name:rental_contract.contract_order_type_menu
+#: model:ir.ui.menu,name:rental_contract.menu_contract_subtypes
+msgid "Contract Subtypes"
+msgstr "Subtipos de contrato"
+
+#. module: rental_contract
+#: model:ir.model.fields,field_description:rental_contract.field_account_invoice__contract_type_id
+#: model:ir.model.fields,field_description:rental_contract.field_contract_order_type__contract_type
+#: model_terms:ir.ui.view,arch_db:rental_contract.contract_order_type_search_view
+msgid "Contract Type"
+msgstr "Tipo de contrato"
+
+#. module: rental_contract
+#: model:ir.ui.menu,name:rental_contract.menu_config_contract
+#: model:ir.ui.menu,name:rental_contract.menu_customer_top_contracts
+#: model:ir.ui.menu,name:rental_contract.menu_supplier_top_contracts
+msgid "Contracts"
+msgstr "Contratros"
+
+#. module: rental_contract
+#: model:ir.model.fields,field_description:rental_contract.field_contract_order_type__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: rental_contract
+#: model:ir.model.fields,field_description:rental_contract.field_contract_order_type__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: rental_contract
+#: selection:contract.order.type,contract_type:0
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: rental_contract
+#: model:contract.order.type,name:rental_contract.customer_contract_type
+msgid "Customer Contract"
+msgstr "Contrato de cliente"
+
+#. module: rental_contract
+#: model:ir.ui.menu,name:rental_contract.menu_customer_contracts
+msgid "Customer Contracts"
+msgstr "Contratos de cliente"
+
+#. module: rental_contract
+#: model:ir.model.fields,field_description:rental_contract.field_sale_order_line__date_end
+msgid "Date End"
+msgstr "Fecha de fin"
+
+#. module: rental_contract
+#: model:ir.model.fields,field_description:rental_contract.field_sale_order_line__date_start
+msgid "Date Start"
+msgstr "Fecha de comienzo"
+
+#. module: rental_contract
+#: model:ir.model.fields,field_description:rental_contract.field_contract_order_type__description
+msgid "Description"
+msgstr "Descripción"
+
+#. module: rental_contract
+#: model:ir.model.fields,field_description:rental_contract.field_contract_order_type__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: rental_contract
+#: model_terms:ir.ui.view,arch_db:rental_contract.contract_contract_search_view
+msgid "End Date"
+msgstr "Fecha de fin"
+
+#. module: rental_contract
+#: model:ir.model.fields,field_description:rental_contract.field_contract_order_type__sequence_id
+#: model_terms:ir.ui.view,arch_db:rental_contract.contract_order_type_search_view
+msgid "Entry Sequence"
+msgstr "Secuencia de entrada"
+
+#. module: rental_contract
+#: model_terms:ir.ui.view,arch_db:rental_contract.contract_order_type_search_view
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: rental_contract
+#: model:ir.model.fields,field_description:rental_contract.field_contract_order_type__id
+msgid "ID"
+msgstr "ID"
+
+#. module: rental_contract
+#: model:ir.model,name:rental_contract.model_account_invoice
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: rental_contract
+#: model:ir.model.fields,field_description:rental_contract.field_contract_order_type____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: rental_contract
+#: model:ir.model.fields,field_description:rental_contract.field_contract_order_type__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: rental_contract
+#: model:ir.model.fields,field_description:rental_contract.field_contract_order_type__write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: rental_contract
+#: model:ir.model.fields,field_description:rental_contract.field_contract_order_type__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: rental_contract
+#: model:ir.model.fields,field_description:rental_contract.field_contract_order_type__payment_term_id
+#: model_terms:ir.ui.view,arch_db:rental_contract.contract_order_type_search_view
+msgid "Payment Term"
+msgstr "Condiciones de pagos"
+
+#. module: rental_contract
+#: model_terms:ir.ui.view,arch_db:rental_contract.contract_order_type_search_view
+msgid "Price List"
+msgstr "Lista de precios"
+
+#. module: rental_contract
+#: model:ir.model.fields,field_description:rental_contract.field_contract_order_type__pricelist_id
+msgid "Pricelist"
+msgstr "Lista de precios"
+
+#. module: rental_contract
+#: model:ir.model,name:rental_contract.model_product_product
+msgid "Product"
+msgstr "Producto"
+
+#. module: rental_contract
+#: selection:contract.order.type,sub_type:0
+msgid "Rental"
+msgstr "Alquiler"
+
+#. module: rental_contract
+#: model:contract.order.type,name:rental_contract.customer_rental_contract_type
+msgid "Rental Contract"
+msgstr "Contrato de alquiler"
+
+#. module: rental_contract
+#: model:ir.model,name:rental_contract.model_sale_order
+msgid "Sale Order"
+msgstr "Orden de venta"
+
+#. module: rental_contract
+#: model:ir.model.fields,field_description:rental_contract.field_contract_contract__sale_type_id
+msgid "Sale Order Type"
+msgstr "Tipo de pedido de venta"
+
+#. module: rental_contract
+#: model:ir.model,name:rental_contract.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedidos de venta"
+
+#. module: rental_contract
+#: model:ir.model.fields,field_description:rental_contract.field_contract_contract__sub_type
+#: model:ir.model.fields,field_description:rental_contract.field_contract_order_type__sub_type
+msgid "Sub Type"
+msgstr "Subtipo"
+
+#. module: rental_contract
+#: model_terms:ir.ui.view,arch_db:rental_contract.contract_contract_search_view
+msgid "Subscription Subtype"
+msgstr "Subtipo de subscripción"
+
+#. module: rental_contract
+#: selection:contract.order.type,contract_type:0
+msgid "Supplier"
+msgstr "Proveedor"
+
+#. module: rental_contract
+#: model:ir.ui.menu,name:rental_contract.menu_supplier_contracts
+msgid "Supplier Contracts"
+msgstr "Contratos de proveedor"
+
+#. module: rental_contract
+#: model:ir.model.fields,help:rental_contract.field_product_product__cust_contract_count
+msgid "Total number of Customer Contracts"
+msgstr "Número total de contratos de cliente"
+
+#. module: rental_contract
+#: model:ir.model.fields,help:rental_contract.field_product_product__ven_contract_count
+msgid "Total number of Vendor/Supplier Contracts"
+msgstr "Número total de contratos de proveedor"
+
+#. module: rental_contract
+#: model_terms:ir.ui.view,arch_db:rental_contract.contract_order_type_form_view
+#: model_terms:ir.ui.view,arch_db:rental_contract.contract_order_type_search_view
+#: model_terms:ir.ui.view,arch_db:rental_contract.contract_order_type_tree_view
+msgid "Type"
+msgstr "Tipo"
+
+#. module: rental_contract
+#: model:ir.model.fields,field_description:rental_contract.field_product_product__ven_contract_count
+msgid "V-Contracts"
+msgstr "Contratos-Prov"
+
+#. module: rental_contract
+#: model:contract.order.type,name:rental_contract.vendor_contract_type
+msgid "Vendor Contract"
+msgstr "Contrato de proveedor"
+
+#. module: rental_contract
+#: model:contract.order.type,name:rental_contract.vendor_rental_contract_type
+msgid "Vendor Rental Contract"
+msgstr "Contrato de proveedor de alquiler"

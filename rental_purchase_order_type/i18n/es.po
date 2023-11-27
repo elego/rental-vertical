@@ -1,0 +1,62 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* rental_purchase_order_type
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-01-19 15:20+0000\n"
+"PO-Revision-Date: 2023-11-27 14:02+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.2.2\n"
+
+#. module: rental_purchase_order_type
+#: model_terms:ir.actions.act_window,help:rental_purchase_order_type.action_repair_orders
+#: model_terms:ir.actions.act_window,help:rental_purchase_order_type.action_transport_orders
+msgid "Create a quotation"
+msgstr "Crear un presupuesto"
+
+#. module: rental_purchase_order_type
+#: model_terms:ir.actions.act_window,help:rental_purchase_order_type.action_repair_orders
+#: model_terms:ir.actions.act_window,help:rental_purchase_order_type.action_transport_orders
+msgid "It will be converted into a purchase order."
+msgstr "Será convertido en un pedido de compra."
+
+#. module: rental_purchase_order_type
+#: model:ir.ui.menu,name:rental_purchase_order_type.menu_vendor_orders
+msgid "Orders"
+msgstr "Pedidos"
+
+#. module: rental_purchase_order_type
+#: model:ir.ui.menu,name:rental_purchase_order_type.menu_vendor_orders_purchase_form_action
+msgid "Purchase Orders"
+msgstr "Pedidos de compra"
+
+#. module: rental_purchase_order_type
+#: model:ir.actions.act_window,name:rental_purchase_order_type.action_repair_orders
+#: model:ir.ui.menu,name:rental_purchase_order_type.menu_vendor_repair_order
+msgid "Repair Orders"
+msgstr "Órdenes de reparación"
+
+#. module: rental_purchase_order_type
+#: model:ir.ui.menu,name:rental_purchase_order_type.menu_vendors_quotations
+msgid "Request for Quotations"
+msgstr "Petición de presupuestos"
+
+#. module: rental_purchase_order_type
+#: model:ir.ui.menu,name:rental_purchase_order_type.menu_vendor_requests
+msgid "Requests"
+msgstr "Peticiones"
+
+#. module: rental_purchase_order_type
+#: model:ir.actions.act_window,name:rental_purchase_order_type.action_transport_orders
+#: model:ir.ui.menu,name:rental_purchase_order_type.menu_vendor_transport_order
+msgid "Transport Orders"
+msgstr "Órdenes de transporte"

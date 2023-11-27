@@ -7,13 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-04 16:54+0000\n"
-"PO-Revision-Date: 2022-01-04 16:54+0000\n"
+"PO-Revision-Date: 2023-11-27 12:43+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"X-Generator: Poedit 3.2.2\n"
 
 #. module: rental_pricelist_interval
 #: model_terms:ir.ui.view,arch_db:rental_pricelist_interval.product_normal_form_view
@@ -205,7 +207,7 @@ msgstr "Precios de intervalos de alquiler"
 #. module: rental_pricelist_interval
 #: model:ir.model,name:rental_pricelist_interval.model_rental_price_interval_item
 msgid "Rental Price Interval Item"
-msgstr ""
+msgstr "Artículo de precios de intervalo de alquiler"
 
 #. module: rental_pricelist_interval
 #: model:ir.model,name:rental_pricelist_interval.model_rental_price_interval_rule
