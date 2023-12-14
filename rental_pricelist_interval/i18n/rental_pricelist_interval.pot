@@ -96,6 +96,12 @@ msgid "Interval Pricelist"
 msgstr ""
 
 #. module: rental_pricelist_interval
+#: model_terms:ir.ui.view,arch_db:rental_pricelist_interval.view_company_rental_service_form
+msgid "Interval Rentals"
+msgstr ""
+
+
+#. module: rental_pricelist_interval
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_product_product__interval_scale_pricelist_item_ids
 msgid "Interval Scale Pricelist Items"
 msgstr ""

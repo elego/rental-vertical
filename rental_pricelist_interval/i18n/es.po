@@ -98,6 +98,11 @@ msgid "Interval Pricelist"
 msgstr "Lista de precios de intervalo"
 
 #. module: rental_pricelist_interval
+#: model_terms:ir.ui.view,arch_db:rental_pricelist_interval.view_company_rental_service_form
+msgid "Interval Rentals"
+msgstr "Alquileres por intervalo"
+
+#. module: rental_pricelist_interval
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_product_product__interval_scale_pricelist_item_ids
 msgid "Interval Scale Pricelist Items"
 msgstr "Artículos de lista de precios de escala de intervalo"
@@ -150,12 +155,12 @@ msgstr "Nombre"
 #. module: rental_pricelist_interval
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_res_company__rental_service_default_code_prefix_interval
 msgid "Prefix of Rental Service Internal Reference (Interval)"
-msgstr "Prefijo de Referencia Interna del Servicio de alquiler (Intervalo)"
+msgstr "Código de prefijo"
 
 #. module: rental_pricelist_interval
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_res_company__rental_service_name_prefix_interval
 msgid "Prefix of Rental Service Name (Interval)"
-msgstr "Prefijo del nombre del servicio de alquiler (Intervalo)"
+msgstr "Prefijo"
 
 #. module: rental_pricelist_interval
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_rental_price_interval_item__price
@@ -243,12 +248,12 @@ msgstr "Mostrar opciones de precios de intevalos"
 #. module: rental_pricelist_interval
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_res_company__rental_service_default_code_suffix_interval
 msgid "Suffix of Rental Service Internal Reference (Interval)"
-msgstr "Sufijo de Referencia Interna del Servicio de Alquiler (Intervalo)"
+msgstr "Código de sufijo"
 
 #. module: rental_pricelist_interval
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_res_company__rental_service_name_suffix_interval
 msgid "Suffix of Rental Service Name (Interval)"
-msgstr "Sufijo del Servicio de Alquiler (Intervalo)"
+msgstr "Sufijo"
 
 #. module: rental_pricelist_interval
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_sale_order_line__rental_interval_price
