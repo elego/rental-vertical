@@ -187,7 +187,7 @@ msgstr "Producto"
 #. module: rental_pricelist_interval
 #: model:product.pricelist,name:rental_pricelist_interval.pricelist_interval
 msgid "Public Pricelist (Interval)"
-msgstr "Lista de precios pública (intervalo="
+msgstr "Lista de precios pública (intervalo)"
 
 #. module: rental_pricelist_interval
 #: model:ir.model.fields,field_description:rental_pricelist_interval.field_sale_order_line__rental_interval_name
