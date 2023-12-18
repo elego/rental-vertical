@@ -44,7 +44,7 @@ class SaleOrderLine(models.Model):
             ("weekend", "Weekend"),
             # ('weekend_holiday', 'Weekend and Holiday'),
         ],
-        default="none",
+        default="none", required=True
     )
 
     offday_date_start = fields.Date(

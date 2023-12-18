@@ -25,7 +25,7 @@
                         <field name="show_offday" invisible="1" />
                         <group>
                             <group string="Fixed Off Days">
-                                <field name="fixed_offday_type" />
+                                <field name="fixed_offday_type" widget="selection"/>
                                 <field name="fixed_offday_ids" nolabel="1" colspan="3">
                                     <tree>
                                         <field name="date" />
