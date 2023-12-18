@@ -25,6 +25,7 @@ It is based on the sale_rental module that currently can be found in sale-workfl
     ],
     "data": [
         "security/ir.model.access.csv",
+	"data/res_config.xml",
         "data/ir_sequence_data.xml",
         "data/order_type_data.xml",
         "data/product_uom_data.xml",

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="rental_base_settings" model="res.config.settings">
+        <field name="group_stock_multi_locations" eval="True"/>
+    </record>
+    <function model="res.config.settings" name="execute">
+        <value model="res.config.settings"
+               search="[('id', '=', ref('rental_base_settings'))]"/>
+    </function>
+</odoo>
