@@ -280,11 +280,10 @@ class SaleOrderLine(models.Model):
 
     @api.onchange("product_id", "price_unit", "product_uom", "product_uom_qty", "tax_id")
     def _onchange_discount(self):
-        if self.show_offday:
-            if self.number_of_time_unit:
+        if self.number_of_time_unit:
+            if hasattr(self, 'show_offday'):
                 self.product_uom_qty = self.rental_qty * (self.number_of_time_unit - self.offday_number)
-        else:
-            if self.number_of_time_unit:
+            else:
                 self.product_uom_qty = self.rental_qty * self.number_of_time_unit
         return super(SaleOrderLine, self)._onchange_discount()
 
