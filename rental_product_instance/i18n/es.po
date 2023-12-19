@@ -18,12 +18,12 @@ msgstr ""
 #. module: rental_product_instance
 #: model_terms:ir.ui.view,arch_db:rental_product_instance.product_normal_form_view
 msgid "<span>h on</span>"
-msgstr "<span> h en</span>"
+msgstr "<span> h en </span>"
 
 #. module: rental_product_instance
 #: model_terms:ir.ui.view,arch_db:rental_product_instance.product_normal_form_view
 msgid "<span>km on</span>"
-msgstr "<span> km en</span>"
+msgstr "<span> km en </span>"
 
 #. module: rental_product_instance
 #: selection:product.product,instance_state:0
