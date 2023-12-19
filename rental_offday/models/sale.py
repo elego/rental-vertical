@@ -132,16 +132,6 @@ class SaleOrderLine(models.Model):
                         % (day.date, self.start_date, self.end_date)
                     )
 
-    # Override function in sale_rental
-    # replace number_of_days with number_of_time_unit
-    @api.onchange("rental_qty", "number_of_time_unit", "product_id")
-    def rental_qty_number_of_days_change(self):
-        if self.product_id.rented_product_id:
-            qty = self.rental_qty * self.number_of_time_unit
-            if self.show_offday:
-                qty = self.rental_qty * (self.number_of_time_unit - self.offday_number)
-            self.product_uom_qty = qty
-
     @api.onchange("offday_number")
     def onchange_offday_number(self):
         return self.rental_qty_number_of_days_change()
