@@ -22,4 +22,5 @@ class InstanceOperatingData(models.Model):
     date = fields.Datetime(
         string="Date",
         required=True,
+        default=lambda Datetime:fields.Datetime.now(),
     )
