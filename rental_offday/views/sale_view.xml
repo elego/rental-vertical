@@ -44,12 +44,14 @@
                                         class="oe_inline"
                                         name="offday_date_start"
                                         nolabel="1"
+					style="width: 33% !important"
                                     />
                                     <span>&amp;nbsp; to &amp;nbsp;</span>
                                     <field
                                         class="oe_inline"
                                         name="offday_date_end"
                                         nolabel="1"
+					style="width: 33% !important"
                                     />
                                     <strong>&amp;nbsp; OK? &amp;nbsp;</strong>
                                     <field
