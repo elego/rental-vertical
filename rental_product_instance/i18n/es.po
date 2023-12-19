@@ -18,12 +18,12 @@ msgstr ""
 #. module: rental_product_instance
 #: model_terms:ir.ui.view,arch_db:rental_product_instance.product_normal_form_view
 msgid "<span>h on</span>"
-msgstr "<span>h on</span>"
+msgstr "<span> h en</span>"
 
 #. module: rental_product_instance
 #: model_terms:ir.ui.view,arch_db:rental_product_instance.product_normal_form_view
 msgid "<span>km on</span>"
-msgstr "<span>km on</span>"
+msgstr "<span> km en</span>"
 
 #. module: rental_product_instance
 #: selection:product.product,instance_state:0
@@ -33,7 +33,7 @@ msgstr "Disponible"
 #. module: rental_product_instance
 #: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_condition_date
 msgid "Condition Date"
-msgstr "Fecha de condicion"
+msgstr "Fecha de condición"
 
 #. module: rental_product_instance
 #: model_terms:ir.actions.act_window,help:rental_product_instance.action_instance_operating_data
@@ -133,7 +133,7 @@ msgstr "Mantenimiento"
 #. module: rental_product_instance
 #: model:ir.model.fields,field_description:rental_product_instance.field_product_product__instance_next_service_date
 msgid "Next Service"
-msgstr "Siguiente servicio"
+msgstr "Siguiente revisión"
 
 #. module: rental_product_instance
 #: model:ir.actions.act_window,name:rental_product_instance.action_instance_operating_data
