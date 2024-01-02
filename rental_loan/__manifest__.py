@@ -25,6 +25,7 @@ This module is automatically installed when all of the following modules are ins
     "depends": [
         "account_loan",
         "rental_base",
+        "rental_product_variant",
     ],
     "data": [
         "views/product_view.xml",
