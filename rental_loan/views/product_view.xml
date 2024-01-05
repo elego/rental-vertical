@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- ProductProduct -->
+        <record id="product_normal_form_view" model="ir.ui.view">
+            <field name="name">view.product.product.form</field>
+            <field name="model">product.product</field>
+            <field name="groups_id" eval="[(4, ref('account.group_account_user'))]"/>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <button name="action_view_rental_order" position="before">
+                    <button class="oe_stat_button" name="action_view_loan"
+                        type="object" icon="fa-eur">
+                        <field name="loan_count" widget="statinfo" />
+                    </button>
+                </button>
+            </field>
+        </record>
+
+        <menuitem id="account_loan_menu"
+              parent="rental_base.menu_vendor_invoices" sequence="20"
+              name="Loans"
+              groups="account.group_account_user"
+              action="account_loan.account_loan_action"/>
+
+    </data>
+</odoo>
