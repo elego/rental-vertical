@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_rental_pack_product_route" model="ir.ui.view">
+        <field name="name">rental.pack.product.route.form</field>
+        <field name="model">rental.pack.product.route</field>
+        <field name="arch" type="xml">
+            <form string="Routes">
+                <group>
+                    <field name="order_id" readonly="1"/>
+                    <field name="delay"/>
+                    <field name="start_date"/>
+                    <field name="source_order_id" options="{'no_create': True}" context="{'rental_routing': True, 'rental_order_id': order_id, 'start_date': start_date}"/>
+                    <field name="lines">
+                        <tree editable="bottom">
+                            <field name="product_line_id" invisible="1"/>
+                            <field name="product_id"/>
+                            <field name="required_qty"/>
+                            <field name="qty"/>
+                            <field name="avail_qty"/>
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button name="action_confirm" type="object" string="Confirm" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_rental_pack_product_route">
+        <field name="name">Routing</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">rental.pack.product.route</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

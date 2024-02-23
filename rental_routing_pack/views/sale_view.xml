@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="rental_product_line_move_tree_view" model="ir.ui.view">
+        <field name="name">rental_product_pack.view_move_tree</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_tree_receipt_picking"/>
+        <field name="arch" type="xml">
+            <field name="location_id" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </field>
+            <field name="location_dest_id" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">rental_product_pack.view_order_form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <button name="%(rental_routing.action_sale_rental_route)d" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </button>
+            <notebook position="inside">
+                <page name="rental_stock_product_lines" string="Stockable Products">
+                    <button name="%(rental_routing_pack.action_rental_pack_product_route)d" string="Route" type="action" attrs="{'invisible': [('state','=','draft')]}"/>
+                    <field name="rental_stock_product_line_ids"
+                           mode="tree" readonly="1">
+                        <tree decoration-danger="total_qty_out &lt; product_qty_out or total_qty_in &lt; product_qty_in">
+                            <field name="product_id"/>
+                            <field name="product_qty_out"/>
+                            <field name="product_qty_in" invisible="1"/>
+                            <field name="routed_qty_out"/>
+                            <field name="routed_qty_in"/>
+                            <field name="total_qty_out"/>
+                            <field name="total_qty_in"/>
+                        </tree>
+                        <form>
+                            <group>
+                                <group>
+                                    <field name="product_qty_out"/>
+                                    <field name="routed_qty_out"/>
+                                    <field name="total_qty_out"/>
+                                </group>
+                                <group>
+                                    <field name="product_qty_in" invisible="1"/>
+                                    <field name="routed_qty_in"/>
+                                    <field name="total_qty_in"/>
+                                </group>
+                            </group>
+                            <label for="out_move_ids"/>
+                            <field name="out_move_ids"/>
+                            <label for="in_move_ids"/>
+                            <field name="in_move_ids"/>
+                        </form>
+                    </field>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+    <!-- disable routing action in module rental_routing -->
+    <record id="view_order_form_routing_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.routing.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="rental_routing.view_order_form_inherit"/>
+        <field name="arch" type="xml">
+            <field name="can_forward_rental" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+
+            <field name="forward_rental_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <button name="%(rental_routing.action_sale_rental_route)d" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </button>
+        </field>
+    </record>
+</odoo>
