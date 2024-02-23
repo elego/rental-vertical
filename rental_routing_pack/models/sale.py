@@ -26,25 +26,24 @@ class SaleOrder(models.Model):
         )
         args = args or []
         rental_routing = self.env.context.get("rental_routing", False)
+        rental_sale_type = self.env.ref("rental_base.rental_sale_type")
+        #from pudb.remote import set_trace; set_trace(host='0.0.0.0', port=1984)
         if rental_routing:
             start_date = fields.Date.from_string(self.env.context.get("start_date", False))
             rental_order_id = self.env.context.get("rental_order_id", False)
             domain = [
-                "&",
+                "&", "&",
                 ("id", "!=", rental_order_id),
                 ("state", "=", "sale"),
+                ("type_id", "=", rental_sale_type.id),
             ]
-            record_ids = self._search(
+            return self._search(
                 expression.AND([domain, args]),
                 limit=limit,
                 access_rights_uid=name_get_uid,
             )
-            if record_ids:
-                res2 = self.browse(record_ids).filtered(lambda x: x.default_end_date and x.default_end_date < start_date).name_get()
-                return list(set(res) & set(res2))
         return res
 
-    @api.multi
     def action_confirm(self):
         res = super(SaleOrder, self).action_confirm()
         for order in self:
@@ -67,7 +66,6 @@ class SaleOrder(models.Model):
             order.create_rental_stock_product_line(out_pickings, in_pickings)
         return res
 
-    @api.multi
     def create_rental_stock_product_line(self, out_pickings, in_pickings):
         self.ensure_one()
         rspl_obj = self.env["rental.stock.product.line"]
@@ -160,7 +158,6 @@ class RentalStockProductLine(models.Model):
         compute="_compute_total_qty",
     )
 
-    @api.multi
     def _compute_total_qty(self):
         for rec in self:
             total_qty_out = 0
@@ -174,7 +171,6 @@ class RentalStockProductLine(models.Model):
             rec.total_qty_out = total_qty_out
             rec.total_qty_in = total_qty_in
 
-    @api.multi
     def _get_routed_qty(self, rental_type):
         routed_qty = 0
         if rental_type == 'out':
@@ -191,7 +187,6 @@ class RentalStockProductLine(models.Model):
                 routed_qty += move.product_qty
         return routed_qty
 
-    @api.multi
     def _get_origin_rental_moves(self, route_type):
         self.ensure_one()
         res = self.env["stock.move"]
@@ -207,7 +202,6 @@ class RentalStockProductLine(models.Model):
         else:
             return res
 
-    @api.multi
     def forward_product(self, forward_line, qty, new_picking):
         self.ensure_one()
         if forward_line.product_id == self.product_id:
@@ -231,10 +225,10 @@ class RentalStockProductLine(models.Model):
             ):
                 in_move.product_uom_qty += 1
                 reset_qty = True
-            new_move_id = in_move.with_context(do_not_push_apply=True)._split(qty)
+            new_move_vals = in_move.with_context(do_not_push_apply=True)._split(qty)
             if reset_qty:
                 in_move.product_uom_qty -= 1
-            new_move = self.env["stock.move"].browse(new_move_id)
+            new_move = self.env["stock.move"].create(new_move_vals)
             new_move.write(
                 {
                     "location_id": location.id,

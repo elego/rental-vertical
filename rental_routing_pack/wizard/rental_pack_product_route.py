@@ -32,7 +32,6 @@ class RentalPackProductRouteLine(models.TransientModel):
         compute="compute_avail_qty",
     )
 
-    @api.multi
     def compute_avail_qty(self):
         for rec in self:
             rec.avail_qty = 0
@@ -110,7 +109,6 @@ class RentalPackProductRoute(models.TransientModel):
                         0,
                         0,
                         {
-                            "parent_id": self.id,
                             "product_line_id": line.id,
                             "qty": line.total_qty_in - line.routed_qty_in,
                             "required_qty": required_qty,
@@ -119,7 +117,6 @@ class RentalPackProductRoute(models.TransientModel):
                 )
         return {"value": {"lines": lines}}
 
-    @api.multi
     def check_forward_lines(self):
         self.ensure_one()
         for line in self.lines:
@@ -136,7 +133,6 @@ class RentalPackProductRoute(models.TransientModel):
             if line.start_date != default_start_date or line.end_date != default_end_date:
                 raise UserError(_("You can not define a new route of current rental order. Because the start or end dates are not unique in its positions."))
 
-    @api.multi
     def action_confirm(self):
         """
         Setup Route

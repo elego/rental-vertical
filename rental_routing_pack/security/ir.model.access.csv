@@ -1,2 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_rental_stock_product_line_user,rental.stock.product.line,model_rental_stock_product_line,base.group_user,1,1,1,1
+access_rental_pack_product_route_line,access_rental_pack_product_route_line,model_rental_pack_product_route_line,base.group_user,1,1,1,1
+access_rental_pack_product_route,access_rental_pack_product_route,model_rental_pack_product_route,base.group_user,1,1,1,1
