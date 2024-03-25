@@ -35,7 +35,6 @@ like a certain mileage or amount of operating hours.
     "author": "Odoo Community Association (OCA)/Elego Software Solutions GmbH",
     "depends": [
         "rental_product_instance_repair",
-        "project_stage_closed",
     ],
     "data": [
         "security/ir.model.access.csv",
