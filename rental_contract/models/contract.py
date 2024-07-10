@@ -63,12 +63,12 @@ class ContractContract(models.Model):
         res = super(ContractContract, self)._prepare_invoice(date_invoice, journal)
         self.contract_line_ids.mapped("sale_order_line_id.order_id")
         if self.type_id:
-            res["contract_type_id"] = self.type_id.id
+            res[0]["contract_type_id"] = self.type_id.id
             if self.sale_type_id:
                 # contract is created from SO
-                res["sale_type_id"] = self.sale_type_id.id
+                res[0]["sale_type_id"] = self.sale_type_id.id
             else:
-                res["sale_type_id"] = False
+                res[0]["sale_type_id"] = False
             if self.type_id.journal_id:
-                res["journal_id"] = self.type_id.journal_id.id
+                res[0]["journal_id"] = self.type_id.journal_id.id
         return res
