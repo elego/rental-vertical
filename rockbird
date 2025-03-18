@@ -1,0 +1,135 @@
+commit 7bbc1e5bc09697bde0941fa56c38846a122022de
+Author: Yu Weng <yweng@elegosoft.com>
+Date:   Fri Jul 1 19:45:44 2022 +0200
+
+    [IMP] show field tag_ids of product.template in views of product.product (issue #5057)
+
+diff --git a/rental_product_instance/__manifest__.py b/rental_product_instance/__manifest__.py
+index caba7d5b..7bbcea52 100644
+--- a/rental_product_instance/__manifest__.py
++++ b/rental_product_instance/__manifest__.py
+@@ -25,6 +25,7 @@ you can save the mileage of vehicles or the operating hours of machines.
+     "author": "Odoo Community Association (OCA)/Elego Software Solutions GmbH",
+     "depends": [
+         "rental_product_variant",
++        "product_template_tags",
+     ],
+     "data": [
+         "security/ir.model.access.csv",
+diff --git a/rental_product_instance/views/product_view.xml b/rental_product_instance/views/product_view.xml
+index 5010cf72..fa3bfe22 100644
+--- a/rental_product_instance/views/product_view.xml
++++ b/rental_product_instance/views/product_view.xml
+@@ -119,6 +119,35 @@
+                 </search>
+                 <field name="name" position="replace">
+                     <field name="name" string="Product" filter_domain="['|', '|', '|', ('default_code', 'ilike', self), ('name', 'ilike', self), ('barcode', 'ilike', self), ('instance_serial_number_id.name', 'ilike', self)]"/>
++                    <field name="tag_ids"/>
++                </field>
++            </field>
++        </record>
++
++        <record id="product_kanban_view" model="ir.ui.view">
++            <field name="name">product.product.kanban</field>
++            <field name="model">product.product</field>
++            <field name="inherit_id" ref="product.product_kanban_view" />
++            <field name="arch" type="xml">
++                <div name="tags" position="inside">
++                    <div class="o_kanban_tags_section">
++                        <span class="oe_kanban_list_many2many">
++                            <field name="tag_ids"
++                                   widget="many2many_tags"
++                                   options="{'color_field': 'color'}"/>
++                        </span>
++                    </div>
++                </div>
++            </field>
++        </record>
++
++        <record id="product_product_tree_view" model="ir.ui.view">
++            <field name="name">product.product.tree</field>
++            <field name="model">product.product</field>
++            <field name="inherit_id" ref="product.product_product_tree_view" />
++            <field name="arch" type="xml">
++                <field name="attribute_value_ids" position="after">
++                    <field name="tag_ids" widget="many2many_tags"/>
+                 </field>
+             </field>
+         </record>
+commit a99ec9b3fd16f258db192757dc52f1d66a63a2e7
+Author: Yu Weng <yweng@elegosoft.com>
+Date:   Mon Jul 4 12:03:51 2022 +0200
+
+    [IMP] add menu to config product template tags (issue #5057)
+
+diff --git a/rental_product_instance/i18n/de.po b/rental_product_instance/i18n/de.po
+index a48620b8..bf22f309 100644
+--- a/rental_product_instance/i18n/de.po
++++ b/rental_product_instance/i18n/de.po
+@@ -6,8 +6,8 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: Odoo Server 12.0\n"
+ "Report-Msgid-Bugs-To: \n"
+-"POT-Creation-Date: 2020-12-22 21:06+0000\n"
+-"PO-Revision-Date: 2020-12-22 21:06+0000\n"
++"POT-Creation-Date: 2022-07-04 10:02+0000\n"
++"PO-Revision-Date: 2022-07-04 10:02+0000\n"
+ "Last-Translator: <>\n"
+ "Language-Team: \n"
+ "MIME-Version: 1.0\n"
+@@ -161,6 +161,11 @@ msgstr "Produktkategorie"
+ msgid "Product Instance"
+ msgstr "Produktinstanz"
+ 
++#. module: rental_product_instance
++#: model:ir.ui.menu,name:rental_product_instance.menu_config_rental_product_tag
++msgid "Product Tags"
++msgstr "Stichwörter"
++
+ #. module: rental_product_instance
+ #: model:ir.model,name:rental_product_instance.model_product_template
+ msgid "Product Template"
+diff --git a/rental_product_instance/i18n/rental_product_instance.pot b/rental_product_instance/i18n/rental_product_instance.pot
+index 6c3db4ee..06120e4a 100644
+--- a/rental_product_instance/i18n/rental_product_instance.pot
++++ b/rental_product_instance/i18n/rental_product_instance.pot
+@@ -6,8 +6,8 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: Odoo Server 12.0\n"
+ "Report-Msgid-Bugs-To: \n"
+-"POT-Creation-Date: 2020-12-22 21:05+0000\n"
+-"PO-Revision-Date: 2020-12-22 21:05+0000\n"
++"POT-Creation-Date: 2022-07-04 10:02+0000\n"
++"PO-Revision-Date: 2022-07-04 10:02+0000\n"
+ "Last-Translator: <>\n"
+ "Language-Team: \n"
+ "MIME-Version: 1.0\n"
+@@ -161,6 +161,11 @@ msgstr ""
+ msgid "Product Instance"
+ msgstr ""
+ 
++#. module: rental_product_instance
++#: model:ir.ui.menu,name:rental_product_instance.menu_config_rental_product_tag
++msgid "Product Tags"
++msgstr ""
++
+ #. module: rental_product_instance
+ #: model:ir.model,name:rental_product_instance.model_product_template
+ msgid "Product Template"
+diff --git a/rental_product_instance/views/product_view.xml b/rental_product_instance/views/product_view.xml
+index fa3bfe22..fbc92357 100644
+--- a/rental_product_instance/views/product_view.xml
++++ b/rental_product_instance/views/product_view.xml
+@@ -152,5 +152,12 @@
+             </field>
+         </record>
+ 
++        <record id="menu_config_rental_product_tag" model="ir.ui.menu">
++            <field name="name">Product Tags</field>
++            <field name="parent_id" ref="rental_base.menu_config_products"/>
++            <field name="sequence" eval="21"/>
++            <field name="action" ref="product_template_tags.product_template_tag_act_window"/>
++        </record>
++
+     </data>
+ </odoo>

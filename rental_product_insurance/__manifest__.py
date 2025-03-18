@@ -6,7 +6,7 @@
     "description": """
 This module provides the opportunity to sell product as insurance.
 """,
-    "version": "17.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Rental",
     "author": "Odoo Community Association (OCA)/Elego Software Solutions GmbH",
     "depends": [

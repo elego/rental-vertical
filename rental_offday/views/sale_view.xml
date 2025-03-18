@@ -27,10 +27,10 @@
                             <group string="Fixed Off Days">
                                 <field name="fixed_offday_type" />
                                 <field name="fixed_offday_ids" nolabel="1" colspan="3">
-                                    <tree>
+                                    <list>
                                         <field name="date" />
                                         <field name="name" />
-                                    </tree>
+                                    </list>
                                 </field>
                             </group>
                             <group string="Additional Off Days">
@@ -58,10 +58,10 @@
                                     />
                                 </div>
                                 <field name="add_offday_ids" nolabel="1">
-                                    <tree editable="bottom">
+                                    <list editable="bottom">
                                         <field name="date" />
                                         <field name="name" />
-                                    </tree>
+                                    </list>
                                 </field>
                             </group>
                         </group>

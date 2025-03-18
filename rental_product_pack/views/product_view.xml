@@ -64,19 +64,19 @@
                                 name="used_in_pack_line_ids"
                                 nolabel="1"
                             >
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="parent_product_id" />
                                     <field name="quantity" />
-                                </tree>
+                                </list>
                             </field>
                         </group>
                     </group>
                 </group>
                 <xpath expr="//field[@name='pack_line_ids']" position="inside">
-                    <tree editable="bottom">
+                    <list editable="bottom">
                         <field name="product_id" />
                         <field name="quantity" />
-                    </tree>
+                    </list>
                 </xpath>
             </field>
         </record>
