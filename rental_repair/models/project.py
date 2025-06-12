@@ -23,7 +23,7 @@ class ProjectTask(models.Model):
     )
 
     lot_id = fields.Many2one(
-        comodel_name="stock.production.lot",
+        comodel_name="stock.lot",
         string="Serial Number",
     )
 

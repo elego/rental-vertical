@@ -4,7 +4,7 @@ from odoo import fields, models, api, exceptions, _
 
 
 class StockProductionLot(models.Model):
-    _inherit = "stock.production.lot"
+    _inherit = "stock.lot"
 
     @api.constrains("product_id", "name")
     def _check_unique_product_instance(self):
