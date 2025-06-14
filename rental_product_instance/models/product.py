@@ -43,7 +43,7 @@ class ProductProduct(models.Model):
     _inherit = "product.product"
 
     instance_serial_number_id = fields.Many2one(
-        "stock.production.lot",
+        "stock.lot",
         "Serial Number",
         ondelete="set null",
         domain="[('product_id', '=', id)]",

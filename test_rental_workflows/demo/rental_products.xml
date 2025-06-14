@@ -48,7 +48,7 @@
             <field name="expense_analytic_account_id" ref="account_01531" />
             <!-- TODO Image of Product -->
         </record>
-        <record id="serial_rental_01531" model="stock.production.lot">
+        <record id="serial_rental_01531" model="stock.lot">
             <field name="name">KTG11531</field>
             <field name="product_id" ref="rental_01531" />
             <field name="company_id" ref="base.main_company"/>
@@ -125,7 +125,7 @@
             <field name="expense_analytic_account_id" ref="account_01532" />
             <!-- TODO Image of Product -->
         </record>
-        <record id="serial_rental_01532" model="stock.production.lot">
+        <record id="serial_rental_01532" model="stock.lot">
             <field name="name">KTG11532</field>
             <field name="product_id" ref="rental_01532" />
             <field name="company_id" ref="base.main_company"/>
@@ -174,7 +174,7 @@
             <field name="expense_analytic_account_id" ref="account_01533" />
             <!-- TODO Image of Product -->
         </record>
-        <record id="serial_rental_01533" model="stock.production.lot">
+        <record id="serial_rental_01533" model="stock.lot">
             <field name="name">KTG11533</field>
             <field name="product_id" ref="rental_01533" />
             <field name="company_id" ref="base.main_company"/>
@@ -224,7 +224,7 @@
             <field name="expense_analytic_account_id" ref="account_01534" />
             <!-- TODO Image of Product -->
         </record>
-        <record id="serial_rental_01534" model="stock.production.lot">
+        <record id="serial_rental_01534" model="stock.lot">
             <field name="name">KTG11534</field>
             <field name="product_id" ref="rental_01534" />
             <field name="company_id" ref="base.main_company"/>
@@ -272,7 +272,7 @@
             <field name="income_analytic_account_id" ref="account_01535" />
             <field name="expense_analytic_account_id" ref="account_01535" />
         </record>
-        <record id="serial_rental_01535" model="stock.production.lot">
+        <record id="serial_rental_01535" model="stock.lot">
             <field name="name">KTG11535</field>
             <field name="product_id" ref="rental_01535" />
             <field name="company_id" ref="base.main_company"/>

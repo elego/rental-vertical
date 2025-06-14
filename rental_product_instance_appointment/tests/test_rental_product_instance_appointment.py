@@ -19,7 +19,7 @@ class TestRentalProductInstanceAppointment(RentalStockCommon):
                 "type": "consu",
             }
         )
-        self.serialNumberA = self.env["stock.production.lot"].create(
+        self.serialNumberA = self.env["stock.lot"].create(
             {
                 "name": "Serial Number A",
                 "product_id": self.productA.id,

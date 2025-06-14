@@ -15,7 +15,7 @@ class TestRentalProductInstance(RentalStockCommon):
         company = self.env.ref('base.main_company')
         ProductObj = self.env["product.product"]
         self.productA = ProductObj.create({"name": "Product A", "type": "consu"})
-        self.serialNumberA = self.env["stock.production.lot"].create(
+        self.serialNumberA = self.env["stock.lot"].create(
             {
                 "name": "Serial Number A",
                 "product_id": self.productA.id,
@@ -71,7 +71,7 @@ class TestRentalProductInstance(RentalStockCommon):
         self.productA.onchange_product_instance()
         # try create 2nd. serial number for productA
         with self.assertRaises(ValidationError):
-            self.serialNumberB = self.env["stock.production.lot"].create(
+            self.serialNumberB = self.env["stock.lot"].create(
                 {
                     "name": "Serial Number B",
                     "product_id": self.productA.id,
