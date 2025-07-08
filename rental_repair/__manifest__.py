@@ -14,7 +14,8 @@
         "repair",
         "rental_purchase_order_type",
         "rental_product_instance",
-        "account"
+        "account",
+        "analytic"
     ],
     "data": [
         "data/project_data.xml",
