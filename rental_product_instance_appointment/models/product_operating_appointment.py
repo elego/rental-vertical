@@ -182,7 +182,7 @@ class ProductOperatingAppointment(models.Model):
         all_appointments = self.search([])
         all_appointments.action_create_project_tasks()
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
         res = super().create(vals)
         res.product_id.update_operating_data_daily_increase()
