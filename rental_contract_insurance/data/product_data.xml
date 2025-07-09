@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+        <record id="product_product_contract_insurance" model="product.product">
+            <field name="name">Insurance Month</field>
+            <field name="default_code" />
+            <field name="type">service</field>
+            <field name="uom_id" ref="rental_base.product_uom_month" />
+            <field name="uom_po_id" ref="rental_base.product_uom_month" />
+            <field name="categ_id" ref="product.product_category_1" />
+            <field
+                name="property_contract_template_id"
+                ref="rental_contract.rental_contract_template"
+            />
+            <field name="sale_ok" eval="True" />
+            <field name="is_contract" eval="True" />
+            <field name="list_price">0.0</field>
+        </record>
+    </data>
+</odoo>
