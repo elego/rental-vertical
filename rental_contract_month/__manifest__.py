@@ -24,7 +24,7 @@ This module is automatically installed when all of the following modules are ins
  - rental_contract
  - rental_pricelist
     """,
-    "version": "12.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Rental",
     "author": "Odoo Community Association (OCA)/Elego Software Solutions GmbH",
     "depends": [

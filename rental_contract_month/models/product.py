@@ -6,7 +6,6 @@ from odoo import api, fields, models, exceptions, _
 class ProductProduct(models.Model):
     _inherit = "product.product"
 
-    @api.multi
     def write(self, vals):
         template = self.env.ref("rental_contract.rental_contract_template")
         res = super(ProductProduct, self).write(vals)
