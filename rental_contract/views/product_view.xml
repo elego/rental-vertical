@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- ProductProduct -->
+        <record id="product_normal_form_view" model="ir.ui.view">
+            <field name="name">view.product.product.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <button name="toggle_active" position="before">
+                    <button class="oe_stat_button" name="action_view_supplier_contract"
+                        type="object" icon="fa-file-text">
+                        <field name="ven_contract_count" widget="statinfo" />
+                    </button>
+                </button>
+                <button name="toggle_active" position="before">
+                    <button class="oe_stat_button" name="action_view_customer_contract"
+                        type="object" icon="fa-file-text-o">
+                        <field name="cust_contract_count" widget="statinfo" />
+                    </button>
+                </button>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>
