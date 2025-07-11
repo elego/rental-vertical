@@ -14,7 +14,6 @@ class ContractLine(models.Model):
             elif self.contract_id.contract_type == "purchase":
                 self.analytic_account_id = self.product_id.expense_analytic_account_id
 
-    @api.multi
     def _prepare_invoice_line(self, invoice_id=False, invoice_values=False):
         self.ensure_one()
         res = super(ContractLine, self)._prepare_invoice_line(

@@ -28,7 +28,6 @@ class SaleOrderLine(models.Model):
             if number:
                 self.product_uom_qty = number
 
-    @api.multi
     def _prepare_contract_line_values(
         self, contract, predecessor_contract_line_id=False
     ):
@@ -39,7 +38,6 @@ class SaleOrderLine(models.Model):
             res["analytic_account_id"] = self.product_id.income_analytic_account_id.id
         return res
 
-    @api.multi
     def update_start_end_date(self, date_start, date_end):
         super(SaleOrderLine, self).update_start_end_date(date_start, date_end)
         for line in self:
@@ -103,7 +101,6 @@ class SaleOrderLine(models.Model):
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    @api.multi
     def _prepare_contract_value(self, contract_template):
         res = super(SaleOrder, self)._prepare_contract_value(contract_template)
         so_rental_order = self.env.ref("rental_base.rental_sale_type")
@@ -125,7 +122,6 @@ class SaleOrder(models.Model):
             )
         return res
 
-    @api.multi
     def _prepare_invoice(self):
         res = super(SaleOrder, self)._prepare_invoice()
         if self.type_id:

@@ -23,7 +23,6 @@ class ProductProduct(models.Model):
         if self.is_contract and self.rental:
             self.contract_template_id = template.id
 
-    @api.multi
     def _get_contract_ids(self, contract_type):
         self.ensure_one()
         cls = self.env["contract.line"].search(
@@ -48,7 +47,6 @@ class ProductProduct(models.Model):
             )
         )
 
-    @api.multi
     def action_view_supplier_contract(self):
         self.ensure_one()
         record_ids = self._get_contract_ids(contract_type="purchase")
@@ -56,7 +54,6 @@ class ProductProduct(models.Model):
         action["domain"] = [("id", "in", record_ids)]
         return action
 
-    @api.multi
     def action_view_customer_contract(self):
         self.ensure_one()
         record_ids = self._get_contract_ids(contract_type="sale")
@@ -64,13 +61,11 @@ class ProductProduct(models.Model):
         action["domain"] = [("id", "in", record_ids)]
         return action
 
-    @api.multi
     def _compute_cust_contract_count(self):
         contract_type = "sale"
         for rec in self:
             rec.cust_contract_count = len(rec._get_contract_ids(contract_type))
 
-    @api.multi
     def _compute_ven_contract_count(self):
         contract_type = "purchase"
         for rec in self:

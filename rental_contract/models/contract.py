@@ -12,7 +12,6 @@ class ContractContract(models.Model):
         related="type_id.sub_type", string="Sub Type", store=True, readonly=True
     )
 
-    @api.multi
     @api.onchange("partner_id")
     def _onchange_partner_id(self):
         super(ContractContract, self)._onchange_partner_id()
@@ -24,7 +23,6 @@ class ContractContract(models.Model):
             self.type_id = contract_type
             self.contract_type = contract_type.contract_type
 
-    @api.multi
     @api.onchange("type_id")
     def onchange_type_id(self):
         for order in self:
@@ -61,7 +59,6 @@ class ContractContract(models.Model):
                 vals["code"] = code[1]
         return super(ContractContract, self).create(vals)
 
-    @api.multi
     def _prepare_invoice(self, date_invoice, journal=None):
         res = super(ContractContract, self)._prepare_invoice(date_invoice, journal)
         so_id = self.contract_line_ids.mapped("sale_order_line_id.order_id")

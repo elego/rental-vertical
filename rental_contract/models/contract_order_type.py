@@ -60,7 +60,6 @@ class ContractOrderType(models.Model):
         default=lambda self: self._default_pricelist_id(),
     )
 
-    @api.multi
     @api.onchange("contract_type")
     def onchange_contract_type(self):
         if self.contract_type:
