@@ -118,7 +118,6 @@ class SaleOrderLine(models.Model):
         )
         return insurance_line
 
-    @api.multi
     def update_rental_insurance_line(self):
         self.ensure_one()
         old_insurance_lines = self.insurance_line_ids
@@ -154,7 +153,6 @@ class SaleOrderLine(models.Model):
             res.update_insurance_line = False
         return res
 
-    @api.multi
     def _prepare_contract_line_values(
         self, contract, predecessor_contract_line_id=False
     ):
@@ -169,7 +167,6 @@ class SaleOrderLine(models.Model):
                 ] = rental_product.income_analytic_account_id.id
         return res
 
-    @api.multi
     def _prepare_invoice_line(self, qty):
         res = super(SaleOrderLine, self)._prepare_invoice_line(qty)
         if self.insurance_origin_line_id:

@@ -124,7 +124,6 @@ class InsuranceProductSolInfo(models.Model):
     #    'sol_id.insurance_entire_time',
     #    'sol_id.number_of_time_unit',
     # )
-    @api.multi
     def _compute_insurance_price_unit(self):
         for r in self:
             insurance_amount = 0
