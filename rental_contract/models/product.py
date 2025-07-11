@@ -21,7 +21,7 @@ class ProductProduct(models.Model):
     def onchange_is_contract_rental(self):
         template = self.env.ref("rental_contract.rental_contract_template")
         if self.is_contract and self.rental:
-            self.contract_template_id = template.id
+            self.property_contract_template_id = template.id
 
     def _get_contract_ids(self, contract_type):
         self.ensure_one()

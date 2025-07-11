@@ -14,10 +14,10 @@
             <xpath expr="//field[@name='contract_line_id']" position="attributes">
                 <attribute name="attrs">{'invisible': 1}</attribute>
             </xpath>
-            <xpath expr="//field[@name='order_line']//field[@name='date_start']/.." position="attributes">
+            <xpath expr="//field[@name='order_line']//field[@name='date_start']/parent::group" position="attributes">
                 <attribute name="invisible">1</attribute>
             </xpath>
-            <xpath expr="//field[@name='order_line']//field[@name='date_end']/.." position="attributes">
+            <xpath expr="//field[@name='order_line']//field[@name='date_end']/parent::group" position="attributes">
                 <attribute name="invisible">1</attribute>
             </xpath>
             <xpath expr="//field[@name='is_contract']/following-sibling::separator" position="attributes">
@@ -50,7 +50,7 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="rental_base.view_order_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//group[@id='rental_invoicing']//div[field[@name='analytic_tag_ids']]" position="after">
+            <xpath expr="//group[@id='rental_invoicing']//div[field[@name='analytic_distribution']]" position="after">
                 <field name="contract_id"
                        options='{"no_create": True}'
                        attrs="{'invisible': [('is_contract', '=', False)]}"

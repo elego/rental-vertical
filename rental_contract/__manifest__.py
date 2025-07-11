@@ -23,7 +23,6 @@ You can add new contract subtypes here:
 
  - Invoicing > Configuration > Contract > Contract Subtypes
  - Rentals > Configuration > Contract > Contract Subtypes
- 
  - Create a sale order.
  - Choose a sale type.
  - Add a rental product that has a rental service marked as contract with a contract template 
@@ -57,11 +56,11 @@ This module is automatically installed when all of the following modules are ins
         "data/default_type_data.xml",
         "data/contract_template_data.xml",
         "views/contract_view.xml",
-        "views/sale_view.xml",
+        #"views/sale_view.xml",
         "views/product_view.xml",
         "views/contract_order_type_view.xml",
         "views/res_partner_view.xml",
-        "views/account_invoice_view.xml",
+        "views/account_move_view.xml",
     ],
     "demo": [],
     "qweb": [],

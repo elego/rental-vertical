@@ -10,9 +10,9 @@ class ContractLine(models.Model):
     def onchange_product_id(self):
         if self.product_id:
             if self.contract_id.contract_type == "sale":
-                self.analytic_account_id = self.product_id.income_analytic_account_id
+                self.analytic_distribution = {self.product_id.income_analytic_account_id: 100}
             elif self.contract_id.contract_type == "purchase":
-                self.analytic_account_id = self.product_id.expense_analytic_account_id
+                self.analytic_distribution = {self.product_id.expense_analytic_account_id: 100}
 
     def _prepare_invoice_line(self, invoice_id=False, invoice_values=False):
         self.ensure_one()
