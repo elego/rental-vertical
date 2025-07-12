@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="cot_invoice_form" model="ir.ui.view">
+            <field name="name">account.invoice.form.cot</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form" />
+            <field name="arch" type="xml">
+                <field name="invoice_payment_term_id" position="after">
+                    <field
+                        name="contract_type_id"
+                        domain="[('contract_type', '=', 'sale')]"
+                    />
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <!-- Contract Order Subtype for Customer -->
+    <record id="customer_contract_type" model="contract.order.type">
+        <field name="name">Customer Contract</field>
+        <field name="contract_type">sale</field>
+        <field name="journal_id" search="[('type', '=', 'sale')]" />
+        <field name="pricelist_id" ref="product.list0" />
+        <field name="payment_term_id" ref="account.account_payment_term_immediate" />
+        <field name="sequence_id" ref="rental_contract.seq_customer_contract" />
+    </record>
+    <record id="customer_rental_contract_type" model="contract.order.type">
+        <field name="name">Rental Contract</field>
+        <field name="contract_type">sale</field>
+        <field name="sub_type">rental</field>
+        <field name="journal_id" search="[('type', '=', 'sale')]" />
+        <field name="pricelist_id" ref="product.list0" />
+        <field name="payment_term_id" ref="account.account_payment_term_immediate" />
+        <field name="sequence_id" ref="rental_contract.seq_customer_contract" />
+    </record>
+    <!-- Contract Order Subtype for Vendor -->
+    <record id="vendor_contract_type" model="contract.order.type">
+        <field name="name">Vendor Contract</field>
+        <field name="contract_type">purchase</field>
+        <field name="journal_id" search="[('type', '=', 'purchase')]" />
+        <field name="pricelist_id" ref="product.list0" />
+        <field name="payment_term_id" ref="account.account_payment_term_immediate" />
+        <field name="sequence_id" ref="rental_contract.seq_vendor_contract" />
+    </record>
+    <record id="vendor_rental_contract_type" model="contract.order.type">
+        <field name="name">Vendor Rental Contract</field>
+        <field name="contract_type">purchase</field>
+        <field name="sub_type">rental</field>
+        <field name="journal_id" search="[('type', '=', 'purchase')]" />
+        <field name="pricelist_id" ref="product.list0" />
+        <field name="payment_term_id" ref="account.account_payment_term_immediate" />
+        <field name="sequence_id" ref="rental_contract.seq_vendor_contract" />
+    </record>
+</odoo>
