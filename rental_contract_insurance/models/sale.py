@@ -2,6 +2,8 @@
 
 from odoo import api, fields, models, exceptions, _
 
+import logging
+_logger = logging.getLogger(__name__)
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
@@ -26,6 +28,11 @@ class SaleOrderLine(models.Model):
         "Insurance for entire Time",
         default=True,
     )
+
+    #(override) function onchange_date_start from module product_contract
+    @api.onchange("date_start", "product_uom_qty", "recurring_rule_type")
+    def onchange_date_start(self):
+        return
 
     @api.constrains("insurance_product_ids", "product_uom")
     def _check_insurance_product_uom(self):
@@ -144,13 +151,14 @@ class SaleOrderLine(models.Model):
         self.update_insurance_line = False
         return self.insurance_line_ids
 
-    @api.model
-    def create(self, vals):
-        res = super().create(vals)
-        if res.insurance_product_ids:
-            for product in res.insurance_product_ids:
-                res._create_rental_insurance_line(product)
-            res.update_insurance_line = False
+    @api.model_create_multi
+    def create(self, vals_list):
+        res = super().create(vals_list)
+        for line in res:
+            if line.insurance_product_ids:
+                for product in line.insurance_product_ids:
+                    line._create_rental_insurance_line(product)
+                line.update_insurance_line = False
         return res
 
     def _prepare_contract_line_values(
@@ -163,16 +171,17 @@ class SaleOrderLine(models.Model):
             if self.insurance_origin_line_id.product_id.income_analytic_account_id:
                 rental_product = self.insurance_origin_line_id.product_id
                 res[
-                    "analytic_account_id"
-                ] = rental_product.income_analytic_account_id.id
+                    "analytic_distribution"
+                ] = {rental_product.income_analytic_account_id.id: 100}
         return res
 
-    def _prepare_invoice_line(self, qty):
-        res = super(SaleOrderLine, self)._prepare_invoice_line(qty)
+    def _prepare_invoice_line(self, **optional_values):
+        self.ensure_one()
+        res = super()._prepare_invoice_line(**optional_values)
         if self.insurance_origin_line_id:
             if self.insurance_origin_line_id.product_id.income_analytic_account_id:
                 rental_product = self.insurance_origin_line_id.product_id
                 res[
-                    "account_analytic_id"
-                ] = rental_product.income_analytic_account_id.id
+                    "analytic_distribution"
+                ] = {rental_product.income_analytic_account_id.id: 100}
         return res

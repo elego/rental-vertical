@@ -22,12 +22,12 @@ class ProductProduct(models.Model):
         res = self.search(
             [
                 ("is_insurance", "=", True),
-                ("uom_id.category_id", "!=", self.env.ref("uom.uom_categ_wtime")),
+                ("uom_id.category_id", "!=", self.env.ref("uom.uom_categ_wtime").id),
             ]
         )
         if res:
             raise exceptions.ValidationError(
-                _("Uom of Insurance product should be in Category Time.")
+                _("Uom of Insurance product should be in Category Time. (%s, %s)" %(res.mapped("name"), res.mapped("uom_id.name")))
             )
 
     def _get_insurance_product(self, uom):
