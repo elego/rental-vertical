@@ -32,7 +32,7 @@ Just install this module to add the rental timeline view to your system. No furt
             "/rental_timeline/static/src/scss/rental_timeline.scss",
             "/rental_timeline/static/src/js/Popup.js",
             "/rental_timeline/static/src/js/timeline_renderer.js",
-            "/rental_timeline/static/src/js/timeline_controller.js",
+            "/rental_timeline/static/src/js/timeline_controller.esm.js",
             "/rental_timeline/static/src/js/timeline_view.js",
         ],
     },

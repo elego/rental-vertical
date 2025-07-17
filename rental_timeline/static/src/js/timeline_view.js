@@ -1,6 +1,5 @@
-/* Odoo web_timeline
- * Copyright 2015 ACSONE SA/NV
- * Copyright 2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+/* Odoo rental_timeline
+ * Part of rental-vertical See LICENSE file for full copyright and licensing details.
  * License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). */
 
 _.str.toBoolElse = function (str, elseValues, trueValues, falseValues) {
@@ -16,17 +15,11 @@ odoo.define("rental_timeline.RentalTimelineView", function (require) {
 
     var core = require("web.core");
     var view_registry = require("web.view_registry");
-    var AbstractView = require("web.AbstractView");
     var TimelineModel = require("web_timeline.TimelineModel");
     var _TimelineView = require("web_timeline.TimelineView");
     var RentalTimelineRenderer = require("rental_timeline.RentalTimelineRenderer");
     var RentalTimelineController = require("rental_timeline.RentalTimelineController");
-
     var _lt = core._lt;
-
-    function isNullOrUndef(value) {
-        return _.isUndefined(value) || _.isNull(value);
-    }
 
     var RentalTimelineView = _TimelineView.extend({
         display_name: _lt("Rental Timeline"),
@@ -37,8 +30,10 @@ odoo.define("rental_timeline.RentalTimelineView", function (require) {
             Controller: RentalTimelineController,
             Renderer: RentalTimelineRenderer,
         }),
+        viewType: "rental_timeline"
     });
 
     view_registry.add("rental_timeline", RentalTimelineView);
+    
     return RentalTimelineView;
 });
