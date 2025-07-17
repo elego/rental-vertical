@@ -19,7 +19,6 @@ class ContractContract(models.Model):
         type="integer",
     )
 
-    @api.multi
     def _compute_toll_charged_count(self):
         for rec in self:
             rec.toll_line_charged_count = len(
@@ -28,7 +27,6 @@ class ContractContract(models.Model):
                 .filtered("invoiced")
             )
 
-    @api.multi
     def _compute_toll_line_count(self):
         for rec in self:
             rec.toll_line_count = len(
@@ -37,7 +35,6 @@ class ContractContract(models.Model):
                 )
             )
 
-    @api.multi
     def action_view_product_toll_charges(self):
         self.ensure_one()
         record_ids = self.contract_line_ids.mapped("sale_order_line_id").mapped(
@@ -76,7 +73,6 @@ class ContractContract(models.Model):
 class ContractLine(models.Model):
     _inherit = "contract.line"
 
-    @api.multi
     def _prepare_invoice_line(self, invoice_id=False, invoice_values=False):
         res = super(ContractLine, self)._prepare_invoice_line(
             invoice_id, invoice_values
