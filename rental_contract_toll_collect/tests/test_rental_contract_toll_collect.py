@@ -159,28 +159,28 @@ class TestRentalContractTollCollect(TransactionCase):
         self.so_line.product_uom_change()
         # checks rental values
         self.assertEqual(len(self.sale_order.order_line), 1)
-        self.assertEquals(self.so_line.product_uom, self.uom_month)
-        self.assertEquals(self.so_line.rental_type, "new_rental")
-        self.assertEquals(self.so_line.rental, True)
-        self.assertEquals(self.so_line.start_date, self.start_date)
-        self.assertEquals(self.so_line.end_date, self.end_date)
-        self.assertEquals(self.so_line.product_uom_qty, 1.0)
-        self.assertEquals(self.so_line.rental_qty, 1.0)
-        self.assertEquals(self.so_line.price_unit, 4500.00)
+        self.assertEqual(self.so_line.product_uom, self.uom_month)
+        self.assertEqual(self.so_line.rental_type, "new_rental")
+        self.assertEqual(self.so_line.rental, True)
+        self.assertEqual(self.so_line.start_date, self.start_date)
+        self.assertEqual(self.so_line.end_date, self.end_date)
+        self.assertEqual(self.so_line.product_uom_qty, 1.0)
+        self.assertEqual(self.so_line.rental_qty, 1.0)
+        self.assertEqual(self.so_line.price_unit, 4500.00)
         self.sale_order.action_update_toll_charges()
         self.so_line.update_toll_charge_lines()
         self.so_line.onchange_toll_lines_params()
         # checks toll charge line count after update
-        self.assertEquals(self.sale_order.toll_line_count, 3)
-        self.assertEquals(self.sale_order.toll_line_charged_count, 0)
-        self.assertEquals(self.sale_order.update_toll_lines, True)
+        self.assertEqual(self.sale_order.toll_line_count, 3)
+        self.assertEqual(self.sale_order.toll_line_charged_count, 0)
+        self.assertEqual(self.sale_order.update_toll_lines, True)
 
     def test_03_rental_so_to_contract_to_invoice_toll_charge_lines(self):
         self.sale_order.action_confirm()
         self.contract = self.so_line.mapped("contract_id").filtered(lambda r: r.active)
         self.contract_line = self.contract.contract_line_ids[0]
         # check contract values
-        self.assertEquals(self.contract.type_id, self.customer_rental_contract_type)
+        self.assertEqual(self.contract.type_id, self.customer_rental_contract_type)
         self.assertEqual(
             self.contract.contract_template_id, self.rental_contract_template
         )
@@ -193,8 +193,8 @@ class TestRentalContractTollCollect(TransactionCase):
         self.invoice = self.contract._get_related_invoices()
         self.invoice.action_update_toll_charges()
         # checks toll charge line count,invoice lines after update
-        self.assertEquals(self.invoice.toll_line_count, 3)
-        self.assertEquals(self.invoice.toll_line_charged_count, 3)
+        self.assertEqual(self.invoice.toll_line_count, 3)
+        self.assertEqual(self.invoice.toll_line_charged_count, 3)
         self.assertEqual(
             self.invoice.sale_type_id,
             self.rental_sale_type,
@@ -208,46 +208,46 @@ class TestRentalContractTollCollect(TransactionCase):
         for line in self.invoice.invoice_line_ids:
             line.update_toll_charge_lines()
             line.onchange_toll_lines_params()
-            self.assertEquals(
-                line.account_analytic_id, line.product_id.income_analytic_account_id
+            self.assertEqual(
+                line.analytic_distribution, line.product_id.income_analytic_account_id and {str(line.product_id.income_analytic_account_id.id): 100.0} or False
             )
         self.assertEqual(len(self.invoice.invoice_line_ids), 2)
-        self.assertEquals(
+        self.assertEqual(
             self.invoice.invoice_line_ids[0].product_id, self.month_service_product
         )
-        self.assertEquals(self.invoice.invoice_line_ids[0].uom_id, self.uom_month)
-        self.assertEquals(
+        self.assertEqual(self.invoice.invoice_line_ids[0].product_uom_id, self.uom_month)
+        self.assertEqual(
             self.invoice.invoice_line_ids[1].product_id, self.toll_product
         )
-        self.assertEquals(self.invoice.invoice_line_ids[1].uom_id, self.uom_unit)
-        self.assertEquals(
+        self.assertEqual(self.invoice.invoice_line_ids[1].product_uom_id, self.uom_unit)
+        self.assertEqual(
             self.invoice.invoice_line_ids.mapped("name"),
             [
                 "Rental of Product B (Month(s))",
                 "Toll Charges for BNA 1832 Total Distance: 21.6 km",
             ],
         )
-        self.assertEquals(
+        self.assertEqual(
             self.invoice.invoice_line_ids.mapped("price_unit"), [4500.00, 4.50]
         )
-        self.assertEquals(self.invoice.update_toll_lines, True)
+        self.assertEqual(self.invoice.update_toll_lines, True)
         # update toll charge line
         self.line_01.write({"chargeable": False, "invoiced": False})
         for line in self.invoice.invoice_line_ids:
             line.update_toll_charge_lines()
         self.invoice.action_update_toll_charges()
         self.invoice._compute_toll_charged_count()
-        self.assertEquals(self.invoice.toll_line_count, 3)
-        self.assertEquals(self.invoice.toll_line_charged_count, 2)
-        self.assertEquals(
+        self.assertEqual(self.invoice.toll_line_count, 3)
+        self.assertEqual(self.invoice.toll_line_charged_count, 2)
+        self.assertEqual(
             self.invoice.invoice_line_ids.mapped("name"),
             [
                 "Rental of Product B (Month(s))",
                 "Toll Charges for BNA 1832 Total Distance: 15.4 km",
             ],
         )
-        self.assertEquals(
+        self.assertEqual(
             self.invoice.invoice_line_ids.mapped("price_unit"), [4500.00, 3.25]
         )
-        self.assertEquals(self.sale_order.toll_line_count, 3)
-        self.assertEquals(self.sale_order.toll_line_charged_count, 2)
+        self.assertEqual(self.sale_order.toll_line_count, 3)
+        self.assertEqual(self.sale_order.toll_line_charged_count, 2)

@@ -73,10 +73,8 @@ class ContractContract(models.Model):
 class ContractLine(models.Model):
     _inherit = "contract.line"
 
-    def _prepare_invoice_line(self, invoice_id=False, invoice_values=False):
-        res = super(ContractLine, self)._prepare_invoice_line(
-            invoice_id, invoice_values
-        )
+    def _prepare_invoice_line(self):
+        res = super(ContractLine, self)._prepare_invoice_line()
         start_date = (
             fields.Date.to_date(res.get("start_date")) or self.next_period_date_start
         )
