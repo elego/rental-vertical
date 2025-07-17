@@ -15,7 +15,8 @@
         "rental_purchase_order_type",
         "rental_product_instance",
         "account",
-        "analytic"
+        "analytic",
+        "account_analytic_tag"
     ],
     "data": [
         "data/project_data.xml",
