@@ -14,7 +14,7 @@ class ResPartner(models.Model):
     )
 
     rental_onsite_location_route = fields.Many2one(
-        comodel_name="stock.location.route",
+        comodel_name="stock.route",
         string="Rental Onsite Location Route",
         ondelete="set null",
     )

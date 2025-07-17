@@ -1,6 +1,6 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
 
 
 class SaleOrderLine(models.Model):
@@ -8,18 +8,6 @@ class SaleOrderLine(models.Model):
 
     date_start = fields.Date(related="start_date", store=True)
     date_end = fields.Date(related="end_date", store=True)
-
-    @api.onchange("end_date")
-    def end_date_change(self):
-        super().end_date_change()
-        if self.end_date:
-            self.date_end = self.end_date
-
-    @api.onchange("start_date")
-    def start_date_change(self):
-        super().start_date_change()
-        if self.start_date:
-            self.date_start = self.start_date
 
     @api.onchange("date_start", "date_end", "product_uom")
     def onchange_contract_date_start_end(self):
@@ -31,15 +19,15 @@ class SaleOrderLine(models.Model):
     def _prepare_contract_line_values(
         self, contract, predecessor_contract_line_id=False
     ):
-        res = super()._prepare_contract_line_values(
+        res = super(SaleOrderLine, self)._prepare_contract_line_values(
             contract, predecessor_contract_line_id=predecessor_contract_line_id
         )
         if self.product_id.income_analytic_account_id:
-            res["analytic_account_id"] = self.product_id.income_analytic_account_id.id
+            res["analytic_distribution"] = {self.product_id.income_analytic_account_id.id: 100}
         return res
 
     def update_start_end_date(self, date_start, date_end):
-        super().update_start_end_date(date_start, date_end)
+        super(SaleOrderLine, self).update_start_end_date(date_start, date_end)
         for line in self:
             if line.is_contract and line.contract_id:
                 contract_lines = line.contract_id.contract_line_ids.with_context(
@@ -58,14 +46,14 @@ class SaleOrderLine(models.Model):
                         cl.recurring_next_date = False
 
     @api.model_create_multi
-    def create(self, values):
+    def create(self, vals_list):
         """
         When creating new sale order lines, when order state is 'sale',
         contract lines have to be added in existing or new contract, too.
         :param vals_list: dictionary
         :return: sale.order.line objects
         """
-        so_lines = super().create(values)
+        so_lines = super().create(vals_list)
         for sol in so_lines:
             if sol.product_id and sol.order_id.state == "sale":
                 if (
@@ -95,14 +83,14 @@ class SaleOrderLine(models.Model):
                         sol.write({"contract_id": contracts[0].id})
                     else:
                         sol.order_id.action_create_contract()
-        return sol
+        return so_lines
 
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     def _prepare_contract_value(self, contract_template):
-        res = super()._prepare_contract_value(contract_template)
+        res = super(SaleOrder, self)._prepare_contract_value(contract_template)
         so_rental_order = self.env.ref("rental_base.rental_sale_type")
         customer_contract = self.env.ref("rental_contract.customer_contract_type")
         customer_rental_contract = self.env.ref(
