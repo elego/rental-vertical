@@ -14,7 +14,7 @@ class TestRentalProductSet(TransactionCase):
     def setUp(self):
         super(TestRentalProductSet, self).setUp()
         self.sale_order = self.env["sale.order"]
-        self.product_set_add = self.env["sale.product.set.wizard"]
+        self.sale_product_set_wizard = self.env["sale.product.set.wizard"]
         self.uom_month = self.env.ref("rental_base.product_uom_month")
         self.uom_day = self.env.ref("uom.product_uom_day")
         # create
@@ -119,7 +119,7 @@ class TestRentalProductSet(TransactionCase):
         # Open wizard and set rental product set data
         # choose 'Month(s)' as Uom
         # it will add two so lines from product set
-        so_set = self.product_set_add.with_context(active_id=so.id).create(
+        so_set = self.sale_product_set_wizard.with_context(active_id=so.id).create(
             {
                 "product_set_id": self.rental_product_set.id,
                 "rental_ok": True,
@@ -170,7 +170,7 @@ class TestRentalProductSet(TransactionCase):
         # Open wizard and set rental product set data
         # choose 'Month(s)' as Uom
         # it will add two so lines from product set
-        so_set = self.product_set_add.with_context(active_id=so.id).create(
+        so_set = self.sale_product_set_wizard.with_context(active_id=so.id).create(
             {
                 "product_set_id": self.rental_product_set.id,
                 "rental_ok": True,
