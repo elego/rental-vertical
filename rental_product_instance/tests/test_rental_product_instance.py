@@ -6,6 +6,8 @@ from odoo.addons.rental_base.tests.stock_common import RentalStockCommon
 from odoo import fields
 from odoo.exceptions import ValidationError
 
+import logging
+_logger = logging.getLogger(__name__)
 
 class TestRentalProductInstance(RentalStockCommon):
     def setUp(self):
@@ -42,6 +44,8 @@ class TestRentalProductInstance(RentalStockCommon):
         )
         self.productA.product_tmpl_id.onchange_tracking()
         self.assertEqual(self.productA.product_instance, False)
+        _logger.info("#################### test_00_template_onchange_product_intance_tracking: %s #####################", self.productA.product_instance == False)
+
 
     def test_01_onchange_product_intance_tracking(self):
         self.productA.write(
@@ -53,6 +57,7 @@ class TestRentalProductInstance(RentalStockCommon):
         self.assertEqual(self.productA.tracking, "serial")
         self.assertEqual(self.productA.type, "product")
 
+
         self.productA.write(
             {
                 "tracking": "lot",
@@ -60,6 +65,7 @@ class TestRentalProductInstance(RentalStockCommon):
         )
         self.productA.onchange_tracking()
         self.assertEqual(self.productA.product_instance, False)
+        _logger.info("#################### test_01_onchange_product_intance_tracking: %s #####################", self.productA.product_instance == False)
 
     def test_02_instance_current_location(self):
         self.productA.write(
@@ -103,6 +109,8 @@ class TestRentalProductInstance(RentalStockCommon):
             product_uom=self.uom_unit.id,
             picking_type_id=self.picking_type_out.id,
         )
+
+        move.name = self.productA.display_name
         # TODO check why does function _action_done not change the state of move
         ## assign move and do move
         # move._action_confirm()
@@ -114,3 +122,4 @@ class TestRentalProductInstance(RentalStockCommon):
         self.assertEqual(
             self.productA.instance_current_location_id, self.customer_location
         )
+        _logger.info("#################### test_02_instance_current_location: %s #####################", self.productA.instance_current_location_id == self.customer_location)

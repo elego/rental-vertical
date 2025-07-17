@@ -34,7 +34,7 @@ class ProductAppointment(models.Model):
 
     last_appointment_closed = fields.Boolean(
         string="Last Appointment Closed",
-        related="last_appointment_stage_id.is_closed",
+        related="last_appointment_stage_id.fold",
         store=True,
     )
 
