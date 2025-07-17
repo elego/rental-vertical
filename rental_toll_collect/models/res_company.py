@@ -29,11 +29,11 @@ class ResCompany(models.Model):
         "administrative charge product for the partners.",
     )
 
-    @api.model
-    def create(self, values):
-        company = super(ResCompany, self).create(values)
-        company._set_administrative_charge_product()
-        return company
+    @api.model_create_multi
+    def create(self, vals_list):
+        res = super().create(vals_list)
+        res._set_administrative_charge_product()
+        return res
 
     def _set_administrative_charge_product(self):
         for company in self:

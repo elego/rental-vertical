@@ -59,7 +59,6 @@ class TollChargeLineInvoicing(models.TransientModel):
     def _create_invoice_line(self, values):
         MoveLine = self.env["account.move.line"].with_context(check_move_validity=False)
         invoice_line = MoveLine.create(values)
-        invoice_line._onchange_product_id()
         invoice_line.write(
             {"price_unit": values.get("price_unit", invoice_line.product_id.list_price)}
         )
@@ -163,12 +162,6 @@ class TollChargeLineInvoicing(models.TransientModel):
         distance = sum(chargeable_toll_lines.mapped("distance"))
         total_amount = sum(chargeable_toll_lines.mapped("amount"))
         license_plate = product.license_plate
-        account_id = self.env["account.move.line"].get_invoice_line_account(
-            invoice.type,
-            toll_charge_product,
-            invoice.fiscal_position_id,
-            invoice.company_id,
-        )
         # create invoice line name in partner language
         partner_lang = invoice.partner_id.lang
         self.env = api.Environment(
@@ -194,16 +187,11 @@ class TollChargeLineInvoicing(models.TransientModel):
             "invoice_id": invoice.id,
             "start_date": min(dates) if dates else False,
             "end_date": max(dates) if dates else False,
-            "account_id": account_id.id,
-            "analytic_account_id": product.income_analytic_account_id
-            and product.income_analytic_account_id.id,
+            "analytic_distribution": product.income_analytic_account_id and {product.income_analytic_account_id: 100} or False,
         }
         return vals
 
     def _prepare_administrative_product_line(self, invoice, product):
-        account_id = self.env["account.move.line"].get_invoice_line_account(
-            invoice.type, product, invoice.fiscal_position_id, invoice.company_id
-        )
         vals = {
             "product_id": product.id,
             "quantity": 1.0,
@@ -211,8 +199,6 @@ class TollChargeLineInvoicing(models.TransientModel):
             "price_unit": product.list_price,
             "name": product.with_context(lang=invoice.partner_id.lang).display_name,
             "invoice_id": invoice.id,
-            "account_id": account_id.id,
-            "analytic_account_id": product.income_analytic_account_id
-            and product.income_analytic_account_id.id,
+            "analytic_distribution": product.income_analytic_account_id and {product.income_analytic_account_id: 100} or False,
         }
         return vals
