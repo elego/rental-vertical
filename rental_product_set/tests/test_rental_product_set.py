@@ -14,7 +14,7 @@ class TestRentalProductSet(TransactionCase):
     def setUp(self):
         super(TestRentalProductSet, self).setUp()
         self.sale_order = self.env["sale.order"]
-        self.product_set_add = self.env["product.set.add"]
+        self.product_set_add = self.env["sale.product.set.wizard"]
         self.uom_month = self.env.ref("rental_base.product_uom_month")
         self.uom_day = self.env.ref("uom.product_uom_day")
         # create
