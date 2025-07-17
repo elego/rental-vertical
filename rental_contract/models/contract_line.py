@@ -14,11 +14,9 @@ class ContractLine(models.Model):
             elif self.contract_id.contract_type == "purchase":
                 self.analytic_distribution = {self.product_id.expense_analytic_account_id: 100}
 
-    def _prepare_invoice_line(self, invoice_id=False, invoice_values=False):
+    def _prepare_invoice_line(self):
         self.ensure_one()
-        res = super(ContractLine, self)._prepare_invoice_line(
-            invoice_id=invoice_id, invoice_values=invoice_values
-        )
+        res = super(ContractLine, self)._prepare_invoice_line()
         product = self.env["product.product"].browse(res["product_id"])
         if product.must_have_dates:
             res.update(
