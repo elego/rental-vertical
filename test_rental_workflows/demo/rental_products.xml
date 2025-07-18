@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
+    <data noupdate="1">
         <record id="rb_rental" model="fleet.type">
             <field name="name">Rental</field>
         </record>
 
         <!-- Product1 -->
         <!-- Rental Pricelist Tour -->
+        <record id="rental_analytic_plan" model="account.analytic.plan">
+            <field name="name">Analytic Plan</field>
+        </record>
         <record id="account_01531" model="account.analytic.account">
             <field name="code">01531</field>
             <field name="name">Volvo L110H</field>
+            <field name="plan_id" ref="rental_analytic_plan" />
         </record>
         <record id="volvo" model="product.manufacturer">
             <field name="name">Volvo</field>
@@ -87,6 +91,7 @@
         <record id="account_01532" model="account.analytic.account">
             <field name="code">01532</field>
             <field name="name">Cat 930M</field>
+            <field name="plan_id" ref="rental_analytic_plan" />
         </record>
         <record id="cat" model="product.manufacturer">
             <field name="name">Cat</field>
@@ -139,6 +144,7 @@
         <record id="account_01533" model="account.analytic.account">
             <field name="code">01533</field>
             <field name="name">Cat 933M</field>
+            <field name="plan_id" ref="rental_analytic_plan" />
         </record>
         <record id="cat_933M" model="product.manufacturer.type">
             <field name="manufacturer_id" ref="cat" />
@@ -189,6 +195,7 @@
         <record id="account_01534" model="account.analytic.account">
             <field name="code">01534</field>
             <field name="name">Volvo L011H</field>
+            <field name="plan_id" ref="rental_analytic_plan" />
         </record>
         <record id="volvo_L011H" model="product.manufacturer.type">
             <field name="manufacturer_id" ref="volvo" />
@@ -238,6 +245,7 @@
         <record id="account_01535" model="account.analytic.account">
             <field name="code">01535</field>
             <field name="name">Volvo L80H</field>
+            <field name="plan_id" ref="rental_analytic_plan" />
         </record>
         <record id="volvo_L80H" model="product.manufacturer.type">
             <field name="manufacturer_id" ref="volvo" />
