@@ -63,7 +63,7 @@
                 <page name="vendor" string="Vendor Repair Orders" >
                     <field 
                         name="vendor_repair_ids"
-                        context="{'default_order_type': %(rental_purchase_order_type.po_type_repair_order)d}"
+                        context="{'default_product_id': product_id, 'default_order_type': %(rental_purchase_order_type.po_type_repair_order)d}"
                         groups="purchase.group_purchase_user" 
                     />
                 </page>
