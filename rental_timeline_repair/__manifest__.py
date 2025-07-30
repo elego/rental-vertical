@@ -23,6 +23,7 @@ No further configuration is needed.
     ],
     "data": [
         "views/product_timeline_view.xml",
+        "views/purchase_order_view.xml",
     ],
     "demo": [],
     "qweb": [],

@@ -16,12 +16,14 @@ This module is automatically installed when all of the following modules are ins
 
 - rental_timeline
 - rental_product_instance
+- rental_repair
 
 No further configuration is needed.
     """,
     "depends": [
         "rental_timeline",
         "rental_product_instance",
+        "rental_repair",
     ],
     "data": [
         "views/product_view.xml",

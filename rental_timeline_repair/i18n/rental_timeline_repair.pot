@@ -16,20 +16,52 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: rental_timeline_repair
+#: selection:product.timeline,type:0
+msgid "Confirmed Order"
+msgstr ""
+
+#. module: rental_timeline_repair
+#: model:ir.model.fields,field_description:rental_timeline_repair.field_purchase_order__date_end
+msgid "Date End"
+msgstr ""
+
+#. module: rental_timeline_repair
+#: model:ir.model.fields,field_description:rental_timeline_repair.field_purchase_order__date_start
+msgid "Date Start"
+msgstr ""
+
+#. module: rental_timeline_repair
+#: code:addons/rental_timeline_repair/models/purchase_order.py:84
 #: code:addons/rental_timeline_repair/models/repair.py:67
 #, python-format
 msgid "No found repaired product."
 msgstr ""
 
 #. module: rental_timeline_repair
+#: code:addons/rental_timeline_repair/models/purchase_order.py:67
 #: code:addons/rental_timeline_repair/models/repair.py:50
 #, python-format
 msgid "No found timelines."
+msgstr "Keine Zeiteinträge gefunden."
+
+#. module: rental_timeline_repair
+#: model:ir.model.fields,help:rental_timeline_repair.field_purchase_order__date_end
+msgid "Please set here the end date of the service or delivery period. It will be printed on report, together with the given start date."
+msgstr ""
+
+#. module: rental_timeline_repair
+#: model:ir.model.fields,help:rental_timeline_repair.field_purchase_order__date_start
+msgid "Please set here the start date of the service or delivery period. It will be printed on report, together with the given end date."
 msgstr ""
 
 #. module: rental_timeline_repair
 #: model:ir.model,name:rental_timeline_repair.model_product_timeline
 msgid "Product Timeline"
+msgstr ""
+
+#. module: rental_timeline_repair
+#: model:ir.model,name:rental_timeline_repair.model_purchase_order
+msgid "Purchase Order"
 msgstr ""
 
 #. module: rental_timeline_repair
@@ -55,6 +87,12 @@ msgid "Reserved"
 msgstr ""
 
 #. module: rental_timeline_repair
+#: model_terms:ir.ui.view,arch_db:rental_timeline_repair.purchase_order_form
+msgid "Service Period"
+msgstr ""
+
+#. module: rental_timeline_repair
+#: model:ir.model.fields,field_description:rental_timeline_repair.field_purchase_order__timeline_ids
 #: model:ir.model.fields,field_description:rental_timeline_repair.field_repair_order__timeline_ids
 msgid "Timeline"
 msgstr ""
@@ -68,5 +106,10 @@ msgstr ""
 #: code:addons/rental_timeline_repair/models/product_timeline.py:29
 #, python-format
 msgid "r: %s"
+msgstr ""
+
+#. module: rental_timeline_repair
+#: model_terms:ir.ui.view,arch_db:rental_timeline_repair.purchase_order_form
+msgid "to"
 msgstr ""
 

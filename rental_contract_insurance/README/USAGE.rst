@@ -8,3 +8,4 @@ Usage
 - Create a sale order.
 - Add a line with a product and see the default settings for the insurance.
 - Save the sale order and see the newly added line for the insurance with the calculated price.
+

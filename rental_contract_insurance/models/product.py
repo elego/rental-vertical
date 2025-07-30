@@ -1,6 +1,6 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, fields, models, exceptions, _
 
 
 class ProductProduct(models.Model):
@@ -27,7 +27,7 @@ class ProductProduct(models.Model):
         )
         if res:
             raise exceptions.ValidationError(
-                _("Uom of Insurance product should be in Category Time.")
+                _("Uom of Insurance product should be in Category Time. (%s, %s)" %(res.mapped("name"), res.mapped("uom_id.name")))
             )
 
     def _get_insurance_product(self, uom):
@@ -126,6 +126,7 @@ class InsuranceProductSolInfo(models.Model):
     # )
     def _compute_insurance_price_unit(self):
         for r in self:
+            insurance_amount = 0
             r.insurance_price_unit = 0
             percent = r.insurance_percent
             if r.insurance_type == "product":

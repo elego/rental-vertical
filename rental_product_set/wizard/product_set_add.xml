@@ -2,8 +2,8 @@
 <odoo>
   
     <record id="product_set_add_form_view_rental" model="ir.ui.view">
-        <field name="name">product.set.add.form.view.rental</field>
-        <field name="model">product.set.add</field>
+        <field name="name">sale.product.set.wizard.form.view.rental</field>
+        <field name="model">sale.product.set.wizard</field>
         <field name="inherit_id" ref="sale_product_set.product_set_add_form_view"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='product_set_id']" position="before">

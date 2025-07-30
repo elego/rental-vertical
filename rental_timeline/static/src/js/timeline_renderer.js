@@ -1,48 +1,139 @@
+/* Odoo rental_timeline
+ * Part of rental-vertical See LICENSE file for full copyright and licensing details.
+ * License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). */
+
 odoo.define("rental_timeline.RentalTimelineRenderer", function (require) {
     "use strict";
 
     var _TimelineRenderer = require("web_timeline.TimelineRenderer");
+    const core = require("web.core");
+    const _t = core._t;
 
     var RentalTimelineRenderer = _TimelineRenderer.extend({
-        split_groups: function (events, group_bys) {
+
+        load_initial_data: function () {
+            this._super();
+        },
+
+        on_data_loaded_2: function (events, group_bys, adjust_window) {
+            const data = [];
+            this.grouped_by = group_bys;
+            for (const evt of events) {
+                if (evt[this.date_start]) {
+                    data.push(this.event_data_transform(evt));
+                }
+            }
+            this.split_groups(events, group_bys).then((groups) => {
+                this.timeline.setGroups(groups);
+                this.timeline.setItems(data);
+                const mode = !this.mode || this.mode === "fit";
+                const adjust = _.isUndefined(adjust_window) || adjust_window;
+                if (mode && adjust) {
+                    this.timeline.fit();
+                }
+            });
+        },
+
+        /**
+         * Get the groups.
+         *
+         * @param {Object[]} events
+         * @param {String[]} group_bys
+         * @private
+         * @returns {Array}
+         */
+        split_groups: async function (events, group_bys) {
+            const superGroups = await this._super.apply(this, arguments);
             if (group_bys.length === 0) {
                 return events;
             }
-            var groups = [];
-            var self = this;
-            //groups.push({id: -1, content: _t('-')});
-            _.each(events, function (event) {
-                var group_name = event[_.first(group_bys)];
+            const groups = [];
+            groups.push({id: -1, content: _t("<b>UNASSIGNED</b>"), order: -1});
+            var seq = 1;
+            const self = this;
+
+            for (const evt of events) {
+                const grouped_field = _.first(group_bys);
+                const group_name = evt[grouped_field];
                 if (group_name) {
                     if (group_name instanceof Array) {
-                        var group = _.find(groups, function (existing_group) {
-                            return _.isEqual(existing_group.id, group_name[0]);
-                        });
-
+                        let group = _.find(
+                            groups,
+                            (existing_group) => existing_group.id === group_name[0]
+                        );
                         if (_.isUndefined(group)) {
-                            var tooltip = null;
-                            if (self.qweb.has_template("tooltip-item-group")) {
-                                tooltip = self.qweb.render("tooltip-item-group", {
-                                    record: event,
-                                });
-                            }
-                            group = {
-                                id: group_name[0],
-                                content: group_name[1],
-                                tooltip: tooltip,
-                            };
-                            groups.push(group);
+                            // Check if group is m2m in this case add id -> value of all
+                            // found entries.
+                            await this._rpc({
+                                model: this.modelName,
+                                method: "fields_get",
+                                args: [grouped_field],
+                                context: this.getSession().user_context,
+                            }).then(async (fields) => {
+                                if (fields[grouped_field].type === "many2many") {
+                                    const list_values =
+                                        await this.get_m2m_grouping_datas(
+                                            fields[grouped_field].relation,
+                                            group_name
+                                        );
+                                    for (const vals of list_values) {
+                                        let is_inside = false;
+                                        for (const gr of groups) {
+                                            if (vals.id === gr.id) {
+                                                is_inside = true;
+                                                break;
+                                            }
+                                        }
+                                        if (!is_inside) {
+                                            vals.order = seq;
+                                            seq += 1;
+                                            groups.push(vals);
+                                        }
+                                    }
+                                } else {
+                                    var tooltip = null;
+
+                                    if (self.qweb.has_template("tooltip-item-group")) {
+                                        tooltip = self.qweb.render(
+                                            "tooltip-item-group",
+                                            {
+                                                record: evt,
+                                            }
+                                        );
+                                    }
+
+                                    group = {
+                                        id: group_name[0],
+                                        content: group_name[1],
+                                        tooltip: tooltip,
+                                        order: seq,
+                                    };
+
+                                    groups.push(group);
+                                    seq += 1;
+                                }
+                            });
                         }
                     }
                 }
-            });
+            }
+
+            if (groups[0].id === -1) {
+                groups.shift();
+            }
             return groups;
         },
 
+        /**
+         * Initializes the timeline
+         * (https://visjs.github.io/vis-timeline/docs/timeline).
+         *
+         * @private
+         */
         init_timeline: function () {
+            let res = this._super();
             var self = this;
             var util = vis.util;
-            this._super();
             this.options.editable = {
                 add: false,
                 updateTime: false,
@@ -67,6 +158,7 @@ odoo.define("rental_timeline.RentalTimelineRenderer", function (require) {
                     self.$el.find(".vis-content").attr("style") +
                         self.$el.find(".vis-itemset").attr("style")
                 );
+                self.load_initial_data();
             });
 
             (function (_create, setData) {
@@ -137,7 +229,7 @@ odoo.define("rental_timeline.RentalTimelineRenderer", function (require) {
             );
 
             (function (_onUpdateItem) {
-                // we set the option add=false, so we must overwrite the function _onUpdateItem
+                // We set the option add=false, so we must overwrite the function _onUpdateItem
                 // because in the function _onUpdateItem is a check if add is true
                 // now we set add to true, call the function and set add back to false
                 vis.timeline.components.ItemSet.prototype._onUpdateItem = function (
@@ -151,7 +243,7 @@ odoo.define("rental_timeline.RentalTimelineRenderer", function (require) {
             })(vis.timeline.components.ItemSet.prototype._onUpdateItem);
 
             (function (_repaintDragCenter) {
-                // we set the option updateTime=false, so we must overwrite the function _onUpdateItem
+                // We set the option updateTime=false, so we must overwrite the function _onUpdateItem
                 // because in the function _onUpdateItem is a check if updateTime is true
                 // now we set updateTime to true, call the function and set updateTime back to false
                 vis.timeline.components.items.Item.prototype._repaintDragCenter =
@@ -161,7 +253,7 @@ odoo.define("rental_timeline.RentalTimelineRenderer", function (require) {
                         _repaintDragCenter.apply(this);
                         this.options.editable.updateTime = updateTime;
 
-                        //                     if(this.selected && !this.dom.dragCenter && false){
+                        //                     If(this.selected && !this.dom.dragCenter && false){
                         //                         hammer.off('tap');
                         //                         hammer.off('doubletap');
                         //                         hammer.on('tap', function(event){
@@ -175,6 +267,8 @@ odoo.define("rental_timeline.RentalTimelineRenderer", function (require) {
                         //                     }
                     };
             })(vis.timeline.components.items.Item.prototype._repaintDragCenter);
+
+            return res;
         },
 
         /**
@@ -207,9 +301,9 @@ odoo.define("rental_timeline.RentalTimelineRenderer", function (require) {
 
             let title = "";
             if (content) {
-                let doc = document.createElement("html");
+                const doc = document.createElement("html");
                 doc.innerHTML = "<html><body>" + content + "</body></html>";
-                let tt_content = doc.getElementsByClassName("tooltip_content");
+                const tt_content = doc.getElementsByClassName("tooltip_content");
                 if (tt_content && tt_content.length) {
                     title = tt_content[0].innerHTML;
                 }
@@ -235,26 +329,57 @@ odoo.define("rental_timeline.RentalTimelineRenderer", function (require) {
             return r;
         },
 
+        /**
+         * Set the rental_timeline window to today (day).
+         *
+         * @private
+         */
         _onTodayClicked: function () {
             this._scaleCurrentWindow(1, "days", "day");
         },
 
+        /**
+         * Scale the rental_timeline window to a day.
+         *
+         * @private
+         */
         _onScaleDayClicked: function () {
             this._scaleCurrentWindow(1, "days", "now");
         },
 
+        /**
+         * Scale the rental_timeline window to a week.
+         *
+         * @private
+         */
         _onScaleWeekClicked: function () {
             this._scaleCurrentWindow(7, "days", "now");
         },
 
+        /**
+         * Scale the rental_timeline window to a month.
+         *
+         * @private
+         */
         _onScaleMonthClicked: function () {
             this._scaleCurrentWindow(1, "months", "now");
         },
 
+        /**
+         * Scale the rental_timeline window to a year.
+         *
+         * @private
+         */
         _onScaleYearClicked: function () {
             this._scaleCurrentWindow(1, "years", "now");
         },
 
+        /**
+         * Scales the rental_timeline window based on the current window.
+         *
+         * @param {Integer} factor The timespan (in hours) the window must be scaled to.
+         * @private
+         */
         _scaleCurrentWindow: function (
             factor,
             time_unit = "hours",

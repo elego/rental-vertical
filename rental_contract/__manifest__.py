@@ -8,14 +8,14 @@ During longtime rentals, it is often required to write invoices in regular inter
 This is possible with the contract module, which is here extended to support rental
 use cases in extension to purchase and sale use cases.
 
-The module adds subtypes for contracts in order to distinguish between customer contracts,
-customer rental contracts, vendor contracts and vendor rental contracts.
+The module adds subtypes for contracts in order to distinguish between customer contracts, 
+customer rental contracts, vendor contracts and vendor rental contracts. 
 It is possible to add more subtypes with own sequence, which automatically sets the contract's code.
 
 - If a contract is automatically created from sale order, it passes the sale order type to the contract subtype.
 - The analytic account of a product is automatically set on the contract line.
 - The start and end date of invoice lines are automatically set when creating the invoice from a contract.
-- Both fields date_start and date_end that are used for contract lines are now hidden and related to the given
+- Both fields date_start and date_end that are used for contract lines are now hidden and related to the given 
   start and end date of sale order line.
 """,
     "usage": """
@@ -23,10 +23,9 @@ You can add new contract subtypes here:
 
  - Invoicing > Configuration > Contract > Contract Subtypes
  - Rentals > Configuration > Contract > Contract Subtypes
-
  - Create a sale order.
  - Choose a sale type.
- - Add a rental product that has a rental service marked as contract with a contract template
+ - Add a rental product that has a rental service marked as contract with a contract template 
    and an analytic income account.
  - Choose a service period by setting start and end date.
  - Confirm the order.
@@ -46,9 +45,9 @@ This module is automatically installed when all of the following modules are ins
     "depends": [
         "contract",
         "product_contract",
-        "product_analytic",
-        "sale_start_end_dates",
-        "sale_rental",
+        # "product_analytic",
+        # "sale_start_end_dates",
+        # "sale_rental",
         "rental_base",
     ],
     "data": [
@@ -57,11 +56,11 @@ This module is automatically installed when all of the following modules are ins
         "data/default_type_data.xml",
         "data/contract_template_data.xml",
         "views/contract_view.xml",
-        "views/sale_view.xml",
+        #"views/sale_view.xml",
         "views/product_view.xml",
         "views/contract_order_type_view.xml",
         "views/res_partner_view.xml",
-        "views/account_invoice_view.xml",
+        "views/account_move_view.xml",
     ],
     "demo": [],
     "qweb": [],

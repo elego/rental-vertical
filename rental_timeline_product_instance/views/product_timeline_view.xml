@@ -44,6 +44,7 @@
                 <filter domain="[('product_id.instance_state','=','available')]" name="available" string="Available"/>
                 <filter domain="[('product_id.instance_state','=','rental')]" name="rental" string="Rental"/>
                 <filter domain="[('product_id.instance_state','=','reserved')]" name="reserved" string="Reserved"/>
+                <filter domain="[('product_id.instance_state','=','repair')]" name="repair" string="Repair"/>
                 <separator/>
             </field>
         </field>

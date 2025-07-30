@@ -238,7 +238,7 @@ class TestRentalTollCollect(TransactionCase):
             line.update_toll_charge_lines()
             line.onchange_toll_lines_params()
             self.assertEqual(
-                line.analytic_account_id, line.product_id.income_analytic_account_id
+                line.analytic_distribution, line.product_id.income_analytic_account_id and {str(line.product_id.income_analytic_account_id.id): 100.0} or False
             )
         self.assertEqual(len(self.invoice.invoice_line_ids), 2)
         self.assertEqual(
