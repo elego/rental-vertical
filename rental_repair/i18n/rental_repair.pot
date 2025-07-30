@@ -262,6 +262,7 @@ msgstr ""
 #. module: rental_repair
 #: model:ir.model,name:rental_repair.model_product_product
 #: model:ir.model.fields,field_description:rental_repair.field_project_task__product_id
+#: model:ir.model.fields,field_description:rental_repair.field_purchase_order__product_id
 msgid "Product"
 msgstr ""
 

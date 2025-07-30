@@ -9,10 +9,10 @@
                 <field name="appointment" />
             </templates>
             <td id="clues" position="inside">
-                <i t-if="record.appointment" class="fa fa-fw o_button_icon fa-bell" />
+                <i t-if="record.appointment" class="fa fa-fw o_button_icon fa-bell" title="Clues" />
             </td>
-            <t t-raw="record.display_name" position="before">
-                <i t-if="record.appointment" class="fa fa-fw o_button_icon fa-bell" />
+            <t t-out="record.display_name" position="before">
+                <i t-if="record.appointment" class="fa fa-fw o_button_icon fa-bell" title="Appointment" />
             </t>
         </field>
     </record>

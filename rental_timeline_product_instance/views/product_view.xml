@@ -12,6 +12,7 @@
                     <filter name="state_available" string="Available" domain="[('instance_state','=','available')]"/>
                     <filter name="state_reserved" string="Reserved" domain="[('instance_state','=','reserved')]"/>
                     <filter name="state_rental" string="Rental" domain="[('instance_state','=','rental')]"/>
+                    <filter name="state_repair" string="Repair" domain="[('instance_state','=','repair')]"/>
                 </xpath>
             </field>
         </record>

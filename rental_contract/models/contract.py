@@ -1,6 +1,6 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
 
 
 class ContractContract(models.Model):
@@ -14,7 +14,7 @@ class ContractContract(models.Model):
 
     @api.onchange("partner_id")
     def _onchange_partner_id(self):
-        super()._onchange_partner_id()
+        super(ContractContract, self)._onchange_partner_id()
         contract_type = (
             self.partner_id.contract_type
             or self.partner_id.commercial_partner_id.contract_type
@@ -35,7 +35,7 @@ class ContractContract(models.Model):
 
     @api.onchange("contract_type")
     def _onchange_contract_type(self):
-        super()._onchange_contract_type()
+        super(ContractContract, self)._onchange_contract_type()
         if self.contract_type and not self.sale_type_id:
             if self.contract_type == "sale":
                 type_id = self.env["contract.order.type"].search(
@@ -48,20 +48,22 @@ class ContractContract(models.Model):
                 )
                 self.type_id = type_id.id
 
-    @api.model
-    def create(self, vals):
-        if vals.get("type_id"):
-            contract_type = self.env["contract.order.type"].browse(vals["type_id"])
-            if contract_type.sequence_id:
-                vals["code"] = contract_type.sequence_id.next_by_id()
-            else:
-                code = vals.get("name").split(": ")
-                vals["code"] = code[1]
-        return super().create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get("type_id"):
+                contract_type = self.env["contract.order.type"].browse(vals["type_id"])
+                if contract_type.sequence_id:
+                    vals["code"] = contract_type.sequence_id.next_by_id()
+                else:
+                    code = vals.get("name").split(": ")
+                    vals["code"] = code[1]
+        res = super().create(vals_list)
+        return res
 
     def _prepare_invoice(self, date_invoice, journal=None):
         res = super(ContractContract, self)._prepare_invoice(date_invoice, journal)
-        self.contract_line_ids.mapped("sale_order_line_id.order_id")
+        so_id = self.contract_line_ids.mapped("sale_order_line_id.order_id")
         if self.type_id:
             res["contract_type_id"] = self.type_id.id
             if self.sale_type_id:

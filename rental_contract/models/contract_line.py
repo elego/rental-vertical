@@ -1,6 +1,6 @@
 # Part of rental-vertical See LICENSE file for full copyright and licensing details.
 
-from odoo import api, models
+from odoo import api, fields, models, _
 
 
 class ContractLine(models.Model):
@@ -10,13 +10,13 @@ class ContractLine(models.Model):
     def onchange_product_id(self):
         if self.product_id:
             if self.contract_id.contract_type == "sale":
-                self.analytic_account_id = self.product_id.income_analytic_account_id
+                self.analytic_distribution = {self.product_id.income_analytic_account_id: 100}
             elif self.contract_id.contract_type == "purchase":
-                self.analytic_account_id = self.product_id.expense_analytic_account_id
+                self.analytic_distribution = {self.product_id.expense_analytic_account_id: 100}
 
-    def _prepare_invoice_line(self, move_form):
+    def _prepare_invoice_line(self):
         self.ensure_one()
-        res = super(ContractLine, self)._prepare_invoice_line(move_form)
+        res = super(ContractLine, self)._prepare_invoice_line()
         product = self.env["product.product"].browse(res["product_id"])
         if product.must_have_dates:
             res.update(
