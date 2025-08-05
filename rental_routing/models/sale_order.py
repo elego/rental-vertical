@@ -117,10 +117,10 @@ class SaleOrder(models.Model):
                         # "picking_type_id": self.warehouse_id.int_type_id.id,
                     }
                 )
-            if rule.location_id == self.warehouse_id.rental_out_location_id:
+            if rule.location_dest_id == self.warehouse_id.rental_out_location_id:
                 rule.write(
                     {
-                        "location_id": new_location.id,
+                        "location_dest_id": new_location.id,
                         # "picking_type_id": self.warehouse_id.int_type_id.id,
                     }
                 )

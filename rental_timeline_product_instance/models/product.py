@@ -28,9 +28,12 @@ class ProductProduct(models.Model):
                     product.instance_state = "rental"
                 elif any(line.type == "reserved" for line in timelines):
                     product.instance_state = "reserved"
+                #state repair has priority over rental and reserved
+                if any(line.type == "repair" for line in timelines):
+                    product.instance_state = "repair"
 
     def _search_instance_state(self, operator, value):
-        if operator in ["="] and value in ["available", "reserved", "rental"]:
+        if operator in ["="] and value in ["available", "reserved", "rental", "repair"]:
             all_products = self.env["product.product"].search([])
             if value == "available":
                 available_products = all_products.filtered(
@@ -45,6 +48,11 @@ class ProductProduct(models.Model):
             elif value == "rental":
                 rental_products = all_products.filtered(
                     lambda p: p.instance_state == "rental"
+                )
+                return [("id", "in", rental_products.ids)]
+            elif value == "repair":
+                rental_products = all_products.filtered(
+                    lambda p: p.instance_state == "repair"
                 )
                 return [("id", "in", rental_products.ids)]
             else:

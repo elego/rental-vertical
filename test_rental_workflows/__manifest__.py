@@ -21,8 +21,8 @@ Test Rental Workflows
         'rental_product_instance',
         'rental_product_variant',
         'rental_offday',
-#        'rental_contract_month',
-#        'rental_contract_toll_collect',
+        'rental_contract_month',
+        'rental_contract_toll_collect',
         'rental_timeline',
         'rental_toll_collect',
         'quality_control_stock_oca',
@@ -31,7 +31,6 @@ Test Rental Workflows
     ],
     'data': [
         'data/settings.xml',
-        'views/assets.xml',
     ],
     'demo': [
         'demo/rental_products.xml',
@@ -41,6 +40,15 @@ Test Rental Workflows
     ],
     'qweb': [
     ],
+    "assets": {
+        'web.assets_backend': [
+            "/test_rental_workflows/static/src/js/test_rental_tour.js",
+            "/test_rental_workflows/static/src/js/test_rental_contract_tour.js",
+            "/test_rental_workflows/static/src/js/test_rental_return_product_qc_tour.js",
+            "/test_rental_workflows/static/src/js/test_rental_toll_collect_tour.js",
+            "/test_rental_workflows/static/src/js/test_rental_contract_toll_collect_tour.js",
+        ],
+    },
     'installable': True,
     'license': 'AGPL-3',
 }
