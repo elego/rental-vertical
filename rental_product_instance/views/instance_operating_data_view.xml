@@ -17,14 +17,14 @@
         </record>
 
         <record id="instance_operating_data_tree" model="ir.ui.view">
-            <field name="name">instance.operating.data.tree</field>
+            <field name="name">instance.operating.data.list</field>
             <field name="model">instance.operating.data</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="instance_id"/>
                     <field name="operating_data"/>
                     <field name="date"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -43,7 +43,7 @@
             <field name="name">Operating Data</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">instance.operating.data</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
             <field name="search_view_id" ref="instance_operating_data_search" />
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">

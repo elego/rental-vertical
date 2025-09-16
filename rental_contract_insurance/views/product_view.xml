@@ -15,7 +15,7 @@
                            nolabel="1"
                            colspan="2"
                     >
-                        <tree editable="bottom" string="Insurances">
+                        <list editable="bottom" string="Insurances">
                             <field name="insurance_product_id"
                                    string="Product"
                                    options="{'no_create': True, 'no_open': True}" />
@@ -23,7 +23,7 @@
                                    string="Type"
                             />
                             <field name="insurance_percent"/>
-                        </tree>
+                        </list>
                     </field>
                 </field>
                 <field name="month_scale_pricelist_item_ids" position="after">
@@ -35,7 +35,7 @@
                            nolabel="1"
                            colspan="2"
                     >
-                        <tree editable="bottom" string="Insurances">
+                        <list editable="bottom" string="Insurances">
                             <field name="insurance_product_id"
                                    string="Product"
                                    options="{'no_create': True, 'no_open': True}"/>
@@ -43,7 +43,7 @@
                                    string="Type"
                             />
                             <field name="insurance_percent"/>
-                        </tree>
+                        </list>
                     </field>
                 </field>
             </field>

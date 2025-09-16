@@ -45,7 +45,7 @@ class SaleOrder(models.Model):
             "type": "ir.actions.act_window",
             "name": _("Toll Charges"),
             "target": "current",
-            "view_mode": "tree,form",
+            "view_mode": "list,form",
             "view_ids": [tree_view_id, form_view_id],
             "res_model": "toll.charge.line",
             "domain": "[('id','in',[" + ",".join(map(str, record_ids)) + "])]",

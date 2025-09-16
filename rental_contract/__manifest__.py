@@ -39,7 +39,7 @@ This module is automatically installed when all of the following modules are ins
  - sale_rental
  - rental_base
 """,
-    "version": "16.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Rental",
     "author": "Odoo Community Association (OCA)/Elego Software Solutions GmbH",
     "depends": [

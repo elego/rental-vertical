@@ -18,7 +18,7 @@
                            colspan="2"
                            attrs="{'invisible': [('rental','=',False),]}"
                     >
-                        <tree editable="bottom">
+                        <list editable="bottom">
                             <field name="insurance_product_id"
                                    options="{'no_create': True, 'no_open': True}"
                                    domain="[('is_insurance', '=', True), ('uom_id', '=', parent.product_uom)]"/>
@@ -29,11 +29,11 @@
                             <field name="insurance_price_unit"
                                    string="Amount"
                             />
-                        </tree>
+                        </list>
                     </field>
                     <field name="insurance_line_ids" invisible="1"/>
                 </xpath>
-                <xpath expr="//field[@name='order_line']//tree//field[@name='price_unit']" position="after">
+                <xpath expr="//field[@name='order_line']//list//field[@name='price_unit']" position="after">
                     <field name="update_insurance_line" invisible="1"/>
                     <field name="rental" invisible="1"/>
                     <button name="update_rental_insurance_line"

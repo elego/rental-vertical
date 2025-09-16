@@ -142,17 +142,17 @@
         </record>
 
         <record id="view_product_timeline_tree" model="ir.ui.view">
-            <field name="name">product.timeline.tree</field>
+            <field name="name">product.timeline.list</field>
             <field name="model">product.timeline</field>
             <field name="arch" type="xml">
-                <tree string="Timeline">
+                <list string="Timeline">
                     <field name="name" />
                     <field name="product_id" />
                     <field name="type" />
                     <field name="partner_id" />
                     <field name="date_start" />
                     <field name="date_end" />
-                </tree>
+                </list>
             </field>
         </record>
 

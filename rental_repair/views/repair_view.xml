@@ -50,33 +50,33 @@
                 <field name="date_end" />
             </field>
             <!-- Parts and Operations -->
-            <xpath expr="//field[@name='operations']//tree//field[@name='product_uom_qty']" position="before">
+            <xpath expr="//field[@name='operations']//list//field[@name='product_uom_qty']" position="before">
                 <field name="analytic_tag_ids" groups="analytic.group_analytic_accounting" widget="many2many_tags" options="{'color_field': 'color'}" />
             </xpath>
-            <xpath expr="//field[@name='operations']//tree//field[@name='tax_id']" position="before">
+            <xpath expr="//field[@name='operations']//list//field[@name='tax_id']" position="before">
                 <field name="analytic_cost" />
             </xpath>
-            <xpath expr="//field[@name='fees_lines']//tree//field[@name='product_uom_qty']" position="before">
+            <xpath expr="//field[@name='fees_lines']//list//field[@name='product_uom_qty']" position="before">
                 <field name="analytic_tag_ids" groups="analytic.group_analytic_accounting" widget="many2many_tags" options="{'color_field': 'color'}" />
             </xpath>
-            <xpath expr="//field[@name='fees_lines']//tree//field[@name='tax_id']" position="before">
+            <xpath expr="//field[@name='fees_lines']//list//field[@name='tax_id']" position="before">
                 <field name="analytic_cost" />
             </xpath>
         </field>
     </record>
 
     <record id="view_product_repair_line_tree" model="ir.ui.view">
-        <field name="name">view.repair.line.tree</field>
+        <field name="name">view.repair.line.list</field>
         <field name="model">repair.line</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="type" />
                 <field name="product_id" />
                 <field name="lot_id" />
                 <field name="name" />
                 <field name="date_end" />
                 <field name="repair_id" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -84,7 +84,7 @@
         <field name="name">Repair Orders</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">repair.order</field>
-        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_mode">list,kanban,form</field>
         <field name="search_view_id" ref="repair.view_repair_order_form_filter" />
         <field name="domain">[('state', 'not in', ('draft', 'cancel'))]</field>
         <field name="help" type="html">

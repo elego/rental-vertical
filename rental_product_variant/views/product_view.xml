@@ -86,7 +86,7 @@
                     </page>
                     <page string="Rental" name="rental" groups="base.group_no_one">
                         <field name="rental_order_ids" readonly="1">
-                            <tree default_order="start_date">
+                            <list default_order="start_date">
                                 <field name="start_order_id" />
                                 <field name="partner_id" />
                                 <field name="start_date" />
@@ -94,7 +94,7 @@
                                 <field name="end_date" string="End Date" />
                                 <field name="in_state" string="Return" />
                                 <field name="state" />
-                            </tree>
+                            </list>
                         </field>
                     </page>
                 </xpath>
@@ -138,12 +138,12 @@
         </record>
 
         <record id="view_product_manufacturer_tree" model="ir.ui.view">
-            <field name="name">product.manufacturer.tree</field>
+            <field name="name">product.manufacturer.list</field>
             <field name="model">product.manufacturer</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="name" />
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -161,7 +161,7 @@
             <field name="name">Manufacturer</field>
             <field name="res_model">product.manufacturer</field>
             <!-- <field name="view_type">form</field> -->
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
 
         <!-- ProductManufacturerType -->
@@ -181,13 +181,13 @@
         </record>
 
         <record id="view_product_manufacturer_type_tree" model="ir.ui.view">
-            <field name="name">product.manufacturer.type.tree</field>
+            <field name="name">product.manufacturer.type.list</field>
             <field name="model">product.manufacturer.type</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="name" />
                     <field name="manufacturer_id" />
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -206,7 +206,7 @@
             <field name="name">Manufacturer Type</field>
             <field name="res_model">product.manufacturer.type</field>
             <!-- <field name="view_type">form</field> -->
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
 
         <!-- FleetType -->
@@ -225,12 +225,12 @@
         </record>
 
         <record id="view_fleet_type_tree" model="ir.ui.view">
-            <field name="name">fleet.type.tree</field>
+            <field name="name">fleet.type.list</field>
             <field name="model">fleet.type</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="name" />
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -248,7 +248,7 @@
             <field name="name">Fleet Type</field>
             <field name="res_model">fleet.type</field>
             <!-- <field name="view_type">form</field> -->
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
 
         <menuitem action="action_product_manufacturer"

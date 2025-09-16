@@ -9,7 +9,7 @@
                     <field name="rental_id" readonly="1"/>
                     <field name="product_id" invisible="1"/>
                     <field name="out_lines" context="{'rental_id': rental_id}">
-                        <tree editable="bottom">
+                        <list editable="bottom">
                             <field name="rental_id" invisible="1"/>
                             <field name="rental_start_date" readonly="1"/>
                             <field name="qty"/>
@@ -24,10 +24,10 @@
                                    options="{'no_create': True}"
                             />
                             <field name="rental_avail_qty"/>
-                        </tree>
+                        </list>
                     </field>
                     <field name="in_lines" context="{'rental_id': rental_id}">
-                        <tree editable="bottom">
+                        <list editable="bottom">
                             <field name="rental_id" invisible="1"/>
                             <field name="rental_end_date" readonly="1"/>
                             <field name="qty"/>
@@ -42,7 +42,7 @@
                                    options="{'no_create': True}"
                             />
                             <field name="rental_avail_qty"/>
-                        </tree>
+                        </list>
                     </field>
                 </group>
                 <footer>
