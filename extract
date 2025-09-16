@@ -1,0 +1,21 @@
+#!/bin/bash
+
+start_after () 
+{ 
+    awk "BEGIN { p = 0; } /$1/ { p = 1; } { if ( p == 1 ) print; }" $2
+}
+stop_after () 
+{ 
+    awk "BEGIN { p = 1; } /$1/ { p = 0; } { if ( p == 1 ) print; }" $2
+}
+
+  if grep -q 'COPY TO REDMINE ISSUE LOG (SUMMARY)' ${WORKSPACE}/concupdates.log; then
+    start_after 'COPY TO REDMINE ISSUE LOG \(SUMMARY\)' ${WORKSPACE}/concupdates.log | \
+      stop_after 'END COPY TO REDMINE ISSUE LOG \(SUMMARY\)' | \
+      grep -v 'COPY TO REDMINE ISSUE LOG'
+  else
+    start_after 'COPY TO REDMINE ISSUE LOG' ${WORKSPACE}/concupdates.log | \
+      stop_after 'END COPY TO REDMINE ISSUE LOG' | \
+      grep -v 'COPY TO REDMINE ISSUE LOG'
+  fi
+

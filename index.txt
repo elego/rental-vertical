@@ -1,0 +1,27 @@
+* [rental_base (Rental Base)](rental_base/README.rst): Manage Rental of Products
+* [rental_check_availability (Rental Check Availability)](rental_check_availability/README.rst): Extends the sale_rental module for checking availability of the rented product.
+* [rental_config (Rental Config)](rental_config/README.rst): Rental Config simplifies rental module installation
+* [rental_dashboard (Rental Dashboard)](rental_dashboard/README.rst): Rental Dashboard Menu
+* [rental_menu_crm (Rental Menu CRM)](rental_menu_crm/README.rst): Add CRM to the Rental Menu
+* [rental_offday (Rental Off-Day)](rental_offday/README.rst): Manage off-days in rentals on daily basis
+* [rental_pricelist (Rental Pricelist)](rental_pricelist/README.rst): Enables the user to define different rental prices with time uom (Month, Day and Hour).
+* [rental_pricelist_interval (Rental Pricelist (Interval))](rental_pricelist_interval/README.rst): Enables the user to define different rental prices time uom (Month, Day and Hour).
+* [rental_product_instance (Rental Product Instance)](rental_product_instance/README.rst): Add product instances identified by serial number as unique rented objects
+* [rental_product_instance_appointment (Rental Product Instance Appointment)](rental_product_instance_appointment/README.rst): Rental Product Instance Appointment
+* [rental_product_instance_repair (Rental Product Instance Repair)](rental_product_instance_repair/README.rst): Extension of module rental_product_instance and rental_repair
+* [rental_product_insurance (Rental Product Insurance)](rental_product_insurance/README.rst): Sell Insurance of Product
+* [rental_product_pack (Rental Product Pack)](rental_product_pack/README.rst): Manage rentals with product packs
+* [rental_product_set (Rental Product Set)](rental_product_set/README.rst): Extends the sale_product_set to add rented product set on sale order lines.
+* [rental_product_variant (Rental Product Variant)](rental_product_variant/README.rst): Extends model product with several fields for rental use cases.
+* [rental_purchase_order_type (Rental Purchase Order Type)](rental_purchase_order_type/README.rst): Additional purchase order types for rental use cases: transport orders and repair orders
+* [rental_repair (Rental Repair)](rental_repair/README.rst): Support repair orders during rental periods
+* [rental_reporting (Rental Reporting)](rental_reporting/README.rst): Add rental-specific reporting menu and functions
+* [rental_routing (Rental Routing)](rental_routing/README.rst): This module adds support for the management of transports of rental products.
+* [rental_timeline (Rental Timeline)](rental_timeline/README.rst): Adds a timeline to products as well as a timeline view as overview of all rental products and orders
+* [rental_timeline_offday (Rental Timeline Offday)](rental_timeline_offday/README.rst): Extends the rental_timeline module to show the offday_number in the timeline popup.
+* [rental_timeline_product_instance (Rental Timeline Product Instance)](rental_timeline_product_instance/README.rst): Extends the rental_timeline module to show the product instance fields in the timeline product popup.
+* [rental_timeline_product_variant (Rental Timeline Product Variant)](rental_timeline_product_variant/README.rst): Extends the rental_timeline module to show the product variant fields in the timeline product popup.
+* [rental_timeline_repair (Rental Timeline Repair)](rental_timeline_repair/README.rst): extends the rental_timeline module to show the repair orders in the timeline.
+* [rental_timeline_transport (Rental Timeline Transport)](rental_timeline_transport/README.rst): extends the rental_timeline module to show the transport order fields in the timeline popup.
+* [rental_toll_collect (Rental Toll Collect)](rental_toll_collect/README.rst): Import a CSV file from Toll Collect and invoice the costs to customers.
+* [rental_workflows_demo (Test Rental Workflows)](rental_workflows_demo/README.rst): Test Rental Workflows
