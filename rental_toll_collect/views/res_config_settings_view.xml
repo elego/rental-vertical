@@ -43,7 +43,7 @@
                                 </div>
                                 <div
                                     class="content-group"
-                                    attrs="{'invisible': [('administrative_charge', '=', False)]}"
+                                    invisible="administrative_charge == False"
                                 >
                                     <div class="row mt16">
                                         <label
