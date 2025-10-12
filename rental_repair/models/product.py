@@ -77,3 +77,11 @@ class ProductProduct(models.Model):
             "res_model": "repair.line",
             "domain": "[('id','in',[" + ",".join(map(str, record_ids)) + "])]",
         }
+
+    def _get_purchase_order_ids(self):
+        po_ids = super()._get_purchase_order_ids()
+        repair_pos = self.env["purchase.order"].search([
+            ("product_id", "=", self.id),
+        ])
+        po_ids += repair_pos.ids
+        return po_ids

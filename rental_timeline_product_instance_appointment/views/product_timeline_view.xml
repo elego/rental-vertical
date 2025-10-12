@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_product_timeline_timeline" model="ir.ui.view">
+        <field name="name">product.timeline.timeline</field>
+        <field name="model">product.timeline</field>
+        <field name="inherit_id" ref="rental_timeline.view_product_timeline_timeline" />
+        <field name="arch" type="xml">
+            <templates position="before">
+                <field name="appointment" />
+            </templates>
+            <td id="clues" position="inside">
+                <i t-if="record.appointment" class="fa fa-fw o_button_icon fa-bell" title="Clues" />
+            </td>
+            <t t-out="record.display_name" position="before">
+                <i t-if="record.appointment" class="fa fa-fw o_button_icon fa-bell" title="Appointment" />
+            </t>
+        </field>
+    </record>
+
+    <record id="view_product_timeline_form" model="ir.ui.view">
+        <field name="name">product.timeline.form</field>
+        <field name="model">product.timeline</field>
+        <field name="inherit_id" ref="rental_timeline.view_product_timeline_form" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="appointment" />
+            </field>
+        </field>
+    </record>
+</odoo>

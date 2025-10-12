@@ -11,3 +11,8 @@ class PurchaseOrder(models.Model):
         "Ticket",
         ondelete="set null",
     )
+    product_id = fields.Many2one(
+        "product.product",
+        related=False,
+        string="Product",
+    )

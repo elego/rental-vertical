@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-
         <!-- ProductTemplate -->
         <record id="product_template_form_view" model="ir.ui.view">
             <field name="name">product.template.property.form.inherit</field>
@@ -16,6 +15,5 @@
                 </xpath>
             </field>
         </record>
-
     </data>
 </odoo>

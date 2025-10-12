@@ -3,8 +3,8 @@ from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
 
-class ProductSetAdd(models.TransientModel):
-    _inherit = "product.set.add"
+class ProductSetWizard(models.TransientModel):
+    _inherit = "sale.product.set.wizard"
 
     rental_ok = fields.Boolean("Can be Rented", default=False)
     start_date = fields.Date(string="Start Date")
@@ -59,7 +59,7 @@ class ProductSetAdd(models.TransientModel):
                                     )
                                 )
         else:
-            sale_order_line = super(ProductSetAdd, self).add_set()
+            sale_order_line = super(ProductSetWizard, self).add_set()
         return sale_order_line
 
     def prepare_rental_so_line(

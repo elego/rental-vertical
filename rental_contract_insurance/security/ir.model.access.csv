@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_insurance_product_sol_info,access_insurance_product_sol_info,model_insurance_product_sol_info,base.group_user,1,1,1,1
+access_day_insurance_product_info,access_day_insurance_product_info,model_day_insurance_product_info,base.group_user,1,1,1,1
+access_month_insurance_product_info,access_month_insurance_product_info,model_month_insurance_product_info,base.group_user,1,1,1,1

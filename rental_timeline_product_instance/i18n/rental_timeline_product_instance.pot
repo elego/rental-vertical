@@ -83,6 +83,8 @@ msgid "Rental"
 msgstr ""
 
 #. module: rental_timeline_product_instance
+#: model_terms:ir.ui.view,arch_db:rental_timeline_product_instance.product_instance_state_search_view
+#: model_terms:ir.ui.view,arch_db:rental_timeline_product_instance.view_product_timeline_search_instance_state
 #: selection:product.product,instance_state:0
 msgid "Repair"
 msgstr ""

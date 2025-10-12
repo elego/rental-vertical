@@ -21,22 +21,24 @@ class ProductTimeline(models.Model):
     @api.depends("res_id", "res_model")
     def _compute_fields(self):
         super(ProductTimeline, self)._compute_fields()
-        lang = self.env["res.lang"].search([("code", "=", self.env.user.lang)])
+        lang = self.env["res.lang"].search([("code", "=", self.env.user.company_id.partner_id.lang)])
         for line in self:
-            if line.res_model == "repair.order":
-                obj = self.env[line.res_model].browse(line.res_id)
-                line.name = (
-                    _("r: %s") % obj.partner_id.name if obj.partner_id else obj.name
-                )
+            if line.res_model in ("repair.order", "purchase.order"):
+                obj = self.env[line.res_model].browse(line.res_id).with_context(lang=lang.code)
+                line.name = obj.partner_id.commercial_partner_id.name if obj.partner_id else obj.name
                 line.order_name = obj.name
                 line.partner_id = obj.partner_id.id
-                line.partner_shipping_id = obj.address_id.id
-                line.partner_shipping_address = obj.address_id._display_address()
                 currency = self.env.user.company_id.currency_id
                 line.amount = "{total} {currency}".format(
                     total=lang.format("%.2f", obj.amount_untaxed, grouping=True),
                     currency=currency.symbol,
                 )
+                if line.res_model == "repair.order":
+                    line.partner_shipping_id = obj.address_id.id
+                    line.partner_shipping_address = obj.address_id._display_address()
+                elif line.res_model == "purchase.order":
+                    line.partner_shipping_id = obj.partner_id.id
+                    line.partner_shipping_address = obj.partner_id._display_address()
 
             if line.type != "repair":
                 domain = [
@@ -52,7 +54,7 @@ class ProductTimeline(models.Model):
     @api.model
     def _get_depends_fields(self, model):
         res = super()._get_depends_fields(model)
-        if model == "repair.order":
+        if model in ("repair.order", "purchase.order"):
             res += [
                 "name",
                 "partner_id",

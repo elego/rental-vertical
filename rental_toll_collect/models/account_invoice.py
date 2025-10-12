@@ -148,7 +148,6 @@ class AccountMoveLine(models.Model):
             if self.product_id.rented_product_id
             else ""
         )
-        account_id = self._get_computed_account()
         # create invoice line name in partner language
         partner_lang = self.move_id.partner_id.lang
         self.env = api.Environment(
@@ -174,10 +173,7 @@ class AccountMoveLine(models.Model):
             "move_id": self.move_id.id,
             "start_date": self.start_date,
             "end_date": self.end_date,
-            "account_id": account_id.id,
-            "analytic_account_id": self.analytic_account_id.id
-            if self.analytic_account_id
-            else False,
+            "analytic_distribution": self.analytic_distribution,
         }
         return vals
 
@@ -187,7 +183,6 @@ class AccountMoveLine(models.Model):
         values = self._prepare_toll_product_line(chargeable_toll_lines)
         MoveLine = self.env["account.move.line"].with_context(check_move_validity=False)
         toll_product_line = MoveLine.create(values)
-        toll_product_line._onchange_product_id()
         toll_product_line.write(
             {
                 "price_unit": values.get(
@@ -199,7 +194,6 @@ class AccountMoveLine(models.Model):
         return toll_product_line
 
     def _prepare_administrative_product_line(self, invoice, product):
-        account_id = self.env["account.move.line"]._get_computed_account()
         vals = {
             "product_id": product.id,
             "quantity": 1.0,
@@ -207,9 +201,7 @@ class AccountMoveLine(models.Model):
             "price_unit": product.list_price,
             "name": product.with_context(lang=invoice.partner_id.lang).display_name,
             "invoice_id": invoice.id,
-            "account_id": account_id.id,
-            "analytic_account_id": product.income_analytic_account_id
-            and product.income_analytic_account_id.id,
+            "analytic_distribution": product.income_analytic_account_id and {product.income_analytic_account_id: 100} or False,
         }
         return vals
 
@@ -217,7 +209,6 @@ class AccountMoveLine(models.Model):
         values = self._prepare_administrative_product_line(invoice, charge_product)
         MoveLine = self.env["account.move.line"].with_context(check_move_validity=False)
         invoice_line = MoveLine.create(values)
-        invoice_line._onchange_product_id()
         invoice_line.write(
             {"price_unit": values.get("price_unit", invoice_line.product_id.list_price)}
         )

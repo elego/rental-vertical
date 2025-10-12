@@ -38,7 +38,7 @@ class ProductOperatingAppointment(models.Model):
 
     last_appointment_closed = fields.Boolean(
         string="Last Appointment Closed",
-        related="last_appointment_stage_id.is_closed",
+        related="last_appointment_stage_id.fold",
         store=True,
     )
 
@@ -182,7 +182,7 @@ class ProductOperatingAppointment(models.Model):
         all_appointments = self.search([])
         all_appointments.action_create_project_tasks()
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
         res = super().create(vals)
         res.product_id.update_operating_data_daily_increase()

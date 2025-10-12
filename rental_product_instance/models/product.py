@@ -30,20 +30,20 @@ class ProductTemplate(models.Model):
 
     @api.onchange("tracking")
     def onchange_tracking(self):
-        res = super(ProductTemplate, self).onchange_tracking()
+        # res = super(ProductTemplate, self).onchange_tracking()
         products = self.filtered(
             lambda self: self.tracking and self.tracking != "serial"
         )
         if products:
             products.product_instance = False
-        return res
+        # return res
 
 
 class ProductProduct(models.Model):
     _inherit = "product.product"
 
     instance_serial_number_id = fields.Many2one(
-        "stock.production.lot",
+        "stock.lot",
         "Serial Number",
         ondelete="set null",
         domain="[('product_id', '=', id)]",
@@ -187,13 +187,13 @@ class ProductProduct(models.Model):
 
     @api.onchange("tracking")
     def onchange_tracking(self):
-        res = super(ProductProduct, self).onchange_tracking()
+        # res = super(ProductProduct, self).onchange_tracking()
         products = self.filtered(
             lambda self: self.tracking and self.tracking != "serial"
         )
         if products:
             products.product_instance = False
-        return res
+        # return res
 
     def action_view_operating_data(self):
         self.ensure_one()

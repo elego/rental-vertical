@@ -67,7 +67,7 @@
             key2="client_action_multi"
             name="Invoice toll charges"
             res_model="toll.charge.line.invoicing"
-            src_model="toll.charge.line"
+            binding_model="toll.charge.line"
             view_type="form"
             view_mode="form"
             view_id="rental_toll_collect.toll_charge_line_invoicing_view"

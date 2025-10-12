@@ -19,7 +19,7 @@
                 <field name="invoice_method"/>
                 <field name="partner_invoice_id"
                        attrs="{'invisible':[('invoice_method','=', 'none')],'required':[('invoice_method','!=','none')]}"
-                       groups="sale.group_delivery_invoice_address"
+                       groups="account.group_delivery_invoice_address"
                 />
                 <field name="pricelist_id"
                        groups="product.group_sale_pricelist"
@@ -51,13 +51,13 @@
             </field>
             <!-- Parts and Operations -->
             <xpath expr="//field[@name='operations']//list//field[@name='product_uom_qty']" position="before">
-                <field name="analytic_tag_ids" groups="analytic.group_analytic_tags" widget="many2many_tags" options="{'color_field': 'color'}" />
+                <field name="analytic_tag_ids" groups="analytic.group_analytic_accounting" widget="many2many_tags" options="{'color_field': 'color'}" />
             </xpath>
             <xpath expr="//field[@name='operations']//list//field[@name='tax_id']" position="before">
                 <field name="analytic_cost" />
             </xpath>
             <xpath expr="//field[@name='fees_lines']//list//field[@name='product_uom_qty']" position="before">
-                <field name="analytic_tag_ids" groups="analytic.group_analytic_tags" widget="many2many_tags" options="{'color_field': 'color'}" />
+                <field name="analytic_tag_ids" groups="analytic.group_analytic_accounting" widget="many2many_tags" options="{'color_field': 'color'}" />
             </xpath>
             <xpath expr="//field[@name='fees_lines']//list//field[@name='tax_id']" position="before">
                 <field name="analytic_cost" />

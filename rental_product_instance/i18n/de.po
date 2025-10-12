@@ -121,7 +121,7 @@ msgid "Last Updated on"
 msgstr "Zuletzt aktualisiert am"
 
 #. module: rental_product_instance
-#: model:ir.model,name:rental_product_instance.model_stock_production_lot
+#: model:ir.model,name:rental_product_instance.model_stock_lot
 msgid "Lot/Serial"
 msgstr "Chargen-/Seriennummer"
 
