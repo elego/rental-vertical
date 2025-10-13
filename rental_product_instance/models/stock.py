@@ -16,7 +16,7 @@ class StockProductionLot(models.Model):
                 ]
                 res = self.search_count(domain)
                 if res:
-                    msg = _("You can not have 2 serial numbers for a product instance.")
+                    msg = self.env._("You can not have 2 serial numbers for a product instance.")
                     raise exceptions.ValidationError(msg)
 
 

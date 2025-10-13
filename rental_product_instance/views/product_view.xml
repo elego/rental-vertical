@@ -65,7 +65,6 @@
                 <xpath expr="//group[field[@name='manu_type_id']]" position="after">
                     <group name="instance_attributes"
                         invisible="product_instance == False">
-                        <field name="show_instance_condition_type" invisible="1" />
                         <field name="instance_state" />
                         <label for="instance_condition_hour"
                                invisible="show_instance_condition_type != 'hour'" />
