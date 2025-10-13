@@ -162,6 +162,7 @@
             <field name="res_model">product.manufacturer</field>
             <!-- <field name="view_type">form</field> -->
             <field name="view_mode">list,form</field>
+            <field name="path">product/manufacturer</field>
         </record>
 
         <!-- ProductManufacturerType -->
@@ -207,6 +208,7 @@
             <field name="res_model">product.manufacturer.type</field>
             <!-- <field name="view_type">form</field> -->
             <field name="view_mode">list,form</field>
+            <field name="path">product/manufacturer_type</field>
         </record>
 
         <!-- FleetType -->
@@ -249,6 +251,7 @@
             <field name="res_model">fleet.type</field>
             <!-- <field name="view_type">form</field> -->
             <field name="view_mode">list,form</field>
+            <field name="path">fleet/type</field>
         </record>
 
         <menuitem action="action_product_manufacturer"
