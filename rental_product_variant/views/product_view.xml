@@ -27,7 +27,7 @@
             <field name="arch" type="xml">
                 <div name="button_box" position="inside">
                     <button class="oe_stat_button" name="action_view_rental_order"
-                        type="object" icon="fa-key" attrs="{'invisible': [('sale_ok', '=', False)]}">
+                        type="object" icon="fa-key" invisible="sale_ok == False">
                         <field name="rental_count" widget="statinfo" />
                     </button>
                     <button class="oe_stat_button" name="action_view_invoice"
@@ -48,11 +48,11 @@
                         <field name="out_invoice_count" widget="statinfo" />
                     </button> -->
                     <button class="oe_stat_button" name="action_view_all_purchase_order"
-                        type="object" icon="fa-shopping-cart" attrs="{'invisible': [('purchase_ok', '=', False)]}">
+                        type="object" icon="fa-shopping-cart" invisible="purchase_ok == False">
                         <field name="po_count" widget="statinfo" />
                     </button>
                     <button class="oe_stat_button" name="action_view_sale_order"
-                        type="object" icon="fa-line-chart" attrs="{'invisible': [('sale_ok', '=', False)]}">
+                        type="object" icon="fa-line-chart" invisible="sale_ok == False">
                         <field name="so_count" widget="statinfo" />
                     </button>
                 </div>
@@ -68,11 +68,11 @@
                     <field name="show_vehicle_number" invisible="1" />
                     <field name="show_license_plate" invisible="1" />
                     <field name="show_init_regist" invisible="1" />
-                    <field name="product_identification_number" attrs="{'invisible': [('show_product_identification_number', '=', False)]}" />
-                    <field name="vehicle_number" attrs="{'invisible': [('show_vehicle_number', '=', False)]}" />
-                    <field name="license_plate" attrs="{'invisible': [('show_license_plate', '=', False)]}" />
+                    <field name="product_identification_number" invisible="show_product_identification_number == False" />
+                    <field name="vehicle_number" invisible="show_vehicle_number == False" />
+                    <field name="license_plate" invisible="show_license_plate == False" />
                     <field name="manu_year" />
-                    <field name="init_regist" attrs="{'invisible': [('show_init_regist', '=', False)]}" />
+                    <field name="init_regist" invisible="show_init_regist == False" />
                 </xpath>
                 <xpath expr="//field[@name='barcode']" position="after">
                     <field name="qr_code" />
