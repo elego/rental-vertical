@@ -31,7 +31,10 @@ class TestRentalContractTollCollect(TransactionCase):
         self.uom_unit = self.env.ref("uom.product_uom_unit")
         self.rental_sale_type = self.env.ref("rental_base.rental_sale_type")
         self.partner = self.env.ref("base.res_partner_1")
-        self.pricelist = self.env.ref("product.list0")
+        self.pricelist = self.env["product.pricelist"].create({
+            "name": "Test Pricelist",
+            "currency_id": self.env.ref("base.EUR").id,
+        })
         self.toll_product = self.env.ref("rental_toll_collect.product_toll")
         self.rental_contract_template = self.env.ref(
             "rental_contract.rental_contract_template"
