@@ -20,7 +20,10 @@ class TestRentalTollCollect(TransactionCase):
         SaleOrderObj = self.env["sale.order"]
         ProductObj = self.env["product.product"]
         TollLineObj = self.env["toll.charge.line"]
-
+        PricelistObj = self.env["product.pricelist"]
+        usd = self.env.ref("base.USD")
+        if not usd.active:
+            usd.active = True
         self.now = dt.now()
         self.date_10_day_before = self.now - timedelta(days=10)
         self.date_15_day_before = self.now - timedelta(days=15)
@@ -33,7 +36,10 @@ class TestRentalTollCollect(TransactionCase):
         self.uom_unit = self.env.ref("uom.product_uom_unit")
         self.rental_sale_type = self.env.ref("rental_base.rental_sale_type")
         self.partner = self.env.ref("base.res_partner_1")
-        self.pricelist = self.env.ref("product.list0")
+        self.pricelist = PricelistObj.create({
+            "name": "Test Pricelist",
+            "currency_id": self.env.ref("base.USD").id,
+        })
         self.toll_product = self.env.ref("rental_toll_collect.product_toll")
         self.company_id = self.env.user.company_id
         self.default_journal_sale = self.env['account.journal'].search([('company_id', '=', self.company_id.id), ('type', '=', 'sale')], limit=1)
