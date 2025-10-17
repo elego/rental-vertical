@@ -14,7 +14,7 @@
                         type="object"
                         icon="fa-road"
                         title="Products Toll Charges"
-                        attrs="{'invisible': [('toll_line_count', '=', 0)]}"
+                        invisible="toll_line_count == 0"
                     >
                         <div class="o_field_widget o_stat_info mr4">
                             <span class="o_stat_text">Toll Lines:</span>
@@ -38,14 +38,14 @@
                         string="Update Toll Charges"
                         groups="account.group_account_invoice"
                         class="btn-primary"
-                        attrs="{'invisible': ['|', ('state', '!=', 'draft'), ('update_toll_lines', '=', False)]}"
+                        invisible="state != 'draft' or not update_toll_lines"
                     />
                     <button
                         name="action_update_toll_charges"
                         type="object"
                         string="Update Toll Charges"
                         groups="account.group_account_invoice"
-                        attrs="{'invisible': ['|', ('state', '!=', 'draft'), ('update_toll_lines', '=', True)]}"
+                        invisible="state != 'draft' or update_toll_lines"
                     />
                 </xpath>
                 <field name="display_type" position="after">
@@ -74,7 +74,7 @@
                                         <field name="distance" sum="Total Distance" />
                                         <field
                                             name="company_currency_id"
-                                            invisible="1"
+                                            column_invisible="1"
                                         />
                                         <field
                                             name="amount"

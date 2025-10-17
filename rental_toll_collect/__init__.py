@@ -3,11 +3,8 @@
 from . import models
 from . import wizard
 
-from odoo.api import Environment, SUPERUSER_ID
 
-
-def post_init_hook(cr, registry):
-    env = Environment(cr, SUPERUSER_ID, {})
+def post_init_hook(env):
     companies = env["res.company"].search(
         [("administrative_charge_product", "=", False)]
     )

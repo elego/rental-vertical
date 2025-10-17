@@ -13,7 +13,7 @@
                             <field name="product_id" />
                             <field
                                 name="license_plate"
-                                attrs="{'readonly': [('editable', '=', False)]}"
+                                readonly="editable == False"
                             />
                             <field name="axle_class" />
                             <field name="weight_class" />
@@ -25,24 +25,24 @@
                             <field name="toll_date" />
                         </group>
                     </group>
-                    <group attrs="{'readonly': [('editable', '=', False)]}">
+                    <group readonly="editable == False">
                         <group name="invoicing_info" string="Invoicing Information">
                             <field name="booking_number" />
                             <field name="tariff_model" />
                             <field name="analytic_account" />
                             <field
                                 name="chargeable"
-                                attrs="{'readonly': [('editable', '=', False)]}"
+                                readonly="editable == False"
                             />
-                            <field name="invoiced" attrs="{'readonly': 1}" />
+                            <field name="invoiced" readonly="1" />
                             <field name="invoice_id" />
                             <field
                                 name="invoice_line_id"
-                                attrs="{'readonly': ['|', ('chargeable', '=', False), ('editable', '=', False)]}"
+                                readonly="not chargeable or editable == False"
                             />
                             <field
                                 name="sale_line_id"
-                                attrs="{'readonly': [('editable', '=', False)]}"
+                                readonly="editable == False"
                             />
                         </group>
                         <group name="route_info" string="Route Information">
@@ -52,14 +52,14 @@
                             <field name="route_exit" />
                             <field
                                 name="distance"
-                                attrs="{'readonly': [('editable', '=', False)]}"
+                                readonly="editable == False"
                             />
                             <field name="company_currency_id" invisible="1" />
                             <field
                                 name="amount"
                                 widget="monetary"
                                 options="{'currency_field': 'company_currency_id'}"
-                                attrs="{'readonly': [('editable', '=', False)]}"
+                                readonly="editable == False"
                             />
                         </group>
                     </group>
@@ -73,30 +73,30 @@
         <field name="model">toll.charge.line</field>
         <field name="arch" type="xml">
             <list string="Toll Charge Line">
-                <field name="editable" invisible="1" />
+                <field name="editable" column_invisible="1" />
                 <field name="toll_date" />
                 <field name="product_id" />
                 <field
                     name="distance"
-                    attrs="{'readonly': [('editable', '=', False)]}"
+                    readonly="editable == False"
                     sum="Total Distance"
                 />
-                <field name="company_currency_id" invisible="1" />
+                <field name="company_currency_id" column_invisible="1" />
                 <field
                     name="amount"
-                    attrs="{'readonly': [('editable', '=', False)]}"
+                    readonly="editable == False"
                     sum="Total Amount"
                     widget="monetary"
                     options="{'currency_field': 'company_currency_id'}"
                 />
                 <field
                     name="chargeable"
-                    attrs="{'readonly': [('editable', '=', False)]}"
+                    readonly="editable == False"
                 />
                 <field name="invoiced" readonly="1" />
                 <field
                     name="invoice_id"
-                    attrs="{'invisible': [('invoiced', '=', False)]}"
+                    column_invisible="invoiced == False"
                 />
             </list>
         </field>
