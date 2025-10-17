@@ -49,10 +49,10 @@
                     <attribute name="invisible">product_instance == True or type != 'product'</attribute>
                 </xpath> TODO reimplement this since the button no longer exists in V18-->
                 <xpath expr="//button[@name='action_product_forecast_report']" position="attributes">
-                    <attribute name="invisible">product_instance == True or type != 'product'</attribute>
+                    <attribute name="invisible">product_instance == True or type != 'consu'</attribute>
                 </xpath>
                 <xpath expr="//button[@name='%(stock.action_open_routes)d']" position="attributes">
-                    <attribute name="invisible">product_instance == True or type != 'product'</attribute>
+                    <attribute name="invisible">product_instance == True or type != 'consu'</attribute>
                 </xpath>
                 <xpath expr="//button[@name='action_view_sales']" position="attributes">
                     <attribute name="invisible">product_instance == True</attribute>
