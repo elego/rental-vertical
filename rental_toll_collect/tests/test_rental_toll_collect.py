@@ -42,7 +42,7 @@ class TestRentalTollCollect(TransactionCase):
         self.import_product = ProductObj.create(
             {
                 "name": "Test Import",
-                "type": "product",
+                "type": "consu",
                 "rental": True,
                 "rental_of_month": True,
                 "rental_of_day": True,
@@ -58,7 +58,7 @@ class TestRentalTollCollect(TransactionCase):
         self.product = ProductObj.create(
             {
                 "name": "Product A",
-                "type": "product",
+                "type": "consu",
                 "rental": True,
                 "rental_of_month": True,
                 "rental_of_day": True,
