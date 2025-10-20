@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="repair.view_repair_order_form" />
         <field name="arch" type="xml">
             <xpath expr="//group[field[@name='location_id']]" position="inside">
-                <field name="project_task_id" readonly="1" attrs="{'invisible': [('project_task_id','=',False)]}" />
+                <field name="project_task_id" readonly="1" invisible="not project_task_id"/>
             </xpath>
             <!-- Partner and Invoice Info -->
             <field name="partner_id" position="before">
@@ -17,15 +17,8 @@
             <field name="pricelist_id" position="replace"/>
             <field name="address_id" position="after">
                 <field name="invoice_method"/>
-                <field name="partner_invoice_id"
-                       attrs="{'invisible':[('invoice_method','=', 'none')],'required':[('invoice_method','!=','none')]}"
-                       groups="account.group_delivery_invoice_address"
-                />
-                <field name="pricelist_id"
-                       groups="product.group_sale_pricelist"
-                       context="{'product_id':product_id}"
-                       attrs="{'invisible':[('invoice_method','=', 'none')]}"
-                />
+                <field name="partner_invoice_id" invisible="invoice_method == 'none'" required="invoice_method != 'none'" groups="account.group_delivery_invoice_address"/>
+                <field name="pricelist_id" groups="product.group_sale_pricelist" context="{'product_id':product_id}" invisible="invoice_method == 'none'"/>
                 <field name="client_order_ref"/>
                 <separator colspan="2"/>
                 <field name="income_analytic_account_id"

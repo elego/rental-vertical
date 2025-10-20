@@ -62,7 +62,7 @@ class ProductProduct(models.Model):
 
     def action_view_repair_history(self):
         self.ensure_one()
-        repair_lines = self.env["repair.line"].browse([])
+        repair_lines = self.env["stock.move"].browse([])
         for repair in self.repair_order_ids:
             repair_lines |= repair.operations
         record_ids = repair_lines.ids
@@ -74,7 +74,7 @@ class ProductProduct(models.Model):
             "target": "current",
             "view_mode": "list,form",
             "view_ids": [tree_view_id, form_view_id],
-            "res_model": "repair.line",
+            "res_model": "stock.move",
             "domain": "[('id','in',[" + ",".join(map(str, record_ids)) + "])]",
         }
 
