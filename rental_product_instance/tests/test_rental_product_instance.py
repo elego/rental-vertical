@@ -35,7 +35,7 @@ class TestRentalProductInstance(RentalStockCommon):
         )
         self.productA.product_tmpl_id.onchange_product_instance()
         self.assertEqual(self.productA.tracking, "serial")
-        self.assertEqual(self.productA.type, "product")
+        self.assertEqual(self.productA.type, "consu")
 
         self.productA.write(
             {
@@ -55,7 +55,7 @@ class TestRentalProductInstance(RentalStockCommon):
         )
         self.productA.onchange_product_instance()
         self.assertEqual(self.productA.tracking, "serial")
-        self.assertEqual(self.productA.type, "product")
+        self.assertEqual(self.productA.type, "consu")
 
 
         self.productA.write(

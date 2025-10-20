@@ -4,7 +4,7 @@ from odoo import api, fields, models, _
 
 
 class RepairLine(models.Model):
-    _inherit = "repair.line"
+    _inherit = "stock.move"
 
     analytic_tag_ids = fields.Many2many(
         "account.analytic.tag",

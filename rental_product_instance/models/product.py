@@ -26,7 +26,7 @@ class ProductTemplate(models.Model):
     def onchange_product_instance(self):
         if self.product_instance:
             self.tracking = "serial"
-            self.type = "product"
+            self.type = "consu"
 
     @api.onchange("tracking")
     def onchange_tracking(self):
@@ -183,7 +183,7 @@ class ProductProduct(models.Model):
     def onchange_product_instance(self):
         if self.product_instance:
             self.tracking = "serial"
-            self.type = "product"
+            self.type = "consu"
 
     @api.onchange("tracking")
     def onchange_tracking(self):

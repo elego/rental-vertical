@@ -40,9 +40,7 @@
             <field name="user_ids" position="after">
                 <field name="product_id" />
                 <field name="tracking" invisible="1" />
-                <field name="lot_id"
-                       attrs="{'invisible': [('tracking','=','none')]}"
-                       domain="[('product_id', '=', product_id)]" />
+                <field name="lot_id" invisible="tracking == 'none'"                        domain="[('product_id', '=', product_id)]"/>
             </field>
             <notebook position="inside">
                 <page name="repair" string="Repair Orders">
