@@ -32,6 +32,6 @@ This module is automatically installed when all of the following modules are ins
     ],
     "demo": [],
     "qweb": [],
-    "auto_install": True,
+    # FIXME later "auto_install": True,
     "license": "AGPL-3",
 }

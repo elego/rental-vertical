@@ -32,6 +32,6 @@ In order to get vehicle related fields, open the product category and activate t
     "demo": [],
     "qweb": [],
     "application": False,
-    "auto_install": True,
+    # FIXME later "auto_install": True,
     "license": "AGPL-3",
 }
