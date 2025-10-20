@@ -27,6 +27,6 @@ No further configuration is needed.
     ],
     "demo": [],
     "qweb": [],
-    "auto_install": True,
+    # FIXME later "auto_install": True,
     "license": "AGPL-3",
 }
