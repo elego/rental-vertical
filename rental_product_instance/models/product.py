@@ -153,27 +153,16 @@ class ProductProduct(models.Model):
 
     @api.model
     def _search_display_name(
-        self, name, args=None, operator="ilike", limit=100, name_get_uid=None
+        self, operator, value
     ):
-        res = super()._search_display_name(
-            name=name,
-            args=args,
-            operator=operator,
-            limit=limit,
-            name_get_uid=name_get_uid,
-        )
-        args = args or []
-        if name:
+        res = super()._search_display_name(operator, value)
+        if value:
             domain = [
                 "|",
-                ("instance_serial_number_id.name", operator, name),
-                ("license_plate", operator, name),
+                ("instance_serial_number_id.name", operator, value),
+                ("license_plate", operator, value),
             ]
-            record_ids = self._search(
-                expression.AND([domain, args]),
-                limit=limit,
-                access_rights_uid=name_get_uid,
-            )
+            record_ids = self._search(domain, limit=100)
             if record_ids:
                 res2 = self.browse(record_ids).name_get()
                 return list(set(res + res2))
