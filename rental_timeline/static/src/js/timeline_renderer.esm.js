@@ -3,6 +3,7 @@ import { TimelineRenderer } from "@web_timeline/views/timeline/timeline_renderer
 import { renderToString } from "@web/core/utils/render";
 import { useService } from "@web/core/utils/hooks";
 import { _t } from "@web/core/l10n/translation";
+import Popup from "./Popup";
 
 const { DateTime } = luxon;
 /**
@@ -11,18 +12,19 @@ const { DateTime } = luxon;
 export default class RentalTimelineRenderer extends TimelineRenderer {
     setup() {
         super.setup();
-        this.orm = useService("orm"); // Für M2M-Gruppen
+        this.orm = useService("orm"); // For M2M groups
+        this.tooltipPopup = new Popup(document.body);
     }
 
     // -------------------------------------------------------------
-    // 1. on_data_loaded – sauber, mit fallback
+    // 1. on_data_loaded – clean, with fallback
     // -------------------------------------------------------------
     async on_data_loaded(records, adjust_window = true) {
         const data = [];
         for (const record of records) {
             if (record[this.date_start]) {
-                const transform = this.model._event_data_transform || this.event_data_transform.bind(this);
-                data.push(transform(record));
+                const transform = this.model._event_data_transform(record) || this.event_data_transform.bind(this);
+                data.push(transform);
             }
         }
 
@@ -36,9 +38,13 @@ export default class RentalTimelineRenderer extends TimelineRenderer {
     }
 
     // -------------------------------------------------------------
-    // 2. event_data_transform – ohne py.eval, mit JS-Logik
+    // 2. event_data_transform – one py.eval, with JS logic
     // -------------------------------------------------------------
-    event_data_transform(evt) {
+    _event_data_transform(evt) {
+        super._event_data_transform(evt);
+        // Content + Tooltip (via renderToString + HTML)
+        let content = evt.__name || evt.display_name || "";
+
         const [date_start, date_stop] = this._get_event_dates(evt);
 
         // Group ID
@@ -48,19 +54,17 @@ export default class RentalTimelineRenderer extends TimelineRenderer {
             group = Array.isArray(val) ? val[0] : -1;
         }
 
-        // Farben: JS-Check statt py.eval
+        // Colors: JS check instead of py.eval
         let bgColor = "";
         for (const color of this.colors || []) {
             const val = evt[color.field];
             const match = this._matchColorCondition(val, color.opt, color.value);
             if (match) {
                 bgColor = color.color;
-                break; // erste passende
+                break; // first match
             }
         }
 
-        // Content + Tooltip (via renderToString + HTML)
-        let content = evt.__name || evt.display_name || "";
         let title = content;
 
         if (this.arch?.children?.length) {
@@ -92,7 +96,7 @@ export default class RentalTimelineRenderer extends TimelineRenderer {
         return item;
     }
 
-    // Hilfsfunktion für Farben
+    // Helper function for colors
     _matchColorCondition(value, operator, target) {
         if (value === undefined || value === false) return false;
         switch (operator) {
@@ -116,7 +120,7 @@ export default class RentalTimelineRenderer extends TimelineRenderer {
         let seq = 1;
         const field = this.model.last_group_bys[0];
 
-        // Sammle alle Gruppen-IDs
+        // Collect all group IDs
         const groupIds = new Set();
         for (const r of records) {
             const val = r[field];
@@ -125,7 +129,7 @@ export default class RentalTimelineRenderer extends TimelineRenderer {
             }
         }
 
-        // M2M? Hole Namen via ORM
+        // M2M? get names via ORM
         if (this.fields[field]?.type === "many2many" && groupIds.size) {
             const relation = this.fields[field].relation;
             const res = await this.orm.searchRead(
@@ -141,7 +145,7 @@ export default class RentalTimelineRenderer extends TimelineRenderer {
                 });
             }
         } else {
-            // M2O oder einfache Felder
+            // M2O or simple fields
             for (const r of records) {
                 const val = r[field];
                 if (Array.isArray(val) && val[0]) {
@@ -156,7 +160,7 @@ export default class RentalTimelineRenderer extends TimelineRenderer {
             }
         }
 
-        // UNASSIGNED entfernen, wenn leer
+        // UNASSIGNED remove, if empty
         if (groups.length > 1 && groups[0].id === -1) {
             groups.shift();
         }
@@ -165,10 +169,39 @@ export default class RentalTimelineRenderer extends TimelineRenderer {
     }
 
     // -------------------------------------------------------------
-    // 4. init_timeline – nur Optionen, KEINE DOM-Hacks, KEIN Popup
+    // 4. init_timeline – just options, no DOM hacks, no popup
     // -------------------------------------------------------------
     init_timeline() {
         super.init_timeline();
+
+        // Event forwarding to Controller-Props
+        // this.timeline.on("select", (props) => {
+        //     const item = this.timeline.itemsData.get(props.items[0]);
+        //     if (!item) return;
+        //     this.props.onGroupClick?.(item);
+        // });
+
+        this.timeline.on("doubleClick", (props) => {
+            const item = this.timeline.itemsData.get(props.item);
+            if (!item) return;
+            this.props.onItemDoubleClick?.(item);
+        });
+
+        this.timeline.on("groupclick", (props) => {
+            const group = props.group;
+            this.props.onGroupClick?.(group);
+        });
+
+         // --- Custom Group Template for sidebar clicks ---
+        // this.options.groupTemplate = (group) => {
+        //     const div = document.createElement("div");
+        //     div.textContent = group.content;
+        //     div.style.cursor = "pointer";
+        //     div.onclick = () => {
+        //         this.props.onGroupClick?.(group);
+        //     };
+        //     return div;
+        // };
 
         // Custom Options
         this.options.editable = this.options.editable || {};
@@ -186,25 +219,7 @@ export default class RentalTimelineRenderer extends TimelineRenderer {
             this.timeline.setOptions(this.options);
         }
 
-        // Kein Popup-Patch, kein ItemSet-Hack → vis.js reicht
-        // Tooltips via HTML in `content` + `title` Attribut
-
-        // changed handler – nur Orientation fixen
-        if (this.timeline) {
-            const self = this;
-            this.timeline.off("changed");
-            this.timeline.on("changed", () => {
-                this.timeline.setOptions({ orientation: { item: "top", axis: "top" } });
-
-                this.draw_canvas();
-                this.load_initial_data();
-                // this.model?.reload?.();
-            });
-        }
-
-
-
-        // // --- Tooltip-System ---
+        // --- Tooltip-System ---
         // this.timeline.on("itemover", (props) => {
         //     const item = this.timeline.itemsData.get(props.item);
         //     if (!item) return;
@@ -221,27 +236,101 @@ export default class RentalTimelineRenderer extends TimelineRenderer {
         // this.timeline.on("itemout", () => this._hideTooltip());
         // this.timeline.on("mouseMove", (props) => this._moveTooltip(props.event));
 
-        // // --- Click-Handler (öffnet z. B. Formview) ---
-        // this.timeline.on("select", (props) => {
-        //     if (!props.items.length) return;
-        //     const item = this.timeline.itemsData.get(props.items[0]);
-        //     if (item && item.id && this.actionService) {
-        //         this._onItemSelected(item);
+        // --- Tooltip-System (nur bei Items) ---
+        this.timeline.off("itemover");
+        this.timeline.off("itemout");
+
+        // this.timeline.on("itemover", (props) => {
+        //     const item = this.timeline.itemsData.get(props.item);
+        //     if (!item) return;
+
+        //     // Tooltip HTML aus Template oder Fallback
+        //     const tooltipHtml =
+        //         item.evt?.tooltip ||
+        //         item.title ||
+        //         (this.timeline.groupsData.get(item.group)?.tooltip ?? null);
+
+        //     if (tooltipHtml) {
+        //         this._showTooltip(props.event, tooltipHtml);
         //     }
         // });
 
-        // // --- Orientation Fix bei Resize/Change ---
-        // this.timeline.on("changed", () => {
-        //     this.timeline.setOptions({ orientation: { item: "top", axis: "top" } });
-        //     this.draw_canvas();
-        //     this.load_initial_data();
-        // });
+        this.timeline.on("itemover", (props) => {
+            const item = this.timeline.itemsData.get(props.item);
+            if (!item || !item.evt) return;
+
+            const evt = item.evt;
+            // Tooltip from fields:
+            const tooltipHtml = `
+                <div class="tooltip_content" style="display: block;">
+                    <table border="1">
+                        <tr>
+                            <td>Order: </td>
+                            <td>${evt.order_name}</td>
+                        </tr>
+                        <tr>
+                            <td>Start date</td>
+                            <td>${evt.date_start_formated}</td>
+                        </tr>
+                        <tr>
+                            <td>End date</td>
+                            <td>${evt.date_end_formated}</td>
+                        </tr>
+                        <tr>
+                            <td>Total days</td>
+                            <td>${evt.number_of_days ?? ""}</td>
+                        </tr>
+                        <tr>
+                            <td>Rental period</td>
+                            <td>${evt.rental_period ?? ""}</td>
+                        </tr>
+                        <tr>
+                            <td>Customer</td>
+                            <td>${evt.display_name ?? ""}</td>
+                        </tr>
+                        <tr>
+                            <td>Shipping address</td>
+                            <td>${evt.partner_shipping_address ?? ""}</td>
+                        </tr>
+                        <tr>
+                            <td>Warehouse</td>
+                            <td>${evt.warehouse_name ?? ""}</td>
+                        </tr>
+                        <tr>
+                            <td>Type</td>
+                            <td>${evt.type_formated ?? ""}</td>
+                        </tr>
+                        <tr>
+                            <td>Price</td>
+                            <td>${evt.amount ?? ""}</td>
+                        </tr>
+                    </table>
+                </div>
+            `;
+
+            this._showTooltip(props.event, tooltipHtml);
+        });
+
+
+
+        this.timeline.on("itemout", () => this._hideTooltip());
+
+        this.timeline.on("itemout", () => this._hideTooltip());
+
+        // --- Click-Handler ---
+        this.timeline.on("select", (props) => {
+            if (!props.items.length) return;
+            const item = this.timeline.itemsData.get(props.items[0]);
+            if (item && item.id && this.actionService) {
+                this._onItemSelected(item);
+            }
+        });
 
     }
 
 
     // // -------------------------------------------------------------
-    // // Tooltip-Hilfsfunktionen
+    // // Tooltip-Helpers – old version with DOM element
     // // -------------------------------------------------------------
     // _showTooltip(evt, html) {
     //     if (!this.tooltipEl) {
@@ -255,7 +344,7 @@ export default class RentalTimelineRenderer extends TimelineRenderer {
     //             padding: "6px 8px",
     //             borderRadius: "6px",
     //             fontSize: "12px",
-    //             maxWidth: "240px",
+    //             maxWidth: "1000px",
     //             pointerEvents: "none",
     //         });
     //         document.body.appendChild(this.tooltipEl);
@@ -276,22 +365,60 @@ export default class RentalTimelineRenderer extends TimelineRenderer {
     //     this.tooltipEl.style.top = evt.clientY + offset + "px";
     // }
 
-    // // -------------------------------------------------------------
-    // // Optional: Klick öffnet das Formview
-    // // -------------------------------------------------------------
-    // _onItemSelected(item) {
-    //     this.actionService.doAction({
-    //         type: "ir.actions.act_window",
-    //         res_model: this.model.resModel,
-    //         res_id: item.id,
-    //         views: [[false, "form"]],
-    //         target: "new",
-    //     });
-    // }
+     _showTooltip(evt, html) {
+        if (!this.tooltipPopup) {
+            this.tooltipPopup = new Popup(document.body);
+        }
+        this.tooltipPopup.setText(html);
+        this.tooltipPopup.setPosition(evt.clientX + 10, evt.clientY + 10);
+        this.tooltipPopup.show(true);
+    }
+
+    _hideTooltip() {
+        if (this.tooltipPopup) {
+            this.tooltipPopup.hide();
+        }
+    }
+
+    _moveTooltip(evt) {
+        if (!this.tooltipPopup) return;
+        this.tooltipPopup.setPosition(evt.clientX + 10, evt.clientY + 10);
+        this.tooltipPopup.show(true);
+    }
+
+    // -------------------------------------------------------------
+    // Option: click on item – open form view
+    // -------------------------------------------------------------
+    _onItemSelected(item) {
+        this.actionService.doAction({
+            type: "ir.actions.act_window",
+            res_model: this.model.resModel,
+            res_id: item.id,
+            views: [[false, "form"]],
+            target: "new",
+        });
+    }
+
+    /**
+     * Clears and draws the canvas items.
+     *
+     * @private
+     */
+    draw_canvas() {
+        super.draw_canvas();
+    }
 
 
     load_initial_data() {
         super.load_initial_data();
+    }
+
+    async create_completed(id) {
+        const records = await this.orm.call(this.model_name, "read", [
+            [id],
+            this.params.fieldNames,
+        ]);
+        return this._event_data_transform(records[0]);
     }
 
 }

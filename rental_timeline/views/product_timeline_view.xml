@@ -7,7 +7,10 @@
             <field name="model">product.timeline</field>
             <field name="type">rental_timeline</field>
             <field name="arch" type="xml">
-                <timeline date_start="date_start"
+               <rental_timeline>
+                <timeline
+                          js_class="rental_timeline"
+                          date_start="date_start"
                           date_stop="date_end"
                           default_group_by="product_id"
                           zoomKey="ctrlKey"
@@ -45,7 +48,7 @@
                     <field name="click_res_id" />
                     <field name="order_name" />
                     <templates>
-                        <div t-name="tooltip-item-group">
+                        <!-- <div t-name="tooltip-item-group">
                             <table border="1">
                                 <tr t-if="record.product_name">
                                     <td>Product:</td>
@@ -110,9 +113,14 @@
                                 <hr color="#ff0000" />
                             </t>
                             <t t-out="record.display_name" />
+                        </div> -->
+
+                        <div>
+                            <h3>Hello world</h3>
                         </div>
                     </templates>
                 </timeline>
+                </rental_timeline>
             </field>
         </record>
 

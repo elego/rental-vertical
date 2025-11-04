@@ -88,7 +88,7 @@ class SaleOrderLine(models.Model):
         for line in self:
             line.timeline_ids._compute_fields()
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
         res = super().create(vals)
         res._create_product_timeline()

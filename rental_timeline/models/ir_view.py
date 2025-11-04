@@ -11,3 +11,6 @@ class IrUIView(models.Model):
     _inherit = "ir.ui.view"
 
     type = fields.Selection(selection_add=[RENTAL_TIMELINE_VIEW])
+
+    def _get_view_info(self):
+        return {"rental_timeline": {"icon": "fa fa-calendar"}} | super()._get_view_info()

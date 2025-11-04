@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="tooltip_item_group">
+        <table border="1">
+            <tr t-if="record.product_name">
+                <td>Product:</td>
+                <td t-esc="record.product_name" />
+            </tr>
+            <tr t-if="record.product_categ_name">
+                <td>Category:</td>
+                <td t-esc="record.product_categ_name" />
+            </tr>
+        </table>
+    </template>
+
+    <template id="timeline_item">
+        <div t-attf-class="tooltip_content" style="display: none">
+            <table border="1">
+                <tr t-if="record.has_clues">
+                    <td>Clues:</td>
+                    <td id="clues"></td>
+                </tr>
+                <tr t-if="record.order_name">
+                    <td>Order:</td>
+                    <td t-esc="record.order_name" />
+                </tr>
+                <tr t-if="record.date_start_formated">
+                    <td>Start date:</td>
+                    <td t-esc="record.date_start_formated" />
+                </tr>
+                <tr t-if="record.date_end_formated">
+                    <td>End date:</td>
+                    <td t-esc="record.date_end_formated" />
+                </tr>
+                <tr t-if="record.number_of_days">
+                    <td>Total days:</td>
+                    <td t-esc="record.number_of_days" />
+                </tr>
+                <tr t-if="record.rental_period and (record.type == 'reserved' or record.type == 'rental')">
+                    <td>Rental period:</td>
+                    <td t-esc="record.rental_period" />
+                </tr>
+                <tr t-if="record.partner_id[1]">
+                    <td>Customer:</td>
+                    <td t-esc="record.partner_id[1]" />
+                </tr>
+                <tr t-if="record.partner_shipping_address">
+                    <td>Shipping address:</td>
+                    <td t-esc="record.partner_shipping_address" />
+                </tr>
+                <tr t-if="record.warehouse_name">
+                    <td>Warehouse:</td>
+                    <td t-esc="record.warehouse_name" />
+                </tr>
+                <tr t-if="record.type_formated">
+                    <td>Type:</td>
+                    <td t-esc="record.type_formated" />
+                </tr>
+                <tr t-if="record.amount">
+                    <td>Price:</td>
+                    <td t-esc="record.amount" />
+                </tr>
+            </table>
+        </div>
+        <t t-if="record.redline">
+            <hr color="#ff0000" />
+        </t>
+        <t t-out="record.display_name" />
+    </template>
+</odoo>

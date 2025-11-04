@@ -23,7 +23,8 @@ Just install this module to add the rental timeline view to your system. No furt
     ],
     "data": [
         "security/ir.model.access.csv",
-        # "views/product_timeline_view.xml",
+        "views/rental_timeline_templates.xml",
+        "views/product_timeline_view.xml",
         "views/product_view.xml",
     ],
     'qweb': ['static/src/js/timeline_renderer.xml'],
@@ -32,8 +33,11 @@ Just install this module to add the rental timeline view to your system. No furt
         'web.assets_backend': [
             "web_timeline/static/src/**/*",
             "rental_timeline/static/src/scss/rental_timeline.scss",
-            # "rental_timeline/static/src/js/Popup.js",
+            "rental_timeline/static/src/js/Popup.js",
+            "rental_timeline/static/src/js/rental_timeline_arch_parser.esm.js",
+            "rental_timeline/static/src/js/timeline_model.esm.js",
             "rental_timeline/static/src/js/timeline_renderer.esm.js",
+            "rental_timeline/static/src/js/timeline_controller.xml",
             "rental_timeline/static/src/js/timeline_controller.esm.js",
             "rental_timeline/static/src/js/timeline_view.esm.js",
         ],

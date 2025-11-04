@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
     <t t-name="rental_timeline.RentalTimelineRenderer">
-        <div>
+        <div t-ref="root">
             <span t-esc="record.display_name"/>
             <div class="tooltip_content" style="display:none">
                 <!-- <t t-esc="record.some_field"/> -->

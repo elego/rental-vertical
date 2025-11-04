@@ -4,6 +4,8 @@ import { TimelineController } from "@web_timeline/views/timeline/timeline_contro
 import { FormViewDialog } from "@web/views/view_dialogs/form_view_dialog";
 import { useService } from "@web/core/utils/hooks";
 import { _t } from "@web/core/l10n/translation";
+import {Layout} from "@web/search/layout";
+import {standardViewProps} from "@web/views/standard_view_props";
 
 const { DateTime } = luxon;
 
@@ -16,16 +18,16 @@ export default class RentalTimelineController extends TimelineController {
     }
 
     get rendererProps() {
-        // Alle Timeline-Events auf die Controller-Methoden binden
         return {
             ...super.rendererProps,
             onGroupClick: this._onGroupClick.bind(this),
+            onItemDoubleClick: this._onItemDoubleClick.bind(this),
             onUpdate: this._onUpdate.bind(this),
         };
     }
 
     /**
-     * Triggered when a group in the timeline is clicked.
+     * Triggered when a group in the timeline is clicked. (sidebar group)
      */
     _onGroupClick(item) {
         const groupField = this.model.last_group_bys?.[0];
@@ -88,4 +90,44 @@ export default class RentalTimelineController extends TimelineController {
         //     });
         // }
     }
+
+    _onItemDoubleClick(event) {
+        // return this.openItem(event.id, false);
+
+        const groupField = this.model.last_group_bys?.[0];
+        if (!groupField) return;
+
+        const fieldInfo = this.model.fields[groupField];
+        const resModel = fieldInfo?.relation;
+        const resId = event.group;
+        if (!resModel || !resId) return;
+
+        this.actionService.doAction({
+            type: "ir.actions.act_window",
+            res_model: resModel,
+            res_id: resId,
+            views: [[false, "form"]],
+            target: "new",
+            flags: { mode: "readonly" },
+        });
+
+    }
+
+    openItem(item_id, is_editable) {
+        super.openItem(item_id, is_editable);
+    }
+
 }
+
+RentalTimelineController.components = {
+    ...RentalTimelineController.components,
+    Layout,
+};
+// RentalTimelineController.templateName = "rental_timeline.TimelineView";
+
+RentalTimelineController.props = {
+    ...standardViewProps,
+    Model: Function,
+    modelParams: Object,
+    Renderer: Function,
+};

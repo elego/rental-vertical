@@ -6,25 +6,26 @@
 
 import { _t } from "@web/core/l10n/translation";
 import { registry } from "@web/core/registry";
-import {TimelineArchParser} from "@web_timeline/views/timeline/timeline_arch_parser.esm";
+import {RentalTimelineArchParser} from "./rental_timeline_arch_parser.esm";
 import {TimelineModel} from "@web_timeline/views/timeline/timeline_model.esm";
+// import RentalTimelineModel from "./timeline_model.esm";
 import RentalTimelineController from "./timeline_controller.esm";
 import RentalTimelineRenderer  from "./timeline_renderer.esm";
 
 const viewRegistry = registry.category("views");
 
-
-const RentalTimelineView = {
+export const RentalTimelineView = {
+    type: "rental_timeline",
+    searchMenuTypes: [],
     display_name: _t("Rental Timeline"),
     icon: "fa fa-calendar",
     multiRecord: true,
-    ArchParser: TimelineArchParser,
+    ArchParser: RentalTimelineArchParser,
     Controller: RentalTimelineController,
     Renderer: RentalTimelineRenderer,
     Model: TimelineModel,
     jsLibs: ["/rental_timeline/static/lib/vis/vis-timeline-graph2d.js"],
     cssLibs: ["/rental_timeline/static/lib/vis/vis-timeline-graph2d.css"],
-    type: "rental_timeline",
 
     props: (genericProps, view) => {
         const { arch, fields, resModel } = genericProps;
@@ -46,8 +47,4 @@ const RentalTimelineView = {
 
 }
 
-export default RentalTimelineView;
-
 viewRegistry.add("rental_timeline", RentalTimelineView);
-
-
