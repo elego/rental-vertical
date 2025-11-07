@@ -16,7 +16,7 @@ const viewRegistry = registry.category("views");
 
 export const RentalTimelineView = {
     type: "rental_timeline",
-    searchMenuTypes: [],
+    searchMenuTypes: ["filter", "groupBy", "comparison", "favorite"],
     display_name: _t("Rental Timeline"),
     icon: "fa fa-calendar",
     multiRecord: true,

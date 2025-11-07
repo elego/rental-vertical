@@ -187,7 +187,7 @@
         <record id="action_product_timeline" model="ir.actions.act_window">
             <field name="name">Timeline</field>
             <field name="res_model">product.timeline</field>
-            <field name="view_mode">rental_timeline,form</field>
+            <field name="view_mode">list,rental_timeline,form</field>
             <field name="search_view_id" ref="view_product_timeline_search" />
             <field name="context">{"search_default_type_rental": 1}</field>
             <field name="help" type="html">
