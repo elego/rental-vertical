@@ -6,6 +6,7 @@ import { useService } from "@web/core/utils/hooks";
 import { _t } from "@web/core/l10n/translation";
 import {Layout} from "@web/search/layout";
 import {standardViewProps} from "@web/views/standard_view_props";
+import {SearchBar} from "@web/search/search_bar/search_bar";
 
 const { DateTime } = luxon;
 
@@ -48,10 +49,8 @@ export default class RentalTimelineController extends TimelineController {
         });
     }
 
-    /**
-     * Triggered when a timeline item is clicked (to open form view / popup).
-     */
     _onUpdate(item) {
+
         if (!item) return;
         const evt = item.evt || {};
         const resId = Number(evt.click_res_id);
@@ -75,31 +74,15 @@ export default class RentalTimelineController extends TimelineController {
             });
         }
 
-        // if (viewId) {
-        //     this.dialogService.add(FormViewDialog, {
-        //         resModel: this.model.model_name,
-        //         resId,
-        //         title,
-        //         viewId,
-        //         readonly: true,
-        //     });
-        // } else {
-        //     this.actionService.switchView("form", {
-        //         resId,
-        //         mode: "readonly",
-        //     });
-        // }
     }
 
     _onItemDoubleClick(event) {
-        // return this.openItem(event.id, false);
 
         const groupField = this.model.last_group_bys?.[0];
         if (!groupField) return;
 
-        const fieldInfo = this.model.fields[groupField];
-        const resModel = fieldInfo?.relation;
-        const resId = event.group;
+        const resModel = event.evt.click_res_model;
+        const resId = event.evt.click_res_id;
         if (!resModel || !resId) return;
 
         this.actionService.doAction({
@@ -113,17 +96,14 @@ export default class RentalTimelineController extends TimelineController {
 
     }
 
-    openItem(item_id, is_editable) {
-        super.openItem(item_id, is_editable);
-    }
-
 }
 
 RentalTimelineController.components = {
     ...RentalTimelineController.components,
     Layout,
+    SearchBar,
 };
-// RentalTimelineController.templateName = "rental_timeline.TimelineView";
+RentalTimelineController.templateName = "rental_timeline.TimelineView";
 
 RentalTimelineController.props = {
     ...standardViewProps,

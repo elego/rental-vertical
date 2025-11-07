@@ -112,60 +112,150 @@ export default class RentalTimelineRenderer extends TimelineRenderer {
     // 3. split_groups
     // -------------------------------------------------------------
     async split_groups(records) {
-        if (!this.model.last_group_bys?.length) {
+
+        const groups = [];
+        const grouped_field = this.model.last_group_bys[0];
+        if (!grouped_field) {
             return records;
         }
-
-        const groups = [{ id: -1, content: _t("<b>UNASSIGNED</b>"), order: -1 }];
         let seq = 1;
-        const field = this.model.last_group_bys[0];
 
-        // Collect all group IDs
-        const groupIds = new Set();
-        for (const r of records) {
-            const val = r[field];
-            if (Array.isArray(val)) {
-                groupIds.add(val[0]);
+        // Keep track of group IDs
+        const groupMap = new Map();
+
+        // basic version: only for product_id grouping
+        for (const event of records) {
+            const productGroup = event.product_id;
+            if (Array.isArray(productGroup)) {
+                let group = groups.find(g => g.id === productGroup[0]);
+                if (!group && !productGroup[1].startsWith("All")) {
+                    const tooltip = this.renderTooltip(event);
+                    groups.push({
+                        id: productGroup[0],
+                        content: productGroup[1],
+                        tooltip,
+                        partner_id: event.partner_id,
+                        order_name: event.order_name,
+                        product_id: event.product_id,
+                        order: seq++,
+                    });
+                }
             }
         }
 
-        // M2M? get names via ORM
-        if (this.fields[field]?.type === "many2many" && groupIds.size) {
-            const relation = this.fields[field].relation;
-            const res = await this.orm.searchRead(
-                relation,
-                [["id", "in", [...groupIds]]],
-                ["id", "display_name"]
-            );
-            for (const rec of res) {
-                groups.push({
-                    id: rec.id,
-                    content: rec.display_name,
-                    order: seq++,
-                });
+        // grouping by product_categ_id
+        if (grouped_field === "product_categ_id") {
+            const groupCategs = [];
+            for (const event of records) {
+                const categ = event.product_categ_id;
+                if (Array.isArray(categ)) {
+                    let group = groupCategs.find(g => g.content === categ[1]);
+                    if (!group) {
+                        const tooltip = this.renderTooltip(event);
+                        const nestedGroups = [];
+                        for (const e2 of records) {
+                            if (e2.product_categ_name === event.product_categ_name) {
+                                if (!nestedGroups.includes(e2.product_id?.[0])) {
+                                    nestedGroups.push(e2.product_id?.[0]);
+                                }
+                            }
+                        }
+                        group = {
+                            id: categ[0] + 1000000,
+                            content: categ[1],
+                            nestedGroups,
+                            tooltip,
+                            order: seq++,
+                        };
+                        groupCategs.push(group);
+                    }
+                }
             }
-        } else {
-            // M2O or simple fields
-            for (const r of records) {
-                const val = r[field];
-                if (Array.isArray(val) && val[0]) {
-                    if (!groups.some(g => g.id === val[0])) {
-                        groups.push({
-                            id: val[0],
-                            content: val[1],
+            groups.push(...groupCategs);
+        }
+
+        // grouping by order_name
+        else if (grouped_field === "order_name") {
+            const groupOrders = [];
+            for (const event of records) {
+                const orderName = event.order_name;
+                if (orderName && !groupOrders.find(g => g.content === orderName)) {
+                    const tooltip = this.renderTooltip(event);
+                    const nestedGroups = [];
+                    for (const e2 of records) {
+                        if (e2.order_name === orderName && e2.product_id) {
+                            if (!nestedGroups.includes(e2.product_id[0])) {
+                                nestedGroups.push(e2.product_id[0]);
+                            }
+                        }
+                    }
+                    groupOrders.push({
+                        id: event.id + 1000000,
+                        content: orderName,
+                        nestedGroups,
+                        tooltip,
+                        order_name: orderName,
+                        order: seq++,
+                    });
+                }
+            }
+            groups.push(...groupOrders);
+        }
+
+        // grouping by partner_id
+        else if (grouped_field === "partner_id") {
+            const groupPartners = [];
+            for (const event of records) {
+                const partner = event.partner_id;
+                if (Array.isArray(partner)) {
+                    let group = groupPartners.find(g => g.content === partner[1]);
+                    if (!group) {
+                        const tooltip = this.renderTooltip(event);
+                        const nestedGroups = [];
+                        for (const e2 of records) {
+                            if (e2.partner_id?.[1] === partner[1]) {
+                                if (!nestedGroups.includes(e2.product_id?.[0])) {
+                                    nestedGroups.push(e2.product_id[0]);
+                                }
+                            }
+                        }
+                        groupPartners.push({
+                            id: partner[0] + 1000000,
+                            content: partner[1],
+                            nestedGroups,
+                            tooltip,
+                            partner_id: partner,
                             order: seq++,
                         });
                     }
                 }
             }
+            groups.push(...groupPartners);
         }
 
-        // UNASSIGNED remove, if empty
-        if (groups.length > 1 && groups[0].id === -1) {
-            groups.shift();
+        // Fallback if no groups
+        if (!groups.length) {
+            groups.push({ id: -1, content: _t("<b>UNASSIGNED</b>"), order: 0 });
         }
 
         return groups;
+    }
+
+    /**
+     * Render tooltip content for a group
+     * Instead of QWeb, use OWL component or just HTML string
+     */
+    renderTooltip(record) {
+        if (!record) return "";
+        return `
+            <table border="1" style="border-collapse: collapse;">
+                <tr><td>Product: </td><td>${record.product_id?.[1] || "-"}</td></tr>
+                <tr><td>Partner: </td><td>${record.partner_id?.[1] || "-"}</td></tr>
+                <tr><td>Type: </td><td>${record.type_formated || "-"}</td></tr>
+                <tr><td>Warehouse: </td><td>${record.warehouse_name || "-"}</td></tr>
+                <tr><td>Category: </td><td>${record.product_categ_name || "-"}</td></tr>
+            </table>
+        `;
     }
 
     // -------------------------------------------------------------
@@ -175,12 +265,6 @@ export default class RentalTimelineRenderer extends TimelineRenderer {
         super.init_timeline();
 
         // Event forwarding to Controller-Props
-        // this.timeline.on("select", (props) => {
-        //     const item = this.timeline.itemsData.get(props.items[0]);
-        //     if (!item) return;
-        //     this.props.onGroupClick?.(item);
-        // });
-
         this.timeline.on("doubleClick", (props) => {
             const item = this.timeline.itemsData.get(props.item);
             if (!item) return;
@@ -191,17 +275,6 @@ export default class RentalTimelineRenderer extends TimelineRenderer {
             const group = props.group;
             this.props.onGroupClick?.(group);
         });
-
-         // --- Custom Group Template for sidebar clicks ---
-        // this.options.groupTemplate = (group) => {
-        //     const div = document.createElement("div");
-        //     div.textContent = group.content;
-        //     div.style.cursor = "pointer";
-        //     div.onclick = () => {
-        //         this.props.onGroupClick?.(group);
-        //     };
-        //     return div;
-        // };
 
         // Custom Options
         this.options.editable = this.options.editable || {};
@@ -311,7 +384,37 @@ export default class RentalTimelineRenderer extends TimelineRenderer {
             this._showTooltip(props.event, tooltipHtml);
         });
 
+        // --- Group Tooltip System (Sidebar-Groups) ---
+        const groupContainer = this.timeline.dom?.left; // Sidebar DOM
+        if (groupContainer) {
+            // wait, until the dom is rendered
+            setTimeout(() => {
+                groupContainer.querySelectorAll(".vis-label").forEach((labelEl) => {
+                    const groupName = labelEl.textContent.trim();
+                    const group = Array.from(this.timeline.groupsData.getIds())
+                        .map((id) => this.timeline.groupsData.get(id))
+                        .find((g) => g.content?.includes(groupName));
 
+                    if (!group) return;
+
+                    labelEl.addEventListener("mouseenter", (event) => {
+                        const tooltipHtml =
+                            group.tooltip ||
+                            group.title ||
+                            `<div class="tooltip_content"><b>${groupName}</b></div>`;
+                        this._showTooltip(event, tooltipHtml);
+                    });
+
+                    labelEl.addEventListener("mousemove", (event) => {
+                        this._moveTooltip(event);
+                    });
+
+                    labelEl.addEventListener("mouseleave", () => {
+                        this._hideTooltip();
+                    });
+                });
+            }, 100);
+        }
 
         this.timeline.on("itemout", () => this._hideTooltip());
 
@@ -329,43 +432,11 @@ export default class RentalTimelineRenderer extends TimelineRenderer {
     }
 
 
-    // // -------------------------------------------------------------
-    // // Tooltip-Helpers – old version with DOM element
-    // // -------------------------------------------------------------
-    // _showTooltip(evt, html) {
-    //     if (!this.tooltipEl) {
-    //         this.tooltipEl = document.createElement("div");
-    //         this.tooltipEl.className = "vis-custom-tooltip";
-    //         Object.assign(this.tooltipEl.style, {
-    //             position: "fixed",
-    //             zIndex: 9999,
-    //             background: "rgba(30,30,30,0.9)",
-    //             color: "#fff",
-    //             padding: "6px 8px",
-    //             borderRadius: "6px",
-    //             fontSize: "12px",
-    //             maxWidth: "1000px",
-    //             pointerEvents: "none",
-    //         });
-    //         document.body.appendChild(this.tooltipEl);
-    //     }
-    //     this.tooltipEl.innerHTML = html;
-    //     this.tooltipEl.style.display = "block";
-    //     this._moveTooltip(evt);
-    // }
+    // -------------------------------------------------------------
+    // Tooltip-Helpers – old version with DOM element
+    // -------------------------------------------------------------
 
-    // _hideTooltip() {
-    //     if (this.tooltipEl) this.tooltipEl.style.display = "none";
-    // }
-
-    // _moveTooltip(evt) {
-    //     if (!this.tooltipEl) return;
-    //     const offset = 12;
-    //     this.tooltipEl.style.left = evt.clientX + offset + "px";
-    //     this.tooltipEl.style.top = evt.clientY + offset + "px";
-    // }
-
-     _showTooltip(evt, html) {
+    _showTooltip(evt, html) {
         if (!this.tooltipPopup) {
             this.tooltipPopup = new Popup(document.body);
         }

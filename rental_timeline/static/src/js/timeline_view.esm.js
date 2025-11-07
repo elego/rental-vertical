@@ -7,8 +7,8 @@
 import { _t } from "@web/core/l10n/translation";
 import { registry } from "@web/core/registry";
 import {RentalTimelineArchParser} from "./rental_timeline_arch_parser.esm";
-import {TimelineModel} from "@web_timeline/views/timeline/timeline_model.esm";
-// import RentalTimelineModel from "./timeline_model.esm";
+// import {TimelineModel} from "@web_timeline/views/timeline/timeline_model.esm";
+import RentalTimelineModel from "./timeline_model.esm";
 import RentalTimelineController from "./timeline_controller.esm";
 import RentalTimelineRenderer  from "./timeline_renderer.esm";
 
@@ -23,7 +23,7 @@ export const RentalTimelineView = {
     ArchParser: RentalTimelineArchParser,
     Controller: RentalTimelineController,
     Renderer: RentalTimelineRenderer,
-    Model: TimelineModel,
+    Model: RentalTimelineModel,
     jsLibs: ["/rental_timeline/static/lib/vis/vis-timeline-graph2d.js"],
     cssLibs: ["/rental_timeline/static/lib/vis/vis-timeline-graph2d.css"],
 
