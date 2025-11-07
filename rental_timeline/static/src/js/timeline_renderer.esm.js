@@ -114,7 +114,10 @@ export default class RentalTimelineRenderer extends TimelineRenderer {
     async split_groups(records) {
 
         const groups = [];
-        const grouped_field = this.model.last_group_bys[0];
+        let grouped_field = this.model.last_group_bys[0];
+        if(grouped_field === "product_id") {
+            grouped_field = "product_categ_id";
+        }
         if (!grouped_field) {
             return records;
         }

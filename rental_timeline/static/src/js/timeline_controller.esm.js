@@ -39,14 +39,17 @@ export default class RentalTimelineController extends TimelineController {
         const resId = item.group;
         if (!resModel || !resId) return;
 
-        this.actionService.doAction({
-            type: "ir.actions.act_window",
-            res_model: resModel,
-            res_id: resId,
-            views: [[false, "form"]],
-            target: "new",
-            flags: { mode: "readonly" },
-        });
+        if (resId < 1000000) {
+            this.actionService.doAction({
+                type: "ir.actions.act_window",
+                res_model: resModel,
+                res_id: resId,
+                views: [[false, "form"]],
+                target: "new",
+                flags: { mode: "readonly" },
+            });
+
+        } else return;
     }
 
     _onUpdate(item) {
@@ -78,21 +81,31 @@ export default class RentalTimelineController extends TimelineController {
 
     _onItemDoubleClick(event) {
 
-        const groupField = this.model.last_group_bys?.[0];
+        if(
+            this.model.last_group_bys[0] &&
+            this.model.last_group_bys[0] !== "product_categ_id" &&
+            this.model.last_group_bys[0] !== "partner_id" &&
+            this.model.last_group_bys[0] !== "order_name"
+        ) {
+            var groupField = this.model.last_group_bys[0];
+        }
+
         if (!groupField) return;
 
-        const resModel = event.evt.click_res_model;
-        const resId = event.evt.click_res_id;
-        if (!resModel || !resId) return;
+        if(event.evt && event.evt.click_res_model) {
+            const resModel = event.evt.click_res_model;
+            const resId = event.evt.click_res_id;
+            if (!resModel || !resId) return;
 
-        this.actionService.doAction({
-            type: "ir.actions.act_window",
-            res_model: resModel,
-            res_id: resId,
-            views: [[false, "form"]],
-            target: "new",
-            flags: { mode: "readonly" },
-        });
+            this.actionService.doAction({
+                type: "ir.actions.act_window",
+                res_model: resModel,
+                res_id: resId,
+                views: [[false, "form"]],
+                target: "new",
+                flags: { mode: "readonly" },
+            });
+        }
 
     }
 
