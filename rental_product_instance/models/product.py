@@ -26,7 +26,7 @@ class ProductTemplate(models.Model):
     def onchange_product_instance(self):
         if self.product_instance:
             self.tracking = "serial"
-            self.type = "product"
+            self.type = "consu"
 
     @api.onchange("tracking")
     def onchange_tracking(self):
@@ -152,10 +152,10 @@ class ProductProduct(models.Model):
         return expression.TRUE_DOMAIN
 
     @api.model
-    def _name_search(
+    def _search_display_name(
         self, name, args=None, operator="ilike", limit=100, name_get_uid=None
     ):
-        res = super()._name_search(
+        res = super()._search_display_name(
             name=name,
             args=args,
             operator=operator,
@@ -183,7 +183,7 @@ class ProductProduct(models.Model):
     def onchange_product_instance(self):
         if self.product_instance:
             self.tracking = "serial"
-            self.type = "product"
+            self.type = "consu"
 
     @api.onchange("tracking")
     def onchange_tracking(self):

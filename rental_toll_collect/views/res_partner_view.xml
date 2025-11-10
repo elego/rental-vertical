@@ -10,15 +10,13 @@
                     <group
                         name="toll_collect"
                         string="Toll Collect"
-                        attrs="{'invisible':[('customer_rank', '=', 0)]}"
+                        invisible="customer_rank == 0"
                     >
                         <field name="administrative_charge" />
                         <field
                             name="administrative_charge_product"
-                            attrs="{
-                               'invisible': [('administrative_charge', '=', False)],
-                               'required': [('administrative_charge', '=', True)],
-                               }"
+                            invisible="not administrative_charge"
+                            required="administrative_charge"
                         />
                     </group>
                 </page>

@@ -26,22 +26,16 @@
                         <field
                             name="partner_id"
                             options="{'no_create':True}"
-                            attrs="{'invisible': [('automatic_invoicing', '=', True)]}"
+                            invisible="automatic_invoicing == True"
                         />
                         <field
                             name="administrative_charge"
-                            attrs="{'invisible': [('automatic_invoicing', '=', True)]}"
+                            invisible="automatic_invoicing == True"
                         />
                         <field
                             name="administrative_charge_product"
-                            attrs="{
-                               'invisible': [
-                                    '|',
-                                    ('automatic_invoicing', '=', True),
-                                    ('administrative_charge', '=', False),
-                               ],
-                               'required': [('administrative_charge', '=', True)],
-                               }"
+                            invisible="automatic_invoicing == True or administrative_charge == False"
+                            required="administrative_charge == True"
                         />
                     </group>
                     <footer>

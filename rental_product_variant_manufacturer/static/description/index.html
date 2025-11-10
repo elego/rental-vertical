@@ -1,9 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
-<title>Rental Product Instance</title>
+<title>Rental Product Variant Manufacturer</title>
 <style type="text/css">
 
 /*
@@ -359,42 +360,35 @@ ul.auto-toc {
 </style>
 </head>
 <body>
-<div class="document" id="rental-product-instance">
-<h1 class="title">Rental Product Instance</h1>
+<div class="document" id="rental-product-variant-manufacturer">
+<h1 class="title">Rental Product Variant Manufacturer</h1>
 
-<p><em>This file has been generated on 2023-02-19-14-13-59. Changes to it will be overwritten.</em></p>
+<p><em>This file has been generated on 2022-07-26-13-09-49. Changes to it will be overwritten.</em></p>
 <div class="section" id="summary">
 <h1>Summary</h1>
-<p>Add product instances identified by serial number as unique rented objects</p>
+<p>Extends model product with manufacturer fields for rental use cases.</p>
 </div>
 <div class="section" id="description">
 <h1>Description</h1>
-<p>This module extends the product data model in order to mark them as unique product instances
-that are traced by serial number. You might have several instances of a product but they are
-in different conditions or are somehow unique like machines, vehicles or maybe 'used' products.</p>
-<p>In order to track the condition history of a product instance you can add operating data, e.g.
-you can save the mileage of vehicles or the operating hours of machines.</p>
+<p>This module adds several fields to the product form.</p>
+<dl class="docutils">
+<dt>Additional fields:</dt>
+<dd><ul class="first last simple">
+<li>manu_year [Char]: year of manufacture</li>
+<li>manu_id [Many2one]: product.manufacturer -- manufacturer</li>
+<li>manu_type_id [Many2one]: product.manufacturer.type -- type</li>
+</ul>
+</dd>
+</dl>
 </div>
 <div class="section" id="usage">
 <h1>Usage</h1>
-<ul class="simple">
-<li>Install the module.</li>
-<li>Create a stockable product.</li>
-<li>Mark the product as product instance.</li>
-<li>Save the product and set an unique serial number.
-Hint: Make an inventory adjustment, if needed.</li>
-<li>Set a product category that can be configured to either use mileage or operating hours as condition.</li>
-<li>Go to the smartbutton for operating data, create the current condition and update it regularly.</li>
-</ul>
+<p>In order to get manufacturer related fields, open the product form view.</p>
 </div>
 <div class="section" id="changelog">
 <h1>Changelog</h1>
 <ul class="simple">
-<li>162f44fc 2023-02-17 12:18:02 +0100 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  (HEAD -&gt; v16, origin/v16, elego-github/v16) automatic porting via odoo-module-migrate -nc -i 15.0 -t 16.0 -d . (issue #4968)</li>
-<li>9089b1d5 2022-04-15 14:16:12 +0200 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  (tag: odoo-fox-v15_v15_int_current_daily, tag: daily_odoo-fox-v15_v15_fox_v15_daily_build-26, tag: daily_odoo-fox-v15_v15_fox_v15_daily_build-25, tag: daily_odoo-fox-v15_v15_fox_v15_daily_build-23, tag: daily_odoo-fox-v15_v15_fox_v15_daily_build-22, tag: daily_odoo-fox-v15_v15_fox_v15_daily_build-21, tag: daily_odoo-fox-v15_v15_fox_v15_daily_build-17, tag: daily_odoo-fox-v15_v15_fox_v15_daily_build-16, tag: daily_odoo-fox-v15_v15_fox_v15_daily_build-15, tag: daily_odoo-fox-v15_v15_fox_v15_daily_build-13, tag: daily_odoo-fox-v15_v15_fox_v15_daily_build-12, tag: bp_fox_v15_integration-ceqp-2, tag: bp_fox_v15_integration-cep-27, tag: bp_fox_v15_integration-cep-26, tag: bp_fox_v15_integration-cep-25, tag: bp_fox_v15_integration-cep-23, tag: bp_fox_v15_integration-cep-22, tag: bp_fox_v15_integration-cep-21, tag: bp_fox_v15_integration-cep-17, tag: bp_fox_v15_integration-cep-16, tag: bp_fox_v15_integration-cep-15, tag: bp_fox_v15_integration-cep-13, tag: bp_fox_v15_integration-cep-12, tag: baseline_odoo-fox-v15_v15_fox_v15_daily_build-26, origin/fox_v15_integration-cep-26, origin/fox_v15_integration-cep-25, origin/fox_v15_integration-cep-23, origin/fox_v15_integration-cep-22, origin/fox_v15_integration-cep-21, origin/fox_v15_integration-cep-17, origin/fox_v15_integration-cep-16, origin/fox_v15_integration-cep-15, origin/fox_v15_integration-cep-13, origin/fox_v15_integration-cep-12) update module versions for v15 and remove old migration scripts (issue #4967)</li>
-<li>8d191ff7 2022-04-10 15:41:16 +0200 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  add missing/lost documentation (issue #4516)</li>
-<li>279539a5 2022-03-14 10:48:31 +0100 <a class="reference external" href="mailto:cpatel&#64;elegosoft.com">cpatel&#64;elegosoft.com</a>  [IMP] correction,migration,fix unit test errors, (issue#4516)</li>
-<li>4509f78a 2022-02-23 20:48:33 +0100 <a class="reference external" href="mailto:wagner&#64;elegosoft.com">wagner&#64;elegosoft.com</a>  (origin/feature_4516_add_files_ported_from_v12_v14, feature_4516_add_files_ported_from_v12_v14) add files ported to v14 by cpatel and khanhbui (issue #4516)</li>
+<li>b6652fbd 2022-06-21 09:43:52 +0200 <a class="reference external" href="mailto:cpatel&#64;elegosoft.com">cpatel&#64;elegosoft.com</a>  [IMP][ADD] refactor code for fields manu_id,manu_type_id,manu_year, add new module rental_product_variant_manufacturer for it, (issue#4955)</li>
 </ul>
 </div>
 </div>

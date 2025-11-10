@@ -11,14 +11,17 @@
                     <button name="%(rental_routing.action_sale_rental_route)d" string="Route" type="action" attrs="{'invisible': ['|', ('rental','=',False), ('state','=','draft')]}"/>
                 </xpath>
                 <xpath expr="//field[@name='order_line']/form//field[@name='product_id']" position="after">
-                    <field name="can_forward_rental"
-                           attrs="{'invisible': ['|', ('rental_type', '!=', 'new_rental'),
-                                                      ('rental', '=', False)],
-                                   'readonly': [('state', 'not in', ('draft', 'sent'))]}"/>
-                    <field name="forward_rental_id"
-                           attrs="{'invisible': [('can_forward_rental', '=', False)],
-                                   'readonly': [('state', 'not in', ('draft', 'sent'))]}"
-                           options="{'no_open': True, 'no_create': True}"/>
+                    <field 
+                        name="can_forward_rental"
+                        invisible="rental_type != 'new_rental' or not rental"
+                        readonly="state != 'draft' or state != 'sent'"
+                    />
+                    <field 
+                        name="forward_rental_id"
+                        invisible="not can_forward_rental"
+                        readonly="state != 'draft' or state != 'sent'"
+                        options="{'no_open': True, 'no_create': True}"
+                    />
                 </xpath>
             </field>
         </record>

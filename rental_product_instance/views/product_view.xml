@@ -40,56 +40,55 @@
                      2. Reordering Rules
                 -->
                 <xpath expr="//button[@name='action_open_product_lot']" position="attributes">
-                    <attribute name="attrs">{'invisible': [('product_instance', '=', True)]}</attribute>
+                    <attribute name="invisible">product_instance == True</attribute>
                 </xpath>
                 <xpath expr="//button[@name='action_view_orderpoints']" position="attributes">
-                    <attribute name="attrs">{'invisible': [('product_instance', '=', True)]}</attribute>
+                    <attribute name="invisible">product_instance == True</attribute>
                 </xpath>
-                <xpath expr="//button[@name='action_open_quants']" position="attributes">
-                    <attribute name="attrs">{'invisible': ['|',('product_instance', '=', True),('type', '!=', 'product')]}</attribute>
-                </xpath>
+                <!-- <xpath expr="//button[@name='action_open_quants']" position="attributes">
+                    <attribute name="invisible">product_instance == True or type != 'product'</attribute>
+                </xpath> TODO reimplement this since the button no longer exists in V18-->
                 <xpath expr="//button[@name='action_product_forecast_report']" position="attributes">
-                    <attribute name="attrs">{'invisible': ['|',('product_instance', '=', True),('type', '!=', 'product')]}</attribute>
+                    <attribute name="invisible">product_instance == True or type != 'consu'</attribute>
                 </xpath>
                 <xpath expr="//button[@name='%(stock.action_open_routes)d']" position="attributes">
-                    <attribute name="attrs">{'invisible': ['|',('product_instance', '=', True),('type', '!=', 'product')]}</attribute>
+                    <attribute name="invisible">product_instance == True or type != 'consu'</attribute>
                 </xpath>
                 <xpath expr="//button[@name='action_view_sales']" position="attributes">
-                    <attribute name="attrs">{'invisible': [('product_instance', '=', True)]}</attribute>
+                    <attribute name="invisible">product_instance == True</attribute>
                 </xpath>
                 <div name="button_box" position="inside">
                     <button class="oe_stat_button" name="action_view_operating_data"
-                        type="object" icon="fa-history" string="Operating Data" attrs="{'invisible': [('product_instance', '=', False)]}">
+                        type="object" icon="fa-history" string="Operating Data" invisible="product_instance == False">
                     </button>
                 </div>
                 <xpath expr="//group[field[@name='manu_type_id']]" position="after">
                     <group name="instance_attributes"
-                        attrs="{'invisible': [('product_instance', '=', False)]}">
-                        <field name="show_instance_condition_type" invisible="1" />
+                        invisible="product_instance == False">
                         <field name="instance_state" />
                         <label for="instance_condition_hour"
-                               attrs="{'invisible': [('show_instance_condition_type', '!=', 'hour')]}" />
-                        <div attrs="{'invisible': [('show_instance_condition_type', '!=', 'hour')]}">
+                               invisible="show_instance_condition_type != 'hour'" />
+                        <div invisible="show_instance_condition_type != 'hour'">
                             <field name="instance_condition_hour" class="oe_inline" /> <span>h on</span>
                             <field name="instance_condition_date" class="oe_inline oe_no_button" />
                         </div>
                         <label for="instance_condition_km"
-                               attrs="{'invisible': [('show_instance_condition_type', '!=', 'km')]}" />
-                        <div attrs="{'invisible': [('show_instance_condition_type', '!=', 'km')]}">
+                               invisible="show_instance_condition_type != 'km'" />
+                        <div invisible="show_instance_condition_type != 'km'">
                             <field name="instance_condition_km" class="oe_inline" /> <span>km on</span>
                             <field name="instance_condition_date" class="oe_inline oe_no_button" />
                         </div>
                         <field name="instance_next_service_date" />
                         <field name="instance_serial_number_id" context="{'default_product_id': id}"
-                               attrs="{'invisible': [('id', '=', False)]}"/>
+                               invisible="id == False"/>
                         <field name="instance_current_location_id" readonly="1"/>
                     </group>
                 </xpath>
                 <xpath expr="//page[@name='invoicing']//group[@name='payables']" position="after">
                     <group string="Total Cost of Ownership">
                         <field name="real_sale_price"/>
-                        <field name="real_total_kilometers" attrs="{'invisible': [('show_instance_condition_type', '!=', 'km')]}"/>
-                        <field name="real_total_hours" attrs="{'invisible': [('show_instance_condition_type', '!=', 'hour')]}"/>
+                        <field name="real_total_kilometers" invisible="show_instance_condition_type != 'km'"/>
+                        <field name="real_total_hours" invisible="show_instance_condition_type != 'hour'"/>
                         <field name="real_total_rental_time"/>
                     </group>
                 </xpath>
@@ -102,7 +101,7 @@
             <field name="inherit_id" ref="product.product_normal_form_view"/>
             <field name="arch" type="xml">
                 <xpath expr="//button[@name='action_view_po']" position="attributes">
-                    <attribute name="attrs">{'invisible': ['|', ('product_instance', '=', True), ('purchase_ok', '=', False)]}</attribute>
+                    <attribute name="invisible">product_instance == True or purchase_ok == False</attribute>
                     <attribute name="groups">purchase.group_purchase_user</attribute>
                 </xpath>
             </field>
