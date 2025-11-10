@@ -18,7 +18,7 @@ export const RentalTimelineView = {
     type: "rental_timeline",
     searchMenuTypes: ["filter", "groupBy", "comparison", "favorite"],
     display_name: _t("Rental Timeline"),
-    icon: "fa fa-calendar",
+    icon: "fa fa-timeline",
     multiRecord: true,
     ArchParser: RentalTimelineArchParser,
     Controller: RentalTimelineController,
