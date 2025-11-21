@@ -5,7 +5,8 @@
         <field name="name">Customer Contract</field>
         <field name="contract_type">sale</field>
         <field name="journal_id" search="[('type', '=', 'sale')]"/>
-        <field name="pricelist_id" ref="product.list0"/>
+ <!--        <field name="pricelist_id" search="[('type', '=', 'pricelist')]"/>
+   <field name="pricelist_id" ref="product.pricelist0"/> -->
         <field name="payment_term_id" ref="account.account_payment_term_immediate"/>
         <field name="sequence_id" ref="rental_contract.seq_customer_contract"/>
     </record>
@@ -14,7 +15,7 @@
         <field name="contract_type">sale</field>
         <field name="sub_type">rental</field>
         <field name="journal_id" search="[('type', '=', 'sale')]"/>
-        <field name="pricelist_id" ref="product.list0"/>
+<!--    <field name="pricelist_id" ref="product.pricelist0"/> -->
         <field name="payment_term_id" ref="account.account_payment_term_immediate"/>
         <field name="sequence_id" ref="rental_contract.seq_customer_contract"/>
     </record>
@@ -23,7 +24,7 @@
         <field name="name">Vendor Contract</field>
         <field name="contract_type">purchase</field>
         <field name="journal_id" search="[('type', '=', 'purchase')]"/>
-        <field name="pricelist_id" ref="product.list0"/>
+<!--    <field name="pricelist_id" ref="product.pricelist0"/> -->
         <field name="payment_term_id" ref="account.account_payment_term_immediate"/>
         <field name="sequence_id" ref="rental_contract.seq_vendor_contract"/>
     </record>
@@ -32,7 +33,7 @@
         <field name="contract_type">purchase</field>
         <field name="sub_type">rental</field>
         <field name="journal_id" search="[('type', '=', 'purchase')]"/>
-        <field name="pricelist_id" ref="product.list0"/>
+<!--    <field name="pricelist_id" ref="product.pricelist0"/> -->
         <field name="payment_term_id" ref="account.account_payment_term_immediate"/>
         <field name="sequence_id" ref="rental_contract.seq_vendor_contract"/>
     </record>

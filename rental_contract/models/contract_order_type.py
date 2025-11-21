@@ -17,7 +17,12 @@ class ContractOrderType(models.Model):
         return journal.id
 
     def _default_pricelist_id(self):
-        return self.env.ref("product.list0").id
+        # TODO change default pricelist if country group exist
+        #return self.env.ref("product.list0").id // the approached used ion 16.0 is not working anymore. I'm falling back to chosing the first pricelist
+        # TODO: understand how a default pricelist is / was defined
+        pricelists = self.env["product.pricelist"].search([])
+        if pricelists:
+            return pricelists[0].id
 
     def _default_payment_term_id(self):
         return self.env.ref("account.account_payment_term_immediate").id
