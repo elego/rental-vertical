@@ -7,112 +7,120 @@
             <field name="model">product.timeline</field>
             <field name="type">rental_timeline</field>
             <field name="arch" type="xml">
-                <timeline date_start="date_start"
-                          date_stop="date_end"
-                          default_group_by="product_id"
-                          zoomKey="ctrlKey"
-                          tooltip='{"followMouse": true}'
-                          stack="False"
-                          event_open_popup="True"
-                          colors="#CC9966:type == 'reserved'; #66CCCC:type == 'rental'; #ffce00:type=='maintenance'; #99CC99:type == 'repair'; #FFCC33:type=='delivery';"
-                >
-                    <field name="type" />
-                    <field name="type_formated" />
-                    <field name="has_clues" />
-                    <field name="redline" />
-                    <field name="date_start" readonly="1" widget="date" />
-                    <field name="date_start_formated" readonly="1"/>
-                    <field name="date_end" readonly="1" widget="date" />
-                    <field name="date_end_formated" readonly="1" />
-                    <field name="partner_id" />
-                    <field name="partner_shipping_address" />
-                    <field name="currency_id" />
-                    <field name="amount" />
-                    <field name="price_subtotal" widget="monetary" />
-                    <field name="number_of_days" />
-                    <field name="rental_period" />
-                    <field name="warehouse_id" />
-                    <field name="warehouse_name" />
-                    <field name="product_id" />
-                    <field name="product_name" />
-                    <field name="product_categ_id" />
-                    <field name="product_categ_name" />
-                    <field name="action_id" />
-                    <field name="menu_id" />
-                    <field name="res_model" />
-                    <field name="res_id" />
-                    <field name="click_res_model" />
-                    <field name="click_res_id" />
-                    <field name="order_name" />
-                    <templates>
-                        <div t-name="tooltip-item-group">
-                            <table border="1">
-                                <tr t-if="record.product_name">
-                                    <td>Product:</td>
-                                    <td t-esc="record.product_name" />
-                                </tr>
-                                <tr t-if="record.product_categ_name">
-                                    <td>Category:</td>
-                                    <td t-esc="record.product_categ_name" />
-                                </tr>
-                            </table>
-                        </div>
-                        <div t-name="timeline-item">
-                            <div t-attf-class="tooltip_content" style="display: none">
+               <rental_timeline>
+                    <timeline
+                            js_class="rental_timeline"
+                            date_start="date_start"
+                            date_stop="date_end"
+                            default_group_by="product_id"
+                            zoomKey="ctrlKey"
+                            tooltip='{"followMouse": true}'
+                            stack="False"
+                            event_open_popup="True"
+                            colors="#CC9966:type == 'reserved'; #66CCCC:type == 'rental'; #ffce00:type=='maintenance'; #99CC99:type == 'repair'; #FFCC33:type=='delivery';"
+                    >
+                        <field name="type" />
+                        <field name="type_formated" />
+                        <field name="has_clues" />
+                        <field name="redline" />
+                        <field name="date_start" readonly="1" widget="date" />
+                        <field name="date_start_formated" readonly="1"/>
+                        <field name="date_end" readonly="1" widget="date" />
+                        <field name="date_end_formated" readonly="1" />
+                        <field name="partner_id" />
+                        <field name="partner_shipping_address" />
+                        <field name="currency_id" />
+                        <field name="amount" />
+                        <field name="price_subtotal" widget="monetary" />
+                        <field name="number_of_days" />
+                        <field name="rental_period" />
+                        <field name="warehouse_id" />
+                        <field name="warehouse_name" />
+                        <field name="product_id" />
+                        <field name="product_name" />
+                        <field name="product_categ_id" />
+                        <field name="product_categ_name" />
+                        <field name="action_id" />
+                        <field name="menu_id" />
+                        <field name="res_model" />
+                        <field name="res_id" />
+                        <field name="click_res_model" />
+                        <field name="click_res_id" />
+                        <field name="order_name" />
+                        <templates>
+                            <!-- <div t-name="tooltip-item-group">
                                 <table border="1">
-                                    <tr t-if="record.has_clues">
-                                        <td>Clues:</td>
-                                        <td id="clues"></td>
+                                    <tr t-if="record.product_name">
+                                        <td>Product:</td>
+                                        <td t-esc="record.product_name" />
                                     </tr>
-                                    <tr t-if="record.order_name">
-                                        <td>Order:</td>
-                                        <td t-esc="record.order_name" />
-                                    </tr>
-                                    <tr t-if="record.date_start_formated">
-                                        <td>Start date:</td>
-                                        <td t-esc="record.date_start_formated" />
-                                    </tr>
-                                    <tr t-if="record.date_end_formated">
-                                        <td>End date:</td>
-                                        <td t-esc="record.date_end_formated" />
-                                    </tr>
-                                    <tr t-if="record.number_of_days">
-                                        <td>Total days:</td>
-                                        <td t-esc="record.number_of_days" />
-                                    </tr>
-                                    <tr t-if="record.rental_period and (record.type == 'reserved' or record.type == 'rental')">
-                                        <td>Rental period:</td>
-                                        <td t-esc="record.rental_period" />
-                                    </tr>
-                                    <tr t-if="record.partner_id[1]">
-                                        <td>Customer:</td>
-                                        <td t-esc="record.partner_id[1]" />
-                                    </tr>
-                                    <tr t-if="record.partner_shipping_address">
-                                        <td>Shipping address:</td>
-                                        <td t-esc="record.partner_shipping_address" />
-                                    </tr>
-                                    <tr t-if="record.warehouse_name">
-                                        <td>Warehouse:</td>
-                                        <td t-esc="record.warehouse_name" />
-                                    </tr>
-                                    <tr t-if="record.type_formated">
-                                        <td>Type:</td>
-                                        <td t-esc="record.type_formated" />
-                                    </tr>
-                                    <tr t-if="record.amount">
-                                        <td>Price:</td>
-                                        <td t-esc="record.amount" />
+                                    <tr t-if="record.product_categ_name">
+                                        <td>Category:</td>
+                                        <td t-esc="record.product_categ_name" />
                                     </tr>
                                 </table>
                             </div>
-                            <t t-if="record.redline">
-                                <hr color="#ff0000" />
-                            </t>
-                            <t t-out="record.display_name" />
-                        </div>
-                    </templates>
-                </timeline>
+                            <div t-name="timeline-item">
+                                <div t-attf-class="tooltip_content" style="display: none">
+                                    <table border="1">
+                                        <tr t-if="record.has_clues">
+                                            <td>Clues:</td>
+                                            <td id="clues"></td>
+                                        </tr>
+                                        <tr t-if="record.order_name">
+                                            <td>Order:</td>
+                                            <td t-esc="record.order_name" />
+                                        </tr>
+                                        <tr t-if="record.date_start_formated">
+                                            <td>Start date:</td>
+                                            <td t-esc="record.date_start_formated" />
+                                        </tr>
+                                        <tr t-if="record.date_end_formated">
+                                            <td>End date:</td>
+                                            <td t-esc="record.date_end_formated" />
+                                        </tr>
+                                        <tr t-if="record.number_of_days">
+                                            <td>Total days:</td>
+                                            <td t-esc="record.number_of_days" />
+                                        </tr>
+                                        <tr t-if="record.rental_period and (record.type == 'reserved' or record.type == 'rental')">
+                                            <td>Rental period:</td>
+                                            <td t-esc="record.rental_period" />
+                                        </tr>
+                                        <tr t-if="record.partner_id[1]">
+                                            <td>Customer:</td>
+                                            <td t-esc="record.partner_id[1]" />
+                                        </tr>
+                                        <tr t-if="record.partner_shipping_address">
+                                            <td>Shipping address:</td>
+                                            <td t-esc="record.partner_shipping_address" />
+                                        </tr>
+                                        <tr t-if="record.warehouse_name">
+                                            <td>Warehouse:</td>
+                                            <td t-esc="record.warehouse_name" />
+                                        </tr>
+                                        <tr t-if="record.type_formated">
+                                            <td>Type:</td>
+                                            <td t-esc="record.type_formated" />
+                                        </tr>
+                                        <tr t-if="record.amount">
+                                            <td>Price:</td>
+                                            <td t-esc="record.amount" />
+                                        </tr>
+                                    </table>
+                                </div>
+                                <t t-if="record.redline">
+                                    <hr color="#ff0000" />
+                                </t>
+                                <t t-out="record.display_name" />
+                            </div>
+
+                            <div>
+                                <h3>Hello world</h3>
+                            </div> -->
+                        </templates>
+                    </timeline>
+                </rental_timeline>
             </field>
         </record>
 
@@ -179,7 +187,7 @@
         <record id="action_product_timeline" model="ir.actions.act_window">
             <field name="name">Timeline</field>
             <field name="res_model">product.timeline</field>
-            <field name="view_mode">rental_timeline,form</field>
+            <field name="view_mode">list,rental_timeline,form</field>
             <field name="search_view_id" ref="view_product_timeline_search" />
             <field name="context">{"search_default_type_rental": 1}</field>
             <field name="help" type="html">

@@ -128,3 +128,5 @@ class Popup {
         this.frame.parentNode.removeChild(this.frame); // Remove element from DOM
     }
 }
+
+export default Popup;
